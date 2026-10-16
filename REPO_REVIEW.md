@@ -59,6 +59,6 @@ The original catalog lists `50 Shades of Pink` (AED 635), `Scorching Hot` (AED 8
 
 1. Keep this branch as the reviewable baseline for the approved browsing direction. Compare visual assets from `main` only as references until rights and product accuracy are confirmed.
 2. Obtain final SKU and variant data, prices, inventory rules, product photographs, logo, contact details, and delivery policies. Replace the provisional catalog and both sites' unsupported claims.
-3. Choose the commerce platform, connect real variants and hosted checkout, and test an English and Arabic purchase end to end. The current Shopify adapter is a starting point, not a live store.
+3. Connect the selected Shopify store, map real variants and hosted checkout, and test an English and Arabic purchase end to end. The current Shopify adapter is a starting point, not a live store.
 4. Review Arabic copy with a native editor, verify responsive and accessible behavior, and only then decide whether the final deployment benefits from a Next.js migration or should remain on Vite.
 5. Connect the purchased domain and enable indexing only after the production information, checkout, policies, and support path are verified.
