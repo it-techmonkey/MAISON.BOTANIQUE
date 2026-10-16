@@ -16,6 +16,8 @@ Visitors can scroll through a pinned three-product gallery: each floral image ap
 
 The Shopify Storefront API adapter in `src/lib/shopify.js` is prepared for a real store. When the business has approved its inventory, map each size to a real `shopifyVariants` product variant ID in `src/data/products.js`. Set the public Storefront token and domain using the names in `.env.example`. Do not place Admin API tokens in browser environment variables. The adapter creates a cart and redirects to Shopify's hosted checkout only when every cart line has a mapped variant. Before enabling that path, replace the sample bag prices with Shopify merchandise prices and verify currency and market settings so the amount displayed on the site agrees with checkout. Delivery options, tax, shipping, and payment are Shopify configuration work before launch.
 
+Shopify is the selected production commerce direction. The staged implementation and merge gates are recorded in [SHOPIFY_INTEGRATION_PLAN.md](SHOPIFY_INTEGRATION_PLAN.md). The current preview has no live Shopify checkout or analytics.
+
 ## JVC opening offer proof
 
 `/jvc/` is a separate, noindex design proof for the JVC opening edition: 25% off every product and one scented candle with each of the first 100 qualifying orders. The page uses the storefront’s Cormorant/DM Sans typography, warm plaster, deep olive and floral photography. Final catalog, prices, product imagery, terms and booking are deliberately pending. The matching A5 pamphlet proof and rollout plan remain in the separate local campaign workspace and are not part of this website repository.

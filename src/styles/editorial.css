@@ -55,7 +55,7 @@
 .ed-rail-shell { position: relative; }
 .ed-product-rail { display: flex; align-items: start; gap: clamp(18px,2.3vw,34px); overflow-x: auto; overflow-y: hidden; padding: 0 0 12px; scroll-snap-type: x mandatory; scroll-padding-inline: 1px; overscroll-behavior-inline: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .ed-product-rail::-webkit-scrollbar { display: none; }
-.ed-piece { flex: 0 0 clamp(290px, 34vw, 465px); min-width: 0; scroll-snap-align: start; }
+.ed-piece { flex: 0 0 clamp(275px, 28vw, 400px); min-width: 0; scroll-snap-align: start; }
 .ed-piece-photo { position: relative; display: block; width: 100%; aspect-ratio: 4 / 5; padding: 0; border: 0; overflow: hidden; background: var(--ed-blush); }
 .ed-piece--1 .ed-piece-photo { aspect-ratio: 4 / 4.55; }
 .ed-piece--2 .ed-piece-photo { aspect-ratio: 4 / 5.2; }
@@ -116,7 +116,7 @@
   .ed-root *, .ed-root *::before, .ed-root *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
 @media (max-width: 1120px) {
-  .ed-piece { flex-basis: clamp(260px, 36vw, 390px); }
+  .ed-piece { flex-basis: clamp(250px, 30vw, 330px); }
   .ed-ritual-content { padding-inline: 5vw; }
 }
 @media (max-width: 760px) {
@@ -128,7 +128,7 @@
   .ed-browse-bar { margin-top: 58px; }
   .ed-search { width: 100%; }
   .ed-filters { gap: 2px 20px; margin-bottom: 42px; }
-  .ed-piece { flex-basis: min(76vw, 350px); }
+  .ed-piece { flex-basis: min(69vw, 320px); }
   .ed-piece-title { font-size: clamp(40px, 10vw, 60px); }
   .ed-root:dir(rtl) .ed-piece-title { font-size: clamp(30px, 8vw, 43px); }
   .ed-rail-progress { margin-top: 50px; }
@@ -142,7 +142,7 @@
 @media (max-width: 400px) {
   .ed-browse-group { gap: 17px; }
   .ed-browse-modes { gap: 18px; }
-  .ed-piece { flex-basis: 78vw; }
+  .ed-piece { flex-basis: 72vw; }
   .ed-rail-count { margin-inline-end: 5px; }
   .ed-rail-navigation button { width: 42px; height: 42px; }
 }
