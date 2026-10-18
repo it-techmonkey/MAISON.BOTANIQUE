@@ -9,6 +9,8 @@ Needs Python 3 with `requests` and `Pillow` (both already installed here). You o
 3. In the terminal:  `export OPENAI_API_KEY=sk-...`   (kept only in that terminal; the code never saves or prints it)
 4. Optional but strongly recommended: put real packaging photos in `brand-assets/` (see its README) so Ferrero, Lindt, L'Oréal, etc. are drawn exactly.
 
+**Current pilot: see [PILOT.md](PILOT.md)** (5 products × OpenAI API, Gemini API and the ChatGPT app). The section below is the older 12-product OpenAI pilot.
+
 ## 1. The pilot (about 48 images, roughly $3-6)
 ```bash
 python3 pilot.py          # prints the plan and a rough estimate. Sends nothing.

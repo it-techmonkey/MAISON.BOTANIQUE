@@ -36,7 +36,9 @@ def main():
         status, ok, bad = fn(st["batch_id"]); print("batch status:", status)
         total = 0.0
         for k, (png, usage) in ok.items():
-            (out / f"{k}.png").write_bytes(png); c = E.cost_of(usage, batch=True); total += c or 0
+            (out / f"{k}.png").write_bytes(png); c = E.cost_of(usage, batch=True, cfg=cfg)
+            if c is None and cfg.get("batch_price"): c = cfg["batch_price"]
+            total += c or 0
             (out / "usage.jsonl").open("a").write(json.dumps({"key": k, "seconds": 0, "usage": usage, "cost": c}) + "\n")
         for k, e in bad.items(): print("FAILED", k, e)
         print(f"saved {len(ok)} images, {len(bad)} failed, real batch cost ${total:.2f} -> {out}"); return

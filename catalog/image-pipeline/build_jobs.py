@@ -10,13 +10,13 @@ The final prompt text that is sent (with the right image numbering) is assembled
 import argparse, hashlib, json, re
 from config import ROOT, PRODUCTS, PILOT_TITLES, REF_URLS
 
+# Every scene sits in the website's own warm paper tones (#F5F2EB / #EBE6DC) so the catalogue grid reads as one shoot.
+# No green, blush or dark walls: colour comes from the flowers, foliage and ribbon only.
 SCENES = [
-    "a warm plaster wall with soft window light and a pale limestone ledge",
-    "a dark deep-green painted wall, moody low-key side light, a dark wood console",
-    "a white marble counter with a soft linen backdrop in morning light",
-    "an ivory linen-draped table in front of a sun-washed stone wall, dappled leaf shadows",
-    "a travertine plinth against a muted sage wall, soft diffused daylight",
-    "a pale oak table by a window, sheer curtain light, blush-toned wall",
+    "a smooth warm off-white plaster wall (soft paper tone, #F5F2EB) with soft window light, on a pale limestone ledge",
+    "a warm ivory linen backdrop (soft paper tone, #EBE6DC) on a matching ivory linen-draped table, gentle morning light",
+    "a pale travertine plinth against a warm off-white plaster wall (soft paper tone, #F5F2EB), soft diffused daylight",
+    "a warm white marble counter against a soft ivory plaster wall (paper tone, #EBE6DC), soft morning light",
 ]
 
 TEMPLATES = {
@@ -28,14 +28,18 @@ TEMPLATES = {
     "preserved": "Preserved flower presented as a keepsake piece, close and elegant, whole item visible.",
     "gift": "Flowers with the listed gift items arranged together as one gift set; every listed item clearly visible, whole set in frame.",
     "beauty": "Gift set of beauty products with flowers; every listed item clearly visible, branded items shown in their genuine packaging.",
-    "bouquet": "Hand-tied bouquet in tissue/paper wrap with a ribbon, whole bouquet visible from a three-quarter view, stems and wrap shown.",
+    "bouquet": "Hand-tied bouquet, whole bouquet visible from a three-quarter view, stems shown. Wrapping (paper, colour or none) and ribbon follow the listing and Image 1; if the reference has no paper wrap, use none.",
+    "bridal": "Bridal bouquet: compact hand-tied posy, stems bound in ivory satin ribbon, no paper wrapping. Held at waist height by a bride in a white wedding gown, "
+              "cropped at the shoulders so her face is not shown, soft-focus garden or ceremony background. Wedding mood, natural light.",
 }
 
+CARDS = json.load(open(ROOT / "data" / "card-text.json")) if (ROOT / "data" / "card-text.json").exists() else {}
 BRANDS = json.load(open(ROOT / "brand-assets" / "brands.json")) if (ROOT / "brand-assets" / "brands.json").exists() else {}
 
 
 def fmt(p):
     t = (p["title"] + " " + p["product_type"]).lower()
+    if "bridal" in t or "bride" in t: return "bridal"
     if "beauty" in p["product_type"].lower() or "makeup" in t: return "beauty"
     if re.search(r"forever rose|preserved|infinity", p["title"].lower()): return "preserved"
     if re.search(r"\bplant\b", p["title"].lower()) and "bouquet" not in t: return "plant"
@@ -64,21 +68,27 @@ def brand_files(p):
 
 
 def build_prompt(p):
-    spec = re.sub(r"\b(the )?class of 20\d\d", "this year's graduates", "; ".join(items(p)) or p["title"])
+    spec = re.sub(r"\b(the )?class of 20\d\d", "the class of 2026", "; ".join(items(p)) or p["title"])
     scene = SCENES[int(hashlib.md5(p["handle"].encode()).hexdigest(), 16) % len(SCENES)]
-    vis = p.get("visual_spec")
+    vis = (p.get("visual_spec") or "").replace("Do not show any year.", "").strip()
     visual = f"Detailed visual specification: {vis} " if vis else ""
     title = re.sub(r"\b20\d\d\s*", "", p["title"])
+    card = CARDS.get(p["handle"])
+    card_txt = (f"{card} "
+                if card else "If the reference photo shows a message card, placard, topper or greeting, include one with the same wording, restyled as a clean ivory Maison card. ")
+    people = "no people" if fmt(p) != "bridal" else "no other people, the bride's face not shown"
     return (
         "Premium editorial product photograph for Maison Botanique, a Dubai luxury floral gifting house. "
         f"Product: {title}. Contents, as listed: {spec}. {visual}"
         "Show exactly the listed items, colours and quantities and nothing extra: do not add other flowers, items or colours, "
         "and do not show more than the listed quantity of any item. Make the arrangement look full, fresh and natural, with believable petals, glass and shadows. "
         f"{TEMPLATES[fmt(p)]} "
-        f"Setting: {scene}. Directional soft light, tactile natural textures, deep botanical green, ivory, blush and oxblood palette, shallow depth of field, photorealistic. "
+        f"Setting: {scene}. The background stays a calm warm off-white with no green, pink or dark walls and no plants behind the product. "
+        "Directional soft light, tactile natural textures, ivory and warm paper palette, with colour only from the flowers, natural foliage, any wrapping colour named in the contents, and an ivory, blush or oxblood ribbon; shallow depth of field, photorealistic. "
         "Attach the Maison Botanique gift tag to the product. Square 1:1 composition, product centred with breathing room. "
         "Brand products and characters named in the contents appear in their genuine packaging (if a character cannot be rendered, use a close plush). "
-        "No other text, no years or dates, no prices, no watermarks, no other logos, no hands or people."
+        f"{card_txt}"
+        f"No other text apart from the Maison tag and that message (years only if part of the message), no prices, no watermarks, no seller logos, {people}."
     )
 
 

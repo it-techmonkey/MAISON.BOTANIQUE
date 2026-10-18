@@ -19,12 +19,13 @@ def main():
     ap.add_argument("--yes", action="store_true", help="confirm spending money")
     ap.add_argument("--configs", help="comma list, default: " + ",".join(PILOT_CONFIGS))
     ap.add_argument("--max-spend", type=float, default=10.0, help="stop when REAL spend passes this many USD (default 10)")
+    ap.add_argument("--products", type=int, help="use only the first N pilot products (e.g. 5)")
     ap.add_argument("--workers", type=int, default=3, help="parallel requests (the lowest OpenAI tier allows ~20 images/minute)")
     a = ap.parse_args()
     names = a.configs.split(",") if a.configs else PILOT_CONFIGS
     for n in names:
         if n not in CONFIGS: sys.exit(f"unknown config {n}; choose from {', '.join(CONFIGS)}")
-    jobs = build_jobs.make_jobs(pilot=True)
+    jobs = build_jobs.make_jobs(pilot=True)[:a.products or None]
     (ROOT / "jobs").mkdir(exist_ok=True)
     (ROOT / "jobs" / "pilot.jsonl").write_text("".join(json.dumps(j, ensure_ascii=False) + "\n" for j in jobs))
     todo = {n: [j for j in jobs if not (ROOT / "out" / n / f"{j['key']}.png").exists()] for n in names}
@@ -39,7 +40,8 @@ def main():
     print(f"Rough estimate: about ${total * 0.07:.0f} (guess of $0.05-0.09 per image; the pilot measures the real figure). Spend limit: ${a.max_spend:.2f}.")
     if not a.yes:
         print("\nNothing was sent. Run again with --yes to start."); return
-    if not os.environ.get("OPENAI_API_KEY"): sys.exit("\nSet your key first:  export OPENAI_API_KEY=...")
+    for env in sorted({"OPENAI_API_KEY" if CONFIGS[n]["provider"] == "openai" else "GEMINI_API_KEY" for n in names}):
+        if not os.environ.get(env): sys.exit(f"\nSet your key first:  export {env}=...")
 
     print("\nDownloading the supplier guidance photos (once)...")
     E.prepare(jobs)
@@ -63,22 +65,23 @@ def main():
     try: qa.compare(jobs)
     except SystemExit: pass
 
-    lines = ["# Pilot report", "", "| Setting | Model | Quality | Supplier photo | Images | Failed | Avg cost | Avg time | Avg tokens in/out | Projected 278 products (+25% retakes), sync / batch |", "|---|---|---|---|---|---|---|---|---|---|"]
+    lines = ["# Pilot report", "", "| Setting | Model | Quality | Supplier photo | Images | Failed | Avg cost | Avg time | Avg tokens in/out | Projected 295 images (+25% retakes), sync / batch |", "|---|---|---|---|---|---|---|---|---|---|"]
     for n in names:
         m = E.measured(n); c = CONFIGS[n]; s = next((x for x in results if x["config"] == n), {"failed": []})
         if m:
-            g = 278 * 1.25
+            g = 295 * 1.25
             lines.append(f"| {n} | {c['model']} | {c.get('quality', c.get('image_size'))} | {'yes' if c['supplier_ref'] else 'no'} | {m['n']} | {len(s['failed'])} | ${m['avg_cost']:.3f} | {m['avg_seconds']:.0f}s | {m['avg_in_tokens']:.0f} / {m['avg_out_tokens']:.0f} | ${g * m['avg_cost']:.0f} / ${g * m['avg_cost'] * 0.5:.0f} |")
         else:
             lines.append(f"| {n} | {c['model']} | {c.get('quality', c.get('image_size'))} | {'yes' if c['supplier_ref'] else 'no'} | 0 | {len(s['failed'])} | - | - | - | - |")
     lines += ["", f"Total pilot spend (real, from usage): **${spent:.2f}**", "",
               "Look at `qa/compare-pilot.jpg`. Judge: correct flowers/colours/counts, container, Maison tag spelling, brand packaging, no stray logos or watermarks, "
               "and whether the supplier photo (guidance) improves accuracy without being copied.",
-              "Then tell me which setting to use for the other ~266 products."]
+              "Then tell me which setting to use for the remaining images."]
     (ROOT / "qa").mkdir(exist_ok=True); (ROOT / "qa" / "pilot-report.md").write_text("\n".join(lines) + "\n")
     print("\n" + "\n".join(lines))
     for s in results:
         for k, e in s["failed"]: print(f"FAILED {s['config']} {k}: {e}")
+    import report; report.main()
 
 
 if __name__ == "__main__":

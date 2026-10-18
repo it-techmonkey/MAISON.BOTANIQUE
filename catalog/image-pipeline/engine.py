@@ -8,13 +8,14 @@ import providers as P
 from config import CONFIGS, BRAND_TAG, REFS_DIR, ROOT, TOKEN_PRICE, BATCH_FACTOR
 
 
-def cost_of(usage, batch=False):
+def cost_of(usage, batch=False, cfg=None):
     """Real cost in USD from the API's usage block (None if the provider gave none)."""
     if not usage: return None
+    price = {**TOKEN_PRICE, **((cfg or {}).get("token_price") or {})}
     d = usage.get("input_tokens_details") or {}
     img_in = d.get("image_tokens", 0)
     txt_in = d.get("text_tokens", max(usage.get("input_tokens", 0) - img_in, 0))
-    c = (txt_in * TOKEN_PRICE["text_in"] + img_in * TOKEN_PRICE["image_in"] + usage.get("output_tokens", 0) * TOKEN_PRICE["image_out"]) / 1e6
+    c = (txt_in * price["text_in"] + img_in * price["image_in"] + usage.get("output_tokens", 0) * price["image_out"]) / 1e6
     return c * (BATCH_FACTOR if batch else 1)
 
 
@@ -45,8 +46,11 @@ def compose(job, cfg):
     for name, path in zip(job.get("brand_names", []), job.get("brand_paths", [])):
         imgs.append(path)
         notes.append(f"Image {len(imgs)} shows the genuine packaging of {name}: reproduce its logo, colours and lettering exactly, unaltered.")
-    imgs.append(str(BRAND_TAG))
-    notes.append(f"Image {len(imgs)} (the last one) is the Maison Botanique gift tag: copy its lettering and layout exactly.")
+    if cfg.get("brand_tag", True):
+        imgs.append(str(BRAND_TAG))
+        notes.append(f"Image {len(imgs)} (the last one) is the Maison Botanique gift tag: copy its lettering and layout exactly.")
+    if not imgs:  # pure text (the Oct 16-17 method): the model draws the tag itself
+        return job["prompt"] + " The gift tag is a small ivory card reading MAISON BOTANIQUE in an elegant serif, spelled exactly.", imgs
     return job["prompt"] + " REFERENCE IMAGES: " + " ".join(notes), imgs
 
 
@@ -77,7 +81,8 @@ def run_sync(name, jobs, workers=3, max_spend=None, smoke=True, log=print):
         except Exception as e:
             with lock: st["failed"].append((j["key"], str(e)))
             log(f"  FAILED {j['key']}: {e}"); return
-        sec = time.time() - t; c = cost_of(usage)
+        sec = time.time() - t; c = cost_of(usage, cfg=cfg)
+        if c is None and cfg.get("price"): c = cfg["price"]   # Gemini: published per-image price (input tokens are under $0.001)
         (out / f"{j['key']}.png").write_bytes(png)
         with lock:
             st["done"] += 1; st["seconds"].append(sec); st["cost"] += c or 0

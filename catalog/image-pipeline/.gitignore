@@ -7,3 +7,4 @@ __pycache__/
 _test-artifacts-safe-to-delete/
 .DS_Store
 .env
+api-keys.txt

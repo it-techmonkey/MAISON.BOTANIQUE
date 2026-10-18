@@ -73,6 +73,7 @@ def check(config, jobs):
 
 def compare(jobs):
     cfgs = [c for c in CONFIGS if (ROOT / "out" / c).exists() and any((ROOT / "out" / c).glob("*.png"))]
+    cfgs += sorted(p.name for p in (ROOT / "out").glob("chat-*") if any(p.glob("*.png")))  # manual ChatGPT-app images (chat_pilot.py)
     if not cfgs: raise SystemExit("No outputs yet.")
     cols = len(cfgs) + 1; S = 280
     sh = Image.new("RGB", (cols * S, (len(jobs) + 1) * (S + 4) + 24), "white"); d = ImageDraw.Draw(sh)
