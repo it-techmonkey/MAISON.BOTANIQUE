@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { liveRooms, liveOccasions } from '../data/catalog.js';
+import { liveGroups, liveOccasions, findGroup, TAB_IDS, GROUP_ALIASES } from '../data/catalog.js';
 import '../styles/collection.css';
 
 const PAGE = 24;
@@ -13,7 +13,7 @@ const STEMS = [
   { id: 's3', test: (n) => n != null && n > 60 },
 ];
 const SORTS = ['featured', 'low', 'high'];
-const EMPTY = { room: 'all', occasion: [], budget: [], stems: [], query: '' };
+const EMPTY = { group: 'all', occasion: [], budget: [], stems: [], query: '' };
 
 const COPY = {
   en: {
@@ -51,7 +51,8 @@ const budgetOf = (p) => BUDGETS.find((b) => b.test(p.price))?.id;
 const stemsOf = (p) => STEMS.find((s) => s.test(p.stems))?.id;
 
 function matches(p, state, skip) {
-  if (state.room !== 'all' && p.room !== state.room) return false;
+  const group = findGroup(state.group);
+  if (group && !group.test(p)) return false;
   if (skip !== 'occasion' && state.occasion.length && !p.occasions.some((o) => state.occasion.includes(o))) return false;
   if (skip !== 'budget' && state.budget.length && !state.budget.includes(budgetOf(p))) return false;
   if (skip !== 'stems' && state.stems.length && !state.stems.includes(stemsOf(p))) return false;
@@ -69,8 +70,8 @@ function stateFromHash(hash) {
     const id = value.slice(9);
     return liveOccasions.some((o) => o.id === id) ? { ...EMPTY, occasion: [id] } : null;
   }
-  if (liveRooms.some((r) => r.id === value)) return { ...EMPTY, room: value };
-  return null;
+  const id = GROUP_ALIASES[value] || value;
+  return findGroup(id) ? { ...EMPTY, group: id } : null;
 }
 
 function RefineDrawer({ open, onClose, state, setState, products, t, ar }) {
@@ -188,10 +189,10 @@ export default function CollectionPage({ products = [], locale = 'en', onProduct
     return () => observer.disconnect();
   }, []);
 
-  const setRoom = (room) => {
-    setState((s) => ({ ...s, room }));
+  const setGroup = (group) => {
+    setState((s) => ({ ...s, group }));
     setShown(PAGE);
-    history.replaceState(null, '', room === 'all' ? '#shop' : `#${room}`);
+    history.replaceState(null, '', group === 'all' ? '#shop' : `#${group}`);
   };
   const setOccasion = (id) => {
     const on = state.occasion.length === 1 && state.occasion[0] === id;
@@ -201,7 +202,13 @@ export default function CollectionPage({ products = [], locale = 'en', onProduct
     scrollToGrid();
   };
 
-  const counts = useMemo(() => Object.fromEntries(liveRooms.map((r) => [r.id, r.id === 'all' ? products.length : products.filter((p) => p.room === r.id).length])), [products]);
+  // The main tabs, plus the current group when it came from the menu (e.g. Lilies).
+  const tabs = useMemo(() => {
+    const ids = TAB_IDS.filter((id) => findGroup(id));
+    if (!ids.includes(state.group) && findGroup(state.group)) ids.push(state.group);
+    return ids.map(findGroup);
+  }, [state.group]);
+  const currentGroup = findGroup(state.group);
   // Each occasion tile gets its own photo: the first matching piece not already used.
   const occasionTiles = useMemo(() => {
     const used = new Set();
@@ -230,7 +237,7 @@ export default function CollectionPage({ products = [], locale = 'en', onProduct
   return <section className="mbc" id="shop" ref={sectionRef} aria-labelledby="mbc-title" dir={ar ? 'rtl' : 'ltr'}>
     <div className="mbc-in mbc-head">
       <div className="mbc-head-title">
-        <h2 id="mbc-title">{t.title}</h2>
+        <h2 id="mbc-title">{currentGroup && currentGroup.id !== 'all' ? (ar ? currentGroup.ar : currentGroup.en) : t.title}</h2>
         <span className="mbc-head-count">{fmt(products.length, ar)} {t.pieces} · {t.sample}</span>
       </div>
       <label className="mbc-search"><span className="mbc-sr">{t.search}</span>
@@ -252,8 +259,8 @@ export default function CollectionPage({ products = [], locale = 'en', onProduct
 
     <nav className="mbc-rooms" ref={roomsRef} aria-label={t.title}>
       <div className="mbc-in mbc-rooms-in">
-        <div className="mbc-room-list">{liveRooms.map((r) => <button type="button" key={r.id} className="mbc-room" aria-pressed={state.room === r.id} onClick={() => setRoom(r.id)}>
-          {ar ? r.ar : r.en}<sup>{fmt(counts[r.id], ar)}</sup>
+        <div className="mbc-room-list">{tabs.map((g) => <button type="button" key={g.id} className="mbc-room" aria-pressed={state.group === g.id} onClick={() => setGroup(g.id)}>
+          {ar ? g.ar : g.en}<sup>{fmt(g.count, ar)}</sup>
         </button>)}</div>
         <div className="mbc-tools">
           <button type="button" onClick={() => setRefineOpen(true)}>{t.refine}{refinements ? <span className="mbc-n"> ({fmt(refinements, ar)})</span> : null}</button>

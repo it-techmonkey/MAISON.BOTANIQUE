@@ -137,6 +137,32 @@ def occasions_of(p, comp):
     return occ
 
 
+FLOWERS = [
+    ("rose", r"\broses?\b|spray rose"), ("lily", r"\blil(y|ies)\b"), ("tulip", r"\btulips?\b"), ("orchid", r"\borchids?\b|dendrobium"),
+    ("hydrangea", r"hydrangeas?"), ("sunflower", r"sunflowers?"), ("carnation", r"carnations?"), ("chrysanthemum", r"chrysanthemums?"),
+]
+
+
+def flowers_of(p):
+    """Main flowers from the title and tags (the contents list also names fillers)."""
+    t = (p["title"] + " " + " ".join(p["tags"])).lower()
+    found = [name for name, pattern in FLOWERS if re.search(pattern, t)]
+    if len(found) >= 3 or re.search(r"\bmix|garden|wildflower|meadow|assorted", t):
+        found.append("mixed")
+    return found
+
+
+def format_of(p, room):
+    t = (p["title"] + " " + " ".join(p["tags"]) + " " + p["product_type"]).lower()
+    if room in ("gifts", "beauty", "hampers"):
+        return "gift"
+    if "vase" in t:
+        return "vase"
+    if re.search(r"\bbox|basket|tray|hatbox", t):
+        return "box"
+    return "bouquet"
+
+
 def write_images(src, handle):
     OUT_IMG.mkdir(parents=True, exist_ok=True)
     im = None
@@ -187,6 +213,8 @@ def main():
             "feature": o.get("feature", ""),
             "stems": o.get("stems", stems_of(sizes, comp)),
             "occasions": o.get("occasions") or occasions_of(p, comp),
+            "flowers": o.get("flowers") or flowers_of(p),
+            "format": o.get("format") or format_of(p, o.get("room") or ROOMS.get(p["product_type"], "bouquets")),
             "order": o.get("order", 100 + p["catalog_number"]),
             "custom": ({"label": custom["name"], "kind": "letter" if "letter" in custom["name"].lower() else "age" if "age" in custom["name"].lower() else "text"} if custom else None),
             "image": f"/collection/{h}-960.webp",

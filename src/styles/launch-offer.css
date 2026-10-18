@@ -30,8 +30,8 @@
 .lo-code button { border: 0; background: none; font: 500 var(--fs-label)/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; border-bottom: 1px solid var(--ink); padding: 4px 0; cursor: pointer; color: var(--ink); }
 .lo-preview { margin: 0; font-size: 12px; font-style: italic; color: var(--wine); }
 .lo-terms { margin: 10px 0 0; padding-top: 12px; border-top: 1px solid #d9d2c5; font-size: 11.5px; line-height: 1.5; color: #596454; }
-.lo-tab { position: fixed; z-index: 95; inset-inline-start: 0; bottom: 96px; padding: 12px 14px; border: 0; background: var(--wine); color: #f7f4ee; font: 600 var(--fs-label)/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; writing-mode: vertical-rl; transform: rotate(180deg); cursor: pointer; box-shadow: 0 10px 24px -14px rgb(0 0 0 / 50%); }
-[dir='rtl'].lo-tab { transform: none; }
+.lo-tab { position: fixed; z-index: 95; block-size: auto; inline-size: max-content; left: 0; /* physical: vertical text turns inline-start into top */ bottom: 96px; padding: 12px 14px; border: 0; background: var(--wine); color: #f7f4ee; font: 600 var(--fs-label)/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; writing-mode: vertical-rl; transform: rotate(180deg); cursor: pointer; box-shadow: 0 10px 24px -14px rgb(0 0 0 / 50%); }
+[dir='rtl'].lo-tab { transform: none; left: auto; right: 0; }
 [dir='rtl'] .lo-body :is(.lo-eyebrow, .lo-label, .lo-switch button, .lo-cta, .lo-code button) { font-family: 'Noto Naskh Arabic', Tahoma, serif; letter-spacing: 0; text-transform: none; font-size: 14px; }
 [dir='rtl'] .lo-body h2 { font-family: 'Noto Naskh Arabic', Tahoma, serif; font-size: 34px; line-height: 1.35; }
 [dir='rtl'].lo-tab { font-family: 'Noto Naskh Arabic', Tahoma, serif; letter-spacing: 0; font-size: 13px; }
@@ -43,6 +43,6 @@
   .lo-photo { height: 150px; min-height: 0; }
   .lo-body { padding: 22px 20px calc(18px + env(safe-area-inset-bottom)); }
   .lo-body h2 { font-size: 34px; }
-  .lo-tab { bottom: 120px; }
+  .lo-tab { display: none; } /* phones: the offer bar opens the popup; a side tab would cover product names */
 }
 @media (prefers-reduced-motion: reduce) { .lo-scrim, .lo-panel { animation: none; } }

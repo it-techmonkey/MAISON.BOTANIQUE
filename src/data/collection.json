@@ -54,6 +54,10 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 1,
    "custom": null,
    "image": "/collection/classic-pink-and-white-rose-bouquet-960.webp",
@@ -114,6 +118,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 2,
    "custom": null,
    "image": "/collection/bloom-and-teddy-delight-960.webp",
@@ -167,6 +175,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 3,
    "custom": null,
    "image": "/collection/blush-pink-rose-bouquet-960.webp",
@@ -224,6 +236,10 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 4,
    "custom": null,
    "image": "/collection/timeless-bouquet-of-100-white-roses-960.webp",
@@ -281,6 +297,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 5,
    "custom": null,
    "image": "/collection/classic-romance-bouquet-960.webp",
@@ -337,6 +357,10 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 6,
    "custom": null,
    "image": "/collection/luxury-red-pink-and-white-rose-bouquet-960.webp",
@@ -391,6 +415,10 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 7,
    "custom": null,
    "image": "/collection/pearl-white-rose-bouquet-960.webp",
@@ -448,6 +476,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 8,
    "custom": null,
    "image": "/collection/flowers-and-chocolate-in-box-960.webp",
@@ -490,6 +522,11 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "sunflower"
+   ],
+   "format": "bouquet",
    "order": 9,
    "custom": null,
    "image": "/collection/sunflower-and-golden-rose-bouquet-960.webp",
@@ -547,6 +584,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "vase",
    "order": 10,
    "custom": null,
    "image": "/collection/pink-lilies-in-a-glass-vase-960.webp",
@@ -610,6 +651,11 @@
     "new-baby",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "carnation"
+   ],
+   "format": "bouquet",
    "order": 113,
    "custom": null,
    "image": "/collection/pastel-rose-symphony-960.webp",
@@ -667,6 +713,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 121,
    "custom": null,
    "image": "/collection/purple-and-pink-roses-bouquet-960.webp",
@@ -725,6 +775,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 122,
    "custom": null,
    "image": "/collection/40-pink-roses-bouquet-960.webp",
@@ -784,6 +838,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 123,
    "custom": null,
    "image": "/collection/anniversary-bliss-bouquet-960.webp",
@@ -843,6 +901,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 124,
    "custom": null,
    "image": "/collection/20-red-roses-love-for-you-960.webp",
@@ -901,6 +963,10 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 125,
    "custom": null,
    "image": "/collection/notification-flower-bouquet-960.webp",
@@ -958,6 +1024,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 127,
    "custom": null,
    "image": "/collection/ethereal-pink-roses-charm-960.webp",
@@ -1019,6 +1089,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 128,
    "custom": null,
    "image": "/collection/golden-glow-rose-bouquet-960.webp",
@@ -1076,6 +1150,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 129,
    "custom": null,
    "image": "/collection/graceful-blush-bouquet-960.webp",
@@ -1133,6 +1211,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 130,
    "custom": null,
    "image": "/collection/pink-roses-and-spray-roses-bouquet-960.webp",
@@ -1193,6 +1275,10 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 131,
    "custom": null,
    "image": "/collection/pink-roses-and-white-spray-roses-bouquet-960.webp",
@@ -1258,6 +1344,11 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "chrysanthemum"
+   ],
+   "format": "bouquet",
    "order": 132,
    "custom": null,
    "image": "/collection/prestige-raksha-bandhan-gift-960.webp",
@@ -1315,6 +1406,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 133,
    "custom": null,
    "image": "/collection/anniversary-red-roses-bouquet-960.webp",
@@ -1373,6 +1468,10 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 134,
    "custom": null,
    "image": "/collection/blush-and-ivory-rose-bouquet-960.webp",
@@ -1433,6 +1532,10 @@
    "occasions": [
     "wedding"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 138,
    "custom": null,
    "image": "/collection/bridal-blush-bloom-960.webp",
@@ -1490,6 +1593,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 139,
    "custom": null,
    "image": "/collection/happy-birthday-roses-bouquet-960.webp",
@@ -1546,6 +1653,10 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 140,
    "custom": null,
    "image": "/collection/blue-roses-bouquet-960.webp",
@@ -1606,6 +1717,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 141,
    "custom": null,
    "image": "/collection/blushing-bouquet-of-20-pink-and-red-roses-960.webp",
@@ -1665,6 +1780,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 143,
    "custom": null,
    "image": "/collection/grand-gesture-roses-bouquet-960.webp",
@@ -1723,6 +1842,10 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 144,
    "custom": null,
    "image": "/collection/timeless-white-roses-bouquet-960.webp",
@@ -1779,6 +1902,10 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 145,
    "custom": null,
    "image": "/collection/trilogy-of-roses-bouquet-960.webp",
@@ -1835,6 +1962,10 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 146,
    "custom": null,
    "image": "/collection/blue-rose-bouquet-960.webp",
@@ -1889,6 +2020,10 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 147,
    "custom": null,
    "image": "/collection/20-purple-roses-bouquet-960.webp",
@@ -1946,6 +2081,10 @@
     "love",
     "birthday"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 149,
    "custom": {
     "label": "Letter or initial",
@@ -2002,6 +2141,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 151,
    "custom": null,
    "image": "/collection/heart-shaped-red-rose-bouquet-960.webp",
@@ -2055,6 +2198,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 154,
    "custom": null,
    "image": "/collection/rainbow-ombre-summer-bouquet-960.webp",
@@ -2109,6 +2256,10 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 155,
    "custom": null,
    "image": "/collection/white-and-red-roses-bouquet-960.webp",
@@ -2165,6 +2316,10 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 156,
    "custom": null,
    "image": "/collection/white-baby-rose-happy-birthday-bouquet-with-balloons-960.webp",
@@ -2211,6 +2366,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 158,
    "custom": null,
    "image": "/collection/heart-on-fire-heart-shaped-red-roses-bouquet-100-roses-960.webp",
@@ -2259,6 +2418,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 159,
    "custom": null,
    "image": "/collection/made-to-adore-luxury-pink-spray-roses-bouquet-960.webp",
@@ -2299,6 +2462,10 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 160,
    "custom": null,
    "image": "/collection/rustic-bouquet-of-white-roses-960.webp",
@@ -2345,6 +2512,10 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 161,
    "custom": null,
    "image": "/collection/ros-elegance-spray-roses-960.webp",
@@ -2403,6 +2574,10 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 162,
    "custom": null,
    "image": "/collection/bouquet-of-champagne-lisianthus-960.webp",
@@ -2464,6 +2639,11 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "carnation",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 163,
    "custom": null,
    "image": "/collection/ruby-radiance-bouquet-960.webp",
@@ -2526,6 +2706,13 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "carnation",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 165,
    "custom": null,
    "image": "/collection/red-and-pink-flower-bouquet-960.webp",
@@ -2583,6 +2770,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 168,
    "custom": null,
    "image": "/collection/tenacetum-bag-960.webp",
@@ -2644,6 +2835,13 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "carnation",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 169,
    "custom": null,
    "image": "/collection/lavender-grace-bouquet-960.webp",
@@ -2697,6 +2895,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 171,
    "custom": null,
    "image": "/collection/bouquet-of-iris-flowers-960.webp",
@@ -2754,6 +2956,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 172,
    "custom": null,
    "image": "/collection/gospium-bouquet-cotton-flowers-960.webp",
@@ -2815,6 +3021,13 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "carnation",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 173,
    "custom": null,
    "image": "/collection/enchanted-blossom-bouquet-960.webp",
@@ -2870,6 +3083,13 @@
     "new-baby",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "carnation",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 174,
    "custom": null,
    "image": "/collection/cloud-nine-pastel-pink-and-blue-flower-bouquet-960.webp",
@@ -2923,6 +3143,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 175,
    "custom": null,
    "image": "/collection/pink-summer-bouquet-960.webp",
@@ -2962,6 +3186,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 176,
    "custom": {
     "label": "Age number (1-50+)",
@@ -3004,6 +3232,10 @@
     "birthday",
     "congratulations"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 177,
    "custom": null,
    "image": "/collection/special-graduation-bouquet-960.webp",
@@ -3043,6 +3275,10 @@
     "birthday",
     "congratulations"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 178,
    "custom": null,
    "image": "/collection/special-graduation-bouquets-960.webp",
@@ -3082,6 +3318,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 179,
    "custom": null,
    "image": "/collection/birthday-bouquet-of-summer-flowers-960.webp",
@@ -3121,6 +3361,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 180,
    "custom": null,
    "image": "/collection/cherry-bouquet-960.webp",
@@ -3162,6 +3406,10 @@
     "birthday",
     "congratulations"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 181,
    "custom": null,
    "image": "/collection/elegant-black-graduation-bouquet-960.webp",
@@ -3203,6 +3451,10 @@
     "birthday",
     "congratulations"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 182,
    "custom": null,
    "image": "/collection/graduation-bouquet-celebration-bundle-960.webp",
@@ -3242,6 +3494,10 @@
     "birthday",
     "congratulations"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 183,
    "custom": null,
    "image": "/collection/graduation-floral-special-bouquet-960.webp",
@@ -3281,6 +3537,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 184,
    "custom": null,
    "image": "/collection/happy-birthday-flower-large-30-red-bouquet-960.webp",
@@ -3320,6 +3580,10 @@
     "birthday",
     "congratulations"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 185,
    "custom": null,
    "image": "/collection/pink-graduation-bouquet-960.webp",
@@ -3357,6 +3621,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 186,
    "custom": null,
    "image": "/collection/rainbow-wildflower-garden-bouquet-960.webp",
@@ -3398,6 +3666,10 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 187,
    "custom": null,
    "image": "/collection/red-and-white-love-special-bouquet-960.webp",
@@ -3459,6 +3731,11 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily"
+   ],
+   "format": "bouquet",
    "order": 188,
    "custom": null,
    "image": "/collection/bouquet-of-pink-lilies-and-pink-roses-960.webp",
@@ -3516,6 +3793,11 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily"
+   ],
+   "format": "bouquet",
    "order": 189,
    "custom": null,
    "image": "/collection/pink-roses-and-lilies-bouquet-960.webp",
@@ -3573,6 +3855,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "bouquet",
    "order": 190,
    "custom": null,
    "image": "/collection/purple-orchids-bouquet-960.webp",
@@ -3630,6 +3916,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "bouquet",
    "order": 191,
    "custom": null,
    "image": "/collection/serene-pink-tulips-bouquet-960.webp",
@@ -3687,6 +3977,11 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "hydrangea",
+    "carnation"
+   ],
+   "format": "bouquet",
    "order": 192,
    "custom": null,
    "image": "/collection/bouquet-of-hydrangeas-and-carnations-960.webp",
@@ -3748,6 +4043,11 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "hydrangea"
+   ],
+   "format": "bouquet",
    "order": 193,
    "custom": null,
    "image": "/collection/roses-and-hydrangeas-bouquet-960.webp",
@@ -3809,6 +4109,11 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "hydrangea"
+   ],
+   "format": "bouquet",
    "order": 194,
    "custom": null,
    "image": "/collection/hydrangeas-and-roses-bouquet-960.webp",
@@ -3873,6 +4178,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "sunflower"
+   ],
+   "format": "bouquet",
    "order": 195,
    "custom": null,
    "image": "/collection/radiance-sunflower-bouquet-960.webp",
@@ -3932,6 +4241,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "bouquet",
    "order": 196,
    "custom": null,
    "image": "/collection/premium-pink-tulips-bouquet-960.webp",
@@ -3991,6 +4304,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "bouquet",
    "order": 197,
    "custom": null,
    "image": "/collection/bouquet-of-30-pink-tulips-960.webp",
@@ -4051,6 +4368,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "bouquet",
    "order": 198,
    "custom": null,
    "image": "/collection/bouquet-of-tulips-960.webp",
@@ -4110,6 +4431,13 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 199,
    "custom": null,
    "image": "/collection/bouquet-of-pink-lilies-and-roses-960.webp",
@@ -4169,6 +4497,11 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "hydrangea"
+   ],
+   "format": "bouquet",
    "order": 200,
    "custom": null,
    "image": "/collection/roses-and-hydrangea-bunch-960.webp",
@@ -4231,6 +4564,11 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily"
+   ],
+   "format": "bouquet",
    "order": 201,
    "custom": null,
    "image": "/collection/bouquet-of-pink-lilies-and-red-roses-960.webp",
@@ -4292,6 +4630,10 @@
     "new-baby",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "bouquet",
    "order": 202,
    "custom": null,
    "image": "/collection/bouquet-of-40-white-and-40-purple-tulips-960.webp",
@@ -4351,6 +4693,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "bouquet",
    "order": 203,
    "custom": null,
    "image": "/collection/majestic-orchids-bouquet-960.webp",
@@ -4414,6 +4760,13 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 204,
    "custom": null,
    "image": "/collection/white-flowers-bouquet-960.webp",
@@ -4478,6 +4831,14 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily",
+    "hydrangea",
+    "carnation",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 205,
    "custom": null,
    "image": "/collection/elegant-bouquet-of-mix-flowers-960.webp",
@@ -4539,6 +4900,11 @@
     "new-baby",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "hydrangea"
+   ],
+   "format": "bouquet",
    "order": 206,
    "custom": null,
    "image": "/collection/dreamy-pastel-bouquet-960.webp",
@@ -4597,6 +4963,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "sunflower"
+   ],
+   "format": "bouquet",
    "order": 207,
    "custom": null,
    "image": "/collection/the-sunlit-bouquet-960.webp",
@@ -4656,6 +5026,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "bouquet",
    "order": 208,
    "custom": null,
    "image": "/collection/orchid-bliss-bouquet-960.webp",
@@ -4719,6 +5093,13 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 209,
    "custom": null,
    "image": "/collection/bouquet-of-roses-and-lilies-960.webp",
@@ -4778,6 +5159,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "bouquet",
    "order": 210,
    "custom": null,
    "image": "/collection/bouquet-of-lilies-and-pistache-bliss-960.webp",
@@ -4839,6 +5224,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "bouquet",
    "order": 211,
    "custom": null,
    "image": "/collection/purple-dendrobium-orchids-bouquet-960.webp",
@@ -4903,6 +5292,11 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "sunflower",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 212,
    "custom": null,
    "image": "/collection/sunlit-meadow-bouquet-960.webp",
@@ -4960,6 +5354,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "bouquet",
    "order": 213,
    "custom": null,
    "image": "/collection/bouquet-of-purple-dendrobium-orchids-960.webp",
@@ -5022,6 +5420,11 @@
     "new-baby",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "hydrangea"
+   ],
+   "format": "bouquet",
    "order": 214,
    "custom": null,
    "image": "/collection/baby-boy-blossom-bouquet-960.webp",
@@ -5077,6 +5480,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "bouquet",
    "order": 215,
    "custom": null,
    "image": "/collection/bouquet-of-pink-lilies-960.webp",
@@ -5138,6 +5545,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "carnation"
+   ],
+   "format": "bouquet",
    "order": 216,
    "custom": null,
    "image": "/collection/bouquet-of-pink-flowers-960.webp",
@@ -5199,6 +5610,11 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "carnation",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 217,
    "custom": null,
    "image": "/collection/blush-meadow-bouquet-960.webp",
@@ -5253,6 +5669,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "bouquet",
    "order": 218,
    "custom": null,
    "image": "/collection/bouquet-of-40-purple-tulips-960.webp",
@@ -5315,6 +5735,11 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "hydrangea"
+   ],
+   "format": "bouquet",
    "order": 219,
    "custom": null,
    "image": "/collection/i-am-sorry-flower-bouquet-960.webp",
@@ -5370,6 +5795,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "bouquet",
    "order": 220,
    "custom": null,
    "image": "/collection/regal-pink-lily-bouquet-960.webp",
@@ -5427,6 +5856,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "bouquet",
    "order": 221,
    "custom": null,
    "image": "/collection/yellow-tulips-bouquet-960.webp",
@@ -5484,6 +5917,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "bouquet",
    "order": 222,
    "custom": null,
    "image": "/collection/80-purple-orchids-bouquet-960.webp",
@@ -5543,6 +5980,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "bouquet",
    "order": 223,
    "custom": null,
    "image": "/collection/blue-orchids-bouquet-960.webp",
@@ -5601,6 +6042,11 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily"
+   ],
+   "format": "bouquet",
    "order": 224,
    "custom": null,
    "image": "/collection/pink-lilies-and-red-roses-bouquet-960.webp",
@@ -5664,6 +6110,11 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "sunflower"
+   ],
+   "format": "bouquet",
    "order": 225,
    "custom": null,
    "image": "/collection/sunburst-love-bouquet-960.webp",
@@ -5725,6 +6176,11 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "carnation"
+   ],
+   "format": "bouquet",
    "order": 226,
    "custom": null,
    "image": "/collection/blushing-elegance-bouquet-960.webp",
@@ -5781,6 +6237,13 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "orchid",
+    "carnation",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 227,
    "custom": null,
    "image": "/collection/the-love-spell-luxury-red-and-burgundy-flower-bouquet-960.webp",
@@ -5822,6 +6285,11 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily"
+   ],
+   "format": "bouquet",
    "order": 228,
    "custom": null,
    "image": "/collection/birthday-bouquet-with-lilies-and-baby-rose-960.webp",
@@ -5868,6 +6336,14 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "hydrangea",
+    "carnation",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 229,
    "custom": null,
    "image": "/collection/blush-crush-luxury-pink-hydrangea-and-gerbera-bouquet-960.webp",
@@ -5907,6 +6383,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "bouquet",
    "order": 230,
    "custom": null,
    "image": "/collection/bouquet-of-10-pink-lilies-960.webp",
@@ -5955,6 +6435,14 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "hydrangea",
+    "sunflower",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 231,
    "custom": null,
    "image": "/collection/golden-hour-luxury-sunflower-and-white-hydrangea-bouquet-960.webp",
@@ -5995,6 +6483,10 @@
    "occasions": [
     "wedding"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "bouquet",
    "order": 233,
    "custom": null,
    "image": "/collection/white-calla-bridal-bouquet-960.webp",
@@ -6034,6 +6526,10 @@
     "get-well",
     "wedding"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "bouquet",
    "order": 234,
    "custom": null,
    "image": "/collection/white-tulip-bridal-bouquet-960.webp",
@@ -6073,6 +6569,8 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [],
+   "format": "bouquet",
    "order": 235,
    "custom": null,
    "image": "/collection/happy-birthday-flowers-peonies-bouquet-960.webp",
@@ -6130,6 +6628,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "vase",
    "order": 236,
    "custom": null,
    "image": "/collection/red-roses-vase-arrangement-960.webp",
@@ -6187,6 +6689,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "vase",
    "order": 237,
    "custom": null,
    "image": "/collection/pink-lilies-in-a-vase-960.webp",
@@ -6244,6 +6750,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "vase",
    "order": 238,
    "custom": null,
    "image": "/collection/40-white-orchids-arrangement-960.webp",
@@ -6303,6 +6813,10 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "vase",
    "order": 239,
    "custom": null,
    "image": "/collection/15-white-lilies-vase-arrangement-960.webp",
@@ -6364,6 +6878,14 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily",
+    "carnation",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "vase",
    "order": 240,
    "custom": null,
    "image": "/collection/carnations-lilies-roses-and-chrysanthemums-in-a-vase-960.webp",
@@ -6424,6 +6946,13 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "tulip",
+    "hydrangea",
+    "mixed"
+   ],
+   "format": "vase",
    "order": 242,
    "custom": null,
    "image": "/collection/tulips-roses-and-hydrangeas-in-a-vase-960.webp",
@@ -6485,6 +7014,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "vase",
    "order": 243,
    "custom": null,
    "image": "/collection/arrangement-of-pink-and-white-tulips-960.webp",
@@ -6544,6 +7077,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "vase",
    "order": 244,
    "custom": null,
    "image": "/collection/blush-and-pure-rose-symphony-in-elegant-vase-960.webp",
@@ -6600,6 +7137,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "vase",
    "order": 245,
    "custom": null,
    "image": "/collection/exotic-white-tulips-vase-960.webp",
@@ -6663,6 +7204,13 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily",
+    "carnation",
+    "mixed"
+   ],
+   "format": "vase",
    "order": 246,
    "custom": null,
    "image": "/collection/pink-and-white-flowers-in-vase-960.webp",
@@ -6720,6 +7268,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "vase",
    "order": 247,
    "custom": null,
    "image": "/collection/red-roses-in-vase-960.webp",
@@ -6781,6 +7333,11 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily"
+   ],
+   "format": "vase",
    "order": 248,
    "custom": null,
    "image": "/collection/lilies-and-roses-in-glass-vase-960.webp",
@@ -6848,6 +7405,13 @@
     "new-baby",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "hydrangea",
+    "carnation",
+    "mixed"
+   ],
+   "format": "vase",
    "order": 249,
    "custom": null,
    "image": "/collection/garden-pastel-arrangement-960.webp",
@@ -6907,6 +7471,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "vase",
    "order": 250,
    "custom": null,
    "image": "/collection/pink-tulips-in-vase-960.webp",
@@ -6963,6 +7531,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "vase",
    "order": 251,
    "custom": null,
    "image": "/collection/20-white-tulips-vase-arrangement-960.webp",
@@ -7021,6 +7593,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "vase",
    "order": 252,
    "custom": null,
    "image": "/collection/purple-tulips-in-vase-960.webp",
@@ -7078,6 +7654,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "vase",
    "order": 253,
    "custom": null,
    "image": "/collection/vase-of-pink-roses-960.webp",
@@ -7133,6 +7713,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "vase",
    "order": 254,
    "custom": null,
    "image": "/collection/blue-orchids-in-a-vase-960.webp",
@@ -7193,6 +7777,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "sunflower"
+   ],
+   "format": "vase",
    "order": 255,
    "custom": null,
    "image": "/collection/sunflowers-and-yellow-lemons-in-a-vase-960.webp",
@@ -7250,6 +7838,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "vase",
    "order": 256,
    "custom": null,
    "image": "/collection/40-red-spray-roses-in-vase-960.webp",
@@ -7309,6 +7901,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "vase",
    "order": 257,
    "custom": null,
    "image": "/collection/luminous-yellow-rose-arrangement-960.webp",
@@ -7354,6 +7950,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "vase",
    "order": 258,
    "custom": null,
    "image": "/collection/kiss-me-again-red-roses-in-a-glass-vase-960.webp",
@@ -7396,6 +7996,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "vase",
    "order": 259,
    "custom": null,
    "image": "/collection/40-white-tulip-vase-960.webp",
@@ -7445,6 +8049,13 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "orchid",
+    "hydrangea",
+    "mixed"
+   ],
+   "format": "vase",
    "order": 260,
    "custom": null,
    "image": "/collection/blue-and-white-mix-flowers-vase-960.webp",
@@ -7494,6 +8105,11 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "orchid"
+   ],
+   "format": "vase",
    "order": 261,
    "custom": null,
    "image": "/collection/fall-vase-960.webp",
@@ -7533,6 +8149,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "vase",
    "order": 262,
    "custom": null,
    "image": "/collection/pink-lilies-in-glass-vase-960.webp",
@@ -7590,6 +8210,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 263,
    "custom": null,
    "image": "/collection/square-box-of-20-red-roses-960.webp",
@@ -7648,6 +8272,10 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 264,
    "custom": null,
    "image": "/collection/basket-arrangement-of-white-roses-960.webp",
@@ -7700,6 +8328,11 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "carnation"
+   ],
+   "format": "box",
    "order": 265,
    "custom": null,
    "image": "/collection/roses-and-carnations-in-box-960.webp",
@@ -7758,6 +8391,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 266,
    "custom": null,
    "image": "/collection/black-box-of-100-red-roses-960.webp",
@@ -7815,6 +8452,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 267,
    "custom": null,
    "image": "/collection/pink-roses-in-box-960.webp",
@@ -7878,6 +8519,13 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "orchid",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "box",
    "order": 268,
    "custom": null,
    "image": "/collection/soft-elegance-roundbox-arrangement-960.webp",
@@ -7939,6 +8587,10 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 269,
    "custom": null,
    "image": "/collection/pink-and-white-roses-in-a-box-960.webp",
@@ -8001,6 +8653,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 270,
    "custom": null,
    "image": "/collection/box-of-red-and-pink-roses-960.webp",
@@ -8060,6 +8716,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "box",
    "order": 271,
    "custom": null,
    "image": "/collection/pink-lilies-in-box-960.webp",
@@ -8119,6 +8779,10 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "box",
    "order": 272,
    "custom": null,
    "image": "/collection/box-of-white-lilies-960.webp",
@@ -8176,6 +8840,11 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "mixed"
+   ],
+   "format": "box",
    "order": 273,
    "custom": null,
    "image": "/collection/mix-flowers-in-box-960.webp",
@@ -8233,6 +8902,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 274,
    "custom": null,
    "image": "/collection/round-box-of-red-roses-960.webp",
@@ -8290,6 +8963,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 275,
    "custom": null,
    "image": "/collection/red-and-gold-roses-heart-shaped-box-960.webp",
@@ -8347,6 +9024,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 276,
    "custom": null,
    "image": "/collection/blush-pink-roses-in-box-960.webp",
@@ -8404,6 +9085,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 277,
    "custom": null,
    "image": "/collection/box-of-pink-roses-960.webp",
@@ -8463,6 +9148,11 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily"
+   ],
+   "format": "box",
    "order": 278,
    "custom": null,
    "image": "/collection/pink-lilies-and-roses-in-box-960.webp",
@@ -8523,6 +9213,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 279,
    "custom": null,
    "image": "/collection/red-and-pink-roses-basket-960.webp",
@@ -8585,6 +9279,11 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "sunflower"
+   ],
+   "format": "box",
    "order": 280,
    "custom": null,
    "image": "/collection/sunflowers-and-roses-in-box-960.webp",
@@ -8638,6 +9337,11 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "hydrangea"
+   ],
+   "format": "box",
    "order": 281,
    "custom": null,
    "image": "/collection/box-of-roses-and-hydrangea-960.webp",
@@ -8700,6 +9404,11 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "sunflower"
+   ],
+   "format": "box",
    "order": 282,
    "custom": null,
    "image": "/collection/box-of-sunflowers-and-roses-960.webp",
@@ -8759,6 +9468,11 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily"
+   ],
+   "format": "box",
    "order": 283,
    "custom": null,
    "image": "/collection/lilies-and-roses-in-box-960.webp",
@@ -8814,6 +9528,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 284,
    "custom": null,
    "image": "/collection/crimson-luxe-box-960.webp",
@@ -8866,6 +9584,11 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "chrysanthemum"
+   ],
+   "format": "box",
    "order": 285,
    "custom": null,
    "image": "/collection/national-flag-flowers-in-box-960.webp",
@@ -8923,6 +9646,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 286,
    "custom": null,
    "image": "/collection/60-red-roses-romantic-basket-960.webp",
@@ -8979,6 +9706,11 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "orchid"
+   ],
+   "format": "box",
    "order": 287,
    "custom": null,
    "image": "/collection/red-roses-and-white-phalaenopsis-orchid-in-a-round-box-960.webp",
@@ -9034,6 +9766,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 288,
    "custom": null,
    "image": "/collection/pink-roses-hatbox-960.webp",
@@ -9090,6 +9826,10 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 289,
    "custom": null,
    "image": "/collection/three-box-arrangement-960.webp",
@@ -9146,6 +9886,11 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "orchid"
+   ],
+   "format": "box",
    "order": 290,
    "custom": null,
    "image": "/collection/red-roses-and-phalaenopsis-orchid-in-a-box-960.webp",
@@ -9206,6 +9951,10 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 291,
    "custom": null,
    "image": "/collection/box-of-gerberas-and-roses-960.webp",
@@ -9272,6 +10021,13 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily",
+    "hydrangea",
+    "mixed"
+   ],
+   "format": "box",
    "order": 293,
    "custom": null,
    "image": "/collection/ethereal-white-elegance-box-960.webp",
@@ -9324,6 +10080,10 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 294,
    "custom": null,
    "image": "/collection/roses-and-gerberas-in-a-box-960.webp",
@@ -9382,6 +10142,14 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "orchid",
+    "hydrangea",
+    "carnation",
+    "mixed"
+   ],
+   "format": "box",
    "order": 296,
    "custom": null,
    "image": "/collection/caught-in-love-luxury-peach-and-pink-flower-box-960.webp",
@@ -9431,6 +10199,11 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "chrysanthemum"
+   ],
+   "format": "box",
    "order": 297,
    "custom": null,
    "image": "/collection/head-over-roses-luxury-red-roses-basket-960.webp",
@@ -9474,6 +10247,10 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 298,
    "custom": null,
    "image": "/collection/birthday-red-roses-box-with-white-balloons-960.webp",
@@ -9517,6 +10294,11 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "hydrangea"
+   ],
+   "format": "box",
    "order": 299,
    "custom": null,
    "image": "/collection/blue-hydrangea-elegance-box-960.webp",
@@ -9560,6 +10342,10 @@
     "get-well",
     "congratulations"
    ],
+   "flowers": [
+    "sunflower"
+   ],
+   "format": "box",
    "order": 300,
    "custom": null,
    "image": "/collection/sunshine-graduation-box-960.webp",
@@ -9613,6 +10399,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 301,
    "custom": null,
    "image": "/collection/grand-passion-rose-four-layer-tower-960.webp",
@@ -9668,6 +10458,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "bouquet",
    "order": 302,
    "custom": null,
    "image": "/collection/tower-arrangement-of-blue-orchids-960.webp",
@@ -9723,6 +10517,13 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily",
+    "carnation",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 303,
    "custom": null,
    "image": "/collection/pink-and-white-floral-stand-960.webp",
@@ -9779,6 +10580,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "bouquet",
    "order": 304,
    "custom": null,
    "image": "/collection/orchid-and-baby-s-breath-tower-960.webp",
@@ -9839,6 +10644,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 306,
    "custom": null,
    "image": "/collection/pastel-dreams-tower-960.webp",
@@ -9892,6 +10701,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 307,
    "custom": null,
    "image": "/collection/bouquet-of-300-roses-960.webp",
@@ -9947,6 +10760,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "bouquet",
    "order": 308,
    "custom": null,
    "image": "/collection/blue-orchids-on-stand-960.webp",
@@ -10011,6 +10828,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 309,
    "custom": null,
    "image": "/collection/xxxl-pink-paradise-floral-box-960.webp",
@@ -10077,6 +10898,15 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily",
+    "tulip",
+    "hydrangea",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 310,
    "custom": null,
    "image": "/collection/ivory-tower-960.webp",
@@ -10131,6 +10961,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "box",
    "order": 311,
    "custom": null,
    "image": "/collection/xxxl-300-red-roses-box-960.webp",
@@ -10187,6 +11021,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 312,
    "custom": null,
    "image": "/collection/sunburst-xxxl-dome-of-roses-960.webp",
@@ -10226,6 +11064,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 313,
    "custom": null,
    "image": "/collection/401-roses-bouquet-960.webp",
@@ -10266,6 +11108,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
    "order": 314,
    "custom": null,
    "image": "/collection/500-red-roses-of-love-xxxl-960.webp",
@@ -10323,6 +11169,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 315,
    "custom": null,
    "image": "/collection/white-orchid-plant-960.webp",
@@ -10381,6 +11231,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 316,
    "custom": null,
    "image": "/collection/pink-orchid-plant-4-960.webp",
@@ -10439,6 +11293,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 317,
    "custom": null,
    "image": "/collection/pink-phalaenopsis-orchid-plant-960.webp",
@@ -10495,6 +11353,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 318,
    "custom": null,
    "image": "/collection/pink-orchid-plant-in-pot-960.webp",
@@ -10550,6 +11412,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 319,
    "custom": null,
    "image": "/collection/phalaenopsis-orchid-plant-960.webp",
@@ -10612,6 +11478,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 320,
    "custom": null,
    "image": "/collection/pink-dark-pink-and-white-phalaenopsis-plant-960.webp",
@@ -10667,6 +11537,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 321,
    "custom": null,
    "image": "/collection/purple-phalaenopsis-orchid-plant-960.webp",
@@ -10725,6 +11599,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 322,
    "custom": null,
    "image": "/collection/dark-pink-phalaenopsis-orchid-plant-960.webp",
@@ -10784,6 +11662,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 323,
    "custom": null,
    "image": "/collection/white-orchid-plant-in-pot-960.webp",
@@ -10846,6 +11728,12 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "bouquet",
    "order": 324,
    "custom": null,
    "image": "/collection/forever-yours-romance-bouquet-960.webp",
@@ -10887,6 +11775,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 325,
    "custom": null,
    "image": "/collection/2-stems-white-orchid-plant-in-pot-960.webp",
@@ -10927,6 +11819,10 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 326,
    "custom": null,
    "image": "/collection/forever-rose-960.webp",
@@ -10968,6 +11864,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 327,
    "custom": null,
    "image": "/collection/red-trio-forever-rose-960.webp",
@@ -11029,6 +11929,11 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily"
+   ],
+   "format": "gift",
    "order": 329,
    "custom": null,
    "image": "/collection/fruit-basket-with-fresh-flowers-960.webp",
@@ -11086,6 +11991,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 330,
    "custom": null,
    "image": "/collection/heart-shaped-arrangement-roses-and-chocolates-960.webp",
@@ -11147,6 +12056,10 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 331,
    "custom": null,
    "image": "/collection/luxury-white-flower-gift-set-960.webp",
@@ -11208,6 +12121,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 332,
    "custom": null,
    "image": "/collection/purple-bloom-twin-plush-960.webp",
@@ -11274,6 +12191,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "sunflower"
+   ],
+   "format": "gift",
    "order": 334,
    "custom": null,
    "image": "/collection/sunshine-peach-teddy-celebration-960.webp",
@@ -11331,6 +12252,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 335,
    "custom": null,
    "image": "/collection/pink-baby-roses-happy-birthday-bouquet-with-pink-balloons-960.webp",
@@ -11373,6 +12298,10 @@
     "love",
     "congratulations"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "gift",
    "order": 336,
    "custom": null,
    "image": "/collection/premium-graduation-bouquet-with-lilies-and-teddy-bear-960.webp",
@@ -11430,6 +12359,8 @@
     "love",
     "just-because"
    ],
+   "flowers": [],
+   "format": "gift",
    "order": 337,
    "custom": null,
    "image": "/collection/chocolate-bouquet-with-cake-and-teddy-960.webp",
@@ -11483,6 +12414,8 @@
     "love",
     "just-because"
    ],
+   "flowers": [],
+   "format": "gift",
    "order": 338,
    "custom": null,
    "image": "/collection/small-teddy-with-chocolate-bouquet-960.webp",
@@ -11536,6 +12469,8 @@
     "love",
     "just-because"
    ],
+   "flowers": [],
+   "format": "gift",
    "order": 339,
    "custom": null,
    "image": "/collection/chocolate-bouquet-and-teddy-960.webp",
@@ -11591,6 +12526,8 @@
     "love",
     "just-because"
    ],
+   "flowers": [],
+   "format": "gift",
    "order": 340,
    "custom": null,
    "image": "/collection/6x-ferrero-rocher-chocolates-960.webp",
@@ -11646,6 +12583,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "gift",
    "order": 341,
    "custom": null,
    "image": "/collection/small-teddy-with-lindt-assorted-chocolate-box-960.webp",
@@ -11701,6 +12642,8 @@
     "love",
     "just-because"
    ],
+   "flowers": [],
+   "format": "gift",
    "order": 342,
    "custom": null,
    "image": "/collection/ferrero-rocher-chocolate-bouquet-960.webp",
@@ -11754,6 +12697,8 @@
     "love",
     "just-because"
    ],
+   "flowers": [],
+   "format": "gift",
    "order": 343,
    "custom": null,
    "image": "/collection/24s-ferrero-rocher-chocolate-box-960.webp",
@@ -11812,6 +12757,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "gift",
    "order": 345,
    "custom": null,
    "image": "/collection/blush-elegance-and-ferrero-delight-960.webp",
@@ -11873,6 +12822,10 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "gift",
    "order": 346,
    "custom": null,
    "image": "/collection/white-bloom-and-ferrero-charm-960.webp",
@@ -11927,6 +12880,13 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily",
+    "carnation",
+    "mixed"
+   ],
+   "format": "gift",
    "order": 347,
    "custom": null,
    "image": "/collection/pink-bloom-and-ferrero-24s-960.webp",
@@ -11989,6 +12949,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 348,
    "custom": null,
    "image": "/collection/purple-orchids-teddy-and-ferrero-960.webp",
@@ -12048,6 +13012,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 349,
    "custom": null,
    "image": "/collection/crimson-bloom-and-ferrero-960.webp",
@@ -12103,6 +13071,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "gift",
    "order": 350,
    "custom": null,
    "image": "/collection/tulips-teddy-and-pistache-16s-960.webp",
@@ -12159,6 +13131,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 351,
    "custom": null,
    "image": "/collection/blue-orchid-and-ferrero-delight-960.webp",
@@ -12213,6 +13189,10 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 353,
    "custom": null,
    "image": "/collection/white-luxe-and-pistache-indulgence-960.webp",
@@ -12272,6 +13252,8 @@
     "love",
     "just-because"
    ],
+   "flowers": [],
+   "format": "gift",
    "order": 354,
    "custom": null,
    "image": "/collection/blue-bliss-teddy-and-ferrero-960.webp",
@@ -12327,6 +13309,8 @@
     "love",
     "just-because"
    ],
+   "flowers": [],
+   "format": "gift",
    "order": 355,
    "custom": null,
    "image": "/collection/teddy-with-16-pcs-ferrero-rocher-gift-960.webp",
@@ -12385,6 +13369,8 @@
     "love",
     "just-because"
    ],
+   "flowers": [],
+   "format": "gift",
    "order": 358,
    "custom": null,
    "image": "/collection/pink-teddy-with-cake-and-balloons-960.webp",
@@ -12443,6 +13429,8 @@
     "love",
     "just-because"
    ],
+   "flowers": [],
+   "format": "gift",
    "order": 359,
    "custom": null,
    "image": "/collection/pink-teddy-with-cake-and-chocolate-960.webp",
@@ -12502,6 +13490,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 360,
    "custom": null,
    "image": "/collection/premium-flower-chocolate-box-960.webp",
@@ -12561,6 +13553,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 361,
    "custom": null,
    "image": "/collection/eternal-passion-red-roses-and-chocolate-box-960.webp",
@@ -12617,6 +13613,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 362,
    "custom": null,
    "image": "/collection/pink-roses-and-pistache-signature-chocolate-box-960.webp",
@@ -12676,6 +13676,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 363,
    "custom": null,
    "image": "/collection/classic-love-surprise-960.webp",
@@ -12737,6 +13741,10 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "gift",
    "order": 364,
    "custom": null,
    "image": "/collection/pink-lily-gift-combo-960.webp",
@@ -12794,6 +13802,10 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 365,
    "custom": null,
    "image": "/collection/premium-white-bloom-gift-960.webp",
@@ -12846,6 +13858,11 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [
+    "carnation",
+    "chrysanthemum"
+   ],
+   "format": "gift",
    "order": 366,
    "custom": null,
    "image": "/collection/carnation-and-chrysanthemums-with-cake-960.webp",
@@ -12907,6 +13924,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 368,
    "custom": null,
    "image": "/collection/love-rose-and-cake-bundle-960.webp",
@@ -12970,6 +13991,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 369,
    "custom": null,
    "image": "/collection/orchid-bliss-combo-960.webp",
@@ -13030,6 +14055,10 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 370,
    "custom": null,
    "image": "/collection/bouquet-of-flowers-and-pistache-joy-960.webp",
@@ -13086,6 +14115,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 371,
    "custom": null,
    "image": "/collection/100-red-roses-with-pistache-chocolate-box-960.webp",
@@ -13147,6 +14180,11 @@
     "birthday",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "lily"
+   ],
+   "format": "gift",
    "order": 372,
    "custom": null,
    "image": "/collection/blissful-bouquet-and-dates-960.webp",
@@ -13206,6 +14244,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 373,
    "custom": null,
    "image": "/collection/classic-red-roses-and-cake-960.webp",
@@ -13267,6 +14309,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 374,
    "custom": null,
    "image": "/collection/roses-teddy-bear-and-chocolates-960.webp",
@@ -13322,6 +14368,10 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 375,
    "custom": null,
    "image": "/collection/white-roses-vase-and-chocolate-mousse-960.webp",
@@ -13382,6 +14432,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 377,
    "custom": null,
    "image": "/collection/pink-red-roses-and-pistache-16s-960.webp",
@@ -13442,6 +14496,11 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "hydrangea"
+   ],
+   "format": "gift",
    "order": 378,
    "custom": null,
    "image": "/collection/blue-bliss-and-fudge-celebration-960.webp",
@@ -13499,6 +14558,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 379,
    "custom": null,
    "image": "/collection/red-roses-vase-and-blueberry-cheesecake-960.webp",
@@ -13557,6 +14620,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "sunflower"
+   ],
+   "format": "gift",
    "order": 380,
    "custom": null,
    "image": "/collection/pure-sunshine-gift-960.webp",
@@ -13614,6 +14681,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 381,
    "custom": null,
    "image": "/collection/bouquet-of-red-roses-and-red-velvet-cake-960.webp",
@@ -13672,6 +14743,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "sunflower"
+   ],
+   "format": "gift",
    "order": 382,
    "custom": null,
    "image": "/collection/sunflowers-and-fudge-cake-960.webp",
@@ -13733,6 +14808,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 383,
    "custom": null,
    "image": "/collection/grand-red-rose-bouquet-with-16-ferrero-rocher-960.webp",
@@ -13797,6 +14876,11 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "sunflower",
+    "carnation"
+   ],
+   "format": "gift",
    "order": 384,
    "custom": null,
    "image": "/collection/sunflowers-bouquet-and-honey-cake-960.webp",
@@ -13859,6 +14943,11 @@
     "thanks",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "hydrangea"
+   ],
+   "format": "gift",
    "order": 385,
    "custom": null,
    "image": "/collection/hydrangea-roses-teddy-and-pistache-960.webp",
@@ -13917,6 +15006,10 @@
     "love",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 386,
    "custom": null,
    "image": "/collection/blush-roses-and-triple-chocolate-delight-960.webp",
@@ -13972,6 +15065,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 387,
    "custom": null,
    "image": "/collection/white-orchids-and-red-velvet-cake-960.webp",
@@ -14030,6 +15127,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "gift",
    "order": 388,
    "custom": null,
    "image": "/collection/bouquet-of-tulips-and-cake-960.webp",
@@ -14089,6 +15190,10 @@
     "get-well",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "gift",
    "order": 389,
    "custom": null,
    "image": "/collection/pink-tulips-bouquet-and-cheesecake-960.webp",
@@ -14143,6 +15248,10 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 390,
    "custom": null,
    "image": "/collection/white-roses-and-ferrero-24s-960.webp",
@@ -14201,6 +15310,10 @@
     "sorry",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 391,
    "custom": null,
    "image": "/collection/white-roses-bouquet-and-honey-cake-960.webp",
@@ -14265,6 +15378,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "orchid"
+   ],
+   "format": "gift",
    "order": 392,
    "custom": null,
    "image": "/collection/blue-orchid-bouquet-with-cake-and-blue-teddy-bear-960.webp",
@@ -14317,6 +15434,8 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [],
+   "format": "gift",
    "order": 393,
    "custom": null,
    "image": "/collection/blue-delphinium-and-pistache-bliss-960.webp",
@@ -14373,6 +15492,11 @@
     "new-baby",
     "just-because"
    ],
+   "flowers": [
+    "rose",
+    "hydrangea"
+   ],
+   "format": "gift",
    "order": 394,
    "custom": null,
    "image": "/collection/dreamy-pastel-bouquet-and-chocolate-960.webp",
@@ -14433,6 +15557,8 @@
    "occasions": [
     "just-because"
    ],
+   "flowers": [],
+   "format": "gift",
    "order": 395,
    "custom": null,
    "image": "/collection/tropical-fruit-basket-960.webp",
@@ -14493,6 +15619,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 410,
    "custom": null,
    "image": "/collection/red-floral-and-teddy-gift-960.webp",
@@ -14556,6 +15686,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 411,
    "custom": null,
    "image": "/collection/red-and-pink-roses-with-teddy-960.webp",
@@ -14619,6 +15753,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "sunflower"
+   ],
+   "format": "gift",
    "order": 412,
    "custom": null,
    "image": "/collection/sunflowers-bouquet-teddy-and-balloon-960.webp",
@@ -14677,6 +15815,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "tulip"
+   ],
+   "format": "gift",
    "order": 413,
    "custom": null,
    "image": "/collection/tulip-teddy-gift-960.webp",
@@ -14742,6 +15884,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
    "order": 414,
    "custom": null,
    "image": "/collection/peach-rose-teddy-and-balloon-set-960.webp",
@@ -14805,6 +15951,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "gift",
    "order": 415,
    "custom": null,
    "image": "/collection/pink-lilies-teddy-and-dark-chocolate-960.webp",
@@ -14864,6 +16014,10 @@
     "congratulations",
     "just-because"
    ],
+   "flowers": [
+    "sunflower"
+   ],
+   "format": "gift",
    "order": 417,
    "custom": null,
    "image": "/collection/blush-harmony-and-teddy-charm-960.webp",
