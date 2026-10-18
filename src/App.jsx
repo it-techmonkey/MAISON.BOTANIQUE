@@ -49,8 +49,9 @@ export default function App() {
     let queued = false;
     const update = () => {
       queued = false;
-      const hero = document.getElementById('turntable');
-      setPastHero(hero ? hero.getBoundingClientRect().bottom <= 150 : false); // header + offer bar
+      // The hero stays pinned behind the page, so watch where the collection starts instead.
+      const shop = document.getElementById('shop');
+      setPastHero(shop ? shop.getBoundingClientRect().top <= 150 : false); // header + offer bar
     };
     const onScroll = () => {
       if (!queued) {
@@ -93,7 +94,7 @@ export default function App() {
 
   const closeMenus = () => { setMenuOpen(false); setOccasionsOpen(false); setShopOpen(false); };
   const label = (item) => (ar ? item.ar : item.en);
-  const groupLink = (g) => <a key={g.id} href={`#${g.id}`} onClick={closeMenus}>{label(g)} <span className="nav-count">{g.count}</span></a>;
+  const groupLink = (g) => <a key={g.id} href={`#${g.id}`} onClick={closeMenus}>{label(g)}</a>;
 
   return (
     <div className="site-shell" dir={ar ? 'rtl' : 'ltr'}>

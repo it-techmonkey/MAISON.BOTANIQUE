@@ -91,7 +91,7 @@
   width: 39%;
 }
 .tt-product__counter { display: flex; align-items: center; gap: 13px; font-size: 15px; font-variant-numeric: tabular-nums; }
-.tt-product__counter span:last-child { opacity: .52; }
+.tt-product__counter span:last-child { opacity: .72; }
 .tt-product__divider { display: block; width: 42px; height: 1px; background: currentColor; opacity: .42; }
 .tt-product__details { animation: tt-copy-enter 650ms cubic-bezier(.22, 1, .36, 1) both; }
 .tt-product__category { margin: 18px 0 2px; }
@@ -229,7 +229,9 @@
   .tt-intro h1 { font-size: min(clamp(74px, 8.6vw, 156px), 10.5vh); }
   .tt-section[dir="rtl"] .tt-intro h1 { font-size: min(clamp(60px, 7vw, 126px), 9vh); }
 }
-/* Phones: make room for the offer bar above the header. */
+/* Phones: make room for the offer bar above the header, and fade the photo into paper
+   behind the product details so the name and price never sit on the flowers. */
 @media (max-width: 680px) {
   .tt-intro { top: calc(92px + var(--offer-h, 0px)); }
+  .tt-product::before { content: ''; position: absolute; z-index: -1; inset: -56px -20px -200px; background: linear-gradient(to bottom, rgb(245 242 235 / 0), rgb(245 242 235 / 94%) 56px); pointer-events: none; }
 }

@@ -19,14 +19,14 @@
 /* chrome.css loads before global.css (App imports first), so these need the extra .site-shell. */
 .site-shell .site-header { top: var(--offer-h); }
 .nav-occasions { position: relative; }
-.nav-occasions > button { border: 0; background: transparent; color: inherit; padding: 10px 0; font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+.nav-occasions > button { border: 0; background: transparent; color: inherit; padding: 10px 0; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
 .nav-occasions > button span { font-size: 8px; margin-inline-start: 3px; }
 .nav-occasions__list { position: absolute; top: calc(100% + 14px); inset-inline-start: -22px; min-width: 230px; display: none; flex-direction: column; padding: 12px 0; background: var(--paper); border: 1px solid var(--line); box-shadow: 0 24px 40px -28px rgb(30 31 28 / 45%); }
 .nav-occasions__list.is-open { display: flex; }
 .primary-nav .nav-occasions__list a { padding: 9px 22px; font: 400 17px/1.2 var(--font-display); letter-spacing: 0; text-transform: none; }
 .primary-nav .nav-occasions__list a::after { display: none; }
 .nav-occasions__list a:hover { background: var(--paper-deep); }
-.nav-shop > button { border: 0; background: transparent; color: inherit; padding: 10px 0; font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+.nav-shop > button { border: 0; background: transparent; color: inherit; padding: 10px 0; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
 .nav-shop > button span { font-size: 8px; margin-inline-start: 3px; }
 .nav-shop__panel { position: fixed; inset-inline: 0; top: calc(var(--offer-h) + 80px); display: none; grid-template-columns: repeat(3, minmax(0, 220px)) 1fr; gap: 0 56px; padding: 30px clamp(22px, 3.3vw, 62px) 34px; background: var(--paper); border-block: 1px solid var(--line); box-shadow: 0 30px 50px -40px rgb(30 31 28 / 45%); }
 .nav-shop__panel.is-open { display: grid; }
@@ -37,12 +37,11 @@
 .primary-nav .nav-shop__col a { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; font: 400 18px/1.2 var(--font-display); letter-spacing: 0; text-transform: none; }
 .primary-nav .nav-shop__col a::after, .primary-nav .nav-shop__all::after { display: none; }
 .nav-shop__col a:hover { color: var(--wine); }
-.nav-count { font: 400 11px/1 var(--font-body); color: #596454; align-self: center; }
 .primary-nav .nav-shop__all { align-self: end; justify-self: end; font: 600 var(--fs-label)/1 var(--font-body); letter-spacing: .18em; text-transform: uppercase; border-bottom: 1px solid var(--ink); padding: 0 0 6px; }
 [dir='rtl'] .nav-shop > button { font-family: 'Noto Naskh Arabic', Tahoma, serif; letter-spacing: 0; font-size: 14px; }
 [dir='rtl'] .nav-shop__col h2, [dir='rtl'] .primary-nav .nav-shop__all { font-family: 'Noto Naskh Arabic', Tahoma, serif; letter-spacing: 0; text-transform: none; font-size: 14px; }
 [dir='rtl'] .primary-nav .nav-shop__col a { font-family: 'Noto Naskh Arabic', Tahoma, serif; font-size: 16px; }
-.search-link { font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; }
+.search-link { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; }
 [dir='rtl'] .nav-occasions > button, [dir='rtl'] .search-link { font-family: 'Noto Naskh Arabic', Tahoma, serif; letter-spacing: 0; font-size: 14px; }
 [dir='rtl'] .primary-nav .nav-occasions__list a { font-family: 'Noto Naskh Arabic', Tahoma, serif; }
 
@@ -53,7 +52,7 @@
 .bag-toast p { margin: 0; font: 400 var(--fs-small)/1.4 var(--font-body); }
 .bag-toast em { font: italic 400 16px/1.2 var(--font-display); }
 .bag-toast button { border: 0; background: none; padding: 6px 0; font: 500 var(--fs-label)/1 var(--font-body); letter-spacing: .18em; text-transform: uppercase; border-bottom: 1px solid var(--ink); color: var(--ink); white-space: nowrap; }
-.bag-toast .bag-toast__close { border: 0; font-size: 18px; letter-spacing: 0; color: #596454; padding: 0 2px; }
+.bag-toast .bag-toast__close { border: 0; font-size: 18px; letter-spacing: 0; color: #4f5a4b; padding: 0 2px; }
 [dir='rtl'] .bag-toast em { font-family: 'Noto Naskh Arabic', serif; font-style: normal; }
 [dir='rtl'] .bag-toast button { font-family: 'Noto Naskh Arabic', serif; letter-spacing: 0; text-transform: none; font-size: 13px; }
 
@@ -93,7 +92,7 @@
 @media (max-width: 640px) {
   :root { --offer-h: 34px; }
   .search-link { display: none; }
-  .offer-bar__run span { padding-inline: 24px; font-size: 9.5px; }
+  .offer-bar__run span { padding-inline: 24px; font-size: 10.5px; }
   .bag-toast { inset-inline: 16px; width: auto; bottom: calc(68px + env(safe-area-inset-bottom)); grid-template-columns: 44px 1fr auto; }
   .bag-toast img { width: 44px; height: 44px; }
   .bag-toast .bag-toast__close { display: none; }

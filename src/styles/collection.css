@@ -6,7 +6,7 @@
   --mbc-vellum: #efeae1;
   --mbc-hair: #d9d2c5;
   --mbc-ink: var(--ink, #26332b);
-  --mbc-ink-2: #596454;
+  --mbc-ink-2: #4f5a4b;
   --mbc-noir: #1e1f1c;
   --mbc-wine: var(--wine, #673c43);
   --mbc-header: 80px;
@@ -47,7 +47,6 @@
 .mbc-room-list { display: flex; gap: 26px; overflow-x: auto; scrollbar-width: none; flex: 1; min-width: 0; }
 .mbc-room-list::-webkit-scrollbar { display: none; }
 .mbc .mbc-room { flex: 0 0 auto; font: 400 17px/1 var(--font-display); padding: 15px 0 13px; border-bottom: 1px solid transparent; color: var(--mbc-ink-2); transition: color .3s, border-color .3s; }
-.mbc-room sup { font: 500 9px/1 var(--font-body); margin-inline-start: 3px; }
 .mbc .mbc-room[aria-pressed='true'] { color: var(--mbc-ink); border-color: var(--mbc-ink); }
 .mbc .mbc-room:hover { color: var(--mbc-ink); }
 .mbc-tools { display: flex; gap: 24px; flex: 0 0 auto; }
@@ -59,20 +58,20 @@
 .mbc-active { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 18px; min-height: 22px; }
 .mbc .mbc-active button { font: italic 400 16px/1.3 var(--font-display); border-bottom: 1px solid var(--mbc-hair); }
 .mbc-active button::after { content: ' ×'; font-style: normal; color: var(--mbc-ink-2); }
-.mbc-count { margin-inline-start: auto; font-size: var(--fs-small); color: var(--mbc-ink-2); }
 .mbc-grid { margin-top: 18px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 22px; }
-.mbc-piece { display: grid; gap: 12px; align-content: start; min-width: 0; }
+/* The caption fills the rest of the card so price and Add sit on one line across a row. */
+.mbc-piece { display: grid; grid-template-rows: auto 1fr; gap: 12px; min-width: 0; }
 .mbc .mbc-frame { position: relative; display: block; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: var(--mbc-vellum); }
 .mbc-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
 .mbc-piece:hover .mbc-frame img { transform: scale(1.04); }
-.mbc-badge { position: absolute; top: 10px; inset-inline-start: 10px; padding: 5px 8px; background: rgb(247 244 238 / 92%); font: 500 9.5px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--mbc-wine); }
-.mbc-cap { display: grid; gap: 4px; }
+.mbc-badge { position: absolute; top: 10px; inset-inline-start: 10px; padding: 5px 8px; background: rgb(247 244 238 / 92%); font: 500 10.5px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--mbc-wine); }
+.mbc-cap { display: flex; flex-direction: column; gap: 4px; }
 .mbc-cap h3 { margin: 0; font: italic 400 var(--fs-name)/1.15 var(--font-display); }
 .mbc .mbc-cap h3 button { font: inherit; text-align: start; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .mbc-line { font-size: var(--fs-small); line-height: 1.45; color: var(--mbc-ink-2); display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-.mbc-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 6px; }
+.mbc-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: auto; padding-top: 6px; }
 .mbc-price { font: 400 17px/1 var(--font-display); white-space: nowrap; font-variant-numeric: lining-nums; }
-.mbc-price small { font: 500 9px/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--mbc-ink-2); }
+.mbc-price small { font: 500 10.5px/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--mbc-ink-2); }
 .mbc-price em { font: 400 var(--fs-small)/1 var(--font-body); font-style: normal; color: var(--mbc-ink-2); }
 .mbc .mbc-add { flex: 0 0 auto; padding: 8px 13px; border: 1px solid var(--mbc-ink); font: 500 var(--fs-label)/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; transition: background .25s, color .25s; }
 .mbc .mbc-add:hover, .mbc .mbc-add:focus-visible { background: var(--mbc-noir); border-color: var(--mbc-noir); color: var(--mbc-paper); }
@@ -98,13 +97,12 @@
 .mbc-fgroup { display: grid; gap: 10px; padding-block: 20px; border-bottom: 1px solid #d9d2c5; }
 .mbc-fgroup h3 { margin: 0; }
 .mbc-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 18px; }
-.mbc-drawer .mbc-opt { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; text-align: start; padding-block: 7px; font: 400 17px/1.2 var(--font-display); color: #596454; border-bottom: 1px solid transparent; }
-.mbc-opt i { font: 400 11px/1 var(--font-body); font-style: normal; font-variant-numeric: tabular-nums; }
+.mbc-drawer .mbc-opt { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; text-align: start; padding-block: 7px; font: 400 17px/1.2 var(--font-display); color: #4f5a4b; border-bottom: 1px solid transparent; }
 .mbc-drawer .mbc-opt[aria-pressed='true'] { color: var(--ink); font-style: italic; border-color: var(--ink); }
 .mbc-drawer .mbc-opt:disabled { opacity: .35; cursor: default; }
 .mbc-drawer-foot { display: grid; gap: 10px; padding: 14px 26px 20px; padding-bottom: max(20px, env(safe-area-inset-bottom)); border-top: 1px solid #d9d2c5; }
 .mbc-drawer .mbc-solid { background: #1e1f1c; color: #f7f4ee; padding: 17px; font: 500 var(--fs-label)/1 var(--font-body); letter-spacing: .2em; text-transform: uppercase; }
-.mbc-drawer .mbc-ghost { padding: 8px; font: 500 var(--fs-label)/1 var(--font-body); letter-spacing: .18em; text-transform: uppercase; color: #596454; }
+.mbc-drawer .mbc-ghost { padding: 8px; font: 500 var(--fs-label)/1 var(--font-body); letter-spacing: .18em; text-transform: uppercase; color: #4f5a4b; }
 .mbc-mbar { display: none; }
 
 @keyframes mbc-fade { from { opacity: 0; } }
@@ -150,6 +148,11 @@
   .mbc-drawer { height: 90%; border-radius: 14px 14px 0 0; animation-name: mbc-up; }
   [dir='rtl'] .mbc-drawer { animation-name: mbc-up; }
   .mbc-drawer-head, .mbc-drawer-body, .mbc-drawer-foot { padding-inline: 20px; }
+}
+/* Narrow phones: price and Add no longer fit side by side, so stack them on every card. */
+@media (max-width: 389px) {
+  .mbc-row { flex-direction: column; align-items: stretch; gap: 8px; }
+  .mbc .mbc-add { padding: 9px 10px; text-align: center; }
 }
 @media (prefers-reduced-motion: reduce) {
   .mbc-frame img, .mbc-occ-img img, .mbc-mbar { transition: none; }

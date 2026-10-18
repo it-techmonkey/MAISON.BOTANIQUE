@@ -17,30 +17,30 @@ const EMPTY = { group: 'all', occasion: [], budget: [], stems: [], query: '' };
 
 const COPY = {
   en: {
-    title: 'The Collection', piece: 'piece', pieces: 'pieces', sample: 'Sample prices',
+    title: 'The Collection', sample: 'Sample prices',
     search: 'Search the collection', searchPlaceholder: 'Search roses, lilies, birthday…',
     shopBy: 'Shop by occasion', refine: 'Refine', sort: 'Sort', clear: 'Clear all', close: 'Close',
-    show: (n) => `Show ${n} ${n === 1 ? 'piece' : 'pieces'}`,
+    show: 'Show pieces',
     sorts: { featured: 'Featured', low: 'Price, low to high', high: 'Price, high to low' },
     groups: { occasion: 'Occasion', budget: 'Budget, AED', stems: 'Number of stems' },
     budgets: { b1: 'Under 300', b2: '300 – 500', b3: '500 – 1,000', b4: '1,000 and above' },
     stems: { s1: 'Up to 25', s2: '26 – 60', s3: 'More than 60' },
     personalised: 'Personalised', from: 'From', sizes: 'sizes', add: 'Add', addFull: 'Add to bag',
-    showing: (a, b) => `Showing ${a} of ${b}`, more: 'Show more',
+    more: 'Show more',
     empty: 'Nothing matches all of that yet.', reset: 'Clear the refinements',
     trust: ['Hand-tied in Dubai', 'A handwritten card with every gift', 'Delivering across Dubai · free in JVC', 'No prices travel with the gift'],
   },
   ar: {
-    title: 'المجموعة', piece: 'قطعة', pieces: 'قطعة', sample: 'أسعار تجريبية',
+    title: 'المجموعة', sample: 'أسعار تجريبية',
     search: 'ابحث في المجموعة', searchPlaceholder: 'ابحث عن ورود، زنبق، عيد ميلاد…',
     shopBy: 'تسوّق حسب المناسبة', refine: 'تصفية', sort: 'ترتيب', clear: 'مسح الكل', close: 'إغلاق',
-    show: (n) => `اعرض ${n} قطعة`,
+    show: 'اعرض القطع',
     sorts: { featured: 'مختارات', low: 'السعر من الأقل', high: 'السعر من الأعلى' },
     groups: { occasion: 'المناسبة', budget: 'الميزانية بالدرهم', stems: 'عدد السيقان' },
     budgets: { b1: 'أقل من 300', b2: '300 – 500', b3: '500 – 1,000', b4: '1,000 فأكثر' },
     stems: { s1: 'حتى 25', s2: '26 – 60', s3: 'أكثر من 60' },
     personalised: 'مخصص', from: 'من', sizes: 'أحجام', add: 'أضف', addFull: 'أضف إلى الحقيبة',
-    showing: (a, b) => `${a} من ${b}`, more: 'اعرض المزيد',
+    more: 'اعرض المزيد',
     empty: 'لا توجد قطع تطابق كل هذه الخيارات.', reset: 'امسح الخيارات',
     trust: ['تُنسَّق يدوياً في دبي', 'بطاقة بخط اليد مع كل هدية', 'التوصيل في دبي · مجاناً في JVC', 'لا تُرفق الأسعار مع الهدية'],
   },
@@ -95,7 +95,6 @@ function RefineDrawer({ open, onClose, state, setState, products, t, ar }) {
     ['budget', BUDGETS.map((b) => [b.id, t.budgets[b.id], (p) => budgetOf(p) === b.id])],
     ['stems', STEMS.map((s) => [s.id, t.stems[s.id], (p) => stemsOf(p) === s.id])],
   ];
-  const total = products.filter((p) => matches(p, state)).length;
 
   return <div className="mbc-scrim" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
     <aside className="mbc-drawer" ref={panelRef} role="dialog" aria-modal="true" aria-label={t.refine} dir={ar ? 'rtl' : 'ltr'}>
@@ -107,13 +106,13 @@ function RefineDrawer({ open, onClose, state, setState, products, t, ar }) {
             const n = count(group, test);
             const on = state[group].includes(id);
             return <button type="button" key={id} className="mbc-opt" aria-pressed={on} disabled={!n && !on} onClick={() => toggle(group, id)}>
-              <span>{label}</span><i>{fmt(n, ar)}</i>
+              <span>{label}</span>
             </button>;
           })}</div>
         </div>)}
       </div>
       <div className="mbc-drawer-foot">
-        <button type="button" className="mbc-solid" onClick={onClose}>{t.show(total)}</button>
+        <button type="button" className="mbc-solid" onClick={onClose}>{t.show}</button>
         <button type="button" className="mbc-ghost" onClick={() => setState((s) => ({ ...s, occasion: [], budget: [], stems: [] }))}>{t.clear}</button>
       </div>
     </aside>
@@ -238,7 +237,7 @@ export default function CollectionPage({ products = [], locale = 'en', onProduct
     <div className="mbc-in mbc-head">
       <div className="mbc-head-title">
         <h2 id="mbc-title">{currentGroup && currentGroup.id !== 'all' ? (ar ? currentGroup.ar : currentGroup.en) : t.title}</h2>
-        <span className="mbc-head-count">{fmt(products.length, ar)} {t.pieces} · {t.sample}</span>
+        <span className="mbc-head-count">{t.sample}</span>
       </div>
       <label className="mbc-search"><span className="mbc-sr">{t.search}</span>
         <input ref={searchRef} type="search" value={state.query} placeholder={t.searchPlaceholder}
@@ -260,7 +259,7 @@ export default function CollectionPage({ products = [], locale = 'en', onProduct
     <nav className="mbc-rooms" ref={roomsRef} aria-label={t.title}>
       <div className="mbc-in mbc-rooms-in">
         <div className="mbc-room-list">{tabs.map((g) => <button type="button" key={g.id} className="mbc-room" aria-pressed={state.group === g.id} onClick={() => setGroup(g.id)}>
-          {ar ? g.ar : g.en}<sup>{fmt(g.count, ar)}</sup>
+          {ar ? g.ar : g.en}
         </button>)}</div>
         <div className="mbc-tools">
           <button type="button" onClick={() => setRefineOpen(true)}>{t.refine}{refinements ? <span className="mbc-n"> ({fmt(refinements, ar)})</span> : null}</button>
@@ -272,7 +271,6 @@ export default function CollectionPage({ products = [], locale = 'en', onProduct
     <div className="mbc-in mbc-body">
       <div className="mbc-active" aria-live="polite">
         {chips.map(([group, id, label]) => <button type="button" key={`${group}-${id}`} onClick={() => { setState((s) => ({ ...s, [group]: s[group].filter((x) => x !== id) })); if (group === 'occasion') history.replaceState(null, '', '#shop'); }}>{label}</button>)}
-        <span className="mbc-count">{fmt(list.length, ar)} {list.length === 1 ? t.piece : t.pieces}</span>
       </div>
       <div className="mbc-grid">
         {visible.length ? visible.map((product, index) => <Piece key={product.id} product={product} index={index} t={t} ar={ar} onOpen={onProductClick} />)
@@ -280,7 +278,6 @@ export default function CollectionPage({ products = [], locale = 'en', onProduct
       </div>
       {list.length > 0 && <div className="mbc-more">
         <div className="mbc-bar"><i style={{ width: `${Math.min(100, (visible.length / list.length) * 100)}%` }} /></div>
-        <span className="mbc-sc">{t.showing(fmt(visible.length, ar), fmt(list.length, ar))}</span>
         {visible.length < list.length && <button type="button" className="mbc-go" onClick={() => setShown((n) => n + PAGE)}>{t.more}</button>}
       </div>}
     </div>
