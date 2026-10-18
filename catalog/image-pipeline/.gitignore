@@ -1,0 +1,9 @@
+# generated or local-only
+out/
+qa/
+refs/
+jobs/
+__pycache__/
+_test-artifacts-safe-to-delete/
+.DS_Store
+.env

@@ -1,0 +1,82 @@
+{
+ "ferrero": {
+  "pattern": "ferrero",
+  "file_stem": "ferrero"
+ },
+ "pistache": {
+  "pattern": "pistach",
+  "file_stem": "pistache"
+ },
+ "lindt": {
+  "pattern": "lindt",
+  "file_stem": "lindt"
+ },
+ "godiva": {
+  "pattern": "godiva",
+  "file_stem": "godiva"
+ },
+ "toblerone": {
+  "pattern": "toblerone",
+  "file_stem": "toblerone"
+ },
+ "oreo": {
+  "pattern": "oreo",
+  "file_stem": "oreo"
+ },
+ "cadbury": {
+  "pattern": "cadbury",
+  "file_stem": "cadbury"
+ },
+ "twix": {
+  "pattern": "twix",
+  "file_stem": "twix"
+ },
+ "kinder": {
+  "pattern": "kinder",
+  "file_stem": "kinder"
+ },
+ "nutella": {
+  "pattern": "nutella",
+  "file_stem": "nutella"
+ },
+ "laneige": {
+  "pattern": "laneige",
+  "file_stem": "laneige"
+ },
+ "loreal": {
+  "pattern": "l'?oreal",
+  "file_stem": "loreal"
+ },
+ "johnsons": {
+  "pattern": "johnson",
+  "file_stem": "johnsons"
+ },
+ "quality-street": {
+  "pattern": "quality street",
+  "file_stem": "quality-street"
+ },
+ "royal-dansk": {
+  "pattern": "royal danish|royal dansk",
+  "file_stem": "royal-dansk"
+ },
+ "jomara": {
+  "pattern": "jomara",
+  "file_stem": "jomara"
+ },
+ "jewels-galaxy": {
+  "pattern": "jewels galaxy",
+  "file_stem": "jewels-galaxy"
+ },
+ "hello-kitty": {
+  "pattern": "hello kitty",
+  "file_stem": "hello-kitty"
+ },
+ "stitch": {
+  "pattern": "stitch",
+  "file_stem": "stitch"
+ },
+ "mackintosh": {
+  "pattern": "mackintosh",
+  "file_stem": "mackintosh"
+ }
+}
