@@ -138,6 +138,7 @@
   .mbc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 12px; }
   .mbc-price { font-size: 15px; }
   .mbc-price em { display: none; }
+  .mbc-price small { letter-spacing: .1em; }
   .mbc .mbc-add { padding: 7px 10px; }
   .mbc-trust { grid-template-columns: 1fr; gap: 8px; padding-bottom: 80px; }
   .mbc-mbar { display: grid; grid-template-columns: 1fr 1fr; position: fixed; inset: auto 0 0; z-index: 90; background: rgb(247 244 238 / 96%); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-top: 1px solid var(--mbc-hair); padding-bottom: env(safe-area-inset-bottom); transform: translateY(100%); transition: transform .4s cubic-bezier(.2, .7, .2, 1); }
@@ -150,7 +151,7 @@
   .mbc-drawer-head, .mbc-drawer-body, .mbc-drawer-foot { padding-inline: 20px; }
 }
 /* Narrow phones: price and Add no longer fit side by side, so stack them on every card. */
-@media (max-width: 389px) {
+@media (max-width: 399px) {
   .mbc-row { flex-direction: column; align-items: stretch; gap: 8px; }
   .mbc .mbc-add { padding: 9px 10px; text-align: center; }
 }
