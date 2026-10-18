@@ -1,0 +1,147 @@
+import React, { useEffect, useRef, useState } from 'react';
+import '../styles/launch-offer.css';
+
+// Launch offer: 25% off for the first 100 customers (one qualifying order each).
+// PREVIEW ONLY: no code is sent and nothing is stored on a server. In the live store the
+// form posts to the email/WhatsApp provider, which sends a unique single-use Shopify code.
+const STORAGE_KEY = 'mb-launch-offer-v1';
+const SNOOZE_MS = 3 * 24 * 60 * 60 * 1000;
+const OPEN_DELAY_MS = 1500;
+
+const COPY = {
+  en: {
+    eyebrow: 'Opening offer', title: '25% off your first order', sub: 'For our first 100 customers. Free delivery in JVC, and a scented candle with each of those first orders.',
+    whatsapp: 'WhatsApp', email: 'Email', phoneLabel: 'WhatsApp number', phonePh: '50 123 4567', emailLabel: 'Email address', emailPh: 'you@example.com',
+    consent: 'Send me my code and occasional Maison offers. I can unsubscribe at any time.', privacy: 'Privacy policy',
+    cta: 'Send my code', no: 'No thanks', invalidPhone: 'Enter a UAE mobile number, for example 50 123 4567.', invalidEmail: 'Enter a valid email address.', needConsent: 'Tick the box so we can send your code.',
+    doneTitle: 'Your code is ready', doneSub: (via) => `In the live store this code arrives on ${via}. Use it at checkout.`,
+    preview: 'Preview: no message is sent yet', copy: 'Copy code', copied: 'Copied', shop: 'Start shopping', terms: 'One qualifying order per customer · first 100 confirmed orders · 25% on products.',
+    tab: '25% off', close: 'Close',
+  },
+  ar: {
+    eyebrow: 'عرض الافتتاح', title: 'خصم ٢٥٪ على طلبك الأول', sub: 'لأول ١٠٠ عميل. توصيل مجاني في JVC، وشمعة معطّرة مع كل طلب من هذه الطلبات الأولى.',
+    whatsapp: 'واتساب', email: 'البريد', phoneLabel: 'رقم واتساب', phonePh: '50 123 4567', emailLabel: 'البريد الإلكتروني', emailPh: 'you@example.com',
+    consent: 'أرسلوا لي الرمز وعروض ميزون من حين لآخر. يمكنني إلغاء الاشتراك في أي وقت.', privacy: 'سياسة الخصوصية',
+    cta: 'أرسل الرمز', no: 'لا، شكراً', invalidPhone: 'أدخل رقم هاتف إماراتياً، مثل 50 123 4567.', invalidEmail: 'أدخل بريداً إلكترونياً صحيحاً.', needConsent: 'ضع علامة في المربع لنرسل لك الرمز.',
+    doneTitle: 'رمزك جاهز', doneSub: (via) => `في المتجر الفعلي يصلك هذا الرمز عبر ${via}. استخدمه عند الدفع.`,
+    preview: 'معاينة: لا تُرسل أي رسالة بعد', copy: 'انسخ الرمز', copied: 'تم النسخ', shop: 'ابدأ التسوق', terms: 'طلب واحد مؤهل لكل عميل · أول ١٠٠ طلب مؤكد · ٢٥٪ على المنتجات.',
+    tab: 'خصم ٢٥٪', close: 'إغلاق',
+  },
+};
+
+function readState() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || {}; } catch { return {}; }
+}
+function writeState(value) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(value)); } catch { /* storage may be blocked */ }
+}
+const validPhone = (value) => /^(?:\+?971|0)?5\d{8}$/.test(value.replace(/[\s-]/g, ''));
+const validEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value.trim());
+const previewCode = () => `MAISON25-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+
+export default function LaunchOffer({ locale = 'en', openSignal = 0 }) {
+  const ar = locale === 'ar';
+  const t = COPY[ar ? 'ar' : 'en'];
+  const [open, setOpen] = useState(false);
+  const [saved, setSaved] = useState(readState);
+  const [channel, setChannel] = useState('whatsapp');
+  const [value, setValue] = useState('');
+  const [consent, setConsent] = useState(false);
+  const [error, setError] = useState('');
+  const [copied, setCopied] = useState(false);
+  const panelRef = useRef(null);
+  const inputRef = useRef(null);
+
+  // Opens on arrival unless the visitor already has a code or dismissed it recently.
+  useEffect(() => {
+    const state = readState();
+    if (state.code || (state.dismissedAt && Date.now() - state.dismissedAt < SNOOZE_MS)) return undefined;
+    const timer = window.setTimeout(() => setOpen(true), OPEN_DELAY_MS);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => { if (openSignal) setOpen(true); }, [openSignal]);
+
+  useEffect(() => {
+    if (!open) return undefined;
+    const previous = document.activeElement;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const focusTimer = window.setTimeout(() => (inputRef.current || panelRef.current?.querySelector('button'))?.focus({ preventScroll: true }), 60);
+    const onKey = (event) => {
+      if (event.key === 'Escape') dismiss();
+      if (event.key === 'Tab') {
+        const nodes = panelRef.current?.querySelectorAll('button, input, a[href]');
+        if (!nodes?.length) return;
+        const first = nodes[0];
+        const last = nodes[nodes.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => { window.clearTimeout(focusTimer); document.body.style.overflow = overflow; document.removeEventListener('keydown', onKey); previous?.focus?.({ preventScroll: true }); };
+  }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function dismiss() {
+    setOpen(false);
+    if (!saved.code) { const next = { ...saved, dismissedAt: Date.now() }; setSaved(next); writeState(next); }
+  }
+
+  function submit(event) {
+    event.preventDefault();
+    if (channel === 'whatsapp' ? !validPhone(value) : !validEmail(value)) { setError(channel === 'whatsapp' ? t.invalidPhone : t.invalidEmail); return; }
+    if (!consent) { setError(t.needConsent); return; }
+    setError('');
+    // Live store: POST { channel, value, consent: true, locale } to the provider here.
+    // Only a flag is kept in the browser: the contact itself is never stored locally.
+    const next = { code: previewCode(), channel };
+    setSaved(next);
+    writeState(next);
+  }
+
+  async function copyCode() {
+    try { await navigator.clipboard.writeText(saved.code); setCopied(true); window.setTimeout(() => setCopied(false), 2000); } catch { /* clipboard unavailable */ }
+  }
+
+  const via = saved.channel === 'email' ? t.email : t.whatsapp;
+
+  return <>
+    {!open && <button type="button" className="lo-tab" onClick={() => setOpen(true)} dir={ar ? 'rtl' : 'ltr'}>{t.tab}</button>}
+    {open && <div className="lo-scrim" onMouseDown={(event) => { if (event.target === event.currentTarget) dismiss(); }}>
+      <section className="lo-panel" ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="lo-title" dir={ar ? 'rtl' : 'ltr'}>
+        <button type="button" className="lo-close" aria-label={t.close} onClick={dismiss}>×</button>
+        <div className="lo-photo" aria-hidden="true"><img src="/collection/classic-pink-and-white-rose-bouquet-960.webp" alt="" /></div>
+        <div className="lo-body">
+          <span className="lo-eyebrow">{t.eyebrow}</span>
+          {saved.code ? <>
+            <h2 id="lo-title">{t.doneTitle}</h2>
+            <p className="lo-sub">{t.doneSub(via)}</p>
+            <div className="lo-code"><strong dir="ltr">{saved.code}</strong><button type="button" onClick={copyCode}>{copied ? t.copied : t.copy}</button></div>
+            <p className="lo-preview">{t.preview}</p>
+            <button type="button" className="lo-cta" onClick={() => { setOpen(false); document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.shop}</button>
+          </> : <form onSubmit={submit} noValidate>
+            <h2 id="lo-title">{t.title}</h2>
+            <p className="lo-sub">{t.sub}</p>
+            <div className="lo-switch" role="radiogroup" aria-label={t.cta}>
+              {['whatsapp', 'email'].map((id) => <button type="button" key={id} role="radio" aria-checked={channel === id} onClick={() => { setChannel(id); setValue(''); setError(''); }}>{t[id]}</button>)}
+            </div>
+            <label className="lo-label" htmlFor="lo-input">{channel === 'whatsapp' ? t.phoneLabel : t.emailLabel}</label>
+            <div className={`lo-field${channel === 'whatsapp' ? ' lo-field--phone' : ''}`}>
+              {channel === 'whatsapp' && <span dir="ltr">+971</span>}
+              <input id="lo-input" ref={inputRef} dir="ltr" value={value} onChange={(event) => setValue(event.target.value)}
+                type={channel === 'whatsapp' ? 'tel' : 'email'} inputMode={channel === 'whatsapp' ? 'tel' : 'email'}
+                autoComplete={channel === 'whatsapp' ? 'tel-national' : 'email'} placeholder={channel === 'whatsapp' ? t.phonePh : t.emailPh}
+                aria-invalid={Boolean(error)} aria-describedby={error ? 'lo-error' : undefined} />
+            </div>
+            <label className="lo-consent"><input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} /><span>{t.consent} <a href="#privacy">{t.privacy}</a></span></label>
+            {error && <p className="lo-error" id="lo-error" role="alert">{error}</p>}
+            <button type="submit" className="lo-cta">{t.cta}</button>
+            <button type="button" className="lo-no" onClick={dismiss}>{t.no}</button>
+          </form>}
+          <p className="lo-terms">{t.terms}</p>
+        </div>
+      </section>
+    </div>}
+  </>;
+}

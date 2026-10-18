@@ -136,10 +136,6 @@ export default function Turntable({ products = [], locale = 'en', onProductClick
       <div className="tt-stage">
         <div className="tt-stage__inner">
           <div className="tt-intro">
-            <a className="tt-intro__offer" href="/jvc/">
-              {arabic ? 'افتتاح JVC · خصم ٢٥٪ وشمعة' : 'JVC opening · 25% off + a candle'} <span aria-hidden="true">↗</span>
-              <small>{arabic ? 'لأول ١٠٠ طلب' : 'For the first 100 orders'}</small>
-            </a>
             <h1>{arabic ? <>زهور<br />لها حضور.</> : <>Flowers with<br />presence.</>}</h1>
             <p className="tt-intro__body">{arabic ? 'لفتات مدروسة، تحملها الزهور إلى من نحب.' : 'Considered gestures, beautifully expressed in flowers.'}</p>
           </div>

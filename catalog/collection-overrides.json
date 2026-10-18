@@ -1,0 +1,25 @@
+{
+  "_note": "Storefront overrides on top of catalog/shopify-export/products.json. Every product with a generated image and a price is shown. This file only renames, writes card lines, sets the featured order and corrects automatic occasion tags. Apply the renames to the Shopify export before import.",
+  "hero": ["classic-pink-and-white-rose-bouquet", "bloom-and-teddy-delight", "timeless-bouquet-of-100-white-roses"],
+  "products": {
+    "notification-flower-bouquet": {"name": "My Favourite Notification — Red & Blush Rose Bouquet", "nameAr": "إشعاري المفضّل — باقة ورود حمراء ووردية", "line": "12 red roses, pink spray roses, blush wrap"},
+    "tenacetum-bag": {"name": "Tanacetum Bag", "line": "Tanacetum in a clear handled bag"},
+    "customized-letter-red-roses-bouquet": {"name": "Personalised Letter – Red Roses Bouquet", "line": "Red roses, your letter in white roses", "occasions": ["love", "birthday"]},
+    "rainbow-ombre-summer-bouquet": {"name": "Rainbow Ombre Summer Bouquet"},
+    "white-and-red-roses-bouquet": {"name": "White & Red Roses Bouquet"},
+    "elegant-black-graduation-bouquet": {"name": "Elegant Black Graduation Bouquet"},
+    "happy-birthday-flowers-peonies-bouquet": {"name": "Happy Birthday Peonies Bouquet"},
+    "happy-birthday-flower-large-30-red-bouquet": {"name": "Happy Birthday Bouquet – 30 Red Roses"},
+    "ros-elegance-spray-roses": {"name": "Rosé Elegance – Spray Roses"},
+    "classic-pink-and-white-rose-bouquet": {"order": 1, "line": "51 pink and white roses, ivory wrap"},
+    "bloom-and-teddy-delight": {"order": 2, "line": "30 red roses in glass, plush bear"},
+    "blush-pink-rose-bouquet": {"order": 3, "line": "51 blush roses, soft pink wrap"},
+    "timeless-bouquet-of-100-white-roses": {"order": 4, "line": "100 white roses, tied with ribbon", "feature": "A hundred white roses, nothing else. The most quietly emphatic thing you can send, for an apology, a proposal or a homecoming."},
+    "classic-romance-bouquet": {"order": 5},
+    "luxury-red-pink-and-white-rose-bouquet": {"order": 6},
+    "pearl-white-rose-bouquet": {"order": 7},
+    "flowers-and-chocolate-in-box": {"order": 8},
+    "sunflower-and-golden-rose-bouquet": {"order": 9},
+    "pink-lilies-in-a-glass-vase": {"order": 10}
+  }
+}

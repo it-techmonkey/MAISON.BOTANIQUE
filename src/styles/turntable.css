@@ -191,7 +191,6 @@
   .tt-stage { height: 100svh; min-height: 0; }
   .tt-intro { top: clamp(92px, 14vh, 120px); }
   .tt-intro h1 { margin: 9px 0 0; font-size: clamp(64px, 7.2vw, 104px); line-height: .84; }
-  .tt-intro__body { display: none; }
   .tt-artwork { top: 2%; height: 94%; }
   .tt-product { bottom: 72px; }
   .tt-product__category { margin-top: 7px; }
@@ -217,4 +216,20 @@
   .tt-artwork__image.is-active { opacity: 1; }
   .tt-product__details { animation: none; }
   .tt-product__actions button, .tt-controls button { transition: none; }
+}
+
+/* Branded product photos: soften the photo edge into the paper ground. */
+.tt-artwork__image {
+  -webkit-mask-image: radial-gradient(ellipse 46% 48% at 50% 50%, #000 62%, transparent 100%);
+  mask-image: radial-gradient(ellipse 46% 48% at 50% 50%, #000 62%, transparent 100%);
+}
+/* Shorter laptop screens: keep the headline clear of the product details below it. */
+@media (min-width: 681px) and (min-height: 721px) and (max-height: 940px) {
+  .tt-intro { top: calc(var(--offer-h, 0px) + clamp(116px, 17vh, 170px)); }
+  .tt-intro h1 { font-size: min(clamp(74px, 8.6vw, 156px), 10.5vh); }
+  .tt-section[dir="rtl"] .tt-intro h1 { font-size: min(clamp(60px, 7vw, 126px), 9vh); }
+}
+/* Phones: make room for the offer bar above the header. */
+@media (max-width: 680px) {
+  .tt-intro { top: calc(92px + var(--offer-h, 0px)); }
 }

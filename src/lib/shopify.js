@@ -53,6 +53,9 @@ export async function createShopifyCheckout(cart, products, config = readShopify
     const product = products.find((item) => item.id === line.productId);
     const attributes = [];
     if (line.note) attributes.push({ key: 'Gift message', value: line.note.slice(0, 280) });
+    if (line.anonymous) attributes.push({ key: 'Card signed', value: 'Anonymous' });
+    else if (line.signedAs) attributes.push({ key: 'Card signed', value: line.signedAs.slice(0, 60) });
+    if (line.custom) attributes.push({ key: 'Personalisation', value: line.custom.slice(0, 24) });
     if (line.deliveryDate) attributes.push({ key: 'Preferred delivery date', value: line.deliveryDate });
     return {
       merchandiseId: product.shopifyVariants[line.sizeId],

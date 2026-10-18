@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600&family=Pinyon+Script&display=swap');
 
 :root {
   --paper: #f5f2eb;
@@ -15,6 +15,13 @@
   --lime: #e1ddcd;
   --font-display: 'Cormorant Garamond', Garamond, Georgia, serif;
   --font-body: 'DM Sans', Arial, sans-serif;
+  /* One type scale for everything outside the hero. */
+  --fs-title: 40px;
+  --fs-section: 28px;
+  --fs-name: 20px;
+  --fs-body: 15px;
+  --fs-small: 13px;
+  --fs-label: 11px;
   color: var(--ink);
   background: var(--paper);
   font-family: var(--font-body);
@@ -104,4 +111,8 @@ img { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+@media (max-width: 640px) {
+  :root { --fs-title: 30px; --fs-section: 22px; --fs-name: 17px; --fs-body: 14px; --fs-small: 12px; --fs-label: 10px; }
 }

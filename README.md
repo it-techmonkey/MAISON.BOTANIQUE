@@ -12,7 +12,17 @@ npm run build
 
 ## Shopping flow
 
-Visitors can scroll through a pinned three-product gallery: each floral image approaches, settles, and moves aside as the next arrangement enters. Motion is tied to scroll with GSAP ScrollTrigger and respects reduced-motion preferences. The hero leads directly into a horizontal, photo-led collection of seven provisional pieces. Visitors can browse by product type or occasion, search in either language, open a piece for its details, select a presentation, add a gift note and preferred date, and review a bag saved in their browser. The checkout preview does not collect payment or create an order.
+Visitors can scroll through a pinned three-product gallery: each floral image approaches, settles, and moves aside as the next arrangement enters. Motion is tied to scroll with GSAP ScrollTrigger and respects reduced-motion preferences. A scrolling offer bar sits above the header, which links straight to each category and occasion (`#roses`, `#occasion/birthday`; shareable). The hero leads into the collection (`src/components/CollectionPage.jsx`): shop-by-occasion tiles, category tabs, search, a Refine drawer (occasion, budget, stem count, with live counts), sorting and a four-across grid loading 24 at a time. Every piece opens the quick-add sheet, where visitors choose a size, write their card with a live preview, sign it or keep it anonymous, pick a preferred day and add it to a bag saved in their browser. The checkout preview does not collect payment or create an order.
+
+### Collection data
+
+The collection is built from the Shopify export, not hand-written:
+
+```sh
+python3 scripts/build_collection.py --images ../image-pipeline/out/flare-medium
+```
+
+It reads `catalog/shopify-export/products.json` and `catalog/collection-overrides.json`, then writes `src/data/collection.json` and responsive WebP images to `public/collection/`. Every product with a generated image and a price is included, so the catalogue grows as the image batch runs (re-run the script). The overrides file holds approved renames, card lines, the featured order and the three hero products. Prices are still research placeholders, and occasion tags are generated drafts for owner review. Once the Shopify store is connected, the same fields come from the Storefront API, so the full catalogue never has to ship in the JavaScript bundle.
 
 The Shopify Storefront API adapter in `src/lib/shopify.js` is prepared for a real store. When the business has approved its inventory, map each size to a real `shopifyVariants` product variant ID in `src/data/products.js`. Set the public Storefront token and domain using the names in `.env.example`. Do not place Admin API tokens in browser environment variables. The adapter creates a cart and redirects to Shopify's hosted checkout only when every cart line has a mapped variant. Before enabling that path, replace the sample bag prices with Shopify merchandise prices and verify currency and market settings so the amount displayed on the site agrees with checkout. Delivery options, tax, shipping, and payment are Shopify configuration work before launch.
 

@@ -1,51 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Turntable from './components/Turntable.jsx';
-import EditorialSections from './components/EditorialSections.jsx';
+import CollectionPage from './components/CollectionPage.jsx';
 import ShopExperience, { useShopCart } from './components/ShopExperience.jsx';
-import { products } from './data/products.js';
+import { SiteFooter, OfferBar } from './components/SiteChrome.jsx';
+import LaunchOffer from './components/LaunchOffer.jsx';
+import { allProducts, collectionProducts, heroProducts, liveRooms, liveOccasions } from './data/catalog.js';
 
 const navCopy = {
   en: {
-    bouquets: 'Bouquets', gifts: 'Gifts', preserved: 'Preserved', occasions: 'Occasions', story: 'Gifting',
-    bag: 'Bag', menu: 'Menu', skip: 'Skip to collection',
-    footer: 'Flowers for the moments that stay with us.',
-    concept: 'Concept storefront for review. Imagery, products and prices are illustrative. Payments are not live.',
-    terms: 'Delivery terms and product availability will be confirmed before launch.',
+    occasions: 'Occasions', search: 'Search', bag: 'Bag', menu: 'Menu', skip: 'Skip to collection',
+    added: 'is in your bag', viewBag: 'View bag', close: 'Close',
   },
   ar: {
-    bouquets: 'باقات', gifts: 'هدايا', preserved: 'ورود محفوظة', occasions: 'المناسبات', story: 'الإهداء',
-    bag: 'السلة', menu: 'القائمة', skip: 'انتقل إلى المجموعة',
-    footer: 'زهور للحظات تبقى معنا.',
-    concept: 'معاينة للمتجر. الصور والمنتجات والأسعار توضيحية. الدفع غير مفعل.',
-    terms: 'سيتم تأكيد شروط التوصيل وتوفر المنتجات قبل الإطلاق.',
+    occasions: 'المناسبات', search: 'بحث', bag: 'الحقيبة', menu: 'القائمة', skip: 'انتقل إلى المجموعة',
+    added: 'في حقيبتك الآن', viewBag: 'عرض الحقيبة', close: 'إغلاق',
   },
 };
+
+// Header categories: the rooms that have products, without "All".
+const NAV_ROOMS = liveRooms.filter((room) => room.id !== 'all');
 
 export default function App() {
   const [locale, setLocale] = useState('en');
   const [pastHero, setPastHero] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [occasionsOpen, setOccasionsOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [requestedCategory, setRequestedCategory] = useState('all');
-  const [categoryRequestSeq, setCategoryRequestSeq] = useState(0);
+  const [toast, setToast] = useState(null);
+  const [offerSignal, setOfferSignal] = useState(0);
+  const toastTimer = useRef(0);
   const { cart, addItem, updateQuantity, removeItem, cartCount, subtotal } = useShopCart();
 
+  const ar = locale === 'ar';
   const copy = navCopy[locale];
-  const featured = products.slice(0, 3);
-  const collectionProducts = [...products].sort((a, b) => (a.catalogOrder ?? Infinity) - (b.catalogOrder ?? Infinity));
 
   useEffect(() => {
     document.documentElement.lang = locale;
-    document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
-  }, [locale]);
+    document.documentElement.dir = ar ? 'rtl' : 'ltr';
+  }, [locale, ar]);
 
   useEffect(() => {
     let queued = false;
     const update = () => {
       queued = false;
       const hero = document.getElementById('turntable');
-      setPastHero(hero ? hero.getBoundingClientRect().bottom <= 110 : false);
+      setPastHero(hero ? hero.getBoundingClientRect().bottom <= 150 : false); // header + offer bar
     };
     const onScroll = () => {
       if (!queued) {
@@ -62,36 +62,53 @@ export default function App() {
     };
   }, []);
 
-  const onAddToCart = (product) => {
+  useEffect(() => {
+    if (!occasionsOpen) return undefined;
+    const close = (event) => { if (!event.target.closest?.('.nav-occasions')) setOccasionsOpen(false); };
+    const onKey = (event) => { if (event.key === 'Escape') setOccasionsOpen(false); };
+    document.addEventListener('click', close);
+    document.addEventListener('keydown', onKey);
+    return () => { document.removeEventListener('click', close); document.removeEventListener('keydown', onKey); };
+  }, [occasionsOpen]);
+
+  // Adding keeps the visitor browsing: a short confirmation instead of opening the bag.
+  const onAdded = useCallback((product, sizeName) => {
+    window.clearTimeout(toastTimer.current);
+    setToast({ product, sizeName });
+    toastTimer.current = window.setTimeout(() => setToast(null), 4200);
+  }, []);
+
+  const onHeroAdd = (product) => {
     addItem(product);
-    setCartOpen(true);
+    onAdded(product, ar ? product.sizes[0].nameAr : product.sizes[0].name);
   };
 
-  const tone = 'dark';
-  const closeMenu = () => setMenuOpen(false);
-  const selectNavCategory = (category) => {
-    setRequestedCategory(category);
-    setCategoryRequestSeq((sequence) => sequence + 1);
-    closeMenu();
-  };
+  const closeMenus = () => { setMenuOpen(false); setOccasionsOpen(false); };
+  const roomLabel = (room) => (ar ? room.ar : room.en);
 
   return (
-    <div className="site-shell" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="site-shell" dir={ar ? 'rtl' : 'ltr'}>
       <a className="skip-link" href="#shop">{copy.skip}</a>
-      <header className={`site-header site-header--${tone} ${pastHero ? 'site-header--paper' : ''}`}>
-        <a href="#top" className="brand" aria-label={locale === 'ar' ? 'Maison Botanique، الرئيسية' : 'Maison Botanique home'} onClick={closeMenu}><span>MAISON</span><strong>BOTANIQUE</strong></a>
-        <nav id="mobile-menu" className={`primary-nav ${menuOpen ? 'primary-nav--open' : ''}`} aria-label={locale === 'ar' ? 'التنقل الرئيسي' : 'Main navigation'}>
-          <a href="#shop" onClick={() => selectNavCategory('occasion')}>{copy.occasions}</a>
-          <a href="#shop" onClick={() => selectNavCategory('bouquets')}>{copy.bouquets}</a>
-          <a href="#shop" onClick={() => selectNavCategory('gifts')}>{copy.gifts}</a>
-          <a href="#shop" onClick={() => selectNavCategory('preserved')}>{copy.preserved}</a>
-          <a href="#our-world" onClick={closeMenu}>{copy.story}</a>
+      <OfferBar locale={locale} onClaim={() => setOfferSignal((n) => n + 1)} />
+      <header className={`site-header site-header--dark ${pastHero ? 'site-header--paper' : ''}`}>
+        <a href="#top" className="brand" aria-label={ar ? 'Maison Botanique، الرئيسية' : 'Maison Botanique home'} onClick={closeMenus}><span>MAISON</span><strong>BOTANIQUE</strong></a>
+        <nav id="mobile-menu" className={`primary-nav ${menuOpen ? 'primary-nav--open' : ''}`} aria-label={ar ? 'التنقل الرئيسي' : 'Main navigation'}>
+          {NAV_ROOMS.map((room) => <a key={room.id} href={`#${room.id}`} onClick={closeMenus}>{roomLabel(room)}</a>)}
+          <div className="nav-occasions">
+            <button type="button" aria-expanded={occasionsOpen} aria-controls="nav-occasions-list" onClick={() => setOccasionsOpen(!occasionsOpen)}>
+              {copy.occasions} <span aria-hidden="true">▾</span>
+            </button>
+            <div id="nav-occasions-list" className={`nav-occasions__list${occasionsOpen ? ' is-open' : ''}`}>
+              {liveOccasions.map((o) => <a key={o.id} href={`#occasion/${o.id}`} onClick={closeMenus}>{ar ? o.ar : o.en}</a>)}
+            </div>
+          </div>
         </nav>
         <div className="header-actions">
-          <button className="lang-button" type="button" onClick={() => setLocale(locale === 'en' ? 'ar' : 'en')} aria-label={locale === 'en' ? 'Switch to Arabic' : 'Switch to English'}>
-            {locale === 'en' ? 'EN / AR' : 'AR / EN'}
+          <a className="search-link" href="#search" onClick={closeMenus}>{copy.search}</a>
+          <button className="lang-button" type="button" onClick={() => setLocale(ar ? 'en' : 'ar')} aria-label={ar ? 'Switch to English' : 'Switch to Arabic'}>
+            {ar ? 'EN' : 'عربي'}
           </button>
-          <button className="bag-button" type="button" onClick={() => { closeMenu(); setCartOpen(true); }}>
+          <button className="bag-button" type="button" onClick={() => { closeMenus(); setCartOpen(true); }}>
             {copy.bag} <span aria-live="polite">({cartCount})</span>
           </button>
           <button className="menu-button" type="button" aria-expanded={menuOpen} aria-controls="mobile-menu" aria-label={copy.menu} onClick={() => setMenuOpen(!menuOpen)}>
@@ -101,28 +118,22 @@ export default function App() {
       </header>
       <main id="top">
         <Turntable
-          products={featured}
+          products={heroProducts}
           locale={locale}
           onProductClick={setSelectedProduct}
-          onAddToCart={onAddToCart}
+          onAddToCart={onHeroAdd}
         />
-        <EditorialSections
+        <CollectionPage
           products={collectionProducts}
           locale={locale}
-          requestedCategory={requestedCategory}
-          categoryRequestSeq={categoryRequestSeq}
           onProductClick={setSelectedProduct}
         />
       </main>
-      <footer className="site-footer" id="site-footer">
-        <div className="footer-brand"><span>MAISON</span><strong>BOTANIQUE</strong></div>
-        <p>{copy.footer}</p>
-        <div className="footer-end"><span>Dubai, UAE</span><button type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>{locale === 'ar' ? 'العودة للأعلى ↑' : 'Back to top ↑'}</button></div>
-        <div className="footer-terms"><p>{copy.concept}</p><p>{copy.terms}</p></div>
-      </footer>
+      <SiteFooter locale={locale} rooms={NAV_ROOMS} occasions={liveOccasions} onLocale={() => setLocale(ar ? 'en' : 'ar')} />
       <ShopExperience
         locale={locale}
-        products={products}
+        products={allProducts}
+        related={collectionProducts}
         cartOpen={cartOpen}
         setCartOpen={setCartOpen}
         selectedProduct={selectedProduct}
@@ -133,7 +144,17 @@ export default function App() {
         removeItem={removeItem}
         cartCount={cartCount}
         subtotal={subtotal}
+        onAdded={onAdded}
       />
+      <LaunchOffer locale={locale} openSignal={offerSignal} />
+      <div className={`bag-toast${toast ? ' is-on' : ''}`} role="status" aria-live="polite">
+        {toast && <>
+          <img src={toast.product.imageSmall || toast.product.image} alt="" />
+          <p><em>{ar ? toast.product.nameAr : toast.product.name}</em>{toast.sizeName ? `, ${toast.sizeName},` : ''} {copy.added}.</p>
+          <button type="button" onClick={() => { setToast(null); setCartOpen(true); }}>{copy.viewBag}</button>
+          <button type="button" className="bag-toast__close" aria-label={copy.close} onClick={() => setToast(null)}>×</button>
+        </>}
+      </div>
     </div>
   );
 }

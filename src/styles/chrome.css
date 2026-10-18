@@ -1,0 +1,81 @@
+/* Site chrome: offer ribbon, header additions, add-to-bag confirmation and footer.
+   Uses the shared type scale from global.css. */
+:root { --offer-h: 38px; }
+
+.offer-bar { position: fixed; inset: 0 0 auto; z-index: 110; height: var(--offer-h); width: 100%; padding: 0; overflow: hidden; border: 0; background: #673c43; color: #f7f4ee; display: flex; align-items: center; cursor: pointer; }
+.offer-bar:focus-visible { outline: 2px solid #f7f4ee; outline-offset: -4px; }
+.offer-bar__track { display: flex; width: max-content; animation: offer-run 42s linear infinite; }
+.offer-bar:hover .offer-bar__track, .offer-bar:focus-visible .offer-bar__track { animation-play-state: paused; }
+.offer-bar__run { display: flex; flex: 0 0 auto; align-items: center; }
+.offer-bar__run span { padding-inline: 30px; font: 600 var(--fs-label)/1 var(--font-body); letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; position: relative; }
+.offer-bar__run span::after { content: '✦'; position: absolute; inset-inline-end: -5px; font-size: 8px; letter-spacing: 0; color: #e7c9a0; top: 1px; }
+.offer-bar__run .offer-bar__claim { margin-inline: 6px 30px; padding: 6px 12px; background: #f7f4ee; color: #673c43; }
+.offer-bar__run .offer-bar__claim::after { display: none; }
+[dir='rtl'] .offer-bar__track { animation-name: offer-run-rtl; }
+[dir='rtl'] .offer-bar__run span { font-family: 'Noto Naskh Arabic', Tahoma, serif; letter-spacing: 0; text-transform: none; font-size: 13.5px; }
+@keyframes offer-run { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes offer-run-rtl { from { transform: translateX(0); } to { transform: translateX(50%); } }
+
+/* chrome.css loads before global.css (App imports first), so these need the extra .site-shell. */
+.site-shell .site-header { top: var(--offer-h); }
+.nav-occasions { position: relative; }
+.nav-occasions > button { border: 0; background: transparent; color: inherit; padding: 10px 0; font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+.nav-occasions > button span { font-size: 8px; margin-inline-start: 3px; }
+.nav-occasions__list { position: absolute; top: calc(100% + 14px); inset-inline-start: -22px; min-width: 230px; display: none; flex-direction: column; padding: 12px 0; background: var(--paper); border: 1px solid var(--line); box-shadow: 0 24px 40px -28px rgb(30 31 28 / 45%); }
+.nav-occasions__list.is-open { display: flex; }
+.primary-nav .nav-occasions__list a { padding: 9px 22px; font: 400 17px/1.2 var(--font-display); letter-spacing: 0; text-transform: none; }
+.primary-nav .nav-occasions__list a::after { display: none; }
+.nav-occasions__list a:hover { background: var(--paper-deep); }
+.search-link { font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; }
+[dir='rtl'] .nav-occasions > button, [dir='rtl'] .search-link { font-family: 'Noto Naskh Arabic', Tahoma, serif; letter-spacing: 0; font-size: 14px; }
+[dir='rtl'] .primary-nav .nav-occasions__list a { font-family: 'Noto Naskh Arabic', Tahoma, serif; }
+
+/* add-to-bag confirmation */
+.bag-toast { position: fixed; z-index: 1200; inset-inline-end: 24px; bottom: calc(24px + env(safe-area-inset-bottom)); display: grid; grid-template-columns: 54px 1fr auto auto; align-items: center; gap: 14px; width: min(440px, calc(100vw - 32px)); padding: 12px 14px; background: var(--paper); border: 1px solid var(--line); box-shadow: 0 22px 44px -26px rgb(30 31 28 / 55%); transform: translateY(20px); opacity: 0; pointer-events: none; transition: opacity .35s, transform .45s cubic-bezier(.2, .7, .2, 1); }
+.bag-toast.is-on { transform: none; opacity: 1; pointer-events: auto; }
+.bag-toast img { width: 54px; height: 54px; object-fit: cover; }
+.bag-toast p { margin: 0; font: 400 var(--fs-small)/1.4 var(--font-body); }
+.bag-toast em { font: italic 400 16px/1.2 var(--font-display); }
+.bag-toast button { border: 0; background: none; padding: 6px 0; font: 500 var(--fs-label)/1 var(--font-body); letter-spacing: .18em; text-transform: uppercase; border-bottom: 1px solid var(--ink); color: var(--ink); white-space: nowrap; }
+.bag-toast .bag-toast__close { border: 0; font-size: 18px; letter-spacing: 0; color: #596454; padding: 0 2px; }
+[dir='rtl'] .bag-toast em { font-family: 'Noto Naskh Arabic', serif; font-style: normal; }
+[dir='rtl'] .bag-toast button { font-family: 'Noto Naskh Arabic', serif; letter-spacing: 0; text-transform: none; font-size: 13px; }
+
+/* footer: deep paper, compact, useful */
+.mb-footer { background: var(--paper-deep); color: var(--ink); padding: 56px clamp(20px, 3.3vw, 62px) 24px; border-top: 1px solid var(--line); }
+.mb-footer__cols { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 1.3fr repeat(4, 1fr); gap: 32px; }
+.mb-footer__cols > * { min-width: 0; display: grid; align-content: start; gap: 9px; }
+.mb-footer h2 { margin: 0 0 6px; font: 500 var(--fs-label)/1 var(--font-body); letter-spacing: .2em; text-transform: uppercase; }
+.mb-footer a, .mb-footer p { margin: 0; font: 400 var(--fs-small)/1.5 var(--font-body); color: #4b5546; text-decoration: none; }
+.mb-footer a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.mb-footer__brand { line-height: 1; }
+.mb-footer__brand span { font: 600 9px/1 var(--font-body); letter-spacing: .32em; }
+.mb-footer__brand strong { font: 400 30px/1 var(--font-display); letter-spacing: .04em; }
+.mb-footer__base { max-width: 1320px; margin: 40px auto 0; padding-top: 18px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; align-items: center; font-size: 12px; color: #4b5546; }
+.mb-footer__notice { font-style: italic; }
+.mb-footer__actions { display: flex; gap: 20px; }
+.mb-footer__actions button { border: 0; background: none; padding: 0; font: 500 var(--fs-label)/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--ink); }
+[dir='rtl'] .mb-footer :is(h2, a, p, button) { font-family: 'Noto Naskh Arabic', Tahoma, serif; letter-spacing: 0; text-transform: none; }
+[dir='rtl'] .mb-footer h2 { font-size: 14px; font-weight: 600; }
+[dir='rtl'] .mb-footer :is(a, p) { font-size: 14px; }
+
+@media (max-width: 1050px) {
+  .site-shell .primary-nav { inset: calc(68px + var(--offer-h)) 0 auto; max-height: calc(100dvh - 68px - var(--offer-h)); overflow-y: auto; }
+  .nav-occasions > button { padding: 13px 4px; font: 400 30px/1.1 var(--font-display); letter-spacing: -.025em; text-transform: none; text-align: start; }
+  .nav-occasions__list { position: static; display: flex; min-width: 0; padding: 0 0 8px 12px; border: 0; box-shadow: none; background: none; }
+  .nav-occasions__list:not(.is-open) { display: none; }
+  .mb-footer__cols { grid-template-columns: 1fr 1fr; }
+  .mb-footer__brand { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  :root { --offer-h: 34px; }
+  .search-link { display: none; }
+  .offer-bar__run span { padding-inline: 24px; font-size: 9.5px; }
+  .bag-toast { inset-inline: 16px; width: auto; bottom: calc(68px + env(safe-area-inset-bottom)); grid-template-columns: 44px 1fr auto; }
+  .bag-toast img { width: 44px; height: 44px; }
+  .bag-toast .bag-toast__close { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .offer-bar__track { animation: none; }
+  .offer-bar__run + .offer-bar__run { display: none; }
+}
