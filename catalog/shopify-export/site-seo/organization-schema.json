@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Florist",
+  "name": "Maison Botanique",
+  "url": "https://[DOMAIN TO BE ADDED]",
+  "logo": "https://[LOGO URL TO BE ADDED]",
+  "description": "Dubai floral gifting house: bouquets, arrangements, preserved flowers and gift sets in three sizes: Signature, Grand and Luxe.",
+  "areaServed": "Dubai, United Arab Emirates",
+  "address": { "@type": "PostalAddress", "streetAddress": "[TO BE ADDED]", "addressLocality": "Dubai", "addressCountry": "AE" },
+  "telephone": "[TO BE ADDED]",
+  "sameAs": ["[INSTAGRAM URL]", "[GOOGLE BUSINESS PROFILE URL]"],
+  "knowsLanguage": ["en", "ar"]
+}
