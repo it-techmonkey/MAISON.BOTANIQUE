@@ -595,6 +595,636 @@
    "alt": "Pink Lilies in a Glass Vase - 20 Pink Lilies, by Maison Botanique"
   },
   {
+   "id": "basket-arrangement-of-white-lilies-yellow-and-white-roses",
+   "no": 1,
+   "name": "Basket Arrangement of White Lilies, Yellow & White Roses",
+   "nameAr": "تنسيق سلة من الزنبق الأبيض والورود الصفراء والبيضاء",
+   "room": "vases",
+   "price": 429,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "double the quantity",
+     "detailAr": "ضعف الكمية",
+     "add": 410
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "triple the quantity",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 840
+    }
+   ],
+   "line": "5 Stems of White Lilies, basket arrangement",
+   "lineAr": "5 سيقان زنبق أبيض · 20 وردة صفراء وبيضاء",
+   "composition": [
+    "5 Stems of White Lilies",
+    "20 Yellow & White Roses",
+    "Fresh Fillers",
+    "Basket Arrangement"
+   ],
+   "compositionAr": [
+    "5 سيقان زنبق أبيض",
+    "20 وردة صفراء وبيضاء",
+    "حشوات خضراء طازجة",
+    "تنسيق سلة"
+   ],
+   "feature": "",
+   "stems": 5,
+   "occasions": [
+    "birthday",
+    "thanks",
+    "get-well",
+    "sorry",
+    "just-because"
+   ],
+   "flowers": [
+    "rose",
+    "lily"
+   ],
+   "format": "box",
+   "order": 101,
+   "custom": null,
+   "image": "/collection/basket-arrangement-of-white-lilies-yellow-and-white-roses-960.webp",
+   "imageSmall": "/collection/basket-arrangement-of-white-lilies-yellow-and-white-roses-480.webp",
+   "alt": "Basket Arrangement of White Lilies, Yellow & White Roses - 5 Stems of White Lilies, by Maison Botanique"
+  },
+  {
+   "id": "love-roses",
+   "no": 2,
+   "name": "Love Roses",
+   "nameAr": "ورود الحب",
+   "room": "roses",
+   "price": 399,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "40 red roses",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "80 red roses",
+     "detailAr": "ضعف الكمية",
+     "add": 380
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "120 red roses",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 780
+    }
+   ],
+   "line": "40 red roses, red ribbon",
+   "lineAr": "40 وردة حمراء · حشوات خضراء",
+   "composition": [
+    "40 Red Roses",
+    "Fillers",
+    "Red Ribbon"
+   ],
+   "compositionAr": [
+    "40 وردة حمراء",
+    "حشوات خضراء",
+    "شريط أحمر"
+   ],
+   "feature": "",
+   "stems": 40,
+   "occasions": [
+    "love",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
+   "order": 102,
+   "custom": null,
+   "image": "/collection/love-roses-960.webp",
+   "imageSmall": "/collection/love-roses-480.webp",
+   "alt": "Love Roses - 40 Red Roses, by Maison Botanique"
+  },
+  {
+   "id": "bouquet-of-mix-color-roses-and-white-baby-breath",
+   "no": 3,
+   "name": "Bouquet of Mix Color Roses & White Baby Breath",
+   "nameAr": "باقة ورود بألوان متعددة مع جيبسوفيلا بيضاء",
+   "room": "roses",
+   "price": 179,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "double the quantity",
+     "detailAr": "ضعف الكمية",
+     "add": 170
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "triple the quantity",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 350
+    }
+   ],
+   "line": "5 red roses, wrapped in premium wrapping with a ribbon tie",
+   "lineAr": "5 ورود حمراء · 5 ورود خوخية",
+   "composition": [
+    "5 red roses",
+    "5 peach roses",
+    "2 purple roses",
+    "White baby's breath fillers",
+    "Wrapped in premium wrapping with a ribbon tie"
+   ],
+   "compositionAr": [
+    "5 ورود حمراء",
+    "5 ورود خوخية",
+    "وردتان بنفسجيتان",
+    "جيبسوفيلا بيضاء كحشوة",
+    "مغلفة بغلاف فاخر مع ربطة شريط"
+   ],
+   "feature": "",
+   "stems": 5,
+   "occasions": [
+    "birthday",
+    "thanks",
+    "new-baby",
+    "just-because"
+   ],
+   "flowers": [
+    "rose",
+    "mixed"
+   ],
+   "format": "bouquet",
+   "order": 103,
+   "custom": null,
+   "image": "/collection/bouquet-of-mix-color-roses-and-white-baby-breath-960.webp",
+   "imageSmall": "/collection/bouquet-of-mix-color-roses-and-white-baby-breath-480.webp",
+   "alt": "Bouquet of Mix Color Roses & White Baby Breath - 5 red roses, by Maison Botanique"
+  },
+  {
+   "id": "bouquet-of-100-roses",
+   "no": 4,
+   "name": "Bouquet of 100 Roses",
+   "nameAr": "باقة من 100 وردة",
+   "room": "roses",
+   "price": 799,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "double the quantity",
+     "detailAr": "ضعف كمية طقم سيغنتشر",
+     "add": 760
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "triple the quantity",
+     "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
+     "add": 1560
+    }
+   ],
+   "line": "A Bouquet of 100 red roses in black wrapping tied with a black ribbon",
+   "lineAr": "باقة من 100 وردة حمراء بغلاف أسود وشريط أسود",
+   "composition": [
+    "A Bouquet of 100 red roses in black wrapping tied with a black ribbon"
+   ],
+   "compositionAr": [
+    "باقة من 100 وردة حمراء بغلاف أسود وشريط أسود"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "congratulations",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
+   "order": 104,
+   "custom": null,
+   "image": "/collection/bouquet-of-100-roses-960.webp",
+   "imageSmall": "/collection/bouquet-of-100-roses-480.webp",
+   "alt": "Bouquet of 100 Roses - A Bouquet of 100 red roses in black wrapping tied with a black ribbon, by Maison Botanique"
+  },
+  {
+   "id": "bouquet-of-white-roses",
+   "no": 5,
+   "name": "Bouquet of White Roses",
+   "nameAr": "باقة ورود بيضاء",
+   "room": "roses",
+   "price": 399,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "40 white roses",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "80 white roses",
+     "detailAr": "ضعف الكمية",
+     "add": 380
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "120 white roses",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 780
+    }
+   ],
+   "line": "40 white roses",
+   "lineAr": "40 وردة بيضاء · أوراق حشو خضراء",
+   "composition": [
+    "40 White Roses",
+    "Green Filler Leaves"
+   ],
+   "compositionAr": [
+    "40 وردة بيضاء",
+    "أوراق حشو خضراء"
+   ],
+   "feature": "",
+   "stems": 40,
+   "occasions": [
+    "thanks",
+    "sorry",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
+   "order": 105,
+   "custom": null,
+   "image": "/collection/bouquet-of-white-roses-960.webp",
+   "imageSmall": "/collection/bouquet-of-white-roses-480.webp",
+   "alt": "Bouquet of White Roses - 40 White Roses, by Maison Botanique"
+  },
+  {
+   "id": "100-pink-roses-bouquet",
+   "no": 6,
+   "name": "100 Pink Roses Bouquet",
+   "nameAr": "باقة 100 وردة وردية",
+   "room": "roses",
+   "price": 799,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "double the quantity",
+     "detailAr": "ضعف كمية طقم سيغنتشر",
+     "add": 760
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "triple the quantity",
+     "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
+     "add": 1560
+    }
+   ],
+   "line": "A 100-pink rose bouquet wrapped in black paper and tied with a white r",
+   "lineAr": "باقة 100 وردة وردية بغلاف ورق أسود وشريط أبيض",
+   "composition": [
+    "A 100-pink rose bouquet wrapped in black paper and tied with a white ribbon"
+   ],
+   "compositionAr": [
+    "باقة 100 وردة وردية بغلاف ورق أسود وشريط أبيض"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "birthday",
+    "congratulations",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
+   "order": 106,
+   "custom": null,
+   "image": "/collection/100-pink-roses-bouquet-960.webp",
+   "imageSmall": "/collection/100-pink-roses-bouquet-480.webp",
+   "alt": "100 Pink Roses Bouquet - A 100-pink rose bouquet wrapped in black paper and tied with a white ribbon, by Maison Botanique"
+  },
+  {
+   "id": "bouquet-of-purple-and-pink-roses",
+   "no": 7,
+   "name": "Bouquet of Purple & Pink Roses",
+   "nameAr": "باقة ورود بنفسجية ووردية",
+   "room": "roses",
+   "price": 399,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "double the quantity",
+     "detailAr": "ضعف الكمية",
+     "add": 380
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "triple the quantity",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 780
+    }
+   ],
+   "line": "15 pink roses, pink wrapping paper with a pink ribbon",
+   "lineAr": "15 وردة وردية · 15 وردة بنفسجية",
+   "composition": [
+    "15 pink roses",
+    "15 purple roses",
+    "5 pink spray roses",
+    "Eucalyptus leaves and limonium fillers",
+    "Pink wrapping paper with a pink ribbon"
+   ],
+   "compositionAr": [
+    "15 وردة وردية",
+    "15 وردة بنفسجية",
+    "5 ورود سبراي وردية",
+    "أوراق أوكالبتوس وحشوات ليمونيوم",
+    "ورق تغليف وردي مع شريط وردي"
+   ],
+   "feature": "",
+   "stems": 15,
+   "occasions": [
+    "birthday",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
+   "order": 107,
+   "custom": null,
+   "image": "/collection/bouquet-of-purple-and-pink-roses-960.webp",
+   "imageSmall": "/collection/bouquet-of-purple-and-pink-roses-480.webp",
+   "alt": "Bouquet of Purple & Pink Roses - 15 pink roses, by Maison Botanique"
+  },
+  {
+   "id": "elegant-red-and-pink-bouquet",
+   "no": 9,
+   "name": "Elegant Red & Pink Bouquet",
+   "nameAr": "باقة أنيقة حمراء ووردية",
+   "room": "roses",
+   "price": 319,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "double the quantity",
+     "detailAr": "ضعف الكمية",
+     "add": 300
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "triple the quantity",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 620
+    }
+   ],
+   "line": "20 Red Roses, wrapped in white paper and tied with ribbons",
+   "lineAr": "20 وردة حمراء · 5 ورود سبراي وردية",
+   "composition": [
+    "20 Red Roses",
+    "5 Pink Spray Roses",
+    "2 Red Alstroemeria",
+    "Eucalyptus Leaves and Green Fillers",
+    "Wrapped in White Paper and Tied with Ribbons"
+   ],
+   "compositionAr": [
+    "20 وردة حمراء",
+    "5 ورود سبراي وردية",
+    "2 ألستروميريا حمراء",
+    "أوراق أوكالبتوس وحشوات خضراء",
+    "مغلفة بورق أبيض ومربوطة بشرائط"
+   ],
+   "feature": "",
+   "stems": 20,
+   "occasions": [
+    "birthday",
+    "love",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
+   "order": 109,
+   "custom": null,
+   "image": "/collection/elegant-red-and-pink-bouquet-960.webp",
+   "imageSmall": "/collection/elegant-red-and-pink-bouquet-480.webp",
+   "alt": "Elegant Red & Pink Bouquet - 20 Red Roses, by Maison Botanique"
+  },
+  {
+   "id": "white-rose-bouquet",
+   "no": 10,
+   "name": "White Rose Bouquet",
+   "nameAr": "باقة ورد أبيض",
+   "room": "roses",
+   "price": 269,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "20 white roses",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "40 white roses",
+     "detailAr": "ضعف الكمية",
+     "add": 250
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "60 white roses",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 520
+    }
+   ],
+   "line": "20 white roses, paper wrapping",
+   "lineAr": "20 وردة بيضاء · حشوات خضراء",
+   "composition": [
+    "20 White Roses",
+    "Green Fillers",
+    "Paper Wrapping",
+    "White Ribbon Tie"
+   ],
+   "compositionAr": [
+    "20 وردة بيضاء",
+    "حشوات خضراء",
+    "تغليف بالورق",
+    "ربطة شريط أبيض"
+   ],
+   "feature": "",
+   "stems": 20,
+   "occasions": [
+    "thanks",
+    "sorry",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
+   "order": 110,
+   "custom": null,
+   "image": "/collection/white-rose-bouquet-960.webp",
+   "imageSmall": "/collection/white-rose-bouquet-480.webp",
+   "alt": "White Rose Bouquet - 20 White Roses, by Maison Botanique"
+  },
+  {
+   "id": "the-red-affair",
+   "no": 11,
+   "name": "The Red Affair",
+   "nameAr": "عشق أحمر",
+   "room": "roses",
+   "price": 249,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "double the quantity",
+     "detailAr": "ضعف الكمية",
+     "add": 240
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "triple the quantity",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 480
+    }
+   ],
+   "line": "12 Red Roses, paper packing",
+   "lineAr": "12 وردة حمراء · 6 قرنفل أحمر",
+   "composition": [
+    "12 Red Roses",
+    "6 Red Carnations",
+    "Green Fillers",
+    "Paper Packing"
+   ],
+   "compositionAr": [
+    "12 وردة حمراء",
+    "6 قرنفل أحمر",
+    "حشوات خضراء",
+    "تغليف ورقي"
+   ],
+   "feature": "",
+   "stems": 12,
+   "occasions": [
+    "love",
+    "just-because"
+   ],
+   "flowers": [
+    "rose",
+    "carnation"
+   ],
+   "format": "bouquet",
+   "order": 111,
+   "custom": null,
+   "image": "/collection/the-red-affair-960.webp",
+   "imageSmall": "/collection/the-red-affair-480.webp",
+   "alt": "The Red Affair - 12 Red Roses, by Maison Botanique"
+  },
+  {
    "id": "pastel-rose-symphony",
    "no": 13,
    "name": "Pastel Rose Symphony",
@@ -661,6 +1291,449 @@
    "image": "/collection/pastel-rose-symphony-960.webp",
    "imageSmall": "/collection/pastel-rose-symphony-480.webp",
    "alt": "Pastel Rose Symphony - 20 White Roses, by Maison Botanique"
+  },
+  {
+   "id": "timeless-red-and-pink-roses",
+   "no": 14,
+   "name": "Timeless Red & Pink Roses",
+   "nameAr": "ورود حمراء ووردية خالدة",
+   "room": "roses",
+   "price": 249,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "20 pink & red roses",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "40 pink & red roses",
+     "detailAr": "ضعف الكمية",
+     "add": 240
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "60 pink & red roses",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 480
+    }
+   ],
+   "line": "20 pink & red roses, premium black wrapping paper",
+   "lineAr": "20 وردة وردية وحمراء · حشوات خضراء طازجة",
+   "composition": [
+    "20 Pink & Red Roses",
+    "Fresh Green Fillers",
+    "Premium Black Wrapping Paper"
+   ],
+   "compositionAr": [
+    "20 وردة وردية وحمراء",
+    "حشوات خضراء طازجة",
+    "ورق تغليف أسود فاخر"
+   ],
+   "feature": "",
+   "stems": 20,
+   "occasions": [
+    "birthday",
+    "love",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
+   "order": 114,
+   "custom": null,
+   "image": "/collection/timeless-red-and-pink-roses-960.webp",
+   "imageSmall": "/collection/timeless-red-and-pink-roses-480.webp",
+   "alt": "Timeless Red & Pink Roses - 20 Pink & Red Roses, by Maison Botanique"
+  },
+  {
+   "id": "deep-love-red-roses",
+   "no": 15,
+   "name": "Deep Love Red Roses",
+   "nameAr": "ورود حمراء بحب عميق",
+   "room": "roses",
+   "price": 289,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "25 red roses",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "50 red roses",
+     "detailAr": "ضعف الكمية",
+     "add": 270
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "75 red roses",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 560
+    }
+   ],
+   "line": "25 red roses, paper packing with ribbon",
+   "lineAr": "25 وردة حمراء · حشوات خضراء",
+   "composition": [
+    "25 Red Roses",
+    "Fillers",
+    "Paper Packing with Ribbon"
+   ],
+   "compositionAr": [
+    "25 وردة حمراء",
+    "حشوات خضراء",
+    "تغليف ورقي مع شريط"
+   ],
+   "feature": "",
+   "stems": 25,
+   "occasions": [
+    "love",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
+   "order": 115,
+   "custom": null,
+   "image": "/collection/deep-love-red-roses-960.webp",
+   "imageSmall": "/collection/deep-love-red-roses-480.webp",
+   "alt": "Deep Love Red Roses - 25 Red Roses, by Maison Botanique"
+  },
+  {
+   "id": "birthday-surprise-bouquet",
+   "no": 16,
+   "name": "Birthday Surprise Bouquet",
+   "nameAr": "باقة مفاجأة عيد الميلاد",
+   "room": "roses",
+   "price": 289,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "double the quantity",
+     "detailAr": "ضعف الكمية",
+     "add": 270
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "triple the quantity",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 560
+    }
+   ],
+   "line": "20 Pink & White Roses, nice wrapping",
+   "lineAr": "20 وردة وردية وبيضاء · 5 ورود سبراي حمراء",
+   "composition": [
+    "20 Pink & White Roses",
+    "5 Red Spray Roses",
+    "White Statis",
+    "Green Fillers",
+    "Nice Wrapping"
+   ],
+   "compositionAr": [
+    "20 وردة وردية وبيضاء",
+    "5 ورود سبراي حمراء",
+    "ستاتيس أبيض",
+    "حشوات خضراء",
+    "تغليف جميل"
+   ],
+   "feature": "",
+   "stems": 20,
+   "occasions": [
+    "birthday",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
+   "order": 116,
+   "custom": null,
+   "image": "/collection/birthday-surprise-bouquet-960.webp",
+   "imageSmall": "/collection/birthday-surprise-bouquet-480.webp",
+   "alt": "Birthday Surprise Bouquet - 20 Pink & White Roses, by Maison Botanique"
+  },
+  {
+   "id": "miss-you-white-roses-bouquet",
+   "no": 17,
+   "name": "Miss You White Roses Bouquet",
+   "nameAr": "باقة ورود بيضاء \"اشتقت إليك\"",
+   "room": "roses",
+   "price": 289,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "25 white roses",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "50 white roses",
+     "detailAr": "ضعف الكمية",
+     "add": 270
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "75 white roses",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 560
+    }
+   ],
+   "line": "25 white roses, stylish wrapping",
+   "lineAr": "25 وردة بيضاء · حشوات خضراء طازجة",
+   "composition": [
+    "25 White Roses",
+    "Fresh Green Fillers",
+    "Stylish Wrapping",
+    "Miss You Paper"
+   ],
+   "compositionAr": [
+    "25 وردة بيضاء",
+    "حشوات خضراء طازجة",
+    "تغليف أنيق",
+    "ورقة \"اشتقت إليك\""
+   ],
+   "feature": "",
+   "stems": 25,
+   "occasions": [
+    "thanks",
+    "sorry",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
+   "order": 117,
+   "custom": null,
+   "image": "/collection/miss-you-white-roses-bouquet-960.webp",
+   "imageSmall": "/collection/miss-you-white-roses-bouquet-480.webp",
+   "alt": "Miss You White Roses Bouquet - 25 White Roses, by Maison Botanique"
+  },
+  {
+   "id": "red-royale-bouquet",
+   "no": 18,
+   "name": "Red Royale Bouquet",
+   "nameAr": "باقة الأحمر الملكي",
+   "room": "roses",
+   "price": 229,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "double the quantity",
+     "detailAr": "ضعف الكمية",
+     "add": 220
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "triple the quantity",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 450
+    }
+   ],
+   "line": "10 Red Roses, red paper packing with black ribbon",
+   "lineAr": "10 ورود حمراء · 5 ورود سبراي حمراء",
+   "composition": [
+    "10 Red Roses",
+    "5 Red Spray Roses",
+    "3 Red Button Chrysanthemums",
+    "Eucalyptus Leaf",
+    "Red Paper Packing with Black Ribbon"
+   ],
+   "compositionAr": [
+    "10 ورود حمراء",
+    "5 ورود سبراي حمراء",
+    "3 زهرات أقحوان أحمر",
+    "أوراق أوكالبتوس",
+    "تغليف ورقي أحمر مع شريط أسود"
+   ],
+   "feature": "",
+   "stems": 10,
+   "occasions": [
+    "love",
+    "just-because"
+   ],
+   "flowers": [
+    "rose",
+    "chrysanthemum"
+   ],
+   "format": "bouquet",
+   "order": 118,
+   "custom": null,
+   "image": "/collection/red-royale-bouquet-960.webp",
+   "imageSmall": "/collection/red-royale-bouquet-480.webp",
+   "alt": "Red Royale Bouquet - 10 Red Roses, by Maison Botanique"
+  },
+  {
+   "id": "romantic-pink-rose-bouquet",
+   "no": 19,
+   "name": "Romantic Pink Rose Bouquet",
+   "nameAr": "باقة ورود وردية رومانسية",
+   "room": "roses",
+   "price": 399,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "40 pink roses",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "80 pink roses",
+     "detailAr": "ضعف الكمية",
+     "add": 380
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "120 pink roses",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 780
+    }
+   ],
+   "line": "40 pink roses, premium pink wrapping paper",
+   "lineAr": "40 وردة وردية · حشوات خضراء طازجة",
+   "composition": [
+    "40 Pink Roses",
+    "Fresh Green Fillers",
+    "Premium Pink Wrapping Paper"
+   ],
+   "compositionAr": [
+    "40 وردة وردية",
+    "حشوات خضراء طازجة",
+    "ورق تغليف وردي فاخر"
+   ],
+   "feature": "",
+   "stems": 40,
+   "occasions": [
+    "birthday",
+    "love",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
+   "order": 119,
+   "custom": null,
+   "image": "/collection/romantic-pink-rose-bouquet-960.webp",
+   "imageSmall": "/collection/romantic-pink-rose-bouquet-480.webp",
+   "alt": "Romantic Pink Rose Bouquet - 40 Pink Roses, by Maison Botanique"
+  },
+  {
+   "id": "sorry-roses-bouquet",
+   "no": 20,
+   "name": "Sorry Roses Bouquet",
+   "nameAr": "باقة ورود الاعتذار",
+   "room": "roses",
+   "price": 299,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "24 red & pink roses",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "48 red & pink roses",
+     "detailAr": "ضعف الكمية",
+     "add": 280
+    },
+    {
+     "id": "luxe",
+     "name": "Luxe",
+     "nameAr": "لوكس",
+     "detail": "72 red & pink roses",
+     "detailAr": "ثلاثة أضعاف الكمية",
+     "add": 580
+    }
+   ],
+   "line": "24 red & pink roses, nice wrapping",
+   "lineAr": "24 وردة حمراء ووردية · حشوات خضراء",
+   "composition": [
+    "24 Red & Pink Roses",
+    "Green Fillers",
+    "Nice Wrapping",
+    "I Am Sorry Paper"
+   ],
+   "compositionAr": [
+    "24 وردة حمراء ووردية",
+    "حشوات خضراء",
+    "تغليف جميل",
+    "ورقة \"أنا آسف\""
+   ],
+   "feature": "",
+   "stems": 24,
+   "occasions": [
+    "sorry",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "bouquet",
+   "order": 120,
+   "custom": null,
+   "image": "/collection/sorry-roses-bouquet-960.webp",
+   "imageSmall": "/collection/sorry-roses-bouquet-480.webp",
+   "alt": "Sorry Roses Bouquet - 24 Red & Pink Roses, by Maison Botanique"
   },
   {
    "id": "purple-and-pink-roses-bouquet",
@@ -2720,6 +3793,101 @@
    "alt": "Red & Pink Flower Bouquet - 20 Peach Roses, by Maison Botanique"
   },
   {
+   "id": "bridal-pastel-bouquet",
+   "no": 66,
+   "name": "Bridal Pastel Bouquet",
+   "nameAr": "باقة العروس الباستيل",
+   "room": "bouquets",
+   "price": 449,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "30 Pink and White Roses",
+   "lineAr": "30 وردة وردية وبيضاء · 5 ليسيانثوس أبيض",
+   "composition": [
+    "30 Pink and White Roses",
+    "5 White Lisianthus",
+    "10 Pink Carnations",
+    "10 Blue Oxypetalum",
+    "Fresh Green Fillers"
+   ],
+   "compositionAr": [
+    "30 وردة وردية وبيضاء",
+    "5 ليسيانثوس أبيض",
+    "10 قرنفل وردي",
+    "10 أوكسيبيتالوم أزرق",
+    "حشوات خضراء طازجة"
+   ],
+   "feature": "",
+   "stems": 30,
+   "occasions": [
+    "new-baby",
+    "wedding"
+   ],
+   "flowers": [
+    "rose",
+    "carnation",
+    "mixed"
+   ],
+   "format": "bouquet",
+   "order": 166,
+   "custom": null,
+   "image": "/collection/bridal-pastel-bouquet-960.webp",
+   "imageSmall": "/collection/bridal-pastel-bouquet-480.webp",
+   "alt": "Bridal Pastel Bouquet - 30 Pink and White Roses, by Maison Botanique"
+  },
+  {
+   "id": "bridal-pink-ranunculus-bouquet",
+   "no": 67,
+   "name": "Bridal Pink Ranunculus Bouquet",
+   "nameAr": "باقة العروس من الرانونكولس الوردي",
+   "room": "bouquets",
+   "price": 649,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "30 Pink Ranunculus, hand-tied with ribbons",
+   "lineAr": "30 رانونكولس وردي · حشوات خضراء طازجة",
+   "composition": [
+    "30 Pink Ranunculus",
+    "Fresh Green Fillers",
+    "Hand-Tied with Ribbons"
+   ],
+   "compositionAr": [
+    "30 رانونكولس وردي",
+    "حشوات خضراء طازجة",
+    "مربوطة يدوياً بشرائط"
+   ],
+   "feature": "",
+   "stems": 30,
+   "occasions": [
+    "wedding"
+   ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
+   "order": 167,
+   "custom": null,
+   "image": "/collection/bridal-pink-ranunculus-bouquet-960.webp",
+   "imageSmall": "/collection/bridal-pink-ranunculus-bouquet-480.webp",
+   "alt": "Bridal Pink Ranunculus Bouquet - 30 Pink Ranunculus, by Maison Botanique"
+  },
+  {
    "id": "tenacetum-bag",
    "no": 68,
    "name": "Tanacetum Bag",
@@ -2847,6 +4015,52 @@
    "image": "/collection/lavender-grace-bouquet-960.webp",
    "imageSmall": "/collection/lavender-grace-bouquet-480.webp",
    "alt": "Lavender Grace Bouquet - 10 Purple Matthiola, by Maison Botanique"
+  },
+  {
+   "id": "bridal-soft-elegance-bouquet",
+   "no": 70,
+   "name": "Bridal Soft Elegance Bouquet",
+   "nameAr": "باقة العروس بأناقة ناعمة",
+   "room": "bouquets",
+   "price": 399,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "10 Purple Ranunculus, hand-tied with ribbons",
+   "lineAr": "10 رانونكولس بنفسجي · 10 ليسيانثوس أبيض",
+   "composition": [
+    "10 Purple Ranunculus",
+    "10 White Lisianthus",
+    "Dusty Miller Fillers",
+    "Hand-Tied with Ribbons"
+   ],
+   "compositionAr": [
+    "10 رانونكولس بنفسجي",
+    "10 ليسيانثوس أبيض",
+    "حشوات دسطي ميلر",
+    "مربوطة يدوياً بشرائط"
+   ],
+   "feature": "",
+   "stems": 10,
+   "occasions": [
+    "wedding"
+   ],
+   "flowers": [
+    "mixed"
+   ],
+   "format": "bouquet",
+   "order": 170,
+   "custom": null,
+   "image": "/collection/bridal-soft-elegance-bouquet-960.webp",
+   "imageSmall": "/collection/bridal-soft-elegance-bouquet-480.webp",
+   "alt": "Bridal Soft Elegance Bouquet - 10 Purple Ranunculus, by Maison Botanique"
   },
   {
    "id": "bouquet-of-iris-flowers",
@@ -10091,6 +11305,57 @@
    "alt": "Roses & Gerberas in a Box - Box arrangement of 3 Pink Gerberas, 10 pink Roses & 10 White Roses with greens and fillers (Box colour may vary), by Maison Botanique"
   },
   {
+   "id": "basket-of-golden-flowers-spikey-bird-of-paradise-lilies",
+   "no": 195,
+   "name": "Basket of Golden Flowers, Spikey Bird of Paradise, Lilies",
+   "nameAr": "سلة من الزهور الذهبية وطائر الجنة الشوكي والزنبق",
+   "room": "vases",
+   "price": 449,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Exotic golden flowers, basket",
+   "lineAr": "زهور ذهبية غريبة · طائر الجنة الشوكي",
+   "composition": [
+    "Exotic golden flowers",
+    "Spiky bird of paradise",
+    "Lilies",
+    "Tropical fruit: bananas, pineapple, apples, oranges and grapes",
+    "Basket"
+   ],
+   "compositionAr": [
+    "زهور ذهبية غريبة",
+    "طائر الجنة الشوكي",
+    "زنبق",
+    "فواكه استوائية: موز وأناناس وتفاح وبرتقال وعنب",
+    "سلة"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "birthday",
+    "thanks",
+    "get-well",
+    "just-because"
+   ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "box",
+   "order": 295,
+   "custom": null,
+   "image": "/collection/basket-of-golden-flowers-spikey-bird-of-paradise-lilies-960.webp",
+   "imageSmall": "/collection/basket-of-golden-flowers-spikey-bird-of-paradise-lilies-480.webp",
+   "alt": "Basket of Golden Flowers, Spikey Bird of Paradise, Lilies - Exotic golden flowers, by Maison Botanique"
+  },
+  {
    "id": "caught-in-love-luxury-peach-and-pink-flower-box",
    "no": 196,
    "name": "Caught in Love — Luxury Peach & Pink Flower Box",
@@ -10589,6 +11854,51 @@
    "image": "/collection/orchid-and-baby-s-breath-tower-960.webp",
    "imageSmall": "/collection/orchid-and-baby-s-breath-tower-480.webp",
    "alt": "Orchid & Baby's Breath Tower - Elevate your décor with a stunning tower arrangement featuring 30 blue orchids gracefully positioned on top, with delicate baby's breath below, by Maison Botanique"
+  },
+  {
+   "id": "200-roses-in-vase",
+   "no": 205,
+   "name": "200 Roses in Vase",
+   "nameAr": "200 وردة في مزهرية",
+   "room": "grand",
+   "price": 1799,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "200 red roses, presented in a glass vase",
+   "lineAr": "200 وردة حمراء · حشوات خضراء",
+   "composition": [
+    "200 red roses",
+    "Green fillers",
+    "Presented in a glass vase"
+   ],
+   "compositionAr": [
+    "200 وردة حمراء",
+    "حشوات خضراء",
+    "مقدمة في مزهرية زجاجية"
+   ],
+   "feature": "",
+   "stems": 200,
+   "occasions": [
+    "congratulations",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "vase",
+   "order": 305,
+   "custom": null,
+   "image": "/collection/200-roses-in-vase-960.webp",
+   "imageSmall": "/collection/200-roses-in-vase-480.webp",
+   "alt": "200 Roses in Vase - 200 red roses, by Maison Botanique"
   },
   {
    "id": "pastel-dreams-tower",
@@ -12132,6 +13442,53 @@
    "alt": "Purple Bloom Twin Plush - 10 Purple Orchids, by Maison Botanique"
   },
   {
+   "id": "red-roses-and-mixed-fruits-basket",
+   "no": 233,
+   "name": "Red Roses & Mixed Fruits Basket",
+   "nameAr": "سلة ورود حمراء وفواكه مشكلة",
+   "room": "gifts",
+   "price": 399,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "12 Red Roses, basket",
+   "lineAr": "12 وردة حمراء · فواكه طازجة مشكلة",
+   "composition": [
+    "12 Red Roses",
+    "Mixed Fresh Fruits",
+    "Basket"
+   ],
+   "compositionAr": [
+    "12 وردة حمراء",
+    "فواكه طازجة مشكلة",
+    "سلة"
+   ],
+   "feature": "",
+   "stems": 12,
+   "occasions": [
+    "birthday",
+    "love",
+    "just-because"
+   ],
+   "flowers": [
+    "rose",
+    "mixed"
+   ],
+   "format": "gift",
+   "order": 333,
+   "custom": null,
+   "image": "/collection/red-roses-and-mixed-fruits-basket-960.webp",
+   "imageSmall": "/collection/red-roses-and-mixed-fruits-basket-480.webp",
+   "alt": "Red Roses & Mixed Fruits Basket - 12 Red Roses, by Maison Botanique"
+  },
+  {
    "id": "sunshine-peach-teddy-celebration",
    "no": 234,
    "name": "Sunshine Peach Teddy Celebration",
@@ -12706,6 +14063,53 @@
    "alt": "24s Ferrero Rocher Chocolate Box - Ferrero Rocher 24s Chocolate Box, by Maison Botanique"
   },
   {
+   "id": "blue-dream-chocolate-bouquet",
+   "no": 244,
+   "name": "Blue Dream Chocolate Bouquet",
+   "nameAr": "باقة شوكولاتة الحلم الأزرق",
+   "room": "gifts",
+   "price": 549,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "30 Blue Roses, 48 Ferrero Rocher chocolates",
+   "lineAr": "30 وردة زرقاء · 48 قطعة شوكولاتة فيريرو روشيه",
+   "composition": [
+    "30 Blue Roses",
+    "48 Ferrero Rocher Chocolates",
+    "Premium White Wrapping",
+    "Gold Ribbon & Bow"
+   ],
+   "compositionAr": [
+    "30 وردة زرقاء",
+    "48 قطعة شوكولاتة فيريرو روشيه",
+    "غلاف أبيض فاخر",
+    "شريط وفيونكة ذهبية"
+   ],
+   "feature": "",
+   "stems": 30,
+   "occasions": [
+    "love",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
+   "order": 344,
+   "custom": null,
+   "image": "/collection/blue-dream-chocolate-bouquet-960.webp",
+   "imageSmall": "/collection/blue-dream-chocolate-bouquet-480.webp",
+   "alt": "Blue Dream Chocolate Bouquet - 30 Blue Roses, by Maison Botanique"
+  },
+  {
    "id": "blush-elegance-and-ferrero-delight",
    "no": 245,
    "name": "Blush Elegance & Ferrero Delight",
@@ -13142,6 +14546,53 @@
    "alt": "Blue Orchid & Ferrero Delight - 20 Blue Orchids with Ferrero Rocher 24s, by Maison Botanique"
   },
   {
+   "id": "fruits-and-chocolates-basket",
+   "no": 252,
+   "name": "Fruits & Chocolates Basket",
+   "nameAr": "سلة فواكه وشوكولاتة",
+   "room": "gifts",
+   "price": 329,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "4 Apples, 2 Pears, 3 Mandarin Oranges, 2 Bananas, 500g Grapes, Lindt e",
+   "lineAr": "4 تفاحات و2 كمثرى و3 يوسفي و2 موز و500 جرام عنب · ليندت إكسلنس شوكولاتة بالحليب كريمية للغاية 100 جرام",
+   "composition": [
+    "4 Apples, 2 Pears, 3 Mandarin Oranges, 2 Bananas, 500g Grapes",
+    "Lindt Excellence Extra Creamy Milk Chocolate 100g",
+    "Lindt Swiss Classic Milk Chocolate 100g",
+    "Lindt Swiss Classic Dark Chocolate 100g",
+    "Godiva Smooth & Creamy Milk Chocolate 90g"
+   ],
+   "compositionAr": [
+    "4 تفاحات و2 كمثرى و3 يوسفي و2 موز و500 جرام عنب",
+    "ليندت إكسلنس شوكولاتة بالحليب كريمية للغاية 100 جرام",
+    "ليندت سويس كلاسيك شوكولاتة بالحليب 100 جرام",
+    "ليندت سويس كلاسيك شوكولاتة داكنة 100 جرام",
+    "جوديفا شوكولاتة بالحليب ناعمة وكريمية 90 جرام"
+   ],
+   "feature": "",
+   "stems": 4,
+   "occasions": [
+    "love",
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 352,
+   "custom": null,
+   "image": "/collection/fruits-and-chocolates-basket-960.webp",
+   "imageSmall": "/collection/fruits-and-chocolates-basket-480.webp",
+   "alt": "Fruits & Chocolates Basket - 4 Apples, 2 Pears, 3 Mandarin Oranges, 2 Bananas, 500g Grapes, by Maison Botanique"
+  },
+  {
    "id": "white-luxe-and-pistache-indulgence",
    "no": 253,
    "name": "White Luxe & Pistache Indulgence",
@@ -13316,6 +14767,49 @@
    "image": "/collection/teddy-with-16-pcs-ferrero-rocher-gift-960.webp",
    "imageSmall": "/collection/teddy-with-16-pcs-ferrero-rocher-gift-480.webp",
    "alt": "Teddy with 16 Pcs Ferrero Rocher Gift - 12-inch teddy bear (Standard or Pink), by Maison Botanique"
+  },
+  {
+   "id": "basket-of-fruits-biscuits-chocolates-and-crackers",
+   "no": 257,
+   "name": "Basket of Fruits, Biscuits, Chocolates & Crackers",
+   "nameAr": "سلة فواكه وبسكويت وشوكولاتة ومقرمشات",
+   "room": "gifts",
+   "price": 499,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Fresh pineapple, apples, pears, bananas and red grapes, biscuits, choc",
+   "lineAr": "أناناس وتفاح وكمثرى وموز وعنب أحمر طازج · بسكويت وشوكولاتة ومقرمشات (تُحدد العلامات التجارية لاحقاً)",
+   "composition": [
+    "Fresh pineapple, apples, pears, bananas and red grapes",
+    "Biscuits, chocolates and crackers (brands to be confirmed)",
+    "Large basket"
+   ],
+   "compositionAr": [
+    "أناناس وتفاح وكمثرى وموز وعنب أحمر طازج",
+    "بسكويت وشوكولاتة ومقرمشات (تُحدد العلامات التجارية لاحقاً)",
+    "سلة كبيرة"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "love",
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 357,
+   "custom": null,
+   "image": "/collection/basket-of-fruits-biscuits-chocolates-and-crackers-960.webp",
+   "imageSmall": "/collection/basket-of-fruits-biscuits-chocolates-and-crackers-480.webp",
+   "alt": "Basket of Fruits, Biscuits, Chocolates & Crackers - Fresh pineapple, apples, pears, bananas and red grapes, by Maison Botanique"
   },
   {
    "id": "pink-teddy-with-cake-and-balloons",
@@ -14377,6 +15871,53 @@
    "image": "/collection/white-roses-vase-and-chocolate-mousse-960.webp",
    "imageSmall": "/collection/white-roses-vase-and-chocolate-mousse-480.webp",
    "alt": "White Roses Vase & Chocolate Mousse - 20 White Roses with Chocolate Mousse Cake and Balloons, by Maison Botanique"
+  },
+  {
+   "id": "roses-and-ferrero-rocher-chocolate-in-box",
+   "no": 276,
+   "name": "Roses & Ferrero Rocher Chocolate in Box",
+   "nameAr": "ورود وشوكولاتة فيريرو روشيه في صندوق",
+   "room": "gifts",
+   "price": 389,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "25 pink roses, 16 pieces of Ferrero Rocher chocolates",
+   "lineAr": "25 وردة وردية · 16 قطعة شوكولاتة فيريرو روشيه",
+   "composition": [
+    "25 pink roses",
+    "16 pieces of Ferrero Rocher chocolates",
+    "Arranged in a sleek black drawer box",
+    "Tied with a sophisticated black ribbon"
+   ],
+   "compositionAr": [
+    "25 وردة وردية",
+    "16 قطعة شوكولاتة فيريرو روشيه",
+    "منسقة في صندوق أسود أنيق بدرج",
+    "مربوطة بشريط أسود راقٍ"
+   ],
+   "feature": "",
+   "stems": 25,
+   "occasions": [
+    "love",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
+   "order": 376,
+   "custom": null,
+   "image": "/collection/roses-and-ferrero-rocher-chocolate-in-box-960.webp",
+   "imageSmall": "/collection/roses-and-ferrero-rocher-chocolate-in-box-480.webp",
+   "alt": "Roses & Ferrero Rocher Chocolate in Box - 25 pink roses, by Maison Botanique"
   },
   {
    "id": "pink-red-roses-and-pistache-16s",
@@ -15566,6 +17107,546 @@
    "alt": "Tropical Fruit Basket - Pineapple, by Maison Botanique"
   },
   {
+   "id": "blue-baby-boy-gift-hamper",
+   "no": 298,
+   "name": "Blue Baby Boy Gift Hamper",
+   "nameAr": "هدية مولود ذكر الزرقاء",
+   "room": "hampers",
+   "price": 549,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Baby-care items, teddy bear",
+   "lineAr": "مستلزمات العناية بالطفل · دب",
+   "composition": [
+    "Baby-care items",
+    "Teddy bear",
+    "White roses",
+    "Small blue latex balloons",
+    "Premium round box"
+   ],
+   "compositionAr": [
+    "مستلزمات العناية بالطفل",
+    "دب",
+    "ورود بيضاء",
+    "بالونات لاتكس زرقاء صغيرة",
+    "صندوق دائري فاخر"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "new-baby",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
+   "order": 398,
+   "custom": null,
+   "image": "/collection/blue-baby-boy-gift-hamper-960.webp",
+   "imageSmall": "/collection/blue-baby-boy-gift-hamper-480.webp",
+   "alt": "Blue Baby Boy Gift Hamper - Baby-care items, by Maison Botanique"
+  },
+  {
+   "id": "pink-baby-girl-gift-hamper",
+   "no": 299,
+   "name": "Pink Baby Girl Gift Hamper",
+   "nameAr": "هدية مولودة أنثى الوردية",
+   "room": "hampers",
+   "price": 549,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Baby-care items, teddy bear",
+   "lineAr": "مستلزمات العناية بالطفل · دب",
+   "composition": [
+    "Baby-care items",
+    "Teddy bear",
+    "Pink roses",
+    "Small pink latex balloons",
+    "Luxury round box"
+   ],
+   "compositionAr": [
+    "مستلزمات العناية بالطفل",
+    "دب",
+    "ورود وردية",
+    "بالونات لاتكس وردية صغيرة",
+    "صندوق دائري فاخر"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "birthday",
+    "new-baby",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
+   "order": 399,
+   "custom": null,
+   "image": "/collection/pink-baby-girl-gift-hamper-960.webp",
+   "imageSmall": "/collection/pink-baby-girl-gift-hamper-480.webp",
+   "alt": "Pink Baby Girl Gift Hamper - Baby-care items, by Maison Botanique"
+  },
+  {
+   "id": "romantic-bliss-hamper",
+   "no": 300,
+   "name": "Romantic Bliss Hamper",
+   "nameAr": "سلة السعادة الرومانسية",
+   "room": "hampers",
+   "price": 319,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "12 Roses (Red & White), small white teddy bear",
+   "lineAr": "12 وردة (حمراء وبيضاء) · حشوات خضراء وجيبسوفيلا",
+   "composition": [
+    "12 Roses (Red & White)",
+    "Green Fillers & Baby’s Breath",
+    "Small White Teddy Bear",
+    "Heart-Shaped 24 Pcs Ferrero Rocher Chocolates (Centerpiece)"
+   ],
+   "compositionAr": [
+    "12 وردة (حمراء وبيضاء)",
+    "حشوات خضراء وجيبسوفيلا",
+    "دب أبيض صغير",
+    "24 قطعة شوكولاتة فيريرو روشيه على شكل قلب (قطعة مركزية)"
+   ],
+   "feature": "",
+   "stems": 12,
+   "occasions": [
+    "love",
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
+   "order": 400,
+   "custom": null,
+   "image": "/collection/romantic-bliss-hamper-960.webp",
+   "imageSmall": "/collection/romantic-bliss-hamper-480.webp",
+   "alt": "Romantic Bliss Hamper - 12 Roses (Red & White), by Maison Botanique"
+  },
+  {
+   "id": "godiva-hamper",
+   "no": 301,
+   "name": "Godiva Hamper",
+   "nameAr": "سلة جوديفا",
+   "room": "hampers",
+   "price": 299,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Godiva Chocolate Domes Double Chocolate Box (130 g), Godiva dark choco",
+   "lineAr": "علبة جوديفا قباب الشوكولاتة بالشوكولاتة المزدوجة (130 جرام) · لوح جوديفا شوكولاتة داكنة 72% كاكاو (32 جرام)",
+   "composition": [
+    "Godiva Chocolate Domes Double Chocolate Box (130 g)",
+    "Godiva Dark Chocolate 72% Cocoa Bar (32 g)",
+    "Godiva Masterpieces Dark Chocolate Ganache Heart Bar (83 g)",
+    "Godiva Masterpieces Milk Chocolate Caramel Lion Box (119 g)",
+    "Godiva Masterpieces Milk Chocolate Hazelnut Oyster Bar (83 g)"
+   ],
+   "compositionAr": [
+    "علبة جوديفا قباب الشوكولاتة بالشوكولاتة المزدوجة (130 جرام)",
+    "لوح جوديفا شوكولاتة داكنة 72% كاكاو (32 جرام)",
+    "لوح جوديفا ماستربيسز غاناش الشوكولاتة الداكنة على شكل قلب (83 جراماً)",
+    "علبة جوديفا ماستربيسز شوكولاتة بالحليب والكراميل على شكل أسد (119 جراماً)",
+    "لوح جوديفا ماستربيسز شوكولاتة بالحليب والبندق على شكل محارة (83 جراماً)"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 401,
+   "custom": null,
+   "image": "/collection/godiva-hamper-960.webp",
+   "imageSmall": "/collection/godiva-hamper-480.webp",
+   "alt": "Godiva Hamper - Godiva Chocolate Domes Double Chocolate Box (130 g), by Maison Botanique"
+  },
+  {
+   "id": "550g-premium-dates-box",
+   "no": 302,
+   "name": "550g Premium Dates Box",
+   "nameAr": "علبة تمر فاخرة 550 جرام",
+   "room": "hampers",
+   "price": 219,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Net Weight: 550g, presentation: packaged in a stunning, boutique-style",
+   "lineAr": "الوزن الصافي: 550 جرام · التقديم: معبأة في صندوق هدايا أنيق بطراز بوتيك جاهز للإهداء",
+   "composition": [
+    "Net Weight: 550g",
+    "Presentation: Packaged in a stunning, boutique-style gift box ready for presenting"
+   ],
+   "compositionAr": [
+    "الوزن الصافي: 550 جرام",
+    "التقديم: معبأة في صندوق هدايا أنيق بطراز بوتيك جاهز للإهداء"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 402,
+   "custom": null,
+   "image": "/collection/550g-premium-dates-box-960.webp",
+   "imageSmall": "/collection/550g-premium-dates-box-480.webp",
+   "alt": "550g Premium Dates Box - Net Weight: 550g, by Maison Botanique"
+  },
+  {
+   "id": "chocolate-gift-hamper",
+   "no": 303,
+   "name": "Chocolate Gift Hamper",
+   "nameAr": "سلة هدايا الشوكولاتة",
+   "room": "hampers",
+   "price": 599,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Lindt Swiss Premium Chocolate (Milk Hazelnut) Bar (300g), Godiva milk ",
+   "lineAr": "لوح ليندت سويس بريميوم شوكولاتة بالحليب والبندق (300 جرام) · كيس ماكنتوش كواليتي ستريت (485 جرام)",
+   "composition": [
+    "Lindt Swiss Premium Chocolate (Milk Hazelnut) Bar (300g)",
+    "Mackintosh's Quality Street Pouch (485g)",
+    "Godiva Milk Chocolate (Smooth & Creamy Milk Chocolate) Bar (90g)",
+    "Godiva Salted Caramel (Milk Chocolate with Caramelised Toffee) Bar (90g)",
+    "Chocodate Milk (90g)"
+   ],
+   "compositionAr": [
+    "لوح ليندت سويس بريميوم شوكولاتة بالحليب والبندق (300 جرام)",
+    "كيس ماكنتوش كواليتي ستريت (485 جرام)",
+    "لوح جوديفا شوكولاتة بالحليب ناعمة وكريمية (90 جرام)",
+    "لوح جوديفا كراميل مملح (شوكولاتة بالحليب مع توفي مكرمل) (90 جرام)",
+    "حليب بالشوكولاتة (90 جرام)"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "love",
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 403,
+   "custom": null,
+   "image": "/collection/chocolate-gift-hamper-960.webp",
+   "imageSmall": "/collection/chocolate-gift-hamper-480.webp",
+   "alt": "Chocolate Gift Hamper - Lindt Swiss Premium Chocolate (Milk Hazelnut) Bar (300g), by Maison Botanique"
+  },
+  {
+   "id": "golden-treats-hamper",
+   "no": 304,
+   "name": "Golden Treats Hamper",
+   "nameAr": "سلة الحلويات الذهبية",
+   "room": "hampers",
+   "price": 469,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "10 Pink Roses",
+   "lineAr": "10 ورود وردية · 5 أوركيد بنفسجي",
+   "composition": [
+    "10 Pink Roses",
+    "5 Purple Orchids",
+    "White Chrysanthemums",
+    "250g Walnuts in a Jar",
+    "2-Layer Lucky Bamboo Plant"
+   ],
+   "compositionAr": [
+    "10 ورود وردية",
+    "5 أوركيد بنفسجي",
+    "أقحوان أبيض",
+    "جوز 250 جرام في برطمان",
+    "نبتة خيزران الحظ بطبقتين"
+   ],
+   "feature": "",
+   "stems": 10,
+   "occasions": [
+    "birthday",
+    "thanks",
+    "get-well",
+    "congratulations",
+    "just-because"
+   ],
+   "flowers": [
+    "rose",
+    "orchid",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "gift",
+   "order": 404,
+   "custom": null,
+   "image": "/collection/golden-treats-hamper-960.webp",
+   "imageSmall": "/collection/golden-treats-hamper-480.webp",
+   "alt": "Golden Treats Hamper - 10 Pink Roses, by Maison Botanique"
+  },
+  {
+   "id": "sweet-treats-and-white-roses-hamper",
+   "no": 305,
+   "name": "Sweet Treats & White Roses Hamper",
+   "nameAr": "سلة الحلويات والورود البيضاء",
+   "room": "hampers",
+   "price": 429,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Cadbury Dairy Milk Hazelnut (168g), cadbury dairy milk oreo minis bag ",
+   "lineAr": "كادبوري ديري ميلك بالبندق (168 جرام) · كادبوري ديري ميلك أوريو ميني (159.5 جرام)",
+   "composition": [
+    "Cadbury Dairy Milk Hazelnut (168g)",
+    "Cadbury Dairy Milk Oreo Minis Bag (159.5g)",
+    "Godiva Belgium Chocolate",
+    "Jewels Galaxy Assorted Chocolate (400g)",
+    "Royal Danish Butter Cookies Mini (200g)"
+   ],
+   "compositionAr": [
+    "كادبوري ديري ميلك بالبندق (168 جرام)",
+    "كادبوري ديري ميلك أوريو ميني (159.5 جرام)",
+    "شوكولاتة جوديفا البلجيكية",
+    "شوكولاتة جواهر جالاكسي مشكلة (400 جرام)",
+    "بسكويت الزبدة الدنماركي الملكي ميني (200 جرام)"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "birthday",
+    "thanks",
+    "sorry",
+    "just-because"
+   ],
+   "flowers": [
+    "rose",
+    "lily"
+   ],
+   "format": "gift",
+   "order": 405,
+   "custom": null,
+   "image": "/collection/sweet-treats-and-white-roses-hamper-960.webp",
+   "imageSmall": "/collection/sweet-treats-and-white-roses-hamper-480.webp",
+   "alt": "Sweet Treats & White Roses Hamper - Cadbury Dairy Milk Hazelnut (168g), by Maison Botanique"
+  },
+  {
+   "id": "orchid-wellness-hamper",
+   "no": 306,
+   "name": "Orchid Wellness Hamper",
+   "nameAr": "سلة الأوركيد للعافية",
+   "room": "hampers",
+   "price": 369,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "10 Purple Orchids",
+   "lineAr": "10 أوركيد بنفسجي · 7 قرنفل وردي",
+   "composition": [
+    "10 Purple Orchids",
+    "7 Pink Carnations",
+    "250g Pumpkin Seeds (in Jar)",
+    "250g Black Raisins (in Jar)",
+    "250g Flax Seeds (in Jar)"
+   ],
+   "compositionAr": [
+    "10 أوركيد بنفسجي",
+    "7 قرنفل وردي",
+    "بذور اليقطين 250 جرام (في برطمان)",
+    "زبيب أسود 250 جرام (في برطمان)",
+    "بذور الكتان 250 جرام (في برطمان)"
+   ],
+   "feature": "",
+   "stems": 10,
+   "occasions": [
+    "thanks",
+    "get-well",
+    "congratulations",
+    "just-because"
+   ],
+   "flowers": [
+    "orchid",
+    "carnation"
+   ],
+   "format": "gift",
+   "order": 406,
+   "custom": null,
+   "image": "/collection/orchid-wellness-hamper-960.webp",
+   "imageSmall": "/collection/orchid-wellness-hamper-480.webp",
+   "alt": "Orchid Wellness Hamper - 10 Purple Orchids, by Maison Botanique"
+  },
+  {
+   "id": "flowers-and-chocolate-delight-hamper",
+   "no": 307,
+   "name": "Flowers & Chocolate Delight Hamper",
+   "nameAr": "سلة بهجة الزهور والشوكولاتة",
+   "room": "hampers",
+   "price": 429,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Ferrero Nutella Biscuits (304g)",
+   "lineAr": "بسكويت فيريرو نوتيلا (304 جرام) · توكس ميني (10 قطع، 200 جرام)",
+   "composition": [
+    "Ferrero Nutella Biscuits (304g)",
+    "Twix Minis (10s, 200g)",
+    "Jomara Dates with Almond (225g)",
+    "Lindt Assorted Napolitains (350g)",
+    "3 Sunflowers"
+   ],
+   "compositionAr": [
+    "بسكويت فيريرو نوتيلا (304 جرام)",
+    "توكس ميني (10 قطع، 200 جرام)",
+    "تمر جمارا باللوز (225 جراماً)",
+    "ليندت نابوليتان مشكلة (350 جرام)",
+    "3 عباد الشمس"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "birthday",
+    "love",
+    "thanks",
+    "get-well",
+    "congratulations",
+    "just-because"
+   ],
+   "flowers": [
+    "rose",
+    "sunflower",
+    "chrysanthemum",
+    "mixed"
+   ],
+   "format": "gift",
+   "order": 407,
+   "custom": null,
+   "image": "/collection/flowers-and-chocolate-delight-hamper-960.webp",
+   "imageSmall": "/collection/flowers-and-chocolate-delight-hamper-480.webp",
+   "alt": "Flowers & Chocolate Delight Hamper - Ferrero Nutella Biscuits (304g), by Maison Botanique"
+  },
+  {
+   "id": "dry-fruit-luxe-hamper",
+   "no": 308,
+   "name": "Dry Fruit Luxe Hamper",
+   "nameAr": "سلة الفواكه المجففة الفاخرة",
+   "room": "hampers",
+   "price": 239,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "250g Dried Figs",
+   "lineAr": "تين مجفف 250 جرام · جوز 250 جرام",
+   "composition": [
+    "250g Dried Figs",
+    "250g Walnuts",
+    "250g Almonds",
+    "250g Cashews",
+    "Neatly Presented in a Wooden Tray"
+   ],
+   "compositionAr": [
+    "تين مجفف 250 جرام",
+    "جوز 250 جرام",
+    "لوز 250 جرام",
+    "كاجو 250 جرام",
+    "مقدمة بأناقة في صينية خشبية"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 408,
+   "custom": null,
+   "image": "/collection/dry-fruit-luxe-hamper-960.webp",
+   "imageSmall": "/collection/dry-fruit-luxe-hamper-480.webp",
+   "alt": "Dry Fruit Luxe Hamper - 250g Dried Figs, by Maison Botanique"
+  },
+  {
    "id": "red-floral-and-teddy-gift",
    "no": 310,
    "name": "Red Floral & Teddy Gift",
@@ -15962,6 +18043,57 @@
    "alt": "Pink Lilies Teddy & Dark Chocolate - 5 pink lilies, by Maison Botanique"
   },
   {
+   "id": "white-lilies-teddy-gift",
+   "no": 316,
+   "name": "White Lilies Teddy Gift",
+   "nameAr": "هدية زنبق أبيض مع دب",
+   "room": "gifts",
+   "price": 899,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "15 White Lilies, clear glass vase",
+   "lineAr": "15 زنبقة بيضاء · حشوات خضراء",
+   "composition": [
+    "15 White Lilies",
+    "Green Fillers",
+    "Clear Glass Vase",
+    "Jumbo White Teddy Bear"
+   ],
+   "compositionAr": [
+    "15 زنبقة بيضاء",
+    "حشوات خضراء",
+    "مزهرية زجاجية شفافة",
+    "دب أبيض ضخم"
+   ],
+   "feature": "",
+   "stems": 15,
+   "occasions": [
+    "birthday",
+    "love",
+    "thanks",
+    "congratulations",
+    "sorry",
+    "just-because"
+   ],
+   "flowers": [
+    "lily"
+   ],
+   "format": "gift",
+   "order": 416,
+   "custom": null,
+   "image": "/collection/white-lilies-teddy-gift-960.webp",
+   "imageSmall": "/collection/white-lilies-teddy-gift-480.webp",
+   "alt": "White Lilies Teddy Gift - 15 White Lilies, by Maison Botanique"
+  },
+  {
    "id": "blush-harmony-and-teddy-charm",
    "no": 317,
    "name": "Blush Harmony & Teddy Charm",
@@ -16023,6 +18155,581 @@
    "image": "/collection/blush-harmony-and-teddy-charm-960.webp",
    "imageSmall": "/collection/blush-harmony-and-teddy-charm-480.webp",
    "alt": "Blush Harmony & Teddy Charm - White and peach roses, by Maison Botanique"
+  },
+  {
+   "id": "birthday-makeup-gift-basket",
+   "no": 318,
+   "name": "Birthday MakeUp Gift Basket",
+   "nameAr": "سلة هدية مكياج لعيد الميلاد",
+   "room": "beauty",
+   "price": 749,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Pink roses, chrysanthemums and seasonal flowers, Kinder creamy chocola",
+   "lineAr": "ورود وردية وأقحوان وزهور موسمية · قناع الشفاه الليلي لانيج",
+   "composition": [
+    "Pink roses, chrysanthemums and seasonal flowers",
+    "Laneige lip sleeping mask",
+    "Lipsticks and mascara",
+    "Kinder Creamy chocolate",
+    "Birthday card",
+    "White woven basket, pink ribbon"
+   ],
+   "compositionAr": [
+    "ورود وردية وأقحوان وزهور موسمية",
+    "قناع الشفاه الليلي لانيج",
+    "أحمر شفاه ورموش (ماسكارا)",
+    "شوكولاتة كيندر كريمي",
+    "بطاقة عيد ميلاد",
+    "سلة منسوجة بيضاء مع شريط وردي"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "birthday",
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 418,
+   "custom": null,
+   "image": "/collection/birthday-makeup-gift-basket-960.webp",
+   "imageSmall": "/collection/birthday-makeup-gift-basket-480.webp",
+   "alt": "Birthday MakeUp Gift Basket - Pink roses, chrysanthemums and seasonal flowers, by Maison Botanique"
+  },
+  {
+   "id": "luxury-beauty-basket-with-floral-accents",
+   "no": 319,
+   "name": "Luxury beauty Basket with floral accents",
+   "nameAr": "سلة جمال فاخرة مع لمسات زهرية",
+   "room": "beauty",
+   "price": 2799,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Beauty products, basket",
+   "lineAr": "منتجات التجميل · لمسات زهرية طازجة",
+   "composition": [
+    "Beauty products",
+    "Fresh floral accents",
+    "Basket"
+   ],
+   "compositionAr": [
+    "منتجات التجميل",
+    "لمسات زهرية طازجة",
+    "سلة"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 419,
+   "custom": null,
+   "image": "/collection/luxury-beauty-basket-with-floral-accents-960.webp",
+   "imageSmall": "/collection/luxury-beauty-basket-with-floral-accents-480.webp",
+   "alt": "Luxury beauty Basket with floral accents - Beauty products, by Maison Botanique"
+  },
+  {
+   "id": "vip-makeup-basket",
+   "no": 320,
+   "name": "VIP Makeup Basket",
+   "nameAr": "سلة مكياج في آي بي",
+   "room": "beauty",
+   "price": 1999,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Makeup, gift basket",
+   "lineAr": "مكياج · أساسيات الجمال",
+   "composition": [
+    "Makeup",
+    "Beauty essentials",
+    "Gift basket"
+   ],
+   "compositionAr": [
+    "مكياج",
+    "أساسيات الجمال",
+    "سلة هدايا"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 420,
+   "custom": null,
+   "image": "/collection/vip-makeup-basket-960.webp",
+   "imageSmall": "/collection/vip-makeup-basket-480.webp",
+   "alt": "VIP Makeup Basket - Makeup, by Maison Botanique"
+  },
+  {
+   "id": "hello-kitty-makeup-bouquet",
+   "no": 321,
+   "name": "Hello Kitty MakeUp Bouquet",
+   "nameAr": "باقة مكياج هيلو كيتي",
+   "room": "beauty",
+   "price": 999,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Hello Kitty-themed makeup, gift wrapping",
+   "lineAr": "مكياج بطابع هيلو كيتي · زهور طازجة",
+   "composition": [
+    "Hello Kitty-themed makeup",
+    "Fresh flowers",
+    "Gift wrapping"
+   ],
+   "compositionAr": [
+    "مكياج بطابع هيلو كيتي",
+    "زهور طازجة",
+    "تغليف هدايا"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 421,
+   "custom": null,
+   "image": "/collection/hello-kitty-makeup-bouquet-960.webp",
+   "imageSmall": "/collection/hello-kitty-makeup-bouquet-480.webp",
+   "alt": "Hello Kitty MakeUp Bouquet - Hello Kitty-themed makeup, by Maison Botanique"
+  },
+  {
+   "id": "luxury-makeup-and-blue-stitch-bouquet",
+   "no": 322,
+   "name": "Luxury Makeup & Blue Stitch Bouquet",
+   "nameAr": "باقة مكياج فاخرة مع ستيتش الأزرق",
+   "room": "beauty",
+   "price": 949,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Makeup",
+   "lineAr": "مكياج · دمية ستيتش زرقاء",
+   "composition": [
+    "Makeup",
+    "Blue Stitch plush",
+    "Bouquet presentation"
+   ],
+   "compositionAr": [
+    "مكياج",
+    "دمية ستيتش زرقاء",
+    "تقديم على شكل باقة"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 422,
+   "custom": null,
+   "image": "/collection/luxury-makeup-and-blue-stitch-bouquet-960.webp",
+   "imageSmall": "/collection/luxury-makeup-and-blue-stitch-bouquet-480.webp",
+   "alt": "Luxury Makeup & Blue Stitch Bouquet - Makeup, by Maison Botanique"
+  },
+  {
+   "id": "makeup-big-vip-bouquet",
+   "no": 323,
+   "name": "Makeup big VIP Bouquet",
+   "nameAr": "باقة مكياج في آي بي كبيرة",
+   "room": "beauty",
+   "price": 2399,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Makeup",
+   "lineAr": "مكياج · زهور طازجة",
+   "composition": [
+    "Makeup",
+    "Fresh flowers",
+    "Bouquet presentation"
+   ],
+   "compositionAr": [
+    "مكياج",
+    "زهور طازجة",
+    "تقديم على شكل باقة"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 423,
+   "custom": null,
+   "image": "/collection/makeup-big-vip-bouquet-960.webp",
+   "imageSmall": "/collection/makeup-big-vip-bouquet-480.webp",
+   "alt": "Makeup big VIP Bouquet - Makeup, by Maison Botanique"
+  },
+  {
+   "id": "makeup-bouquet-with-pink-stitch",
+   "no": 324,
+   "name": "MakeUp Bouquet with pink stitch",
+   "nameAr": "باقة مكياج مع ستيتش وردي",
+   "room": "beauty",
+   "price": 999,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Makeup",
+   "lineAr": "مكياج · ورود وردية",
+   "composition": [
+    "Makeup",
+    "Pink roses",
+    "Pink Stitch plush"
+   ],
+   "compositionAr": [
+    "مكياج",
+    "ورود وردية",
+    "دمية ستيتش وردية"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "birthday",
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 424,
+   "custom": null,
+   "image": "/collection/makeup-bouquet-with-pink-stitch-960.webp",
+   "imageSmall": "/collection/makeup-bouquet-with-pink-stitch-480.webp",
+   "alt": "MakeUp Bouquet with pink stitch - Makeup, by Maison Botanique"
+  },
+  {
+   "id": "vip-stitch-beauty-bouquet",
+   "no": 325,
+   "name": "VIP Stitch Beauty Bouquet",
+   "nameAr": "باقة جمال ستيتش في آي بي",
+   "room": "beauty",
+   "price": 1399,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Cosmetics",
+   "lineAr": "مستحضرات التجميل · زهور وردية",
+   "composition": [
+    "Cosmetics",
+    "Pink flowers",
+    "Stitch plush"
+   ],
+   "compositionAr": [
+    "مستحضرات التجميل",
+    "زهور وردية",
+    "دمية ستيتش"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 425,
+   "custom": null,
+   "image": "/collection/vip-stitch-beauty-bouquet-960.webp",
+   "imageSmall": "/collection/vip-stitch-beauty-bouquet-480.webp",
+   "alt": "VIP Stitch Beauty Bouquet - Cosmetics, by Maison Botanique"
+  },
+  {
+   "id": "worlds-most-luxurious-makeup-bouquet-with-roses-stitch",
+   "no": 326,
+   "name": "World’s Most Luxurious Makeup Bouquet with Roses + Stitch",
+   "nameAr": "أفخم باقة مكياج في العالم مع ورود وستيتش",
+   "room": "beauty",
+   "price": 2299,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "Pink roses",
+     "detailAr": "",
+     "add": 0
+    },
+    {
+     "id": "grand",
+     "name": "Grand",
+     "nameAr": "غراند",
+     "detail": "Red roses",
+     "detailAr": "",
+     "add": 0
+    }
+   ],
+   "line": "Makeup",
+   "lineAr": "مكياج · ورود (اختر وردي أو أحمر)",
+   "composition": [
+    "Makeup",
+    "Roses (choose pink or red)",
+    "Stitch plush"
+   ],
+   "compositionAr": [
+    "مكياج",
+    "ورود (اختر وردي أو أحمر)",
+    "دمية ستيتش"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "just-because"
+   ],
+   "flowers": [
+    "rose"
+   ],
+   "format": "gift",
+   "order": 426,
+   "custom": null,
+   "image": "/collection/worlds-most-luxurious-makeup-bouquet-with-roses-stitch-960.webp",
+   "imageSmall": "/collection/worlds-most-luxurious-makeup-bouquet-with-roses-stitch-480.webp",
+   "alt": "World’s Most Luxurious Makeup Bouquet with Roses + Stitch - Makeup, by Maison Botanique"
+  },
+  {
+   "id": "pink-stitch-and-makeup",
+   "no": 328,
+   "name": "Pink Stitch & MakeUp",
+   "nameAr": "ستيتش وردي ومكياج",
+   "room": "beauty",
+   "price": 699,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Pink Stitch plush",
+   "lineAr": "دمية ستيتش وردية · مكياج",
+   "composition": [
+    "Pink Stitch plush",
+    "Makeup"
+   ],
+   "compositionAr": [
+    "دمية ستيتش وردية",
+    "مكياج"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "birthday",
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 428,
+   "custom": null,
+   "image": "/collection/pink-stitch-and-makeup-960.webp",
+   "imageSmall": "/collection/pink-stitch-and-makeup-480.webp",
+   "alt": "Pink Stitch & MakeUp - Pink Stitch plush, by Maison Botanique"
+  },
+  {
+   "id": "makeup-box-with-ferrero",
+   "no": 329,
+   "name": "MakeUp Box with Ferrero",
+   "nameAr": "صندوق مكياج مع فيريرو",
+   "room": "beauty",
+   "price": 949,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Makeup, Ferrero Rocher chocolates",
+   "lineAr": "مكياج · شوكولاتة فيريرو روشيه",
+   "composition": [
+    "Makeup",
+    "Ferrero Rocher chocolates",
+    "Gift box"
+   ],
+   "compositionAr": [
+    "مكياج",
+    "شوكولاتة فيريرو روشيه",
+    "صندوق هدايا"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 429,
+   "custom": null,
+   "image": "/collection/makeup-box-with-ferrero-960.webp",
+   "imageSmall": "/collection/makeup-box-with-ferrero-480.webp",
+   "alt": "MakeUp Box with Ferrero - Makeup, by Maison Botanique"
+  },
+  {
+   "id": "simple-makeup-box",
+   "no": 330,
+   "name": "Simple Makeup Box",
+   "nameAr": "صندوق مكياج بسيط",
+   "room": "beauty",
+   "price": 449,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "Beauty essentials, gift box",
+   "lineAr": "أساسيات الجمال · صندوق هدايا",
+   "composition": [
+    "Beauty essentials",
+    "Gift box"
+   ],
+   "compositionAr": [
+    "أساسيات الجمال",
+    "صندوق هدايا"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 430,
+   "custom": null,
+   "image": "/collection/simple-makeup-box-960.webp",
+   "imageSmall": "/collection/simple-makeup-box-480.webp",
+   "alt": "Simple Makeup Box - Beauty essentials, by Maison Botanique"
+  },
+  {
+   "id": "l-oreal-skincare-and-floral-delight",
+   "no": 331,
+   "name": "L'Oreal Skincare & Floral Delight",
+   "nameAr": "عناية بالبشرة من لوريال مع بهجة الزهور",
+   "room": "beauty",
+   "price": 499,
+   "sizes": [
+    {
+     "id": "signature",
+     "name": "Signature",
+     "nameAr": "سيغنتشر",
+     "detail": "as pictured",
+     "detailAr": "كما في الصورة",
+     "add": 0
+    }
+   ],
+   "line": "L'Oreal Hyaluron Expert eye serum 20 ml",
+   "lineAr": "سيروم العين لوريال هيالورون إكسبيرت سعة 20 مل · قناع كريم ليلي لوريال هيالورون إكسبيرت سعة 50 مل",
+   "composition": [
+    "L'Oreal Hyaluron Expert eye serum 20 ml",
+    "L'Oreal Hyaluron Expert night cream mask 50 ml",
+    "L'Oreal Hyaluron Expert day cream SPF20 50 ml",
+    "L'Oreal replumping hyaluronic acid face wash 200 ml",
+    "pink pillar candle 7.5 × 10 cm",
+    "2 white lilies",
+    "10 white roses sprayed purple",
+    "purple baby's breath",
+    "green fillers",
+    "wooden tray"
+   ],
+   "compositionAr": [
+    "سيروم العين لوريال هيالورون إكسبيرت سعة 20 مل",
+    "قناع كريم ليلي لوريال هيالورون إكسبيرت سعة 50 مل",
+    "كريم نهاري لوريال هيالورون إكسبيرت بعامل حماية SPF20 سعة 50 مل",
+    "غسول وجه لوريال بحمض الهيالورونيك لإعادة الامتلاء سعة 200 مل",
+    "شمعة وردية أسطوانية 7.5 × 10 سم",
+    "2 زنبقات بيضاء",
+    "10 ورود بيضاء مصبوغة بالبنفسجي",
+    "جيبسوفيلا بنفسجية",
+    "حشوات خضراء",
+    "صينية خشبية"
+   ],
+   "feature": "",
+   "stems": null,
+   "occasions": [
+    "just-because"
+   ],
+   "flowers": [],
+   "format": "gift",
+   "order": 431,
+   "custom": null,
+   "image": "/collection/l-oreal-skincare-and-floral-delight-960.webp",
+   "imageSmall": "/collection/l-oreal-skincare-and-floral-delight-480.webp",
+   "alt": "L'Oreal Skincare & Floral Delight - L'Oreal Hyaluron Expert eye serum 20 ml, by Maison Botanique"
   }
  ]
 }

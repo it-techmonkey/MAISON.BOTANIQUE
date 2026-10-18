@@ -26,30 +26,7 @@
    "Do not add competitor names, URLs or photos to the store."
   ],
   "known_issues": {
-   "products_without_any_price": [
-    "200-roses-in-vase",
-    "550g-premium-dates-box",
-    "basket-of-fruits-biscuits-chocolates-and-crackers",
-    "basket-of-golden-flowers-spikey-bird-of-paradise-lilies",
-    "blue-baby-boy-gift-hamper",
-    "blue-dream-chocolate-bouquet",
-    "bridal-pastel-bouquet",
-    "bridal-pink-ranunculus-bouquet",
-    "bridal-soft-elegance-bouquet",
-    "chocolate-gift-hamper",
-    "dry-fruit-luxe-hamper",
-    "flowers-and-chocolate-delight-hamper",
-    "fruits-and-chocolates-basket",
-    "godiva-hamper",
-    "golden-treats-hamper",
-    "orchid-wellness-hamper",
-    "pink-baby-girl-gift-hamper",
-    "red-roses-and-mixed-fruits-basket",
-    "romantic-bliss-hamper",
-    "roses-and-ferrero-rocher-chocolate-in-box",
-    "sweet-treats-and-white-roses-hamper",
-    "white-lilies-teddy-gift"
-   ],
+   "products_without_any_price": [],
    "skus_without_product_number": [],
    "images_pending_owner_approval": [
     "100-pink-roses-bouquet",
@@ -693,7 +670,7 @@
     "product_handle": "basket-arrangement-of-white-lilies-yellow-and-white-roses",
     "variant": "Signature",
     "category": "Boxes & baskets",
-    "placeholder_price_aed": "425.00",
+    "placeholder_price_aed": "429.00",
     "maison_price_aed": null
    },
    {
@@ -701,7 +678,7 @@
     "product_handle": "basket-arrangement-of-white-lilies-yellow-and-white-roses",
     "variant": "Grand",
     "category": "Boxes & baskets",
-    "placeholder_price_aed": "829.00",
+    "placeholder_price_aed": "839.00",
     "maison_price_aed": null
    },
    {
@@ -709,7 +686,7 @@
     "product_handle": "basket-arrangement-of-white-lilies-yellow-and-white-roses",
     "variant": "Luxe",
     "category": "Boxes & baskets",
-    "placeholder_price_aed": "1254.00",
+    "placeholder_price_aed": "1269.00",
     "maison_price_aed": null
    },
    {
@@ -725,7 +702,7 @@
     "product_handle": "love-roses",
     "variant": "Grand – 80 red roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "778.00",
+    "placeholder_price_aed": "779.00",
     "maison_price_aed": null
    },
    {
@@ -733,7 +710,7 @@
     "product_handle": "love-roses",
     "variant": "Luxe – 120 red roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "1177.00",
+    "placeholder_price_aed": "1179.00",
     "maison_price_aed": null
    },
    {
@@ -757,7 +734,7 @@
     "product_handle": "bouquet-of-mix-color-roses-and-white-baby-breath",
     "variant": "Luxe",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "528.00",
+    "placeholder_price_aed": "529.00",
     "maison_price_aed": null
    },
    {
@@ -765,7 +742,7 @@
     "product_handle": "bouquet-of-100-roses",
     "variant": "Signature",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "699.00",
+    "placeholder_price_aed": "799.00",
     "maison_price_aed": null
    },
    {
@@ -773,7 +750,7 @@
     "product_handle": "bouquet-of-100-roses",
     "variant": "Grand",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "1363.00",
+    "placeholder_price_aed": "1559.00",
     "maison_price_aed": null
    },
    {
@@ -781,7 +758,7 @@
     "product_handle": "bouquet-of-100-roses",
     "variant": "Luxe",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "2062.00",
+    "placeholder_price_aed": "2359.00",
     "maison_price_aed": null
    },
    {
@@ -797,7 +774,7 @@
     "product_handle": "bouquet-of-white-roses",
     "variant": "Grand – 80 white roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "778.00",
+    "placeholder_price_aed": "779.00",
     "maison_price_aed": null
    },
    {
@@ -805,7 +782,7 @@
     "product_handle": "bouquet-of-white-roses",
     "variant": "Luxe – 120 white roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "1177.00",
+    "placeholder_price_aed": "1179.00",
     "maison_price_aed": null
    },
    {
@@ -813,7 +790,7 @@
     "product_handle": "100-pink-roses-bouquet",
     "variant": "Signature",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "899.00",
+    "placeholder_price_aed": "799.00",
     "maison_price_aed": null
    },
    {
@@ -821,7 +798,7 @@
     "product_handle": "100-pink-roses-bouquet",
     "variant": "Grand",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "1753.00",
+    "placeholder_price_aed": "1559.00",
     "maison_price_aed": null
    },
    {
@@ -829,7 +806,7 @@
     "product_handle": "100-pink-roses-bouquet",
     "variant": "Luxe",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "2652.00",
+    "placeholder_price_aed": "2359.00",
     "maison_price_aed": null
    },
    {
@@ -837,7 +814,7 @@
     "product_handle": "bouquet-of-purple-and-pink-roses",
     "variant": "Signature",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "425.00",
+    "placeholder_price_aed": "399.00",
     "maison_price_aed": null
    },
    {
@@ -845,7 +822,7 @@
     "product_handle": "bouquet-of-purple-and-pink-roses",
     "variant": "Grand",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "829.00",
+    "placeholder_price_aed": "779.00",
     "maison_price_aed": null
    },
    {
@@ -853,7 +830,7 @@
     "product_handle": "bouquet-of-purple-and-pink-roses",
     "variant": "Luxe",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "1254.00",
+    "placeholder_price_aed": "1179.00",
     "maison_price_aed": null
    },
    {
@@ -861,7 +838,7 @@
     "product_handle": "elegant-red-and-pink-bouquet",
     "variant": "Signature",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "325.00",
+    "placeholder_price_aed": "319.00",
     "maison_price_aed": null
    },
    {
@@ -869,7 +846,7 @@
     "product_handle": "elegant-red-and-pink-bouquet",
     "variant": "Grand",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "634.00",
+    "placeholder_price_aed": "619.00",
     "maison_price_aed": null
    },
    {
@@ -877,7 +854,7 @@
     "product_handle": "elegant-red-and-pink-bouquet",
     "variant": "Luxe",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "959.00",
+    "placeholder_price_aed": "939.00",
     "maison_price_aed": null
    },
    {
@@ -885,7 +862,7 @@
     "product_handle": "white-rose-bouquet",
     "variant": "Signature – 20 white roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "275.00",
+    "placeholder_price_aed": "269.00",
     "maison_price_aed": null
    },
    {
@@ -893,7 +870,7 @@
     "product_handle": "white-rose-bouquet",
     "variant": "Grand – 40 white roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "536.00",
+    "placeholder_price_aed": "519.00",
     "maison_price_aed": null
    },
    {
@@ -901,7 +878,7 @@
     "product_handle": "white-rose-bouquet",
     "variant": "Luxe – 60 white roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "811.00",
+    "placeholder_price_aed": "789.00",
     "maison_price_aed": null
    },
    {
@@ -909,7 +886,7 @@
     "product_handle": "the-red-affair",
     "variant": "Signature",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "265.00",
+    "placeholder_price_aed": "249.00",
     "maison_price_aed": null
    },
    {
@@ -917,7 +894,7 @@
     "product_handle": "the-red-affair",
     "variant": "Grand",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "517.00",
+    "placeholder_price_aed": "489.00",
     "maison_price_aed": null
    },
    {
@@ -925,7 +902,7 @@
     "product_handle": "the-red-affair",
     "variant": "Luxe",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "782.00",
+    "placeholder_price_aed": "729.00",
     "maison_price_aed": null
    },
    {
@@ -957,7 +934,7 @@
     "product_handle": "timeless-red-and-pink-roses",
     "variant": "Signature – 20 pink & red roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "225.00",
+    "placeholder_price_aed": "249.00",
     "maison_price_aed": null
    },
    {
@@ -965,7 +942,7 @@
     "product_handle": "timeless-red-and-pink-roses",
     "variant": "Grand – 40 pink & red roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "439.00",
+    "placeholder_price_aed": "489.00",
     "maison_price_aed": null
    },
    {
@@ -973,7 +950,7 @@
     "product_handle": "timeless-red-and-pink-roses",
     "variant": "Luxe – 60 pink & red roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "664.00",
+    "placeholder_price_aed": "729.00",
     "maison_price_aed": null
    },
    {
@@ -981,7 +958,7 @@
     "product_handle": "deep-love-red-roses",
     "variant": "Signature – 25 red roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "299.00",
+    "placeholder_price_aed": "289.00",
     "maison_price_aed": null
    },
    {
@@ -989,7 +966,7 @@
     "product_handle": "deep-love-red-roses",
     "variant": "Grand – 50 red roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "583.00",
+    "placeholder_price_aed": "559.00",
     "maison_price_aed": null
    },
    {
@@ -997,7 +974,7 @@
     "product_handle": "deep-love-red-roses",
     "variant": "Luxe – 75 red roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "882.00",
+    "placeholder_price_aed": "849.00",
     "maison_price_aed": null
    },
    {
@@ -1005,7 +982,7 @@
     "product_handle": "birthday-surprise-bouquet",
     "variant": "Signature",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "299.00",
+    "placeholder_price_aed": "289.00",
     "maison_price_aed": null
    },
    {
@@ -1013,7 +990,7 @@
     "product_handle": "birthday-surprise-bouquet",
     "variant": "Grand",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "583.00",
+    "placeholder_price_aed": "559.00",
     "maison_price_aed": null
    },
    {
@@ -1021,7 +998,7 @@
     "product_handle": "birthday-surprise-bouquet",
     "variant": "Luxe",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "882.00",
+    "placeholder_price_aed": "849.00",
     "maison_price_aed": null
    },
    {
@@ -1029,7 +1006,7 @@
     "product_handle": "miss-you-white-roses-bouquet",
     "variant": "Signature – 25 white roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "275.00",
+    "placeholder_price_aed": "289.00",
     "maison_price_aed": null
    },
    {
@@ -1037,7 +1014,7 @@
     "product_handle": "miss-you-white-roses-bouquet",
     "variant": "Grand – 50 white roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "536.00",
+    "placeholder_price_aed": "559.00",
     "maison_price_aed": null
    },
    {
@@ -1045,7 +1022,7 @@
     "product_handle": "miss-you-white-roses-bouquet",
     "variant": "Luxe – 75 white roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "811.00",
+    "placeholder_price_aed": "849.00",
     "maison_price_aed": null
    },
    {
@@ -1053,7 +1030,7 @@
     "product_handle": "red-royale-bouquet",
     "variant": "Signature",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "225.00",
+    "placeholder_price_aed": "229.00",
     "maison_price_aed": null
    },
    {
@@ -1061,7 +1038,7 @@
     "product_handle": "red-royale-bouquet",
     "variant": "Grand",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "439.00",
+    "placeholder_price_aed": "449.00",
     "maison_price_aed": null
    },
    {
@@ -1069,7 +1046,7 @@
     "product_handle": "red-royale-bouquet",
     "variant": "Luxe",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "664.00",
+    "placeholder_price_aed": "679.00",
     "maison_price_aed": null
    },
    {
@@ -1077,7 +1054,7 @@
     "product_handle": "romantic-pink-rose-bouquet",
     "variant": "Signature – 40 pink roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "449.00",
+    "placeholder_price_aed": "399.00",
     "maison_price_aed": null
    },
    {
@@ -1085,7 +1062,7 @@
     "product_handle": "romantic-pink-rose-bouquet",
     "variant": "Grand – 80 pink roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "876.00",
+    "placeholder_price_aed": "779.00",
     "maison_price_aed": null
    },
    {
@@ -1093,7 +1070,7 @@
     "product_handle": "romantic-pink-rose-bouquet",
     "variant": "Luxe – 120 pink roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "1325.00",
+    "placeholder_price_aed": "1179.00",
     "maison_price_aed": null
    },
    {
@@ -1101,7 +1078,7 @@
     "product_handle": "sorry-roses-bouquet",
     "variant": "Signature – 24 red & pink roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "339.00",
+    "placeholder_price_aed": "299.00",
     "maison_price_aed": null
    },
    {
@@ -1109,7 +1086,7 @@
     "product_handle": "sorry-roses-bouquet",
     "variant": "Grand – 48 red & pink roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "661.00",
+    "placeholder_price_aed": "579.00",
     "maison_price_aed": null
    },
    {
@@ -1117,7 +1094,7 @@
     "product_handle": "sorry-roses-bouquet",
     "variant": "Luxe – 72 red & pink roses",
     "category": "Rose bouquets",
-    "placeholder_price_aed": "1000.00",
+    "placeholder_price_aed": "879.00",
     "maison_price_aed": null
    },
    {
@@ -2077,7 +2054,7 @@
     "product_handle": "bridal-pastel-bouquet",
     "variant": "Default Title",
     "category": "Garden & mixed bouquets",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "449.00",
     "maison_price_aed": null
    },
    {
@@ -2085,7 +2062,7 @@
     "product_handle": "bridal-pink-ranunculus-bouquet",
     "variant": "Default Title",
     "category": "Garden & mixed bouquets",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "649.00",
     "maison_price_aed": null
    },
    {
@@ -2141,7 +2118,7 @@
     "product_handle": "bridal-soft-elegance-bouquet",
     "variant": "Default Title",
     "category": "Garden & mixed bouquets",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "399.00",
     "maison_price_aed": null
    },
    {
@@ -4693,7 +4670,7 @@
     "product_handle": "basket-of-golden-flowers-spikey-bird-of-paradise-lilies",
     "variant": "Default Title",
     "category": "Boxes & baskets",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "449.00",
     "maison_price_aed": null
    },
    {
@@ -4853,7 +4830,7 @@
     "product_handle": "200-roses-in-vase",
     "variant": "Default Title",
     "category": "Grand gestures",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "1799.00",
     "maison_price_aed": null
    },
    {
@@ -5405,7 +5382,7 @@
     "product_handle": "red-roses-and-mixed-fruits-basket",
     "variant": "Default Title",
     "category": "Flower gift bundles",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "399.00",
     "maison_price_aed": null
    },
    {
@@ -5685,7 +5662,7 @@
     "product_handle": "blue-dream-chocolate-bouquet",
     "variant": "Default Title",
     "category": "Chocolate gifts",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "549.00",
     "maison_price_aed": null
    },
    {
@@ -5861,7 +5838,7 @@
     "product_handle": "fruits-and-chocolates-basket",
     "variant": "Default Title",
     "category": "Chocolate gifts",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "329.00",
     "maison_price_aed": null
    },
    {
@@ -5965,7 +5942,7 @@
     "product_handle": "basket-of-fruits-biscuits-chocolates-and-crackers",
     "variant": "Default Title",
     "category": "Chocolate gifts",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "499.00",
     "maison_price_aed": null
    },
    {
@@ -6405,7 +6382,7 @@
     "product_handle": "roses-and-ferrero-rocher-chocolate-in-box",
     "variant": "Default Title",
     "category": "Flowers & treats",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "389.00",
     "maison_price_aed": null
    },
    {
@@ -6869,7 +6846,7 @@
     "product_handle": "blue-baby-boy-gift-hamper",
     "variant": "Default Title",
     "category": "Hampers, fruit & dates",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "549.00",
     "maison_price_aed": null
    },
    {
@@ -6877,7 +6854,7 @@
     "product_handle": "pink-baby-girl-gift-hamper",
     "variant": "Default Title",
     "category": "Hampers, fruit & dates",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "549.00",
     "maison_price_aed": null
    },
    {
@@ -6885,7 +6862,7 @@
     "product_handle": "romantic-bliss-hamper",
     "variant": "Default Title",
     "category": "Hampers, fruit & dates",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "319.00",
     "maison_price_aed": null
    },
    {
@@ -6893,7 +6870,7 @@
     "product_handle": "godiva-hamper",
     "variant": "Default Title",
     "category": "Hampers, fruit & dates",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "299.00",
     "maison_price_aed": null
    },
    {
@@ -6901,7 +6878,7 @@
     "product_handle": "550g-premium-dates-box",
     "variant": "Default Title",
     "category": "Hampers, fruit & dates",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "219.00",
     "maison_price_aed": null
    },
    {
@@ -6909,7 +6886,7 @@
     "product_handle": "chocolate-gift-hamper",
     "variant": "Default Title",
     "category": "Hampers, fruit & dates",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "599.00",
     "maison_price_aed": null
    },
    {
@@ -6917,7 +6894,7 @@
     "product_handle": "golden-treats-hamper",
     "variant": "Default Title",
     "category": "Hampers, fruit & dates",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "469.00",
     "maison_price_aed": null
    },
    {
@@ -6925,7 +6902,7 @@
     "product_handle": "sweet-treats-and-white-roses-hamper",
     "variant": "Default Title",
     "category": "Hampers, fruit & dates",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "429.00",
     "maison_price_aed": null
    },
    {
@@ -6933,7 +6910,7 @@
     "product_handle": "orchid-wellness-hamper",
     "variant": "Default Title",
     "category": "Hampers, fruit & dates",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "369.00",
     "maison_price_aed": null
    },
    {
@@ -6941,7 +6918,7 @@
     "product_handle": "flowers-and-chocolate-delight-hamper",
     "variant": "Default Title",
     "category": "Hampers, fruit & dates",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "429.00",
     "maison_price_aed": null
    },
    {
@@ -6949,7 +6926,7 @@
     "product_handle": "dry-fruit-luxe-hamper",
     "variant": "Default Title",
     "category": "Hampers, fruit & dates",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "239.00",
     "maison_price_aed": null
    },
    {
@@ -7125,7 +7102,7 @@
     "product_handle": "white-lilies-teddy-gift",
     "variant": "Default Title",
     "category": "Teddy & celebration gifts",
-    "placeholder_price_aed": null,
+    "placeholder_price_aed": "899.00",
     "maison_price_aed": null
    },
    {
@@ -7157,7 +7134,7 @@
     "product_handle": "birthday-makeup-gift-basket",
     "variant": "Default Title",
     "category": "Beauty & makeup gifts",
-    "placeholder_price_aed": "799.00",
+    "placeholder_price_aed": "749.00",
     "maison_price_aed": null
    },
    {
@@ -7165,7 +7142,7 @@
     "product_handle": "luxury-beauty-basket-with-floral-accents",
     "variant": "Default Title",
     "category": "Beauty & makeup gifts",
-    "placeholder_price_aed": "2999.00",
+    "placeholder_price_aed": "2799.00",
     "maison_price_aed": null
    },
    {
@@ -7173,7 +7150,7 @@
     "product_handle": "vip-makeup-basket",
     "variant": "Default Title",
     "category": "Beauty & makeup gifts",
-    "placeholder_price_aed": "2199.00",
+    "placeholder_price_aed": "1999.00",
     "maison_price_aed": null
    },
    {
@@ -7181,7 +7158,7 @@
     "product_handle": "hello-kitty-makeup-bouquet",
     "variant": "Default Title",
     "category": "Beauty & makeup gifts",
-    "placeholder_price_aed": "1099.00",
+    "placeholder_price_aed": "999.00",
     "maison_price_aed": null
    },
    {
@@ -7189,7 +7166,7 @@
     "product_handle": "luxury-makeup-and-blue-stitch-bouquet",
     "variant": "Default Title",
     "category": "Beauty & makeup gifts",
-    "placeholder_price_aed": "999.00",
+    "placeholder_price_aed": "949.00",
     "maison_price_aed": null
    },
    {
@@ -7197,7 +7174,7 @@
     "product_handle": "makeup-big-vip-bouquet",
     "variant": "Default Title",
     "category": "Beauty & makeup gifts",
-    "placeholder_price_aed": "2549.00",
+    "placeholder_price_aed": "2399.00",
     "maison_price_aed": null
    },
    {
@@ -7205,7 +7182,7 @@
     "product_handle": "makeup-bouquet-with-pink-stitch",
     "variant": "Default Title",
     "category": "Beauty & makeup gifts",
-    "placeholder_price_aed": "1099.00",
+    "placeholder_price_aed": "999.00",
     "maison_price_aed": null
    },
    {
@@ -7213,7 +7190,7 @@
     "product_handle": "vip-stitch-beauty-bouquet",
     "variant": "Default Title",
     "category": "Beauty & makeup gifts",
-    "placeholder_price_aed": "1499.00",
+    "placeholder_price_aed": "1399.00",
     "maison_price_aed": null
    },
    {
@@ -7221,7 +7198,7 @@
     "product_handle": "worlds-most-luxurious-makeup-bouquet-with-roses-stitch",
     "variant": "Pink roses",
     "category": "Beauty & makeup gifts",
-    "placeholder_price_aed": "2499.00",
+    "placeholder_price_aed": "2299.00",
     "maison_price_aed": null
    },
    {
@@ -7229,7 +7206,7 @@
     "product_handle": "worlds-most-luxurious-makeup-bouquet-with-roses-stitch",
     "variant": "Red roses",
     "category": "Beauty & makeup gifts",
-    "placeholder_price_aed": "2499.00",
+    "placeholder_price_aed": "2299.00",
     "maison_price_aed": null
    },
    {
@@ -7237,7 +7214,7 @@
     "product_handle": "pink-stitch-and-makeup",
     "variant": "Default Title",
     "category": "Beauty & makeup gifts",
-    "placeholder_price_aed": "749.00",
+    "placeholder_price_aed": "699.00",
     "maison_price_aed": null
    },
    {
@@ -7245,7 +7222,7 @@
     "product_handle": "makeup-box-with-ferrero",
     "variant": "Default Title",
     "category": "Beauty & makeup gifts",
-    "placeholder_price_aed": "999.00",
+    "placeholder_price_aed": "949.00",
     "maison_price_aed": null
    },
    {
@@ -7253,7 +7230,7 @@
     "product_handle": "simple-makeup-box",
     "variant": "Default Title",
     "category": "Beauty & makeup gifts",
-    "placeholder_price_aed": "499.00",
+    "placeholder_price_aed": "449.00",
     "maison_price_aed": null
    },
    {
@@ -7261,7 +7238,7 @@
     "product_handle": "l-oreal-skincare-and-floral-delight",
     "variant": "Default Title",
     "category": "Beauty & makeup gifts",
-    "placeholder_price_aed": "549.00",
+    "placeholder_price_aed": "499.00",
     "maison_price_aed": null
    }
   ],
@@ -7282,7 +7259,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -7333,7 +7310,7 @@
        }
       ],
       "sku": "MB-BX-001-SIG",
-      "price": "425.00",
+      "price": "429.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -7350,7 +7327,7 @@
        }
       ],
       "sku": "MB-BX-001-GRD",
-      "price": "829.00",
+      "price": "839.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -7367,7 +7344,7 @@
        }
       ],
       "sku": "MB-BX-001-LUX",
-      "price": "1254.00",
+      "price": "1269.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -7396,7 +7373,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -7468,7 +7445,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -7534,7 +7511,7 @@
        }
       ],
       "sku": "MB-RB-001-GRD",
-      "price": "778.00",
+      "price": "779.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -7551,7 +7528,7 @@
        }
       ],
       "sku": "MB-RB-001-LUX",
-      "price": "1177.00",
+      "price": "1179.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -7586,7 +7563,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -7659,7 +7636,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -7743,7 +7720,7 @@
        }
       ],
       "sku": "MB-RB-002-LUX",
-      "price": "528.00",
+      "price": "529.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -7772,7 +7749,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -7844,8 +7821,8 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference",
-     "tier_quantities_to_confirm"
+     "tier_quantities_to_confirm",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -7893,7 +7870,7 @@
        }
       ],
       "sku": "MB-RB-003-SIG",
-      "price": "699.00",
+      "price": "799.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -7910,7 +7887,7 @@
        }
       ],
       "sku": "MB-RB-003-GRD",
-      "price": "1363.00",
+      "price": "1559.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -7927,7 +7904,7 @@
        }
       ],
       "sku": "MB-RB-003-LUX",
-      "price": "2062.00",
+      "price": "2359.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -7956,7 +7933,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference;tier_quantities_to_confirm"
+      "value": "tier_quantities_to_confirm;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -8028,7 +8005,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -8094,7 +8071,7 @@
        }
       ],
       "sku": "MB-RB-004-GRD",
-      "price": "778.00",
+      "price": "779.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -8111,7 +8088,7 @@
        }
       ],
       "sku": "MB-RB-004-LUX",
-      "price": "1177.00",
+      "price": "1179.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -8140,7 +8117,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -8212,8 +8189,8 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference",
-     "tier_quantities_to_confirm"
+     "tier_quantities_to_confirm",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -8262,7 +8239,7 @@
        }
       ],
       "sku": "MB-RB-005-SIG",
-      "price": "899.00",
+      "price": "799.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -8279,7 +8256,7 @@
        }
       ],
       "sku": "MB-RB-005-GRD",
-      "price": "1753.00",
+      "price": "1559.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -8296,7 +8273,7 @@
        }
       ],
       "sku": "MB-RB-005-LUX",
-      "price": "2652.00",
+      "price": "2359.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -8325,7 +8302,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference;tier_quantities_to_confirm"
+      "value": "tier_quantities_to_confirm;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -8397,7 +8374,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -8447,7 +8424,7 @@
        }
       ],
       "sku": "MB-RB-006-SIG",
-      "price": "425.00",
+      "price": "399.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -8464,7 +8441,7 @@
        }
       ],
       "sku": "MB-RB-006-GRD",
-      "price": "829.00",
+      "price": "779.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -8481,7 +8458,7 @@
        }
       ],
       "sku": "MB-RB-006-LUX",
-      "price": "1254.00",
+      "price": "1179.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -8510,7 +8487,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -8582,7 +8559,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -8632,7 +8609,7 @@
        }
       ],
       "sku": "MB-RB-008-SIG",
-      "price": "325.00",
+      "price": "319.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -8649,7 +8626,7 @@
        }
       ],
       "sku": "MB-RB-008-GRD",
-      "price": "634.00",
+      "price": "619.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -8666,7 +8643,7 @@
        }
       ],
       "sku": "MB-RB-008-LUX",
-      "price": "959.00",
+      "price": "939.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -8695,7 +8672,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -8767,7 +8744,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -8816,7 +8793,7 @@
        }
       ],
       "sku": "MB-RB-009-SIG",
-      "price": "275.00",
+      "price": "269.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -8833,7 +8810,7 @@
        }
       ],
       "sku": "MB-RB-009-GRD",
-      "price": "536.00",
+      "price": "519.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -8850,7 +8827,7 @@
        }
       ],
       "sku": "MB-RB-009-LUX",
-      "price": "811.00",
+      "price": "789.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -8879,7 +8856,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -8951,7 +8928,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -9001,7 +8978,7 @@
        }
       ],
       "sku": "MB-RB-010-SIG",
-      "price": "265.00",
+      "price": "249.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9018,7 +8995,7 @@
        }
       ],
       "sku": "MB-RB-010-GRD",
-      "price": "517.00",
+      "price": "489.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9035,7 +9012,7 @@
        }
       ],
       "sku": "MB-RB-010-LUX",
-      "price": "782.00",
+      "price": "729.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9064,7 +9041,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -9321,7 +9298,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -9371,7 +9348,7 @@
        }
       ],
       "sku": "MB-RB-013-SIG",
-      "price": "225.00",
+      "price": "249.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9388,7 +9365,7 @@
        }
       ],
       "sku": "MB-RB-013-GRD",
-      "price": "439.00",
+      "price": "489.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9405,7 +9382,7 @@
        }
       ],
       "sku": "MB-RB-013-LUX",
-      "price": "664.00",
+      "price": "729.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9434,7 +9411,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -9506,7 +9483,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -9556,7 +9533,7 @@
        }
       ],
       "sku": "MB-RB-014-SIG",
-      "price": "299.00",
+      "price": "289.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9573,7 +9550,7 @@
        }
       ],
       "sku": "MB-RB-014-GRD",
-      "price": "583.00",
+      "price": "559.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9590,7 +9567,7 @@
        }
       ],
       "sku": "MB-RB-014-LUX",
-      "price": "882.00",
+      "price": "849.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9619,7 +9596,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -9691,7 +9668,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -9739,7 +9716,7 @@
        }
       ],
       "sku": "MB-RB-015-SIG",
-      "price": "299.00",
+      "price": "289.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9756,7 +9733,7 @@
        }
       ],
       "sku": "MB-RB-015-GRD",
-      "price": "583.00",
+      "price": "559.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9773,7 +9750,7 @@
        }
       ],
       "sku": "MB-RB-015-LUX",
-      "price": "882.00",
+      "price": "849.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9802,7 +9779,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -9874,7 +9851,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -9923,7 +9900,7 @@
        }
       ],
       "sku": "MB-RB-016-SIG",
-      "price": "275.00",
+      "price": "289.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9940,7 +9917,7 @@
        }
       ],
       "sku": "MB-RB-016-GRD",
-      "price": "536.00",
+      "price": "559.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9957,7 +9934,7 @@
        }
       ],
       "sku": "MB-RB-016-LUX",
-      "price": "811.00",
+      "price": "849.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -9986,7 +9963,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -10058,7 +10035,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -10108,7 +10085,7 @@
        }
       ],
       "sku": "MB-RB-017-SIG",
-      "price": "225.00",
+      "price": "229.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -10125,7 +10102,7 @@
        }
       ],
       "sku": "MB-RB-017-GRD",
-      "price": "439.00",
+      "price": "449.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -10142,7 +10119,7 @@
        }
       ],
       "sku": "MB-RB-017-LUX",
-      "price": "664.00",
+      "price": "679.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -10171,7 +10148,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -10243,7 +10220,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -10293,7 +10270,7 @@
        }
       ],
       "sku": "MB-RB-018-SIG",
-      "price": "449.00",
+      "price": "399.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -10310,7 +10287,7 @@
        }
       ],
       "sku": "MB-RB-018-GRD",
-      "price": "876.00",
+      "price": "779.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -10327,7 +10304,7 @@
        }
       ],
       "sku": "MB-RB-018-LUX",
-      "price": "1325.00",
+      "price": "1179.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -10356,7 +10333,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -10428,7 +10405,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -10476,7 +10453,7 @@
        }
       ],
       "sku": "MB-RB-019-SIG",
-      "price": "339.00",
+      "price": "299.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -10493,7 +10470,7 @@
        }
       ],
       "sku": "MB-RB-019-GRD",
-      "price": "661.00",
+      "price": "579.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -10510,7 +10487,7 @@
        }
       ],
       "sku": "MB-RB-019-LUX",
-      "price": "1000.00",
+      "price": "879.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -10539,7 +10516,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -17971,7 +17948,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -18017,7 +17994,7 @@
        }
       ],
       "sku": "MB-GM-005-STD",
-      "price": null,
+      "price": "449.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -18046,7 +18023,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -18104,7 +18081,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -18148,7 +18125,7 @@
        }
       ],
       "sku": "MB-GM-006-STD",
-      "price": null,
+      "price": "649.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -18177,7 +18154,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -18607,7 +18584,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -18650,7 +18627,7 @@
        }
       ],
       "sku": "MB-GM-009-STD",
-      "price": null,
+      "price": "399.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -18679,7 +18656,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -40118,8 +40095,8 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "draft_needs_owner_confirmation",
@@ -40162,7 +40139,7 @@
        }
       ],
       "sku": "MB-BX-033-STD",
-      "price": null,
+      "price": "449.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -40191,7 +40168,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available;description_needs_owner_confirmation"
+      "value": "description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -41716,7 +41693,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -41758,7 +41735,7 @@
        }
       ],
       "sku": "MB-GG-005-STD",
-      "price": null,
+      "price": "1799.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -41787,7 +41764,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -46385,7 +46362,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -46428,7 +46405,7 @@
        }
       ],
       "sku": "MB-FB-005-STD",
-      "price": null,
+      "price": "399.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -46457,7 +46434,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -48450,7 +48427,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -48493,7 +48470,7 @@
        }
       ],
       "sku": "MB-CG-008-STD",
-      "price": null,
+      "price": "549.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -48522,7 +48499,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -49880,7 +49857,7 @@
    "review": {
     "flags": [
      "third_party_brand_contents:godiva,lindt,toblerone",
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -49921,7 +49898,7 @@
        }
       ],
       "sku": "MB-CG-016-STD",
-      "price": null,
+      "price": "329.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -49950,7 +49927,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "third_party_brand_contents:godiva,lindt,toblerone;no_price_available"
+      "value": "third_party_brand_contents:godiva,lindt,toblerone;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -50683,8 +50660,8 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "draft_needs_owner_confirmation",
@@ -50725,7 +50702,7 @@
        }
       ],
       "sku": "MB-CG-021-STD",
-      "price": null,
+      "price": "499.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -50754,7 +50731,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available;description_needs_owner_confirmation"
+      "value": "description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -54145,7 +54122,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -54187,7 +54164,7 @@
        }
       ],
       "sku": "MB-FT-017-STD",
-      "price": null,
+      "price": "389.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -54216,7 +54193,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -57796,8 +57773,8 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "draft_needs_owner_confirmation",
@@ -57841,7 +57818,7 @@
        }
       ],
       "sku": "MB-HF-004-STD",
-      "price": null,
+      "price": "549.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -57870,7 +57847,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available;description_needs_owner_confirmation"
+      "value": "description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -57928,8 +57905,8 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "draft_needs_owner_confirmation",
@@ -57973,7 +57950,7 @@
        }
       ],
       "sku": "MB-HF-005-STD",
-      "price": null,
+      "price": "549.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -58002,7 +57979,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available;description_needs_owner_confirmation"
+      "value": "description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -58060,7 +58037,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -58104,7 +58081,7 @@
        }
       ],
       "sku": "MB-HF-006-STD",
-      "price": null,
+      "price": "319.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -58133,7 +58110,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -58192,7 +58169,7 @@
    "review": {
     "flags": [
      "third_party_brand_contents:godiva",
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -58233,7 +58210,7 @@
        }
       ],
       "sku": "MB-HF-007-STD",
-      "price": null,
+      "price": "299.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -58262,7 +58239,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "third_party_brand_contents:godiva;no_price_available"
+      "value": "third_party_brand_contents:godiva;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -58321,7 +58298,7 @@
    "review": {
     "flags": [
      "third_party_brand_contents:pistach",
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -58362,7 +58339,7 @@
        }
       ],
       "sku": "MB-HF-008-STD",
-      "price": null,
+      "price": "219.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -58391,7 +58368,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "third_party_brand_contents:pistach;no_price_available"
+      "value": "third_party_brand_contents:pistach;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -58450,7 +58427,7 @@
    "review": {
     "flags": [
      "third_party_brand_contents:godiva,lindt,nutella,toblerone",
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -58491,7 +58468,7 @@
        }
       ],
       "sku": "MB-HF-009-STD",
-      "price": null,
+      "price": "599.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -58520,7 +58497,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "third_party_brand_contents:godiva,lindt,nutella,toblerone;no_price_available"
+      "value": "third_party_brand_contents:godiva,lindt,nutella,toblerone;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -58579,7 +58556,7 @@
    "review": {
     "flags": [
      "third_party_brand_contents:lindt",
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -58624,7 +58601,7 @@
        }
       ],
       "sku": "MB-HF-010-STD",
-      "price": null,
+      "price": "469.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -58653,7 +58630,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "third_party_brand_contents:lindt;no_price_available"
+      "value": "third_party_brand_contents:lindt;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -58712,7 +58689,7 @@
    "review": {
     "flags": [
      "third_party_brand_contents:cadbury,godiva,oreo",
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -58757,7 +58734,7 @@
        }
       ],
       "sku": "MB-HF-011-STD",
-      "price": null,
+      "price": "429.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -58786,7 +58763,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "third_party_brand_contents:cadbury,godiva,oreo;no_price_available"
+      "value": "third_party_brand_contents:cadbury,godiva,oreo;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -58844,7 +58821,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -58887,7 +58864,7 @@
        }
       ],
       "sku": "MB-HF-012-STD",
-      "price": null,
+      "price": "369.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -58916,7 +58893,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -58975,7 +58952,7 @@
    "review": {
     "flags": [
      "third_party_brand_contents:lindt,nutella,twix",
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -59019,7 +58996,7 @@
        }
       ],
       "sku": "MB-HF-013-STD",
-      "price": null,
+      "price": "429.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -59048,7 +59025,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "third_party_brand_contents:lindt,nutella,twix;no_price_available"
+      "value": "third_party_brand_contents:lindt,nutella,twix;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -59106,7 +59083,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -59147,7 +59124,7 @@
        }
       ],
       "sku": "MB-HF-014-STD",
-      "price": null,
+      "price": "239.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -59176,7 +59153,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -60529,7 +60506,7 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "no_price_available"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "approved_by_owner_2026-10-18",
     "description_status": "original_composition_kept",
@@ -60572,7 +60549,7 @@
        }
       ],
       "sku": "MB-TC-008-STD",
-      "price": null,
+      "price": "899.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -60601,7 +60578,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "no_price_available"
+      "value": "price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -60846,8 +60823,8 @@
    "review": {
     "flags": [
      "third_party_brand_contents:laneige",
-     "price_is_placeholder_competitor_reference",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "draft_needs_owner_confirmation",
@@ -60887,7 +60864,7 @@
        }
       ],
       "sku": "MB-BM-001-STD",
-      "price": "799.00",
+      "price": "749.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -60916,7 +60893,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "third_party_brand_contents:laneige;price_is_placeholder_competitor_reference;description_needs_owner_confirmation"
+      "value": "third_party_brand_contents:laneige;description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -60974,8 +60951,8 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "draft_needs_owner_confirmation",
@@ -61015,7 +60992,7 @@
        }
       ],
       "sku": "MB-BM-002-STD",
-      "price": "2999.00",
+      "price": "2799.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -61044,7 +61021,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference;description_needs_owner_confirmation"
+      "value": "description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -61102,8 +61079,8 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "draft_needs_owner_confirmation",
@@ -61143,7 +61120,7 @@
        }
       ],
       "sku": "MB-BM-003-STD",
-      "price": "2199.00",
+      "price": "1999.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -61172,7 +61149,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference;description_needs_owner_confirmation"
+      "value": "description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -61231,8 +61208,8 @@
    "review": {
     "flags": [
      "character_licensing_required",
-     "price_is_placeholder_competitor_reference",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "draft_needs_owner_confirmation",
@@ -61272,7 +61249,7 @@
        }
       ],
       "sku": "MB-BM-004-STD",
-      "price": "1099.00",
+      "price": "999.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -61301,7 +61278,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "character_licensing_required;price_is_placeholder_competitor_reference;description_needs_owner_confirmation"
+      "value": "character_licensing_required;description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -61360,8 +61337,8 @@
    "review": {
     "flags": [
      "character_licensing_required",
-     "price_is_placeholder_competitor_reference",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "draft_needs_owner_confirmation",
@@ -61401,7 +61378,7 @@
        }
       ],
       "sku": "MB-BM-005-STD",
-      "price": "999.00",
+      "price": "949.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -61430,7 +61407,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "character_licensing_required;price_is_placeholder_competitor_reference;description_needs_owner_confirmation"
+      "value": "character_licensing_required;description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -61488,8 +61465,8 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "draft_needs_owner_confirmation",
@@ -61529,7 +61506,7 @@
        }
       ],
       "sku": "MB-BM-006-STD",
-      "price": "2549.00",
+      "price": "2399.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -61558,7 +61535,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference;description_needs_owner_confirmation"
+      "value": "description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -61618,8 +61595,8 @@
     "flags": [
      "similar_listing_rename_needed:DUP-19",
      "character_licensing_required",
-     "price_is_placeholder_competitor_reference",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "draft_needs_owner_confirmation",
@@ -61659,7 +61636,7 @@
        }
       ],
       "sku": "MB-BM-007-STD",
-      "price": "1099.00",
+      "price": "999.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -61688,7 +61665,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "similar_listing_rename_needed:DUP-19;character_licensing_required;price_is_placeholder_competitor_reference;description_needs_owner_confirmation"
+      "value": "similar_listing_rename_needed:DUP-19;character_licensing_required;description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -61747,8 +61724,8 @@
    "review": {
     "flags": [
      "character_licensing_required",
-     "price_is_placeholder_competitor_reference",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "draft_needs_owner_confirmation",
@@ -61788,7 +61765,7 @@
        }
       ],
       "sku": "MB-BM-008-STD",
-      "price": "1499.00",
+      "price": "1399.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -61817,7 +61794,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "character_licensing_required;price_is_placeholder_competitor_reference;description_needs_owner_confirmation"
+      "value": "character_licensing_required;description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -61876,9 +61853,9 @@
    "review": {
     "flags": [
      "character_licensing_required",
-     "price_is_placeholder_competitor_reference",
      "merged_from_2_listings",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "draft_needs_owner_confirmation",
@@ -61921,7 +61898,7 @@
        }
       ],
       "sku": "MB-BM-009-PNK",
-      "price": "2499.00",
+      "price": "2299.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -61938,7 +61915,7 @@
        }
       ],
       "sku": "MB-BM-009-RED",
-      "price": "2499.00",
+      "price": "2299.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -61973,7 +61950,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "character_licensing_required;price_is_placeholder_competitor_reference;merged_from_2_listings;description_needs_owner_confirmation"
+      "value": "character_licensing_required;merged_from_2_listings;description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -62038,8 +62015,8 @@
     "flags": [
      "similar_listing_rename_needed:DUP-19",
      "character_licensing_required",
-     "price_is_placeholder_competitor_reference",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "draft_needs_owner_confirmation",
@@ -62079,7 +62056,7 @@
        }
       ],
       "sku": "MB-BM-011-STD",
-      "price": "749.00",
+      "price": "699.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -62108,7 +62085,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "similar_listing_rename_needed:DUP-19;character_licensing_required;price_is_placeholder_competitor_reference;description_needs_owner_confirmation"
+      "value": "similar_listing_rename_needed:DUP-19;character_licensing_required;description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -62166,8 +62143,8 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "draft_needs_owner_confirmation",
@@ -62207,7 +62184,7 @@
        }
       ],
       "sku": "MB-BM-012-STD",
-      "price": "999.00",
+      "price": "949.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -62236,7 +62213,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference;description_needs_owner_confirmation"
+      "value": "description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -62294,8 +62271,8 @@
    "publish_ready": false,
    "review": {
     "flags": [
-     "price_is_placeholder_competitor_reference",
-     "description_needs_owner_confirmation"
+     "description_needs_owner_confirmation",
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "draft_needs_owner_confirmation",
@@ -62335,7 +62312,7 @@
        }
       ],
       "sku": "MB-BM-013-STD",
-      "price": "499.00",
+      "price": "449.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -62364,7 +62341,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference;description_needs_owner_confirmation"
+      "value": "description_needs_owner_confirmation;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",
@@ -62423,7 +62400,7 @@
    "review": {
     "flags": [
      "third_party_brand_contents:l'oreal",
-     "price_is_placeholder_competitor_reference"
+     "price_interim_maison_recommendation_2026-10-18"
     ],
     "image_status": "generated_concept_pending_owner_approval",
     "description_status": "original_composition_kept",
@@ -62463,7 +62440,7 @@
        }
       ],
       "sku": "MB-BM-014-STD",
-      "price": "549.00",
+      "price": "499.00",
       "compareAtPrice": null,
       "taxable": true,
       "inventoryPolicy": "DENY",
@@ -62492,7 +62469,7 @@
       "namespace": "maison",
       "key": "review_flags",
       "type": "single_line_text_field",
-      "value": "third_party_brand_contents:l'oreal;price_is_placeholder_competitor_reference"
+      "value": "third_party_brand_contents:l'oreal;price_interim_maison_recommendation_2026-10-18"
      },
      {
       "namespace": "maison",

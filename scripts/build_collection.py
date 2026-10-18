@@ -4,7 +4,7 @@
   python3 scripts/build_collection.py --images ../image-pipeline/out/flare-medium
 
 Reads catalog/shopify-export/products.json and catalog/collection-overrides.json.
-Every product that has a generated image (<handle>.png) and a price is included.
+Every product with a price and an image is included: <handle>.png from --images, else its export image.
 Writes src/data/collection.json and public/collection/<handle>-480.webp / -960.webp.
 
 This is the local stand-in for the Shopify Storefront API. When the store is connected,
@@ -187,8 +187,10 @@ def main():
     for p in products:
         h = p["handle"]
         src = images / f"{h}.png"
-        if not src.exists():
-            continue
+        if not src.exists():  # earlier concept images live only in the export
+            src = EXPORT.parent / (p["images"][0]["filename"] if p.get("images") else "")
+            if not p.get("images") or not src.is_file():
+                continue
         sizes = sizes_for(p)
         if not sizes:
             skipped.append((h, "no price")); continue
