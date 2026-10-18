@@ -1,5 +1,9 @@
 # Maison Botanique – Shopify product export (DRAFT)
 
+**Current state, 18 Oct 2026:** 318 products, 822 variant SKUs, 321 images (every product has one). For the developer push, use
+`shopify-push.json` and follow `DEVELOPER_HANDOFF.md`. 266 images are owner-approved; 53 await approval. Prices are still
+competitor placeholders until `pricing-worksheet.csv` is filled in. The notes below are the earlier history.
+
 Files
 - `products.json` – 308 products (`meta` + `products`). Shopify Admin-style fields: title, handle, vendor, product_type, tags, body_html, options, variants, images, metafields. Extras: `review_flags`, `translations.ar`, `reference_id`.
 - `images/` – 31 WebP images (1254x1254), referenced by `images[].filename`. AI-generated concepts, pending owner approval.
