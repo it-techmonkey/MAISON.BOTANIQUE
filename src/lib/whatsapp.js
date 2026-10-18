@@ -34,13 +34,13 @@ export function isWhatsappOpen(now = new Date()) {
 const MESSAGES = {
   en: {
     general: 'Hello Maison Botanique, I have a question about an order.',
-    product: (name, size, url) => `Hello Maison Botanique, I'd like to ask about "${name}" (${size}).\n${url}`,
+    product: (name, size) => `Hello Maison Botanique, I'd like to ask about "${name}" (${size}).`,
     events: 'Hello Maison Botanique, I would like to discuss flowers for an event (wedding, corporate or a large order).',
     bag: (lines, delivery) => `Hello Maison Botanique, I'd like to order:\n${lines}${delivery ? `\n\nDelivery: ${delivery}` : ''}`,
   },
   ar: {
     general: 'مرحباً ميزون بوتانيك، لدي استفسار عن طلب.',
-    product: (name, size, url) => `مرحباً ميزون بوتانيك، أود الاستفسار عن «${name}» (${size}).\n${url}`,
+    product: (name, size) => `مرحباً ميزون بوتانيك، أود الاستفسار عن «${name}» (${size}).`,
     events: 'مرحباً ميزون بوتانيك، أود مناقشة تنسيق زهور لمناسبة (زفاف أو شركة أو طلب كبير).',
     bag: (lines, delivery) => `مرحباً ميزون بوتانيك، أود طلب:\n${lines}${delivery ? `\n\nالتوصيل: ${delivery}` : ''}`,
   },

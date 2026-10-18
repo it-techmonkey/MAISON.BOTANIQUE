@@ -370,3 +370,19 @@ fieldset.qa-section > .qa-legend + * { clear: both; }
   .qa-hero img { width: 100%; height: auto; }
   .qa-hero h2 { font-size: 24px; }
 }
+
+/* Delivery day and window for the whole order, inside the bag. */
+.ll-shop-panel--cart { --qa-hair: #d9d2c5; --qa-ink-2: #596454; }
+.dl-picker { margin-top: 8px; padding-bottom: 8px; }
+.dl-windows { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.dl-window { position: relative; padding: 12px 8px; border: 1px solid var(--qa-hair); text-align: center; font-size: 13px; cursor: pointer; }
+.dl-window input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.dl-window.is-selected { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.dl-window.is-off { color: #a39d96; text-decoration: line-through; cursor: not-allowed; }
+.dl-window.is-off input { cursor: not-allowed; }
+.dl-window:has(input:focus-visible) { outline: 2px solid var(--wine); outline-offset: 2px; }
+.dl-help { margin: 4px 0 22px; }
+.qa-delivery p { margin: 0; font-size: 13px; line-height: 1.5; color: var(--qa-ink-2); }
+a.ll-shop-primary { text-decoration: none; box-sizing: border-box; }
+.wa-order { justify-content: center; gap: 10px; margin: 0 0 14px; }
+[dir='rtl'] .ll-shop-panel--cart :is(.qa-legend > span, .qa-day span) { font-family: 'Noto Naskh Arabic', Tahoma, serif; letter-spacing: 0; text-transform: none; font-size: 13px; }

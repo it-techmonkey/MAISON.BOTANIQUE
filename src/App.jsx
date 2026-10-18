@@ -35,7 +35,7 @@ export default function App() {
   const [toast, setToast] = useState(null);
   const [offerSignal, setOfferSignal] = useState(0);
   const toastTimer = useRef(0);
-  const { cart, addItem, updateQuantity, removeItem, cartCount, subtotal } = useShopCart();
+  const { cart, addItem, updateQuantity, removeItem, cartCount, subtotal, delivery, setDelivery } = useShopCart();
 
   const ar = locale === 'ar';
   const copy = navCopy[locale];
@@ -176,6 +176,8 @@ export default function App() {
         removeItem={removeItem}
         cartCount={cartCount}
         subtotal={subtotal}
+        delivery={delivery}
+        setDelivery={setDelivery}
         onAdded={onAdded}
       />
       <LaunchOffer locale={locale} openSignal={offerSignal} />

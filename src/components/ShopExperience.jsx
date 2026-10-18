@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { allProducts, findProduct } from '../data/catalog';
 import { createShopifyCheckout, getCheckoutReadiness } from '../lib/shopify';
+import {
+  addDays, bookableDays, dateOpen, deliverySummary, lastBookableDate,
+  safeDelivery, todayDubai, windowLabel, windowsFor,
+} from '../lib/delivery';
+import { whatsappLink, whatsappMessage } from '../lib/whatsapp';
+import { WhatsAppIcon } from './WhatsAppButton.jsx';
 import '../styles/shop.css';
 
 const STORAGE_KEY = 'maison-botanique-concept-cart-v1';
@@ -13,8 +19,14 @@ const copy = {
     bagEmptyDetail: 'Explore the collection and add a flower moment.',
     backToShop: 'Explore the collection', sample: 'Sample price',
     presentation: 'Size', giftNote: 'Gift note', notePlaceholder: 'Your message, if you wish…',
-    noteHint: 'Optional · up to 280 characters', date: 'Preferred delivery date',
-    dateHint: 'A preferred date only. Delivery availability will be confirmed when the real store opens.',
+    noteHint: 'Optional · up to 280 characters', date: 'When should it arrive?',
+    dateHint: 'Book today or up to 60 days ahead. One delivery date and time for the whole order.',
+    deliveryNote: 'Same-day delivery across Dubai. Choose the day and time in your bag.',
+    windowLegend: 'Time', chooseDelivery: 'Choose a delivery day and time to continue.',
+    deliveryPassed: 'That delivery time has passed. Please choose another.',
+    dayClosed: "We aren't delivering on that day. Please choose another.",
+    deliveryLine: 'Arrives', askAbout: 'Ask about this bouquet on WhatsApp',
+    helpOrder: 'Questions? Chat with us on WhatsApp', orderWhatsapp: 'Order on WhatsApp instead',
     addBag: 'Add to bag', subtotal: 'Sample subtotal', delivery: 'Delivery',
     deliveryLater: 'Free in JVC · across Dubai, confirmed at checkout',
     offerLine: 'Opening offer: 25% off for our first 100 customers, applied at checkout with your code.',
@@ -24,9 +36,8 @@ const copy = {
     reviewNotice: 'A real Shopify store, approved product variants, final prices and delivery rules are required before orders can open.',
     backBag: 'Back to bag', remove: 'Remove', quantity: 'Quantity',
     pending: 'Connecting to checkout…', error: 'Checkout could not open. Please try again.',
-    dateOutdated: 'A preferred date in your bag has passed. Remove that piece and add it again with a new date before checkout.',
     conceptTag: 'Concept catalog / provisional product', each: 'each',
-    noteLine: 'Gift note', dateLine: 'Preferred date',
+    noteLine: 'Gift note',
     pictured: (size) => `Pictured: ${size}`, asPictured: 'As pictured', yourCard: 'Your card', handwritten: 'Handwritten in our studio',
     cardEmpty: 'Write what you would say if you were there.', signedAs: 'Signed', secret: 'Keep it a secret', secretSign: 'Someone who adores you',
     dubai: 'Dubai', anotherDay: 'Another day', noPrices: 'No prices travel with the gift.',
@@ -39,8 +50,14 @@ const copy = {
     bagEmptyDetail: 'تصفّح المجموعة وأضف لحظة من الزهور.',
     backToShop: 'تصفّح المجموعة', sample: 'سعر تجريبي',
     presentation: 'الحجم', giftNote: 'رسالة الإهداء', notePlaceholder: 'رسالتك إن رغبت…',
-    noteHint: 'اختياري · حتى ٢٨٠ حرفًا', date: 'تاريخ التوصيل المفضّل',
-    dateHint: 'تاريخ مفضّل فقط. سيُؤكَّد التوفّر عند إطلاق المتجر الفعلي.',
+    noteHint: 'اختياري · حتى ٢٨٠ حرفًا', date: 'متى تريد أن تصل؟',
+    dateHint: 'احجز لليوم أو حتى ٦٠ يوماً مقدماً. موعد توصيل واحد للطلب كله.',
+    deliveryNote: 'توصيل في اليوم نفسه في جميع أنحاء دبي. اختر اليوم والوقت من حقيبتك.',
+    windowLegend: 'الوقت', chooseDelivery: 'اختر يوم التوصيل ووقته للمتابعة.',
+    deliveryPassed: 'انقضى موعد التوصيل هذا. يرجى اختيار موعد آخر.',
+    dayClosed: 'لا نوصّل في هذا اليوم. يرجى اختيار يوم آخر.',
+    deliveryLine: 'موعد الوصول', askAbout: 'استفسر عن هذه الباقة عبر واتساب',
+    helpOrder: 'لديك سؤال؟ تحدّث معنا عبر واتساب', orderWhatsapp: 'اطلب عبر واتساب بدلاً من ذلك',
     addBag: 'أضف إلى الحقيبة', subtotal: 'المجموع التجريبي', delivery: 'التوصيل',
     deliveryLater: 'مجاني في JVC · في دبي يُؤكَّد عند الدفع',
     offerLine: 'عرض الافتتاح: خصم ٢٥٪ لأول ١٠٠ عميل، يُطبَّق عند الدفع برمزك.',
@@ -50,9 +67,8 @@ const copy = {
     reviewNotice: 'يلزم متجر Shopify فعلي ومنتجات معتمدة وأسعار نهائية وقواعد توصيل قبل استقبال الطلبات.',
     backBag: 'العودة إلى الحقيبة', remove: 'إزالة', quantity: 'الكمية',
     pending: 'جارٍ فتح صفحة الدفع…', error: 'تعذّر فتح صفحة الدفع. يرجى المحاولة مجددًا.',
-    dateOutdated: 'انقضى تاريخ توصيل مفضّل في حقيبتك. أزل هذا المنتج وأضفه مجددًا بتاريخ جديد قبل الدفع.',
     conceptTag: 'مجموعة تجريبية / منتج مبدئي', each: 'للوحدة',
-    noteLine: 'رسالة الإهداء', dateLine: 'التاريخ المفضّل',
+    noteLine: 'رسالة الإهداء',
     pictured: (size) => `في الصورة: ${size}`, asPictured: 'كما في الصورة', yourCard: 'بطاقتك', handwritten: 'تُكتب بخط اليد في مشغلنا',
     cardEmpty: 'اكتب ما كنت ستقوله لو كنت هناك.', signedAs: 'التوقيع', secret: 'أبقِها مفاجأة', secretSign: 'شخص يحبك',
     dubai: 'دبي', anotherDay: 'يوم آخر', noPrices: 'لا تُرفق الأسعار مع الهدية.',
@@ -69,28 +85,26 @@ function safeLine(raw) {
   if (!product.sizes.some((size) => size.id === raw.sizeId)) return null;
   const sizeId = raw.sizeId;
   const note = typeof raw.note === 'string' ? raw.note.slice(0, 280) : '';
-  if (raw.deliveryDate && !validDate(raw.deliveryDate)) return null;
-  const deliveryDate = raw.deliveryDate || '';
   const quantity = Math.min(99, Math.max(1, Number.parseInt(raw.quantity, 10) || 1));
   const anonymous = raw.anonymous === true;
   const signedAs = !anonymous && typeof raw.signedAs === 'string' ? raw.signedAs.slice(0, 60) : '';
   const custom = typeof raw.custom === 'string' ? raw.custom.slice(0, 24) : '';
   return {
-    key: JSON.stringify([product.id, sizeId, note, deliveryDate, signedAs, anonymous, custom]),
-    productId: product.id, sizeId, note, deliveryDate, quantity, signedAs, anonymous, custom,
+    key: JSON.stringify([product.id, sizeId, note, signedAs, anonymous, custom]),
+    productId: product.id, sizeId, note, quantity, signedAs, anonymous, custom,
   };
 }
 
-function readSavedCart() {
+function readSaved() {
   try {
     const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY) || 'null');
     const age = Date.now() - Number(parsed?.savedAt);
     if (!parsed || !Array.isArray(parsed.lines) || !Number.isFinite(age) || age < 0 || age > STORAGE_TTL_MS) {
       localStorage.removeItem(STORAGE_KEY);
-      return [];
+      return { lines: [], delivery: null };
     }
-    return parsed.lines.slice(0, 40).map(safeLine).filter(Boolean);
-  } catch { return []; }
+    return { lines: parsed.lines.slice(0, 40).map(safeLine).filter(Boolean), delivery: safeDelivery(parsed.delivery) };
+  } catch { return { lines: [], delivery: null }; }
 }
 
 function lineDetails(line) {
@@ -102,11 +116,14 @@ function lineDetails(line) {
 }
 
 export function useShopCart() {
-  const [cart, setCart] = useState(readSavedCart);
+  const [saved] = useState(readSaved);
+  const [cart, setCart] = useState(saved.lines);
+  // One delivery date and window for the whole order.
+  const [delivery, setDelivery] = useState(saved.delivery);
 
   useEffect(() => {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ savedAt: Date.now(), lines: cart })); } catch { /* Private browsing may block storage. */ }
-  }, [cart]);
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ savedAt: Date.now(), lines: cart, delivery })); } catch { /* Private browsing may block storage. */ }
+  }, [cart, delivery]);
 
   function addItem(product, options = {}) {
     const canonical = findProduct(product?.id);
@@ -115,7 +132,6 @@ export function useShopCart() {
       productId: canonical.id,
       sizeId: options.sizeId || canonical.sizes[0].id,
       note: options.note || '',
-      deliveryDate: options.deliveryDate || '',
       signedAs: options.signedAs || '',
       anonymous: options.anonymous === true,
       custom: options.custom || '',
@@ -141,27 +157,13 @@ export function useShopCart() {
     const details = lineDetails(line);
     return total + (details?.unitPrice || 0) * line.quantity;
   }, 0);
-  return { cart, addItem, updateQuantity, removeItem, cartCount, subtotal };
+  return { cart, addItem, updateQuantity, removeItem, cartCount, subtotal, delivery, setDelivery };
 }
 
 function formatAED(value, ar) {
   return new Intl.NumberFormat(ar ? 'ar-AE' : 'en-AE', {
     style: 'currency', currency: 'AED', maximumFractionDigits: 0,
   }).format(value);
-}
-
-function todayDubai() {
-  const parts = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'Asia/Dubai', year: 'numeric', month: '2-digit', day: '2-digit',
-  }).formatToParts(new Date());
-  const value = Object.fromEntries(parts.map((part) => [part.type, part.value]));
-  return `${value.year}-${value.month}-${value.day}`;
-}
-
-function validDate(value) {
-  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
-  const parsed = new Date(`${value}T00:00:00Z`);
-  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
 }
 
 function CloseIcon() {
@@ -234,15 +236,9 @@ const STARTERS = {
 };
 const OCCASION_ALIAS = { anniversary: 'love', 'thank-you': 'thanks' };
 
-function addDays(isoDate, days) {
-  const date = new Date(`${isoDate}T00:00:00Z`);
-  date.setUTCDate(date.getUTCDate() + days);
-  return date.toISOString().slice(0, 10);
-}
-
-function dayLabel(isoDate, index, ar) {
-  if (index === 0) return ar ? 'اليوم' : 'Today';
-  if (index === 1) return ar ? 'غداً' : 'Tomorrow';
+function dayLabel(isoDate, today, ar) {
+  if (isoDate === today) return ar ? 'اليوم' : 'Today';
+  if (isoDate === addDays(today, 1)) return ar ? 'غداً' : 'Tomorrow';
   return new Intl.DateTimeFormat(ar ? 'ar-AE' : 'en-GB', { weekday: 'short', timeZone: 'UTC' }).format(new Date(`${isoDate}T00:00:00Z`));
 }
 
@@ -263,24 +259,20 @@ function CardPreview({ message, signedAs, anonymous, ar, t }) {
 
 function QuickAdd({ product, ar, onClose, onAdd, related = [], onOpen }) {
   const t = copy[ar ? 'ar' : 'en'];
-  const today = todayDubai();
   const [sizeId, setSizeId] = useState(product.sizes[0].id);
   const [note, setNote] = useState('');
   const [signedAs, setSignedAs] = useState('');
   const [anonymous, setAnonymous] = useState(false);
   const [custom, setCustom] = useState('');
-  const [dayIndex, setDayIndex] = useState(-1);
-  const [otherDate, setOtherDate] = useState('');
   const chosen = product.sizes.find((size) => size.id === sizeId) || product.sizes[0];
   const price = product.price + chosen.add;
   const occasion = OCCASION_ALIAS[product.occasions?.[0]] || product.occasions?.[0] || 'just-because';
   const starters = STARTERS[ar ? 'ar' : 'en'][occasion] || STARTERS[ar ? 'ar' : 'en']['just-because'];
-  const days = [0, 1, 2].map((offset) => addDays(today, offset));
-  const deliveryDate = dayIndex === 3 ? otherDate : dayIndex >= 0 ? days[dayIndex] : '';
   const composition = (ar ? product.compositionAr : product.composition) || [];
   const needsCustom = Boolean(product.custom);
   const customMissing = needsCustom && !custom.trim();
   const number = product.no ? `N° ${String(product.no).padStart(3, '0')}` : t.conceptTag;
+  const askLink = whatsappLink(whatsappMessage('product', ar, ar ? product.nameAr : product.name, ar ? chosen.nameAr : chosen.name));
 
   return <DialogShell key={product.id} onClose={onClose} label={ar ? product.nameAr : product.name} ar={ar} kind="quickadd">
     <div className="qa-scroll">
@@ -327,21 +319,10 @@ function QuickAdd({ product, ar, onClose, onAdd, related = [], onOpen }) {
         </div>
       </section>
 
-      <fieldset className="qa-section">
-        <legend className="qa-legend"><span>{t.date}</span><em>{t.dubai}</em></legend>
-        <div className="qa-days">
-          {days.map((iso, index) => <label key={iso} className={`qa-day${dayIndex === index ? ' is-selected' : ''}`}>
-            <input type="radio" name="qa-day" checked={dayIndex === index} onChange={() => setDayIndex(index)} />
-            <span>{dayLabel(iso, index, ar)}</span><strong>{Number(iso.slice(8))}</strong>
-          </label>)}
-          <label className={`qa-day${dayIndex === 3 ? ' is-selected' : ''}`}>
-            <input type="radio" name="qa-day" checked={dayIndex === 3} onChange={() => setDayIndex(3)} />
-            <span>{t.anotherDay}</span><strong>…</strong>
-          </label>
-        </div>
-        {dayIndex === 3 && <input id="ll-date" type="date" min={today} value={otherDate} onChange={(event) => setOtherDate(event.target.value)} aria-label={t.date} />}
-        <span className="ll-shop-help">{t.dateHint}</span>
-      </fieldset>
+      <section className="qa-section qa-delivery">
+        <p>{t.deliveryNote}</p>
+        {askLink && <a className="wa-inline" href={askLink} target="_blank" rel="noopener noreferrer"><WhatsAppIcon />{t.askAbout}</a>}
+      </section>
 
       <ul className="qa-assure"><li>{t.noPrices}</li><li>{t.photoPromise}</li></ul>
       {related.length > 0 && <section className="qa-related" aria-labelledby="qa-related-title">
@@ -355,27 +336,82 @@ function QuickAdd({ product, ar, onClose, onAdd, related = [], onOpen }) {
     </div>
     <div className="qa-foot">
       <button className="qa-add" type="button" disabled={customMissing}
-        onClick={() => onAdd(product, { sizeId, note: note.trim(), deliveryDate, signedAs: signedAs.trim(), anonymous, custom: custom.trim() })}>
+        onClick={() => onAdd(product, { sizeId, note: note.trim(), signedAs: signedAs.trim(), anonymous, custom: custom.trim() })}>
         {customMissing ? (product.custom.kind === 'letter' ? t.chooseLetter : t.chooseAge) : `${t.addBag} · ${formatAED(price, ar)}`}
       </button>
     </div>
   </DialogShell>;
 }
 
-function CartDrawer({ ar, onClose, cart, updateQuantity, removeItem, subtotal, products }) {
+// One delivery for the whole order: the next open days, any later date up to
+// the booking horizon, then a time window. Passed windows are disabled.
+function DeliveryPicker({ ar, t, delivery, setDelivery }) {
+  const today = todayDubai();
+  const quick = bookableDays(3);
+  const date = delivery?.date || '';
+  const other = Boolean(date) && !quick.includes(date);
+  const [showOther, setShowOther] = useState(other);
+  const windows = date ? windowsFor(date) : [];
+  const closed = Boolean(date) && !dateOpen(date);
+  const chooseDate = (value) => {
+    const keep = delivery?.windowId && windowsFor(value).some((slot) => slot.id === delivery.windowId && slot.available);
+    setDelivery({ date: value, windowId: keep ? delivery.windowId : '' });
+  };
+
+  return <fieldset className="qa-section dl-picker">
+    <legend className="qa-legend"><span>{t.date}</span><em>{t.dubai}</em></legend>
+    <div className="qa-days">
+      {quick.map((iso) => <label key={iso} className={`qa-day${date === iso && !showOther ? ' is-selected' : ''}`}>
+        <input type="radio" name="dl-day" checked={date === iso && !showOther} onChange={() => { setShowOther(false); chooseDate(iso); }} />
+        <span>{dayLabel(iso, today, ar)}</span><strong>{Number(iso.slice(8))}</strong>
+      </label>)}
+      <label className={`qa-day${showOther ? ' is-selected' : ''}`}>
+        <input type="radio" name="dl-day" checked={showOther} onChange={() => { setShowOther(true); if (!other) setDelivery(null); }} />
+        <span>{t.anotherDay}</span><strong>…</strong>
+      </label>
+    </div>
+    {showOther && <input type="date" min={today} max={lastBookableDate()} value={other ? date : ''}
+      onChange={(event) => (event.target.value ? chooseDate(event.target.value) : setDelivery(null))} aria-label={t.date} />}
+    {closed && <p className="ll-cart-date-alert" role="alert">{t.dayClosed}</p>}
+    {date && !closed && <div className="dl-windows" role="radiogroup" aria-label={t.windowLegend}>
+      {windows.map((slot) => <label key={slot.id} className={`dl-window${delivery?.windowId === slot.id ? ' is-selected' : ''}${slot.available ? '' : ' is-off'}`}>
+        <input type="radio" name="dl-window" disabled={!slot.available} checked={delivery?.windowId === slot.id}
+          onChange={() => setDelivery({ date, windowId: slot.id })} />
+        {windowLabel(slot.id, ar)}
+      </label>)}
+    </div>}
+    <span className="ll-shop-help">{t.dateHint}</span>
+  </fieldset>;
+}
+
+function bagSummary(cart, ar) {
+  return cart.map((line) => {
+    const details = lineDetails(line);
+    if (!details) return '';
+    const { product, size } = details;
+    const extras = [line.custom, line.note && `“${line.note}”`].filter(Boolean).join(' · ');
+    return `• ${line.quantity} × ${ar ? product.nameAr : product.name} (${ar ? size.nameAr : size.name})${extras ? ` · ${extras}` : ''}`;
+  }).filter(Boolean).join('\n');
+}
+
+function CartDrawer({ ar, onClose, cart, updateQuantity, removeItem, subtotal, products, delivery, setDelivery }) {
   const t = copy[ar ? 'ar' : 'en'];
   const [review, setReview] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
-  const readiness = getCheckoutReadiness(cart, products);
+  const readiness = getCheckoutReadiness(cart, products, delivery);
+  const summary = deliverySummary(delivery, ar);
+  const helpLink = whatsappLink(whatsappMessage('general', ar));
+  const orderLink = cart.length ? whatsappLink(whatsappMessage('bag', ar, bagSummary(cart, ar), summary)) : null;
 
   async function handleCheckout() {
-    if (readiness.reason === 'date') { setError(t.dateOutdated); return; }
+    if (readiness.reason === 'delivery') { setError(t.chooseDelivery); return; }
+    if (readiness.reason === 'delivery-passed') { setError(t.deliveryPassed); return; }
     if (!readiness.ready) { setReview(true); return; }
     setPending(true);
     setError('');
     try {
-      const url = await createShopifyCheckout(cart, products);
+      const url = await createShopifyCheckout(cart, products, delivery);
       window.location.assign(url);
     } catch { setError(t.error); setPending(false); }
   }
@@ -387,6 +423,7 @@ function CartDrawer({ ar, onClose, cart, updateQuantity, removeItem, subtotal, p
       <p className="ll-review-lead">{t.reviewIntro}</p>
       <p>{t.reviewNotice}</p>
       <div className="ll-review-total"><span>{t.subtotal}</span><strong>{formatAED(subtotal, ar)}</strong></div>
+      {orderLink && <a className="ll-shop-primary wa-order" href={orderLink} target="_blank" rel="noopener noreferrer"><WhatsAppIcon /><span>{t.orderWhatsapp}</span></a>}
       <button className="ll-shop-secondary" type="button" onClick={() => setReview(false)}>{t.backBag}</button>
     </div> : cart.length === 0 ? <div className="ll-cart-empty">
       <div className="ll-empty-flower" aria-hidden="true">
@@ -411,8 +448,6 @@ function CartDrawer({ ar, onClose, cart, updateQuantity, removeItem, subtotal, p
             {line.custom && <p className="ll-cart-line-detail">{t.customLine}: {line.custom}</p>}
             {line.note && <p className="ll-cart-line-detail">{t.noteLine}: {line.note}</p>}
             {(line.anonymous || line.signedAs) && <p className="ll-cart-line-detail">{line.anonymous ? t.anonymousLine : `${t.signedLine}: ${line.signedAs}`}</p>}
-            {line.deliveryDate && <p className="ll-cart-line-detail">{t.dateLine}: {line.deliveryDate}</p>}
-            {line.deliveryDate && line.deliveryDate < todayDubai() && <p className="ll-cart-date-alert">{t.dateOutdated}</p>}
             <div className="ll-cart-controls">
               <div className="ll-quantity" aria-label={t.quantity}>
                 <button type="button" onClick={() => updateQuantity(line.key, line.quantity - 1)} aria-label={`${t.quantity} −`}>−</button>
@@ -423,9 +458,16 @@ function CartDrawer({ ar, onClose, cart, updateQuantity, removeItem, subtotal, p
             </div>
           </div>
         </article>;
-      })}</div>
+      })}
+        <DeliveryPicker ar={ar} t={t} delivery={delivery} setDelivery={(value) => { setError(''); setDelivery(value); }} />
+        {helpLink && <p className="dl-help"><a className="wa-inline" href={helpLink} target="_blank" rel="noopener noreferrer"><WhatsAppIcon />{t.helpOrder}</a></p>}
+      </div>
       <div className="ll-cart-footer">
-        <div className="ll-cart-totals"><div><span>{t.subtotal}</span><strong>{formatAED(subtotal, ar)}</strong></div><div><span>{t.delivery}</span><span>{t.deliveryLater}</span></div></div>
+        <div className="ll-cart-totals">
+          <div><span>{t.subtotal}</span><strong>{formatAED(subtotal, ar)}</strong></div>
+          {summary && <div><span>{t.deliveryLine}</span><span>{summary}</span></div>}
+          <div><span>{t.delivery}</span><span>{t.deliveryLater}</span></div>
+        </div>
         <p className="ll-cart-offer">{t.offerLine}</p>
         <button className="ll-shop-primary" type="button" onClick={handleCheckout} disabled={pending}>
           <span>{pending ? t.pending : readiness.ready ? t.secureCheckout : t.previewCheckout}</span><ArrowIcon />
@@ -441,6 +483,7 @@ export default function ShopExperience({
   locale = 'en', products = allProducts,
   cartOpen, setCartOpen, selectedProduct, setSelectedProduct,
   cart = [], addItem, updateQuantity, removeItem, related: relatedPool = [], onAdded,
+  delivery = null, setDelivery,
 }) {
   const ar = locale === 'ar';
   const selected = typeof selectedProduct === 'string'
@@ -468,6 +511,6 @@ export default function ShopExperience({
 
   // A single modal at a time keeps keyboard focus and body scroll predictable.
   if (selected) return <QuickAdd key={selected.id} product={selected} ar={ar} onClose={() => setSelectedProduct?.(null)} onAdd={handleAdd} related={related} onOpen={(item) => setSelectedProduct?.(item)} />;
-  if (cartOpen) return <CartDrawer ar={ar} onClose={() => setCartOpen?.(false)} cart={cart} updateQuantity={updateQuantity} removeItem={removeItem} subtotal={subtotal} products={products} />;
+  if (cartOpen) return <CartDrawer ar={ar} onClose={() => setCartOpen?.(false)} cart={cart} updateQuantity={updateQuantity} removeItem={removeItem} subtotal={subtotal} products={products} delivery={delivery} setDelivery={setDelivery} />;
   return null;
 }
