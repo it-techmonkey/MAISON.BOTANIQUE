@@ -23,12 +23,12 @@
 .nav-shop__panel { position: fixed; inset-inline: 0; top: calc(var(--offer-h) + 80px); display: none; grid-template-columns: repeat(3, minmax(0, 220px)) 1fr; gap: 0 56px; padding: 30px clamp(22px, 3.3vw, 62px) 34px; background: var(--paper); border-block: 1px solid var(--line); box-shadow: 0 30px 50px -40px rgb(30 31 28 / 45%); }
 .nav-shop__panel.is-open { display: grid; }
 .nav-shop__col { display: grid; align-content: start; gap: 2px; }
-.nav-shop__col h2 { margin: 0 0 8px; font: 600 var(--fs-label)/1 var(--font-body); letter-spacing: .2em; text-transform: uppercase; color: var(--wine); }
+.nav-shop__col h2 { margin: 0 0 8px; font: 600 var(--fs-label)/1 var(--font-body); letter-spacing: .2em; text-transform: uppercase; color: var(--mb-wine); }
 .nav-shop__col h2 + a { margin-top: 0; }
 .nav-shop__col a + h2 { margin-top: 22px; }
 .primary-nav .nav-shop__col a { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; font: 400 18px/1.2 var(--font-display); letter-spacing: 0; text-transform: none; }
 .primary-nav .nav-shop__col a::after, .primary-nav .nav-shop__all::after { display: none; }
-.nav-shop__col a:hover { color: var(--wine); }
+.nav-shop__col a:hover { color: var(--mb-wine); }
 .primary-nav .nav-shop__all { align-self: end; justify-self: end; font: 600 var(--fs-label)/1 var(--font-body); letter-spacing: .18em; text-transform: uppercase; border-bottom: 1px solid var(--ink); padding: 0 0 6px; }
 [dir='rtl'] .nav-shop > button { font-family: var(--font-arabic); letter-spacing: 0; font-size: 14px; }
 [dir='rtl'] .nav-shop__col h2, [dir='rtl'] .primary-nav .nav-shop__all { font-family: var(--font-arabic); letter-spacing: 0; text-transform: none; font-size: 14px; }

@@ -1,5 +1,5 @@
 .wa-float { position: fixed; z-index: 95; inset-inline-end: 24px; bottom: calc(24px + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: 10px; padding: 10px 16px 10px 12px; color: var(--paper); background: var(--ink); border-radius: 999px; text-decoration: none; box-shadow: 0 14px 30px -16px rgb(30 31 28 / 70%); transition: background .25s, transform .25s; }
-.wa-float:hover { background: var(--wine); transform: translateY(-2px); }
+.wa-float:hover { background: var(--mb-wine); transform: translateY(-2px); }
 .wa-float svg { width: 26px; height: 26px; flex: none; }
 .wa-float__text { display: grid; gap: 3px; }
 .wa-float__text strong { font: 500 var(--fs-label)/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; }
