@@ -90,6 +90,15 @@ export function trackProductClicked(product: Product, context: ProductListContex
   capture('Product Clicked', { ...productProperties(product), list_id: context.listId, position });
 }
 
+export function trackHeroNavigated(product: Product, direction: 'next' | 'previous', position: number, total: number) {
+  capture('Hero Arrangement Changed', { ...productProperties(product), direction, position, total });
+}
+
+/** Discover or add-to-bag on the home hero. */
+export function trackHeroClicked(product: Product, action: 'discover' | 'add_to_bag', position: number) {
+  capture('Hero CTA Clicked', { ...productProperties(product), action, position });
+}
+
 export function trackProductSizeSelected(product: Product, size: ProductSize) {
   capture('Product Size Selected', productProperties(product, size));
 }

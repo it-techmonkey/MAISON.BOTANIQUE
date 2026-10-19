@@ -1,4 +1,5 @@
-import HomeHero from '@/components/store/HomeHero';
+import Turntable from '@/components/Turntable';
+import HeroPromises from '@/components/store/HeroPromises';
 import HomeSections from '@/components/store/HomeSections';
 import { ResidencesBand } from '@/components/store/Residences';
 import '@/styles/home.css';
@@ -12,7 +13,8 @@ export const revalidate = 300;
 export default function HomePage() {
   return (
     <>
-      <HomeHero />
+      <Turntable />
+      <HeroPromises />
       <HomeSections />
       <ResidencesBand />
     </>
