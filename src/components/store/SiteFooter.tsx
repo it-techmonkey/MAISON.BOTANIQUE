@@ -18,7 +18,7 @@ const FOOTER = {
     bloomLine: 'Be the first to know about new collections and offers.',
     whatsapp: 'WhatsApp', language: 'العربية', top: 'Back to top',
     notice: 'Prices are in AED. Delivery and any taxes are confirmed at checkout.',
-    preview: 'Preview for review. Prices are samples and payments are not live.',
+    preview: 'Preview for review. Payments are not live.',
   },
   ar: {
     shop: 'تسوّق', occasions: 'المناسبات', help: 'المساعدة', bloom: 'ابقَ في أجواء الزهور',
@@ -26,7 +26,7 @@ const FOOTER = {
     bloomLine: 'كن أول من يعرف عن المجموعات والعروض الجديدة.',
     whatsapp: 'واتساب', language: 'English', top: 'العودة للأعلى',
     notice: 'الأسعار بالدرهم الإماراتي. يُؤكَّد التوصيل وأي ضرائب عند الدفع.',
-    preview: 'معاينة للمراجعة. الأسعار تجريبية والدفع غير مفعل.',
+    preview: 'معاينة للمراجعة. الدفع غير مفعل.',
   },
 };
 

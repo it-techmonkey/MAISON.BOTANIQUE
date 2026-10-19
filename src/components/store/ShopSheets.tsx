@@ -22,7 +22,7 @@ const copy = {
   en: {
     close: 'Close', bag: 'Your bag', bagEmpty: 'Your bag is waiting for a little beauty.',
     bagEmptyDetail: 'Explore the collection and add a flower moment.',
-    backToShop: 'Explore the collection', sample: 'Sample price',
+    backToShop: 'Explore the collection',
     presentation: 'Size', giftNote: 'Gift note', notePlaceholder: 'Your message, if you wish…',
     date: 'When should it arrive?',
     dateHint: 'Book today or up to 60 days ahead. One delivery date and time for the whole order.',
@@ -32,7 +32,7 @@ const copy = {
     day_closed: "We aren't delivering on that day. Please choose another.",
     deliveryLine: 'Arrives', askAbout: 'Ask about this bouquet on WhatsApp',
     helpOrder: 'Questions? Chat with us on WhatsApp', orderWhatsapp: 'Order on WhatsApp instead',
-    addBag: 'Add to bag', subtotal: 'Subtotal', sampleSubtotal: 'Sample subtotal', delivery: 'Delivery',
+    addBag: 'Add to bag', subtotal: 'Subtotal', delivery: 'Delivery',
     deliveryLater: 'Free in JVC · AED 30 elsewhere in Dubai · AED 40 elsewhere in the UAE',
     offerLine: 'Welcome offer: 25% off your first order with your code at checkout.',
     included: "What's included", alsoLike: 'You may also like',
@@ -42,7 +42,7 @@ const copy = {
     backBag: 'Back to bag', remove: 'Remove', quantity: 'Quantity',
     pending: 'Connecting to checkout…', updating: 'Updating your bag…', error: 'Checkout could not open. Please try again.',
     cartError: 'Your bag could not be updated. Please try again.',
-    each: 'each', noteLine: 'Gift note', conceptTag: 'Concept catalog / provisional product',
+    each: 'each', noteLine: 'Gift note',
     pictured: (size: string) => `Pictured: ${size}`, asPictured: 'As pictured', yourCard: 'Your card', handwritten: 'Handwritten in our studio',
     cardEmpty: 'Write what you would say if you were there.', signedAs: 'Signed', secret: 'Keep it a secret', secretSign: 'Someone who adores you',
     dubai: 'Dubai', anotherDay: 'Another day', noPrices: 'No prices travel with the gift.',
@@ -54,7 +54,7 @@ const copy = {
   ar: {
     close: 'إغلاق', bag: 'حقيبتك', bagEmpty: 'حقيبتك تنتظر لمسة من الجمال.',
     bagEmptyDetail: 'تصفّح المجموعة وأضف لحظة من الزهور.',
-    backToShop: 'تصفّح المجموعة', sample: 'سعر تجريبي',
+    backToShop: 'تصفّح المجموعة',
     presentation: 'الحجم', giftNote: 'رسالة الإهداء', notePlaceholder: 'رسالتك إن رغبت…',
     date: 'متى تريد أن تصل؟',
     dateHint: 'احجز لليوم أو حتى ٦٠ يوماً مقدماً. موعد توصيل واحد للطلب كله.',
@@ -64,7 +64,7 @@ const copy = {
     day_closed: 'لا نوصّل في هذا اليوم. يرجى اختيار يوم آخر.',
     deliveryLine: 'موعد الوصول', askAbout: 'استفسر عن هذه الباقة عبر واتساب',
     helpOrder: 'لديك سؤال؟ تحدّث معنا عبر واتساب', orderWhatsapp: 'اطلب عبر واتساب بدلاً من ذلك',
-    addBag: 'أضف إلى الحقيبة', subtotal: 'المجموع الفرعي', sampleSubtotal: 'المجموع التجريبي', delivery: 'التوصيل',
+    addBag: 'أضف إلى الحقيبة', subtotal: 'المجموع الفرعي', delivery: 'التوصيل',
     deliveryLater: 'مجاني في JVC، و٣٠ درهماً في بقية دبي، و٤٠ درهماً في بقية الإمارات',
     offerLine: 'عرض الترحيب: خصم ٢٥٪ على طلبك الأول برمزك عند الدفع.',
     included: 'ما يتضمنه', alsoLike: 'قد يعجبك أيضاً',
@@ -74,7 +74,7 @@ const copy = {
     backBag: 'العودة إلى الحقيبة', remove: 'إزالة', quantity: 'الكمية',
     pending: 'جارٍ فتح صفحة الدفع…', updating: 'جارٍ تحديث حقيبتك…', error: 'تعذّر فتح صفحة الدفع. يرجى المحاولة مجددًا.',
     cartError: 'تعذّر تحديث حقيبتك. يرجى المحاولة مجدداً.',
-    each: 'للوحدة', noteLine: 'رسالة الإهداء', conceptTag: 'مجموعة تجريبية / منتج مبدئي',
+    each: 'للوحدة', noteLine: 'رسالة الإهداء',
     pictured: (size: string) => `في الصورة: ${size}`, asPictured: 'كما في الصورة', yourCard: 'بطاقتك', handwritten: 'تُكتب بخط اليد في مشغلنا',
     cardEmpty: 'اكتب ما كنت ستقوله لو كنت هناك.', signedAs: 'التوقيع', secret: 'أبقِها مفاجأة', secretSign: 'شخص يحبك',
     dubai: 'دبي', anotherDay: 'يوم آخر', noPrices: 'لا تُرفق الأسعار مع الهدية.',
@@ -202,7 +202,7 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
   const composition = (ar ? product.compositionAr : product.composition) ?? [];
   const field = product.custom;
   const customMissing = Boolean(field) && !custom.trim();
-  const number = product.no ? `N° ${String(product.no).padStart(3, '0')}` : (live ? '' : t.conceptTag);
+  const number = product.no ? `N° ${String(product.no).padStart(3, '0')}` : '';
   const name = ar ? product.nameAr : product.name;
   const askLink = whatsappLink(whatsappMessage.product(ar, name, ar ? chosen.nameAr : chosen.name));
 
@@ -489,7 +489,7 @@ function Bag() {
           <div className="ll-review-symbol" aria-hidden="true">MB</div>
           <p className="ll-review-lead">{t.reviewIntro}</p>
           <p>{t.reviewNotice}</p>
-          <div className="ll-review-total"><span>{t.sampleSubtotal}</span><strong>{formatAED(subtotal.amount, ar)}</strong></div>
+          <div className="ll-review-total"><span>{t.subtotal}</span><strong>{formatAED(subtotal.amount, ar)}</strong></div>
           {orderLink && <a className="ll-shop-primary wa-order" href={orderLink} target="_blank" rel="noopener noreferrer"><WhatsAppIcon /><span>{t.orderWhatsapp}</span></a>}
           <button className="ll-shop-secondary" type="button" onClick={() => setReview(false)}>{t.backBag}</button>
         </div>
@@ -535,7 +535,7 @@ function Bag() {
         </div>
         <div className="ll-cart-footer">
           <div className="ll-cart-totals">
-            <div><span>{live ? t.subtotal : t.sampleSubtotal}</span><strong>{formatAED(subtotal.amount, ar)}</strong></div>
+            <div><span>{t.subtotal}</span><strong>{formatAED(subtotal.amount, ar)}</strong></div>
             {summary && <div><span>{t.deliveryLine}</span><span data-ph-mask>{summary}</span></div>}
             <div><span>{t.delivery}</span><span>{t.deliveryLater}</span></div>
           </div>
@@ -545,7 +545,6 @@ function Bag() {
           </button>
           {(error || cart.error) && <p className="ll-shop-error" role="alert">{error || t.cartError}</p>}
           {orderLink && <a className="wa-inline ll-cart-wa" href={orderLink} target="_blank" rel="noopener noreferrer"><WhatsAppIcon />{t.orderWhatsapp}</a>}
-          {!live && <span className="ll-cart-disclaimer">{t.conceptTag} · {t.sample}</span>}
         </div>
       </>}
     </DialogShell>
