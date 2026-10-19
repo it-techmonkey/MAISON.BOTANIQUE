@@ -65,7 +65,7 @@ const copy = {
     deliveryLine: 'موعد الوصول', askAbout: 'استفسر عن هذه الباقة عبر واتساب',
     helpOrder: 'لديك سؤال؟ تحدّث معنا عبر واتساب', orderWhatsapp: 'اطلب عبر واتساب بدلاً من ذلك',
     addBag: 'أضف إلى الحقيبة', subtotal: 'المجموع الفرعي', sampleSubtotal: 'المجموع التجريبي', delivery: 'التوصيل',
-    deliveryLater: 'مجاني في JVC · ٣٠ درهماً في بقية دبي · ٤٠ درهماً في بقية الإمارات',
+    deliveryLater: 'مجاني في JVC، و٣٠ درهماً في بقية دبي، و٤٠ درهماً في بقية الإمارات',
     offerLine: 'عرض الترحيب: خصم ٢٥٪ على طلبك الأول برمزك عند الدفع.',
     included: 'ما يتضمنه', alsoLike: 'قد يعجبك أيضاً',
     previewCheckout: 'معاينة الدفع', secureCheckout: 'متابعة الدفع الآمن',
