@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { slugify } from '@/lib/format';
 import type { Bilingual } from '@/lib/site';
 import { T } from './StoreProvider';
 
@@ -89,12 +90,12 @@ export function InfoPage({ hero, sections, draft = false, asQuestions = false }:
       )}
       <div className={asQuestions ? 'faq' : 'info-sections'}>
         {sections.map((section) => asQuestions ? (
-          <details key={section.title.en}>
+          <details key={section.title.en} id={slugify(section.title.en)}>
             <summary><Bi text={section.title} /></summary>
             {section.paragraphs.map((paragraph) => <p key={paragraph.en}><Bi text={paragraph} /></p>)}
           </details>
         ) : (
-          <section key={section.title.en}>
+          <section key={section.title.en} id={slugify(section.title.en)}>
             <h2><Bi text={section.title} /></h2>
             <div>{section.paragraphs.map((paragraph) => <p key={paragraph.en}><Bi text={paragraph} /></p>)}</div>
           </section>

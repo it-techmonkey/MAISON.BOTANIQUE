@@ -3,7 +3,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
-import { liveCatalogGroups } from '@/lib/catalog-groups';
+import { BUDGET_BANDS, liveCatalogGroups } from '@/lib/catalog-groups';
+import { OFFER_CODE } from '@/lib/site';
+import { SearchIcon } from './icons';
 import { useStore } from './StoreProvider';
 
 /** The storefront wordmark: small MAISON over a large BOTANIQUE. */
@@ -12,32 +14,30 @@ export function Logo() {
 }
 
 /**
- * A link into the home collection: `#roses` or `#occasion/birthday`. On the
- * home page it is a plain hash link (the collection listens for hash changes);
- * elsewhere it navigates to the home page with the hash.
+ * A link into the shop's collection: `#roses`, `#occasion/birthday`, `#budget/b2`.
+ * On /shop it is a plain hash link (the collection listens for hash changes);
+ * elsewhere it navigates to /shop with the hash.
  */
-export function CollectionLink({ hash, onClick, children, className }: { hash: string; onClick?: () => void; children: ReactNode; className?: string }) {
-  const onHome = usePathname() === '/';
-  return onHome
-    ? <a className={className} href={`#${hash}`} onClick={onClick}>{children}</a>
-    : <Link className={className} href={`/#${hash}`} onClick={onClick}>{children}</Link>;
+export function CollectionLink({ hash, onClick, children, className, 'aria-label': ariaLabel }: { hash: string; onClick?: () => void; children: ReactNode; className?: string; 'aria-label'?: string }) {
+  const onShop = usePathname() === '/shop';
+  return onShop
+    ? <a className={className} href={`#${hash}`} onClick={onClick} aria-label={ariaLabel}>{children}</a>
+    : <Link className={className} href={`/shop#${hash}`} onClick={onClick} aria-label={ariaLabel}>{children}</Link>;
 }
 
-// The welcome offer runs above the header; the whole ribbon opens the sign-up.
-const OFFER = {
-  en: ['Welcome offer · 25% + 10% off your first order', 'Same-day delivery across the UAE', 'Delivery AED 30 in Dubai · AED 40 elsewhere in the UAE'],
-  ar: ['عرض الترحيب · خصم ٢٥٪ + ١٠٪ على طلبك الأول', 'توصيل في اليوم نفسه في جميع أنحاء الإمارات', 'التوصيل ٣٠ درهماً في دبي · ٤٠ درهماً في بقية الإمارات'],
-};
-
+// The welcome offer sits above the header: one short, focused message. The
+// whole bar opens the sign-up.
 function OfferBar() {
   const { ar, openOffer } = useStore();
-  const items = OFFER[ar ? 'ar' : 'en'];
-  const claim = ar ? 'احصل على رمزك ←' : 'Claim your code →';
-  // Rendered twice so the loop is seamless; screen readers get the copy once from the label.
-  const run = <span className="offer-bar__run" aria-hidden="true">{items.map((item) => <span key={item}>{item}</span>)}<span className="offer-bar__claim">{claim}</span></span>;
   return (
-    <button type="button" className="offer-bar" data-track-location="offer_bar" onClick={openOffer} aria-label={`${items.join('. ')}. ${claim}`}>
-      <span className="offer-bar__track">{run}{run}</span>
+    <button type="button" className="offer-bar" data-track-location="offer_bar" onClick={openOffer}
+      aria-label={ar ? `عرض الترحيب: خصم ٢٥٪ على طلبك الأول. استخدم الرمز ${OFFER_CODE}` : `Welcome offer: 25% off your first order. Use code ${OFFER_CODE}`}>
+      <span className="offer-bar__text" aria-hidden="true">
+        <span className="offer-bar__lead">{ar ? 'عرض الترحيب · ' : 'Welcome offer · '}</span>
+        <span>{ar ? 'خصم ٢٥٪ على طلبك الأول' : '25% off your first order'}</span>
+        <span className="offer-bar__sep">|</span>
+        <span>{ar ? 'استخدم الرمز ' : 'Use code '}<strong dir="ltr">{OFFER_CODE}</strong></span>
+      </span>
     </button>
   );
 }
@@ -51,7 +51,7 @@ export default function SiteHeader() {
   const [occasionsOpen, setOccasionsOpen] = useState(false);
   const { groups, occasions, findGroup } = useMemo(() => liveCatalogGroups(products), [products]);
   const kind = (value: string) => groups.filter((group) => group.kind === value);
-  const direct = ['roses', 'grand-gestures', 'under-300'].map(findGroup).filter((group) => group !== null);
+  const direct = ['roses', 'gifts', 'grand-gestures', 'under-300'].map(findGroup).filter((group) => group !== null);
 
   // Over the home hero the header stays transparent for the whole pinned
   // scene, and takes its paper background once the hero has moved past it.
@@ -59,7 +59,7 @@ export default function SiteHeader() {
     let queued = false;
     const update = () => {
       queued = false;
-      const hero = document.getElementById('turntable');
+      const hero = document.getElementById('home-hero');
       setScrolled(hero ? hero.getBoundingClientRect().bottom <= 150 : window.scrollY > 24);
     };
     const onScroll = () => {
@@ -126,12 +126,12 @@ export default function SiteHeader() {
                   <h2>{t('By format', 'حسب الشكل')}</h2>
                   {[...kind('format'), ...kind('curated')].map(groupLink)}
                   <h2>{t('By budget', 'حسب الميزانية')}</h2>
-                  {kind('budget').map(groupLink)}
+                  {BUDGET_BANDS.map((band) => <CollectionLink key={band.id} hash={`budget/${band.id}`} onClick={closeMenus}>{label(band)}</CollectionLink>)}
                 </div>
                 <CollectionLink className="nav-shop__all" hash="shop" onClick={closeMenus}>{t('Shop everything', 'تسوّق الكل')} →</CollectionLink>
               </div>
             </div>
-            {direct.slice(0, 1).map(groupLink)}
+            {direct.filter((group) => group.id === 'roses').map(groupLink)}
             <div className="nav-occasions">
               <button type="button" aria-expanded={occasionsOpen} aria-controls="nav-occasions-list" onClick={() => { setOccasionsOpen(!occasionsOpen); setShopOpen(false); }}>
                 {t('Occasions', 'المناسبات')} <span aria-hidden="true">▾</span>
@@ -140,7 +140,7 @@ export default function SiteHeader() {
                 {occasions.map((occasion) => <CollectionLink key={occasion.id} hash={`occasion/${occasion.id}`} onClick={closeMenus}>{label(occasion)}</CollectionLink>)}
               </div>
             </div>
-            {direct.slice(1).map(groupLink)}
+            {direct.filter((group) => group.id !== 'roses').map(groupLink)}
           </div>
           <div className="site-nav__secondary">
             <Link href="/services">{t('Events & gifting', 'المناسبات والإهداء')}</Link>
@@ -150,7 +150,9 @@ export default function SiteHeader() {
           </div>
         </nav>
         <div className="site-header__actions">
-          <CollectionLink className="header-action search-link" hash="search" onClick={closeMenus}>{t('Search', 'بحث')}</CollectionLink>
+          <CollectionLink className="header-action search-link" hash="search" onClick={closeMenus} aria-label={t('Search the collection', 'ابحث في المجموعة')}>
+            <SearchIcon />
+          </CollectionLink>
           <button className="header-action" type="button" onClick={() => setLocale(ar ? 'en' : 'ar')}
             aria-label={ar ? 'Switch to English' : 'التبديل إلى العربية'}>
             {ar ? 'EN' : 'عربي'}

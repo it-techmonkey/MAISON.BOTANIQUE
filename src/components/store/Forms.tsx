@@ -103,13 +103,35 @@ function Honeypot() {
   return <div className="honeypot" aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>;
 }
 
-export function NewsletterForm() {
+/** `compact`: the footer's "Stay in bloom" form, an email and an arrow. Subscribing is the consent, stated beside the button. */
+export function NewsletterForm({ compact = false }: { compact?: boolean }) {
   const { t } = useStore();
   const id = useId();
   const { status, submit, onFocus } = useSubmit('newsletter');
 
   if (status.state === 'sent') {
     return <p className="newsletter__done" role="status">{t('Thank you. Something lovely is on its way, now and then.', 'شكراً لك. ستصلك أشياء جميلة بين حين وآخر.')}</p>;
+  }
+  if (compact) {
+    return (
+      <form className="newsletter newsletter--compact" onSubmit={submit} onFocus={onFocus} noValidate>
+        <div className="newsletter__row">
+          <label className="sr-only" htmlFor={`${id}-email`}>{t('Email address', 'البريد الإلكتروني')}</label>
+          <input id={`${id}-email`} name="email" type="email" autoComplete="email" required
+            placeholder={t('Your email', 'بريدك الإلكتروني')} dir="ltr" />
+          <button type="submit" disabled={status.state === 'sending'} aria-label={t('Subscribe', 'اشترك')}>
+            <span aria-hidden="true">{status.state === 'sending' ? '…' : (<span className="flip-rtl">→</span>)}</span>
+          </button>
+        </div>
+        <input type="checkbox" name="consent" defaultChecked hidden />
+        <p className="newsletter__note">{t(
+          'By subscribing you agree to receive emails from Maison Botanique. Unsubscribe at any time.',
+          'باشتراكك توافق على تلقي رسائل من ميزون بوتانيك. يمكنك إلغاء الاشتراك في أي وقت.',
+        )}</p>
+        <Honeypot />
+        <FormStatus status={status} />
+      </form>
+    );
   }
   return (
     <form className="newsletter" onSubmit={submit} onFocus={onFocus} noValidate>

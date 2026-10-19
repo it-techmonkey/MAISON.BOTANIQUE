@@ -1,19 +1,14 @@
 /* Site chrome: offer ribbon, header additions, add-to-bag confirmation and footer.
    Uses the shared type scale from global.css. */
 
-.offer-bar { position: fixed; inset: 0 0 auto; z-index: 110; height: var(--offer-h); width: 100%; padding: 0; overflow: hidden; border: 0; background: #673c43; color: #f7f4ee; display: flex; align-items: center; cursor: pointer; }
+.offer-bar { position: fixed; inset: 0 0 auto; z-index: 110; height: var(--offer-h); width: 100%; padding: 0 16px; overflow: hidden; border: 0; background: #673c43; color: #f7f4ee; display: flex; align-items: center; justify-content: center; cursor: pointer; }
 .offer-bar:focus-visible { outline: 2px solid #f7f4ee; outline-offset: -4px; }
-.offer-bar__track { display: flex; width: max-content; animation: offer-run 42s linear infinite; }
-.offer-bar:hover .offer-bar__track, .offer-bar:focus-visible .offer-bar__track { animation-play-state: paused; }
-.offer-bar__run { display: flex; flex: 0 0 auto; align-items: center; }
-.offer-bar__run span { padding-inline: 30px; font: 600 var(--fs-label)/1 var(--font-body); letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; position: relative; }
-.offer-bar__run span::after { content: '✦'; position: absolute; inset-inline-end: -5px; font-size: 8px; letter-spacing: 0; color: #e7c9a0; top: 1px; }
-.offer-bar__run .offer-bar__claim { margin-inline: 6px 30px; padding: 6px 12px; background: #f7f4ee; color: #673c43; }
-.offer-bar__run .offer-bar__claim::after { display: none; }
-[dir='rtl'] .offer-bar__track { animation-name: offer-run-rtl; }
-[dir='rtl'] .offer-bar__run span { font-family: var(--font-arabic); letter-spacing: 0; text-transform: none; font-size: 13.5px; }
-@keyframes offer-run { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@keyframes offer-run-rtl { from { transform: translateX(0); } to { transform: translateX(50%); } }
+.offer-bar__text { display: inline-flex; align-items: center; gap: 12px; font: 600 var(--fs-label)/1 var(--font-body); letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; }
+.offer-bar__sep { opacity: .55; }
+.offer-bar__text strong { font-weight: 700; letter-spacing: .24em; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+.offer-bar:hover .offer-bar__text strong { color: #e7c9a0; }
+[dir='rtl'] .offer-bar__text { font-family: var(--font-arabic); letter-spacing: 0; text-transform: none; font-size: 13.5px; }
+[dir='rtl'] .offer-bar__text strong { letter-spacing: .08em; }
 
 .nav-occasions { position: relative; }
 .nav-occasions > button { border: 0; background: transparent; color: inherit; padding: 10px 0; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
@@ -38,7 +33,8 @@
 [dir='rtl'] .nav-shop > button { font-family: var(--font-arabic); letter-spacing: 0; font-size: 14px; }
 [dir='rtl'] .nav-shop__col h2, [dir='rtl'] .primary-nav .nav-shop__all { font-family: var(--font-arabic); letter-spacing: 0; text-transform: none; font-size: 14px; }
 [dir='rtl'] .primary-nav .nav-shop__col a { font-family: var(--font-arabic); font-size: 16px; }
-.search-link { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; }
+.search-link { display: inline-flex; align-items: center; padding: 8px 0; }
+.search-link .mb-icon { width: 20px; height: 20px; }
 [dir='rtl'] .nav-occasions > button, [dir='rtl'] .search-link { font-family: var(--font-arabic); letter-spacing: 0; font-size: 14px; }
 [dir='rtl'] .primary-nav .nav-occasions__list a { font-family: var(--font-arabic); }
 
@@ -67,6 +63,20 @@
 .mb-footer__notice { font-style: italic; }
 .mb-footer__actions { display: flex; gap: 20px; }
 .mb-footer__actions button { border: 0; background: none; padding: 0; font: 500 var(--fs-label)/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--ink); }
+.mb-footer__social { display: flex; gap: 10px; margin-top: 18px; }
+.mb-footer__brand .mb-footer__social a { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); font: 500 15px/1 var(--font-body); }
+.mb-footer__brand .mb-footer__social a:hover { background: var(--ink); color: var(--paper); text-decoration: none; }
+.mb-footer__social svg { width: 18px; height: 18px; }
+.mb-footer .newsletter { gap: 10px; }
+.mb-footer .newsletter__row { border: 1px solid rgba(38, 51, 43, .35); background: var(--paper); }
+.mb-footer .newsletter input[type='email'] { width: 100%; padding: 12px 14px; font-size: 14px; color: var(--ink); }
+.mb-footer .newsletter input::placeholder { color: #6b7568; }
+.mb-footer .newsletter button { padding: 0 16px; background: var(--ink); color: var(--paper); font-size: 16px; }
+.mb-footer .newsletter button:hover { color: var(--mb-blush); }
+.mb-footer .newsletter__note { font-size: 11px; line-height: 1.5; color: #5d6859; }
+.mb-footer .newsletter__done { color: var(--ink); font-size: 20px; }
+.mb-footer__actions { flex-wrap: wrap; align-items: center; }
+.mb-footer__actions a { font-size: 12px; }
 [dir='rtl'] .mb-footer :is(h2, a, p, button) { font-family: var(--font-arabic); letter-spacing: 0; text-transform: none; }
 [dir='rtl'] .mb-footer h2 { font-size: 14px; font-weight: 600; }
 [dir='rtl'] .mb-footer :is(a, p) { font-size: 14px; }
@@ -82,18 +92,14 @@
   .nav-occasions > button { padding: 13px 4px; font: 400 30px/1.1 var(--font-display); letter-spacing: -.025em; text-transform: none; text-align: start; }
   .nav-occasions__list { position: static; display: flex; min-width: 0; padding: 0 0 8px 12px; border: 0; box-shadow: none; background: none; }
   .nav-occasions__list:not(.is-open) { display: none; }
-  .mb-footer__cols { grid-template-columns: 1fr 1fr; }
-  .mb-footer__brand { grid-column: 1 / -1; }
+  .mb-footer__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mb-footer__brand, .mb-footer__cols > :last-child { grid-column: 1 / -1; }
 }
 @media (max-width: 640px) {
   :root { --offer-h: 34px; }
-  .search-link { display: none; }
-  .offer-bar__run span { padding-inline: 24px; font-size: 10.5px; }
+  .offer-bar__text { gap: 8px; font-size: 10px; letter-spacing: .12em; }
+  .offer-bar__lead { display: none; }
   .bag-toast { inset-inline: 16px; width: auto; bottom: calc(68px + env(safe-area-inset-bottom)); grid-template-columns: 44px 1fr auto; }
   .bag-toast img { width: 44px; height: 44px; }
   .bag-toast .bag-toast__close { display: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .offer-bar__track { animation: none; }
-  .offer-bar__run + .offer-bar__run { display: none; }
 }

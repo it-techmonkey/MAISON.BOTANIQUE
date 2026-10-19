@@ -1,6 +1,5 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { isWhatsappOpen, whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import { useStore } from './StoreProvider';
@@ -18,9 +17,7 @@ export function WhatsAppIcon() {
 export default function WhatsAppButton() {
   const { ar } = useStore();
   const t = COPY[ar ? 'ar' : 'en'];
-  const pathname = usePathname();
   const [open, setOpen] = useState(true);
-  const [raised, setRaised] = useState(false);
 
   useEffect(() => {
     setOpen(isWhatsappOpen());
@@ -28,21 +25,10 @@ export default function WhatsAppButton() {
     return () => window.clearInterval(timer);
   }, []);
 
-  // The home hero has its own arrows in the bottom corner.
-  useEffect(() => {
-    const hero = document.getElementById('turntable');
-    if (!hero || typeof IntersectionObserver === 'undefined') { setRaised(false); return undefined; }
-    const observer = new IntersectionObserver(([entry]) => {
-      setRaised(entry.isIntersecting && entry.boundingClientRect.bottom > window.innerHeight - 120);
-    }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
-    observer.observe(hero);
-    return () => observer.disconnect();
-  }, [pathname]);
-
   const href = whatsappLink(whatsappMessage.general(ar));
   if (!href) return null;
   return (
-    <a className={`wa-float${raised ? ' wa-float--raised' : ''}`} data-track-location="whatsapp_float" href={href} target="_blank" rel="noopener noreferrer"
+    <a className="wa-float" data-track-location="whatsapp_float" href={href} target="_blank" rel="noopener noreferrer"
       aria-label={`${t.label} · ${open ? t.open : t.closed}`}>
       <WhatsAppIcon />
       <span className="wa-float__text"><strong>{t.label}</strong><em>{open ? t.open : t.closed}</em></span>

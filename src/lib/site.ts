@@ -13,6 +13,20 @@ export interface Bilingual {
  */
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://maisonbotaniqueflowers.com').replace(/\/+$/, '');
 
+/** The welcome offer's discount code (create it in Shopify Discounts), shown in the banner and after the sign-up. */
+export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'BLOOM25').trim();
+
+/** The seven emirates, where same-day delivery is offered. */
+export const EMIRATES: Bilingual[] = [
+  { en: 'Dubai', ar: 'دبي' },
+  { en: 'Abu Dhabi', ar: 'أبوظبي' },
+  { en: 'Sharjah', ar: 'الشارقة' },
+  { en: 'Ajman', ar: 'عجمان' },
+  { en: 'Umm Al Quwain', ar: 'أم القيوين' },
+  { en: 'Ras Al Khaimah', ar: 'رأس الخيمة' },
+  { en: 'Fujairah', ar: 'الفجيرة' },
+];
+
 export const SITE = {
   name: 'Maison Botanique',
   tagline: { en: 'Thoughtfully in bloom.', ar: 'بعناية، في أبهى تفتّح.' },

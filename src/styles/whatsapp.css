@@ -23,7 +23,5 @@
   .wa-float:hover { transform: none; }
 }
 
-/* Clear of the home hero's arrows, and of the phone buy bar on product pages. */
-.wa-float--raised, body.has-sticky-buy .wa-float { bottom: calc(108px + env(safe-area-inset-bottom)); }
-/* On phones the hero fills the screen with its own controls: the button returns once it scrolls away. */
-@media (max-width: 640px) { .wa-float--raised { display: none; } }
+/* Clear of the phone buy bar on product pages. */
+body.has-sticky-buy .wa-float { bottom: calc(108px + env(safe-area-inset-bottom)); }

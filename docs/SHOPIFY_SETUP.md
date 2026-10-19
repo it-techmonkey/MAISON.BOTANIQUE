@@ -350,7 +350,7 @@ Use the development store, or the production store with test payments turned on:
 - [ ] Products, prices, sold-out sizes, filters, search and the hero gallery match Shopify, in English and Arabic.
 - [ ] Add two sizes of a product with different gift notes. They stay separate lines, and quantities and removal work.
 - [ ] Reload the page: the bag is still there. Open the site in another browser: the bag is empty (carts belong to a browser).
-- [ ] Checkout totals, VAT, delivery fees (AED 30 Dubai, AED 40 elsewhere in the UAE) and the `MAISON25` discount are correct. Arabic checkout opens in Arabic.
+- [ ] Checkout totals, VAT, delivery fees (AED 30 Dubai, AED 40 elsewhere in the UAE) and the `BLOOM25` discount are correct. Arabic checkout opens in Arabic.
 - [ ] Delivery: the product page and the bag require a day and a window; today's windows that start within 2 hours are unavailable; checkout is blocked until one is chosen.
 - [ ] Place a test order. In the admin: the order is attributed to **Headless**, *Gift message* appears on the item, and *Delivery date* and *Delivery time* appear under Additional details, in the confirmation email and on the packing slip.
 - [ ] Customer accounts: Account → Sign in sends a code by email, returns to `/account` showing orders and addresses, checkout opens signed in, and Sign out returns to the home page.
@@ -419,7 +419,7 @@ Every price already shows a strikethrough price 10% above it (`STRIKETHROUGH_DIS
 
 The offer ribbon above the header and the pop-up on arrival ask for a WhatsApp number or an email. The sign-up is saved in Shopify as a newsletter customer: an email is subscribed to email marketing, a WhatsApp number to SMS marketing, and both are tagged `newsletter`. The visitor then sees the code. The code itself must exist in Shopify:
 
-1. **Discounts → Create discount → Amount off products**: code **`MAISON25`**, **25%**, all products.
+1. **Discounts → Create discount → Amount off products**: code **`BLOOM25`**, **25%**, all products.
 2. **Usage limits:** **one use per customer**. There is no limit on the total number of uses, and no free gift: the site no longer mentions a first-100 limit or a candle.
 3. Set the start date (and an end date if the offer has one), then **Save**.
 4. If you choose a different code, set **`NEXT_PUBLIC_LAUNCH_OFFER_CODE`** on the host and redeploy.

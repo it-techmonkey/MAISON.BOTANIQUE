@@ -21,11 +21,11 @@ With the Shopify values empty, the site runs the design preview: the exported ca
 | Path | Purpose |
 | --- | --- |
 | `src/app/(store)/layout.tsx` | Shared store shell: loads the catalog once (ISR, refreshed every 5 minutes or by webhook), header, footer, bag, language. |
-| `src/app/(store)/` | Pages: home, `/shop`, `/shop/[handle]`, `/collections`, `/collections/[handle]`, `/occasions`, `/occasions/[occasion]`, `/services`, `/atelier`, `/contact`, `/delivery`, `/faq`, `/privacy`, `/terms`. |
+| `src/app/(store)/` | Pages: home, `/shop`, `/shop/[handle]`, `/collections`, `/collections/[handle]`, `/occasions`, `/occasions/[occasion]`, `/services`, `/atelier`, `/contact`, `/delivery`, `/residences`, `/faq`, `/privacy`, `/terms`. |
 | `src/app/api/enquiry/route.ts`, `src/lib/shopify/forms.ts` | Newsletter, contact and enquiry forms, stored in Shopify (customers + "Website enquiry" metaobjects) through a forms-only Admin token. Without it the forms offer a prefilled email. |
 | `src/app/api/revalidate/route.ts` | Shopify webhook target; verifies the HMAC signature and refreshes the catalog cache. |
 | `src/components/store/` | Store UI: provider (locale, cart, quick-add, toast, offer), header with the offer ribbon and Shop menu, footer, `CollectionBrowser` (occasion tiles, tabs, search, Refine drawer, sort), `ShopSheets` (quick-add sheet with card preview, bag with delivery picker), `LaunchOffer`, `WhatsAppButton`, product cards, forms, page blocks. |
-| `src/components/Turntable.tsx` | Pinned home hero; falls back to a static hero when no products are featured. |
+| `src/components/store/HomeHero.tsx`, `HomeSections.tsx`, `Residences.tsx` | Home page: hero with two calls to action and four promises, Shop by Occasion and Budget tiles, the Most loved carousel, and the residential-building band that leads to `/residences`. |
 | `src/lib/site.ts`, `src/lib/catalog-groups.ts` | Non-catalog content (occasions, services, contact details) and the shop groups (rooms, flowers, formats, budgets) computed from the live catalog. |
 | `src/lib/delivery.ts`, `src/lib/whatsapp.ts` | Delivery windows and cutoff (Dubai time), and click-to-chat links and opening hours. |
 | `src/lib/shopify/catalog.ts` | Loads every published product and collection from the Storefront API, including the `maison.*` storefront metafields and tags. |

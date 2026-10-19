@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { trackFormError, trackFormStarted, trackFormSubmitted } from '@/lib/analytics/track';
 import { uaeMobile } from '@/lib/enquiry';
+import { OFFER_CODE } from '@/lib/site';
 import { useStore } from './StoreProvider';
 
 // Welcome offer: 25% off with the code, on top of the 10% already off every piece.
 // The sign-up is saved in Shopify as a newsletter customer (email or SMS
 // marketing consent, src/lib/shopify/forms.ts), and the visitor sees the
-// shared code. Create the code in Shopify (Discounts) with a 100-use limit and
-// one use per customer; set NEXT_PUBLIC_LAUNCH_OFFER_CODE if it isn't MAISON25.
-const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'MAISON25').trim();
+// shared code. Create the code in Shopify (Discounts) with no total-use limit and
+// one use per customer; set NEXT_PUBLIC_LAUNCH_OFFER_CODE if it isn't BLOOM25.
 const STORAGE_KEY = 'mb-launch-offer-v1';
 const SNOOZE_MS = 3 * 24 * 60 * 60 * 1000;
 const OPEN_DELAY_MS = 1500;

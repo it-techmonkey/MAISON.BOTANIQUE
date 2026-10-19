@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { trackProductClicked, trackProductListViewed, trackProductsSearched } from '@/lib/analytics/track';
-import { GROUP_ALIASES, TAB_IDS, liveCatalogGroups, type LiveCatalogGroups } from '@/lib/catalog-groups';
+import { BUDGET_BANDS, GROUP_ALIASES, TAB_IDS, budgetOf, liveCatalogGroups, type LiveCatalogGroups } from '@/lib/catalog-groups';
 import type { Product } from '@/lib/types';
 import { useStore } from './StoreProvider';
 
@@ -10,17 +10,12 @@ const PAGE = 24;
 /** List and search events wait until the visitor stops typing or clicking. */
 const SETTLE_MS = 900;
 
-const BUDGETS = [
-  { id: 'b1', test: (v: number) => v < 300 }, { id: 'b2', test: (v: number) => v >= 300 && v < 500 },
-  { id: 'b3', test: (v: number) => v >= 500 && v < 1000 }, { id: 'b4', test: (v: number) => v >= 1000 },
-] as const;
 const STEMS = [
   { id: 's1', test: (n: number | null) => n != null && n <= 25 }, { id: 's2', test: (n: number | null) => n != null && n > 25 && n <= 60 },
   { id: 's3', test: (n: number | null) => n != null && n > 60 },
 ] as const;
 const SORTS = ['featured', 'low', 'high'] as const;
 type Sort = typeof SORTS[number];
-type BudgetId = typeof BUDGETS[number]['id'];
 type StemsId = typeof STEMS[number]['id'];
 
 interface State { group: string; occasion: string[]; budget: string[]; stems: string[]; query: string }
@@ -34,7 +29,6 @@ const COPY = {
     show: 'Show pieces',
     sorts: { featured: 'Featured', low: 'Price, low to high', high: 'Price, high to low' },
     groups: { occasion: 'Occasion', budget: 'Budget, AED', stems: 'Number of stems' },
-    budgets: { b1: 'Under 300', b2: '300 – 500', b3: '500 – 1,000', b4: '1,000 and above' },
     stems: { s1: 'Up to 25', s2: '26 – 60', s3: 'More than 60' },
     personalised: 'Personalised', from: 'From', sizes: 'sizes', add: 'Add', addFull: 'Add to bag', was: 'was',
     more: 'Show more', soldOut: 'Sold out',
@@ -48,7 +42,6 @@ const COPY = {
     show: 'اعرض القطع',
     sorts: { featured: 'مختارات', low: 'السعر من الأقل', high: 'السعر من الأعلى' },
     groups: { occasion: 'المناسبة', budget: 'الميزانية بالدرهم', stems: 'عدد السيقان' },
-    budgets: { b1: 'أقل من 300', b2: '300 – 500', b3: '500 – 1,000', b4: '1,000 فأكثر' },
     stems: { s1: 'حتى 25', s2: '26 – 60', s3: 'أكثر من 60' },
     personalised: 'مخصص', from: 'من', sizes: 'أحجام', add: 'أضف', addFull: 'أضف إلى الحقيبة', was: 'بدلاً من',
     more: 'اعرض المزيد', soldOut: 'نفدت الكمية',
@@ -59,14 +52,14 @@ const COPY = {
 type Copy = typeof COPY.en;
 
 const fmt = (value: number, ar: boolean) => new Intl.NumberFormat(ar ? 'ar-AE' : 'en-AE', { maximumFractionDigits: 0 }).format(value);
-const budgetOf = (p: Product) => BUDGETS.find((b) => b.test(p.price))?.id;
+const bandLabel = (id: string, ar: boolean) => { const band = BUDGET_BANDS.find((item) => item.id === id); return band ? (ar ? band.ar : band.en) : id; };
 const stemsOf = (p: Product) => STEMS.find((s) => s.test(p.stems))?.id;
 
 function matches(p: Product, state: State, catalog: LiveCatalogGroups, skip?: 'occasion' | 'budget' | 'stems') {
   const group = catalog.findGroup(state.group);
   if (group && !group.test(p)) return false;
   if (skip !== 'occasion' && state.occasion.length && !p.occasions.some((o) => state.occasion.includes(o))) return false;
-  if (skip !== 'budget' && state.budget.length && !state.budget.includes(budgetOf(p) ?? '')) return false;
+  if (skip !== 'budget' && state.budget.length && !state.budget.includes(budgetOf(p.price) ?? '')) return false;
   if (skip !== 'stems' && state.stems.length && !state.stems.includes(stemsOf(p) ?? '')) return false;
   if (state.query) {
     const hay = [p.name, p.nameAr, p.line, p.lineAr, ...p.composition, ...p.compositionAr, p.category, p.categoryAr, ...p.occasions].join(' ').toLowerCase();
@@ -81,6 +74,10 @@ function stateFromHash(hash: string, catalog: LiveCatalogGroups): State | null {
   if (value.startsWith('occasion/')) {
     const id = value.slice(9);
     return catalog.occasions.some((o) => o.id === id) ? { ...EMPTY, occasion: [id] } : null;
+  }
+  if (value.startsWith('budget/')) {
+    const id = value.slice(7);
+    return BUDGET_BANDS.some((band) => band.id === id) ? { ...EMPTY, budget: [id] } : null;
   }
   const id = GROUP_ALIASES[value] || value;
   return catalog.findGroup(id) ? { ...EMPTY, group: id } : null;
@@ -108,7 +105,7 @@ function RefineDrawer({ open, onClose, state, setState, products, catalog, t, ar
   const count = (group: GroupKey, test: (p: Product) => boolean) => products.filter((p) => matches(p, state, catalog, group) && test(p)).length;
   const groups: Array<[GroupKey, Array<[string, string, (p: Product) => boolean]>]> = [
     ['occasion', catalog.occasions.map((o) => [o.id, ar ? o.ar : o.en, (p: Product) => p.occasions.includes(o.id)])],
-    ['budget', BUDGETS.map((b) => [b.id, t.budgets[b.id as BudgetId], (p: Product) => budgetOf(p) === b.id])],
+    ['budget', BUDGET_BANDS.map((b) => [b.id, ar ? b.ar : b.en, (p: Product) => budgetOf(p.price) === b.id])],
     ['stems', STEMS.map((s) => [s.id, t.stems[s.id as StemsId], (p: Product) => stemsOf(p) === s.id])],
   ];
 
@@ -263,7 +260,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion }: 
   const occasionLabel = (id: string) => { const o = catalog.occasions.find((x) => x.id === id); return o ? (ar ? o.ar : o.en) : id; };
   const chips: Array<['occasion' | 'budget' | 'stems', string, string]> = [
     ...state.occasion.map((id): ['occasion', string, string] => ['occasion', id, occasionLabel(id)]),
-    ...state.budget.map((id): ['budget', string, string] => ['budget', id, t.budgets[id as BudgetId]]),
+    ...state.budget.map((id): ['budget', string, string] => ['budget', id, bandLabel(id, ar)]),
     ...state.stems.map((id): ['stems', string, string] => ['stems', id, t.stems[id as StemsId]]),
   ];
 
