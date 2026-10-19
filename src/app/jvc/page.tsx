@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { whatsappLink } from '@/lib/whatsapp';
 import Reveal from './Reveal';
 import './offer.css';
 
@@ -7,6 +8,9 @@ export const metadata: Metadata = {
   description: "Maison Botanique's JVC opening edition: 25% off every product and a scented candle with each of the first 100 qualifying orders. Preview only.",
   robots: { index: false, follow: false },
 };
+
+// Footer WhatsApp link, only once the business number is configured.
+const whatsapp = whatsappLink('Hello Maison Botanique, I have a question about the JVC opening offer.');
 
 export default function JvcOfferPage() {
   return (
@@ -69,7 +73,7 @@ export default function JvcOfferPage() {
       <footer>
         <a className="brand footer-brand" href="/" aria-label="Maison Botanique home"><span>MAISON</span><strong>BOTANIQUE</strong></a>
         <p>Flowers for the moments that stay with us.</p>
-        <div><span>JVC, DUBAI</span><a href="/">EXPLORE THE COLLECTION ↗</a></div>
+        <div><span>JVC, DUBAI</span><a href="/">EXPLORE THE COLLECTION ↗</a>{whatsapp && <a href={whatsapp} target="_blank" rel="noopener noreferrer">WHATSAPP US ↗</a>}</div>
         <small>Private campaign proof. Imagery and offer details are provisional; do not distribute.</small>
       </footer>
       <Reveal />

@@ -7,6 +7,11 @@ import { shopifyConfig } from './config';
 import { StorefrontError, storefrontFetch } from './storefront';
 
 export const GIFT_NOTE_ATTRIBUTE = 'Gift message';
+/** Card signature; "Anonymous" when the sender keeps it a secret. */
+export const SIGNED_ATTRIBUTE = 'Card signed';
+export const ANONYMOUS_ATTRIBUTE = 'Anonymous';
+/** Personalisation the product asks for, e.g. a letter or an age number. */
+export const CUSTOM_ATTRIBUTE = 'Personalisation';
 /** Per-line delivery date used by carts made before order-level scheduling (see lib/delivery). */
 export const DELIVERY_DATE_ATTRIBUTE = 'Preferred delivery date';
 

@@ -2,6 +2,8 @@
 //
 // - Newsletter: the email becomes (or updates) a Shopify customer subscribed to
 //   email marketing, so Shopify Email and other marketing tools can reach them.
+// - Launch offer: the email or WhatsApp number becomes a customer tagged
+//   `launch-offer`, subscribed to email or SMS marketing.
 // - Contact and enquiry: the sender becomes a tagged customer, and the full
 //   message is saved as a "Website enquiry" metaobject entry
 //   (Shopify admin > Content > Metaobjects). Shopify Flow can email the team
@@ -16,6 +18,7 @@ const TAGS: Record<EnquiryInput['kind'], string[]> = {
   newsletter: ['newsletter', 'website'],
   contact: ['website-contact', 'website'],
   enquiry: ['website-enquiry', 'website'],
+  offer: ['launch-offer', 'newsletter', 'website'],
 };
 
 interface UserError { field?: string[] | null; message: string }
@@ -31,10 +34,41 @@ function splitName(name: string) {
   return { firstName: firstName || undefined, lastName: rest.join(' ') || undefined };
 }
 
+/** Launch offer by WhatsApp: finds or creates the customer by phone, subscribed to SMS marketing. */
+async function upsertPhoneCustomer(input: EnquiryInput) {
+  const tags = TAGS[input.kind];
+  const smsConsent = { marketingState: 'SUBSCRIBED', marketingOptInLevel: 'SINGLE_OPT_IN', consentUpdatedAt: new Date().toISOString() };
+  const found = await adminFetch<{ customer: { id: string; smsMarketingConsent: { marketingState: string } | null } | null }>(`#graphql
+    query OfferCustomer($phone: String!) {
+      customer: customerByIdentifier(identifier: { phoneNumber: $phone }) { id smsMarketingConsent { marketingState } }
+    }`, { phone: input.phone });
+  if (!found.customer) {
+    const created = await adminFetch<{ customerCreate: { customer: { id: string } | null; userErrors: UserError[] } }>(`#graphql
+      mutation OfferCustomerCreate($input: CustomerInput!) {
+        customerCreate(input: $input) { customer { id } userErrors { field message } }
+      }`, { input: { phone: input.phone, locale: input.locale, tags, smsMarketingConsent: smsConsent } });
+    assertNoUserErrors(created.customerCreate.userErrors, 'customerCreate');
+    return created.customerCreate.customer!.id;
+  }
+  const { id } = found.customer;
+  const tagged = await adminFetch<{ tagsAdd: { userErrors: UserError[] } }>(`#graphql
+    mutation OfferCustomerTags($id: ID!, $tags: [String!]!) { tagsAdd(id: $id, tags: $tags) { userErrors { field message } } }`, { id, tags });
+  assertNoUserErrors(tagged.tagsAdd.userErrors, 'tagsAdd');
+  if (found.customer.smsMarketingConsent?.marketingState !== 'SUBSCRIBED') {
+    const consent = await adminFetch<{ customerSmsMarketingConsentUpdate: { userErrors: UserError[] } }>(`#graphql
+      mutation OfferCustomerSms($input: CustomerSmsMarketingConsentUpdateInput!) {
+        customerSmsMarketingConsentUpdate(input: $input) { userErrors { field message } }
+      }`, { input: { customerId: id, smsMarketingConsent: smsConsent } });
+    assertNoUserErrors(consent.customerSmsMarketingConsentUpdate.userErrors, 'customerSmsMarketingConsentUpdate');
+  }
+  return id;
+}
+
 /** Finds the customer for this email, or creates one. Returns the customer ID. */
 async function upsertCustomer(input: EnquiryInput) {
+  if (input.kind === 'offer' && input.phone) return upsertPhoneCustomer(input);
   const tags = TAGS[input.kind];
-  const subscribe = input.kind === 'newsletter' && input.consent;
+  const subscribe = (input.kind === 'newsletter' || input.kind === 'offer') && input.consent;
 
   const found = await adminFetch<{ customer: { id: string; emailMarketingConsent: { marketingState: string } | null } | null }>(`#graphql
     query FormCustomer($email: String!) {
@@ -151,5 +185,5 @@ async function saveEnquiry(input: EnquiryInput, customerId: string) {
 /** Stores a validated form submission in Shopify. */
 export async function submitToShopify(input: EnquiryInput) {
   const customerId = await upsertCustomer(input);
-  if (input.kind !== 'newsletter') await saveEnquiry(input, customerId);
+  if (input.kind === 'enquiry' || input.kind === 'contact') await saveEnquiry(input, customerId);
 }

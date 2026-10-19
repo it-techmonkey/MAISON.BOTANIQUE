@@ -5,8 +5,6 @@
 
 /** Storefront and Admin API version. Upgrade deliberately, about once a year. */
 export const SHOPIFY_API_VERSION = '2026-10';
-/** Manual collection the seed script fills with the sample catalog, in display order. */
-export const CATALOG_COLLECTION_HANDLE = 'homepage';
 
 const MYSHOPIFY_DOMAIN = /^[a-z0-9][a-z0-9-]*\.myshopify\.com$/;
 

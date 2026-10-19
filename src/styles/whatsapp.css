@@ -1,0 +1,29 @@
+.wa-float { position: fixed; z-index: 95; inset-inline-end: 24px; bottom: calc(24px + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: 10px; padding: 10px 16px 10px 12px; color: var(--paper); background: var(--ink); border-radius: 999px; text-decoration: none; box-shadow: 0 14px 30px -16px rgb(30 31 28 / 70%); transition: background .25s, transform .25s; }
+.wa-float:hover { background: var(--wine); transform: translateY(-2px); }
+.wa-float svg { width: 26px; height: 26px; flex: none; }
+.wa-float__text { display: grid; gap: 3px; }
+.wa-float__text strong { font: 500 var(--fs-label)/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; }
+.wa-float__text em { font: 400 11px/1 var(--font-body); font-style: normal; opacity: .78; }
+[dir='rtl'] .wa-float { padding: 10px 12px 10px 16px; }
+[dir='rtl'] .wa-float__text strong { font-family: var(--font-arabic); letter-spacing: 0; text-transform: none; font-size: 13px; }
+
+/* Inline links inside the quick-add sheet and the bag. */
+.wa-inline { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-size: 13px; text-decoration: underline; text-underline-offset: 4px; }
+.wa-inline svg { width: 18px; height: 18px; flex: none; color: #25d366; }
+
+@media (max-width: 640px) {
+  /* Icon only, raised above the phone Refine/Sort bar. */
+  .wa-float { bottom: calc(72px + env(safe-area-inset-bottom)); inset-inline-end: 16px; padding: 12px; }
+  [dir='rtl'] .wa-float { padding: 12px; }
+  .wa-float__text { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-float { transition: none; }
+  .wa-float:hover { transform: none; }
+}
+
+/* Clear of the home hero's arrows, and of the phone buy bar on product pages. */
+.wa-float--raised, body.has-sticky-buy .wa-float { bottom: calc(108px + env(safe-area-inset-bottom)); }
+/* On phones the hero fills the screen with its own controls: the button returns once it scrolls away. */
+@media (max-width: 640px) { .wa-float--raised { display: none; } }

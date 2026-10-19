@@ -9,7 +9,7 @@ import {
 import { isValidDate } from '@/lib/format';
 import { isShopifyConfigured } from '@/lib/shopify/config';
 import {
-  GIFT_NOTE_ATTRIBUTE,
+  ANONYMOUS_ATTRIBUTE, CUSTOM_ATTRIBUTE, GIFT_NOTE_ATTRIBUTE, SIGNED_ATTRIBUTE,
   addCartLines, createCart, fetchCart, getCheckoutUrl, removeCartLines, updateCartAttributes, updateCartLines,
   type CartAttribute, type CartLineInput, type ShopifyCart,
 } from '@/lib/shopify/cart';
@@ -32,6 +32,11 @@ export interface CartLineView {
   categoryAr: string;
   image: string;
   note: string;
+  /** Card signature, or anonymous. */
+  signedAs: string;
+  anonymous: boolean;
+  /** Personalisation such as a letter or an age number. */
+  custom: string;
   quantity: number;
   unitPrice: Money;
 }
@@ -39,6 +44,9 @@ export interface CartLineView {
 export interface AddItemOptions {
   sizeId?: string;
   note?: string;
+  signedAs?: string;
+  anonymous?: boolean;
+  custom?: string;
   /** Sets the order's delivery date and time along with the add. */
   delivery?: DeliverySchedule;
   /** Where the add happened, for analytics: `product_page`, `card`, `hero`, `bag_extra`… */
@@ -240,8 +248,11 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
       sizeNameAr: size?.nameAr ?? line.variantTitle,
       category: product?.category ?? '',
       categoryAr: product?.categoryAr ?? '',
-      image: product?.image ?? line.image ?? '/assets/placeholder.svg',
+      image: product?.imageSmall ?? line.image ?? '/assets/placeholder.svg',
       note: line.attributes[GIFT_NOTE_ATTRIBUTE] ?? '',
+      signedAs: line.attributes[SIGNED_ATTRIBUTE] ?? '',
+      anonymous: Boolean(line.attributes[ANONYMOUS_ATTRIBUTE]),
+      custom: line.attributes[CUSTOM_ATTRIBUTE] ?? '',
       quantity: line.quantity,
       unitPrice: line.unitPrice,
     };
@@ -273,6 +284,10 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     const attributes: CartLineInput['attributes'] = [];
     const note = options.note?.trim().slice(0, NOTE_LIMIT);
     if (note) attributes.push({ key: GIFT_NOTE_ATTRIBUTE, value: note });
+    const custom = options.custom?.trim().slice(0, 24);
+    if (custom) attributes.push({ key: CUSTOM_ATTRIBUTE, value: custom });
+    if (options.anonymous) attributes.push({ key: ANONYMOUS_ATTRIBUTE, value: 'Yes' });
+    else if (options.signedAs?.trim()) attributes.push({ key: SIGNED_ATTRIBUTE, value: options.signedAs.trim().slice(0, 60) });
     const lineInput = [{ merchandiseId: size.variantId, quantity: 1, attributes }];
 
     await enqueue('add', async () => {
@@ -366,6 +381,9 @@ interface PreviewLine {
   productId: string;
   sizeId: string;
   note: string;
+  signedAs: string;
+  anonymous: boolean;
+  custom: string;
   quantity: number;
 }
 
@@ -377,10 +395,13 @@ function safePreviewLine(raw: unknown, products: Product[]): PreviewLine | null 
   const size = product.sizes.find((item) => item.id === value.sizeId);
   if (!size) return null;
   const note = typeof value.note === 'string' ? value.note.slice(0, NOTE_LIMIT) : '';
+  const anonymous = value.anonymous === true;
+  const signedAs = !anonymous && typeof value.signedAs === 'string' ? value.signedAs.slice(0, 60) : '';
+  const custom = typeof value.custom === 'string' ? value.custom.slice(0, 24) : '';
   const quantity = Math.max(1, clampQuantity(value.quantity));
   return {
-    key: JSON.stringify([product.id, size.id, note]),
-    productId: product.id, sizeId: size.id, note, quantity,
+    key: JSON.stringify([product.id, size.id, note, signedAs, anonymous, custom]),
+    productId: product.id, sizeId: size.id, note, signedAs, anonymous, custom, quantity,
   };
 }
 
@@ -419,7 +440,7 @@ function usePreviewCart(products: Product[]): ShopCart {
       name: product.name, nameAr: product.nameAr,
       sizeName: size.name, sizeNameAr: size.nameAr,
       category: product.category, categoryAr: product.categoryAr,
-      image: product.image, note: line.note, quantity: line.quantity,
+      image: product.imageSmall, note: line.note, signedAs: line.signedAs, anonymous: line.anonymous, custom: line.custom, quantity: line.quantity,
       unitPrice: { amount: size.price, currencyCode: product.currencyCode },
     }];
   }), [saved, products]);
@@ -437,6 +458,9 @@ function usePreviewCart(products: Product[]): ShopCart {
       productId: product.id,
       sizeId: chooseSize(product, options.sizeId)?.id,
       note: options.note?.trim() ?? '',
+      signedAs: options.signedAs?.trim() ?? '',
+      anonymous: options.anonymous === true,
+      custom: options.custom?.trim() ?? '',
       quantity: 1,
     }, products);
     if (!line) return;

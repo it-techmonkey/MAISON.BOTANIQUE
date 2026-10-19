@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { dubaiNow, type DubaiNow } from './delivery';
 import { todayDubai } from './format';
 
 /**
@@ -11,4 +12,15 @@ export function useTodayDubai() {
   const [today, setToday] = useState<string | undefined>(undefined);
   useEffect(() => { setToday(todayDubai()); }, []);
   return today;
+}
+
+/** Dubai's date and time, read after hydration and refreshed every minute. */
+export function useDubaiNow() {
+  const [now, setNow] = useState<DubaiNow | null>(null);
+  useEffect(() => {
+    setNow(dubaiNow());
+    const timer = window.setInterval(() => setNow(dubaiNow()), 60_000);
+    return () => window.clearInterval(timer);
+  }, []);
+  return now;
 }

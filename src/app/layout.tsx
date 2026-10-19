@@ -8,7 +8,7 @@ import { SITE_URL } from '@/lib/site';
 
 // Storefront typography: Cormorant Garamond for headlines, DM Sans for body
 // and UI, Noto Naskh Arabic for the Arabic storefront.
-const display = Cormorant_Garamond({ subsets: ['latin'], weight: ['400', '500', '600'], style: ['normal', 'italic'], variable: '--font-cormorant', display: 'swap' });
+const display = Cormorant_Garamond({ subsets: ['latin'], weight: ['300', '400', '500', '600'], style: ['normal', 'italic'], variable: '--font-cormorant', display: 'swap' });
 const body = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans', display: 'swap' });
 const arabic = Noto_Naskh_Arabic({ subsets: ['arabic'], variable: '--font-naskh', display: 'swap' });
 

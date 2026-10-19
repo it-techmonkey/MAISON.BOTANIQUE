@@ -8,10 +8,10 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "shopify:seed": "node --env-file-if-exists=.env.local scripts/shopify-seed.mjs",
     "shopify:auth": "node --env-file-if-exists=.env.local scripts/shopify-auth.mjs",
-    "shopify:import": "node --env-file-if-exists=.env.local scripts/shopify-import.mjs",
-    "theme:zip": "node scripts/theme-zip.mjs"
+    "theme:zip": "node scripts/theme-zip.mjs",
+    "shopify:catalog": "node --env-file-if-exists=.env.local scripts/shopify-catalog-sync.mjs",
+    "catalog:prices": "python scripts/match_prices.py"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

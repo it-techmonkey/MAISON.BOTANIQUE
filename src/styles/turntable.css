@@ -91,7 +91,7 @@
   width: 39%;
 }
 .tt-product__counter { display: flex; align-items: center; gap: 13px; font-size: 15px; font-variant-numeric: tabular-nums; }
-.tt-product__counter span:last-child { opacity: .52; }
+.tt-product__counter span:last-child { opacity: .72; }
 .tt-product__divider { display: block; width: 42px; height: 1px; background: currentColor; opacity: .42; }
 .tt-product__details { animation: tt-copy-enter 650ms cubic-bezier(.22, 1, .36, 1) both; }
 .tt-product__category { margin: 18px 0 2px; }
@@ -262,29 +262,29 @@
 }
 
 @media (max-width: 900px) {
-  .tt-copy { top: 18%; bottom: 15%; width: 46%; }
+  .tt-copy { top: max(18%, calc(var(--chrome) + 24px)); bottom: 15%; width: 46%; }
   .tt-copy .tt-intro h1 { font-size: clamp(56px, min(9.2vw, 12vh), 100px); }
 }
 
 @media (max-width: 680px) {
-  .tt-copy, .tt-section[dir="rtl"] .tt-copy { top: 92px; bottom: 83px; left: 20px; right: 20px; width: auto; }
+  .tt-copy, .tt-section[dir="rtl"] .tt-copy { top: calc(92px + var(--offer-h)); bottom: 83px; left: 20px; right: 20px; width: auto; }
   .tt-copy > .tt-product { max-width: none; }
   .tt-copy .tt-intro h1 { font-size: clamp(48px, min(15vw, 9vh), 95px); }
   .tt-copy .tt-product--long h2 { font-size: clamp(28px, 7.4vw, 40px); }
 }
 
 @media (max-width: 400px), (max-height: 720px) {
-  .tt-copy, .tt-section[dir="rtl"] .tt-copy { top: 76px; bottom: 70px; }
+  .tt-copy, .tt-section[dir="rtl"] .tt-copy { top: calc(76px + var(--offer-h)); bottom: 70px; }
 }
 
 @media (min-width: 681px) and (max-height: 720px) {
-  .tt-copy, .tt-section[dir="rtl"] .tt-copy { top: clamp(92px, 14vh, 120px); bottom: 72px; }
+  .tt-copy, .tt-section[dir="rtl"] .tt-copy { top: calc(clamp(92px, 14vh, 120px) + var(--offer-h)); bottom: 72px; }
   .tt-copy .tt-intro h1 { font-size: clamp(52px, min(7.2vw, 13vh), 104px); }
   .tt-copy .tt-product--long h2 { font-size: clamp(28px, 2.8vw, 44px); }
 }
 
 @media (min-width: 681px) and (max-height: 580px) {
-  .tt-copy, .tt-section[dir="rtl"] .tt-copy { top: 84px; bottom: 62px; }
+  .tt-copy, .tt-section[dir="rtl"] .tt-copy { top: calc(84px + var(--offer-h)); bottom: 62px; }
   .tt-copy .tt-intro h1 { font-size: clamp(46px, min(6vw, 12vh), 82px); }
 }
 

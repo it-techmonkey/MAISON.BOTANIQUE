@@ -1,7 +1,7 @@
-// Shared validation for the enquiry, contact and newsletter forms. The route
+// Shared validation for the enquiry, contact, newsletter and launch-offer forms. The route
 // handler re-validates everything; the browser uses it for instant feedback.
 
-export const ENQUIRY_KINDS = ['enquiry', 'contact', 'newsletter'] as const;
+export const ENQUIRY_KINDS = ['enquiry', 'contact', 'newsletter', 'offer'] as const;
 export type EnquiryKind = typeof ENQUIRY_KINDS[number];
 
 export interface EnquiryInput {
@@ -19,6 +19,13 @@ export interface EnquiryInput {
 
 const LIMITS = { name: 120, email: 200, phone: 40, topic: 80, date: 10, message: 3000 };
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+/** A UAE mobile number (50 123 4567, 0501234567, +971501234567) as +9715XXXXXXXX, or ''. */
+export function uaeMobile(value: string) {
+  const digits = value.replace(/[\s()-]/g, '');
+  const match = digits.match(/^(?:\+?971|0)?(5\d{8})$/);
+  return match ? `+971${match[1]}` : '';
+}
 
 const text = (value: unknown, max: number) => (typeof value === 'string' ? value.trim().slice(0, max) : '');
 
@@ -38,6 +45,15 @@ export function parseEnquiry(raw: unknown): { ok: true; value: EnquiryInput } | 
     consent: body.consent === true,
     locale: body.locale === 'ar' ? 'ar' : 'en',
   };
+  // Launch offer: a WhatsApp number or an email, and consent to receive the code.
+  if (kind === 'offer') {
+    if (value.phone) {
+      value.phone = uaeMobile(value.phone);
+      if (!value.phone) return { ok: false, field: 'phone' };
+      value.email = '';
+    } else if (!EMAIL.test(value.email)) return { ok: false, field: 'email' };
+    return value.consent ? { ok: true, value } : { ok: false, field: 'consent' };
+  }
   // Checked in the order the fields appear on the page.
   if (kind !== 'newsletter' && !value.name) return { ok: false, field: 'name' };
   if (!EMAIL.test(value.email)) return { ok: false, field: 'email' };
@@ -48,11 +64,11 @@ export function parseEnquiry(raw: unknown): { ok: true; value: EnquiryInput } | 
 
 /** A prefilled email used when no enquiry inbox is connected. */
 export function enquiryMailto(to: string, input: EnquiryInput) {
-  const subject = input.kind === 'newsletter'
+  const subject = input.kind === 'newsletter' || input.kind === 'offer'
     ? 'Newsletter: please add me to the list'
     : `${input.kind === 'enquiry' ? 'Enquiry' : 'Message'}${input.topic ? `: ${input.topic}` : ''}`;
-  const lines = input.kind === 'newsletter'
-    ? [`Please add ${input.email} to the Maison Botanique list.`]
+  const lines = input.kind === 'newsletter' || input.kind === 'offer'
+    ? [`Please add ${input.email || input.phone} to the Maison Botanique list.`]
     : [
       input.message,
       '',

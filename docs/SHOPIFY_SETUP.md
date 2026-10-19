@@ -82,25 +82,35 @@ The API version (`2026-10`) and the 5-minute refresh interval are constants in `
 
 ## 5. Set up product data
 
-The site reads everything from Shopify using these conventions:
+Shopify is the website's only source of products. The site reads these fields (written by `npm run shopify:catalog`, and editable in the admin afterwards):
 
 | Site feature | Where it lives in Shopify |
 | --- | --- |
 | Name, description | Product **title** and **description** |
-| Arabic name, description, size names | **Translate & Adapt** → Arabic → Products |
-| Type filter (Bouquets / Gifts / Preserved) | Product **type**: exactly `Bouquets`, `Gifts` or `Preserved` |
-| Occasion filter | Product **tags**: `occasion:birthday`, `occasion:anniversary`, `occasion:thank-you`, `occasion:just-because` |
-| Pinned hero gallery (3 products) | Tag **`featured`** on three products |
-| Sizes and prices | One option named **Presentation** (for example Signature / Grand), one variant per size, each with its own **price** |
-| Photograph | The product's first image (featured media) |
-| Background and accent colours | Metafields `custom.background_color` and `custom.accent_color` (type **Color**) |
-| Product order ("Most loved") | Shopify's best-selling order across **all** products published to Headless |
-| Collections (`/collections`, shop filter) | **Every** collection published to Headless, each in its own sort order. Empty collections are hidden. |
-| Sold out | Variant availability. Untracked inventory is always available. Tracked inventory at 0 shows "Sold out" unless "Continue selling when out of stock" is on. |
+| Arabic name and description | Metafields `maison.title_ar` and `maison.description_ar` (also registered as Arabic translations) |
+| Sizes, prices, strikethrough prices | One variant per size (**Signature / Grand / Luxe**, or a single size), each with a **price** and a **compare-at price** |
+| Size details ("51 roses", Arabic names) | Metafield `maison.size_details` (JSON, one entry per variant, in order) |
+| Card line, "What's included" | Metafields `maison.card_line` / `card_line_ar`, `maison.composition` / `composition_ar` (one item per line) |
+| Room (Roses, Bouquets, Vases & Boxes, …) | Metafield `maison.room` |
+| Occasions | Tags `occasion:birthday`, `occasion:love`, `occasion:thanks`, `occasion:get-well`, `occasion:new-baby`, `occasion:congratulations`, `occasion:wedding`, `occasion:sorry`, `occasion:just-because` |
+| Flowers and format (shop menu, tabs) | Tags `flower:rose` (lily, orchid, tulip, hydrangea, sunflower, carnation, mixed) and `format:bouquet` (box, vase, gift) |
+| Stem filter | Metafield `maison.stem_count` |
+| "Featured" order | Metafield `maison.sort_order` (lower first) |
+| Home hero (3 products) | Tag **`featured`** plus metafield `maison.hero_order` (1–3) |
+| Personalisation (letter, age) | Metafield `maison.custom_fields` |
+| Photograph | The product's first image |
+| Collections (`/collections`) | **Every** collection published to Headless. Empty collections are hidden. |
+| Sold out | Variant availability. A variant priced 0 is never sold, and a product with no priced variant is hidden. |
 
-### Option A: load the sample catalog with the seed script (fastest)
+### Catalog source and prices
 
-The seed script creates all of the above for the 7 concept products, including images, Arabic translations, the metafield definitions, a `homepage` collection and publishing to the Headless channel. It talks to the **Admin API**.
+- `catalog/shopify-export/` holds the catalog: `shopify-push.json` (318 products, 822 variants, ready `productSet` inputs), `images/`, and `DEVELOPER_HANDOFF.md`. `src/data/collection.json` (built by `scripts/build_collection.py`) adds the storefront fields above.
+- **Prices** come from the competitor research data: `npm run catalog:prices` (`scripts/match_prices.py`) matches each product's `reference_id` to `scraper/output/giftygram.csv` (`REF-GG-…`) or `scraper/output/uaeflowers.csv` (`REF-UAE-…`) and writes `catalog/shopify-export/variant-prices.csv`: the selling price and the strikethrough price for every SKU, with how it was matched. GiftyGram lists both prices per size; for UAEFlowers, Signature/Grand/Luxe use the Classic/Deluxe/Premium tiers and the larger tiers keep the base size's discount ratio. To set Maison's own prices later, edit the CSV (or the admin) and run the sync again.
+- **Sync:** `npm run shopify:catalog` creates the metafield definitions, enables Arabic as a store language (unpublished), uploads images, upserts every product as **Active** on the Headless channel, registers Arabic translations, rebuilds the 14 collections and **archives** (never deletes) products that are no longer in the catalog. It is safe to run again; images are only re-uploaded when they change (`-- --images` forces it). The report is written to `catalog/shopify-export/sync-report.json`.
+
+### Admin API access for the catalog sync
+
+The catalog sync talks to the **Admin API**.
 
 **About Admin API access for a client transfer store.** Since 1 January 2026, Shopify no longer lets you create "custom apps" in the store admin, so there is no permanent `shpat_…` token to copy. A client transfer store also isn't part of your Dev Dashboard organization, so Shopify's simpler *client credentials* login is refused there (`shop_not_permitted`). The route that works:
 
@@ -109,7 +119,7 @@ The seed script creates all of the above for the 7 concept products, including i
 - Install it on the store.
 - Authorize it once with `npm run shopify:auth`.
 
-That command runs Shopify's OAuth flow on your machine and saves a **refresh token** to `.env.local`. On every run, the seed script swaps the refresh token for a short-lived Admin access token, so you never copy an access token by hand. The refresh token lasts about 90 days; after that, run `npm run shopify:auth` again (no reinstall needed).
+That command runs Shopify's OAuth flow on your machine and saves a **refresh token** to `.env.local`. On every run, the sync script swaps the refresh token for a short-lived Admin access token, so you never copy an access token by hand. The refresh token lasts about 90 days; after that, run `npm run shopify:auth` again (no reinstall needed).
 
 **Step by step:**
 
@@ -137,11 +147,12 @@ That command runs Shopify's OAuth flow on your machine and saves a **refresh tok
    3. Shopify sends you to `localhost:3457`. The helper passes you to the approval screen and, once you approve, receives the one-time code and exchanges it for tokens. The browser shows **Authorized**, and the terminal confirms the shop name and the saved refresh token.
 
    If the app is already installed, you don't need the install link again: `npm run shopify:auth` prints a direct authorization link to open instead.
-8. **Seed.** Make sure the **Headless** channel from step 3 exists, then run:
+8. **Sync the catalog.** Make sure the **Headless** channel from step 3 exists, then run:
    ```sh
-   npm run shopify:seed
+   npm run catalog:prices   # only after the research CSVs or the catalog change
+   npm run shopify:catalog
    ```
-   It is safe to run again; products are matched by handle and updated. Use `-- --images` to re-upload photos, or `-- --draft` to create them as drafts.
+   It is safe to run again; products are matched by handle and updated.
 
 **If something goes wrong:**
 
@@ -150,8 +161,8 @@ That command runs Shopify's OAuth flow on your machine and saves a **refresh tok
 | `redirect_uri is not whitelisted` on Shopify's page | The version's **Allowed redirection URL(s)** must be exactly `http://localhost:3457/auth/callback`. Release the version again after changing it. |
 | Browser can't reach `localhost:3457` | `npm run shopify:auth` isn't running, or it timed out after 15 minutes. Start it again, then open the link. |
 | `The installation link for this app is invalid` or `This app can't be installed on this store` | Usually one of three things. (1) You used **Install app** in the *Installs* card, whose links contain `app/grant?access_change_uuid=`. That button only works for stores inside the app's own organization. Use the link from the **Distribution** card instead, which contains `install_custom_app`. (2) The link was generated for the store's display handle instead of its **permanent** myshopify domain. Find the permanent one at `https://<store>.myshopify.com/meta.json` (`myshopify_domain`) and regenerate the link with it. For Maison Botanique it is `maison-botanique-5zuwgyks.myshopify.com`, not `maison-botanique-store.myshopify.com`. (3) The app has no **Distribution** card, which means it was created in a non-Partner organization. Recreate it after switching to the Partner organization (step 1). |
-| Seed says *Missing scopes* or a mutation is denied | Add the scope to a new app version, release it, approve the new permission in the store admin (*Settings → Apps*), then run `npm run shopify:auth` again. |
-| Seed says the saved authorization expired | The refresh token is older than ~90 days or the app was uninstalled. Run `npm run shopify:auth` again. |
+| The sync says *Missing scopes* or a mutation is denied | Add the scope to a new app version, release it, approve the new permission in the store admin (*Settings → Apps*), then run `npm run shopify:auth` again. |
+| The sync says the saved authorization expired | The refresh token is older than ~90 days or the app was uninstalled. Run `npm run shopify:auth` again. |
 
 **After the store is transferred to the client,** the app stays installed and the saved refresh token should keep working. If the client uninstalls the app or Shopify revokes access, ask the client (or your collaborator account, with *Manage apps* permission) to reopen the install link, then run `npm run shopify:auth` again.
 
@@ -161,9 +172,9 @@ That command runs Shopify's OAuth flow on your machine and saves a **refresh tok
 | --- | --- | --- |
 | Storefront **public** access token | Lets the website read products and manage carts; safe in the browser | Headless channel → storefront → Storefront API (step 3) |
 | Storefront **private** access token | Same API, for server-side requests; keep secret | Same page (step 3) |
-| Admin API client ID and secret | Identify the seed app; local only | Dev Dashboard → app → Settings → Credentials (step 5A) |
-| Admin API refresh token | Long-lived (~90 days) authorization for the seed app; local only | Saved to `.env.local` by `npm run shopify:auth` |
-| Admin API access token | Full store management; never on the website | Not stored: the seed script gets a fresh short-lived one from the refresh token on each run |
+| Admin API client ID and secret | Identify the catalog app; local only | Dev Dashboard → app → Settings → Credentials (step 5A) |
+| Admin API refresh token | Long-lived (~90 days) authorization for the catalog app; local only | Saved to `.env.local` by `npm run shopify:auth` |
+| Admin API access token | Full store management; never on the website | Not stored: the sync script gets a fresh short-lived one from the refresh token on each run |
 | Webhook signing secret | Proves webhook calls really come from Shopify | Settings → Notifications → Webhooks (step 10) |
 
 ### Option B: enter the real catalog in the admin (production)
@@ -204,8 +215,9 @@ Open http://localhost:3000. The products should come from Shopify, and the "Samp
    - Choose the abandoned checkout email timing.
 5. **Gift note, delivery date and time:**
    - The gift note is a property on each cart line, **Gift message**, shown under the item on the order.
-   - The delivery day and time window are chosen once per order (product page or bag, required before checkout) and saved on the cart as **Delivery date** (`YYYY-MM-DD`) and **Delivery time** (e.g. `12:00 PM – 3:00 PM`). They appear on the order under **Additional details**.
-   - Windows: 9–12, 12–3, 3–6, 6–9 and 9 PM–midnight, Dubai time; today's windows close 2 hours before they start; bookings up to 90 days ahead. Change them in `src/lib/delivery.ts`.
+   - The delivery day and time window are chosen once per order (in the bag, required before checkout) and saved on the cart as **Delivery date** (`YYYY-MM-DD`) and **Delivery time** (e.g. `12:00 PM – 3:00 PM`). They appear on the order under **Additional details**.
+   - Windows: 9am–12pm, 12–3pm, 3–6pm and 6–9pm, Dubai time; today's windows close 3 hours before they start; bookings up to 60 days ahead; closed dates and weekdays can be set. Change them in `DELIVERY_RULES` in `src/lib/delivery.ts`.
+   - The delivery day and time are chosen in the bag; the gift card text, signature (or "Anonymous") and any personalisation travel on each line as **Gift message**, **Card signed**, **Anonymous** and **Personalisation**.
    - Open **Settings → Notifications → Order confirmation** and the packing slip (*Shipping and delivery → Packing slips*) and make sure they print line item properties and order attributes (`{% for attribute in attributes %}`). Add them if they don't.
 6. **Checkout appearance:** *Settings → Checkout → Customize* to add the logo and brand colours so the hand-off from the site feels seamless.
 
@@ -402,6 +414,17 @@ How it works: `src/proxy.ts` runs Hydrogen's `/account/login`, `/account/authori
 ## 16. WhatsApp button
 
 Set **`NEXT_PUBLIC_WHATSAPP_NUMBER`** (digits, international format, e.g. `9715XXXXXXXX`) and redeploy. A floating *Need help?* button appears on every page (on product pages the message includes the product link), and the footer and contact page show WhatsApp links. Clicks are tracked as `Contact Clicked` with channel `whatsapp`.
+
+## 17. Opening offer (25% off for the first 100 customers)
+
+The offer ribbon above the header and the pop-up on arrival ask for a WhatsApp number or an email. The sign-up is saved in Shopify as a customer tagged **`launch-offer`** (SMS or email marketing consent), and the visitor sees the code. The code itself must exist in Shopify:
+
+1. **Discounts → Create discount → Amount off products**: code **`MAISON25`**, **25%**, all products.
+2. **Maximum discount uses:** limit the total number of uses to **100**, and **one use per customer**.
+3. Set the start date (and an end date if the offer has one), then **Save**.
+4. If you choose a different code, set **`NEXT_PUBLIC_LAUNCH_OFFER_CODE`** on the host and redeploy.
+
+The free candle with each of the first 100 orders is packed by the team (filter orders by the discount code in the admin). Sign-ups need `SHOPIFY_FORMS_ADMIN_TOKEN` (step 13); without it the visitor still sees the code, but nothing is saved.
 
 ## Troubleshooting
 

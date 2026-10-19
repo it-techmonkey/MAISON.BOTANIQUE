@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Bi, PageHero } from '@/components/store/blocks';
-import { CatalogGrid } from '@/components/store/ProductCard';
+import CollectionBrowser from '@/components/store/CollectionBrowser';
 import { T } from '@/components/store/StoreProvider';
 import { OCCASIONS, findOccasion } from '@/lib/site';
 import '@/styles/shop.css';
@@ -30,15 +30,17 @@ export default async function OccasionPage({ params }: PageProps<'/occasions/[oc
   if (!occasion) notFound();
 
   return (
-    <div className="section section--top">
-      <nav className="breadcrumbs" aria-label="Breadcrumb">
-        <Link href="/occasions"><T en="Occasions" ar="المناسبات" /></Link>
-        <span aria-hidden="true">/</span>
-        <span aria-current="page"><Bi text={occasion.name} /></span>
-      </nav>
-      <PageHero eyebrow={{ en: 'Flowers for', ar: 'زهور لـ' }} title={occasion.name} intro={occasion.intro} image={occasion.image} />
-      <CatalogGrid occasion={occasion.id} listId={`occasion:${occasion.id}`} />
-      <nav className="occasion-switch" aria-label="Other occasions">
+    <>
+      <div className="section section--top">
+        <nav className="breadcrumbs" aria-label="Breadcrumb">
+          <Link href="/occasions"><T en="Occasions" ar="المناسبات" /></Link>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page"><Bi text={occasion.name} /></span>
+        </nav>
+        <PageHero eyebrow={{ en: 'Flowers for', ar: 'زهور لـ' }} title={occasion.name} intro={occasion.intro} image={occasion.image} />
+      </div>
+      <CollectionBrowser listId={`occasion:${occasion.id}`} initialOccasion={occasion.id} />
+      <nav className="section occasion-switch" aria-label="Other occasions">
         <p className="eyebrow"><T en="Other occasions" ar="مناسبات أخرى" /></p>
         <ul>
           {OCCASIONS.filter((item) => item.id !== occasion.id).map((item) => (
@@ -46,6 +48,6 @@ export default async function OccasionPage({ params }: PageProps<'/occasions/[oc
           ))}
         </ul>
       </nav>
-    </div>
+    </>
   );
 }

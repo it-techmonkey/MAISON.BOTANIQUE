@@ -29,7 +29,7 @@ export default function DeliveryPage() {
         {
           title: { en: 'Choosing a date', ar: 'اختيار التاريخ' },
           paragraphs: [
-            { en: 'Choose the delivery day and a three-hour window (9 AM to midnight) on the product page or in your bag. Same-day windows stay open until two hours before they start. One delivery per order; if anything needs to change, we let you know straight away.', ar: 'اختر يوم التوصيل وفترة من ثلاث ساعات (من 9 صباحاً حتى منتصف الليل) في صفحة المنتج أو في حقيبتك. تبقى فترات اليوم نفسه متاحة حتى ساعتين قبل بدايتها. توصيل واحد لكل طلب، ونخبرك فوراً إذا احتاج أي شيء إلى تغيير.' },
+            { en: 'Choose the delivery day and a three-hour window (9am to 9pm) in your bag, today or up to 60 days ahead. Same-day windows stay open until three hours before they start. One delivery per order; if anything needs to change, we let you know straight away.', ar: 'اختر يوم التوصيل وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، لليوم نفسه أو حتى 60 يوماً مقدماً. تبقى فترات اليوم نفسه متاحة حتى ثلاث ساعات قبل بدايتها. توصيل واحد لكل طلب، ونخبرك فوراً إذا احتاج أي شيء إلى تغيير.' },
           ],
         },
         {

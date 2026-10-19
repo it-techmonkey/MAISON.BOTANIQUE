@@ -1,13 +1,17 @@
-// Server-side catalog loader. Without Shopify settings the bundled sample
-// catalog is returned so the concept preview keeps working. With settings, the
-// Storefront API is the only source of truth: every published product and
-// every collection is loaded (page by page), and a failed request throws so
-// Next.js keeps serving the last successfully rendered page instead of
-// replacing live prices with sample ones.
+// Server-side catalog loader. Shopify is the source of truth: every product
+// published to the Headless channel and every collection is loaded (page by
+// page) through the Storefront API. Storefront fields (card line, contents,
+// occasions, flowers, format, stems, display order, hero) come from tags and
+// `maison.*` metafields written by scripts/shopify-catalog-sync.mjs. A failed
+// request throws, so Next.js keeps serving the last good page instead of
+// replacing live prices.
+//
+// Without Shopify settings the bundled export (src/data/collection.json) is
+// used, so the design preview keeps working.
 
-import { sampleCatalog, type SampleProduct } from '@/data/sample-catalog';
 import { slugify } from '@/lib/format';
-import type { Catalog, Collection, Product, ProductSize } from '@/lib/types';
+import { roomOf } from '@/lib/catalog-groups';
+import type { Catalog, Collection, Product, ProductCustomField, ProductFormat, ProductRoom, ProductSize } from '@/lib/types';
 import { isShopifyConfigured, shopifyConfig, shopifyConfigError } from './config';
 import { storefrontFetch } from './storefront';
 
@@ -15,22 +19,23 @@ export const CATALOG_CACHE_TAG = 'shopify-catalog';
 // Matches `revalidate` on the store pages; the product webhook refreshes sooner.
 const CATALOG_REVALIDATE_SECONDS = 300;
 const FEATURED_TAG = 'featured';
-const OCCASION_TAG_PREFIX = 'occasion:';
 const PLACEHOLDER_IMAGE = '/assets/placeholder.svg';
-/** Storefront API page sizes. Products carry variants, so their pages stay smaller. */
+/** Storefront API page sizes. Products carry variants and metafields, so their pages stay smaller. */
 const PRODUCTS_PER_PAGE = 100;
 const COLLECTIONS_PER_PAGE = 50;
 const COLLECTION_PRODUCTS_PER_PAGE = 250;
 /** Safety stop so a misbehaving cursor can never loop forever. */
 const MAX_PAGES = 50;
+const ROOM_IDS: ProductRoom[] = ['roses', 'bouquets', 'vases', 'gifts', 'grand', 'beauty', 'hampers'];
+const FORMATS: ProductFormat[] = ['bouquet', 'box', 'vase', 'gift'];
 
-const CATEGORY_AR: Record<string, string> = { bouquets: 'باقات', gifts: 'هدايا', preserved: 'زهور محفوظة' };
-const CATEGORY_EN: Record<string, string> = { bouquets: 'Bouquets', gifts: 'Gifts', preserved: 'Preserved' };
-// Used only when Shopify has no Arabic translation for an option value.
-const SIZE_AR: Record<string, string> = {
-  standard: 'قياسي', signature: 'أساسي', grand: 'كبير', single: 'وردة واحدة', duo: 'وردتان',
-  small: 'صغير', medium: 'متوسط', large: 'كبير',
-};
+/** `maison.*` metafields the site reads (see scripts/shopify-catalog-sync.mjs). */
+const METAFIELD_KEYS = [
+  'card_line', 'card_line_ar', 'composition', 'composition_ar', 'stem_count', 'sort_order', 'hero_order',
+  'catalog_number', 'room', 'feature', 'size_details', 'title_ar', 'description_ar', 'custom_fields',
+  'answer_summary', 'answer_summary_ar', 'faq',
+] as const;
+type MetafieldKey = typeof METAFIELD_KEYS[number];
 
 // ---------------------------------------------------------------------------
 // Storefront API queries
@@ -46,24 +51,27 @@ const PRODUCT_FIELDS = `#graphql
     vendor
     tags
     availableForSale
-    featuredImage { url(transform: { maxWidth: 1800 }) altText }
-    variants(first: 20) {
+    featuredImage {
+      url(transform: { maxWidth: 1200 })
+      small: url(transform: { maxWidth: 480 })
+      altText
+    }
+    variants(first: 50) {
       nodes {
         id
         title
         availableForSale
         price { amount currencyCode }
+        compareAtPrice { amount }
         selectedOptions { name value }
       }
     }
-    backgroundColor: metafield(namespace: "custom", key: "background_color") { value }
-    accentColor: metafield(namespace: "custom", key: "accent_color") { value }
+    metafields(identifiers: [${METAFIELD_KEYS.map((key) => `{ namespace: "maison", key: "${key}" }`).join(', ')}]) { key value }
   }
 `;
 
 const PAGE_INFO = 'pageInfo { hasNextPage endCursor }';
 
-// Best sellers first, so "Our edit" leads with what people actually choose.
 const PRODUCTS_QUERY = `#graphql
   query CatalogProducts($first: Int!, $after: String, $country: CountryCode!, $language: LanguageCode!)
   @inContext(country: $country, language: $language) {
@@ -110,6 +118,7 @@ interface ShopifyVariant {
   title: string;
   availableForSale: boolean;
   price: ShopifyMoney;
+  compareAtPrice: { amount: string } | null;
   selectedOptions: Array<{ name: string; value: string }>;
 }
 interface ShopifyProduct {
@@ -121,10 +130,9 @@ interface ShopifyProduct {
   vendor: string;
   tags: string[];
   availableForSale: boolean;
-  featuredImage: { url: string; altText: string | null } | null;
+  featuredImage: { url: string; small: string; altText: string | null } | null;
   variants: { nodes: ShopifyVariant[] };
-  backgroundColor: { value: string } | null;
-  accentColor: { value: string } | null;
+  metafields: Array<{ key: string; value: string } | null>;
 }
 interface ShopifyCollection {
   id: string;
@@ -135,7 +143,6 @@ interface ShopifyCollection {
   products: Connection<{ handle: string }>;
 }
 
-type Language = 'EN' | 'AR';
 const cacheOptions = { next: { revalidate: CATALOG_REVALIDATE_SECONDS, tags: [CATALOG_CACHE_TAG] } };
 const EMPTY_PAGE = { hasNextPage: false, endCursor: null };
 
@@ -153,15 +160,15 @@ async function fetchAll<T>(loadPage: (after: string | null) => Promise<Connectio
   return items;
 }
 
-function fetchProducts(language: Language) {
+function fetchProducts() {
   return fetchAll(async (after) => (await storefrontFetch<{ products: Connection<ShopifyProduct> }>(
     PRODUCTS_QUERY,
-    { first: PRODUCTS_PER_PAGE, after, country: shopifyConfig.country, language },
+    { first: PRODUCTS_PER_PAGE, after, country: shopifyConfig.country, language: 'EN' },
     cacheOptions,
   )).products);
 }
 
-async function fetchCollections(language: Language) {
+async function fetchCollections(language: 'EN' | 'AR') {
   const collections = await fetchAll(async (after) => (await storefrontFetch<{ collections: Connection<ShopifyCollection> }>(
     COLLECTIONS_QUERY,
     { first: COLLECTIONS_PER_PAGE, after, productsFirst: COLLECTION_PRODUCTS_PER_PAGE, country: shopifyConfig.country, language },
@@ -189,131 +196,131 @@ async function fetchCollections(language: Language) {
 // Mapping
 // ---------------------------------------------------------------------------
 
-function categoryId(productType: string) {
-  const value = productType.toLowerCase();
-  if (value.includes('preserv')) return 'preserved';
-  if (value.includes('gift')) return 'gifts';
-  return 'bouquets';
+const tagValues = (tags: string[], prefix: string) => tags
+  .map((tag) => tag.trim().toLowerCase())
+  .filter((tag) => tag.startsWith(prefix))
+  .map((tag) => slugify(tag.slice(prefix.length)))
+  .filter(Boolean);
+
+function parseJson<T>(value: string | undefined, fallback: T): T {
+  if (!value) return fallback;
+  try { return JSON.parse(value) as T; } catch { return fallback; }
 }
 
-function occasionsFromTags(tags: string[]) {
-  return tags
-    .map((tag) => tag.trim().toLowerCase())
-    .filter((tag) => tag.startsWith(OCCASION_TAG_PREFIX))
-    .map((tag) => slugify(tag.slice(OCCASION_TAG_PREFIX.length)))
-    .filter(Boolean);
-}
+const toNumber = (value: string | undefined) => {
+  const number = Number(value);
+  return value && Number.isFinite(number) ? number : null;
+};
 
-function hexColor(value: string | undefined, fallback: string) {
-  return value && /^#[0-9a-f]{3,8}$/i.test(value.trim()) ? value.trim() : fallback;
-}
-
-/**
- * The option a shopper chooses ("Signature", "Grand", …). Products with more
- * than one option use the combined variant title ("Grand / Blush").
- */
-function sizeLabel(variant: ShopifyVariant) {
-  const value = variant.selectedOptions.length === 1 ? variant.selectedOptions[0].value : variant.title;
-  return !value || value === 'Default Title' ? 'Standard' : value;
-}
-
-function mapSizes(variants: ShopifyVariant[], arabicVariants: Map<string, ShopifyVariant>): ProductSize[] {
+/** Size names arrive as "Signature – 51 roses" or "Signature"; Arabic and details come from `maison.size_details`. */
+function mapSizes(variants: ShopifyVariant[], details: Array<{ name?: string; nameAr?: string; detail?: string; detailAr?: string }>): ProductSize[] {
   const usedIds = new Set<string>();
   return variants.map((variant, index) => {
-    const name = sizeLabel(variant);
-    let id = slugify(name) || `option-${index + 1}`;
+    const value = variant.selectedOptions.length === 1 ? variant.selectedOptions[0].value : variant.title;
+    const [label, ...rest] = (value && value !== 'Default Title' ? value : 'Standard').split(' – ');
+    const info = details[index] ?? {};
+    const name = info.name || label;
+    let id = slugify(value === 'Default Title' ? 'standard' : value) || `option-${index + 1}`;
     if (usedIds.has(id)) id = `${id}-${index + 1}`;
     usedIds.add(id);
-
-    const arabicVariant = arabicVariants.get(variant.id);
-    const translated = arabicVariant ? sizeLabel(arabicVariant) : name;
-    const nameAr = translated !== name ? translated : SIZE_AR[slugify(name)] ?? name;
+    const price = Number(variant.price.amount);
+    const compare = variant.compareAtPrice ? Number(variant.compareAtPrice.amount) : null;
     return {
       id,
-      name,
-      nameAr,
-      price: Number(variant.price.amount),
+      name: variant.selectedOptions.length > 1 ? value : name,
+      nameAr: info.nameAr || name,
+      detail: info.detail || rest.join(' – '),
+      detailAr: info.detailAr || info.detail || rest.join(' – '),
+      price,
+      compareAtPrice: compare && compare > price ? compare : null,
       variantId: variant.id,
       // A variant without a price is never sold (it would check out for free).
-      available: variant.availableForSale && Number(variant.price.amount) > 0,
+      available: variant.availableForSale && price > 0,
     };
   });
 }
 
-function mapShopifyProduct(product: ShopifyProduct, arabic: ShopifyProduct | undefined): Product | null {
+function customField(value: unknown): ProductCustomField | null {
+  const raw = Array.isArray(value) ? value[0] : value;
+  if (!raw || typeof raw !== 'object') return null;
+  const field = raw as { kind?: string; label?: string; name?: string };
+  const label = field.label || field.name || '';
+  const kind = field.kind === 'letter' || field.kind === 'age' ? field.kind
+    : /letter|initial/i.test(label) ? 'letter' : /age/i.test(label) ? 'age' : 'text';
+  return { kind, label };
+}
+
+/** Each unpriced product is reported once per server process, not on every page. */
+const warnedUnpriced = new Set<string>();
+
+function mapShopifyProduct(product: ShopifyProduct): Product | null {
   const variants = product.variants.nodes;
   if (!variants.length) return null;
   // Not shown until it has a price in Shopify.
   if (!variants.some((variant) => Number(variant.price.amount) > 0)) {
-    console.warn(`[catalog] Hiding "${product.handle}": no variant has a price.`);
+    if (!warnedUnpriced.has(product.handle)) {
+      warnedUnpriced.add(product.handle);
+      console.warn(`[catalog] Hiding "${product.handle}": no variant has a price.`);
+    }
     return null;
   }
-  const arabicVariants = new Map((arabic?.variants.nodes ?? []).map((variant) => [variant.id, variant]));
-  const sizes = mapSizes(variants, arabicVariants);
-  const category = categoryId(product.productType);
+  const fields = Object.fromEntries(product.metafields.filter(Boolean).map((field) => [field!.key, field!.value])) as Partial<Record<MetafieldKey, string>>;
+  const sizes = mapSizes(variants, parseJson(fields.size_details, []));
+  const priced = sizes.filter((size) => size.price > 0);
+  const cheapest = priced.reduce((low, size) => (size.price < low.price ? size : low), priced[0]);
   const tags = product.tags.map((tag) => tag.trim().toLowerCase());
+  const roomId = ROOM_IDS.find((id) => id === fields.room) ?? 'bouquets';
+  const room = roomOf(roomId);
+  const format = tagValues(product.tags, 'format:').find((value): value is ProductFormat => FORMATS.includes(value as ProductFormat)) ?? 'bouquet';
+  const heroOrder = toNumber(fields.hero_order);
 
   return {
     id: product.handle,
     shopifyId: product.id,
+    no: toNumber(fields.catalog_number),
     name: product.title,
-    nameAr: arabic?.title || product.title,
-    category: CATEGORY_EN[category],
-    categoryAr: CATEGORY_AR[category],
+    nameAr: fields.title_ar || product.title,
+    room: roomId,
+    category: room.en,
+    categoryAr: room.ar,
+    line: fields.card_line ?? '',
+    lineAr: fields.card_line_ar || fields.card_line || '',
+    composition: parseJson(fields.composition, []),
+    compositionAr: parseJson(fields.composition_ar, []),
+    feature: fields.feature ?? '',
+    stems: toNumber(fields.stem_count),
+    flowers: tagValues(product.tags, 'flower:'),
+    format,
+    order: toNumber(fields.sort_order) ?? 10_000,
+    custom: customField(parseJson(fields.custom_fields, null)),
     productType: product.productType,
     vendor: product.vendor,
-    occasions: occasionsFromTags(product.tags),
+    occasions: tagValues(product.tags, 'occasion:'),
     image: product.featuredImage?.url || PLACEHOLDER_IMAGE,
+    imageSmall: product.featuredImage?.small || product.featuredImage?.url || PLACEHOLDER_IMAGE,
     imageAlt: product.featuredImage?.altText || product.title,
-    price: Math.min(...sizes.filter((size) => size.price > 0).map((size) => size.price)),
+    price: cheapest.price,
+    compareAtPrice: cheapest.compareAtPrice,
     currencyCode: variants[0].price.currencyCode,
-    bg: hexColor(product.backgroundColor?.value, '#E9E1D5'),
-    accent: hexColor(product.accentColor?.value, '#673C43'),
+    bg: '#E9E1D5',
+    accent: '#673C43',
     description: product.description,
-    descriptionAr: arabic?.description || product.description,
+    descriptionAr: fields.description_ar || product.description,
     sizes,
     available: product.availableForSale && sizes.some((size) => size.available),
-    featured: tags.includes(FEATURED_TAG),
+    heroOrder,
+    featured: Boolean(heroOrder) || tags.includes(FEATURED_TAG),
+    answerSummary: fields.answer_summary ?? '',
+    answerSummaryAr: fields.answer_summary_ar ?? '',
+    faq: parseJson(fields.faq, []),
   };
 }
 
-function mapSampleProduct(sample: SampleProduct): Product {
-  const sizes = sample.sizes.map((size) => ({
-    id: slugify(size.name),
-    name: size.name,
-    nameAr: size.nameAr,
-    price: size.price,
-    variantId: null,
-    available: true,
-  }));
-  const category = categoryId(sample.productType);
-  return {
-    id: sample.handle,
-    shopifyId: null,
-    name: sample.title,
-    nameAr: sample.titleAr,
-    category: CATEGORY_EN[category],
-    categoryAr: CATEGORY_AR[category],
-    productType: sample.productType,
-    vendor: 'Maison Botanique',
-    occasions: sample.occasions,
-    image: sample.image,
-    imageAlt: sample.title,
-    price: Math.min(...sizes.map((size) => size.price)),
-    currencyCode: 'AED',
-    bg: sample.backgroundColor,
-    accent: sample.accentColor,
-    description: sample.description,
-    descriptionAr: sample.descriptionAr,
-    sizes,
-    available: true,
-    featured: sample.featured,
-  };
-}
-
-function withFeaturedFallback(products: Product[]) {
-  if (products.some((product) => product.featured)) return products;
-  return products.map((product, index) => (index < 3 ? { ...product, featured: true } : product));
+/** Featured first by hero position, then everything by display order. */
+function inDisplayOrder(products: Product[]) {
+  const sorted = [...products].sort((a, b) => a.order - b.order);
+  if (sorted.some((product) => product.featured)) return sorted;
+  return sorted.map((product, index) => (index < 3 ? { ...product, featured: true, heroOrder: index + 1 } : product));
 }
 
 function mapShopifyCollection(collection: ShopifyCollection, arabic: ShopifyCollection | undefined, known: Set<string>): Collection {
@@ -330,18 +337,43 @@ function mapShopifyCollection(collection: ShopifyCollection, arabic: ShopifyColl
   };
 }
 
-/** The sample catalog has no Shopify collections, so its product types stand in for them. */
-function sampleCollections(products: Product[]): Collection[] {
-  return Object.keys(CATEGORY_EN).map((id) => ({
-    id,
-    shopifyId: null,
-    title: CATEGORY_EN[id],
-    titleAr: CATEGORY_AR[id],
-    description: '',
-    descriptionAr: '',
-    image: null,
-    productIds: products.filter((product) => categoryId(product.category) === id).map((product) => product.id),
-  }));
+// ---------------------------------------------------------------------------
+// Offline preview: the bundled export
+// ---------------------------------------------------------------------------
+
+interface ExportProduct {
+  id: string; no: number; name: string; nameAr: string; room: string; price: number;
+  sizes: Array<{ id: string; name: string; nameAr: string; detail: string; detailAr: string; add: number }>;
+  line: string; lineAr: string; composition: string[]; compositionAr: string[]; feature: string;
+  stems: number | null; occasions: string[]; flowers: string[]; format: string; order: number;
+  custom: { kind?: string; label?: string } | null; image: string; imageSmall: string; alt: string;
+}
+
+async function exportCatalog(): Promise<Catalog> {
+  const data = (await import('@/data/collection.json')).default as unknown as { hero: string[]; products: ExportProduct[] };
+  const products = data.products.map((item): Product => {
+    const room = roomOf(item.room);
+    const heroIndex = data.hero.indexOf(item.id);
+    return {
+      id: item.id, shopifyId: null, no: item.no, name: item.name, nameAr: item.nameAr,
+      room: room.id, category: room.en, categoryAr: room.ar,
+      line: item.line, lineAr: item.lineAr, composition: item.composition, compositionAr: item.compositionAr,
+      feature: item.feature, stems: item.stems, flowers: item.flowers,
+      format: FORMATS.includes(item.format as ProductFormat) ? item.format as ProductFormat : 'bouquet',
+      order: item.order, custom: customField(item.custom),
+      productType: room.en, vendor: 'Maison Botanique', occasions: item.occasions,
+      image: item.image, imageSmall: item.imageSmall, imageAlt: item.alt,
+      price: item.price, compareAtPrice: null, currencyCode: 'AED', bg: '#E9E1D5', accent: '#673C43',
+      description: item.composition.join(', '), descriptionAr: item.compositionAr.join('، '),
+      sizes: item.sizes.map((size) => ({
+        id: size.id, name: size.name, nameAr: size.nameAr, detail: size.detail, detailAr: size.detailAr,
+        price: item.price + size.add, compareAtPrice: null, variantId: null, available: true,
+      })),
+      available: true, heroOrder: heroIndex >= 0 ? heroIndex + 1 : null, featured: heroIndex >= 0,
+      answerSummary: '', answerSummaryAr: '', faq: [],
+    };
+  });
+  return { source: 'sample', products: inDisplayOrder(products), collections: [] };
 }
 
 // ---------------------------------------------------------------------------
@@ -350,27 +382,21 @@ function sampleCollections(products: Product[]): Collection[] {
 
 export async function getCatalog(): Promise<Catalog> {
   if (shopifyConfigError) throw new Error(`Shopify is misconfigured: ${shopifyConfigError}`);
-  if (!isShopifyConfigured) {
-    const products = sampleCatalog.map(mapSampleProduct);
-    return { source: 'sample', products, collections: sampleCollections(products) };
-  }
+  if (!isShopifyConfigured) return exportCatalog();
 
-  // Arabic text is optional: if the language is not published for the market,
-  // English copy is used rather than failing the whole page.
-  const arabicOrNothing = <T,>(request: Promise<T[]>) => request.catch((error) => {
-    console.warn('[catalog] Arabic content unavailable; using English text.', error);
-    return [] as T[];
-  });
-  const [english, arabic, englishCollections, arabicCollections] = await Promise.all([
-    fetchProducts('EN'),
-    arabicOrNothing(fetchProducts('AR')),
+  // Arabic collection titles are optional: if the language is not published,
+  // English titles are used rather than failing the whole page.
+  const [english, englishCollections, arabicCollections] = await Promise.all([
+    fetchProducts(),
     fetchCollections('EN'),
-    arabicOrNothing(fetchCollections('AR')),
+    fetchCollections('AR').catch((error) => {
+      console.warn('[catalog] Arabic collection titles unavailable; using English.', error);
+      return [] as ShopifyCollection[];
+    }),
   ]);
 
-  const arabicById = new Map(arabic.map((product) => [product.id, product]));
-  const products = withFeaturedFallback(english
-    .map((product) => mapShopifyProduct(product, arabicById.get(product.id)))
+  const products = inDisplayOrder(english
+    .map(mapShopifyProduct)
     .filter((product): product is Product => product !== null));
 
   const known = new Set(products.map((product) => product.id));

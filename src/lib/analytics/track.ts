@@ -15,7 +15,8 @@ import posthog from 'posthog-js';
 import type { Locale, Product, ProductSize } from '@/lib/types';
 import type { ShopifyCart } from '@/lib/shopify/cart';
 import type { CartLineView } from '@/lib/cart/use-shop-cart';
-import { dubaiNow, findSlot, type DeliverySchedule } from '@/lib/delivery';
+import type { EnquiryKind } from '@/lib/enquiry';
+import { dubaiNow, windowLabel, type DeliverySchedule, type ScheduleProblem } from '@/lib/delivery';
 import { CART_ATTRIBUTE_DISTINCT_ID, CART_ATTRIBUTE_SESSION_ID, isPostHogEnabled } from './config';
 import { publishCartViewed, publishProductViewed, publishSearchViewed } from './shopify';
 
@@ -113,7 +114,7 @@ function scheduleProperties(schedule: DeliverySchedule | null) {
   const today = dubaiNow().date;
   return {
     has_delivery_schedule: true,
-    delivery_slot: findSlot(schedule.slotId)?.label.en ?? null,
+    delivery_slot: windowLabel(schedule.slotId, false) || null,
     delivery_days_ahead: Math.round((Date.parse(schedule.date) - Date.parse(today)) / 86_400_000),
     same_day_delivery: schedule.date === today,
   };
@@ -168,7 +169,7 @@ export function trackCheckoutStarted(lines: CartLineView[], subtotal: number, cu
 }
 
 /** Checkout could not start: no valid delivery date and time, or Shopify did not return a checkout URL. */
-export function trackCheckoutFailed(reason: 'missing_date' | 'missing_slot' | 'date_passed' | 'slot_passed' | 'checkout_url_error', cartId: string | null, value: number) {
+export function trackCheckoutFailed(reason: ScheduleProblem | 'checkout_url_error', cartId: string | null, value: number) {
   capture('Checkout Failed', { reason, cart_id: cartId, value });
 }
 
@@ -192,18 +193,18 @@ export function analyticsCartAttributes(): Array<{ key: string; value: string }>
 // Leads and preferences
 // ---------------------------------------------------------------------------
 
-export function trackFormSubmitted(kind: 'newsletter' | 'contact' | 'enquiry', topic: string | null, delivery: 'shopify' | 'email_fallback') {
-  const event = kind === 'newsletter' ? 'Newsletter Subscribed' : 'Enquiry Submitted';
+export function trackFormSubmitted(kind: EnquiryKind, topic: string | null, delivery: 'shopify' | 'email_fallback') {
+  const event = kind === 'newsletter' ? 'Newsletter Subscribed' : kind === 'offer' ? 'Offer Code Requested' : 'Enquiry Submitted';
   capture(event, { form: kind, topic, delivery });
 }
 
 /** First interaction with a form (focus on any field). */
-export function trackFormStarted(kind: 'newsletter' | 'contact' | 'enquiry') {
+export function trackFormStarted(kind: EnquiryKind) {
   capture('Form Started', { form: kind });
 }
 
 /** Validation or delivery problems. Only the field name is sent, never what was typed. */
-export function trackFormError(kind: 'newsletter' | 'contact' | 'enquiry', reason: 'invalid' | 'failed', field: string | null) {
+export function trackFormError(kind: EnquiryKind, reason: 'invalid' | 'failed', field: string | null) {
   capture('Form Error', { form: kind, reason, field });
 }
 

@@ -1,11 +1,17 @@
 import type { ReactNode } from 'react';
-import CartDrawer from '@/components/store/CartDrawer';
+import LaunchOffer from '@/components/store/LaunchOffer';
+import ShopSheets from '@/components/store/ShopSheets';
 import SiteFooter from '@/components/store/SiteFooter';
 import SiteHeader from '@/components/store/SiteHeader';
 import StoreProvider, { T } from '@/components/store/StoreProvider';
 import WhatsAppButton from '@/components/store/WhatsAppButton';
 import { getCatalog } from '@/lib/shopify/catalog';
 import '@/styles/global.css';
+import '@/styles/chrome.css';
+import '@/styles/collection.css';
+import '@/styles/shop-experience.css';
+import '@/styles/launch-offer.css';
+import '@/styles/whatsapp.css';
 
 // Every store page shares one catalog request (cached for five minutes and
 // refreshed by the Shopify product webhook), the bag and the language choice.
@@ -18,7 +24,8 @@ export default async function StoreLayout({ children }: { children: ReactNode })
       <SiteHeader />
       <main id="main">{children}</main>
       <SiteFooter />
-      <CartDrawer />
+      <ShopSheets />
+      <LaunchOffer />
       <WhatsAppButton />
     </StoreProvider>
   );

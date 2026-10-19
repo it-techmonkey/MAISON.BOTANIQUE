@@ -1,40 +1,49 @@
-// Delivery scheduling: one date and time slot per order, in Dubai time.
+// Delivery days and time windows, always in Dubai time. One date and one
+// window apply to the whole order: Shopify checkout takes a single address.
 // The schedule is saved on the Shopify cart as attributes, so it appears on
 // the order under "Additional details" and reaches the order webhook.
-
-import type { Bilingual } from './site';
+//
+// PROVISIONAL RULES: replace with the owner's confirmed windows, cutoff,
+// booking horizon and closed dates.
 
 export const DELIVERY_DATE_KEY = 'Delivery date';
 export const DELIVERY_TIME_KEY = 'Delivery time';
 
-/** A slot is offered today only if it starts at least this long from now. */
-export const SAME_DAY_LEAD_MINUTES = 120;
-/** How far ahead a delivery can be booked. */
-export const MAX_DAYS_AHEAD = 90;
-
-export interface DeliverySlot {
+export interface DeliveryWindow {
   id: string;
-  /** Start and end in minutes after midnight, Dubai time. 1440 is midnight. */
+  /** Start and end in minutes after midnight, Dubai time. */
   start: number;
   end: number;
-  label: Bilingual;
 }
 
-export const DELIVERY_SLOTS: DeliverySlot[] = [
-  { id: '09-12', start: 9 * 60, end: 12 * 60, label: { en: '9:00 AM – 12:00 PM', ar: '9:00 ص – 12:00 م' } },
-  { id: '12-15', start: 12 * 60, end: 15 * 60, label: { en: '12:00 PM – 3:00 PM', ar: '12:00 م – 3:00 م' } },
-  { id: '15-18', start: 15 * 60, end: 18 * 60, label: { en: '3:00 PM – 6:00 PM', ar: '3:00 م – 6:00 م' } },
-  { id: '18-21', start: 18 * 60, end: 21 * 60, label: { en: '6:00 PM – 9:00 PM', ar: '6:00 م – 9:00 م' } },
-  { id: '21-24', start: 21 * 60, end: 24 * 60, label: { en: '9:00 PM – 12:00 AM', ar: '9:00 م – 12:00 ص' } },
-];
+export const DELIVERY_RULES = {
+  windows: [
+    { id: 'morning', start: 9 * 60, end: 12 * 60 },
+    { id: 'midday', start: 12 * 60, end: 15 * 60 },
+    { id: 'afternoon', start: 15 * 60, end: 18 * 60 },
+    { id: 'evening', start: 18 * 60, end: 21 * 60 },
+  ] as DeliveryWindow[],
+  /** A same-day window closes this long before it starts. */
+  leadMinutes: 180,
+  /** Pre-booking horizon. */
+  maxDaysAhead: 60,
+  /** 'YYYY-MM-DD' dates with no deliveries. */
+  blackoutDates: [] as string[],
+  /** 0 = Sunday … 6 = Saturday. */
+  closedWeekdays: [] as number[],
+};
+
+export const SAME_DAY_LEAD_MINUTES = DELIVERY_RULES.leadMinutes;
+export const MAX_DAYS_AHEAD = DELIVERY_RULES.maxDaysAhead;
 
 export interface DeliverySchedule {
   /** YYYY-MM-DD */
   date: string;
+  /** A window id from DELIVERY_RULES.windows. */
   slotId: string;
 }
 
-export const findSlot = (id: string | null | undefined) => DELIVERY_SLOTS.find((slot) => slot.id === id) ?? null;
+export const findSlot = (id: string | null | undefined) => DELIVERY_RULES.windows.find((slot) => slot.id === id) ?? null;
 
 /** The current date (YYYY-MM-DD) and minutes after midnight in Dubai. */
 export function dubaiNow(now = new Date()) {
@@ -44,53 +53,102 @@ export function dubaiNow(now = new Date()) {
   return { date: `${parts.year}-${parts.month}-${parts.day}`, minutes: Number(parts.hour) * 60 + Number(parts.minute) };
 }
 
+export type DubaiNow = ReturnType<typeof dubaiNow>;
+
 export function addDays(date: string, days: number) {
   const value = new Date(`${date}T00:00:00Z`);
   value.setUTCDate(value.getUTCDate() + days);
   return value.toISOString().slice(0, 10);
 }
 
-/** Slots that can still be booked on a date. */
-export function slotsFor(date: string, now = dubaiNow()) {
-  if (!date || date < now.date || date > addDays(now.date, MAX_DAYS_AHEAD)) return [];
-  if (date > now.date) return DELIVERY_SLOTS;
-  return DELIVERY_SLOTS.filter((slot) => slot.start >= now.minutes + SAME_DAY_LEAD_MINUTES);
+export function isValidDate(value: unknown): value is string {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
 }
 
-/** Today when a slot is still open, otherwise tomorrow. */
-export function earliestDate(now = dubaiNow()) {
-  return slotsFor(now.date, now).length ? now.date : addDays(now.date, 1);
+export const lastBookableDate = (now: DubaiNow = dubaiNow()) => addDays(now.date, DELIVERY_RULES.maxDaysAhead);
+
+/** Is the business delivering at all on this date (ignoring the time of day)? */
+export function dateOpen(date: string, now: DubaiNow = dubaiNow()) {
+  if (!isValidDate(date) || date < now.date || date > lastBookableDate(now)) return false;
+  if (DELIVERY_RULES.blackoutDates.includes(date)) return false;
+  return !DELIVERY_RULES.closedWeekdays.includes(new Date(`${date}T00:00:00Z`).getUTCDay());
 }
 
-export type ScheduleProblem = 'missing_date' | 'missing_slot' | 'date_passed' | 'slot_passed';
+/** Every window on a date, with whether it can still be booked. */
+export function windowsFor(date: string, now: DubaiNow = dubaiNow()) {
+  const open = dateOpen(date, now);
+  return DELIVERY_RULES.windows.map((slot) => ({
+    ...slot,
+    available: open && (date !== now.date || slot.start - DELIVERY_RULES.leadMinutes >= now.minutes),
+  }));
+}
 
-export function checkSchedule(schedule: Partial<DeliverySchedule> | null, now = dubaiNow()): ScheduleProblem | null {
+/** Windows that can still be booked on a date. */
+export const slotsFor = (date: string, now: DubaiNow = dubaiNow()) => windowsFor(date, now).filter((slot) => slot.available);
+
+/** The next few dates that still have at least one open window. */
+export function bookableDays(count = 3, now: DubaiNow = dubaiNow()) {
+  const days: string[] = [];
+  for (let offset = 0; offset <= DELIVERY_RULES.maxDaysAhead && days.length < count; offset += 1) {
+    const date = addDays(now.date, offset);
+    if (slotsFor(date, now).length) days.push(date);
+  }
+  return days;
+}
+
+/** The first date with an open window. */
+export const earliestDate = (now: DubaiNow = dubaiNow()) => bookableDays(1, now)[0] ?? addDays(now.date, 1);
+
+export type ScheduleProblem = 'missing_date' | 'missing_slot' | 'date_passed' | 'day_closed' | 'slot_passed';
+
+export function checkSchedule(schedule: Partial<DeliverySchedule> | null, now: DubaiNow = dubaiNow()): ScheduleProblem | null {
   if (!schedule?.date) return 'missing_date';
   if (!schedule.slotId || !findSlot(schedule.slotId)) return 'missing_slot';
   if (schedule.date < now.date) return 'date_passed';
+  if (!dateOpen(schedule.date, now)) return 'day_closed';
   if (!slotsFor(schedule.date, now).some((slot) => slot.id === schedule.slotId)) return 'slot_passed';
   return null;
 }
 
+function hourLabel(minutes: number, arabic: boolean) {
+  return new Intl.DateTimeFormat(arabic ? 'ar-AE' : 'en-US', { hour: 'numeric', minute: minutes % 60 ? '2-digit' : undefined, timeZone: 'UTC' })
+    .format(new Date(Date.UTC(2000, 0, 1, Math.floor(minutes / 60), minutes % 60)))
+    .replace(/\s/g, arabic ? ' ' : '')
+    .toLowerCase();
+}
+
+/** "9am – 12pm" (or Arabic). */
+export function windowLabel(slotId: string, arabic: boolean) {
+  const slot = findSlot(slotId);
+  return slot ? `${hourLabel(slot.start, arabic)} – ${hourLabel(slot.end, arabic)}` : '';
+}
+
+/** "Tue 21 Oct" style label for a YYYY-MM-DD date. */
+export function formatDeliveryDate(date: string, arabic: boolean) {
+  return new Intl.DateTimeFormat(arabic ? 'ar-AE' : 'en-GB', {
+    weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC',
+  }).format(new Date(`${date}T00:00:00Z`));
+}
+
+/** "Tue 21 Oct · 9am – 12pm". */
+export function deliverySummary(schedule: DeliverySchedule | null, arabic: boolean) {
+  if (!schedule?.date || !schedule.slotId) return '';
+  return `${formatDeliveryDate(schedule.date, arabic)} · ${windowLabel(schedule.slotId, arabic)}`;
+}
+
 /** Cart attributes for a schedule. The English label is what the shop team sees on the order. */
 export function scheduleAttributes(schedule: DeliverySchedule) {
-  const slot = findSlot(schedule.slotId);
-  return slot ? [
+  return findSlot(schedule.slotId) ? [
     { key: DELIVERY_DATE_KEY, value: schedule.date },
-    { key: DELIVERY_TIME_KEY, value: slot.label.en },
+    { key: DELIVERY_TIME_KEY, value: windowLabel(schedule.slotId, false) },
   ] : [];
 }
 
 /** Reads a schedule back from cart attributes. */
 export function scheduleFromAttributes(attributes: Record<string, string>): DeliverySchedule | null {
   const date = attributes[DELIVERY_DATE_KEY];
-  const slot = DELIVERY_SLOTS.find((item) => item.label.en === attributes[DELIVERY_TIME_KEY]);
+  const slot = DELIVERY_RULES.windows.find((item) => windowLabel(item.id, false) === attributes[DELIVERY_TIME_KEY]);
   return date && slot ? { date, slotId: slot.id } : null;
-}
-
-/** "Tue 21 Oct" style label for a YYYY-MM-DD date. */
-export function formatDeliveryDate(date: string, arabic: boolean) {
-  return new Intl.DateTimeFormat(arabic ? 'ar-AE' : 'en-AE', {
-    weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC',
-  }).format(new Date(`${date}T00:00:00Z`));
 }

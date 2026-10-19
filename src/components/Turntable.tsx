@@ -4,7 +4,6 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { trackHeroClicked, trackHeroNavigated } from '@/lib/analytics/track';
 import { formatMoney } from '@/lib/format';
 import { useStore } from './store/StoreProvider';
@@ -31,9 +30,11 @@ interface TurntableProps {
  * (the outgoing piece drifts up and away, the next arrives and settles).
  */
 export default function Turntable({ onActiveChange }: TurntableProps) {
-  const { products, locale, live, addToBag } = useStore();
-  const router = useRouter();
-  const looks = useMemo(() => products.filter((product) => product.featured).slice(0, 3), [products]);
+  const { products, locale, live, addToBag, openProduct } = useStore();
+  const looks = useMemo(() => products
+    .filter((product) => product.featured)
+    .sort((a, b) => (a.heroOrder ?? 99) - (b.heroOrder ?? 99))
+    .slice(0, 3), [products]);
   const count = looks.length;
   const sectionRef = useRef<HTMLElement>(null);
   const copyRef = useRef<HTMLDivElement>(null);
@@ -175,8 +176,8 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
               </p>
             </div>
             <div className="tt-product__actions">
-              {/* A button, as in the design, so the hero's button styles apply; it opens the product page. */}
-              <button type="button" className="tt-product__discover" onClick={() => { trackHeroClicked(current, 'discover', active + 1); router.push(`/shop/${current.id}`); }}>
+              {/* Opens the quick-add sheet, as in the design. */}
+              <button type="button" className="tt-product__discover" onClick={() => { trackHeroClicked(current, 'discover', active + 1); openProduct(current); }}>
                 {arabic ? 'اكتشف التنسيق' : 'Discover arrangement'} <span aria-hidden="true">↗</span>
               </button>
               <button type="button" className="tt-product__add" onClick={() => { trackHeroClicked(current, 'add_to_bag', active + 1); addToBag(current, { source: 'hero' }); }} disabled={!current.available}>

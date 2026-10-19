@@ -24,7 +24,7 @@
 /* Product page */
 .product-page { padding-bottom: clamp(56px, 7vw, 104px); }
 .product-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(32px, 5vw, 88px); align-items: start; }
-.product-gallery { position: sticky; top: calc(var(--header) + 20px); aspect-ratio: 4 / 5; overflow: hidden; }
+.product-gallery { position: sticky; top: calc(var(--chrome) + 20px); aspect-ratio: 4 / 5; overflow: hidden; }
 .product-gallery img { object-fit: cover; }
 .product-info { display: grid; gap: 32px; }
 .purchase .eyebrow { margin-bottom: 14px; }

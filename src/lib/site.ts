@@ -34,7 +34,8 @@ export const SITE = {
   instagram: null as string | null,
 };
 
-export const OCCASION_IDS = ['romance', 'birthday', 'anniversary', 'thank-you', 'just-because', 'new-beginnings'] as const;
+/** The occasions products are tagged with in Shopify (`occasion:<id>`), in menu order. */
+export const OCCASION_IDS = ['birthday', 'love', 'thanks', 'get-well', 'new-baby', 'congratulations', 'wedding', 'sorry', 'just-because'] as const;
 export type OccasionId = typeof OCCASION_IDS[number];
 
 export interface Occasion {
@@ -42,20 +43,11 @@ export interface Occasion {
   name: Bilingual;
   line: Bilingual;
   intro: Bilingual;
+  /** Fallback photograph; the occasion page prefers a product photo. */
   image: string;
 }
 
 export const OCCASIONS: Occasion[] = [
-  {
-    id: 'romance',
-    name: { en: 'Romance', ar: 'الحب' },
-    line: { en: 'For the heart that already knows.', ar: 'للقلب الذي يعرف مسبقاً.' },
-    intro: {
-      en: 'Deep roses, soft peonies and the kind of gesture that does not need explaining.',
-      ar: 'ورود عميقة اللون وفاوانيا ناعمة، ولفتة لا تحتاج إلى شرح.',
-    },
-    image: '/assets/red-peonies.jpg',
-  },
   {
     id: 'birthday',
     name: { en: 'Birthday', ar: 'عيد ميلاد' },
@@ -67,18 +59,18 @@ export const OCCASIONS: Occasion[] = [
     image: '/assets/sunlit-cut.jpg',
   },
   {
-    id: 'anniversary',
-    name: { en: 'Anniversary', ar: 'ذكرى سنوية' },
-    line: { en: 'For the moments you keep.', ar: 'للحظات التي نحتفظ بها.' },
+    id: 'love',
+    name: { en: 'Love & Anniversary', ar: 'حب وذكرى' },
+    line: { en: 'For the heart that already knows.', ar: 'للقلب الذي يعرف مسبقاً.' },
     intro: {
-      en: 'For the love that keeps finding new ways to bloom, and the years worth celebrating.',
-      ar: 'للحب الذي يجد دائماً طريقة جديدة للتفتح، وللسنوات التي تستحق الاحتفاء.',
+      en: 'Deep roses, soft peonies and the kind of gesture that does not need explaining, for every year worth celebrating.',
+      ar: 'ورود عميقة اللون وفاوانيا ناعمة، ولفتة لا تحتاج إلى شرح، لكل عام يستحق الاحتفاء.',
     },
-    image: '/assets/dark-editorial-concept.jpg',
+    image: '/assets/red-peonies.jpg',
   },
   {
-    id: 'thank-you',
-    name: { en: 'Thank you', ar: 'شكر وامتنان' },
+    id: 'thanks',
+    name: { en: 'Thank You', ar: 'شكر وامتنان' },
     line: { en: 'Gratitude, in bloom.', ar: 'امتنان، في هيئة زهور.' },
     intro: {
       en: 'A small way to say what words cannot quite hold, for hosts, colleagues and kind gestures.',
@@ -87,24 +79,64 @@ export const OCCASIONS: Occasion[] = [
     image: '/assets/wrapped-gifts.jpg',
   },
   {
+    id: 'get-well',
+    name: { en: 'Get Well', ar: 'سلامتك' },
+    line: { en: 'Something bright for the bedside.', ar: 'لمسة مشرقة بجانب السرير.' },
+    intro: {
+      en: 'Gentle colour and a few kind words, for a hospital room, a quiet recovery or a long week.',
+      ar: 'ألوان هادئة وكلمات لطيفة، لغرفة في المستشفى أو فترة تعافٍ أو أسبوع طويل.',
+    },
+    image: '/assets/wild-stems.jpg',
+  },
+  {
+    id: 'new-baby',
+    name: { en: 'New Baby', ar: 'مولود جديد' },
+    line: { en: 'Welcome to the world.', ar: 'أهلاً بك في هذا العالم.' },
+    intro: {
+      en: 'Soft flowers and keepsake gifts for new parents, and for the newest member of the family.',
+      ar: 'زهور ناعمة وهدايا تُحفظ للوالدين الجديدين، ولأحدث فرد في العائلة.',
+    },
+    image: '/assets/bouquet-concept.jpg',
+  },
+  {
+    id: 'congratulations',
+    name: { en: 'Congratulations', ar: 'تهنئة' },
+    line: { en: 'For the moments that change everything.', ar: 'للحظات التي تغيّر كل شيء.' },
+    intro: {
+      en: 'A promotion, a graduation, a new home or a new chapter: flowers that match the occasion.',
+      ar: 'ترقية أو تخرج أو بيت جديد أو فصل جديد: زهور تليق بالمناسبة.',
+    },
+    image: '/assets/dark-editorial-concept.jpg',
+  },
+  {
+    id: 'wedding',
+    name: { en: 'Wedding', ar: 'زفاف' },
+    line: { en: 'For the two of you.', ar: 'لكما معاً.' },
+    intro: {
+      en: 'Bridal bouquets and gifts for the couple. For full wedding florals, see Events & gifting.',
+      ar: 'باقات العروس وهدايا للعروسين. لتنسيقات الأعراس الكاملة، اطّلع على المناسبات والإهداء.',
+    },
+    image: '/assets/preserved-rose.jpg',
+  },
+  {
+    id: 'sorry',
+    name: { en: "I'm Sorry", ar: 'اعتذار' },
+    line: { en: 'The first part of an apology.', ar: 'أول كلمات الاعتذار.' },
+    intro: {
+      en: 'When words need a little help: considered flowers that say you mean it.',
+      ar: 'حين تحتاج الكلمات إلى بعض العون: زهور مختارة تقول إنك تعنيها.',
+    },
+    image: '/assets/dried-arrangement.jpg',
+  },
+  {
     id: 'just-because',
-    name: { en: 'Just because', ar: 'من دون مناسبة' },
+    name: { en: 'Just Because', ar: 'من دون مناسبة' },
     line: { en: 'No date on the calendar. Every reason.', ar: 'لا موعد في التقويم، وكل الأسباب.' },
     intro: {
       en: 'Make an ordinary day feel a little less ordinary. No occasion required.',
       ar: 'اجعل يوماً عادياً أقل اعتيادية قليلاً. لا حاجة إلى مناسبة.',
     },
-    image: '/assets/wild-stems.jpg',
-  },
-  {
-    id: 'new-beginnings',
-    name: { en: 'New beginnings', ar: 'بدايات جديدة' },
-    line: { en: 'A new home, a new chapter.', ar: 'بيت جديد، وفصل جديد.' },
-    intro: {
-      en: 'For new homes, new arrivals, new roles and every fresh start worth marking.',
-      ar: 'للبيوت الجديدة والمواليد الجدد والأدوار الجديدة وكل بداية تستحق الاحتفاء.',
-    },
-    image: '/assets/bouquet-concept.jpg',
+    image: '/assets/gift-concept.jpg',
   },
 ];
 

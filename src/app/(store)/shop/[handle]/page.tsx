@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps<'/shop/[handle]'>):
   if (!product) return {};
   return {
     title: product.name,
-    description: product.description || `${product.name} from Maison Botanique, Dubai.`,
+    description: product.answerSummary || product.description || `${product.name} from Maison Botanique, Dubai.`,
     alternates: { canonical: `/shop/${product.id}` },
     openGraph: { title: product.name, description: product.description, images: [{ url: product.image }] },
   };
@@ -36,8 +36,8 @@ const DETAILS = [
   {
     title: { en: 'Delivery', ar: 'التوصيل' },
     body: {
-      en: 'Choose the day and a three-hour window above, from 9 AM to midnight. Same-day windows close two hours before they start. Delivery fees are shown at checkout.',
-      ar: 'اختر اليوم وفترة من ثلاث ساعات أعلاه، من 9 صباحاً حتى منتصف الليل. تُغلق فترات اليوم نفسه قبل بدايتها بساعتين. تظهر رسوم التوصيل عند الدفع.',
+      en: 'Same-day delivery across Dubai, free in JVC. Choose the day and a three-hour window (9am to 9pm) in your bag; same-day windows close three hours before they start. Fees are shown at checkout.',
+      ar: 'توصيل في اليوم نفسه في جميع أنحاء دبي، ومجاني في JVC. اختر اليوم وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، وتُغلق فترات اليوم نفسه قبل بدايتها بثلاث ساعات. تظهر الرسوم عند الدفع.',
     },
   },
   {

@@ -1,0 +1,2042 @@
+{
+  "startedAt": "2026-10-19T06:09:21.938Z",
+  "store": "maison-botanique-5zuwgyks.myshopify.com",
+  "definitions": {
+    "reference_id": "updated",
+    "review_flags": "updated",
+    "answer_summary": "updated",
+    "answer_summary_ar": "updated",
+    "faq": "updated",
+    "image_status": "updated",
+    "size_note": "updated",
+    "custom_fields": "updated",
+    "card_line": "updated",
+    "card_line_ar": "updated",
+    "composition": "updated",
+    "composition_ar": "updated",
+    "stem_count": "updated",
+    "sort_order": "updated",
+    "hero_order": "updated",
+    "catalog_number": "updated",
+    "room": "updated",
+    "feature": "updated",
+    "size_details": "updated",
+    "title_ar": "updated",
+    "description_ar": "updated",
+    "image_source": "updated"
+  },
+  "products": {
+    "basket-arrangement-of-white-lilies-yellow-and-white-roses": {
+      "id": "gid://shopify/Product/15383850615016",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "love-roses": {
+      "id": "gid://shopify/Product/15383850713320",
+      "created": false,
+      "images": 2,
+      "translated": 4
+    },
+    "bouquet-of-mix-color-roses-and-white-baby-breath": {
+      "id": "gid://shopify/Product/15383850746088",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-100-roses": {
+      "id": "gid://shopify/Product/15383850778856",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-white-roses": {
+      "id": "gid://shopify/Product/15383850811624",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "100-pink-roses-bouquet": {
+      "id": "gid://shopify/Product/15383850844392",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-purple-and-pink-roses": {
+      "id": "gid://shopify/Product/15383850877160",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "elegant-red-and-pink-bouquet": {
+      "id": "gid://shopify/Product/15383850942696",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-rose-bouquet": {
+      "id": "gid://shopify/Product/15383851008232",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "the-red-affair": {
+      "id": "gid://shopify/Product/15383851041000",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pastel-rose-symphony": {
+      "id": "gid://shopify/Product/15383851139304",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "timeless-red-and-pink-roses": {
+      "id": "gid://shopify/Product/15383851172072",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "deep-love-red-roses": {
+      "id": "gid://shopify/Product/15383851204840",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "birthday-surprise-bouquet": {
+      "id": "gid://shopify/Product/15383851237608",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "miss-you-white-roses-bouquet": {
+      "id": "gid://shopify/Product/15383851270376",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "red-royale-bouquet": {
+      "id": "gid://shopify/Product/15383851303144",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "romantic-pink-rose-bouquet": {
+      "id": "gid://shopify/Product/15383851335912",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "sorry-roses-bouquet": {
+      "id": "gid://shopify/Product/15383851368680",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "purple-and-pink-roses-bouquet": {
+      "id": "gid://shopify/Product/15383851401448",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "40-pink-roses-bouquet": {
+      "id": "gid://shopify/Product/15383851434216",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "anniversary-bliss-bouquet": {
+      "id": "gid://shopify/Product/15383851466984",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "20-red-roses-love-for-you": {
+      "id": "gid://shopify/Product/15383851499752",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "notification-flower-bouquet": {
+      "id": "gid://shopify/Product/15383851565288",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "classic-romance-bouquet": {
+      "id": "gid://shopify/Product/15383851598056",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "ethereal-pink-roses-charm": {
+      "id": "gid://shopify/Product/15383851630824",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "golden-glow-rose-bouquet": {
+      "id": "gid://shopify/Product/15383851663592",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "graceful-blush-bouquet": {
+      "id": "gid://shopify/Product/15383851696360",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-roses-and-spray-roses-bouquet": {
+      "id": "gid://shopify/Product/15383851729128",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-roses-and-white-spray-roses-bouquet": {
+      "id": "gid://shopify/Product/15383851761896",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "prestige-raksha-bandhan-gift": {
+      "id": "gid://shopify/Product/15383851794664",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "anniversary-red-roses-bouquet": {
+      "id": "gid://shopify/Product/15383851827432",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blush-and-ivory-rose-bouquet": {
+      "id": "gid://shopify/Product/15383851860200",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "timeless-bouquet-of-100-white-roses": {
+      "id": "gid://shopify/Product/15383851892968",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bridal-blush-bloom": {
+      "id": "gid://shopify/Product/15383851991272",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "happy-birthday-roses-bouquet": {
+      "id": "gid://shopify/Product/15383852024040",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blue-roses-bouquet": {
+      "id": "gid://shopify/Product/15383852056808",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blushing-bouquet-of-20-pink-and-red-roses": {
+      "id": "gid://shopify/Product/15383852089576",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "grand-gesture-roses-bouquet": {
+      "id": "gid://shopify/Product/15383852187880",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "timeless-white-roses-bouquet": {
+      "id": "gid://shopify/Product/15383852220648",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "trilogy-of-roses-bouquet": {
+      "id": "gid://shopify/Product/15383852253416",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blue-rose-bouquet": {
+      "id": "gid://shopify/Product/15383852286184",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "20-purple-roses-bouquet": {
+      "id": "gid://shopify/Product/15383852318952",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blush-pink-rose-bouquet": {
+      "id": "gid://shopify/Product/15383852351720",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "customized-letter-red-roses-bouquet": {
+      "id": "gid://shopify/Product/15383852384488",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "classic-pink-and-white-rose-bouquet": {
+      "id": "gid://shopify/Product/15383852450024",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "heart-shaped-red-rose-bouquet": {
+      "id": "gid://shopify/Product/15383852482792",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "luxury-red-pink-and-white-rose-bouquet": {
+      "id": "gid://shopify/Product/15383852515560",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pearl-white-rose-bouquet": {
+      "id": "gid://shopify/Product/15383852548328",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "rainbow-ombre-summer-bouquet": {
+      "id": "gid://shopify/Product/15383852581096",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-and-red-roses-bouquet": {
+      "id": "gid://shopify/Product/15383852613864",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-baby-rose-happy-birthday-bouquet-with-balloons": {
+      "id": "gid://shopify/Product/15383852679400",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "heart-on-fire-heart-shaped-red-roses-bouquet-100-roses": {
+      "id": "gid://shopify/Product/15383852712168",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "made-to-adore-luxury-pink-spray-roses-bouquet": {
+      "id": "gid://shopify/Product/15383852744936",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "rustic-bouquet-of-white-roses": {
+      "id": "gid://shopify/Product/15383852777704",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "ros-elegance-spray-roses": {
+      "id": "gid://shopify/Product/15383852810472",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-champagne-lisianthus": {
+      "id": "gid://shopify/Product/15383852843240",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "ruby-radiance-bouquet": {
+      "id": "gid://shopify/Product/15383852876008",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "red-and-pink-flower-bouquet": {
+      "id": "gid://shopify/Product/15383852941544",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bridal-pastel-bouquet": {
+      "id": "gid://shopify/Product/15383852974312",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bridal-pink-ranunculus-bouquet": {
+      "id": "gid://shopify/Product/15383853007080",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "tenacetum-bag": {
+      "id": "gid://shopify/Product/15383853039848",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "lavender-grace-bouquet": {
+      "id": "gid://shopify/Product/15383853105384",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bridal-soft-elegance-bouquet": {
+      "id": "gid://shopify/Product/15383853138152",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-iris-flowers": {
+      "id": "gid://shopify/Product/15383853170920",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "gospium-bouquet-cotton-flowers": {
+      "id": "gid://shopify/Product/15383853203688",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "enchanted-blossom-bouquet": {
+      "id": "gid://shopify/Product/15383853236456",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "cloud-nine-pastel-pink-and-blue-flower-bouquet": {
+      "id": "gid://shopify/Product/15383853269224",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-summer-bouquet": {
+      "id": "gid://shopify/Product/15383853301992",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-birthday-flower-bouquet-xl": {
+      "id": "gid://shopify/Product/15383853334760",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "special-graduation-bouquet": {
+      "id": "gid://shopify/Product/15384786403560",
+      "created": true,
+      "images": 1,
+      "translated": 4
+    },
+    "special-graduation-bouquets": {
+      "id": "gid://shopify/Product/15384786469096",
+      "created": true,
+      "images": 1,
+      "translated": 4
+    },
+    "birthday-bouquet-of-summer-flowers": {
+      "id": "gid://shopify/Product/15383853433064",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "cherry-bouquet": {
+      "id": "gid://shopify/Product/15383853465832",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "elegant-black-graduation-bouquet": {
+      "id": "gid://shopify/Product/15383853498600",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "graduation-bouquet-celebration-bundle": {
+      "id": "gid://shopify/Product/15383853531368",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "graduation-floral-special-bouquet": {
+      "id": "gid://shopify/Product/15383853564136",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "happy-birthday-flower-large-30-red-bouquet": {
+      "id": "gid://shopify/Product/15383853596904",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-graduation-bouquet": {
+      "id": "gid://shopify/Product/15383853629672",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "rainbow-wildflower-garden-bouquet": {
+      "id": "gid://shopify/Product/15383853662440",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "red-and-white-love-special-bouquet": {
+      "id": "gid://shopify/Product/15383853695208",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-pink-lilies-and-pink-roses": {
+      "id": "gid://shopify/Product/15383853727976",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-roses-and-lilies-bouquet": {
+      "id": "gid://shopify/Product/15383853793512",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "purple-orchids-bouquet": {
+      "id": "gid://shopify/Product/15383853826280",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "serene-pink-tulips-bouquet": {
+      "id": "gid://shopify/Product/15383853859048",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-hydrangeas-and-carnations": {
+      "id": "gid://shopify/Product/15383853891816",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "roses-and-hydrangeas-bouquet": {
+      "id": "gid://shopify/Product/15383853924584",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "hydrangeas-and-roses-bouquet": {
+      "id": "gid://shopify/Product/15383853957352",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "radiance-sunflower-bouquet": {
+      "id": "gid://shopify/Product/15383853990120",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "premium-pink-tulips-bouquet": {
+      "id": "gid://shopify/Product/15383854022888",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-30-pink-tulips": {
+      "id": "gid://shopify/Product/15383854055656",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-tulips": {
+      "id": "gid://shopify/Product/15383854088424",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-pink-lilies-and-roses": {
+      "id": "gid://shopify/Product/15383854153960",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "roses-and-hydrangea-bunch": {
+      "id": "gid://shopify/Product/15383854186728",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-pink-lilies-and-red-roses": {
+      "id": "gid://shopify/Product/15383854252264",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-40-white-and-40-purple-tulips": {
+      "id": "gid://shopify/Product/15383854317800",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "majestic-orchids-bouquet": {
+      "id": "gid://shopify/Product/15383854350568",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-flowers-bouquet": {
+      "id": "gid://shopify/Product/15383854416104",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "elegant-bouquet-of-mix-flowers": {
+      "id": "gid://shopify/Product/15383854481640",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "dreamy-pastel-bouquet": {
+      "id": "gid://shopify/Product/15383854547176",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "the-sunlit-bouquet": {
+      "id": "gid://shopify/Product/15383854612712",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "orchid-bliss-bouquet": {
+      "id": "gid://shopify/Product/15383854645480",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-roses-and-lilies": {
+      "id": "gid://shopify/Product/15383854711016",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-lilies-and-pistache-bliss": {
+      "id": "gid://shopify/Product/15383854809320",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "purple-dendrobium-orchids-bouquet": {
+      "id": "gid://shopify/Product/15383854842088",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "sunlit-meadow-bouquet": {
+      "id": "gid://shopify/Product/15383854907624",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-purple-dendrobium-orchids": {
+      "id": "gid://shopify/Product/15383854973160",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "baby-boy-blossom-bouquet": {
+      "id": "gid://shopify/Product/15383855005928",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-pink-lilies": {
+      "id": "gid://shopify/Product/15383855071464",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-pink-flowers": {
+      "id": "gid://shopify/Product/15383855137000",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blush-meadow-bouquet": {
+      "id": "gid://shopify/Product/15383855202536",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-40-purple-tulips": {
+      "id": "gid://shopify/Product/15383855235304",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "i-am-sorry-flower-bouquet": {
+      "id": "gid://shopify/Product/15383855300840",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "regal-pink-lily-bouquet": {
+      "id": "gid://shopify/Product/15383855333608",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "yellow-tulips-bouquet": {
+      "id": "gid://shopify/Product/15383855399144",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "80-purple-orchids-bouquet": {
+      "id": "gid://shopify/Product/15383855464680",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blue-orchids-bouquet": {
+      "id": "gid://shopify/Product/15383855497448",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-lilies-and-red-roses-bouquet": {
+      "id": "gid://shopify/Product/15383855562984",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "sunburst-love-bouquet": {
+      "id": "gid://shopify/Product/15383855628520",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blushing-elegance-bouquet": {
+      "id": "gid://shopify/Product/15383855661288",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "the-love-spell-luxury-red-and-burgundy-flower-bouquet": {
+      "id": "gid://shopify/Product/15383855726824",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "birthday-bouquet-with-lilies-and-baby-rose": {
+      "id": "gid://shopify/Product/15383855792360",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blush-crush-luxury-pink-hydrangea-and-gerbera-bouquet": {
+      "id": "gid://shopify/Product/15383855825128",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-10-pink-lilies": {
+      "id": "gid://shopify/Product/15383855890664",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "golden-hour-luxury-sunflower-and-white-hydrangea-bouquet": {
+      "id": "gid://shopify/Product/15383855956200",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "sunflower-and-golden-rose-bouquet": {
+      "id": "gid://shopify/Product/15383855988968",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-calla-bridal-bouquet": {
+      "id": "gid://shopify/Product/15383856054504",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-tulip-bridal-bouquet": {
+      "id": "gid://shopify/Product/15383856120040",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "happy-birthday-flowers-peonies-bouquet": {
+      "id": "gid://shopify/Product/15383856152808",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "red-roses-vase-arrangement": {
+      "id": "gid://shopify/Product/15383856251112",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-lilies-in-a-vase": {
+      "id": "gid://shopify/Product/15383856316648",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "40-white-orchids-arrangement": {
+      "id": "gid://shopify/Product/15383856349416",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "15-white-lilies-vase-arrangement": {
+      "id": "gid://shopify/Product/15383856414952",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "carnations-lilies-roses-and-chrysanthemums-in-a-vase": {
+      "id": "gid://shopify/Product/15383856480488",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-lilies-in-a-glass-vase": {
+      "id": "gid://shopify/Product/15383856513256",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "tulips-roses-and-hydrangeas-in-a-vase": {
+      "id": "gid://shopify/Product/15383856578792",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "arrangement-of-pink-and-white-tulips": {
+      "id": "gid://shopify/Product/15383856644328",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blush-and-pure-rose-symphony-in-elegant-vase": {
+      "id": "gid://shopify/Product/15383856677096",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "exotic-white-tulips-vase": {
+      "id": "gid://shopify/Product/15383856742632",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-and-white-flowers-in-vase": {
+      "id": "gid://shopify/Product/15383856775400",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "red-roses-in-vase": {
+      "id": "gid://shopify/Product/15383856840936",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "lilies-and-roses-in-glass-vase": {
+      "id": "gid://shopify/Product/15383856939240",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "garden-pastel-arrangement": {
+      "id": "gid://shopify/Product/15383856972008",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-tulips-in-vase": {
+      "id": "gid://shopify/Product/15383857037544",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "20-white-tulips-vase-arrangement": {
+      "id": "gid://shopify/Product/15383857103080",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "purple-tulips-in-vase": {
+      "id": "gid://shopify/Product/15383857135848",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "vase-of-pink-roses": {
+      "id": "gid://shopify/Product/15383857201384",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blue-orchids-in-a-vase": {
+      "id": "gid://shopify/Product/15383857234152",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "sunflowers-and-yellow-lemons-in-a-vase": {
+      "id": "gid://shopify/Product/15383857299688",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "40-red-spray-roses-in-vase": {
+      "id": "gid://shopify/Product/15383857365224",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "luminous-yellow-rose-arrangement": {
+      "id": "gid://shopify/Product/15383857397992",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "kiss-me-again-red-roses-in-a-glass-vase": {
+      "id": "gid://shopify/Product/15383857463528",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "40-white-tulip-vase": {
+      "id": "gid://shopify/Product/15383857496296",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blue-and-white-mix-flowers-vase": {
+      "id": "gid://shopify/Product/15383857529064",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "fall-vase": {
+      "id": "gid://shopify/Product/15383857594600",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-lilies-in-glass-vase": {
+      "id": "gid://shopify/Product/15383857660136",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "square-box-of-20-red-roses": {
+      "id": "gid://shopify/Product/15383857725672",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "basket-arrangement-of-white-roses": {
+      "id": "gid://shopify/Product/15383857758440",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "roses-and-carnations-in-box": {
+      "id": "gid://shopify/Product/15383857823976",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "black-box-of-100-red-roses": {
+      "id": "gid://shopify/Product/15383857856744",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-roses-in-box": {
+      "id": "gid://shopify/Product/15383857922280",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "soft-elegance-roundbox-arrangement": {
+      "id": "gid://shopify/Product/15383858020584",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-and-white-roses-in-a-box": {
+      "id": "gid://shopify/Product/15383858053352",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "box-of-red-and-pink-roses": {
+      "id": "gid://shopify/Product/15383858118888",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-lilies-in-box": {
+      "id": "gid://shopify/Product/15383858184424",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "box-of-white-lilies": {
+      "id": "gid://shopify/Product/15383858217192",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "mix-flowers-in-box": {
+      "id": "gid://shopify/Product/15383858282728",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "round-box-of-red-roses": {
+      "id": "gid://shopify/Product/15383858315496",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "red-and-gold-roses-heart-shaped-box": {
+      "id": "gid://shopify/Product/15383858348264",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blush-pink-roses-in-box": {
+      "id": "gid://shopify/Product/15383858381032",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "box-of-pink-roses": {
+      "id": "gid://shopify/Product/15383858413800",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-lilies-and-roses-in-box": {
+      "id": "gid://shopify/Product/15383858446568",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "red-and-pink-roses-basket": {
+      "id": "gid://shopify/Product/15383858479336",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "sunflowers-and-roses-in-box": {
+      "id": "gid://shopify/Product/15383858512104",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "box-of-roses-and-hydrangea": {
+      "id": "gid://shopify/Product/15383858544872",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "box-of-sunflowers-and-roses": {
+      "id": "gid://shopify/Product/15383858577640",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "lilies-and-roses-in-box": {
+      "id": "gid://shopify/Product/15383858610408",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "crimson-luxe-box": {
+      "id": "gid://shopify/Product/15383858643176",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "national-flag-flowers-in-box": {
+      "id": "gid://shopify/Product/15383858675944",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "60-red-roses-romantic-basket": {
+      "id": "gid://shopify/Product/15383858708712",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "red-roses-and-white-phalaenopsis-orchid-in-a-round-box": {
+      "id": "gid://shopify/Product/15383858774248",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-roses-hatbox": {
+      "id": "gid://shopify/Product/15383858807016",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "three-box-arrangement": {
+      "id": "gid://shopify/Product/15383858839784",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "red-roses-and-phalaenopsis-orchid-in-a-box": {
+      "id": "gid://shopify/Product/15383858872552",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "box-of-gerberas-and-roses": {
+      "id": "gid://shopify/Product/15383858905320",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "ethereal-white-elegance-box": {
+      "id": "gid://shopify/Product/15383858938088",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "roses-and-gerberas-in-a-box": {
+      "id": "gid://shopify/Product/15383859003624",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "basket-of-golden-flowers-spikey-bird-of-paradise-lilies": {
+      "id": "gid://shopify/Product/15383859036392",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "caught-in-love-luxury-peach-and-pink-flower-box": {
+      "id": "gid://shopify/Product/15383859069160",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "head-over-roses-luxury-red-roses-basket": {
+      "id": "gid://shopify/Product/15383859101928",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "birthday-red-roses-box-with-white-balloons": {
+      "id": "gid://shopify/Product/15383859134696",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blue-hydrangea-elegance-box": {
+      "id": "gid://shopify/Product/15383859167464",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "sunshine-graduation-box": {
+      "id": "gid://shopify/Product/15383859200232",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "grand-passion-rose-four-layer-tower": {
+      "id": "gid://shopify/Product/15383859233000",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "tower-arrangement-of-blue-orchids": {
+      "id": "gid://shopify/Product/15383859298536",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-and-white-floral-stand": {
+      "id": "gid://shopify/Product/15383859331304",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "orchid-and-baby-s-breath-tower": {
+      "id": "gid://shopify/Product/15383859364072",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "200-roses-in-vase": {
+      "id": "gid://shopify/Product/15383859396840",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pastel-dreams-tower": {
+      "id": "gid://shopify/Product/15383859462376",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-300-roses": {
+      "id": "gid://shopify/Product/15383859527912",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blue-orchids-on-stand": {
+      "id": "gid://shopify/Product/15383859560680",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "xxxl-pink-paradise-floral-box": {
+      "id": "gid://shopify/Product/15383859593448",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "ivory-tower": {
+      "id": "gid://shopify/Product/15383859626216",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "xxxl-300-red-roses-box": {
+      "id": "gid://shopify/Product/15383859658984",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "sunburst-xxxl-dome-of-roses": {
+      "id": "gid://shopify/Product/15383859691752",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "401-roses-bouquet": {
+      "id": "gid://shopify/Product/15383859757288",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "500-red-roses-of-love-xxxl": {
+      "id": "gid://shopify/Product/15383859822824",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-orchid-plant": {
+      "id": "gid://shopify/Product/15383859888360",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-orchid-plant-4": {
+      "id": "gid://shopify/Product/15383859921128",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-phalaenopsis-orchid-plant": {
+      "id": "gid://shopify/Product/15383859953896",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-orchid-plant-in-pot": {
+      "id": "gid://shopify/Product/15383859986664",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "phalaenopsis-orchid-plant": {
+      "id": "gid://shopify/Product/15383860052200",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-dark-pink-and-white-phalaenopsis-plant": {
+      "id": "gid://shopify/Product/15383860084968",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "purple-phalaenopsis-orchid-plant": {
+      "id": "gid://shopify/Product/15383860150504",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "dark-pink-phalaenopsis-orchid-plant": {
+      "id": "gid://shopify/Product/15383860183272",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-orchid-plant-in-pot": {
+      "id": "gid://shopify/Product/15383860248808",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "forever-yours-romance-bouquet": {
+      "id": "gid://shopify/Product/15383860281576",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "2-stems-white-orchid-plant-in-pot": {
+      "id": "gid://shopify/Product/15383860314344",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "forever-rose": {
+      "id": "gid://shopify/Product/15383860347112",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "red-trio-forever-rose": {
+      "id": "gid://shopify/Product/15383860379880",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "fruit-basket-with-fresh-flowers": {
+      "id": "gid://shopify/Product/15383860412648",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "heart-shaped-arrangement-roses-and-chocolates": {
+      "id": "gid://shopify/Product/15383860478184",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "luxury-white-flower-gift-set": {
+      "id": "gid://shopify/Product/15383860510952",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "purple-bloom-twin-plush": {
+      "id": "gid://shopify/Product/15383860543720",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "red-roses-and-mixed-fruits-basket": {
+      "id": "gid://shopify/Product/15383860576488",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "sunshine-peach-teddy-celebration": {
+      "id": "gid://shopify/Product/15383860609256",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-baby-roses-happy-birthday-bouquet-with-pink-balloons": {
+      "id": "gid://shopify/Product/15383860674792",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "premium-graduation-bouquet-with-lilies-and-teddy-bear": {
+      "id": "gid://shopify/Product/15383860707560",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "chocolate-bouquet-with-cake-and-teddy": {
+      "id": "gid://shopify/Product/15383860740328",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "small-teddy-with-chocolate-bouquet": {
+      "id": "gid://shopify/Product/15383860773096",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "chocolate-bouquet-and-teddy": {
+      "id": "gid://shopify/Product/15383860805864",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "6x-ferrero-rocher-chocolates": {
+      "id": "gid://shopify/Product/15383860871400",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "small-teddy-with-lindt-assorted-chocolate-box": {
+      "id": "gid://shopify/Product/15383860904168",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "ferrero-rocher-chocolate-bouquet": {
+      "id": "gid://shopify/Product/15383860936936",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "24s-ferrero-rocher-chocolate-box": {
+      "id": "gid://shopify/Product/15383860969704",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blue-dream-chocolate-bouquet": {
+      "id": "gid://shopify/Product/15383861002472",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blush-elegance-and-ferrero-delight": {
+      "id": "gid://shopify/Product/15383861035240",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-bloom-and-ferrero-charm": {
+      "id": "gid://shopify/Product/15383861100776",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-bloom-and-ferrero-24s": {
+      "id": "gid://shopify/Product/15383861166312",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "purple-orchids-teddy-and-ferrero": {
+      "id": "gid://shopify/Product/15383861199080",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "crimson-bloom-and-ferrero": {
+      "id": "gid://shopify/Product/15383861231848",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "tulips-teddy-and-pistache-16s": {
+      "id": "gid://shopify/Product/15383861264616",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blue-orchid-and-ferrero-delight": {
+      "id": "gid://shopify/Product/15383861297384",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "fruits-and-chocolates-basket": {
+      "id": "gid://shopify/Product/15383861362920",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-luxe-and-pistache-indulgence": {
+      "id": "gid://shopify/Product/15383861395688",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blue-bliss-teddy-and-ferrero": {
+      "id": "gid://shopify/Product/15383861428456",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "teddy-with-16-pcs-ferrero-rocher-gift": {
+      "id": "gid://shopify/Product/15384795054312",
+      "created": true,
+      "images": 2,
+      "translated": 4
+    },
+    "basket-of-fruits-biscuits-chocolates-and-crackers": {
+      "id": "gid://shopify/Product/15383861559528",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-teddy-with-cake-and-balloons": {
+      "id": "gid://shopify/Product/15383861592296",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-teddy-with-cake-and-chocolate": {
+      "id": "gid://shopify/Product/15383861657832",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "premium-flower-chocolate-box": {
+      "id": "gid://shopify/Product/15383861690600",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "eternal-passion-red-roses-and-chocolate-box": {
+      "id": "gid://shopify/Product/15383861723368",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-roses-and-pistache-signature-chocolate-box": {
+      "id": "gid://shopify/Product/15383861788904",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "classic-love-surprise": {
+      "id": "gid://shopify/Product/15383861821672",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-lily-gift-combo": {
+      "id": "gid://shopify/Product/15383861854440",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "premium-white-bloom-gift": {
+      "id": "gid://shopify/Product/15383861887208",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "carnation-and-chrysanthemums-with-cake": {
+      "id": "gid://shopify/Product/15383861919976",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "flowers-and-chocolate-in-box": {
+      "id": "gid://shopify/Product/15383861985512",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "love-rose-and-cake-bundle": {
+      "id": "gid://shopify/Product/15383862018280",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "orchid-bliss-combo": {
+      "id": "gid://shopify/Product/15383862051048",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-flowers-and-pistache-joy": {
+      "id": "gid://shopify/Product/15383862083816",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "100-red-roses-with-pistache-chocolate-box": {
+      "id": "gid://shopify/Product/15383862116584",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blissful-bouquet-and-dates": {
+      "id": "gid://shopify/Product/15383862149352",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "classic-red-roses-and-cake": {
+      "id": "gid://shopify/Product/15383862214888",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "roses-teddy-bear-and-chocolates": {
+      "id": "gid://shopify/Product/15383862247656",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-roses-vase-and-chocolate-mousse": {
+      "id": "gid://shopify/Product/15383862313192",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "roses-and-ferrero-rocher-chocolate-in-box": {
+      "id": "gid://shopify/Product/15383862345960",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-red-roses-and-pistache-16s": {
+      "id": "gid://shopify/Product/15383862378728",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blue-bliss-and-fudge-celebration": {
+      "id": "gid://shopify/Product/15383862411496",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "red-roses-vase-and-blueberry-cheesecake": {
+      "id": "gid://shopify/Product/15383862477032",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pure-sunshine-gift": {
+      "id": "gid://shopify/Product/15383862509800",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-red-roses-and-red-velvet-cake": {
+      "id": "gid://shopify/Product/15383862542568",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "sunflowers-and-fudge-cake": {
+      "id": "gid://shopify/Product/15383862575336",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "grand-red-rose-bouquet-with-16-ferrero-rocher": {
+      "id": "gid://shopify/Product/15383862608104",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "sunflowers-bouquet-and-honey-cake": {
+      "id": "gid://shopify/Product/15383862673640",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "hydrangea-roses-teddy-and-pistache": {
+      "id": "gid://shopify/Product/15383862706408",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blush-roses-and-triple-chocolate-delight": {
+      "id": "gid://shopify/Product/15383862739176",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-orchids-and-red-velvet-cake": {
+      "id": "gid://shopify/Product/15383862771944",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bouquet-of-tulips-and-cake": {
+      "id": "gid://shopify/Product/15383862804712",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-tulips-bouquet-and-cheesecake": {
+      "id": "gid://shopify/Product/15383862870248",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-roses-and-ferrero-24s": {
+      "id": "gid://shopify/Product/15383862903016",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-roses-bouquet-and-honey-cake": {
+      "id": "gid://shopify/Product/15383862935784",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blue-orchid-bouquet-with-cake-and-blue-teddy-bear": {
+      "id": "gid://shopify/Product/15383863001320",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blue-delphinium-and-pistache-bliss": {
+      "id": "gid://shopify/Product/15383863099624",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "dreamy-pastel-bouquet-and-chocolate": {
+      "id": "gid://shopify/Product/15383863165160",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "tropical-fruit-basket": {
+      "id": "gid://shopify/Product/15383863230696",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blue-baby-boy-gift-hamper": {
+      "id": "gid://shopify/Product/15383863329000",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-baby-girl-gift-hamper": {
+      "id": "gid://shopify/Product/15383863394536",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "romantic-bliss-hamper": {
+      "id": "gid://shopify/Product/15383863492840",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "godiva-hamper": {
+      "id": "gid://shopify/Product/15383863525608",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "550g-premium-dates-box": {
+      "id": "gid://shopify/Product/15383863558376",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "chocolate-gift-hamper": {
+      "id": "gid://shopify/Product/15383863591144",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "golden-treats-hamper": {
+      "id": "gid://shopify/Product/15383863656680",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "sweet-treats-and-white-roses-hamper": {
+      "id": "gid://shopify/Product/15383863689448",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "orchid-wellness-hamper": {
+      "id": "gid://shopify/Product/15383863853288",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "flowers-and-chocolate-delight-hamper": {
+      "id": "gid://shopify/Product/15383863918824",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "dry-fruit-luxe-hamper": {
+      "id": "gid://shopify/Product/15383863984360",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "bloom-and-teddy-delight": {
+      "id": "gid://shopify/Product/15383864017128",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "red-floral-and-teddy-gift": {
+      "id": "gid://shopify/Product/15383864082664",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "red-and-pink-roses-with-teddy": {
+      "id": "gid://shopify/Product/15383864115432",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "sunflowers-bouquet-teddy-and-balloon": {
+      "id": "gid://shopify/Product/15383864213736",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "tulip-teddy-gift": {
+      "id": "gid://shopify/Product/15383864246504",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "peach-rose-teddy-and-balloon-set": {
+      "id": "gid://shopify/Product/15383864279272",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "pink-lilies-teddy-and-dark-chocolate": {
+      "id": "gid://shopify/Product/15383864344808",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "white-lilies-teddy-gift": {
+      "id": "gid://shopify/Product/15383864377576",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "blush-harmony-and-teddy-charm": {
+      "id": "gid://shopify/Product/15383864443112",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "birthday-makeup-gift-basket": {
+      "id": "gid://shopify/Product/15383864574184",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "luxury-beauty-basket-with-floral-accents": {
+      "id": "gid://shopify/Product/15383864705256",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "vip-makeup-basket": {
+      "id": "gid://shopify/Product/15383864770792",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "hello-kitty-makeup-bouquet": {
+      "id": "gid://shopify/Product/15383864836328",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "luxury-makeup-and-blue-stitch-bouquet": {
+      "id": "gid://shopify/Product/15383864901864",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "makeup-big-vip-bouquet": {
+      "id": "gid://shopify/Product/15383865032936",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "makeup-bouquet-with-pink-stitch": {
+      "id": "gid://shopify/Product/15383865065704",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "vip-stitch-beauty-bouquet": {
+      "id": "gid://shopify/Product/15383865196776",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "worlds-most-luxurious-makeup-bouquet-with-roses-stitch": {
+      "id": "gid://shopify/Product/15384798789864",
+      "created": true,
+      "images": 2,
+      "translated": 4
+    },
+    "pink-stitch-and-makeup": {
+      "id": "gid://shopify/Product/15383865491688",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "makeup-box-with-ferrero": {
+      "id": "gid://shopify/Product/15383865589992",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "simple-makeup-box": {
+      "id": "gid://shopify/Product/15383865655528",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    },
+    "l-oreal-skincare-and-floral-delight": {
+      "id": "gid://shopify/Product/15383865753832",
+      "created": false,
+      "images": 1,
+      "translated": 4
+    }
+  },
+  "collections": {
+    "boxes-and-baskets": {
+      "id": "gid://shopify/Collection/510325620968",
+      "added": 0,
+      "removed": 0,
+      "created": false
+    },
+    "rose-bouquets": {
+      "id": "gid://shopify/Collection/510325719272",
+      "added": 0,
+      "removed": 5,
+      "created": false
+    },
+    "garden-and-mixed-bouquets": {
+      "id": "gid://shopify/Collection/510325752040",
+      "added": 2,
+      "removed": 3,
+      "created": false
+    },
+    "named-flower-bouquets": {
+      "id": "gid://shopify/Collection/510325784808",
+      "added": 0,
+      "removed": 0,
+      "created": false
+    },
+    "vase-arrangements": {
+      "id": "gid://shopify/Collection/510325817576",
+      "added": 0,
+      "removed": 0,
+      "created": false
+    },
+    "grand-gestures": {
+      "id": "gid://shopify/Collection/510325850344",
+      "added": 0,
+      "removed": 0,
+      "created": false
+    },
+    "preserved-and-plants": {
+      "id": "gid://shopify/Collection/510325883112",
+      "added": 0,
+      "removed": 0,
+      "created": false
+    },
+    "flower-gift-bundles": {
+      "id": "gid://shopify/Collection/510325915880",
+      "added": 0,
+      "removed": 0,
+      "created": false
+    },
+    "chocolate-gifts": {
+      "id": "gid://shopify/Collection/510325948648",
+      "added": 1,
+      "removed": 2,
+      "created": false
+    },
+    "cakes-and-desserts": {
+      "id": "gid://shopify/Collection/510325981416",
+      "added": 0,
+      "removed": 0,
+      "created": false
+    },
+    "flowers-and-treats": {
+      "id": "gid://shopify/Collection/510326014184",
+      "added": 0,
+      "removed": 0,
+      "created": false
+    },
+    "hampers-fruit-and-dates": {
+      "id": "gid://shopify/Collection/510326079720",
+      "added": 0,
+      "removed": 2,
+      "created": false
+    },
+    "teddy-and-celebration-gifts": {
+      "id": "gid://shopify/Collection/510326112488",
+      "added": 0,
+      "removed": 0,
+      "created": false
+    },
+    "beauty-and-makeup-gifts": {
+      "id": "gid://shopify/Collection/510326145256",
+      "added": 1,
+      "removed": 2,
+      "created": false
+    }
+  },
+  "archived": [
+    "40-red-roses-bouquet",
+    "grand-love-bouquet",
+    "100-pink-roses",
+    "100-white-roses-bouquet",
+    "bouquet-of-100-pink-roses",
+    "blush-and-scarlet-romance-combo",
+    "2026-special-graduation-bouquet",
+    "2026-special-graduation-bouquets",
+    "small-teddy-with-16-pcs-ferrero-rocher",
+    "pink-teddy-with-ferrero-rocher",
+    "baby-girl-gift-hamper",
+    "baby-boy-gift-hamper",
+    "world-s-most-luxurious-makeup-bouquet-with-pink-roses-stitch",
+    "world-s-most-luxurious-makeup-bouquet-with-red-roses-stitch"
+  ],
+  "errors": [],
+  "finishedAt": "2026-10-19T06:40:09.527Z"
+}

@@ -40,7 +40,7 @@
 
 /* Services */
 .services { display: grid; }
-.service { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 620px; scroll-margin-top: var(--header); }
+.service { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 620px; scroll-margin-top: var(--chrome); }
 .service--reverse .service__media { order: 2; }
 .service__media { position: relative; min-height: 420px; overflow: hidden; }
 .service__media img { object-fit: cover; }

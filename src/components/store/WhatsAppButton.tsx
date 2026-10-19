@@ -2,16 +2,33 @@
 
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { SITE, SITE_URL } from '@/lib/site';
+import { isWhatsappOpen, whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import { useStore } from './StoreProvider';
 
-/** Floating "Need help?" WhatsApp chat, with the page the visitor is on in the message. Hidden until a number is set. */
+const COPY = {
+  en: { label: 'Chat with a florist', open: 'Usually replies within minutes', closed: "We'll reply from 9am" },
+  ar: { label: 'تحدّث مع منسّق الزهور', open: 'نرد عادةً خلال دقائق', closed: 'نرد ابتداءً من ٩ صباحاً' },
+};
+
+export function WhatsAppIcon() {
+  return <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.8 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .2-1.2c-.1-.2-.2-.2-.5-.4Z" /></svg>;
+}
+
+/** Floating corner link to a florist. It sits at the inline end, so it moves left in Arabic. Hidden until a number is set. */
 export default function WhatsAppButton() {
-  const { ar, t, products } = useStore();
+  const { ar } = useStore();
+  const t = COPY[ar ? 'ar' : 'en'];
   const pathname = usePathname();
+  const [open, setOpen] = useState(true);
   const [raised, setRaised] = useState(false);
 
-  // The home hero has its own controls in the bottom corner.
+  useEffect(() => {
+    setOpen(isWhatsappOpen());
+    const timer = window.setInterval(() => setOpen(isWhatsappOpen()), 60_000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  // The home hero has its own arrows in the bottom corner.
   useEffect(() => {
     const hero = document.getElementById('turntable');
     if (!hero || typeof IntersectionObserver === 'undefined') { setRaised(false); return undefined; }
@@ -22,23 +39,13 @@ export default function WhatsAppButton() {
     return () => observer.disconnect();
   }, [pathname]);
 
-  if (!SITE.whatsapp) return null;
-
-  const handle = pathname.startsWith('/shop/') ? pathname.slice('/shop/'.length) : null;
-  const product = handle ? products.find((item) => item.id === handle) : null;
-  const message = product
-    ? t(`Hello Maison Botanique, I have a question about ${product.name}: ${SITE_URL}${pathname}`,
-      `مرحباً ميزون بوتانيك، لدي سؤال عن ${product.nameAr || product.name}: ${SITE_URL}${pathname}`)
-    : t('Hello Maison Botanique, I would like some help with an order.', 'مرحباً ميزون بوتانيك، أحتاج إلى مساعدة في طلب.');
-
+  const href = whatsappLink(whatsappMessage.general(ar));
+  if (!href) return null;
   return (
-    <a className={`whatsapp-button${raised ? ' whatsapp-button--raised' : ''}`} data-track-location="whatsapp_float" target="_blank" rel="noopener"
-      href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(message)}`}
-      aria-label={t('Chat with us on WhatsApp', 'تحدث معنا عبر واتساب')}>
-      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
-        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48a.92.92 0 0 0-.67.31c-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.13.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29Z" />
-      </svg>
-      <span>{ar ? 'تحتاج مساعدة؟' : 'Need help?'}</span>
+    <a className={`wa-float${raised ? ' wa-float--raised' : ''}`} data-track-location="whatsapp_float" href={href} target="_blank" rel="noopener noreferrer"
+      aria-label={`${t.label} · ${open ? t.open : t.closed}`}>
+      <WhatsAppIcon />
+      <span className="wa-float__text"><strong>{t.label}</strong><em>{open ? t.open : t.closed}</em></span>
     </a>
   );
 }

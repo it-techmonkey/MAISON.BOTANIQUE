@@ -18,7 +18,7 @@ function contactChannel(href: string) {
 /**
  * Site-wide listeners that need no per-component wiring:
  * - Contact Clicked: email, phone, WhatsApp and Instagram links, wherever they are.
- * - Navigation Clicked: links in the header, footer and bag (`data-track-location`).
+ * - Navigation Clicked: links in the header, footer, offer ribbon, bag and sheets (`data-track-location`).
  * - Section Viewed: each `data-track-section` element, once per page view.
  */
 export default function AnalyticsListeners() {
@@ -32,7 +32,8 @@ export default function AnalyticsListeners() {
       const location = link.closest<HTMLElement>('[data-track-location]')?.dataset.trackLocation ?? 'page';
       const channel = contactChannel(href);
       if (channel) { trackContactClicked(channel, location); return; }
-      if (location !== 'page' && href.startsWith('/')) {
+      // Site paths and the home collection's hash links (#roses, #occasion/birthday).
+      if (location !== 'page' && (href.startsWith('/') || href.startsWith('#'))) {
         const label = (link.getAttribute('aria-label') || link.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 80);
         trackNavigationClicked(label, href, location);
       }

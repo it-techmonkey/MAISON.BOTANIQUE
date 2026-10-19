@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { useShopCart, type AddItemOptions, type ShopCart } from '@/lib/cart/use-shop-cart';
 import { setShopifyLocale } from '@/lib/analytics/shopify';
 import { registerCatalogSource, trackLocale } from '@/lib/analytics/track';
@@ -21,7 +21,17 @@ interface StoreValue {
   cart: ShopCart;
   cartOpen: boolean;
   setCartOpen: (open: boolean) => void;
+  /** Adds to the bag and shows a short confirmation; the visitor keeps browsing. */
   addToBag: (product: Product, options?: AddItemOptions) => void;
+  /** The product open in the quick-add sheet. */
+  selectedProduct: Product | null;
+  openProduct: (product: Product | null) => void;
+  /** The add-to-bag confirmation. */
+  toast: { product: Product; sizeName: string } | null;
+  dismissToast: () => void;
+  /** Increments to open the launch offer (from the offer ribbon). */
+  offerSignal: number;
+  openOffer: () => void;
 }
 
 const StoreContext = createContext<StoreValue | null>(null);
@@ -43,6 +53,10 @@ const useBrowserLayoutEffect = typeof window === 'undefined' ? useEffect : useLa
 export default function StoreProvider({ catalog, children }: { catalog: Catalog; children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>('en');
   const [cartOpen, setCartOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [toast, setToast] = useState<StoreValue['toast']>(null);
+  const [offerSignal, setOfferSignal] = useState(0);
+  const toastTimer = useRef(0);
   const cart = useShopCart(catalog.products, locale);
 
   useBrowserLayoutEffect(() => {
@@ -77,8 +91,14 @@ export default function StoreProvider({ catalog, children }: { catalog: Catalog;
   const { addItem } = cart;
   const addToBag = useCallback((product: Product, options?: AddItemOptions) => {
     void addItem(product, options);
-    setCartOpen(true);
-  }, [addItem]);
+    setSelectedProduct(null);
+    const size = product.sizes.find((item) => item.id === options?.sizeId) ?? product.sizes[0];
+    window.clearTimeout(toastTimer.current);
+    setToast({ product, sizeName: locale === 'ar' ? size.nameAr : size.name });
+    toastTimer.current = window.setTimeout(() => setToast(null), 4200);
+  }, [addItem, locale]);
+  const dismissToast = useCallback(() => { window.clearTimeout(toastTimer.current); setToast(null); }, []);
+  const openOffer = useCallback(() => setOfferSignal((count) => count + 1), []);
 
   const value = useMemo<StoreValue>(() => ({
     locale,
@@ -92,7 +112,13 @@ export default function StoreProvider({ catalog, children }: { catalog: Catalog;
     cartOpen,
     setCartOpen,
     addToBag,
-  }), [locale, setLocale, catalog, cart, cartOpen, addToBag]);
+    selectedProduct,
+    openProduct: setSelectedProduct,
+    toast,
+    dismissToast,
+    offerSignal,
+    openOffer,
+  }), [locale, setLocale, catalog, cart, cartOpen, addToBag, selectedProduct, toast, dismissToast, offerSignal, openOffer]);
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
 }
