@@ -6,6 +6,7 @@ import { BUDGET_BANDS, GROUP_ALIASES, TAB_IDS, budgetOf, liveCatalogGroups, type
 import type { Product } from '@/lib/types';
 import { useStore } from './StoreProvider';
 import { isMostLoved } from '@/lib/most-loved';
+import { occasionHash } from '@/lib/site';
 
 const PAGE = 24;
 /** List and search events wait until the visitor stops typing or clicking. */
@@ -71,7 +72,7 @@ function matches(p: Product, state: State, catalog: LiveCatalogGroups, skip?: 'o
 function stateFromHash(hash: string, catalog: LiveCatalogGroups): State | null {
   const value = decodeURIComponent((hash || '').replace(/^#/, ''));
   if (value.startsWith('occasion/')) {
-    const id = value.slice(9);
+    const id = value.slice(9) === 'gifts-for-her' ? 'just-because' : value.slice(9);
     return catalog.occasions.some((o) => o.id === id) ? { ...EMPTY, occasion: [id] } : null;
   }
   if (value.startsWith('budget/')) {
@@ -228,7 +229,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
     const on = state.occasion.length === 1 && state.occasion[0] === id;
     setState((s) => ({ ...s, occasion: on ? [] : [id] }));
     setShown(PAGE);
-    setHash(on ? '#shop' : `#occasion/${id}`);
+    setHash(on ? '#shop' : `#${occasionHash(id)}`);
     scrollToGrid();
   };
 
