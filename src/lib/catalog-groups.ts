@@ -13,7 +13,8 @@ export const ROOMS: Array<{ id: ProductRoom; en: string; ar: string }> = [
   { id: 'vases', en: 'Vases & Boxes', ar: 'مزهريات وصناديق' },
   { id: 'gifts', en: 'Flowers & Gifts', ar: 'زهور وهدايا' },
   { id: 'grand', en: 'Grand Gestures', ar: 'لفتات كبرى' },
-  { id: 'beauty', en: 'Beauty', ar: 'هدايا الجمال' },
+  { id: 'beauty', en: 'Makeup & Beauty', ar: 'الجمال والمكياج' },
+  { id: 'money', en: 'Money Bouquets', ar: 'باقات النقود' },
   { id: 'hampers', en: 'Hampers & Keepsakes', ar: 'سلال وتذكارات' },
 ];
 
@@ -70,6 +71,8 @@ export const GROUPS: ShopGroup[] = [
   { id: 'boxes', en: 'Boxes & Baskets', ar: 'صناديق وسلال', kind: 'format', test: (p) => p.format === 'box' },
   { id: 'vases', en: 'Vases', ar: 'مزهريات', kind: 'format', test: (p) => p.format === 'vase' },
   { id: 'gifts', en: 'Gifts & Add-ons', ar: 'هدايا وإضافات', kind: 'format', test: (p) => p.format === 'gift' },
+  { id: 'beauty', en: 'Makeup & Beauty', ar: 'الجمال والمكياج', kind: 'format', test: (p) => p.room === 'beauty' },
+  { id: 'money', en: 'Money Bouquets', ar: 'باقات النقود', kind: 'format', test: (p) => p.room === 'money' },
   // curated
   { id: 'grand-gestures', en: 'Grand Gestures', ar: 'لفتات كبرى', kind: 'curated', test: (p) => p.room === 'grand' || (p.stems ?? 0) >= 100 },
   // header link
@@ -79,9 +82,9 @@ export const GROUPS: ShopGroup[] = [
 /** Groups with fewer than this many pieces stay hidden until the catalog fills them. */
 const MIN_GROUP_SIZE = 6;
 /** The tabs above the grid: the main ways in, in this order. */
-export const TAB_IDS = ['all', 'roses', 'bouquets', 'boxes', 'vases', 'gifts', 'grand-gestures', 'under-300'];
+export const TAB_IDS = ['all', 'roses', 'bouquets', 'boxes', 'vases', 'gifts', 'beauty', 'money', 'grand-gestures', 'under-300'];
 /** Old links (#grand, product-type rooms) still land somewhere sensible. */
-export const GROUP_ALIASES: Record<string, string> = { grand: 'grand-gestures', hampers: 'gifts', beauty: 'gifts' };
+export const GROUP_ALIASES: Record<string, string> = { grand: 'grand-gestures', hampers: 'gifts' };
 
 export interface LiveCatalogGroups {
   groups: Array<ShopGroup & { count: number }>;
@@ -92,7 +95,7 @@ export interface LiveCatalogGroups {
 export function liveCatalogGroups(products: Product[]): LiveCatalogGroups {
   const groups = GROUPS
     .map((group) => ({ ...group, count: products.filter(group.test).length }))
-    .filter((group) => group.id === 'all' || group.count >= MIN_GROUP_SIZE);
+    .filter((group) => group.id === 'all' || group.count >= (group.id === 'money' ? 1 : MIN_GROUP_SIZE));
   const occasions = OCCASIONS.filter((occasion) => products.some((product) => product.occasions.includes(occasion.id)));
   return { groups, occasions, findGroup: (id) => groups.find((group) => group.id === id) ?? null };
 }

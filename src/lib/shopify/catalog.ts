@@ -26,7 +26,7 @@ const COLLECTIONS_PER_PAGE = 50;
 const COLLECTION_PRODUCTS_PER_PAGE = 250;
 /** Safety stop so a misbehaving cursor can never loop forever. */
 const MAX_PAGES = 50;
-const ROOM_IDS: ProductRoom[] = ['roses', 'bouquets', 'vases', 'gifts', 'grand', 'beauty', 'hampers'];
+const ROOM_IDS: ProductRoom[] = ['roses', 'bouquets', 'vases', 'gifts', 'grand', 'beauty', 'hampers', 'money'];
 const FORMATS: ProductFormat[] = ['bouquet', 'box', 'vase', 'gift'];
 
 /** `maison.*` metafields the site reads (see scripts/shopify-catalog-sync.mjs). */

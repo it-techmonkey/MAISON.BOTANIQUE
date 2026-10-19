@@ -8,7 +8,7 @@ import type { Product } from '@/lib/types';
 import { formatAED } from './ShopSheets';
 import { useStore } from './StoreProvider';
 
-const FAVOURITE_TABS = ['all', 'roses', 'bouquets', 'boxes', 'vases', 'gifts', 'grand-gestures'];
+const FAVOURITE_TABS = ['all', 'roses', 'bouquets', 'boxes', 'vases', 'gifts', 'beauty', 'money', 'grand-gestures'];
 const FAVOURITES = 12;
 const SETTLE_MS = 900;
 
