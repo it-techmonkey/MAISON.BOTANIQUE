@@ -64,14 +64,14 @@
 .mbc .mbc-frame { position: relative; display: block; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: var(--mbc-vellum); }
 .mbc-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
 .mbc-piece:hover .mbc-frame img { transform: scale(1.04); }
-.mbc-badge { position: absolute; top: 10px; inset-inline-start: 10px; padding: 5px 8px; background: rgb(247 244 238 / 92%); font: 500 10.5px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--mbc-wine); }
+.mbc-badge { position: absolute; top: 10px; inset-inline-start: 10px; padding: 5px 8px; background: rgb(247 244 238 / 92%); font: 500 11px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--mbc-wine); }
 .mbc-cap { display: flex; flex-direction: column; gap: 4px; }
 .mbc-cap h3 { margin: 0; font: italic 400 var(--fs-name)/1.15 var(--font-display); }
 .mbc .mbc-cap h3 button { font: inherit; text-align: start; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .mbc-line { font-size: var(--fs-small); line-height: 1.45; color: var(--mbc-ink-2); display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
 .mbc-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: auto; padding-top: 6px; }
 .mbc-price { font: 400 17px/1 var(--font-display); white-space: nowrap; font-variant-numeric: lining-nums; }
-.mbc-price small { font: 500 10.5px/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--mbc-ink-2); }
+.mbc-price small { font: 500 11px/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--mbc-ink-2); }
 .mbc-price em { font: 400 var(--fs-small)/1 var(--font-body); font-style: normal; color: var(--mbc-ink-2); }
 .mbc .mbc-add { flex: 0 0 auto; padding: 8px 13px; border: 1px solid var(--mbc-ink); font: 500 var(--fs-label)/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; transition: background .25s, color .25s; }
 .mbc .mbc-add:hover, .mbc .mbc-add:focus-visible { background: var(--mbc-noir); border-color: var(--mbc-noir); color: var(--mbc-paper); }

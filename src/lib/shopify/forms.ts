@@ -18,7 +18,7 @@ const TAGS: Record<EnquiryInput['kind'], string[]> = {
   newsletter: ['newsletter', 'website'],
   contact: ['website-contact', 'website'],
   enquiry: ['website-enquiry', 'website'],
-  offer: ['newsletter', 'website'],
+  offer: ['welcome-offer', 'website'],
 };
 
 interface UserError { field?: string[] | null; message: string }
@@ -38,7 +38,7 @@ function splitName(name: string) {
 /** Launch offer by WhatsApp: finds or creates the customer by phone, subscribed to SMS marketing. */
 async function upsertPhoneCustomer(input: EnquiryInput) {
   const tags = TAGS[input.kind];
-  const smsConsent = subscribedConsent();
+  const smsConsent = input.consent ? subscribedConsent() : undefined;
   const found = await adminFetch<{ customer: { id: string; smsMarketingConsent: { marketingState: string } | null } | null }>(`#graphql
     query OfferCustomer($phone: String!) {
       customer: customerByIdentifier(identifier: { phoneNumber: $phone }) { id smsMarketingConsent { marketingState } }
@@ -55,7 +55,7 @@ async function upsertPhoneCustomer(input: EnquiryInput) {
   const tagged = await adminFetch<{ tagsAdd: { userErrors: UserError[] } }>(`#graphql
     mutation OfferCustomerTags($id: ID!, $tags: [String!]!) { tagsAdd(id: $id, tags: $tags) { userErrors { field message } } }`, { id, tags });
   assertNoUserErrors(tagged.tagsAdd.userErrors, 'tagsAdd');
-  if (found.customer.smsMarketingConsent?.marketingState !== 'SUBSCRIBED') {
+  if (input.consent && found.customer.smsMarketingConsent?.marketingState !== 'SUBSCRIBED') {
     const consent = await adminFetch<{ customerSmsMarketingConsentUpdate: { userErrors: UserError[] } }>(`#graphql
       mutation OfferCustomerSms($input: CustomerSmsMarketingConsentUpdateInput!) {
         customerSmsMarketingConsentUpdate(input: $input) { userErrors { field message } }
@@ -66,7 +66,7 @@ async function upsertPhoneCustomer(input: EnquiryInput) {
 }
 
 /** Finds the customer for this email, or creates one. Returns the customer ID. */
-async function upsertCustomer(input: EnquiryInput) {
+export async function upsertCustomer(input: EnquiryInput) {
   if (input.kind === 'offer' && input.phone) return upsertPhoneCustomer(input);
   const tags = TAGS[input.kind];
   const subscribe = (input.kind === 'newsletter' || input.kind === 'offer') && input.consent;

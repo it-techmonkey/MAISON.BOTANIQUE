@@ -26,6 +26,12 @@ const nextConfig: NextConfig = {
       ],
     }];
   },
+  async redirects() {
+    return [
+      { source: '/jvc', destination: '/?offer=open', permanent: true },
+      { source: '/occasions/just-because', destination: '/occasions/gifts-for-her', permanent: true },
+    ];
+  },
   async rewrites() {
     // Same-origin relay to PostHog, so ad blockers don't drop analytics.
     return [

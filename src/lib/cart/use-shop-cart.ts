@@ -68,7 +68,8 @@ export interface ShopCart {
   delivery: DeliverySchedule | null;
   setDelivery: (schedule: DeliverySchedule) => Promise<void>;
   /** A Shopify checkout URL, or null when the preview catalog has no checkout. */
-  checkoutUrl: (locale: Locale) => Promise<string | null>;
+  checkoutUrl: (locale: Locale, withOffer?: boolean) => Promise<string | null>;
+  applyWelcomeOffer?: (enabled?: boolean) => Promise<boolean>;
   /** The confirmed Shopify cart (null in the preview), for analytics payloads. */
   shopifyCart: ShopifyCart | null;
 }
@@ -328,7 +329,28 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
 
   const removeItem = useCallback((key: string) => updateQuantity(key, 0), [updateQuantity]);
 
-  const checkoutUrl = useCallback(async (checkoutLocale: Locale) => {
+  const applyWelcomeOffer = useCallback(async (enabled = true) => {
+    const applied = await enqueue('welcome_offer', async () => {
+      const current = cartRef.current;
+      if (!current) return false;
+      let code = '';
+      try { code = JSON.parse(localStorage.getItem('mb-launch-offer-v1') || '{}').code || ''; } catch { /* No saved offer. */ }
+      if (!code) return false;
+      const response = await fetch('/api/offer-cart', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cartId: current.id, code, enabled, locale: localeRef.current }),
+      });
+      if (!response.ok) throw new Error('Welcome offer could not be applied');
+      const result = await response.json();
+      if (result.cart) commit(result.cart);
+      return Boolean(result.applied);
+    });
+    if (applied === undefined) throw new Error('Welcome offer could not be applied');
+    return applied;
+  }, [commit, enqueue]);
+
+  const checkoutUrl = useCallback(async (checkoutLocale: Locale, withOffer = true) => {
+    await applyWelcomeOffer(withOffer);
     const current = cartRef.current;
     if (!current) return null;
     // Stamp the delivery schedule and the current PostHog visitor and session
@@ -349,9 +371,10 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     // Signed-in customers go straight to checkout with their details.
     if ((await getAccountStatus()).loggedIn) url.searchParams.set('logged_in', 'true');
     return url.toString();
-  }, [commit]);
+  }, [commit, applyWelcomeOffer]);
 
   return {
+    applyWelcomeOffer,
     mode: 'shopify',
     lines,
     cartCount: cart?.totalQuantity ?? 0,

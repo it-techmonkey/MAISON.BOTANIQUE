@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLink, Bi, PageHero } from '@/components/store/blocks';
 import { T } from '@/components/store/StoreProvider';
-import { OCCASIONS } from '@/lib/site';
+import { occasionPath, OCCASIONS } from '@/lib/site';
 import '@/styles/pages.css';
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function OccasionsPage() {
       <ol className="occasion-list">
         {OCCASIONS.map((occasion, index) => (
           <li key={occasion.id}>
-            <Link href={`/occasions/${occasion.id}`} className="occasion-card">
+            <Link href={occasionPath(occasion.id)} className="occasion-card">
               <span className="occasion-card__media">
                 <Image src={occasion.image} alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" />
               </span>

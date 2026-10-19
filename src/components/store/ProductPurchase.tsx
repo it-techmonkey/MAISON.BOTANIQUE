@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { trackProductViewed } from '@/lib/analytics/track';
-import { findOccasion } from '@/lib/site';
+import { occasionPath, findOccasion } from '@/lib/site';
 import type { Product } from '@/lib/types';
 import { PurchaseOptions, formatAED } from './ShopSheets';
 import { useStore } from './StoreProvider';
@@ -19,7 +19,7 @@ export default function ProductPurchase({ handle }: { handle: string }) {
 }
 
 function Purchase({ product }: { product: Product }) {
-  const { ar, t, live, addToBag } = useStore();
+  const { ar, t, addToBag } = useStore();
   const name = ar ? product.nameAr : product.name;
   const composition = ar ? product.compositionAr : product.composition;
   const many = product.sizes.length > 1;
@@ -39,7 +39,6 @@ function Purchase({ product }: { product: Product }) {
       <p className="purchase__price">
         <strong>{many ? `${t('From', 'من')} ` : ''}{formatAED(product.price, ar)}</strong>
         {product.compareAtPrice && <s>{formatAED(product.compareAtPrice, ar)}</s>}
-        {!live && <span>{t('Sample price', 'سعر تجريبي')}</span>}
       </p>
       {(ar ? product.lineAr : product.line) && <p className="purchase__line">{ar ? product.lineAr : product.line}</p>}
       {composition.length > 0
@@ -51,7 +50,7 @@ function Purchase({ product }: { product: Product }) {
           <span>{t('Lovely for', 'مناسبة لـ')}</span>
           {product.occasions.map((occasionId) => {
             const occasion = findOccasion(occasionId);
-            return occasion ? <Link key={occasionId} href={`/occasions/${occasionId}`}>{ar ? occasion.name.ar : occasion.name.en}</Link> : null;
+            return occasion ? <Link key={occasionId} href={occasionPath(occasionId)}>{ar ? occasion.name.ar : occasion.name.en}</Link> : null;
           })}
         </p>
       )}

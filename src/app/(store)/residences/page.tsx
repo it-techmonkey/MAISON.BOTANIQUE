@@ -6,7 +6,7 @@ export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: 'Flowers for your building',
-  description: 'Premium flowers delivered to your apartment, with same-day delivery in Dubai, Abu Dhabi, Sharjah, Ajman, Umm Al Quwain, Ras Al Khaimah and Fujairah.',
+  description: 'Premium flowers delivered to your apartment, across all seven emirates, with same-day delivery in Dubai.',
   alternates: { canonical: '/residences' },
 };
 

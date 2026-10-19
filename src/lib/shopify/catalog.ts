@@ -9,6 +9,7 @@
 // Without Shopify settings the bundled export (src/data/collection.json) is
 // used, so the design preview keeps working.
 
+import giftsForHer from '@/data/gifts-for-her.json';
 import { slugify } from '@/lib/format';
 import { roomOf } from '@/lib/catalog-groups';
 import type { Catalog, Collection, Product, ProductCustomField, ProductFormat, ProductRoom, ProductSize } from '@/lib/types';
@@ -26,7 +27,7 @@ const COLLECTIONS_PER_PAGE = 50;
 const COLLECTION_PRODUCTS_PER_PAGE = 250;
 /** Safety stop so a misbehaving cursor can never loop forever. */
 const MAX_PAGES = 50;
-const ROOM_IDS: ProductRoom[] = ['roses', 'bouquets', 'vases', 'gifts', 'grand', 'beauty', 'hampers'];
+const ROOM_IDS: ProductRoom[] = ['roses', 'bouquets', 'vases', 'gifts', 'grand', 'beauty', 'hampers', 'money'];
 const FORMATS: ProductFormat[] = ['bouquet', 'box', 'vase', 'gift'];
 
 /** `maison.*` metafields the site reads (see scripts/shopify-catalog-sync.mjs). */
@@ -318,6 +319,8 @@ function mapShopifyProduct(product: ShopifyProduct): Product | null {
 
 /** Featured first by hero position, then everything by display order. */
 function inDisplayOrder(products: Product[]) {
+  const selected = new Set(giftsForHer);
+  products = products.map((product) => ({ ...product, occasions: [...product.occasions.filter((id) => id !== 'just-because'), ...(selected.has(product.id) ? ['just-because'] : [])] }));
   const sorted = [...products].sort((a, b) => a.order - b.order);
   if (sorted.some((product) => product.featured)) return sorted;
   return sorted.map((product, index) => (index < 3 ? { ...product, featured: true, heroOrder: index + 1 } : product));
@@ -342,8 +345,8 @@ function mapShopifyCollection(collection: ShopifyCollection, arabic: ShopifyColl
 // ---------------------------------------------------------------------------
 
 interface ExportProduct {
-  id: string; no: number; name: string; nameAr: string; room: string; price: number;
-  sizes: Array<{ id: string; name: string; nameAr: string; detail: string; detailAr: string; add: number }>;
+  id: string; no: number; name: string; nameAr: string; room: string; price: number; compareAtPrice: number;
+  sizes: Array<{ id: string; name: string; nameAr: string; detail: string; detailAr: string; add: number; price: number; compareAtPrice: number }>;
   line: string; lineAr: string; composition: string[]; compositionAr: string[]; feature: string;
   stems: number | null; occasions: string[]; flowers: string[]; format: string; order: number;
   custom: { kind?: string; label?: string } | null; image: string; imageSmall: string; alt: string;
@@ -363,11 +366,11 @@ async function exportCatalog(): Promise<Catalog> {
       order: item.order, custom: customField(item.custom),
       productType: room.en, vendor: 'Maison Botanique', occasions: item.occasions,
       image: item.image, imageSmall: item.imageSmall, imageAlt: item.alt,
-      price: item.price, compareAtPrice: null, currencyCode: 'AED', bg: '#E9E1D5', accent: '#673C43',
+      price: item.price, compareAtPrice: item.compareAtPrice, currencyCode: 'AED', bg: '#E9E1D5', accent: '#673C43',
       description: item.composition.join(', '), descriptionAr: item.compositionAr.join('، '),
       sizes: item.sizes.map((size) => ({
         id: size.id, name: size.name, nameAr: size.nameAr, detail: size.detail, detailAr: size.detailAr,
-        price: item.price + size.add, compareAtPrice: null, variantId: null, available: true,
+        price: size.price, compareAtPrice: size.compareAtPrice, variantId: null, available: true,
       })),
       available: true, heroOrder: heroIndex >= 0 ? heroIndex + 1 : null, featured: heroIndex >= 0,
       answerSummary: '', answerSummaryAr: '', faq: [],

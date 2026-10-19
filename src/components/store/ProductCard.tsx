@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { formatMoney } from '@/lib/format';
 import { trackProductClicked, trackProductListViewed, type ProductListContext } from '@/lib/analytics/track';
+import { isMostLoved } from '@/lib/most-loved';
 import type { Product } from '@/lib/types';
 import { useStore } from './StoreProvider';
 import '@/styles/catalog.css';
@@ -21,7 +22,7 @@ interface ProductCardProps {
 
 /** Photograph, price and both next steps (details or straight to the bag) on every card. */
 export function ProductCard({ product, sizes = '(max-width: 640px) 92vw, (max-width: 1100px) 46vw, 24vw', priority = false, list, position = 0 }: ProductCardProps) {
-  const { ar, t, live, addToBag } = useStore();
+  const { ar, t, addToBag } = useStore();
   const onOpen = () => { if (list) trackProductClicked(product, list, position); };
   const name = ar ? product.nameAr : product.name;
   const href = `/shop/${product.id}`;
@@ -31,15 +32,15 @@ export function ProductCard({ product, sizes = '(max-width: 640px) 92vw, (max-wi
     <article className="product-card">
       <Link href={href} className="product-card__media" style={{ backgroundColor: product.bg }} tabIndex={-1} aria-hidden="true" onClick={onOpen}>
         <Image src={product.image} alt="" fill sizes={sizes} priority={priority} />
-        {!product.available && <span className="product-card__badge">{t('Sold out', 'نفدت الكمية')}</span>}
+        {!product.available ? <span className="product-card__badge">{t('Sold out', 'نفدت الكمية')}</span>
+          : isMostLoved(product.id) && <span className="product-card__badge">{t('Most loved', 'الأكثر حباً')}</span>}
       </Link>
       <div className="product-card__meta">
         <span>{ar ? product.categoryAr : product.category}</span>
         <span>{fromPrice && <>{t('From', 'من')} </>}{formatMoney(product.price, product.currencyCode, ar)}</span>
       </div>
       <h3 className="product-card__title"><Link href={href} onClick={onOpen}>{name}</Link></h3>
-      <p className="product-card__description">{ar ? product.descriptionAr : product.description}</p>
-      {!live && <p className="product-card__note">{t('Sample price', 'سعر تجريبي')}</p>}
+      <p className="product-card__description">{ar ? product.lineAr : product.line}</p>
       <div className="product-card__actions">
         <Link className="product-card__details" href={href} onClick={onOpen} aria-label={`${t('Explore details', 'التفاصيل')}: ${name}`}>
           {t('Explore details', 'التفاصيل')} <span aria-hidden="true">↗</span>

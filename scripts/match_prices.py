@@ -17,6 +17,7 @@ source and how the price was matched. scripts/shopify-catalog-sync.mjs reads it.
 Usage: python scripts/match_prices.py
 """
 
+import argparse
 import csv
 import json
 import re
@@ -139,6 +140,11 @@ def match_uaeflowers(variants, row):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--overwrite-from-competitors', action='store_true')
+    args = parser.parse_args()
+    if not args.overwrite_from_competitors:
+        parser.error('Refusing to overwrite Maison prices. Explicit --overwrite-from-competitors is required.')
     push = json.loads(PUSH.read_text(encoding="utf-8"))
     giftygram = {row.get("id") or row.get("﻿id"): row for row in read_csv(GIFTYGRAM)}
     uaeflowers = {row["id"]: row for row in read_csv(UAEFLOWERS)}

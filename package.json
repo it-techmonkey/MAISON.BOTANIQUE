@@ -11,10 +11,14 @@
     "shopify:auth": "node --env-file-if-exists=.env.local scripts/shopify-auth.mjs",
     "theme:zip": "node scripts/theme-zip.mjs",
     "shopify:catalog": "node --env-file-if-exists=.env.local scripts/shopify-catalog-sync.mjs",
-    "catalog:prices": "python scripts/match_prices.py"
+    "catalog:prices": "python scripts/match_prices.py",
+    "prebuild": "python3 -I scripts/check_prices.py",
+    "test": "node --import ./scripts/test-loader.mjs --test tests/*.test.mjs"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@shopify/hydrogen": "2026.10.1",
+    "gsap": "^3.15.0",
     "next": "^16.4.2",
     "posthog-js": "1.438.12",
     "posthog-node": "5.56.2",
