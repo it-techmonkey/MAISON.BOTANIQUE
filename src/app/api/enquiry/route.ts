@@ -1,7 +1,10 @@
 import { checkEnquiryLimit, readEnquiryBody } from '@/lib/enquiry-limit';
 import { parseEnquiry } from '@/lib/enquiry';
 import { isShopifyFormsConfigured } from '@/lib/shopify/admin';
-import { submitToShopify } from '@/lib/shopify/forms';
+import { cookies } from 'next/headers';
+import { OFFER_COOKIE, sealOffer } from '@/lib/offer-session';
+import { getWelcomeCode, WelcomeNotEligible } from '@/lib/shopify/welcome-offer';
+import { upsertCustomer, submitToShopify } from '@/lib/shopify/forms';
 
 // Receives the newsletter, contact and enquiry forms and stores them in
 // Shopify (see src/lib/shopify/forms.ts). Without SHOPIFY_FORMS_ADMIN_TOKEN the
@@ -35,9 +38,17 @@ export async function POST(request: Request) {
   if (!isShopifyFormsConfigured) return Response.json({ error: 'not_configured' }, { status: 503 });
 
   try {
+    if (parsed.value.kind === 'offer') {
+      const customerId = await upsertCustomer(parsed.value);
+      const code = await getWelcomeCode(customerId);
+      const session = sealOffer({ customerId, code, email: parsed.value.email, phone: parsed.value.phone });
+      if (session) (await cookies()).set(OFFER_COOKIE, session, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'lax', path: '/', maxAge: 30 * 86400 });
+      return Response.json({ ok: true, code, saved: true }, { headers: { 'Cache-Control': 'no-store' } });
+    }
     await submitToShopify(parsed.value);
   } catch (error) {
-    console.error('[enquiry]', error);
+    if (error instanceof WelcomeNotEligible) return Response.json({ error: 'offer_unavailable' }, { status: 422 });
+    console.error('[enquiry] Submission failed');
     return Response.json({ error: 'delivery_failed' }, { status: 502 });
   }
   return Response.json({ ok: true });

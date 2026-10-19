@@ -19,20 +19,20 @@ const COPY = {
   en: {
     eyebrow: 'Welcome offer', title: '25% off your first order', sub: 'Sign up and get 25% off your first order. Free delivery in JVC.',
     whatsapp: 'WhatsApp', email: 'Email', phoneLabel: 'WhatsApp number', phonePh: '50 123 4567', emailLabel: 'Email address', emailPh: 'you@example.com',
-    consent: 'Send me my code and occasional Maison offers. I can unsubscribe at any time.', privacy: 'Privacy policy',
-    cta: 'Send my code', sending: 'Sending…', no: 'No thanks', invalidPhone: 'Enter a UAE mobile number, for example 50 123 4567.', invalidEmail: 'Enter a valid email address.', needConsent: 'Tick the box so we can send your code.',
+    consent: 'Send me occasional Maison offers by email or SMS (optional). I can unsubscribe at any time.', privacy: 'Privacy policy',
+    cta: 'Get my code', sending: 'Sending…', no: 'No thanks', invalidPhone: 'Enter a UAE mobile number, for example 50 123 4567.', invalidEmail: 'Enter a valid email address.', needConsent: 'Tick the box so we can send your code.',
     failed: 'Something went wrong. Please try again in a moment.',
-    doneTitle: 'Your code is ready', doneSub: 'Enter it at checkout. We have saved your details so we can let you know about Maison offers.',
+    doneTitle: 'Your code is ready', doneSub: 'Your code is ready for checkout. Your details have been saved.',
     copy: 'Copy code', copied: 'Copied', shop: 'Start shopping', terms: 'One use per customer · 25% off products.',
     tab: '25% off', close: 'Close',
   },
   ar: {
     eyebrow: 'عرض الترحيب', title: 'خصم ٢٥٪ على طلبك الأول', sub: 'سجّل واحصل على خصم ٢٥٪ على طلبك الأول. توصيل مجاني في JVC.',
     whatsapp: 'واتساب', email: 'البريد', phoneLabel: 'رقم واتساب', phonePh: '50 123 4567', emailLabel: 'البريد الإلكتروني', emailPh: 'you@example.com',
-    consent: 'أرسلوا لي الرمز وعروض ميزون من حين لآخر. يمكنني إلغاء الاشتراك في أي وقت.', privacy: 'سياسة الخصوصية',
-    cta: 'أرسل الرمز', sending: 'جارٍ الإرسال…', no: 'لا، شكراً', invalidPhone: 'أدخل رقم هاتف إماراتياً، مثل 50 123 4567.', invalidEmail: 'أدخل بريداً إلكترونياً صحيحاً.', needConsent: 'ضع علامة في المربع لنرسل لك الرمز.',
+    consent: 'أرسلوا لي عروض ميزون بالبريد أو الرسائل النصية (اختياري). يمكنني إلغاء الاشتراك في أي وقت.', privacy: 'سياسة الخصوصية',
+    cta: 'احصل على الرمز', sending: 'جارٍ الإرسال…', no: 'لا، شكراً', invalidPhone: 'أدخل رقم هاتف إماراتياً، مثل 50 123 4567.', invalidEmail: 'أدخل بريداً إلكترونياً صحيحاً.', needConsent: 'ضع علامة في المربع لنرسل لك الرمز.',
     failed: 'حدث خطأ ما. يرجى المحاولة بعد قليل.',
-    doneTitle: 'رمزك جاهز', doneSub: 'أدخله عند الدفع. حفظنا بياناتك لنبلغك بعروض ميزون.',
+    doneTitle: 'رمزك جاهز', doneSub: 'رمزك جاهز للدفع. تم حفظ بياناتك.',
     copy: 'انسخ الرمز', copied: 'تم النسخ', shop: 'ابدأ التسوق', terms: 'استخدام واحد لكل عميل · خصم ٢٥٪ على المنتجات.',
     tab: 'خصم ٢٥٪', close: 'إغلاق',
   },
@@ -41,7 +41,11 @@ const COPY = {
 interface Saved { savedDetails?: boolean; code?: string; channel?: 'whatsapp' | 'email'; dismissedAt?: number }
 
 function readState(): Saved {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || {}; } catch { return {}; }
+  try {
+    const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || {};
+    if (state.code && state.code !== OFFER_CODE && !/^MB25-[A-F0-9]{20}$/.test(state.code)) { localStorage.removeItem(STORAGE_KEY); return {}; }
+    return state;
+  } catch { return {}; }
 }
 function writeState(value: Saved) {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(value)); } catch { /* storage may be blocked */ }
@@ -117,26 +121,29 @@ export default function LaunchOffer() {
       setError(channel === 'whatsapp' ? t.invalidPhone : t.invalidEmail);
       return;
     }
-    if (!consent) { trackFormError('offer', 'invalid', 'consent'); setError(t.needConsent); return; }
     setError('');
     setSending(true);
-    const body = { kind: 'offer', consent: true, locale, ...(channel === 'whatsapp' ? { phone: value } : { email: value }) };
+    const body = { kind: 'offer', consent, locale, ...(channel === 'whatsapp' ? { phone: value } : { email: value }) };
+    let issuedCode = OFFER_CODE;
     let delivery: 'shopify' | 'email_fallback' = 'shopify';
     try {
       const response = await fetch('/api/enquiry', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       // Not connected (503): still give the code; the team receives nothing, so say nothing more.
       if (response.status === 503) delivery = 'email_fallback';
       else if (!response.ok) throw new Error(String(response.status));
-    } catch {
+      else { const result = await response.json(); issuedCode = result.code || OFFER_CODE; }
+    } catch (cause) {
       trackFormError('offer', 'failed', null);
-      setError(t.failed);
+      setError(ar ? 'تعذّر الحصول على العرض. العرض متاح للطلب الأول فقط. يرجى المحاولة لاحقاً.' : 'We could not get your offer. It is available for first orders only. Please try again later.');
+      if (cause instanceof Error && cause.message === '429') setError(ar ? 'يرجى الانتظار قليلاً قبل المحاولة مجدداً.' : 'Please wait a few minutes before trying again.');
       setSending(false);
       return;
     }
     // Only a flag is kept in the browser: the contact itself is never stored locally.
-    const next: Saved = { code: OFFER_CODE, channel, savedDetails: delivery !== 'email_fallback' };
+    const next: Saved = { code: issuedCode, channel, savedDetails: delivery !== 'email_fallback' };
     setSaved(next);
     writeState(next);
+    window.dispatchEvent(new Event('maison-offer-changed'));
     setSending(false);
     trackFormSubmitted('offer', channel, delivery);
   }

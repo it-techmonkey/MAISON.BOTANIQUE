@@ -38,6 +38,7 @@ export interface ShopifyCart {
   updatedAt: string;
   checkoutUrl: string;
   totalQuantity: number;
+  discountCodes: Array<{ code: string; applicable: boolean }>;
   subtotal: Money;
   /** Cart-level attributes: the delivery schedule and the analytics IDs. */
   attributes: Record<string, string>;
@@ -56,6 +57,7 @@ const CART_FIELDS = `#graphql
     updatedAt
     checkoutUrl
     totalQuantity
+    discountCodes { code applicable }
     attributes { key value }
     cost { subtotalAmount { amount currencyCode } totalAmount { amount currencyCode } }
     lines(first: 100) {
@@ -132,6 +134,7 @@ interface RawCart {
   updatedAt: string;
   checkoutUrl: string;
   totalQuantity: number;
+  discountCodes: Array<{ code: string; applicable: boolean }>;
   attributes: Array<{ key: string; value: string | null }>;
   cost: { subtotalAmount: RawMoney; totalAmount: RawMoney };
   lines: {
@@ -164,6 +167,7 @@ function normalizeCart(raw: RawCart): ShopifyCart {
     updatedAt: raw.updatedAt,
     checkoutUrl: raw.checkoutUrl,
     totalQuantity: raw.totalQuantity,
+    discountCodes: raw.discountCodes ?? [],
     subtotal: money(raw.cost.subtotalAmount),
     attributes: Object.fromEntries(raw.attributes.map((attribute) => [attribute.key, attribute.value ?? ''])),
     lines: raw.lines.nodes.map((line) => ({
@@ -246,4 +250,16 @@ export async function getCheckoutUrl(cartId: string, locale: Locale) {
   const url = new URL(cart.checkoutUrl);
   if (url.protocol !== 'https:') throw new StorefrontError('Shopify returned an invalid checkout URL', 'graphql');
   return url.toString();
+}
+
+export function updateCartDiscountCodes(cartId: string, discountCodes: string[], locale: Locale) {
+  return mutate(`mutation WelcomeCart($cartId: ID!, $codes: [String!]!, ${CONTEXT_VARS}) ${CONTEXT} {
+    cartDiscountCodesUpdate(cartId: $cartId, discountCodes: $codes) { cart { ...CartFields } ${USER_ERRORS} }
+  } ${CART_FIELDS}`, 'cartDiscountCodesUpdate', { cartId, codes: discountCodes }, locale);
+}
+
+export function updateCartBuyerIdentity(cartId: string, contact: { email?: string; phone?: string }, locale: Locale) {
+  return mutate(`mutation WelcomeBuyer($cartId: ID!, $buyer: CartBuyerIdentityInput!, ${CONTEXT_VARS}) ${CONTEXT} {
+    cartBuyerIdentityUpdate(cartId: $cartId, buyerIdentity: $buyer) { cart { ...CartFields } ${USER_ERRORS} }
+  } ${CART_FIELDS}`, 'cartBuyerIdentityUpdate', { cartId, buyer: { ...contact, countryCode: shopifyConfig.country } }, locale);
 }

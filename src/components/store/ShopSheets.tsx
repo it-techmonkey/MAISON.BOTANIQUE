@@ -394,14 +394,32 @@ function bagSummary(lines: CartLineView[], arabic: boolean) {
 }
 
 function Bag() {
-  const { ar, locale, live, cart, setCartOpen } = useStore();
+  const { ar, locale, live, cart, setCartOpen, openOffer } = useStore();
   const t = copy[ar ? 'ar' : 'en'];
   const { lines, subtotal } = cart;
   const now = useDubaiNow();
   const [review, setReview] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
+  const [welcomeCode, setWelcomeCode] = useState('');
+  const [useWelcome, setUseWelcome] = useState(true);
+  const welcomeAttempt = useRef('');
   const [problem, setProblem] = useState<ScheduleProblem | null>(null);
+  useEffect(() => {
+    const sync = () => {
+      try { setWelcomeCode(JSON.parse(localStorage.getItem('mb-launch-offer-v1') || '{}').code || ''); } catch { /* No offer. */ }
+    };
+    sync();
+    window.addEventListener('maison-offer-changed', sync);
+    return () => window.removeEventListener('maison-offer-changed', sync);
+  }, []);
+  useEffect(() => {
+    const key = `${cart.shopifyCart?.id || ''}:${welcomeCode}`;
+    if (!welcomeCode || !cart.shopifyCart || !cart.applyWelcomeOffer || welcomeAttempt.current === key) return;
+    welcomeAttempt.current = key;
+    void cart.applyWelcomeOffer().catch(() => setError(ar ? 'تعذّر تطبيق العرض. يمكنك المتابعة بدونه.' : 'The welcome offer could not be applied. You can continue without it.'));
+  }, [welcomeCode, cart.shopifyCart?.id, cart.applyWelcomeOffer, ar]);
+
   // The bag's own copy of the schedule while it is incomplete; complete
   // choices are saved to the cart straight away.
   const [draft, setDraft] = useState<Partial<DeliverySchedule>>(cart.delivery ?? {});
@@ -446,7 +464,7 @@ function Bag() {
     setPending(true);
     setError('');
     try {
-      const url = await cart.checkoutUrl(locale);
+      const url = await cart.checkoutUrl(locale, useWelcome);
       if (!url) { setReview(true); setPending(false); return; }
       trackCheckoutStarted(lines, subtotal.amount, subtotal.currencyCode, cart.shopifyCart?.id ?? null, locale, cart.delivery);
       window.location.assign(url);
@@ -460,6 +478,12 @@ function Bag() {
   return (
     <DialogShell onClose={close} label={review ? t.reviewTitle : t.bag} kind="cart">
       <div className="ll-cart-header"><span className="ll-shop-kicker">MAISON BOTANIQUE / DUBAI</span><h2>{review ? t.reviewTitle : t.bag}</h2></div>
+      {!review && <section className="bag-welcome">
+        {welcomeCode ? <>
+          <p>{cart.shopifyCart?.discountCodes.some((item) => item.applicable && item.code === welcomeCode) ? (ar ? 'تم تطبيق خصم الترحيب' : 'Welcome discount applied') : (ar ? 'رمز الترحيب جاهز للدفع' : 'Welcome code ready for checkout')}</p>
+          <label><input type="checkbox" checked={useWelcome} onChange={(event) => { setUseWelcome(event.target.checked); void cart.applyWelcomeOffer?.(event.target.checked).catch(() => setError(t.error)); }} />{ar ? 'استخدم عرض الترحيب' : 'Use my welcome offer'}</label>
+        </> : <button type="button" className="button button--ghost" onClick={openOffer}>{ar ? 'احصل على خصم ٢٥٪ على طلبك الأول' : 'Get 25% off your first order'}</button>}
+      </section>}
       {review ? (
         <div className="ll-cart-review">
           <div className="ll-review-symbol" aria-hidden="true">MB</div>
