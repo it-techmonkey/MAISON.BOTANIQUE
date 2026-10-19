@@ -12,7 +12,8 @@ export async function POST(request: Request) {
   try { body = JSON.parse(await readEnquiryBody(request, 2000)); } catch {
     return Response.json({ error: 'invalid' }, { status: 400 });
   }
-  if (typeof body.cartId !== 'string' || body.cartId.length > 500 || !/^gid:\/\/shopify\/Cart\/[A-Za-z0-9_-]+(?:\?key=[A-Za-z0-9_-]+)?$/.test(body.cartId)) {
+  // Shopify cart IDs (including their secret key) are opaque GraphQL values.
+  if (typeof body.cartId !== 'string' || body.cartId.length > 500 || !/^gid:\/\/shopify\/Cart\/[^\s#]+$/.test(body.cartId)) {
     return Response.json({ error: 'invalid' }, { status: 422 });
   }
   const cookie = (await cookies()).get(OFFER_COOKIE)?.value;
