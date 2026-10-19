@@ -29,7 +29,10 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/jvc', destination: '/?offer=open', permanent: true },
-      { source: '/occasions/just-because', destination: '/occasions/gifts-for-her', permanent: true },
+      // Occasions are filters on the collection now, not pages.
+      { source: '/occasions/just-because', destination: '/shop#occasion/gifts-for-her', permanent: true },
+      { source: '/occasions/:occasion', destination: '/shop#occasion/:occasion', permanent: true },
+      { source: '/occasions', destination: '/#occasions', permanent: true },
     ];
   },
   async rewrites() {

@@ -1,6 +1,7 @@
 'use client';
 
-import { occasionPath } from '@/lib/site';
+import { occasionHash } from '@/lib/site';
+import { CollectionLink } from './SiteHeader';
 
 import Link from 'next/link';
 import { useMemo } from 'react';
@@ -32,14 +33,14 @@ function OccasionTiles() {
 
   return (
     <section id="occasions" className="hs" aria-labelledby="hs-occasions" data-track-section="home_occasions" data-track-location="home_occasions">
-      <SectionHead id="hs-occasions" title={t('Shop by Occasion', 'تسوّق حسب المناسبة')} href="/occasions" label={t('View all', 'عرض الكل')} />
+      <SectionHead id="hs-occasions" title={t('Shop by Occasion', 'تسوّق حسب المناسبة')} href="/shop" label={t('View all', 'عرض الكل')} />
       <ul className="hs-occasions">
         {tiles.map((tile) => (
           <li key={tile.id}>
-            <Link href={occasionPath(tile.id)}>
+            <CollectionLink hash={occasionHash(tile.id)}>
               <span className="hs-occasions__img">{tile.image && <img src={tile.image} alt="" loading="lazy" width="120" height="120" />}</span>
               <span>{ar ? tile.ar : tile.en}</span>
-            </Link>
+            </CollectionLink>
           </li>
         ))}
       </ul>
@@ -61,10 +62,10 @@ function BudgetTiles() {
       <ul className="hs-budget">
         {tiles.map((tile) => (
           <li key={tile.id}>
-            <Link href={`/shop#budget/${tile.id}`}>
+            <CollectionLink hash={`budget/${tile.id}`}>
               <span className="hs-budget__copy"><span>{ar ? tile.ar : tile.en}</span><span aria-hidden="true">→</span></span>
               <img src={tile.image} alt="" loading="lazy" width="240" height="240" />
-            </Link>
+            </CollectionLink>
           </li>
         ))}
       </ul>

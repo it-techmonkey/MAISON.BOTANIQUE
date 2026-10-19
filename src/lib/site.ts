@@ -152,7 +152,9 @@ export const OCCASIONS: Occasion[] = [
 ];
 
 export function occasionSlug(id: string) { return id === 'just-because' ? 'gifts-for-her' : id; }
-export function occasionPath(id: string) { return `/occasions/${occasionSlug(id)}`; }
+/** Occasions are filters on the one collection, not pages of their own. */
+export function occasionHash(id: string) { return `occasion/${occasionSlug(id)}`; }
+export function occasionPath(id: string) { return `/shop#${occasionHash(id)}`; }
 
 export function findOccasion(id: string) {
   if (id === 'gifts-for-her') id = 'just-because';
@@ -262,7 +264,7 @@ export const SERVICES: Service[] = [
 
 /** Header navigation, as on the storefront design: occasions, the three product types, gifting. */
 export const NAV_LINKS = [
-  { href: '/occasions', label: { en: 'Occasions', ar: 'المناسبات' } },
+  { href: '/#occasions', label: { en: 'Occasions', ar: 'المناسبات' } },
   { href: '/shop?type=bouquets', label: { en: 'Bouquets', ar: 'باقات' } },
   { href: '/shop?type=gifts', label: { en: 'Gifts', ar: 'هدايا' } },
   { href: '/shop?type=preserved', label: { en: 'Preserved', ar: 'ورود محفوظة' } },
