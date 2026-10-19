@@ -1,0 +1,15 @@
+{
+  "name": "maison-botanique-scraper",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "giftygram": "node giftygram.mjs",
+    "uaeflowers": "node uaeflowers.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.135.0"
+  }
+}

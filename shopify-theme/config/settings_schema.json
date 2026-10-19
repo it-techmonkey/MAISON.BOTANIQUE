@@ -1,0 +1,22 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Maison Botanique Headless",
+    "theme_version": "1.0.0",
+    "theme_author": "Maison Botanique",
+    "theme_documentation_url": "https://maisonbotaniqueflowers.com",
+    "theme_support_url": "https://maisonbotaniqueflowers.com/contact"
+  },
+  {
+    "name": "Website",
+    "settings": [
+      {
+        "type": "text",
+        "id": "headless_url",
+        "label": "Website URL",
+        "info": "Every online store page redirects to the same page on this site. No trailing slash.",
+        "default": "https://maisonbotaniqueflowers.com"
+      }
+    ]
+  }
+]

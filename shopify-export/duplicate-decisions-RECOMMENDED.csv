@@ -1,0 +1,43 @@
+group,type,catalog_number,title,generated_images,recommended_action,note
+DUP-01,exact,6,100 Pink Roses Bouquet,1,KEEP,
+DUP-01,exact,36,100 Pink Roses,0,DROP,
+DUP-01,exact,42,Bouquet of 100 Pink Roses,0,DROP,
+DUP-02,exact,35,Timeless Bouquet of 100 White Roses,0,KEEP,
+DUP-02,exact,37,100 White Roses Bouquet,0,DROP,
+DUP-03,exact,2,Love Roses,2,KEEP,Both extra listings already have generated images; those two images are discarded.
+DUP-03,exact,8,40 Red Roses Bouquet,1,DROP,Both extra listings already have generated images; those two images are discarded.
+DUP-03,exact,12,Grand Love Bouquet,1,DROP,Both extra listings already have generated images; those two images are discarded.
+DUP-04,exact,18,Red Royale Bouquet,1,KEEP,
+DUP-04,exact,32,Prestige Raksha Bandhan Gift,0,DROP,
+DUP-05,exact,64,Blush & Scarlet Romance Combo,0,DROP,
+DUP-05,exact,65,Red & Pink Flower Bouquet,0,KEEP,
+DUP-06,exact,296,Baby Girl Gift Hamper,0,DROP,Keep one Girl and one Boy hamper (or merge into one product with a Girl/Boy option). Confirm contents; Johnson's items need real stock.
+DUP-06,exact,297,Baby Boy Gift Hamper,0,DROP,Keep one Girl and one Boy hamper (or merge into one product with a Girl/Boy option). Confirm contents; Johnson's items need real stock.
+DUP-06,exact,298,Blue Baby Boy Gift Hamper,0,KEEP,Keep one Girl and one Boy hamper (or merge into one product with a Girl/Boy option). Confirm contents; Johnson's items need real stock.
+DUP-06,exact,299,Pink Baby Girl Gift Hamper,0,KEEP,Keep one Girl and one Boy hamper (or merge into one product with a Girl/Boy option). Confirm contents; Johnson's items need real stock.
+DUP-07,near,19,Romantic Pink Rose Bouquet,1,KEEP,
+DUP-07,near,22,40 Pink Roses Bouquet,0,DROP,
+DUP-08,near,24,20 Red Roses Love For You,0,KEEP,
+DUP-08,near,33,Anniversary Red Roses Bouquet,0,DROP,
+DUP-09,near,99,Bouquet of Pink Lilies & Roses,0,DROP,
+DUP-09,near,109,Bouquet of Roses and Lilies,0,KEEP,
+DUP-10,near,90,Purple Orchids Bouquet,0,DROP,
+DUP-10,near,103,Majestic Orchids Bouquet,0,KEEP,
+DUP-11,near,91,Serene Pink Tulips Bouquet,0,KEEP,
+DUP-11,near,96,Premium Pink Tulips Bouquet,0,DROP,
+DUP-12,near,167,Pink Roses in Box,0,DROP,
+DUP-12,near,176,Blush Pink Roses in Box,0,KEEP,
+DUP-13,near,177,Box of Pink Roses,0,KEEP,
+DUP-13,near,188,Pink Roses Hatbox,0,DROP,
+DUP-14,near,216,Pink Orchid Plant (4),0,KEEP,
+DUP-14,near,217,Pink Phalaenopsis orchid plant,0,DROP,
+DUP-15,near,255,Small Teddy with 16 Pcs Ferrero Rocher,0,KEEP,Keep one; add option Blue teddy / Pink teddy.
+DUP-15,near,256,Pink Teddy with Ferrero Rocher,0,DROP,Keep one; add option Blue teddy / Pink teddy.
+DUP-16,near,326,World’s Most Luxurious Makeup Bouquet with Pink Roses + Stitch,1,KEEP,Keep one; add option Pink roses / Red roses.
+DUP-16,near,327,World’s Most Luxurious Makeup Bouquet with Red Roses + Stitch,1,DROP,Keep one; add option Pink roses / Red roses.
+DUP-17,near,69,Lavender Grace Bouquet,0,KEEP,Different recipes (20 purple vs 50 pink roses) at same price: keep both but rename clearly.
+DUP-17,near,73,Enchanted Blossom Bouquet,0,KEEP,Different recipes (20 purple vs 50 pink roses) at same price: keep both but rename clearly.
+DUP-18,near,14,Timeless Red & Pink Roses,1,KEEP,
+DUP-18,near,41,Blushing Bouquet of 20 Pink & Red Roses,0,DROP,
+DUP-19,near,324,MakeUp Bouquet with pink stitch,1,KEEP,"Different gifts (bouquet vs plush+makeup): keep both, rename clearly."
+DUP-19,near,328,Pink Stitch & MakeUp,1,KEEP,"Different gifts (bouquet vs plush+makeup): keep both, rename clearly."

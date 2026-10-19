@@ -4,3 +4,11 @@ dist/
 .env
 .env.local
 .taste-skill/
+/maison_botanique_brand_kit
+# Next.js
+.next/
+next-env.d.ts
+*.tsbuildinfo
+
+# Built Shopify theme upload
+shopify-theme.zip

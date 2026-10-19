@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    {%- capture target -%}{%- render 'headless-target', template: template, product: product, collection: collection, search: search, page: page -%}{%- endcapture -%}
+    {%- assign target = target | strip -%}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>{{ shop.name }}</title>
+    <link rel="canonical" href="{{ target }}">
+    <meta http-equiv="refresh" content="0; url={{ target }}">
+    <script>window.location.replace({{ target | json }});</script>
+    {{ content_for_header }}
+    <style>
+      body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #F5F2EB; color: #26332B; font: 16px/1.5 Georgia, serif; text-align: center; }
+      a { color: inherit; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>{{ 'general.redirecting' | t }}</p>
+      <p><a href="{{ target }}">{{ 'general.continue' | t }}</a></p>
+      <div hidden>{{ content_for_layout }}</div>
+    </main>
+  </body>
+</html>

@@ -7,7 +7,7 @@
 - `main` in `it-techmonkey/MAISON.BOTANIQUE` is the original Next.js concept. `codex/editorial-storefront-preview` is a Vite/React replacement at the repository root. A normal merge would replace most Next.js files. Review it as a complete storefront candidate, not as a small component patch.
 - Keep the current hero, horizontal collection, search, occasion/type filters, Arabic RTL flow, product details, gift note, preferred-date entry, and JVC proof as the starting point.
 - Reuse the original repository's content separation and typed catalog idea where helpful. Do not import its unverified contact details, service promises, testimonials, product names, prices, or photos as real business data. Its images require source rights and actual-product checks.
-- Shopify does not require a Next.js migration. Reconsider that only if production SEO, server rendering, or content needs justify the cost of porting the current design and bilingual behavior.
+- **Update, 17 October 2026:** the storefront was moved from Vite to Next.js 16 (App Router, TypeScript) to match the team's other headless Shopify builds and to render the catalog on the server. The design, bilingual behavior and `/jvc` proof were ported unchanged. Catalog, cart, checkout handoff, Shopify analytics and the catalog webhook are implemented. On request, analytics track every visitor without a consent prompt, which supersedes the consent-first approach below; store configuration is in [docs/SHOPIFY_SETUP.md](docs/SHOPIFY_SETUP.md).
 
 ## Commerce work, in order
 
@@ -29,7 +29,7 @@
 2. Confirm asset rights, approved catalog and claims, final legal/contact content, and native Arabic copy.
 3. Build and inspect desktop, phone, RTL, keyboard, and reduced-motion paths. Run a dependency audit against the committed lockfile before production release.
 4. Complete end-to-end test orders in a non-production Shopify setup, including prices, shipping, promotions, refunds/cancellations, order attributes, and event reporting.
-5. Configure hosting for Vite (`npm ci`, `npm run build`, output `dist`, including `/jvc/`). Review deployment and domain/noindex settings separately.
+5. Configure Next.js hosting (`npm ci`, `npm run build`, `npm start`, or a Next.js host such as Vercel) with the environment variables from `.env.example`. Review deployment and domain/noindex (`SITE_INDEXABLE`) settings separately.
 6. Ask the owner to review the branch diff and staging site. Merge only after explicit approval.
 
 ## Inputs still needed

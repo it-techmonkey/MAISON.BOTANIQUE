@@ -4,19 +4,47 @@ An English and Arabic flower storefront for Dubai. Maison Botanique is the confi
 
 ## Run locally
 
+Next.js 16 (App Router, TypeScript). Node 22.18 or newer.
+
 ```sh
 npm install
-npm run dev
-npm run build
+cp .env.example .env.local   # leave the Shopify values empty for the sample preview
+npm run dev                  # http://localhost:3000
+npm run build && npm start   # production build
+npm run typecheck
 ```
+
+With the Shopify values empty, the site runs the concept preview: the sample catalog in `src/data/sample-catalog.ts` and a cart saved only in the browser. Filling in the Storefront API values switches the whole site to the live Shopify catalog, cart and checkout. Store setup is described step by step in [docs/SHOPIFY_SETUP.md](docs/SHOPIFY_SETUP.md).
+
+## How the code is organised
+
+| Path | Purpose |
+| --- | --- |
+| `src/app/(store)/layout.tsx` | Shared store shell: loads the catalog once (ISR, refreshed every 5 minutes or by webhook), header, footer, bag, language. |
+| `src/app/(store)/` | Pages: home, `/shop`, `/shop/[handle]`, `/collections`, `/collections/[handle]`, `/occasions`, `/occasions/[occasion]`, `/services`, `/atelier`, `/contact`, `/delivery`, `/faq`, `/privacy`, `/terms`. |
+| `src/app/api/enquiry/route.ts`, `src/lib/shopify/forms.ts` | Newsletter, contact and enquiry forms, stored in Shopify (customers + "Website enquiry" metaobjects) through a forms-only Admin token. Without it the forms offer a prefilled email. |
+| `src/app/jvc/` | The `/jvc` opening-offer proof, with its own stylesheet. |
+| `src/app/api/revalidate/route.ts` | Shopify webhook target; verifies the HMAC signature and refreshes the catalog cache. |
+| `src/components/store/` | Store UI: provider (locale, cart), header, footer, bag drawer, product cards, shop filters, forms, page blocks. |
+| `src/components/Turntable.tsx` | Pinned home hero; falls back to a static hero when no products are featured. |
+| `src/lib/site.ts` | Non-catalog content: occasions, services, navigation and contact details (email, phone, WhatsApp, Instagram). |
+| `src/lib/shopify/catalog.ts` | Loads every published product and collection (paginated, English and Arabic) from the Storefront API. |
+| `src/lib/shopify/cart.ts` | Storefront Cart API: create, add, update, remove, checkout URL. |
+| `src/lib/cart/use-shop-cart.ts` | Cart hook used by the UI; Shopify cart when configured, browser-only preview cart otherwise. |
+| `src/proxy.ts` | Hydrogen's same-origin Storefront API proxy and Shopify routes; Shopify sets its analytics/checkout cookies through it. |
+| `src/lib/analytics/` | One tracking facade (`track.ts`) feeding PostHog and Shopify's analytics bus (`shopify.ts`). |
+| `src/instrumentation-client.ts` | PostHog initialisation, relayed through `/mb-relay` (see `next.config.ts`). |
+| `src/app/api/webhooks/orders/route.ts` | `orders/paid` and `refunds/create` webhook: records purchases and refunds in PostHog server-side. |
+| `scripts/shopify-auth.mjs` | One-time Admin API authorization for the client transfer store (`npm run shopify:auth`). |
+| `scripts/shopify-seed.mjs` | Loads the sample catalog into the store (`npm run shopify:seed`). |
 
 ## Shopping flow
 
 Visitors can scroll through a pinned three-product gallery: each floral image approaches, settles, and moves aside as the next arrangement enters. Motion is tied to scroll with GSAP ScrollTrigger and respects reduced-motion preferences. The hero leads directly into a horizontal, photo-led collection of seven provisional pieces. Visitors can browse by product type or occasion, search in either language, open a piece for its details, select a presentation, add a gift note and preferred date, and review a bag saved in their browser. The checkout preview does not collect payment or create an order.
 
-The Shopify Storefront API adapter in `src/lib/shopify.js` is prepared for a real store. When the business has approved its inventory, map each size to a real `shopifyVariants` product variant ID in `src/data/products.js`. Set the public Storefront token and domain using the names in `.env.example`. Do not place Admin API tokens in browser environment variables. The adapter creates a cart and redirects to Shopify's hosted checkout only when every cart line has a mapped variant. Before enabling that path, replace the sample bag prices with Shopify merchandise prices and verify currency and market settings so the amount displayed on the site agrees with checkout. Delivery options, tax, shipping, and payment are Shopify configuration work before launch.
+When Shopify is configured, products, sizes (variants), prices, availability and Arabic text come from the Storefront API, so there is no separate product mapping to maintain. The bag is a real Shopify cart: Shopify calculates the subtotal, and the gift note and preferred date travel with each line as line-item properties that appear on the order. "Continue to secure checkout" sends the shopper to Shopify's hosted checkout in their language. Delivery options, tax, shipping, discounts and payment are configured in Shopify. Never place Admin API credentials in `NEXT_PUBLIC_` variables.
 
-Shopify is the selected production commerce direction. The staged implementation and merge gates are recorded in [SHOPIFY_INTEGRATION_PLAN.md](SHOPIFY_INTEGRATION_PLAN.md). The current preview has no live Shopify checkout or analytics.
+Shopify is the selected production commerce direction. The staged implementation and merge gates are recorded in [SHOPIFY_INTEGRATION_PLAN.md](SHOPIFY_INTEGRATION_PLAN.md).
 
 ## JVC opening offer proof
 

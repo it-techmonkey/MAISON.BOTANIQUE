@@ -4,17 +4,32 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
-    "preview": "vite preview --host 127.0.0.1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "shopify:seed": "node --env-file-if-exists=.env.local scripts/shopify-seed.mjs",
+    "shopify:auth": "node --env-file-if-exists=.env.local scripts/shopify-auth.mjs",
+    "shopify:import": "node --env-file-if-exists=.env.local scripts/shopify-import.mjs",
+    "theme:zip": "node scripts/theme-zip.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@shopify/hydrogen": "2026.10.1",
     "gsap": "^3.15.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "next": "^16.4.2",
+    "posthog-js": "1.438.12",
+    "posthog-node": "5.56.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
-    "vite": "^6.3.0"
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=22.18"
   }
 }

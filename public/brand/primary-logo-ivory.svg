@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+<rect width="100%" height="100%" fill="#F7F4ED"/>
+<g transform="translate(350 38) scale(1.0)"><g fill="none" stroke="#2E3528" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M20 92 C42 70 56 47 76 15"/>
+<path d="M39 73 C22 72 14 62 12 49 C28 49 39 57 39 73Z" fill="#2E3528" fill-opacity=".24"/>
+<path d="M51 57 C68 57 80 48 84 34 C67 34 56 42 51 57Z" fill="#2E3528" fill-opacity=".24"/>
+<path d="M61 40 C45 39 37 29 36 17 C51 18 60 27 61 40Z" fill="#2E3528" fill-opacity=".24"/>
+<path d="M71 24 C83 23 92 15 95 5 C83 6 75 13 71 24Z" fill="#2E3528" fill-opacity=".24"/>
+</g></g>
+<text x="400" y="285" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="69" letter-spacing="10" fill="#2E3528">MAISON</text>
+<text x="400" y="355" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="69" letter-spacing="7" fill="#2E3528">BOTANIQUE</text>
+<text x="400" y="405" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" letter-spacing="7" fill="#2E3528">THOUGHTFULLY IN BLOOM</text>
+</svg>

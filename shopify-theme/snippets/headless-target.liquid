@@ -1,0 +1,26 @@
+{%- comment -%} The website URL for the current online store page. {%- endcomment -%}
+{%- assign base = settings.headless_url | default: 'https://maisonbotaniqueflowers.com' | remove_last: '/' -%}
+{%- case template.name -%}
+  {%- when 'product' -%}{%- assign target = base | append: '/shop/' | append: product.handle -%}
+  {%- when 'collection' -%}
+    {%- if collection.handle == 'all' or collection.handle == blank -%}{%- assign target = base | append: '/shop' -%}
+    {%- else -%}{%- assign target = base | append: '/collections/' | append: collection.handle -%}{%- endif -%}
+  {%- when 'list-collections' -%}{%- assign target = base | append: '/collections' -%}
+  {%- when 'search' -%}
+    {%- if search.terms != blank -%}{%- assign terms = search.terms | url_encode -%}{%- assign target = base | append: '/shop?q=' | append: terms -%}
+    {%- else -%}{%- assign target = base | append: '/shop' -%}{%- endif -%}
+  {%- when 'page' -%}
+    {%- case page.handle -%}
+      {%- when 'contact' -%}{%- assign target = base | append: '/contact' -%}
+      {%- when 'faq', 'faqs' -%}{%- assign target = base | append: '/faq' -%}
+      {%- when 'delivery', 'shipping' -%}{%- assign target = base | append: '/delivery' -%}
+      {%- when 'about', 'about-us' -%}{%- assign target = base | append: '/atelier' -%}
+      {%- else -%}{%- assign target = base -%}
+    {%- endcase -%}
+  {%- else -%}
+    {%- if request.path contains '/policies/privacy' -%}{%- assign target = base | append: '/privacy' -%}
+    {%- elsif request.path contains '/policies/terms' -%}{%- assign target = base | append: '/terms' -%}
+    {%- elsif request.path contains '/policies/' -%}{%- assign target = base | append: '/delivery' -%}
+    {%- else -%}{%- assign target = base -%}{%- endif -%}
+{%- endcase -%}
+{{- target -}}

@@ -132,7 +132,16 @@
 .tt-section[dir="rtl"] .tt-intro, .tt-section[dir="rtl"] .tt-product { left: auto; right: clamp(28px, 5.5vw, 102px); }
 .tt-section[dir="rtl"] .tt-intro h1 { font-size: clamp(60px, 7vw, 126px); letter-spacing: -.035em; line-height: 1.07; }
 .tt-section[dir="rtl"] .tt-artwork { right: auto; left: 4%; }
+.tt-section[dir="rtl"] .tt-product__counter { justify-content: flex-end; }
 .tt-section[dir="rtl"] .tt-footer { left: clamp(28px, 5.5vw, 102px); right: clamp(28px, 5.5vw, 102px); }
+
+/* Shown when there are no featured products to animate. */
+.tt-fallback { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 5vw, 88px); min-height: 100svh; padding: calc(var(--header) + 32px) var(--gutter) 48px; }
+.tt-fallback__image { order: 2; width: 100%; max-height: 78svh; object-fit: cover; aspect-ratio: 4 / 5; }
+.tt-fallback__copy { display: grid; justify-items: start; gap: 22px; }
+.tt-fallback h1 { font-family: var(--font-display); font-size: clamp(74px, 8.6vw, 156px); font-weight: 400; letter-spacing: -.055em; line-height: .88; }
+.tt-fallback__copy > p:not(.tt-intro__eyebrow) { max-width: 420px; color: var(--muted); font-size: 18px; }
+@media (max-width: 760px) { .tt-fallback { grid-template-columns: 1fr; } .tt-fallback__image { order: 0; max-height: 52svh; } }
 
 @keyframes tt-copy-enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -217,4 +226,104 @@
   .tt-artwork__image.is-active { opacity: 1; }
   .tt-product__details { animation: none; }
   .tt-product__actions button, .tt-controls button { transition: none; }
+}
+
+/* ------------------------------------------------------------------------
+   Copy column: the intro and the product block share one flex column that
+   spans the original top and bottom offsets, so they stack instead of
+   overlapping when a product name runs to two lines.
+   ------------------------------------------------------------------------ */
+.tt-copy {
+  position: absolute;
+  z-index: 3;
+  top: clamp(150px, 22vh, 238px);
+  /* Always clear the footer row (its offset + the 48px arrows + breathing room). */
+  bottom: max(clamp(92px, 12vh, 145px), calc(clamp(22px, 3vw, 46px) + 72px));
+  left: clamp(28px, 5.5vw, 102px);
+  width: 41%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(18px, 3vh, 40px);
+  pointer-events: none;
+}
+.tt-section .tt-copy > .tt-intro,
+.tt-section .tt-copy > .tt-product { position: static; top: auto; right: auto; bottom: auto; left: auto; width: auto; }
+.tt-copy > .tt-product { max-width: 95%; pointer-events: auto; }
+/* The headline also scales with the screen height, so the column fits. */
+.tt-copy .tt-intro h1 { font-size: clamp(64px, min(8.6vw, 15vh), 156px); }
+/* Never more than two lines; long names use a smaller title. */
+.tt-copy .tt-product h2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; padding-bottom: .08em; }
+.tt-copy .tt-product--long h2 { font-size: clamp(32px, 3.1vw, 56px); line-height: 1.02; }
+.tt-section[dir="rtl"] .tt-copy { left: auto; right: clamp(28px, 5.5vw, 102px); }
+
+@media (min-width: 681px) and (max-height: 1050px) {
+  .tt-copy .tt-intro__body { display: none; }
+}
+
+@media (max-width: 900px) {
+  .tt-copy { top: 18%; bottom: 15%; width: 46%; }
+  .tt-copy .tt-intro h1 { font-size: clamp(56px, min(9.2vw, 12vh), 100px); }
+}
+
+@media (max-width: 680px) {
+  .tt-copy, .tt-section[dir="rtl"] .tt-copy { top: 92px; bottom: 83px; left: 20px; right: 20px; width: auto; }
+  .tt-copy > .tt-product { max-width: none; }
+  .tt-copy .tt-intro h1 { font-size: clamp(48px, min(15vw, 9vh), 95px); }
+  .tt-copy .tt-product--long h2 { font-size: clamp(28px, 7.4vw, 40px); }
+}
+
+@media (max-width: 400px), (max-height: 720px) {
+  .tt-copy, .tt-section[dir="rtl"] .tt-copy { top: 76px; bottom: 70px; }
+}
+
+@media (min-width: 681px) and (max-height: 720px) {
+  .tt-copy, .tt-section[dir="rtl"] .tt-copy { top: clamp(92px, 14vh, 120px); bottom: 72px; }
+  .tt-copy .tt-intro h1 { font-size: clamp(52px, min(7.2vw, 13vh), 104px); }
+  .tt-copy .tt-product--long h2 { font-size: clamp(28px, 2.8vw, 44px); }
+}
+
+@media (min-width: 681px) and (max-height: 580px) {
+  .tt-copy, .tt-section[dir="rtl"] .tt-copy { top: 84px; bottom: 62px; }
+  .tt-copy .tt-intro h1 { font-size: clamp(46px, min(6vw, 12vh), 82px); }
+}
+
+/* Set by <Turntable> when the column would overflow: smaller type, tighter spacing. */
+.tt-copy[data-fit="1"] { gap: 14px; }
+.tt-copy[data-fit="1"] .tt-intro h1 { font-size: calc(clamp(64px, min(8.6vw, 15vh), 156px) * .86); margin-bottom: 10px; }
+.tt-copy[data-fit="1"] .tt-product h2 { font-size: calc(clamp(38px, 4.4vw, 76px) * .78); }
+.tt-copy[data-fit="1"] .tt-product--long h2 { font-size: calc(clamp(32px, 3.1vw, 56px) * .86); }
+.tt-copy[data-fit="1"] .tt-product__category { margin-top: 10px; }
+.tt-copy[data-fit="1"] .tt-product__actions { margin-top: 14px; }
+.tt-copy[data-fit="2"] { gap: 10px; }
+.tt-copy[data-fit="2"] .tt-intro h1 { font-size: calc(clamp(64px, min(8.6vw, 15vh), 156px) * .74); margin: 10px 0 8px; }
+.tt-copy[data-fit="2"] .tt-product h2 { font-size: calc(clamp(38px, 4.4vw, 76px) * .64); }
+.tt-copy[data-fit="2"] .tt-product--long h2 { font-size: calc(clamp(32px, 3.1vw, 56px) * .72); }
+.tt-copy[data-fit="2"] .tt-product__category { margin-top: 6px; }
+.tt-copy[data-fit="2"] .tt-product__actions { margin-top: 10px; }
+@media (max-width: 680px) {
+  .tt-copy[data-fit="1"] .tt-intro h1 { font-size: calc(clamp(48px, min(15vw, 9vh), 95px) * .86); }
+  .tt-copy[data-fit="2"] .tt-intro h1 { font-size: calc(clamp(48px, min(15vw, 9vh), 95px) * .74); }
+  .tt-copy[data-fit="1"] .tt-product h2 { font-size: calc(clamp(38px, 10vw, 62px) * .8); }
+  .tt-copy[data-fit="2"] .tt-product h2 { font-size: calc(clamp(38px, 10vw, 62px) * .68); }
+}
+
+/* Resting pose of the design (GSAP keeps it in sync during transitions). */
+.tt-artwork__image { transform: translate(15%, 9%) scale(.88) rotate(-2deg); }
+.tt-artwork__ground { transform: translateX(8%) scale(.84); opacity: .32; }
+
+/* The design's photos are 2:3 portraits shown whole ("contain") inside the
+   frame, so the oval mask leaves straight sides and soft top and bottom. Any
+   product photo is cropped to that same 2:3 portrait, centred, full height. */
+.tt-artwork__photo {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
 }
