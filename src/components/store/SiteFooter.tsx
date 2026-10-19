@@ -14,6 +14,7 @@ import { WhatsAppIcon } from './WhatsAppButton';
 const FOOTER = {
   en: {
     shop: 'Shop', occasions: 'Occasions', help: 'Help', bloom: 'Stay in bloom',
+    delivery: 'Same-day delivery in Dubai. Free in JVC · AED 30 elsewhere in Dubai · AED 40 elsewhere in the UAE.',
     bloomLine: 'Be the first to know about new collections and offers.',
     whatsapp: 'WhatsApp', language: 'العربية', top: 'Back to top',
     notice: 'Prices are in AED. Delivery and any taxes are confirmed at checkout.',
@@ -21,6 +22,7 @@ const FOOTER = {
   },
   ar: {
     shop: 'تسوّق', occasions: 'المناسبات', help: 'المساعدة', bloom: 'ابقَ في أجواء الزهور',
+    delivery: 'توصيل في اليوم نفسه في دبي. مجاني في JVC · ٣٠ درهماً في بقية دبي · ٤٠ درهماً في بقية الإمارات.',
     bloomLine: 'كن أول من يعرف عن المجموعات والعروض الجديدة.',
     whatsapp: 'واتساب', language: 'English', top: 'العودة للأعلى',
     notice: 'الأسعار بالدرهم الإماراتي. يُؤكَّد التوصيل وأي ضرائب عند الدفع.',
@@ -58,6 +60,7 @@ export default function SiteFooter() {
       <div className="mb-footer__cols" data-track-section="footer_links">
         <div className="mb-footer__brand">
           <span>MAISON</span><strong>BOTANIQUE</strong>
+          <p>{t.delivery}</p>
           <p className="mb-footer__social">
             {SITE.instagram && <a href={`https://instagram.com/${SITE.instagram}`} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><InstagramIcon /></a>}
             {whatsapp && <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={t.whatsapp}><WhatsAppIcon /></a>}
