@@ -29,7 +29,7 @@ export async function ResidencesBand() {
 }
 
 const STEPS = [
-  { icon: <FlowerIcon />, text: { en: 'Shop a curated selection', ar: 'تسوّق من مجموعة مختارة' } },
+  { icon: <FlowerIcon />, text: { en: 'Shop our collection', ar: 'تسوّق مجموعتنا' } },
   { icon: <ClockIcon />, text: { en: 'Choose your delivery time', ar: 'اختر وقت التوصيل' } },
   { icon: <HomeIcon />, text: { en: 'We deliver to your apartment', ar: 'نوصل إلى شقتك' } },
 ];
@@ -41,7 +41,7 @@ export async function ResidencesPage() {
     <div className="res">
       <section className="res__hero" aria-labelledby="res-title">
         <div className="res__copy">
-          <p className="eyebrow"><Bi text={{ en: 'Exclusive for residents', ar: 'حصرياً للسكان' }} /></p>
+          <p className="eyebrow"><Bi text={{ en: 'For residents', ar: 'للسكان' }} /></p>
           <h1 id="res-title">
             <Bi text={{ en: 'Welcome home.', ar: 'أهلاً بك في بيتك.' }} /><br />
             <Bi text={{ en: 'Your flowers await.', ar: 'زهورك بانتظارك.' }} />
@@ -58,7 +58,7 @@ export async function ResidencesPage() {
             <ul>
               {EMIRATES.map((emirate) => <li key={emirate.en}><Bi text={emirate} /></li>)}
             </ul>
-            <p><Bi text={{ en: 'Same-day delivery. AED 30 in Dubai, AED 40 elsewhere in the UAE.', ar: 'توصيل في اليوم نفسه. ٣٠ درهماً في دبي و٤٠ درهماً في بقية الإمارات.' }} /></p>
+            <p><Bi text={{ en: 'Same-day delivery in Dubai. Free in JVC, AED 30 elsewhere in Dubai, AED 40 elsewhere in the UAE.', ar: 'توصيل في اليوم نفسه في دبي. مجاني في JVC، و٣٠ درهماً في بقية دبي، و٤٠ درهماً في بقية الإمارات.' }} /></p>
             <ArrowLink href="/shop" variant="button" label={{ en: 'Shop now', ar: 'تسوّق الآن' }} />
           </aside>
         </div>
