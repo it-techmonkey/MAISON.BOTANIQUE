@@ -19,7 +19,8 @@ export function Logo() {
  * elsewhere it navigates to /shop with the hash.
  */
 export function CollectionLink({ hash, onClick, children, className, 'aria-label': ariaLabel }: { hash: string; onClick?: () => void; children: ReactNode; className?: string; 'aria-label'?: string }) {
-  const onShop = usePathname() === '/shop';
+  const pathname = usePathname();
+  const onShop = pathname === '/' || pathname === '/shop';
   return onShop
     ? <a className={className} href={`#${hash}`} onClick={onClick} aria-label={ariaLabel}>{children}</a>
     : <Link className={className} href={`/shop#${hash}`} onClick={onClick} aria-label={ariaLabel}>{children}</Link>;
@@ -59,7 +60,7 @@ export default function SiteHeader() {
     let queued = false;
     const update = () => {
       queued = false;
-      const hero = document.getElementById('home-hero');
+      const hero = document.getElementById('turntable');
       setScrolled(hero ? hero.getBoundingClientRect().bottom <= 150 : window.scrollY > 24);
     };
     const onScroll = () => {

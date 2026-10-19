@@ -167,7 +167,7 @@ function Piece({ product, index, t, ar, onOpen }: { product: Product; index: num
  * budget, stems), sorting and a grid that loads 24 at a time. Every piece
  * opens the quick-add sheet.
  */
-export default function CollectionBrowser({ listId = 'home', initialOccasion }: { listId?: string; initialOccasion?: string }) {
+export default function CollectionBrowser({ listId = 'home', initialOccasion, showOccasions = true }: { listId?: string; initialOccasion?: string; showOccasions?: boolean }) {
   const { ar, live, products, openProduct } = useStore();
   const t = COPY[ar ? 'ar' : 'en'];
   const catalog = useMemo(() => liveCatalogGroups(products), [products]);
@@ -294,7 +294,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion }: 
         </label>
       </div>
 
-      <div className="mbc-in">
+      {showOccasions && <div className="mbc-in">
         <h3 className="mbc-sc mbc-occ-title">{t.shopBy}</h3>
         <div className="mbc-occasions">{occasionTiles.map((o) => {
           const on = state.occasion.length === 1 && state.occasion[0] === o.id;
@@ -305,7 +305,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion }: 
             </button>
           );
         })}</div>
-      </div>
+      </div>}
 
       <nav className="mbc-rooms" ref={roomsRef} aria-label={t.title}>
         <div className="mbc-in mbc-rooms-in">
