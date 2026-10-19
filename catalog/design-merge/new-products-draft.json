@@ -1,0 +1,150 @@
+{
+  "status": "facts_and_prices_pending",
+  "sizes": "Signature; Grand doubles flowers only; Luxe triples flowers only. Gifts and cash principal do not multiply.",
+  "products": [
+    {
+      "name": "Luxury Money Bouquet",
+      "nameAr": "باقة نقود فاخرة",
+      "room": "money",
+      "facts": [
+        "Real AED banknotes arranged with wrapping",
+        "Cash principal collected separately from online arrangement fee",
+        "Welcome discount applies to arrangement fee only"
+      ],
+      "reference": {
+        "url": "https://www.giftygram.ae/products/luxury-money-bouquet",
+        "checked": "2026-10-19",
+        "savedVariants": [
+          {
+            "option": "Small (1k to 2k)",
+            "selling": 499
+          },
+          {
+            "option": "Medium (2k to 3k)",
+            "selling": 799
+          },
+          {
+            "option": "Large (3k to 5k)",
+            "selling": 999
+          },
+          {
+            "option": "Extra Large (5k to 8k)",
+            "selling": 1599
+          },
+          {
+            "option": "XXL (Above 8k)",
+            "selling": 2500
+          }
+        ]
+      },
+      "owner_to_confirm": [
+        "Maison arrangement fee per option",
+        "Cash amount and denomination selection process",
+        "Any flower contents",
+        "Bank-transfer instructions and verification process"
+      ],
+      "price_status": "pending_owner",
+      "image_status": "pending_approved_image"
+    },
+    {
+      "name": "Stitch Money Bouquet",
+      "nameAr": "باقة نقود مع ستيتش",
+      "room": "money",
+      "facts": [
+        "Cash principal collected separately from online arrangement fee",
+        "Welcome discount applies to arrangement fee only"
+      ],
+      "owner_to_confirm": [
+        "Reference image or exact arrangement concept",
+        "Stitch colour and size",
+        "Cash selection and denominations",
+        "Any flower contents",
+        "Maison arrangement fee"
+      ],
+      "price_status": "pending_owner",
+      "image_status": "pending_approved_image"
+    },
+    {
+      "name": "Pink Stitch + Roses in a Box",
+      "nameAr": "ستيتش وردي مع ورود في صندوق",
+      "room": "gifts",
+      "facts": [
+        "Pink roses",
+        "Pink Stitch plush",
+        "Silver butterfly-style box"
+      ],
+      "reference": {
+        "url": "https://www.giftygram.ae/products/pink-stitch-roses-in-a-box",
+        "checked": "2026-10-19",
+        "savedVariants": [
+          {
+            "option": "Default Title",
+            "selling": 299
+          }
+        ]
+      },
+      "owner_to_confirm": [
+        "Signature rose count",
+        "Plush size",
+        "Box dimensions and stock",
+        "Maison selling price"
+      ],
+      "price_status": "pending_owner",
+      "image_status": "pending_approved_image"
+    },
+    {
+      "name": "Stitch with Flowers",
+      "nameAr": "ستيتش مع الزهور",
+      "room": "gifts",
+      "facts": [
+        "Blue Stitch plush",
+        "Seasonal flower arrangement"
+      ],
+      "reference": {
+        "url": "https://www.giftygram.ae/products/stitch-with-flowers",
+        "checked": "2026-10-19",
+        "savedVariants": [
+          {
+            "option": "Default Title",
+            "selling": 499
+          }
+        ]
+      },
+      "owner_to_confirm": [
+        "Exact Signature flower types, counts and colours",
+        "Plush size",
+        "Wrap or container",
+        "Maison selling price"
+      ],
+      "price_status": "pending_owner",
+      "image_status": "pending_approved_image"
+    },
+    {
+      "name": "VIP Stitch Bouquet",
+      "nameAr": "باقة ستيتش الفاخرة",
+      "room": "gifts",
+      "facts": [
+        "Large Stitch plush",
+        "Flower bouquet"
+      ],
+      "reference": {
+        "url": "https://www.giftygram.ae/products/vip-stitch-bouquet",
+        "checked": "2026-10-19",
+        "savedVariants": [
+          {
+            "option": "Default Title",
+            "selling": 2560
+          }
+        ]
+      },
+      "owner_to_confirm": [
+        "Exact Signature flower types, counts and colours",
+        "Plush size and colour",
+        "Wrap",
+        "Maison selling price"
+      ],
+      "price_status": "pending_owner",
+      "image_status": "pending_approved_image"
+    }
+  ]
+}
