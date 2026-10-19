@@ -30,7 +30,9 @@ export default function WhatsAppButton() {
       const foot = document.querySelector('.product-page .qa-foot');
       const box = foot?.getBoundingClientRect();
       const visible = Boolean(box && box.bottom > 0 && box.top < window.innerHeight);
-      document.documentElement.style.setProperty('--wa-buy-offset', visible && box ? `${window.innerHeight - box.top + 16}px` : '0px');
+      const hero = document.querySelector('.tt-footer')?.getBoundingClientRect();
+      const heroOffset = hero && hero.bottom > 0 && hero.top < window.innerHeight ? window.innerHeight - hero.top + 16 : 0;
+      document.documentElement.style.setProperty('--wa-buy-offset', `${Math.max(visible && box ? window.innerHeight - box.top + 16 : 0, heroOffset)}px`);
     };
     update();
     const observer = new MutationObserver(update);
