@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { trackProductViewed } from '@/lib/analytics/track';
-import { findOccasion } from '@/lib/site';
+import { occasionPath, findOccasion } from '@/lib/site';
 import type { Product } from '@/lib/types';
 import { PurchaseOptions, formatAED } from './ShopSheets';
 import { useStore } from './StoreProvider';
@@ -51,7 +51,7 @@ function Purchase({ product }: { product: Product }) {
           <span>{t('Lovely for', 'مناسبة لـ')}</span>
           {product.occasions.map((occasionId) => {
             const occasion = findOccasion(occasionId);
-            return occasion ? <Link key={occasionId} href={`/occasions/${occasionId}`}>{ar ? occasion.name.ar : occasion.name.en}</Link> : null;
+            return occasion ? <Link key={occasionId} href={occasionPath(occasionId)}>{ar ? occasion.name.ar : occasion.name.en}</Link> : null;
           })}
         </p>
       )}

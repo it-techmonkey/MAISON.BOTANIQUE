@@ -144,17 +144,18 @@ export const OCCASIONS: Occasion[] = [
   },
   {
     id: 'just-because',
-    name: { en: 'Just Because', ar: 'من دون مناسبة' },
-    line: { en: 'No date on the calendar. Every reason.', ar: 'لا موعد في التقويم، وكل الأسباب.' },
-    intro: {
-      en: 'Make an ordinary day feel a little less ordinary. No occasion required.',
-      ar: 'اجعل يوماً عادياً أقل اعتيادية قليلاً. لا حاجة إلى مناسبة.',
-    },
-    image: '/assets/gift-concept.jpg',
+    name: { en: 'Gifts for her', ar: 'هدايا لها' },
+    line: { en: 'A gesture, chosen for her.', ar: 'لفتة مختارة لها.' },
+    intro: { en: 'Flowers, beauty gifts and thoughtful combinations, chosen for the women who matter to you.', ar: 'زهور وهدايا جمال وتنسيقات مدروسة، مختارة للنساء العزيزات عليك.' },
+    image: '/assets/sunlit-cut.jpg',
   },
 ];
 
+export function occasionSlug(id: string) { return id === 'just-because' ? 'gifts-for-her' : id; }
+export function occasionPath(id: string) { return `/occasions/${occasionSlug(id)}`; }
+
 export function findOccasion(id: string) {
+  if (id === 'gifts-for-her') id = 'just-because';
   return OCCASIONS.find((occasion) => occasion.id === id);
 }
 

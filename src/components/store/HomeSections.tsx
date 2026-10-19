@@ -1,5 +1,7 @@
 'use client';
 
+import { occasionPath } from '@/lib/site';
+
 import Link from 'next/link';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { trackProductClicked, trackProductListViewed } from '@/lib/analytics/track';
@@ -41,7 +43,7 @@ function OccasionTiles() {
       <ul className="hs-occasions">
         {tiles.map((tile) => (
           <li key={tile.id}>
-            <Link href={`/occasions/${tile.id}`}>
+            <Link href={occasionPath(tile.id)}>
               <span className="hs-occasions__img">{tile.image && <img src={tile.image} alt="" loading="lazy" width="120" height="120" />}</span>
               <span>{ar ? tile.ar : tile.en}</span>
             </Link>

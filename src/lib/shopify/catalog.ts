@@ -9,6 +9,7 @@
 // Without Shopify settings the bundled export (src/data/collection.json) is
 // used, so the design preview keeps working.
 
+import giftsForHer from '@/data/gifts-for-her.json';
 import { slugify } from '@/lib/format';
 import { roomOf } from '@/lib/catalog-groups';
 import type { Catalog, Collection, Product, ProductCustomField, ProductFormat, ProductRoom, ProductSize } from '@/lib/types';
@@ -318,6 +319,8 @@ function mapShopifyProduct(product: ShopifyProduct): Product | null {
 
 /** Featured first by hero position, then everything by display order. */
 function inDisplayOrder(products: Product[]) {
+  const selected = new Set(giftsForHer);
+  products = products.map((product) => ({ ...product, occasions: [...product.occasions.filter((id) => id !== 'just-because'), ...(selected.has(product.id) ? ['just-because'] : [])] }));
   const sorted = [...products].sort((a, b) => a.order - b.order);
   if (sorted.some((product) => product.featured)) return sorted;
   return sorted.map((product, index) => (index < 3 ? { ...product, featured: true, heroOrder: index + 1 } : product));
