@@ -332,7 +332,7 @@
 .tt-copy .tt-intro h1, .tt-copy[data-fit] .tt-intro h1 { font-size: clamp(38px, 4.7vw, 72px); line-height: 1.02; letter-spacing: -.035em; }
 .tt-stage { min-height: 620px; }
 .tt-copy { top: calc(var(--chrome) + 36px); }
-.tt-copy > .tt-product { position: relative; }
+.tt-section .tt-copy > .tt-product { position: relative; isolation: isolate; }
 .tt-product__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .tt-product__discover { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
 .tt-section[dir='rtl'] .tt-intro h1 { font-size: clamp(38px, 4.7vw, 72px); line-height: 1.25; }
@@ -344,3 +344,7 @@
   .tt-intro__eyebrow { font-size: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { .tt-stage { min-height: 720px; } }
+
+.tt-product__add { display: inline-flex; justify-content: center; align-items: center; padding: 12px 18px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); text-decoration: none; }
+.tt-product__discover { padding: 12px 0; border: 0; background: transparent; color: var(--ink); }
+.tt-product__add:disabled { opacity: .5; }
