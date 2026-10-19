@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the storefront collection data and images from the Shopify export.
 
-  python3 scripts/build_collection.py --images ../image-pipeline/out/flare-medium
+  python3 scripts/build_collection.py --images catalog/image-pipeline/out/flare-medium
 
 Reads catalog/shopify-export/products.json and catalog/collection-overrides.json.
 Every product with a price and an image is included: <handle>.png from --images, else its export image.

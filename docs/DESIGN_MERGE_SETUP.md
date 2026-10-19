@@ -1,3 +1,5 @@
+> Current context: read [current status](CURRENT_STATUS.md) and [catalogue ownership](DATA_FLOW.md). Setup instructions are not evidence of live configuration; catalogue seed commands require separate approval.
+
 # Design merge: deployment settings to verify
 
 These are setup instructions, not evidence that live settings were changed.

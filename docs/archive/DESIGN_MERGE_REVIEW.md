@@ -1,3 +1,5 @@
+> Historical record. Use [current status](../CURRENT_STATUS.md) for the maintained project state.
+
 # Design merge: implementation and verification
 
 19 October 2026. Branch `design-merge`, separate worktree `mb-design-merge/`, based on GitHub `origin/main` at `7f3658f`.

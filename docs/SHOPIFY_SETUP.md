@@ -1,3 +1,5 @@
+> Current context: read [current status](CURRENT_STATUS.md) and [catalogue ownership](DATA_FLOW.md). Setup instructions are not evidence of live configuration; catalogue seed commands require separate approval.
+
 # Shopify setup guide
 
 How to connect the Maison Botanique Next.js storefront to Shopify, from an empty store to a tested order. The store is a **client transfer store** created from the agency's Partner account: build and test everything there, then transfer it to the client (step 1).

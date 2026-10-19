@@ -1,3 +1,5 @@
+> Historical record. Use [current status](../CURRENT_STATUS.md) for the maintained project state.
+
 # Shopify integration and merge plan
 
 **Decision, 16 October 2026:** use the current bilingual editorial storefront as the visual and interaction baseline, connect it to Shopify for commerce, and add consent-aware storefront and checkout analytics. The GitHub branch is for review. Do not merge it into `main` until the owner explicitly approves that action.
@@ -7,7 +9,7 @@
 - `main` in `it-techmonkey/MAISON.BOTANIQUE` is the original Next.js concept. `codex/editorial-storefront-preview` is a Vite/React replacement at the repository root. A normal merge would replace most Next.js files. Review it as a complete storefront candidate, not as a small component patch.
 - Keep the current hero, horizontal collection, search, occasion/type filters, Arabic RTL flow, product details, gift note, preferred-date entry, and JVC proof as the starting point.
 - Reuse the original repository's content separation and typed catalog idea where helpful. Do not import its unverified contact details, service promises, testimonials, product names, prices, or photos as real business data. Its images require source rights and actual-product checks.
-- **Update, 17 October 2026:** the storefront was moved from Vite to Next.js 16 (App Router, TypeScript) to match the team's other headless Shopify builds and to render the catalog on the server. The design, bilingual behavior and `/jvc` proof were ported unchanged. Catalog, cart, checkout handoff, Shopify analytics and the catalog webhook are implemented. On request, analytics track every visitor without a consent prompt, which supersedes the consent-first approach below; store configuration is in [docs/SHOPIFY_SETUP.md](docs/SHOPIFY_SETUP.md).
+- **Update, 17 October 2026:** the storefront was moved from Vite to Next.js 16 (App Router, TypeScript) to match the team's other headless Shopify builds and to render the catalog on the server. The design, bilingual behavior and `/jvc` proof were ported unchanged. Catalog, cart, checkout handoff, Shopify analytics and the catalog webhook are implemented. On request, analytics track every visitor without a consent prompt, which supersedes the consent-first approach below; store configuration is in [docs/SHOPIFY_SETUP.md](../SHOPIFY_SETUP.md).
 
 ## Commerce work, in order
 
