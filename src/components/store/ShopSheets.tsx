@@ -34,7 +34,7 @@ const copy = {
     helpOrder: 'Questions? Chat with us on WhatsApp', orderWhatsapp: 'Order on WhatsApp instead',
     addBag: 'Add to bag', subtotal: 'Subtotal', sampleSubtotal: 'Sample subtotal', delivery: 'Delivery',
     deliveryLater: 'AED 30 in Dubai · AED 40 elsewhere in the UAE',
-    offerLine: 'Welcome offer: 25% off with your code, on top of 10% off. Enter your code at checkout.',
+    offerLine: 'Welcome offer: 25% off your first order with your code at checkout.',
     included: "What's included", alsoLike: 'You may also like',
     previewCheckout: 'Preview checkout', secureCheckout: 'Continue to secure checkout',
     reviewTitle: 'Checkout preview', reviewIntro: 'Your selections are saved in this browser for up to 30 days. Checkout is not connected yet; no order or payment will be taken.',

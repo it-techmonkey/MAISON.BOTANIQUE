@@ -6,39 +6,39 @@ import { uaeMobile } from '@/lib/enquiry';
 import { OFFER_CODE } from '@/lib/site';
 import { useStore } from './StoreProvider';
 
-// Welcome offer: 25% off with the code, on top of the 10% already off every piece.
+// Welcome offer: 25% off a first order.
 // The sign-up is saved in Shopify as a newsletter customer (email or SMS
 // marketing consent, src/lib/shopify/forms.ts), and the visitor sees the
 // shared code. Create the code in Shopify (Discounts) with no total-use limit and
-// one use per customer; set NEXT_PUBLIC_LAUNCH_OFFER_CODE if it isn't BLOOM25.
+// one use per customer; set NEXT_PUBLIC_LAUNCH_OFFER_CODE if it isn't MAISON25.
 const STORAGE_KEY = 'mb-launch-offer-v1';
 const SNOOZE_MS = 3 * 24 * 60 * 60 * 1000;
 const OPEN_DELAY_MS = 1500;
 
 const COPY = {
   en: {
-    eyebrow: 'Welcome offer', title: '25% + 10% off your first order', sub: '25% off with your code, on top of 10% off every piece. Same-day delivery across the UAE.',
+    eyebrow: 'Welcome offer', title: '25% off your first order', sub: 'Sign up and get 25% off your first order. Free delivery in JVC.',
     whatsapp: 'WhatsApp', email: 'Email', phoneLabel: 'WhatsApp number', phonePh: '50 123 4567', emailLabel: 'Email address', emailPh: 'you@example.com',
     consent: 'Send me my code and occasional Maison offers. I can unsubscribe at any time.', privacy: 'Privacy policy',
     cta: 'Send my code', sending: 'Sending…', no: 'No thanks', invalidPhone: 'Enter a UAE mobile number, for example 50 123 4567.', invalidEmail: 'Enter a valid email address.', needConsent: 'Tick the box so we can send your code.',
     failed: 'Something went wrong. Please try again in a moment.',
     doneTitle: 'Your code is ready', doneSub: 'Enter it at checkout. We have saved your details so we can let you know about Maison offers.',
-    copy: 'Copy code', copied: 'Copied', shop: 'Start shopping', terms: 'One use per customer · 25% code on products, on top of 10% off.',
-    tab: '25% + 10% off', close: 'Close',
+    copy: 'Copy code', copied: 'Copied', shop: 'Start shopping', terms: 'One use per customer · 25% off products.',
+    tab: '25% off', close: 'Close',
   },
   ar: {
-    eyebrow: 'عرض الترحيب', title: 'خصم ٢٥٪ + ١٠٪ على طلبك الأول', sub: 'خصم ٢٥٪ برمزك فوق خصم ١٠٪ على كل قطعة. توصيل في اليوم نفسه في جميع أنحاء الإمارات.',
+    eyebrow: 'عرض الترحيب', title: 'خصم ٢٥٪ على طلبك الأول', sub: 'سجّل واحصل على خصم ٢٥٪ على طلبك الأول. توصيل مجاني في JVC.',
     whatsapp: 'واتساب', email: 'البريد', phoneLabel: 'رقم واتساب', phonePh: '50 123 4567', emailLabel: 'البريد الإلكتروني', emailPh: 'you@example.com',
     consent: 'أرسلوا لي الرمز وعروض ميزون من حين لآخر. يمكنني إلغاء الاشتراك في أي وقت.', privacy: 'سياسة الخصوصية',
     cta: 'أرسل الرمز', sending: 'جارٍ الإرسال…', no: 'لا، شكراً', invalidPhone: 'أدخل رقم هاتف إماراتياً، مثل 50 123 4567.', invalidEmail: 'أدخل بريداً إلكترونياً صحيحاً.', needConsent: 'ضع علامة في المربع لنرسل لك الرمز.',
     failed: 'حدث خطأ ما. يرجى المحاولة بعد قليل.',
     doneTitle: 'رمزك جاهز', doneSub: 'أدخله عند الدفع. حفظنا بياناتك لنبلغك بعروض ميزون.',
-    copy: 'انسخ الرمز', copied: 'تم النسخ', shop: 'ابدأ التسوق', terms: 'استخدام واحد لكل عميل · رمز ٢٥٪ على المنتجات فوق خصم ١٠٪.',
-    tab: 'خصم ٢٥٪ + ١٠٪', close: 'إغلاق',
+    copy: 'انسخ الرمز', copied: 'تم النسخ', shop: 'ابدأ التسوق', terms: 'استخدام واحد لكل عميل · خصم ٢٥٪ على المنتجات.',
+    tab: 'خصم ٢٥٪', close: 'إغلاق',
   },
 };
 
-interface Saved { code?: string; channel?: 'whatsapp' | 'email'; dismissedAt?: number }
+interface Saved { savedDetails?: boolean; code?: string; channel?: 'whatsapp' | 'email'; dismissedAt?: number }
 
 function readState(): Saved {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || {}; } catch { return {}; }
@@ -133,7 +133,7 @@ export default function LaunchOffer() {
       return;
     }
     // Only a flag is kept in the browser: the contact itself is never stored locally.
-    const next: Saved = { code: OFFER_CODE, channel };
+    const next: Saved = { code: OFFER_CODE, channel, savedDetails: delivery !== 'email_fallback' };
     setSaved(next);
     writeState(next);
     setSending(false);
@@ -156,7 +156,7 @@ export default function LaunchOffer() {
             <span className="lo-eyebrow">{t.eyebrow}</span>
             {saved.code ? <>
               <h2 id="lo-title">{t.doneTitle}</h2>
-              <p className="lo-sub">{t.doneSub}</p>
+              <p className="lo-sub">{saved.savedDetails ? t.doneSub : (ar ? 'إليك رمزك. أدخله عند الدفع.' : 'Here is your code. Enter it at checkout.')}</p>
               <div className="lo-code"><strong dir="ltr">{saved.code}</strong><button type="button" onClick={copyCode}>{copied ? t.copied : t.copy}</button></div>
               <button type="button" className="lo-cta" onClick={() => { setOpen(false); document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.shop}</button>
             </> : (
