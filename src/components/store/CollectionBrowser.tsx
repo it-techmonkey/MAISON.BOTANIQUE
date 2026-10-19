@@ -33,7 +33,7 @@ const COPY = {
     personalised: 'Personalised', from: 'From', sizes: 'sizes', add: 'Add', addFull: 'Add to bag', was: 'was',
     more: 'Show more', soldOut: 'Sold out',
     empty: 'Nothing matches all of that yet.', reset: 'Clear the refinements',
-    trust: ['Hand-tied in Dubai', 'A handwritten card with every gift', 'Same-day delivery across the UAE', 'No prices travel with the gift'],
+    trust: ['Hand-tied in Dubai', 'A handwritten card with every gift', 'Same-day delivery in Dubai', 'No prices travel with the gift'],
   },
   ar: {
     title: 'المجموعة', sample: 'أسعار تجريبية',
@@ -46,7 +46,7 @@ const COPY = {
     personalised: 'مخصص', from: 'من', sizes: 'أحجام', add: 'أضف', addFull: 'أضف إلى الحقيبة', was: 'بدلاً من',
     more: 'اعرض المزيد', soldOut: 'نفدت الكمية',
     empty: 'لا توجد قطع تطابق كل هذه الخيارات.', reset: 'امسح الخيارات',
-    trust: ['تُنسَّق يدوياً في دبي', 'بطاقة بخط اليد مع كل هدية', 'توصيل في اليوم نفسه في جميع أنحاء الإمارات', 'لا تُرفق الأسعار مع الهدية'],
+    trust: ['تُنسَّق يدوياً في دبي', 'بطاقة بخط اليد مع كل هدية', 'توصيل في اليوم نفسه في دبي', 'لا تُرفق الأسعار مع الهدية'],
   },
 };
 type Copy = typeof COPY.en;

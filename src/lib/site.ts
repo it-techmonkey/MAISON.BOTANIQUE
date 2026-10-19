@@ -16,7 +16,7 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://maisonbota
 /** The welcome offer's discount code (create it in Shopify Discounts), shown in the banner and after the sign-up. */
 export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'MAISON25').trim();
 
-/** The seven emirates, where same-day delivery is offered. */
+/** The seven emirates served; same-day delivery is advertised for Dubai. */
 export const EMIRATES: Bilingual[] = [
   { en: 'Dubai', ar: 'دبي' },
   { en: 'Abu Dhabi', ar: 'أبوظبي' },

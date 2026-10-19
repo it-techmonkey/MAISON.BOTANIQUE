@@ -3,8 +3,7 @@
 // The schedule is saved on the Shopify cart as attributes, so it appears on
 // the order under "Additional details" and reaches the order webhook.
 //
-// PROVISIONAL RULES: replace with the owner's confirmed windows, cutoff,
-// booking horizon and closed dates.
+// Owner approved 19 October 2026: daily windows, three-hour lead and 60-day horizon.
 
 export const DELIVERY_DATE_KEY = 'Delivery date';
 export const DELIVERY_TIME_KEY = 'Delivery time';

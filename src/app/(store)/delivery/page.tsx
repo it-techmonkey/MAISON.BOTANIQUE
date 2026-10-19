@@ -4,7 +4,7 @@ import '@/styles/pages.css';
 
 export const metadata: Metadata = {
   title: 'Delivery & care',
-  description: 'How Maison Botanique delivers across the UAE, with same-day delivery, and how to care for your flowers once they arrive.',
+  description: 'How Maison Botanique delivers across the UAE, with same-day delivery in Dubai, and how to care for your flowers once they arrive.',
   alternates: { canonical: '/delivery' },
 };
 
@@ -23,7 +23,7 @@ export default function DeliveryPage() {
         {
           title: { en: 'Where we deliver', ar: 'أين نوصل' },
           paragraphs: [
-            { en: 'We deliver across the UAE, and same-day delivery is available everywhere we deliver. Delivery costs AED 30 in Dubai and AED 40 elsewhere in the UAE, and the fee is shown at checkout before you pay.', ar: 'نوصل في جميع أنحاء الإمارات، والتوصيل في اليوم نفسه متاح في كل مكان نوصل إليه. تبلغ رسوم التوصيل ٣٠ درهماً في دبي و٤٠ درهماً في بقية الإمارات، وتظهر عند الدفع وقبل إتمامه.' },
+            { en: 'We deliver across the UAE, with same-day delivery in Dubai. Delivery is free in JVC, AED 30 elsewhere in Dubai and AED 40 elsewhere in the UAE. Enter the full recipient address at checkout, including building or villa, apartment number and area. JVC eligibility is based on that delivery address.', ar: 'نوصل في جميع الإمارات، مع توصيل في اليوم نفسه في دبي. التوصيل مجاني في JVC، و٣٠ درهماً في بقية دبي، و٤٠ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى أو الفيلا ورقم الشقة والمنطقة. تعتمد أهلية التوصيل المجاني على عنوان التوصيل.' },
           ],
         },
         {
