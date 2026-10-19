@@ -23,7 +23,6 @@ With the Shopify values empty, the site runs the design preview: the exported ca
 | `src/app/(store)/layout.tsx` | Shared store shell: loads the catalog once (ISR, refreshed every 5 minutes or by webhook), header, footer, bag, language. |
 | `src/app/(store)/` | Pages: home, `/shop`, `/shop/[handle]`, `/collections`, `/collections/[handle]`, `/occasions`, `/occasions/[occasion]`, `/services`, `/atelier`, `/contact`, `/delivery`, `/faq`, `/privacy`, `/terms`. |
 | `src/app/api/enquiry/route.ts`, `src/lib/shopify/forms.ts` | Newsletter, contact and enquiry forms, stored in Shopify (customers + "Website enquiry" metaobjects) through a forms-only Admin token. Without it the forms offer a prefilled email. |
-| `src/app/jvc/` | The `/jvc` welcome-offer proof, with its own stylesheet. |
 | `src/app/api/revalidate/route.ts` | Shopify webhook target; verifies the HMAC signature and refreshes the catalog cache. |
 | `src/components/store/` | Store UI: provider (locale, cart, quick-add, toast, offer), header with the offer ribbon and Shop menu, footer, `CollectionBrowser` (occasion tiles, tabs, search, Refine drawer, sort), `ShopSheets` (quick-add sheet with card preview, bag with delivery picker), `LaunchOffer`, `WhatsAppButton`, product cards, forms, page blocks. |
 | `src/components/Turntable.tsx` | Pinned home hero; falls back to a static hero when no products are featured. |
@@ -52,10 +51,6 @@ The bag is a real Shopify cart: Shopify calculates the subtotal; the card text, 
 Shopify is the source of truth for products. The catalog in `catalog/shopify-export/` (318 products, 822 variants, images) is pushed with `npm run shopify:catalog`, using prices matched to the research data by `npm run catalog:prices`; the storefront fields (card lines, occasions, flowers, format, stems, display order, hero) come from `src/data/collection.json` (`python3 scripts/build_collection.py`). After the push, edit products in the Shopify admin; the site picks up changes within seconds (webhook) or five minutes. See [docs/SHOPIFY_SETUP.md](docs/SHOPIFY_SETUP.md), step 5.
 
 Shopify is the selected production commerce direction. The staged implementation and merge gates are recorded in [SHOPIFY_INTEGRATION_PLAN.md](SHOPIFY_INTEGRATION_PLAN.md).
-
-## Welcome offer proof
-
-`/jvc/` is a separate, noindex design proof of the welcome offer: 25% off with a code, on top of 10% off every product, with same-day delivery across the UAE. The page uses the storefront’s Cormorant/DM Sans typography, warm plaster, deep olive and floral photography. Final catalog, prices, product imagery and terms are deliberately pending. The matching A5 pamphlet proof and rollout plan remain in the separate local campaign workspace and are not part of this website repository.
 
 ## Relation to the original repository
 

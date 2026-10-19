@@ -15,7 +15,6 @@ import '@/styles/whatsapp.css';
 
 // Every store page shares one catalog request (cached for five minutes and
 // refreshed by the Shopify product webhook), the bag and the language choice.
-// The /jvc proof sits outside this group and keeps its own styles.
 export default async function StoreLayout({ children }: { children: ReactNode }) {
   const catalog = await getCatalog();
   return (
