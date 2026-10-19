@@ -93,7 +93,7 @@
 .tt-product__counter { display: flex; align-items: center; gap: 13px; font-size: 15px; font-variant-numeric: tabular-nums; }
 .tt-product__counter span:last-child { opacity: .72; }
 .tt-product__divider { display: block; width: 42px; height: 1px; background: currentColor; opacity: .42; }
-.tt-product__details { animation: tt-copy-enter 650ms cubic-bezier(.22, 1, .36, 1) both; }
+.tt-product__details { animation: tt-copy-enter 520ms cubic-bezier(.22, 1, .36, 1) both; }
 .tt-product__category { margin: 18px 0 2px; }
 .tt-product h2 {
   margin: 0;
@@ -143,7 +143,7 @@
 .tt-fallback__copy > p:not(.tt-intro__eyebrow) { max-width: 420px; color: var(--muted); font-size: 18px; }
 @media (max-width: 760px) { .tt-fallback { grid-template-columns: 1fr; } .tt-fallback__image { order: 0; max-height: 52svh; } }
 
-@keyframes tt-copy-enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes tt-copy-enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 900px) {
   .tt-stage { min-height: 660px; }

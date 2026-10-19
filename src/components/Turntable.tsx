@@ -100,38 +100,53 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
     const shadow = section.querySelector('.tt-artwork__ground');
     if (!outgoing || !incoming) return;
 
-    // A quick second click finishes the running move before starting the next.
-    transitionRef.current?.progress(1).kill();
+    // A move during a move continues from wherever each piece is, rather than
+    // snapping the running move to its end (that jump read as a stutter when
+    // scrolling quickly through the hero).
+    transitionRef.current?.kill();
     const direction = bounded > from ? 1 : -1;
-    const timeline = gsap.timeline({ defaults: { ease: 'power3.inOut' } });
-    timeline.to(outgoing, { opacity: 0, xPercent: 15 - 32 * direction, yPercent: -1, scale: 0.96, rotation: -2 - 2 * direction, duration: 0.8 }, 0);
-    timeline.fromTo(incoming,
-      { opacity: 0, xPercent: 28 * direction + 15, yPercent: 13, scale: 0.8, rotation: 2 * direction },
-      { opacity: 1, ...REST_POSE, duration: 0.95 }, 0.15);
-    if (shadow) {
-      timeline.fromTo(shadow, { xPercent: 8 + 10 * direction, scale: 0.78, opacity: 0.2 }, { ...SHADOW_REST, duration: 0.95 }, 0.15);
+    const timeline = gsap.timeline({ defaults: { ease: 'power2.inOut', overwrite: 'auto' } });
+    images.forEach((image) => {
+      if (image !== incoming && Number(gsap.getProperty(image, 'opacity')) > 0) {
+        timeline.to(image, { opacity: 0, xPercent: 15 - 26 * direction, yPercent: 3, scale: 0.94, rotation: -2 - 1.5 * direction, duration: 0.7 }, 0);
+      }
+    });
+    if (Number(gsap.getProperty(incoming, 'opacity')) < 0.05) {
+      gsap.set(incoming, { opacity: 0, xPercent: 22 * direction + 15, yPercent: 12, scale: 0.84, rotation: 1.5 * direction });
     }
+    timeline.to(incoming, { opacity: 1, ...REST_POSE, duration: 0.85, ease: 'power3.out' }, 0.1);
+    if (shadow) timeline.to(shadow, { ...SHADOW_REST, duration: 0.85, ease: 'power3.out' }, 0.1);
     transitionRef.current = timeline;
   }, [commitActive, count, looks, reducedMotion]);
 
+  // The scroll trigger reads goTo through a ref, so it is created once per
+  // product count instead of being torn down and re-pinned on every change.
+  const goToRef = useRef(goTo);
+  goToRef.current = goTo;
+
   useGSAP(() => {
     if (reducedMotion || count < 2 || !sectionRef.current) return;
+    const steps = count - 1;
     const trigger = ScrollTrigger.create({
       trigger: sectionRef.current,
       pin: sectionRef.current.querySelector('.tt-stage'),
+      anticipatePin: 1,
       start: 'top top',
-      end: () => `+=${window.innerHeight * (count - 1)}`,
+      end: () => `+=${window.innerHeight * 0.8 * steps}`,
       invalidateOnRefresh: true,
-      onUpdate: (self) => goTo(Math.min(count - 1, Math.floor(self.progress * count))),
+      // Each product owns an equal stretch of the scroll, centred on its stop,
+      // and the scroll comes to rest on a product rather than between two.
+      snap: { snapTo: 1 / steps, duration: { min: 0.25, max: 0.6 }, delay: 0.08, ease: 'power2.inOut', directional: true },
+      onUpdate: (self) => goToRef.current(Math.round(self.progress * steps)),
     });
     scrollRef.current = trigger;
     return () => { scrollRef.current = null; trigger.kill(); };
-  }, { scope: sectionRef, dependencies: [count, reducedMotion, goTo], revertOnUpdate: true });
+  }, { scope: sectionRef, dependencies: [count, reducedMotion], revertOnUpdate: true });
 
   function navigate(index: number) {
     const bounded = clamp(index, 0, count - 1);
     const trigger = scrollRef.current;
-    if (trigger) window.scrollTo({ top: trigger.start + (trigger.end - trigger.start) * (bounded + .15) / count, behavior: 'smooth' });
+    if (trigger) window.scrollTo({ top: trigger.start + (trigger.end - trigger.start) * bounded / Math.max(count - 1, 1), behavior: 'smooth' });
     else goTo(bounded);
   }
 
@@ -192,7 +207,7 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
               <p className="tt-product__category">{category}</p>
               <h2>{productName}</h2>
               <p className="tt-product__price">
-                {live ? (arabic ? 'من' : 'From') : (arabic ? 'سعر تجريبي' : 'Sample price')} <span aria-hidden="true">·</span> {price}
+                {live ? (arabic ? 'من' : 'From') : (arabic ? 'السعر' : 'Price')} <span aria-hidden="true">·</span> {price}
               </p>
             </div>
             <div className="tt-product__actions">
@@ -219,7 +234,6 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
           </div>
 
           <div className="tt-footer">
-            <p>{arabic ? 'مرّر لاكتشاف المجموعة' : 'Scroll to explore the collection'}</p>
             <div className="tt-controls" aria-label={arabic ? 'التنقل بين التنسيقات' : 'Browse arrangements'}>
               <button type="button" onClick={() => navigate(activeRef.current - 1)} disabled={active === 0} aria-label={arabic ? 'التنسيق السابق' : 'Previous arrangement'}>{arabic ? '→' : '←'}</button>
               <button type="button" onClick={() => navigate(activeRef.current + 1)} disabled={active === count - 1} aria-label={arabic ? 'التنسيق التالي' : 'Next arrangement'}>{arabic ? '←' : '→'}</button>
