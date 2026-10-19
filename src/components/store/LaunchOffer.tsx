@@ -177,7 +177,7 @@ export default function LaunchOffer() {
                     autoComplete={channel === 'whatsapp' ? 'tel-national' : 'email'} placeholder={channel === 'whatsapp' ? t.phonePh : t.emailPh}
                     aria-invalid={Boolean(error)} aria-describedby={error ? 'lo-error' : undefined} />
                 </div>
-                <label className="lo-consent"><input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} /><span>{t.consent} <a href="/privacy">{t.privacy}</a></span></label>
+                <label className="lo-consent"><input id="lo-consent" type="checkbox" aria-describedby="lo-consent-text" checked={consent} onChange={(event) => setConsent(event.target.checked)} /><span id="lo-consent-text">{t.consent} <a href="/privacy">{t.privacy}</a></span></label>
                 {error && <p className="lo-error" id="lo-error" role="alert">{error}</p>}
                 <button type="submit" className="lo-cta" disabled={sending}>{sending ? t.sending : t.cta}</button>
                 <button type="button" className="lo-no" onClick={dismiss}>{t.no}</button>

@@ -6,6 +6,8 @@ import { Bi, SectionHeading } from '@/components/store/blocks';
 import { CatalogRail } from '@/components/store/ProductCard';
 import ProductPurchase from '@/components/store/ProductPurchase';
 import { T } from '@/components/store/StoreProvider';
+import { SITE_URL } from '@/lib/site';
+import { productSchema } from '@/lib/product-schema';
 import { getCatalog } from '@/lib/shopify/catalog';
 import '@/styles/shop.css';
 
@@ -62,6 +64,7 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema(product, SITE_URL)).replace(/</g, '\\u003c') }} />
       <div className="section section--top product-page">
         <nav className="breadcrumbs" aria-label="Breadcrumb">
           <Link href="/shop"><T en="Shop" ar="المتجر" /></Link>

@@ -25,6 +25,21 @@ export default function WhatsAppButton() {
     return () => window.clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    const update = () => {
+      const foot = document.querySelector('.product-page .qa-foot');
+      const box = foot?.getBoundingClientRect();
+      const visible = Boolean(box && box.bottom > 0 && box.top < window.innerHeight);
+      document.documentElement.style.setProperty('--wa-buy-offset', visible && box ? `${window.innerHeight - box.top + 16}px` : '0px');
+    };
+    update();
+    const observer = new MutationObserver(update);
+    observer.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => { observer.disconnect(); window.removeEventListener('scroll', update); window.removeEventListener('resize', update); document.documentElement.style.removeProperty('--wa-buy-offset'); };
+  }, []);
+
   const href = whatsappLink(whatsappMessage.general(ar));
   if (!href) return null;
   return (

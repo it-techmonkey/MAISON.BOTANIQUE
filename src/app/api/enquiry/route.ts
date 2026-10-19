@@ -1,3 +1,4 @@
+import { checkEnquiryLimit, readEnquiryBody } from '@/lib/enquiry-limit';
 import { parseEnquiry } from '@/lib/enquiry';
 import { isShopifyFormsConfigured } from '@/lib/shopify/admin';
 import { submitToShopify } from '@/lib/shopify/forms';
@@ -7,11 +8,16 @@ import { submitToShopify } from '@/lib/shopify/forms';
 // route answers 503 and the form offers a prefilled email instead, so nothing
 // is silently lost.
 
-const MAX_BODY_BYTES = 16_000;
 
 export async function POST(request: Request) {
-  const raw = await request.text();
-  if (raw.length > MAX_BODY_BYTES) return Response.json({ error: 'too_large' }, { status: 413 });
+  const retry = checkEnquiryLimit(request);
+  if (retry) return Response.json({ error: 'rate_limited' }, { status: 429, headers: { 'Retry-After': String(retry) } });
+  const origin = request.headers.get('origin');
+  if (origin && origin !== new URL(request.url).origin) return Response.json({ error: 'forbidden' }, { status: 403 });
+  let raw: string;
+  try { raw = await readEnquiryBody(request); } catch {
+    return Response.json({ error: 'too_large' }, { status: 413 });
+  }
 
   let body: unknown;
   try { body = JSON.parse(raw); } catch {
