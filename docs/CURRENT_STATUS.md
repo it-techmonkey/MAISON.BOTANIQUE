@@ -11,6 +11,7 @@ This cleanup preserves that newer application baseline.
   verified current live inventory. Shopify owns live data; export files are not automatically refreshed mirrors.
 - Website curation includes Gifts for her and Most loved. Occasion URLs redirect to collection filters.
 - `catalog/image-pipeline/` is the maintained tooling source. Ignored links connect media, references and keys.
+- Type checking now generates Next.js route helpers automatically, including in fresh clones and CI.
 - Cleanup branch: `cleanup/workspace-organization`. Neither local nor remote main is changed by cleanup.
   Local main remains stale; branch from fresh `origin/main`.
 

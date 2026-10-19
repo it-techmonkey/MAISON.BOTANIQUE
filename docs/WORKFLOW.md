@@ -11,6 +11,7 @@
 ## Checks
 
 Run npm test, Python unittest discovery, npm run typecheck, then npm run build (commands in README).
+Typecheck generates Next.js route helpers first, so it also works in a fresh clone without a previous build.
 CI uses the lockfile, pinned official Actions, read-only repository permissions and no Shopify credentials.
 Installation scripts are disabled; enable a specific dependency's install step only after a concrete review.
 
