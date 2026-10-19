@@ -5,7 +5,7 @@ import './offer.css';
 
 export const metadata: Metadata = {
   title: 'JVC Opening Edition · Maison Botanique',
-  description: "Maison Botanique's JVC opening edition: 25% off every product and a scented candle with each of the first 100 qualifying orders. Preview only.",
+  description: "Maison Botanique's JVC opening edition: 25% + 10% off every product, and a scented candle with each of the first 100 qualifying orders. Preview only.",
   robots: { index: false, follow: false },
 };
 
@@ -27,7 +27,7 @@ export default function JvcOfferPage() {
           <div className="hero-copy">
             <p className="hero-place">MAISON BOTANIQUE / JVC, DUBAI</p>
             <div className="hero-main reveal">
-              <h1 id="hero-title">25% off.<br />All products.</h1>
+              <h1 id="hero-title">25% + 10% off.<br />All products.</h1>
               <p className="hero-lede">For the first 100 confirmed orders. Choose bouquets, gifts or preserved flowers and receive <strong>a scented candle, on us.</strong></p>
               <a className="primary-action" href="#collection">Explore the opening offer <span aria-hidden="true">↗</span></a>
             </div>
@@ -51,7 +51,7 @@ export default function JvcOfferPage() {
           <div className="bouquet-copy reveal">
             <p className="section-kicker">THE COLLECTION, YOUR CHOICE</p>
             <h2 id="bouquet-title">Choose what<br />feels right.</h2>
-            <p>Explore bouquets, floral gifts and preserved pieces. The 25% opening offer applies to every product, so the first order can suit the person and the occasion.</p>
+            <p>Explore bouquets, floral gifts and preserved pieces. The opening offer, 25% with your code on top of 10% off, applies to every product, so the first order can suit the person and the occasion.</p>
             <p className="bouquet-status">Final products, prices and photography are being confirmed. This photograph shows the visual direction.</p>
             <a className="text-action" href="#booking">See how to book <span aria-hidden="true">↗</span></a>
           </div>
@@ -64,7 +64,7 @@ export default function JvcOfferPage() {
           <div className="booking-copy reveal">
             <p className="section-kicker">FIRST 100 ORDERS · JVC</p>
             <h2 id="booking-title">The first<br />100.</h2>
-            <p>Take 25% off every product in your first qualifying order. We will include a scented candle with each of those first 100 orders.</p>
+            <p>Take 25% off with your code, on top of 10% off, on every product in your first qualifying order.</p><p>We will include a scented candle with each of those first 100 orders.</p>
             <div className="booking-pending" role="status"><strong>Bookings opening soon</strong><span>The collection, final prices and booking link will appear here when confirmed.</span></div>
             <p className="booking-terms">One qualifying order per customer. Discount applies to products; any delivery charge will be shown at checkout. Final dates and full terms will be published before launch.</p>
           </div>

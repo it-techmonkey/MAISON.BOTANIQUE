@@ -105,7 +105,7 @@ Shopify is the website's only source of products. The site reads these fields (w
 ### Catalog source and prices
 
 - `catalog/shopify-export/` holds the catalog: `shopify-push.json` (318 products, 822 variants, ready `productSet` inputs), `images/`, and `DEVELOPER_HANDOFF.md`. `src/data/collection.json` (built by `scripts/build_collection.py`) adds the storefront fields above.
-- **Prices** come from the competitor research data: `npm run catalog:prices` (`scripts/match_prices.py`) matches each product's `reference_id` to `scraper/output/giftygram.csv` (`REF-GG-…`) or `scraper/output/uaeflowers.csv` (`REF-UAE-…`) and writes `catalog/shopify-export/variant-prices.csv`: the selling price and the strikethrough price for every SKU, with how it was matched. GiftyGram lists both prices per size; for UAEFlowers, Signature/Grand/Luxe use the Classic/Deluxe/Premium tiers and the larger tiers keep the base size's discount ratio. To set Maison's own prices later, edit the CSV (or the admin) and run the sync again.
+- **Prices** come from the competitor research data, and every strikethrough price is set 10% above the selling price: `npm run catalog:prices` (`scripts/match_prices.py`) matches each product's `reference_id` to `scraper/output/giftygram.csv` (`REF-GG-…`) or `scraper/output/uaeflowers.csv` (`REF-UAE-…`) and writes `catalog/shopify-export/variant-prices.csv`: the selling price and the strikethrough price for every SKU, with how it was matched. GiftyGram lists both prices per size; for UAEFlowers, Signature/Grand/Luxe use the Classic/Deluxe/Premium tiers and the larger tiers keep the base size's discount ratio. To set Maison's own prices later, edit the CSV (or the admin) and run the sync again.
 - **Sync:** `npm run shopify:catalog` creates the metafield definitions, enables Arabic as a store language (unpublished), uploads images, upserts every product as **Active** on the Headless channel, registers Arabic translations, rebuilds the 14 collections and **archives** (never deletes) products that are no longer in the catalog. It is safe to run again; images are only re-uploaded when they change (`-- --images` forces it). The report is written to `catalog/shopify-export/sync-report.json`.
 
 ### Admin API access for the catalog sync
@@ -370,7 +370,7 @@ Every form on the site is stored in Shopify; there is no other service.
 
 | Form | Where it lands in Shopify |
 | --- | --- |
-| Newsletter (footer) | **Customers**: the email is created or updated with *Email subscribed* (single opt-in) and tagged `newsletter`. Reach them with Shopify Email or any marketing app. |
+| Newsletter and opening offer (email or WhatsApp number) | **Customers**: the email is created or updated with *Email subscribed* (single opt-in) and tagged `newsletter`. Reach them with Shopify Email or any marketing app. |
 | Contact (`/contact`) | **Customers**: tagged `website-contact`. **Content → Metaobjects → Website enquiry**: the full message. |
 | Events enquiry (`/services`) | **Customers**: tagged `website-enquiry`. **Content → Metaobjects → Website enquiry**: message, topic and event date. |
 
@@ -415,9 +415,11 @@ How it works: `src/proxy.ts` runs Hydrogen's `/account/login`, `/account/authori
 
 Set **`NEXT_PUBLIC_WHATSAPP_NUMBER`** (digits, international format, e.g. `9715XXXXXXXX`) and redeploy. A floating *Need help?* button appears on every page (on product pages the message includes the product link), and the footer and contact page show WhatsApp links. Clicks are tracked as `Contact Clicked` with channel `whatsapp`.
 
-## 17. Opening offer (25% off for the first 100 customers)
+## 17. Opening offer (25% + 10% off for the first 100 customers)
 
-The offer ribbon above the header and the pop-up on arrival ask for a WhatsApp number or an email. The sign-up is saved in Shopify as a customer tagged **`launch-offer`** (SMS or email marketing consent), and the visitor sees the code. The code itself must exist in Shopify:
+Every price already shows a strikethrough price 10% above it (`STRIKETHROUGH_DISCOUNT` in `scripts/match_prices.py`); the code takes a further 25% off. The site says "25% + 10% off" and does not add them up: together they come to 32.5% off the strikethrough price.
+
+The offer ribbon above the header and the pop-up on arrival ask for a WhatsApp number or an email. The sign-up is saved in Shopify as a newsletter customer: an email is subscribed to email marketing, a WhatsApp number to SMS marketing, and both are tagged `newsletter`. The visitor then sees the code. The code itself must exist in Shopify:
 
 1. **Discounts → Create discount → Amount off products**: code **`MAISON25`**, **25%**, all products.
 2. **Maximum discount uses:** limit the total number of uses to **100**, and **one use per customer**.
