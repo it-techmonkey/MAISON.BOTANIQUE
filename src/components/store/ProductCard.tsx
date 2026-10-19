@@ -38,7 +38,7 @@ export function ProductCard({ product, sizes = '(max-width: 640px) 92vw, (max-wi
         <span>{fromPrice && <>{t('From', 'من')} </>}{formatMoney(product.price, product.currencyCode, ar)}</span>
       </div>
       <h3 className="product-card__title"><Link href={href} onClick={onOpen}>{name}</Link></h3>
-      <p className="product-card__description">{ar ? product.descriptionAr : product.description}</p>
+      <p className="product-card__description">{ar ? product.lineAr : product.line}</p>
       {!live && <p className="product-card__note">{t('Sample price', 'سعر تجريبي')}</p>}
       <div className="product-card__actions">
         <Link className="product-card__details" href={href} onClick={onOpen} aria-label={`${t('Explore details', 'التفاصيل')}: ${name}`}>

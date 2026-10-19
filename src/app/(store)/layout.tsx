@@ -5,6 +5,7 @@ import SiteFooter from '@/components/store/SiteFooter';
 import SiteHeader from '@/components/store/SiteHeader';
 import StoreProvider, { T } from '@/components/store/StoreProvider';
 import WhatsAppButton from '@/components/store/WhatsAppButton';
+import { browserCatalog } from '@/lib/browser-catalog';
 import { getCatalog } from '@/lib/shopify/catalog';
 import '@/styles/global.css';
 import '@/styles/chrome.css';
@@ -18,7 +19,7 @@ import '@/styles/whatsapp.css';
 export default async function StoreLayout({ children }: { children: ReactNode }) {
   const catalog = await getCatalog();
   return (
-    <StoreProvider catalog={catalog}>
+    <StoreProvider catalog={browserCatalog(catalog)}>
       <a className="skip-link" href="#main"><T en="Skip to content" ar="انتقل إلى المحتوى" /></a>
       <SiteHeader />
       <main id="main">{children}</main>

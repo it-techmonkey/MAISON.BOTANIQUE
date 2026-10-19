@@ -4,7 +4,8 @@ import { createContext, useCallback, useContext, useEffect, useLayoutEffect, use
 import { useShopCart, type AddItemOptions, type ShopCart } from '@/lib/cart/use-shop-cart';
 import { setShopifyLocale } from '@/lib/analytics/shopify';
 import { registerCatalogSource, trackLocale } from '@/lib/analytics/track';
-import type { Catalog, Collection, Locale, Product } from '@/lib/types';
+import { hydrateBrowserCatalog, type BrowserCatalog } from '@/lib/browser-catalog';
+import type { Collection, Locale, Product } from '@/lib/types';
 
 /** Read by the inline script in the root layout, before the first paint. */
 export const LOCALE_STORAGE_KEY = 'maison-botanique-locale';
@@ -50,7 +51,8 @@ export function T({ en, ar }: { en: ReactNode; ar: ReactNode }) {
 // Runs the locale layout effect only in the browser.
 const useBrowserLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
-export default function StoreProvider({ catalog, children }: { catalog: Catalog; children: ReactNode }) {
+export default function StoreProvider({ catalog: cards, children }: { catalog: BrowserCatalog; children: ReactNode }) {
+  const catalog = useMemo(() => hydrateBrowserCatalog(cards), [cards]);
   const [locale, setLocaleState] = useState<Locale>('en');
   const [cartOpen, setCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);

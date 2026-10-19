@@ -13,6 +13,8 @@ const { checkEnquiryLimit, readEnquiryBody } = await import('../src/lib/enquiry-
 const { openOfferSession, sealOffer } = await import('../src/lib/offer-session.ts');
 const { getWelcomeCode, WelcomeNotEligible } = await import('../src/lib/shopify/welcome-offer.ts');
 const { BUDGET_BANDS, budgetOf, liveCatalogGroups } = await import('../src/lib/catalog-groups.ts');
+const { browserCatalog, hydrateBrowserCatalog } = await import('../src/lib/browser-catalog.ts');
+const { upsertCustomer } = await import('../src/lib/shopify/forms.ts');
 
 test('offer consent is optional; newsletter consent and valid contact remain required', () => {
   assert.equal(parseEnquiry({ kind: 'offer', email: 'test@example.com', consent: false }).ok, true);
@@ -82,4 +84,49 @@ test('personal codes are customer-bound, single-use, idempotent and first-order 
     delete process.env.SHOPIFY_DISCOUNTS_ADMIN_TOKEN;
     assert.equal(await getWelcomeCode('gid://shopify/Customer/1'), 'MAISON25');
   } finally { global.fetch = originalFetch; process.env.SHOPIFY_DISCOUNTS_ADMIN_TOKEN = 'test-discounts'; }
+});
+
+test('phone offer without marketing consent never subscribes to SMS', async () => {
+  const originalFetch = global.fetch;
+  global.fetch = async (_url, options) => {
+    const { query, variables } = JSON.parse(options.body);
+    if (query.includes('query OfferCustomer')) return Response.json({ data: { customer: null } });
+    assert.equal(query.includes('mutation OfferCustomerCreate'), true);
+    assert.equal('smsMarketingConsent' in variables.input, false);
+    assert.equal(variables.input.tags.includes('newsletter'), false);
+    return Response.json({ data: { customerCreate: { customer: { id: 'new-customer' }, userErrors: [] } } });
+  };
+  try {
+    const input = parseEnquiry({ kind: 'offer', phone: '0501234567', consent: false }).value;
+    assert.equal(await upsertCustomer(input), 'new-customer');
+  } finally { global.fetch = originalFetch; }
+});
+
+test('discount creation timeout reuses an already-created code', async () => {
+  const originalFetch = global.fetch;
+  let created = false, creates = 0;
+  global.fetch = async (_url, options) => {
+    const { query } = JSON.parse(options.body);
+    if (query.includes('WelcomeEligibility')) return Response.json({ data: { customer: { numberOfOrders: '0' } } });
+    if (query.includes('query WelcomeCode')) return Response.json({ data: { codeDiscountNodeByCode: created ? { id: 'discount' } : null } });
+    creates++;
+    created = true;
+    throw new Error('Timeout after Shopify committed the discount');
+  };
+  try {
+    assert.match(await getWelcomeCode('gid://shopify/Customer/2'), /^MB25-/);
+    assert.equal(creates, 1);
+  } finally { global.fetch = originalFetch; }
+});
+
+test('browser projection retains shopping and search facts and reduces repeated page text', () => {
+  const product = { id: 'test', description: 'long text '.repeat(100), descriptionAr: 'نص '.repeat(100), feature: 'editorial', answerSummary: 'answer', answerSummaryAr: 'إجابة', faq: [{ q: 'q', a: 'a' }], composition: ['51 pink roses'], compositionAr: ['٥١ وردة'], custom: { kind: 'letter', label: 'Letter' }, sizes: [{ id: 'signature', price: 235, compareAtPrice: 261 }], price: 235 };
+  const full = { source: 'sample', products: [product], collections: [] };
+  const slim = browserCatalog(full);
+  assert.ok(JSON.stringify(slim).length < JSON.stringify(full).length);
+  const restored = hydrateBrowserCatalog(slim).products[0];
+  for (const field of ['id', 'composition', 'compositionAr', 'custom', 'sizes', 'price']) assert.deepEqual(restored[field], product[field]);
+  assert.equal('faq' in slim.products[0], false);
+  assert.equal(restored.description, '');
+  assert.equal(full.products[0].description, product.description);
 });
