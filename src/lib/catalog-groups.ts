@@ -37,10 +37,10 @@ export const occasionName = (id: string): Bilingual => {
 
 /** Budget bands for the shop menu, the home page and the Refine drawer. */
 export const BUDGET_BANDS = [
-  { id: 'b1', min: 0, max: 150, en: 'Under AED 150', ar: 'أقل من 150 درهم' },
-  { id: 'b2', min: 150, max: 300, en: 'AED 150 – 300', ar: '150 – 300 درهم' },
-  { id: 'b3', min: 300, max: 500, en: 'AED 300 – 500', ar: '300 – 500 درهم' },
-  { id: 'b4', min: 500, max: Infinity, en: 'AED 500+', ar: '500 درهم فأكثر' },
+  { id: 'b1', min: 0, max: 300, en: 'Under AED 300', ar: 'أقل من ٣٠٠ درهم' },
+  { id: 'b2', min: 300, max: 500, en: 'AED 300–499', ar: '٣٠٠–٤٩٩ درهماً' },
+  { id: 'b3', min: 500, max: 1000, en: 'AED 500–999', ar: '٥٠٠–٩٩٩ درهماً' },
+  { id: 'b4', min: 1000, max: Infinity, en: 'AED 1,000+', ar: '١٬٠٠٠ درهم فأكثر' },
 ] as const;
 export type BudgetId = typeof BUDGET_BANDS[number]['id'];
 export const budgetOf = (price: number) => BUDGET_BANDS.find((band) => price >= band.min && price < band.max)?.id;

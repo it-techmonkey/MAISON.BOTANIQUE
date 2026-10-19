@@ -62,7 +62,7 @@ function BudgetTiles() {
 
   return (
     <section className="hs" aria-labelledby="hs-budget" data-track-section="home_budget" data-track-location="home_budget">
-      <SectionHead id="hs-budget" title={t('Shop by Budget', 'تسوّق حسب الميزانية')} href="/shop" label={t('View all', 'عرض الكل')} />
+      <SectionHead id="hs-budget" title={t('A gift for every gesture', 'هدية لكل لفتة')} href="/shop" label={t('View all', 'عرض الكل')} />
       <ul className="hs-budget">
         {tiles.map((tile) => (
           <li key={tile.id}>

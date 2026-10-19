@@ -59,7 +59,8 @@
 @media (max-width: 1100px) {
   .hs-occasions { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 6px; scrollbar-width: none; }
   .hs-occasions li { flex: 0 0 104px; scroll-snap-align: start; }
-  .hs-budget { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hs-budget { display: flex; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 8px; }
+  .hs-budget li { flex: 0 0 min(78vw, 320px); scroll-snap-align: start; }
   .hs-rail__track { grid-auto-columns: calc((100% - 18px) / 2); }
 }
 @media (max-width: 640px) {
