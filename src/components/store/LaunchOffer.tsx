@@ -5,8 +5,7 @@ import { trackFormError, trackFormStarted, trackFormSubmitted } from '@/lib/anal
 import { uaeMobile } from '@/lib/enquiry';
 import { useStore } from './StoreProvider';
 
-// Launch offer: 25% off with the code, on top of the 10% already off every
-// piece, for the first 100 customers (one qualifying order each).
+// Welcome offer: 25% off with the code, on top of the 10% already off every piece.
 // The sign-up is saved in Shopify as a newsletter customer (email or SMS
 // marketing consent, src/lib/shopify/forms.ts), and the visitor sees the
 // shared code. Create the code in Shopify (Discounts) with a 100-use limit and
@@ -18,23 +17,23 @@ const OPEN_DELAY_MS = 1500;
 
 const COPY = {
   en: {
-    eyebrow: 'Opening offer', title: '25% + 10% off your first order', sub: '25% off with your code, on top of 10% off every piece, for our first 100 customers. Free delivery in JVC, and a scented candle with each of those first orders.',
+    eyebrow: 'Welcome offer', title: '25% + 10% off your first order', sub: '25% off with your code, on top of 10% off every piece. Same-day delivery across the UAE.',
     whatsapp: 'WhatsApp', email: 'Email', phoneLabel: 'WhatsApp number', phonePh: '50 123 4567', emailLabel: 'Email address', emailPh: 'you@example.com',
     consent: 'Send me my code and occasional Maison offers. I can unsubscribe at any time.', privacy: 'Privacy policy',
     cta: 'Send my code', sending: 'Sending…', no: 'No thanks', invalidPhone: 'Enter a UAE mobile number, for example 50 123 4567.', invalidEmail: 'Enter a valid email address.', needConsent: 'Tick the box so we can send your code.',
     failed: 'Something went wrong. Please try again in a moment.',
     doneTitle: 'Your code is ready', doneSub: 'Enter it at checkout. We have saved your details so we can let you know about Maison offers.',
-    copy: 'Copy code', copied: 'Copied', shop: 'Start shopping', terms: 'One qualifying order per customer · first 100 confirmed orders · 25% code on products, on top of 10% off.',
+    copy: 'Copy code', copied: 'Copied', shop: 'Start shopping', terms: 'One use per customer · 25% code on products, on top of 10% off.',
     tab: '25% + 10% off', close: 'Close',
   },
   ar: {
-    eyebrow: 'عرض الافتتاح', title: 'خصم ٢٥٪ + ١٠٪ على طلبك الأول', sub: 'خصم ٢٥٪ برمزك فوق خصم ١٠٪ على كل قطعة، لأول ١٠٠ عميل. توصيل مجاني في JVC، وشمعة معطّرة مع كل طلب من هذه الطلبات الأولى.',
+    eyebrow: 'عرض الترحيب', title: 'خصم ٢٥٪ + ١٠٪ على طلبك الأول', sub: 'خصم ٢٥٪ برمزك فوق خصم ١٠٪ على كل قطعة. توصيل في اليوم نفسه في جميع أنحاء الإمارات.',
     whatsapp: 'واتساب', email: 'البريد', phoneLabel: 'رقم واتساب', phonePh: '50 123 4567', emailLabel: 'البريد الإلكتروني', emailPh: 'you@example.com',
     consent: 'أرسلوا لي الرمز وعروض ميزون من حين لآخر. يمكنني إلغاء الاشتراك في أي وقت.', privacy: 'سياسة الخصوصية',
     cta: 'أرسل الرمز', sending: 'جارٍ الإرسال…', no: 'لا، شكراً', invalidPhone: 'أدخل رقم هاتف إماراتياً، مثل 50 123 4567.', invalidEmail: 'أدخل بريداً إلكترونياً صحيحاً.', needConsent: 'ضع علامة في المربع لنرسل لك الرمز.',
     failed: 'حدث خطأ ما. يرجى المحاولة بعد قليل.',
     doneTitle: 'رمزك جاهز', doneSub: 'أدخله عند الدفع. حفظنا بياناتك لنبلغك بعروض ميزون.',
-    copy: 'انسخ الرمز', copied: 'تم النسخ', shop: 'ابدأ التسوق', terms: 'طلب واحد مؤهل لكل عميل · أول ١٠٠ طلب مؤكد · رمز ٢٥٪ على المنتجات فوق خصم ١٠٪.',
+    copy: 'انسخ الرمز', copied: 'تم النسخ', shop: 'ابدأ التسوق', terms: 'استخدام واحد لكل عميل · رمز ٢٥٪ على المنتجات فوق خصم ١٠٪.',
     tab: 'خصم ٢٥٪ + ١٠٪', close: 'إغلاق',
   },
 };

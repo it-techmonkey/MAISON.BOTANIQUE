@@ -2,7 +2,7 @@
 //
 // - Newsletter: the email becomes (or updates) a Shopify customer subscribed to
 //   email marketing, so Shopify Email and other marketing tools can reach them.
-// - Opening offer: the email or WhatsApp number becomes a newsletter customer
+// - Welcome offer: the email or WhatsApp number becomes a newsletter customer
 //   (tagged `newsletter`), subscribed to email or SMS marketing.
 // - Contact and enquiry: the sender becomes a tagged customer, and the full
 //   message is saved as a "Website enquiry" metaobject entry

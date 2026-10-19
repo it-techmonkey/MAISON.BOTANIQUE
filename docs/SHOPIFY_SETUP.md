@@ -339,11 +339,9 @@ The home page refreshes product data every 5 minutes on its own. To refresh imme
 2. Below the list, Shopify shows *"Your webhooks will be signed with …"*. Copy that secret into the host's environment as **`SHOPIFY_WEBHOOK_SECRET`** and redeploy.
 3. Use **Send test notification**. The host's logs should show `POST /api/revalidate 200`. A 401 means the secret does not match.
 
-## 11. JVC opening offer (25% off, first 100 orders, free candle)
+## 11. Welcome offer code
 
-1. **Discounts → Create discount → Amount off products**: code `JVC25` (or the approved code), **25%**, applies to all products, minimum requirements as per the terms, **limit the total number of uses to 100**, and **one use per customer**. Set the start and end dates.
-2. **Candle:** the simplest enforceable route is a candle product (tracked inventory, 100 units). Pack one with every order that used the code; filter orders by discount code in the admin. To add the candle automatically instead, create a **Buy X get Y** automatic discount or install a free-gift app. That needs an approved rule for what "qualifying order" means.
-3. Customers enter the code on Shopify's checkout page. If you want shareable links that apply the code automatically (for example from the JVC page or the pamphlet's QR code), the cart can apply it through the Storefront API (`cartDiscountCodesUpdate`). That's a small addition to `src/lib/shopify/cart.ts` and isn't built yet.
+The welcome offer is set up in step 17. Customers enter the code on Shopify's checkout page. For shareable links that apply the code automatically (for example from a QR code), the cart can apply it through the Storefront API (`cartDiscountCodesUpdate`); that small addition to `src/lib/shopify/cart.ts` isn't built yet.
 
 ## 12. Test before launch
 
@@ -352,7 +350,7 @@ Use the development store, or the production store with test payments turned on:
 - [ ] Products, prices, sold-out sizes, filters, search and the hero gallery match Shopify, in English and Arabic.
 - [ ] Add two sizes of a product with different gift notes. They stay separate lines, and quantities and removal work.
 - [ ] Reload the page: the bag is still there. Open the site in another browser: the bag is empty (carts belong to a browser).
-- [ ] Checkout totals, VAT, delivery fees and the `JVC25` discount are correct. Arabic checkout opens in Arabic.
+- [ ] Checkout totals, VAT, delivery fees (AED 30 Dubai, AED 40 elsewhere in the UAE) and the `MAISON25` discount are correct. Arabic checkout opens in Arabic.
 - [ ] Delivery: the product page and the bag require a day and a window; today's windows that start within 2 hours are unavailable; checkout is blocked until one is chosen.
 - [ ] Place a test order. In the admin: the order is attributed to **Headless**, *Gift message* appears on the item, and *Delivery date* and *Delivery time* appear under Additional details, in the confirmation email and on the packing slip.
 - [ ] Customer accounts: Account → Sign in sends a code by email, returns to `/account` showing orders and addresses, checkout opens signed in, and Sign out returns to the home page.
@@ -370,7 +368,7 @@ Every form on the site is stored in Shopify; there is no other service.
 
 | Form | Where it lands in Shopify |
 | --- | --- |
-| Newsletter and opening offer (email or WhatsApp number) | **Customers**: the email is created or updated with *Email subscribed* (single opt-in) and tagged `newsletter`. Reach them with Shopify Email or any marketing app. |
+| Newsletter and welcome offer (email or WhatsApp number) | **Customers**: the email is created or updated with *Email subscribed* (single opt-in) and tagged `newsletter`. Reach them with Shopify Email or any marketing app. |
 | Contact (`/contact`) | **Customers**: tagged `website-contact`. **Content → Metaobjects → Website enquiry**: the full message. |
 | Events enquiry (`/services`) | **Customers**: tagged `website-enquiry`. **Content → Metaobjects → Website enquiry**: message, topic and event date. |
 
@@ -415,18 +413,27 @@ How it works: `src/proxy.ts` runs Hydrogen's `/account/login`, `/account/authori
 
 Set **`NEXT_PUBLIC_WHATSAPP_NUMBER`** (digits, international format, e.g. `9715XXXXXXXX`) and redeploy. A floating *Need help?* button appears on every page (on product pages the message includes the product link), and the footer and contact page show WhatsApp links. Clicks are tracked as `Contact Clicked` with channel `whatsapp`.
 
-## 17. Opening offer (25% + 10% off for the first 100 customers)
+## 17. Welcome offer (25% + 10% off the first order)
 
 Every price already shows a strikethrough price 10% above it (`STRIKETHROUGH_DISCOUNT` in `scripts/match_prices.py`); the code takes a further 25% off. The site says "25% + 10% off" and does not add them up: together they come to 32.5% off the strikethrough price.
 
 The offer ribbon above the header and the pop-up on arrival ask for a WhatsApp number or an email. The sign-up is saved in Shopify as a newsletter customer: an email is subscribed to email marketing, a WhatsApp number to SMS marketing, and both are tagged `newsletter`. The visitor then sees the code. The code itself must exist in Shopify:
 
 1. **Discounts → Create discount → Amount off products**: code **`MAISON25`**, **25%**, all products.
-2. **Maximum discount uses:** limit the total number of uses to **100**, and **one use per customer**.
+2. **Usage limits:** **one use per customer**. There is no limit on the total number of uses, and no free gift: the site no longer mentions a first-100 limit or a candle.
 3. Set the start date (and an end date if the offer has one), then **Save**.
 4. If you choose a different code, set **`NEXT_PUBLIC_LAUNCH_OFFER_CODE`** on the host and redeploy.
 
-The free candle with each of the first 100 orders is packed by the team (filter orders by the discount code in the admin). Sign-ups need `SHOPIFY_FORMS_ADMIN_TOKEN` (step 13); without it the visitor still sees the code, but nothing is saved.
+Sign-ups need `SHOPIFY_FORMS_ADMIN_TOKEN` (step 13); without it the visitor still sees the code, but nothing is saved.
+
+## 18. Delivery fees and coverage
+
+Same-day delivery is offered across the whole UAE, for **AED 30 in Dubai** and **AED 40 elsewhere in the UAE**. The website states this in the ribbon, the bag, the footer, the delivery page, the FAQ and product pages. Shopify must charge the same amounts, or customers will see a different fee at checkout:
+
+1. **Settings → Shipping and delivery → General shipping rates** (or the delivery profile for these products).
+2. A **Dubai** zone with a flat rate of **AED 30**, and a **rest of the UAE** zone with a flat rate of **AED 40**. Set them up as shipping zones by emirate, or as local delivery zones if the team delivers itself.
+3. No free-shipping threshold or JVC exemption.
+4. Test an address in Dubai and one in Abu Dhabi at checkout: the totals should add AED 30 and AED 40.
 
 ## Troubleshooting
 

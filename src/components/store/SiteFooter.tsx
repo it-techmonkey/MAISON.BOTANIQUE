@@ -11,7 +11,7 @@ import { useStore } from './StoreProvider';
 const FOOTER = {
   en: {
     shop: 'Shop', occasions: 'Occasions', help: 'Help', about: 'Maison Botanique',
-    helpLines: ['Delivery across Dubai', 'Free delivery in JVC'],
+    helpLines: ['Same-day delivery across the UAE', 'Delivery AED 30 in Dubai, AED 40 elsewhere'],
     whatsapp: 'WhatsApp a florist', events: 'Weddings & events',
     aboutLines: ['Hand-tied in Dubai', 'A handwritten card with every gift', 'No prices travel with the gift'],
     language: 'العربية', top: 'Back to top',
@@ -20,7 +20,7 @@ const FOOTER = {
   },
   ar: {
     shop: 'تسوّق', occasions: 'المناسبات', help: 'المساعدة', about: 'ميزون بوتانيك',
-    helpLines: ['التوصيل في جميع أنحاء دبي', 'توصيل مجاني في JVC'],
+    helpLines: ['توصيل في اليوم نفسه في جميع أنحاء الإمارات', 'التوصيل ٣٠ درهماً في دبي و٤٠ في غيرها'],
     whatsapp: 'تواصل عبر واتساب', events: 'حفلات الزفاف والمناسبات',
     aboutLines: ['تُنسَّق يدوياً في دبي', 'بطاقة بخط اليد مع كل هدية', 'لا تُرفق الأسعار مع الهدية'],
     language: 'English', top: 'العودة للأعلى',

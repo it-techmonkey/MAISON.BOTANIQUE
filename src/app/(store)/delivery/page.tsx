@@ -4,7 +4,7 @@ import '@/styles/pages.css';
 
 export const metadata: Metadata = {
   title: 'Delivery & care',
-  description: 'How Maison Botanique delivers across Dubai, and how to care for your flowers once they arrive.',
+  description: 'How Maison Botanique delivers across the UAE, with same-day delivery, and how to care for your flowers once they arrive.',
   alternates: { canonical: '/delivery' },
 };
 
@@ -23,7 +23,7 @@ export default function DeliveryPage() {
         {
           title: { en: 'Where we deliver', ar: 'أين نوصل' },
           paragraphs: [
-            { en: 'We deliver within Dubai. The areas available for your address, and any delivery fee, are shown at checkout before you pay.', ar: 'نوصل داخل دبي. تظهر المناطق المتاحة لعنوانك وأي رسوم توصيل عند الدفع وقبل إتمامه.' },
+            { en: 'We deliver across the UAE, and same-day delivery is available everywhere we deliver. Delivery costs AED 30 in Dubai and AED 40 elsewhere in the UAE, and the fee is shown at checkout before you pay.', ar: 'نوصل في جميع أنحاء الإمارات، والتوصيل في اليوم نفسه متاح في كل مكان نوصل إليه. تبلغ رسوم التوصيل ٣٠ درهماً في دبي و٤٠ درهماً في بقية الإمارات، وتظهر عند الدفع وقبل إتمامه.' },
           ],
         },
         {

@@ -23,7 +23,7 @@ With the Shopify values empty, the site runs the design preview: the exported ca
 | `src/app/(store)/layout.tsx` | Shared store shell: loads the catalog once (ISR, refreshed every 5 minutes or by webhook), header, footer, bag, language. |
 | `src/app/(store)/` | Pages: home, `/shop`, `/shop/[handle]`, `/collections`, `/collections/[handle]`, `/occasions`, `/occasions/[occasion]`, `/services`, `/atelier`, `/contact`, `/delivery`, `/faq`, `/privacy`, `/terms`. |
 | `src/app/api/enquiry/route.ts`, `src/lib/shopify/forms.ts` | Newsletter, contact and enquiry forms, stored in Shopify (customers + "Website enquiry" metaobjects) through a forms-only Admin token. Without it the forms offer a prefilled email. |
-| `src/app/jvc/` | The `/jvc` opening-offer proof, with its own stylesheet. |
+| `src/app/jvc/` | The `/jvc` welcome-offer proof, with its own stylesheet. |
 | `src/app/api/revalidate/route.ts` | Shopify webhook target; verifies the HMAC signature and refreshes the catalog cache. |
 | `src/components/store/` | Store UI: provider (locale, cart, quick-add, toast, offer), header with the offer ribbon and Shop menu, footer, `CollectionBrowser` (occasion tiles, tabs, search, Refine drawer, sort), `ShopSheets` (quick-add sheet with card preview, bag with delivery picker), `LaunchOffer`, `WhatsAppButton`, product cards, forms, page blocks. |
 | `src/components/Turntable.tsx` | Pinned home hero; falls back to a static hero when no products are featured. |
@@ -43,7 +43,7 @@ With the Shopify values empty, the site runs the design preview: the exported ca
 
 ## Shopping flow
 
-A scrolling offer ribbon sits above the header (it opens the opening-offer sign-up). The header has a Shop menu (by occasion, flower, format and budget) and direct links that filter the collection in place (`/#roses`, `/#occasion/birthday`, `/#search`; shareable). The home hero shows three featured pieces, moved with its arrows, and leads into the collection: shop-by-occasion tiles, tabs, search, a Refine drawer (occasion, budget, stem count, with live counts), sorting and a four-across grid loading 24 at a time. Every piece opens the quick-add sheet: choose a size, add any personalisation, write the card with a live preview, sign it or keep it anonymous, and add it to the bag. The bag holds one delivery day and time window for the whole order (Dubai time) and offers WhatsApp ordering.
+A scrolling offer ribbon sits above the header (it opens the welcome-offer sign-up). The header has a Shop menu (by occasion, flower, format and budget) and direct links that filter the collection in place (`/#roses`, `/#occasion/birthday`, `/#search`; shareable). The home hero shows three featured pieces, moved with its arrows, and leads into the collection: shop-by-occasion tiles, tabs, search, a Refine drawer (occasion, budget, stem count, with live counts), sorting and a four-across grid loading 24 at a time. Every piece opens the quick-add sheet: choose a size, add any personalisation, write the card with a live preview, sign it or keep it anonymous, and add it to the bag. The bag holds one delivery day and time window for the whole order (Dubai time) and offers WhatsApp ordering.
 
 The bag is a real Shopify cart: Shopify calculates the subtotal; the card text, signature and personalisation travel on each line, and the delivery day and window on the cart, so they appear on the order. "Continue to secure checkout" sends the shopper to Shopify's hosted checkout in their language. Delivery options, tax, shipping, discounts and payment are configured in Shopify. Never place Admin API credentials in `NEXT_PUBLIC_` variables.
 
@@ -53,9 +53,9 @@ Shopify is the source of truth for products. The catalog in `catalog/shopify-exp
 
 Shopify is the selected production commerce direction. The staged implementation and merge gates are recorded in [SHOPIFY_INTEGRATION_PLAN.md](SHOPIFY_INTEGRATION_PLAN.md).
 
-## JVC opening offer proof
+## Welcome offer proof
 
-`/jvc/` is a separate, noindex design proof for the JVC opening edition: 25% off every product and one scented candle with each of the first 100 qualifying orders. The page uses the storefront’s Cormorant/DM Sans typography, warm plaster, deep olive and floral photography. Final catalog, prices, product imagery, terms and booking are deliberately pending. The matching A5 pamphlet proof and rollout plan remain in the separate local campaign workspace and are not part of this website repository.
+`/jvc/` is a separate, noindex design proof of the welcome offer: 25% off with a code, on top of 10% off every product, with same-day delivery across the UAE. The page uses the storefront’s Cormorant/DM Sans typography, warm plaster, deep olive and floral photography. Final catalog, prices, product imagery and terms are deliberately pending. The matching A5 pamphlet proof and rollout plan remain in the separate local campaign workspace and are not part of this website repository.
 
 ## Relation to the original repository
 

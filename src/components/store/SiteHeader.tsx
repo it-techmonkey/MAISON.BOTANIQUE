@@ -23,10 +23,10 @@ export function CollectionLink({ hash, onClick, children, className }: { hash: s
     : <Link className={className} href={`/#${hash}`} onClick={onClick}>{children}</Link>;
 }
 
-// The opening offer runs above the header; the whole ribbon opens the sign-up.
+// The welcome offer runs above the header; the whole ribbon opens the sign-up.
 const OFFER = {
-  en: ['Opening offer · 25% + 10% off for our first 100 customers', 'Free delivery in JVC', 'Delivering across Dubai', 'A scented candle with each of those first orders'],
-  ar: ['عرض الافتتاح · خصم ٢٥٪ + ١٠٪ لأول ١٠٠ عميل', 'توصيل مجاني في JVC', 'التوصيل في جميع أنحاء دبي', 'شمعة معطّرة مع كل طلب من هذه الطلبات الأولى'],
+  en: ['Welcome offer · 25% + 10% off your first order', 'Same-day delivery across the UAE', 'Delivery AED 30 in Dubai · AED 40 elsewhere in the UAE'],
+  ar: ['عرض الترحيب · خصم ٢٥٪ + ١٠٪ على طلبك الأول', 'توصيل في اليوم نفسه في جميع أنحاء الإمارات', 'التوصيل ٣٠ درهماً في دبي · ٤٠ درهماً في بقية الإمارات'],
 };
 
 function OfferBar() {
