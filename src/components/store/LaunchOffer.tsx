@@ -67,6 +67,7 @@ export default function LaunchOffer() {
   useEffect(() => {
     const state = readState();
     setSaved(state);
+    if (new URLSearchParams(window.location.search).get('offer') === 'open') { setOpen(true); return; }
     if (state.code || (state.dismissedAt && Date.now() - state.dismissedAt < SNOOZE_MS)) return undefined;
     const timer = window.setTimeout(() => setOpen(true), OPEN_DELAY_MS);
     return () => window.clearTimeout(timer);
