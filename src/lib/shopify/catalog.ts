@@ -342,8 +342,8 @@ function mapShopifyCollection(collection: ShopifyCollection, arabic: ShopifyColl
 // ---------------------------------------------------------------------------
 
 interface ExportProduct {
-  id: string; no: number; name: string; nameAr: string; room: string; price: number;
-  sizes: Array<{ id: string; name: string; nameAr: string; detail: string; detailAr: string; add: number }>;
+  id: string; no: number; name: string; nameAr: string; room: string; price: number; compareAtPrice: number;
+  sizes: Array<{ id: string; name: string; nameAr: string; detail: string; detailAr: string; add: number; price: number; compareAtPrice: number }>;
   line: string; lineAr: string; composition: string[]; compositionAr: string[]; feature: string;
   stems: number | null; occasions: string[]; flowers: string[]; format: string; order: number;
   custom: { kind?: string; label?: string } | null; image: string; imageSmall: string; alt: string;
@@ -363,11 +363,11 @@ async function exportCatalog(): Promise<Catalog> {
       order: item.order, custom: customField(item.custom),
       productType: room.en, vendor: 'Maison Botanique', occasions: item.occasions,
       image: item.image, imageSmall: item.imageSmall, imageAlt: item.alt,
-      price: item.price, compareAtPrice: null, currencyCode: 'AED', bg: '#E9E1D5', accent: '#673C43',
+      price: item.price, compareAtPrice: item.compareAtPrice, currencyCode: 'AED', bg: '#E9E1D5', accent: '#673C43',
       description: item.composition.join(', '), descriptionAr: item.compositionAr.join('، '),
       sizes: item.sizes.map((size) => ({
         id: size.id, name: size.name, nameAr: size.nameAr, detail: size.detail, detailAr: size.detailAr,
-        price: item.price + size.add, compareAtPrice: null, variantId: null, available: true,
+        price: size.price, compareAtPrice: size.compareAtPrice, variantId: null, available: true,
       })),
       available: true, heroOrder: heroIndex >= 0 ? heroIndex + 1 : null, featured: heroIndex >= 0,
       answerSummary: '', answerSummaryAr: '', faq: [],
