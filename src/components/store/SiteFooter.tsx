@@ -35,7 +35,7 @@ const HELP = [
   { href: '/delivery#where-we-deliver', en: 'Delivery areas', ar: 'مناطق التوصيل' },
   { href: '/residences', en: 'Flowers for your building', ar: 'زهور لمبناك' },
   { href: '/delivery#caring-for-fresh-flowers', en: 'Flower care guide', ar: 'دليل العناية بالزهور' },
-  { href: '/terms#if-something-is-not-right', en: 'Returns & replacements', ar: 'الإرجاع والاستبدال' },
+  { href: '/refund-policy', en: 'Refund policy', ar: 'سياسة الاسترداد' },
   { href: '/contact', en: 'Contact us', ar: 'تواصل معنا' },
   { href: '/account', en: 'Your account', ar: 'حسابي' },
 ];
@@ -45,6 +45,7 @@ const BASE = [
   { href: '/services', en: 'Events & gifting', ar: 'المناسبات والإهداء' },
   { href: '/privacy', en: 'Privacy', ar: 'الخصوصية' },
   { href: '/terms', en: 'Terms', ar: 'الشروط' },
+  { href: '/refund-policy', en: 'Refunds', ar: 'الاسترداد' },
 ];
 
 export default function SiteFooter() {

@@ -36,7 +36,7 @@ export const SITE = {
   },
   city: { en: 'Dubai, United Arab Emirates', ar: 'دبي، الإمارات العربية المتحدة' },
   /** Public enquiries inbox. Confirm the mailbox exists before launch. */
-  email: 'hello@maisonbotaniqueflowers.com',
+  email: 'maisonbotaniqueflowers@gmail.com',
   /** International format without spaces, e.g. '+9715XXXXXXXX'. Hidden until set. */
   phone: null as string | null,
   /**
@@ -286,4 +286,5 @@ export const HELP_LINKS = [
   { href: '/contact', label: { en: 'Contact', ar: 'تواصل معنا' } },
   { href: '/privacy', label: { en: 'Privacy', ar: 'الخصوصية' } },
   { href: '/terms', label: { en: 'Terms', ar: 'الشروط' } },
+  { href: '/refund-policy', label: { en: 'Refund policy', ar: 'سياسة الاسترداد' } },
 ];
