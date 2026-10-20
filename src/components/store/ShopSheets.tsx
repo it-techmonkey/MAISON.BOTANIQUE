@@ -7,12 +7,13 @@ import {
 } from '@/lib/analytics/track';
 import { DeliveryRequiredError, type CartLineView } from '@/lib/cart/use-shop-cart';
 import {
-  addDays, bookableDays, checkSchedule, dateOpen, deliverySummary, lastBookableDate, windowLabel, windowsFor,
+  addDays, bookableDays, checkSchedule, dateOpen, deliverySummary, earliestDate, formatDeliveryDate, lastBookableDate, slotsFor, windowLabel, windowsFor,
   type DeliverySchedule, type ScheduleProblem,
 } from '@/lib/delivery';
 import { useDubaiNow } from '@/lib/use-today';
 import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import type { Product } from '@/lib/types';
+import { PROMISES } from './HeroPromises';
 import SaleTag from './SaleTag';
 import { useStore } from './StoreProvider';
 import { WhatsAppIcon } from './WhatsAppButton';
@@ -28,7 +29,6 @@ const copy = {
     presentation: 'Size', giftNote: 'Gift note', notePlaceholder: 'Your message, if you wish…',
     date: 'When should it arrive?',
     dateHint: 'Book today or up to 60 days ahead. One delivery date and time for the whole order.',
-    deliveryNote: 'Same-day delivery across the UAE. Choose the day and time in your bag. Enter the full recipient address at checkout.',
     windowLegend: 'Time', missing_date: 'Choose a delivery day and time to continue.', missing_slot: 'Choose a delivery time to continue.',
     date_passed: 'That delivery day has passed. Please choose another.', slot_passed: 'That delivery time has passed. Please choose another.',
     day_closed: "We aren't delivering on that day. Please choose another.",
@@ -46,8 +46,9 @@ const copy = {
     each: 'each', noteLine: 'Gift note',
     pictured: (size: string) => `Pictured: ${size}`, asPictured: 'As pictured', yourCard: 'Your card', handwritten: 'Handwritten in our studio',
     cardEmpty: 'Write what you would say if you were there.', signedAs: 'Signed', secret: 'Keep it a secret', secretSign: 'Someone who adores you',
-    dubai: 'Dubai', anotherDay: 'Another day', noPrices: 'No prices travel with the gift.',
-    photoPromise: 'Your bouquet is hand-tied in Dubai and your card is written by hand.',
+    dubai: 'Dubai', anotherDay: 'Another day',
+    deliveryRow: 'Delivery day and time', earliest: 'Earliest', chooseDelivery: 'Choose day and time', useEarliest: 'Use this time', changeDelivery: 'Change',
+    deliveryOrderWide: 'One delivery for your whole order. Enter the full recipient address at checkout.', deliverySaved: 'Saved for your order',
     letterLabel: 'Your letter', ageLabel: 'Age on the arrangement', chooseLetter: 'Choose a letter to continue', chooseAge: 'Add the age to continue', chooseCustom: 'Add your personalisation to continue',
     signedLine: 'Signed', anonymousLine: 'Signed anonymously', customLine: 'Personalisation', was: 'was', soldOut: 'Sold out',
     viewDetails: 'View full details',
@@ -59,7 +60,6 @@ const copy = {
     presentation: 'الحجم', giftNote: 'رسالة الإهداء', notePlaceholder: 'رسالتك إن رغبت…',
     date: 'متى تريد أن تصل؟',
     dateHint: 'احجز لليوم أو حتى ٦٠ يوماً مقدماً. موعد توصيل واحد للطلب كله.',
-    deliveryNote: 'توصيل في اليوم نفسه في جميع أنحاء الإمارات. اختر اليوم والوقت من حقيبتك. أدخل عنوان المستلم كاملاً عند الدفع.',
     windowLegend: 'الوقت', missing_date: 'اختر يوم التوصيل ووقته للمتابعة.', missing_slot: 'اختر وقت التوصيل للمتابعة.',
     date_passed: 'انقضى يوم التوصيل هذا. يرجى اختيار يوم آخر.', slot_passed: 'انقضى موعد التوصيل هذا. يرجى اختيار موعد آخر.',
     day_closed: 'لا نوصّل في هذا اليوم. يرجى اختيار يوم آخر.',
@@ -77,8 +77,9 @@ const copy = {
     each: 'للوحدة', noteLine: 'رسالة الإهداء',
     pictured: (size: string) => `في الصورة: ${size}`, asPictured: 'كما في الصورة', yourCard: 'بطاقتك', handwritten: 'تُكتب بخط اليد في مشغلنا',
     cardEmpty: 'اكتب ما كنت ستقوله لو كنت هناك.', signedAs: 'التوقيع', secret: 'أبقِها مفاجأة', secretSign: 'شخص يحبك',
-    dubai: 'دبي', anotherDay: 'يوم آخر', noPrices: 'لا تُرفق الأسعار مع الهدية.',
-    photoPromise: 'تُنسَّق باقتك يدوياً في دبي وتُكتب بطاقتك بخط اليد.',
+    dubai: 'دبي', anotherDay: 'يوم آخر',
+    deliveryRow: 'يوم التوصيل ووقته', earliest: 'أقرب موعد', chooseDelivery: 'اختر اليوم والوقت', useEarliest: 'اعتمد هذا الموعد', changeDelivery: 'تغيير',
+    deliveryOrderWide: 'توصيل واحد لطلبك كله. أدخل عنوان المستلم كاملاً عند الدفع.', deliverySaved: 'تم حفظه لطلبك',
     letterLabel: 'الحرف', ageLabel: 'العمر على التنسيق', chooseLetter: 'اختر الحرف للمتابعة', chooseAge: 'أضف العمر للمتابعة', chooseCustom: 'أضف التخصيص للمتابعة',
     signedLine: 'التوقيع', anonymousLine: 'توقيع مجهول', customLine: 'التخصيص', was: 'بدلاً من', soldOut: 'نفدت الكمية',
     viewDetails: 'عرض كل التفاصيل',
@@ -181,14 +182,17 @@ function CardPreview({ message, signedAs, anonymous, t }: { message: string; sig
 /** Size, card and personalisation for one product. Used by the quick-add sheet and the product page. */
 export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact = false }: {
   product: Product;
-  onAdd: (options: { sizeId: string; note: string; signedAs: string; anonymous: boolean; custom: string }) => void;
+  onAdd: (options: { sizeId: string; note: string; signedAs: string; anonymous: boolean; custom: string; delivery?: DeliverySchedule }) => void;
   related?: Product[];
   onOpen?: (product: Product) => void;
   /** Leaves out the header and image (the product page shows its own). */
   compact?: boolean;
 }) {
-  const { ar, live } = useStore();
+  const { ar, live, cart } = useStore();
   const t = copy[ar ? 'ar' : 'en'];
+  const nowDubai = useDubaiNow();
+  const [delivery, setDelivery] = useState<Partial<DeliverySchedule>>(cart.delivery ?? {});
+  useEffect(() => { if (cart.delivery) setDelivery(cart.delivery); }, [cart.delivery]);
   const firstAvailable = product.sizes.find((size) => size.available) ?? product.sizes[0];
   const [sizeId, setSizeId] = useState(firstAvailable.id);
   const [note, setNote] = useState('');
@@ -272,12 +276,11 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
           </div>
         </section>
 
-        <section className="qa-section qa-delivery">
-          <p>{t.deliveryNote}</p>
-          {askLink && <a className="wa-inline" href={askLink} target="_blank" rel="noopener noreferrer"><WhatsAppIcon />{t.askAbout}</a>}
-        </section>
-
-        <ul className="qa-assure"><li>{t.noPrices}</li><li>{t.photoPromise}</li></ul>
+        <ul className="qa-promises" aria-label={ar ? 'وعودنا' : 'Our promises'}>
+          {PROMISES.map((item) => <li key={item.text.en}>{item.icon}<span>{ar ? item.text.ar : item.text.en}</span></li>)}
+        </ul>
+        <ProductDelivery t={t} value={delivery} onChange={setDelivery} />
+        {askLink && <a className="wa-inline qa-ask" href={askLink} target="_blank" rel="noopener noreferrer"><WhatsAppIcon />{t.askAbout}</a>}
         {related.length > 0 && onOpen && <section className="qa-related" aria-labelledby={`qa-related-title-${product.id}`}>
           <h3 id={`qa-related-title-${product.id}`} className="qa-included">{t.alsoLike}</h3>
           <div className="qa-related-row">{related.map((item) => (
@@ -291,7 +294,10 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
       </div>
       <div className="qa-foot">
         <button className="qa-add" type="button" disabled={customMissing || !chosen.available}
-          onClick={() => onAdd({ sizeId: chosen.id, note: note.trim(), signedAs: signedAs.trim(), anonymous, custom: custom.trim() })}>
+          onClick={() => onAdd({
+            sizeId: chosen.id, note: note.trim(), signedAs: signedAs.trim(), anonymous, custom: custom.trim(),
+            ...(delivery.date && delivery.slotId && nowDubai && !checkSchedule(delivery, nowDubai) ? { delivery: delivery as DeliverySchedule } : {}),
+          })}>
           {!chosen.available ? t.soldOut
             : customMissing ? (field?.kind === 'letter' ? t.chooseLetter : field?.kind === 'age' ? t.chooseAge : t.chooseCustom)
             : <>{t.addBag} · <Money amount={chosen.price} ar={ar} whole /></>}
@@ -327,10 +333,53 @@ function QuickAdd({ product }: { product: Product }) {
   );
 }
 
+/** The first window that can still be booked, for the collapsed delivery row. */
+function earliestSlot(now: NonNullable<ReturnType<typeof useDubaiNow>>): DeliverySchedule | null {
+  const date = earliestDate(now);
+  const slot = slotsFor(date, now)[0];
+  return slot ? { date, slotId: slot.id } : null;
+}
+
+/**
+ * Delivery day and time on the product page. Collapsed by default so it never gets in the way:
+ * it suggests the earliest window and lets the shopper use it or choose another. The choice is
+ * for the whole order and is saved to the cart with the add; it never blocks "Add to bag".
+ */
+function ProductDelivery({ t, value, onChange }: { t: Copy; value: Partial<DeliverySchedule>; onChange: (next: Partial<DeliverySchedule>) => void }) {
+  const { ar } = useStore();
+  const now = useDubaiNow();
+  const [open, setOpen] = useState(false);
+  const complete = Boolean(value.date && value.slotId && now && !checkSchedule(value, now));
+  const earliest = now ? earliestSlot(now) : null;
+  const dayWord = (date: string) => (now && date === now.date ? (ar ? 'اليوم' : 'Today') : now && date === addDays(now.date, 1) ? (ar ? 'غداً' : 'Tomorrow') : formatDeliveryDate(date, ar));
+  const describe = (schedule: DeliverySchedule) => `${dayWord(schedule.date)} · ${windowLabel(schedule.slotId, ar)}`;
+  return (
+    <section className="qa-section qa-delivery" data-ph-mask>
+      <div className="pd-row">
+        <div className="pd-text">
+          <span className="pd-label">{t.deliveryRow}</span>
+          {complete
+            ? <strong className="pd-value">{describe(value as DeliverySchedule)}<em>{t.deliverySaved}</em></strong>
+            : earliest && <span className="pd-value">{t.earliest}: {describe(earliest)}</span>}
+        </div>
+        <div className="pd-actions">
+          {!complete && earliest && <button type="button" className="pd-link" onClick={() => { onChange(earliest); trackDeliveryScheduled(earliest, 'product_page'); }}>{t.useEarliest}</button>}
+          <button type="button" className="pd-link" aria-expanded={open} onClick={() => setOpen(!open)}>{complete ? t.changeDelivery : t.chooseDelivery}</button>
+        </div>
+      </div>
+      {open && <DeliveryPicker t={t} scope="product" value={value} problem={null}
+        onChange={(next) => { onChange(next); if (next.date && next.slotId && now && !checkSchedule(next, now)) trackDeliveryScheduled(next as DeliverySchedule, 'product_page'); }} />}
+      <p className="pd-note">{t.deliveryOrderWide}</p>
+    </section>
+  );
+}
+
 // One delivery for the whole order: the next open days, any later date up to
 // the booking horizon, then a time window. Passed windows are disabled.
-function DeliveryPicker({ t, value, onChange, problem }: {
+function DeliveryPicker({ t, value, onChange, problem, scope = 'bag' }: {
   t: Copy;
+  /** 'bag' is the checkout picker; 'product' sits on the product page and must not be mistaken for it. */
+  scope?: 'bag' | 'product';
   value: Partial<DeliverySchedule>;
   onChange: (next: Partial<DeliverySchedule>) => void;
   problem: ScheduleProblem | null;
@@ -341,7 +390,9 @@ function DeliveryPicker({ t, value, onChange, problem }: {
   const quick = now ? bookableDays(3, now) : [];
   const date = value.date ?? '';
   const other = Boolean(date) && !quick.includes(date);
-  const [showOther, setShowOther] = useState(other);
+  // "Another day" shows when the saved date is outside the quick days, or when the shopper asks for it.
+  const [wantOther, setWantOther] = useState(false);
+  const showOther = wantOther || other;
   const windows = date && now ? windowsFor(date, now) : [];
   const closed = Boolean(date) && Boolean(now) && !dateOpen(date, now!);
   const dayLabel = (iso: string) => {
@@ -355,17 +406,17 @@ function DeliveryPicker({ t, value, onChange, problem }: {
   };
 
   return (
-    <fieldset className="qa-section dl-picker" data-ph-mask>
+    <fieldset className={`qa-section${scope === 'bag' ? ' dl-picker' : ' dl-picker-product'}`} data-ph-mask>
       <legend className="qa-legend"><span>{t.date}</span><em>{t.dubai}</em></legend>
       <div className="qa-days">
         {quick.map((iso) => (
           <label key={iso} className={`qa-day${date === iso && !showOther ? ' is-selected' : ''}`}>
-            <input type="radio" name="dl-day" checked={date === iso && !showOther} onChange={() => { setShowOther(false); chooseDate(iso); }} />
+            <input type="radio" name={`${scope}-day`} checked={date === iso && !showOther} onChange={() => { setWantOther(false); chooseDate(iso); }} />
             <span>{dayLabel(iso)}</span><strong>{Number(iso.slice(8))}</strong>
           </label>
         ))}
         <label className={`qa-day${showOther ? ' is-selected' : ''}`}>
-          <input type="radio" name="dl-day" checked={showOther} onChange={() => { setShowOther(true); if (!other) onChange({}); }} />
+          <input type="radio" name={`${scope}-day`} checked={showOther} onChange={() => { setWantOther(true); if (!other) onChange({}); }} />
           <span>{t.anotherDay}</span><strong>…</strong>
         </label>
       </div>
@@ -375,7 +426,7 @@ function DeliveryPicker({ t, value, onChange, problem }: {
       {date && !closed && <div className="dl-windows" role="radiogroup" aria-label={t.windowLegend}>
         {windows.map((slot) => (
           <label key={slot.id} className={`dl-window${value.slotId === slot.id ? ' is-selected' : ''}${slot.available ? '' : ' is-off'}`}>
-            <input type="radio" name="dl-window" disabled={!slot.available} checked={value.slotId === slot.id}
+            <input type="radio" name={`${scope}-window`} disabled={!slot.available} checked={value.slotId === slot.id}
               onChange={() => onChange({ date, slotId: slot.id })} />
             <bdi>{windowLabel(slot.id, ar)}</bdi>
           </label>
