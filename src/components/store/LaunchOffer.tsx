@@ -24,7 +24,7 @@ const COPY = {
     failed: 'Something went wrong. Please try again in a moment.',
     doneTitle: 'Your code is ready', doneSub: 'Your code is ready for checkout. Your details have been saved.',
     copy: 'Copy code', copied: 'Copied', shop: 'Start shopping', terms: 'One use per customer · 25% off products.',
-    tab: '25% off', close: 'Close',
+    tab: '25 + 10% off', close: 'Close',
   },
   ar: {
     eyebrow: 'عرض الترحيب', title: 'خصم ٢٥٪ على طلبك الأول', sub: 'سجّل واحصل على خصم ٢٥٪ على طلبك الأول.',
@@ -34,7 +34,7 @@ const COPY = {
     failed: 'حدث خطأ ما. يرجى المحاولة بعد قليل.',
     doneTitle: 'رمزك جاهز', doneSub: 'رمزك جاهز للدفع. تم حفظ بياناتك.',
     copy: 'انسخ الرمز', copied: 'تم النسخ', shop: 'ابدأ التسوق', terms: 'استخدام واحد لكل عميل · خصم ٢٥٪ على المنتجات.',
-    tab: 'خصم ٢٥٪', close: 'إغلاق',
+    tab: 'خصم ٢٥ + ١٠٪', close: 'إغلاق',
   },
 };
 

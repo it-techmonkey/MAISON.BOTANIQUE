@@ -7,8 +7,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import { trackHeroClicked, trackHeroNavigated } from '@/lib/analytics/track';
 import { formatMoney } from '@/lib/format';
+import SaleTag from './store/SaleTag';
 import { useStore } from './store/StoreProvider';
 import '../styles/turntable.css';
+import Money from './store/Money';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -201,7 +203,7 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
   const current = looks[clamp(active, 0, count - 1)];
   const productName = arabic ? current.nameAr || current.name : current.name;
   const category = arabic ? current.categoryAr || current.category : current.category;
-  const price = formatMoney(current.price, current.currencyCode, arabic);
+  const price = <Money amount={current.price} currency={current.currencyCode} ar={arabic} />;
 
   return (
     <section id="turntable" data-track-section="home_hero" ref={sectionRef} className={`tt-section${reducedMotion ? ' tt-section--reduced' : ''}`}
@@ -221,6 +223,8 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
               <h2>{productName}</h2>
               <p className="tt-product__price">
                 {live ? (arabic ? 'من' : 'From') : (arabic ? 'السعر' : 'Price')} <span aria-hidden="true">·</span> {price}
+                {current.compareAtPrice && <s aria-label={`${arabic ? 'بدلاً من' : 'was'} ${formatMoney(current.compareAtPrice, current.currencyCode, arabic)}`}><Money amount={current.compareAtPrice} currency={current.currencyCode} ar={arabic} /></s>}
+                <SaleTag price={current.price} compareAtPrice={current.compareAtPrice} />
               </p>
             </div>
             <div className="tt-product__actions">

@@ -403,3 +403,19 @@ main { display: block; min-height: 60vh; }
 @media (max-width: 640px) {
   :root { --fs-title: 30px; --fs-section: 22px; --fs-name: 17px; --fs-body: 14px; --fs-small: 12px; --fs-label: 11px; }
 }
+
+/* "10% off" beside a struck-through price (SaleTag.tsx). */
+.sale-tag { display: inline-block; margin-inline-start: 8px; padding: 3px 6px 2px; background: var(--mb-wine); color: #f7f4ee; font: 600 11px/1.2 var(--font-body); letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; vertical-align: .15em; }
+[dir='rtl'] .sale-tag { font-family: var(--font-arabic); letter-spacing: 0; font-size: 12px; }
+.qa-size-price .sale-tag { margin: 2px 0 0; }
+.purchase__price .sale-tag { margin: 0; align-self: center; color: #f7f4ee; font-size: 11px; }
+.tt-product__price s { margin-inline-start: 6px; opacity: .7; }
+.sale-tag.mbc-sale { align-self: flex-start; margin: auto 0 0; }
+.mbc-cap .mbc-sale + .mbc-row { margin-top: 4px; padding-top: 0; }
+
+/* Prices with the Dirham sign (Money.tsx, Dirham.tsx). */
+.money { display: inline-flex; align-items: baseline; white-space: nowrap; unicode-bidi: isolate; }
+.dirham { height: .76em; width: auto; flex: none; margin-inline-end: .3em; fill: currentColor; vertical-align: baseline; position: relative; top: .03em; }
+.money--after .dirham { margin-inline-end: 0; margin-inline-start: .3em; }
+/* Existing rules such as ".purchase__price span" must not restyle the price pieces. */
+.money .money__n, .purchase__price .money, .purchase__price .money .money__n { font: inherit; color: inherit; letter-spacing: inherit; }

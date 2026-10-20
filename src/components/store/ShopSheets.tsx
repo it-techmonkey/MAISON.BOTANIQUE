@@ -13,8 +13,10 @@ import {
 import { useDubaiNow } from '@/lib/use-today';
 import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import type { Product } from '@/lib/types';
+import SaleTag from './SaleTag';
 import { useStore } from './StoreProvider';
 import { WhatsAppIcon } from './WhatsAppButton';
+import Money from './Money';
 
 const NOTE_LIMIT = 280;
 
@@ -243,8 +245,9 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
               <span className="qa-size-name"><strong>{ar ? size.nameAr : size.name}</strong>{(ar ? size.detailAr : size.detail) && <em>{ar ? size.detailAr : size.detail}</em>}</span>
               <span className="qa-scale" aria-hidden="true">{Array.from({ length: Math.min(index + 1, 6) }, (_, bar) => <i key={bar} style={{ height: `${9 + bar * 5}px` }} />)}</span>
               <span className="qa-size-price">
-                {size.available ? formatAED(size.price, ar) : t.soldOut}
-                {size.available && size.compareAtPrice && <s aria-label={`${t.was} ${formatAED(size.compareAtPrice, ar)}`}>{formatAED(size.compareAtPrice, ar)}</s>}
+                {size.available ? <Money amount={size.price} ar={ar} whole /> : t.soldOut}
+                {size.available && size.compareAtPrice && <s aria-label={`${t.was} ${formatAED(size.compareAtPrice, ar)}`}><Money amount={size.compareAtPrice} ar={ar} whole /></s>}
+                {size.available && <SaleTag price={size.price} compareAtPrice={size.compareAtPrice} />}
               </span>
             </label>
           ))}</div>
@@ -281,7 +284,7 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
             <button type="button" key={item.id} onClick={() => onOpen(item)}>
               <img src={item.imageSmall} alt="" loading="lazy" width="160" height="160" />
               <span>{ar ? item.nameAr : item.name}</span>
-              <small>{formatAED(item.price, ar)}</small>
+              <small><Money amount={item.price} ar={ar} whole /></small>
             </button>
           ))}</div>
         </section>}
@@ -291,7 +294,7 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
           onClick={() => onAdd({ sizeId: chosen.id, note: note.trim(), signedAs: signedAs.trim(), anonymous, custom: custom.trim() })}>
           {!chosen.available ? t.soldOut
             : customMissing ? (field?.kind === 'letter' ? t.chooseLetter : field?.kind === 'age' ? t.chooseAge : t.chooseCustom)
-            : `${t.addBag} · ${formatAED(chosen.price, ar)}`}
+            : <>{t.addBag} · <Money amount={chosen.price} ar={ar} whole /></>}
         </button>
       </div>
     </>
@@ -499,7 +502,7 @@ function Bag() {
           <div className="ll-review-symbol" aria-hidden="true">MB</div>
           <p className="ll-review-lead">{t.reviewIntro}</p>
           <p>{t.reviewNotice}</p>
-          <div className="ll-review-total"><span>{t.subtotal}</span><strong>{formatAED(subtotal.amount, ar)}</strong></div>
+          <div className="ll-review-total"><span>{t.subtotal}</span><strong><Money amount={subtotal.amount} ar={ar} whole /></strong></div>
           {orderLink && <a className="ll-shop-primary wa-order" href={orderLink} target="_blank" rel="noopener noreferrer"><WhatsAppIcon /><span>{t.orderWhatsapp}</span></a>}
           <button className="ll-shop-secondary" type="button" onClick={() => setReview(false)}>{t.backBag}</button>
         </div>
@@ -526,7 +529,7 @@ function Bag() {
               <div className="ll-cart-line-info">
                 <span className="ll-cart-line-category">{ar ? line.categoryAr : line.category}</span>
                 <h3>{line.product ? <a href={`/shop/${line.product.id}`}>{ar ? line.nameAr : line.name}</a> : (ar ? line.nameAr : line.name)}</h3>
-                <p>{ar ? line.sizeNameAr : line.sizeName} · {formatAED(line.unitPrice.amount, ar)} {t.each}</p>
+                <p>{ar ? line.sizeNameAr : line.sizeName} · <Money amount={line.unitPrice.amount} ar={ar} whole /> {t.each}</p>
                 {line.custom && <p className="ll-cart-line-detail">{t.customLine}: {line.custom}</p>}
                 {line.note && <p className="ll-cart-line-detail" data-ph-mask>{t.noteLine}: {line.note}</p>}
                 {(line.anonymous || line.signedAs) && <p className="ll-cart-line-detail" data-ph-mask>{line.anonymous ? t.anonymousLine : `${t.signedLine}: ${line.signedAs}`}</p>}
@@ -546,7 +549,7 @@ function Bag() {
         </div>
         <div className="ll-cart-footer">
           <div className="ll-cart-totals">
-            <div><span>{t.subtotal}</span><strong>{formatAED(subtotal.amount, ar)}</strong></div>
+            <div><span>{t.subtotal}</span><strong><Money amount={subtotal.amount} ar={ar} whole /></strong></div>
             {summary && <div><span>{t.deliveryLine}</span><span data-ph-mask>{summary}</span></div>}
           </div>
           <p className="ll-cart-offer">{t.offerLine}</p>

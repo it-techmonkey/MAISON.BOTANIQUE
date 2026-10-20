@@ -3,12 +3,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { formatMoney } from '@/lib/format';
 import { trackProductClicked, trackProductListViewed, type ProductListContext } from '@/lib/analytics/track';
 import { isMostLoved } from '@/lib/most-loved';
 import type { Product } from '@/lib/types';
 import { useStore } from './StoreProvider';
 import '@/styles/catalog.css';
+import Money from './Money';
 
 interface ProductCardProps {
   product: Product;
@@ -37,7 +37,7 @@ export function ProductCard({ product, sizes = '(max-width: 640px) 92vw, (max-wi
       </Link>
       <div className="product-card__meta">
         <span>{ar ? product.categoryAr : product.category}</span>
-        <span>{fromPrice && <>{t('From', 'من')} </>}{formatMoney(product.price, product.currencyCode, ar)}</span>
+        <span>{fromPrice && <>{t('From', 'من')} </>}<Money amount={product.price} currency={product.currencyCode} ar={ar} /></span>
       </div>
       <h3 className="product-card__title"><Link href={href} onClick={onOpen}>{name}</Link></h3>
       <p className="product-card__description">{ar ? product.lineAr : product.line}</p>
