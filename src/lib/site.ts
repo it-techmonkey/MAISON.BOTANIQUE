@@ -36,9 +36,9 @@ export const SITE = {
   },
   city: { en: 'Dubai, United Arab Emirates', ar: 'دبي، الإمارات العربية المتحدة' },
   /** Public enquiries inbox. Confirm the mailbox exists before launch. */
-  email: 'maisonbotaniqueflowers@gmail.com',
+  email: 'hello@maisonbotaniqueflowers.com',
   /** International format without spaces, e.g. '+9715XXXXXXXX'. Hidden until set. */
-  phone: null as string | null,
+  phone: '+971545578803' as string | null,
   /**
    * WhatsApp number, digits only in international format (e.g. 9715XXXXXXXX),
    * from NEXT_PUBLIC_WHATSAPP_NUMBER. The WhatsApp button and links stay hidden until it is set.

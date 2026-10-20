@@ -47,6 +47,12 @@ CONFIGS = {
                               token_price={"text_in": 2.0, "image_in": 2.5, "image_out": 8.0}),
     "nb2lite-1k":        dict(provider="gemini", model="gemini-3.1-flash-lite-image", image_size="1K", supplier_ref=True, price=0.0336, batch_price=0.0168),
     "nb21-2k":           dict(provider="gemini", model="gemini-nano-banana-2.1", image_size="2K", supplier_ref=True, price=0.0504, batch_price=0.0252),
+    # --- Campaign and site images (hand-written jobs, see the maison-image-generation skill) ---
+    # Same model as products, separate out/ folders so they never mix with product images.
+    # Portrait/landscape sizes are not yet confirmed for gpt-image-2.5-flare: the smoke test (1 image) catches a rejected size.
+    "campaign-square":    dict(provider="openai", model="gpt-image-2.5-flare", quality="medium", size="1024x1024", supplier_ref=True),
+    "campaign-portrait":  dict(provider="openai", model="gpt-image-2.5-flare", quality="medium", size="1024x1536", supplier_ref=True),
+    "campaign-landscape": dict(provider="openai", model="gpt-image-2.5-flare", quality="medium", size="1536x1024", supplier_ref=True),
 }
 
 # The three-way pilot (python3 pilot.py --products 5): OpenAI API and Gemini API, each text-only and with the supplier

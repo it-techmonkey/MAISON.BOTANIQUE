@@ -1,3 +1,7 @@
+# Canonical image tooling
+
+This is the maintained pipeline. Read [workspace setup](../../docs/WORKSPACE.md) before running it. Local outputs, supplier references, jobs and credentials are ignored links to workspace storage. Campaign jobs are in `diwali/jobs/`. Image generation still requires owner approval for spend.
+
 # Maison Botanique image pipeline
 
 Generates one branded hero photo per product from `../shopify-export/products.json`, measures the real cost, and lets you compare settings side by side.
