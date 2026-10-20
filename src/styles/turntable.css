@@ -311,6 +311,11 @@
 /* Resting pose of the design (GSAP keeps it in sync during transitions). */
 .tt-artwork__image { transform: translate(15%, 9%) scale(.88) rotate(-2deg); }
 .tt-artwork__ground { transform: translateX(8%) scale(.84); opacity: .32; }
+/* Phones: centred within the page margins (MOBILE_REST_POSE in Turntable.tsx). */
+@media (max-width: 680px) {
+  .tt-artwork__image { transform: translate(0, 6%) scale(.9) rotate(-2deg); }
+  .tt-artwork__ground { transform: scale(.84); }
+}
 
 /* The design's photos are 2:3 portraits shown whole ("contain") inside the
    frame, so the oval mask leaves straight sides and soft top and bottom. Any

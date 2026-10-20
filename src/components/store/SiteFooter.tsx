@@ -14,7 +14,7 @@ import { WhatsAppIcon } from './WhatsAppButton';
 const FOOTER = {
   en: {
     shop: 'Shop', occasions: 'Occasions', help: 'Help', bloom: 'Stay in bloom',
-    delivery: 'Same-day delivery in Dubai. Free in JVC · AED 30 elsewhere in Dubai · AED 40 elsewhere in the UAE.',
+    delivery: 'Same-day delivery in Dubai. Free in JVC · AED 30 elsewhere in Dubai · AED 50 elsewhere in the UAE.',
     bloomLine: 'Be the first to know about new collections and offers.',
     whatsapp: 'WhatsApp', language: 'العربية', top: 'Back to top',
     notice: 'Prices are in AED. Delivery and any taxes are confirmed at checkout.',
@@ -22,7 +22,7 @@ const FOOTER = {
   },
   ar: {
     shop: 'تسوّق', occasions: 'المناسبات', help: 'المساعدة', bloom: 'ابقَ في أجواء الزهور',
-    delivery: 'توصيل في اليوم نفسه في دبي. مجاني في JVC، و٣٠ درهماً في بقية دبي، و٤٠ درهماً في بقية الإمارات.',
+    delivery: 'توصيل في اليوم نفسه في دبي. مجاني في JVC، و٣٠ درهماً في بقية دبي، و٥٠ درهماً في بقية الإمارات.',
     bloomLine: 'كن أول من يعرف عن المجموعات والعروض الجديدة.',
     whatsapp: 'واتساب', language: 'English', top: 'العودة للأعلى',
     notice: 'الأسعار بالدرهم الإماراتي. يُؤكَّد التوصيل وأي ضرائب عند الدفع.',

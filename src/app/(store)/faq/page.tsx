@@ -30,7 +30,7 @@ export default function FaqPage() {
           },
           {
             title: { en: 'Where do you deliver?', ar: 'إلى أين توصلون؟' },
-            paragraphs: [{ en: 'We deliver across the UAE, with same-day delivery in Dubai. Delivery is free in JVC, AED 30 elsewhere in Dubai and AED 40 elsewhere in the UAE. Enter the full recipient delivery address at checkout, including building, apartment and area.', ar: 'نوصل في جميع الإمارات، مع توصيل في اليوم نفسه في دبي. التوصيل مجاني في JVC، و٣٠ درهماً في بقية دبي، و٤٠ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى والشقة والمنطقة.' }],
+            paragraphs: [{ en: 'We deliver across the UAE, with same-day delivery in Dubai. Delivery is free in JVC, AED 30 elsewhere in Dubai and AED 50 elsewhere in the UAE. Enter the full recipient delivery address at checkout, including building, apartment and area.', ar: 'نوصل في جميع الإمارات، مع توصيل في اليوم نفسه في دبي. التوصيل مجاني في JVC، و٣٠ درهماً في بقية دبي، و٥٠ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى والشقة والمنطقة.' }],
           },
           {
             title: { en: 'Will my flowers look exactly like the photograph?', ar: 'هل ستبدو زهوري تماماً كما في الصورة؟' },

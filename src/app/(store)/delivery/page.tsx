@@ -23,7 +23,7 @@ export default function DeliveryPage() {
         {
           title: { en: 'Where we deliver', ar: 'أين نوصل' },
           paragraphs: [
-            { en: 'We deliver across the UAE, with same-day delivery in Dubai. Delivery is free in JVC, AED 30 elsewhere in Dubai and AED 40 elsewhere in the UAE. Enter the full recipient address at checkout, including building or villa, apartment number and area. JVC eligibility is based on that delivery address.', ar: 'نوصل في جميع الإمارات، مع توصيل في اليوم نفسه في دبي. التوصيل مجاني في JVC، و٣٠ درهماً في بقية دبي، و٤٠ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى أو الفيلا ورقم الشقة والمنطقة. تعتمد أهلية التوصيل المجاني على عنوان التوصيل.' },
+            { en: 'We deliver across the UAE, with same-day delivery in Dubai. Delivery is free in JVC, AED 30 elsewhere in Dubai and AED 50 elsewhere in the UAE. Enter the full recipient address at checkout, including building or villa, apartment number and area. JVC eligibility is based on that delivery address.', ar: 'نوصل في جميع الإمارات، مع توصيل في اليوم نفسه في دبي. التوصيل مجاني في JVC، و٣٠ درهماً في بقية دبي، و٥٠ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى أو الفيلا ورقم الشقة والمنطقة. تعتمد أهلية التوصيل المجاني على عنوان التوصيل.' },
           ],
         },
         {

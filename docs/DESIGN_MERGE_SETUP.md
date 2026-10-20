@@ -31,7 +31,7 @@ Money bouquet cash value must be collected separately from the online arrangemen
 
 ## Delivery
 
-Free JVC eligibility is based on the full recipient delivery address, including building/villa, apartment and area. Do not substitute a radius for JVC without confirmation. The website copy is prepared; Shopify checkout shipping has not been changed. Verify an actual JVC address is free, Marina is AED 30 and another emirate is AED 40 before release.
+Free JVC eligibility is based on the full recipient delivery address, including building/villa, apartment and area. Do not substitute a radius for JVC without confirmation. The website copy is prepared; Shopify checkout shipping has not been changed. Verify an actual JVC address is free, Marina is AED 30 and another emirate is AED 50 before release.
 
 Approved picker rules: 9am–noon, noon–3pm, 3–6pm, 6–9pm; three-hour lead; daily; up to 60 days ahead. Public same-day promise is Dubai only. Other UAE delivery is described separately.
 
