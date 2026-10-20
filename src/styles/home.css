@@ -4,7 +4,12 @@
 
 .hero-promises { width: min(calc(100% - 2 * var(--gutter)), 1320px); margin: 30px auto 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .hero-promises li { display: flex; align-items: center; gap: 12px; font-size: 13px; line-height: 1.4; }
-@media (max-width: 680px) { .hero-promises { grid-template-columns: repeat(2, 1fr); gap: 22px 16px; } .hero-promises li { font-size: 11px; } }
+/* Phones keep all four in one row, symbol above text. */
+@media (max-width: 680px) {
+  .hero-promises { gap: 8px; }
+  .hero-promises li { flex-direction: column; justify-content: flex-start; gap: 6px; font-size: 10.5px; line-height: 1.3; text-align: center; text-wrap: balance; }
+  .hero-promises svg { width: 24px; height: 24px; }
+}
 
 /* ---------- Ways to shop ---------- */
 .hs { width: min(calc(100% - 2 * var(--gutter)), 1320px); margin: clamp(52px, 7vw, 100px) auto 0; scroll-margin-top: calc(var(--chrome) + 12px); }

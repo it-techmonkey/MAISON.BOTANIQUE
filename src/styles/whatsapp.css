@@ -28,3 +28,5 @@ body.has-sticky-buy .wa-float { bottom: calc(108px + env(safe-area-inset-bottom)
 
 .wa-float { bottom: max(calc(24px + env(safe-area-inset-bottom)), var(--wa-buy-offset, 0px)); }
 @media (max-width: 640px) { .wa-float { bottom: max(calc(72px + env(safe-area-inset-bottom)), var(--wa-buy-offset, 0px)); } }
+
+@media (max-width: 640px) { .wa-inline { min-height: 44px; } }
