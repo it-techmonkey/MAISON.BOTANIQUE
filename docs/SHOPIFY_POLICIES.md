@@ -6,8 +6,8 @@ Contact email everywhere: **hello@maisonbotaniqueflowers.com**.
 
 ## Before you paste
 
-- **Business address.** Shopify (Settings → General) holds a Ras Al Khaimah address. The website says Dubai. Use the same place in both, then add it to the Contact information policy.
-- **Phone number.** None is on the website. Shopify's reviewers look for one; add it to Contact information and to `phone` in `src/lib/site.ts` so the contact page shows it.
+- **Business address.** By the owner's decision no business address is written on the website or in these policies. Shopify (Settings → General) still holds one, which Shopify may show itself.
+- **Phone number.** +971 54 557 8803 (also `phone` in `src/lib/site.ts`, shown on the contact page).
 - **Refund timing.** The text says a customer must send a request within 30 minutes of delivery. It makes no promise about how many days a refund takes, only that the bank may take several working days to show it. Add a number if the owner wants one.
 
 ## Refund policy
@@ -48,4 +48,4 @@ If no one is available to receive the flowers, we will contact you to arrange th
 
 Maison Botanique
 Email: hello@maisonbotaniqueflowers.com
-Phone and business address: add once confirmed (see "Before you paste").
+Phone: +971 54 557 8803
