@@ -419,3 +419,10 @@ main { display: block; min-height: 60vh; }
 .money--after .dirham { margin-inline-end: 0; margin-inline-start: .3em; }
 /* Existing rules such as ".purchase__price span" must not restyle the price pieces. */
 .money .money__n, .purchase__price .money, .purchase__price .money .money__n { font: inherit; color: inherit; letter-spacing: inherit; }
+
+/* Struck-through old prices. The line is drawn as a pseudo-element because text-decoration
+   does not pass through the inline-flex price (Money.tsx) and never crosses the Dirham sign. */
+.mbc-price s, .tt-product__price s, .qa-size-price s, .purchase__price s { position: relative; display: inline-block; text-decoration: none; }
+.mbc-price s::after, .tt-product__price s::after, .qa-size-price s::after, .purchase__price s::after {
+  content: ''; position: absolute; inset-inline: -2px; top: 54%; border-top: 1.5px solid currentColor; pointer-events: none;
+}
