@@ -70,7 +70,8 @@ export const GROUPS: ShopGroup[] = [
   { id: 'bouquets', en: 'Bouquets', ar: 'باقات', kind: 'format', test: (p) => p.format === 'bouquet' },
   { id: 'boxes', en: 'Boxes & Baskets', ar: 'صناديق وسلال', kind: 'format', test: (p) => p.format === 'box' },
   { id: 'vases', en: 'Vases', ar: 'مزهريات', kind: 'format', test: (p) => p.format === 'vase' },
-  { id: 'gifts', en: 'Gifts & Add-ons', ar: 'هدايا وإضافات', kind: 'format', test: (p) => p.format === 'gift' },
+  // Makeup & beauty pieces are gifts too, but they live in their own tab, so they are left out here.
+  { id: 'gifts', en: 'Gifts & Add-ons', ar: 'هدايا وإضافات', kind: 'format', test: (p) => p.format === 'gift' && p.room !== 'beauty' },
   { id: 'beauty', en: 'Makeup & Beauty', ar: 'الجمال والمكياج', kind: 'format', test: (p) => p.room === 'beauty' },
   { id: 'money', en: 'Money Bouquets', ar: 'باقات النقود', kind: 'format', test: (p) => p.room === 'money' },
   // curated

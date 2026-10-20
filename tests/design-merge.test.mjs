@@ -12,7 +12,7 @@ const { parseEnquiry } = await import('../src/lib/enquiry.ts');
 const { checkEnquiryLimit, readEnquiryBody } = await import('../src/lib/enquiry-limit.ts');
 const { openOfferSession, sealOffer } = await import('../src/lib/offer-session.ts');
 const { getWelcomeCode, WelcomeNotEligible } = await import('../src/lib/shopify/welcome-offer.ts');
-const { BUDGET_BANDS, budgetOf, liveCatalogGroups } = await import('../src/lib/catalog-groups.ts');
+const { BUDGET_BANDS, GROUPS, budgetOf, liveCatalogGroups } = await import('../src/lib/catalog-groups.ts');
 const { browserCatalog, hydrateBrowserCatalog } = await import('../src/lib/browser-catalog.ts');
 const { upsertCustomer } = await import('../src/lib/shopify/forms.ts');
 
@@ -141,4 +141,16 @@ test('sale tag reads the saving from the two prices shown', async () => {
   assert.equal(discountPercent(300, 250), 0);
   assert.equal(percentLabel(10, false), '10%');
   assert.equal(percentLabel(25, true), '٢٥٪');
+});
+
+test('makeup and beauty pieces sit in Makeup & Beauty only, not also in Gifts & Add-ons', () => {
+  const group = (id) => GROUPS.find((item) => item.id === id);
+  const makeup = { room: 'beauty', format: 'gift' };
+  const teddy = { room: 'gifts', format: 'gift' };
+  const hamper = { room: 'hampers', format: 'gift' };
+  assert.equal(group('beauty').test(makeup), true);
+  assert.equal(group('gifts').test(makeup), false);
+  assert.equal(group('gifts').test(teddy), true);
+  assert.equal(group('gifts').test(hamper), true);
+  assert.equal(group('beauty').test(teddy), false);
 });
