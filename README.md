@@ -47,7 +47,7 @@ it does not verify live Shopify. Building can fetch Google Fonts.
 
 [Workspace setup](docs/WORKSPACE.md) connects outputs, supplier references, jobs and keys without duplicating
 source or calling APIs. Product generation still needs owner approval for spend. Campaign configurations
-and Diwali tooling are preserved in the canonical pipeline.
+are in the canonical pipeline. The Bikanervala/Diwali partner proposal files stay on the owner's machine only (not in this public repo).
 
 `shopify:catalog` can overwrite live fields/prices, publish products, alter collections and archive products
 absent from its inputs. It is a seeding operation, **not a routine refresh or backup**. Do not run it during

@@ -18,3 +18,8 @@ diwali/*.log
 /jobs
 /diwali/refs
 /diwali/jobs
+# Bikanervala partner proposal: kept on this machine only, not published in this public repository.
+/assets/bikanervala-download/
+/assets/collab-*.png
+/diwali/place_logos.py
+/diwali/run_diwali.py
