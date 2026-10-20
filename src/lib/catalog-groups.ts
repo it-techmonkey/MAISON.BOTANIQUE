@@ -55,6 +55,9 @@ export interface ShopGroup {
   test: (product: Product) => boolean;
 }
 
+/** Orchid plants and forever (preserved) roses: tagged as gifts in Shopify, but they belong with plants, not gift add-ons. */
+export const isPlant = (product: Product) => /\b(orchid|phalaenopsis)\b.*\bplant\b|forever rose/i.test(product.name);
+
 export const GROUPS: ShopGroup[] = [
   { id: 'all', en: 'All', ar: 'الكل', kind: 'all', test: () => true },
   // by flower
@@ -70,7 +73,9 @@ export const GROUPS: ShopGroup[] = [
   { id: 'bouquets', en: 'Bouquets', ar: 'باقات', kind: 'format', test: (p) => p.format === 'bouquet' },
   { id: 'boxes', en: 'Boxes & Baskets', ar: 'صناديق وسلال', kind: 'format', test: (p) => p.format === 'box' },
   { id: 'vases', en: 'Vases', ar: 'مزهريات', kind: 'format', test: (p) => p.format === 'vase' },
-  { id: 'gifts', en: 'Gifts & Add-ons', ar: 'هدايا وإضافات', kind: 'format', test: (p) => p.format === 'gift' },
+  // Makeup & beauty pieces and plants are tagged as gifts, but each has its own tab, so they are left out here.
+  { id: 'gifts', en: 'Gifts & Add-ons', ar: 'هدايا وإضافات', kind: 'format', test: (p) => p.format === 'gift' && p.room !== 'beauty' && !isPlant(p) },
+  { id: 'plants', en: 'Plants & Preserved', ar: 'نباتات وزهور محفوظة', kind: 'format', test: isPlant },
   { id: 'beauty', en: 'Makeup & Beauty', ar: 'الجمال والمكياج', kind: 'format', test: (p) => p.room === 'beauty' },
   { id: 'money', en: 'Money Bouquets', ar: 'باقات النقود', kind: 'format', test: (p) => p.room === 'money' },
   // curated
@@ -82,7 +87,7 @@ export const GROUPS: ShopGroup[] = [
 /** Groups with fewer than this many pieces stay hidden until the catalog fills them. */
 const MIN_GROUP_SIZE = 6;
 /** The tabs above the grid: the main ways in, in this order. */
-export const TAB_IDS = ['all', 'roses', 'bouquets', 'boxes', 'vases', 'gifts', 'beauty', 'money', 'grand-gestures', 'under-300'];
+export const TAB_IDS = ['all', 'roses', 'bouquets', 'boxes', 'vases', 'plants', 'gifts', 'beauty', 'money', 'grand-gestures', 'under-300'];
 /** Old links (#grand, product-type rooms) still land somewhere sensible. */
 export const GROUP_ALIASES: Record<string, string> = { grand: 'grand-gestures', hampers: 'gifts' };
 
