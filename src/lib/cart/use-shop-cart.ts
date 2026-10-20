@@ -3,14 +3,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { attachCartToCustomer, clearAttachedCart, getAccountStatus, writeCartCookie } from '@/lib/account/client';
 import {
-  DELIVERY_DATE_KEY, DELIVERY_TIME_KEY, findSlot, scheduleAttributes, scheduleFromAttributes,
-  type DeliverySchedule,
+  DELIVERY_DATE_KEY, DELIVERY_TIME_KEY, checkSchedule, deliveryNote, findSlot, scheduleAttributes, scheduleFromAttributes,
+  type DeliverySchedule, type ScheduleProblem,
 } from '@/lib/delivery';
 import { isValidDate } from '@/lib/format';
 import { isShopifyConfigured } from '@/lib/shopify/config';
 import {
   ANONYMOUS_ATTRIBUTE, CUSTOM_ATTRIBUTE, GIFT_NOTE_ATTRIBUTE, SIGNED_ATTRIBUTE,
-  addCartLines, createCart, fetchCart, getCheckoutUrl, removeCartLines, updateCartAttributes, updateCartLines,
+  addCartLines, createCart, fetchCart, getCheckoutUrl, removeCartLines, updateCartAttributes, updateCartLines, updateCartNote,
   type CartAttribute, type CartLineInput, type ShopifyCart,
 } from '@/lib/shopify/cart';
 import { createCartAnalyticsStore, getShopifyAnalytics, startCartAnalytics } from '@/lib/analytics/shopify';
@@ -82,6 +82,14 @@ function trackQuantityChange(line: CartLineView | undefined, nextQuantity: numbe
     trackProductAdded(line.product, line.size, {
       quantity: delta, cartId, hasGiftNote: Boolean(line.note), hasDeliveryDate: hasDelivery, source: 'bag',
     });
+  }
+}
+
+/** Checkout needs a delivery date and time that can still be booked. */
+export class DeliveryRequiredError extends Error {
+  constructor(readonly problem: ScheduleProblem) {
+    super(`A delivery date and time are required (${problem})`);
+    this.name = 'DeliveryRequiredError';
   }
 }
 
@@ -265,13 +273,19 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     writeStoredDelivery(schedule);
     const current = cartRef.current;
     if (!current) return;
+    let latest = current;
     const existing = scheduleFromAttributes(current.attributes);
-    if (existing?.date === schedule.date && existing.slotId === schedule.slotId) return;
-    commit(await updateCartAttributes(
-      current.id,
-      mergeAttributes(current.attributes, scheduleAttributes(schedule), [DELIVERY_DATE_KEY, DELIVERY_TIME_KEY]),
-      localeRef.current,
-    ));
+    if (!(existing?.date === schedule.date && existing.slotId === schedule.slotId)) {
+      latest = await updateCartAttributes(
+        current.id,
+        mergeAttributes(current.attributes, scheduleAttributes(schedule), [DELIVERY_DATE_KEY, DELIVERY_TIME_KEY]),
+        localeRef.current,
+      );
+      commit(latest);
+    }
+    // The readable copy becomes the order note in Shopify.
+    const note = deliveryNote(schedule);
+    if (note && latest.note !== note) commit(await updateCartNote(latest.id, note, localeRef.current));
   }, [commit]);
 
   const setDelivery = useCallback(async (schedule: DeliverySchedule) => {
@@ -298,11 +312,11 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
       try {
         next = current
           ? await addCartLines(current.id, lineInput, localeRef.current)
-          : await createCart(lineInput, localeRef.current, newCartAttributes());
+          : await createCart(lineInput, localeRef.current, newCartAttributes(), schedule ? deliveryNote(schedule) : '');
       } catch (cause) {
         // The saved cart may have been checked out in another tab.
         if (!current) throw cause;
-        next = await createCart(lineInput, localeRef.current, newCartAttributes());
+        next = await createCart(lineInput, localeRef.current, newCartAttributes(), schedule ? deliveryNote(schedule) : '');
       }
       commit(next);
       if (options.delivery) await applyDelivery(options.delivery);
@@ -331,18 +345,34 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
   const checkoutUrl = useCallback(async (checkoutLocale: Locale) => {
     const current = cartRef.current;
     if (!current) return null;
+    // No checkout URL is handed out without a delivery date and time that can
+    // still be booked, whichever screen asks for it.
+    const schedule = deliveryRef.current;
+    const problem = checkSchedule(schedule);
+    if (problem || !schedule) throw new DeliveryRequiredError(problem ?? 'missing_date');
     // Stamp the delivery schedule and the current PostHog visitor and session
     // on the cart. Analytics never blocks checkout; the schedule does.
-    const schedule = deliveryRef.current;
-    const updates = [...(schedule ? scheduleAttributes(schedule) : []), ...analyticsCartAttributes()];
+    let latest = current;
+    const updates = [...scheduleAttributes(schedule), ...analyticsCartAttributes()];
     const needsUpdate = updates.some(({ key, value }) => current.attributes[key] !== value);
     if (needsUpdate) {
       try {
-        commit(await updateCartAttributes(current.id, mergeAttributes(current.attributes, updates), checkoutLocale));
+        latest = await updateCartAttributes(current.id, mergeAttributes(current.attributes, updates), checkoutLocale);
+        commit(latest);
       } catch (cause) {
         const onCart = scheduleFromAttributes(current.attributes);
-        if (schedule && (onCart?.date !== schedule.date || onCart.slotId !== schedule.slotId)) throw cause;
+        if (onCart?.date !== schedule.date || onCart.slotId !== schedule.slotId) throw cause;
         console.warn('[cart] analytics attributes', cause);
+      }
+    }
+    // The order note carries the same schedule in words. The attributes are the
+    // record, so a failed note never blocks checkout.
+    const note = deliveryNote(schedule);
+    if (latest.note !== note) {
+      try {
+        commit(await updateCartNote(latest.id, note, checkoutLocale));
+      } catch (cause) {
+        console.warn('[cart] delivery note', cause);
       }
     }
     const url = new URL(await getCheckoutUrl(current.id, checkoutLocale));

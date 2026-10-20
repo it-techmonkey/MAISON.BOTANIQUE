@@ -5,7 +5,7 @@ import {
   trackCartViewed, trackCheckoutFailed, trackCheckoutStarted, trackDeliveryScheduled, trackGiftOptionAdded,
   trackProductSizeSelected, trackProductViewed,
 } from '@/lib/analytics/track';
-import type { CartLineView } from '@/lib/cart/use-shop-cart';
+import { DeliveryRequiredError, type CartLineView } from '@/lib/cart/use-shop-cart';
 import {
   addDays, bookableDays, checkSchedule, dateOpen, deliverySummary, lastBookableDate, windowLabel, windowsFor,
   type DeliverySchedule, type ScheduleProblem,
@@ -370,7 +370,7 @@ function DeliveryPicker({ t, value, onChange, problem }: {
       </div>
       {showOther && now && <input type="date" min={today} max={lastBookableDate(now)} value={other ? date : ''}
         onChange={(event) => (event.target.value ? chooseDate(event.target.value) : onChange({}))} aria-label={t.date} />}
-      {closed && <p className="ll-cart-date-alert" role="alert">{t.day_closed}</p>}
+      {closed && <p className="ll-cart-date-alert" role="alert">{date < today ? t.date_passed : t.day_closed}</p>}
       {date && !closed && <div className="dl-windows" role="radiogroup" aria-label={t.windowLegend}>
         {windows.map((slot) => (
           <label key={slot.id} className={`dl-window${value.slotId === slot.id ? ' is-selected' : ''}${slot.available ? '' : ' is-off'}`}>
@@ -408,6 +408,8 @@ function Bag() {
   useEffect(() => { if (cart.delivery) setDraft(cart.delivery); }, [cart.delivery]);
   const schedule = cart.delivery ?? draft;
   const summary = cart.delivery ? deliverySummary(cart.delivery, ar) : '';
+  // Checkout stays closed until a delivery day and a time window that can still be booked are chosen.
+  const blocked = checkSchedule(schedule, now ?? undefined);
   const helpLink = whatsappLink(whatsappMessage.general(ar));
   const orderLink = lines.length ? whatsappLink(whatsappMessage.bag(ar, bagSummary(lines, ar), summary)) : null;
   const close = () => { cart.clearError(); setCartOpen(false); };
@@ -441,6 +443,7 @@ function Bag() {
     if (found) {
       trackCheckoutFailed(found, cart.shopifyCart?.id ?? null, subtotal.amount);
       setProblem(found);
+      document.querySelector<HTMLElement>('.dl-picker')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
       return;
     }
     setPending(true);
@@ -450,9 +453,14 @@ function Bag() {
       if (!url) { setReview(true); setPending(false); return; }
       trackCheckoutStarted(lines, subtotal.amount, subtotal.currencyCode, cart.shopifyCart?.id ?? null, locale, cart.delivery);
       window.location.assign(url);
-    } catch {
-      trackCheckoutFailed('checkout_url_error', cart.shopifyCart?.id ?? null, subtotal.amount);
-      setError(t.error);
+    } catch (cause) {
+      if (cause instanceof DeliveryRequiredError) {
+        trackCheckoutFailed(cause.problem, cart.shopifyCart?.id ?? null, subtotal.amount);
+        setProblem(cause.problem);
+      } else {
+        trackCheckoutFailed('checkout_url_error', cart.shopifyCart?.id ?? null, subtotal.amount);
+        setError(t.error);
+      }
       setPending(false);
     }
   }
@@ -516,7 +524,9 @@ function Bag() {
             <div><span>{t.delivery}</span><span>{t.deliveryLater}</span></div>
           </div>
           <p className="ll-cart-offer">{t.offerLine}</p>
-          <button className="ll-shop-primary" type="button" onClick={handleCheckout} disabled={pending || cart.busy}>
+          {blocked && <p className="ll-cart-date-alert" role="status">{t[blocked]}</p>}
+          <button className={`ll-shop-primary${blocked ? ' is-blocked' : ''}`} type="button" onClick={handleCheckout}
+            disabled={pending || cart.busy} aria-disabled={blocked ? true : undefined}>
             <span>{pending ? t.pending : cart.busy ? t.updating : live ? t.secureCheckout : t.previewCheckout}</span><ArrowIcon />
           </button>
           {(error || cart.error) && <p className="ll-shop-error" role="alert">{error || t.cartError}</p>}
