@@ -22,7 +22,7 @@ export default function DeliveryPage() {
         {
           title: { en: 'Where we deliver', ar: 'أين نوصل' },
           paragraphs: [
-            { en: 'We deliver same day across the UAE. Delivery is AED 30 in Dubai and AED 40 elsewhere in the UAE. Enter the full recipient address at checkout, including building or villa, apartment number and area.', ar: 'نوصل في اليوم نفسه في جميع أنحاء الإمارات. التوصيل ٣٠ درهماً في دبي و٤٠ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى أو الفيلا ورقم الشقة والمنطقة.' },
+            { en: 'We deliver same day across the UAE. Delivery is AED 30 in Dubai and AED 50 elsewhere in the UAE. Enter the full recipient address at checkout, including building or villa, apartment number and area.', ar: 'نوصل في اليوم نفسه في جميع أنحاء الإمارات. التوصيل ٣٠ درهماً في دبي و٥٠ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى أو الفيلا ورقم الشقة والمنطقة.' },
           ],
         },
         {

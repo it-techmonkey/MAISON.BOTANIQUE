@@ -17,6 +17,13 @@ const clamp = (value: number, min: number, max: number) => Math.min(max, Math.ma
 /** The design's resting pose for the arrangement and its shadow. */
 const REST_POSE = { xPercent: 15, yPercent: 9, scale: 0.88, rotation: -2 };
 const SHADOW_REST = { xPercent: 8, scale: 0.84, opacity: 0.32 };
+/** Phones: the arrangement sits centred within the page margins, not pushed right. */
+const MOBILE = '(max-width: 680px)';
+const MOBILE_REST_POSE = { ...REST_POSE, xPercent: 0, yPercent: 6, scale: 0.9 };
+const MOBILE_SHADOW_REST = { ...SHADOW_REST, xPercent: 0 };
+const isMobile = () => typeof window !== 'undefined' && window.matchMedia(MOBILE).matches;
+const restPose = () => (isMobile() ? MOBILE_REST_POSE : REST_POSE);
+const shadowRest = () => (isMobile() ? MOBILE_SHADOW_REST : SHADOW_REST);
 
 /** Product names longer than this use the smaller two-line title. */
 const LONG_TITLE_CHARACTERS = 22;
@@ -71,17 +78,22 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
   }, [count]);
 
   // The resting pose matches the storefront design: the arrangement sits a
-  // little smaller, lower right and tilted (also set in turntable.css, so it
-  // holds before hydration). GSAP takes over that pose for the transitions.
+  // little smaller, lower right and tilted (centred on phones; also set in
+  // turntable.css, so it holds before hydration). GSAP takes over that pose
+  // for the transitions, and resets it when the screen crosses the phone width.
   useGSAP(() => {
     const section = sectionRef.current;
     if (!section) return;
     const images = gsap.utils.toArray<HTMLElement>('.tt-artwork__image', section);
-    // x/y reset: GSAP would otherwise read the CSS translate as a pixel
-    // offset and add the percentage offset on top of it.
-    gsap.set(images, { x: 0, y: 0, ...REST_POSE });
     const shadow = section.querySelector('.tt-artwork__ground');
-    if (shadow) gsap.set(shadow, { x: 0, ...SHADOW_REST });
+    const media = gsap.matchMedia();
+    media.add({ mobile: MOBILE, wide: '(min-width: 681px)' }, () => {
+      // x/y reset: GSAP would otherwise read the CSS translate as a pixel
+      // offset and add the percentage offset on top of it.
+      gsap.set(images, { x: 0, y: 0, ...restPose() });
+      if (shadow) gsap.set(shadow, { x: 0, ...shadowRest() });
+    });
+    return () => media.revert();
   }, { scope: sectionRef, dependencies: [count] });
 
   const goTo = useCallback((next: number) => {
@@ -105,17 +117,18 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
     // scrolling quickly through the hero).
     transitionRef.current?.kill();
     const direction = bounded > from ? 1 : -1;
+    const pose = restPose();
     const timeline = gsap.timeline({ defaults: { ease: 'power2.inOut', overwrite: 'auto' } });
     images.forEach((image) => {
       if (image !== incoming && Number(gsap.getProperty(image, 'opacity')) > 0) {
-        timeline.to(image, { opacity: 0, xPercent: 15 - 26 * direction, yPercent: 3, scale: 0.94, rotation: -2 - 1.5 * direction, duration: 0.7 }, 0);
+        timeline.to(image, { opacity: 0, xPercent: pose.xPercent - 26 * direction, yPercent: 3, scale: 0.94, rotation: -2 - 1.5 * direction, duration: 0.7 }, 0);
       }
     });
     if (Number(gsap.getProperty(incoming, 'opacity')) < 0.05) {
-      gsap.set(incoming, { opacity: 0, xPercent: 22 * direction + 15, yPercent: 12, scale: 0.84, rotation: 1.5 * direction });
+      gsap.set(incoming, { opacity: 0, xPercent: 22 * direction + pose.xPercent, yPercent: 12, scale: 0.84, rotation: 1.5 * direction });
     }
-    timeline.to(incoming, { opacity: 1, ...REST_POSE, duration: 0.85, ease: 'power3.out' }, 0.1);
-    if (shadow) timeline.to(shadow, { ...SHADOW_REST, duration: 0.85, ease: 'power3.out' }, 0.1);
+    timeline.to(incoming, { opacity: 1, ...pose, duration: 0.85, ease: 'power3.out' }, 0.1);
+    if (shadow) timeline.to(shadow, { ...shadowRest(), duration: 0.85, ease: 'power3.out' }, 0.1);
     transitionRef.current = timeline;
   }, [commitActive, count, looks, reducedMotion]);
 
