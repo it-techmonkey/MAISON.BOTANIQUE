@@ -1,3 +1,5 @@
+> Recorded catalogue/import inputs, not a live Shopify mirror. Read [data ownership and write behavior](../../docs/DATA_FLOW.md) before using any command below. Earlier counts and DRAFT instructions are historical.
+
 # Maison Botanique – Shopify product export (DRAFT)
 
 **Current state, 18 Oct 2026:** 318 products, 822 variant SKUs, 321 images (every product has one). For the developer push, use

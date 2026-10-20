@@ -8,3 +8,18 @@ _test-artifacts-safe-to-delete/
 .DS_Store
 .env
 api-keys.txt
+diwali/refs/
+diwali/jobs/
+diwali/*.log
+# Working-data symlinks (directory-only patterns above do not match symlinks).
+/out
+/qa
+/refs
+/jobs
+/diwali/refs
+/diwali/jobs
+# Bikanervala partner proposal: kept on this machine only, not published in this public repository.
+/assets/bikanervala-download/
+/assets/collab-*.png
+/diwali/place_logos.py
+/diwali/run_diwali.py
