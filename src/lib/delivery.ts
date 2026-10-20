@@ -1,7 +1,8 @@
 // Delivery days and time windows, always in Dubai time. One date and one
 // window apply to the whole order: Shopify checkout takes a single address.
-// The schedule is saved on the Shopify cart as attributes, so it appears on
-// the order under "Additional details" and reaches the order webhook.
+// The schedule is saved on the Shopify cart as attributes and as the cart
+// note, so on the order it appears under "Additional details", at the top as
+// the order Note, and in the order webhook.
 //
 // Owner approved 19 October 2026: daily windows, three-hour lead and 60-day horizon.
 
@@ -143,6 +144,16 @@ export function scheduleAttributes(schedule: DeliverySchedule) {
     { key: DELIVERY_DATE_KEY, value: schedule.date },
     { key: DELIVERY_TIME_KEY, value: windowLabel(schedule.slotId, false) },
   ] : [];
+}
+
+/**
+ * The order note: the same schedule in words, so it shows at the top of the
+ * order in Shopify (and on packing slips) without opening "Additional details".
+ */
+export function deliveryNote(schedule: DeliverySchedule) {
+  return findSlot(schedule.slotId)
+    ? `Delivery: ${formatDeliveryDate(schedule.date, false)} (${schedule.date}) · ${windowLabel(schedule.slotId, false)} Dubai time`
+    : '';
 }
 
 /** Reads a schedule back from cart attributes. */

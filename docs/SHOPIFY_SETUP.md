@@ -217,7 +217,7 @@ Open http://localhost:3000. The products should come from Shopify, and the "Samp
    - Choose the abandoned checkout email timing.
 5. **Gift note, delivery date and time:**
    - The gift note is a property on each cart line, **Gift message**, shown under the item on the order.
-   - The delivery day and time window are chosen once per order (in the bag, required before checkout) and saved on the cart as **Delivery date** (`YYYY-MM-DD`) and **Delivery time** (e.g. `12:00 PM – 3:00 PM`). They appear on the order under **Additional details**.
+   - The delivery day and time window are chosen once per order (in the bag, required before checkout) and saved on the cart as **Delivery date** (`YYYY-MM-DD`) and **Delivery time** (e.g. `12:00 PM – 3:00 PM`). The same schedule is also written in words as the cart note (for example `Delivery: Tue 21 Oct (2026-10-21) · 9am – 12pm Dubai time`), so it shows as the order **Note** at the top of the order and on the packing slip, as well as under **Additional details**. The bag's checkout button stays closed until a day and a time window that can still be booked are chosen, and no checkout link is created without them. Shopify's hosted checkout cannot be locked from the website alone (that needs a Shopify Plus checkout validation), so an order that arrives without a schedule should be queried with the customer.
    - Windows: 9am–12pm, 12–3pm, 3–6pm and 6–9pm, Dubai time; today's windows close 3 hours before they start; bookings up to 60 days ahead; closed dates and weekdays can be set. Change them in `DELIVERY_RULES` in `src/lib/delivery.ts`.
    - The delivery day and time are chosen in the bag; the gift card text, signature (or "Anonymous") and any personalisation travel on each line as **Gift message**, **Card signed**, **Anonymous** and **Personalisation**.
    - Open **Settings → Notifications → Order confirmation** and the packing slip (*Shipping and delivery → Packing slips*) and make sure they print line item properties and order attributes (`{% for attribute in attributes %}`). Add them if they don't.
@@ -319,7 +319,7 @@ The site is set up for `maisonbotaniqueflowers.com`. If the final domain is diff
 - [ ] **Web analytics → Web analytics domains** (and **Session replay → Authorized domains**, if set): replace the old domain.
 
 **Content**
-- [ ] `src/lib/site.ts`: `email` (`hello@…`), if the mailbox moves to the new domain, and the `SITE_URL` fallback.
+- [ ] `src/lib/site.ts`: `email` (`maisonbotaniqueflowers@gmail.com`), if the mailbox moves to the new domain, and the `SITE_URL` fallback.
 - [ ] The privacy and terms pages read the email from `src/lib/site.ts`; review their wording.
 - [ ] Docs only: `README.md`, `.env.example`, this guide and `docs/shopify-checkout-pixel.js` comments.
 
@@ -354,7 +354,7 @@ Use the development store, or the production store with test payments turned on:
 - [ ] Reload the page: the bag is still there. Open the site in another browser: the bag is empty (carts belong to a browser).
 - [ ] Checkout totals, VAT, delivery fees (AED 30 Dubai, AED 40 elsewhere in the UAE) and the `BLOOM25` discount are correct. Arabic checkout opens in Arabic.
 - [ ] Delivery: the product page and the bag require a day and a window; today's windows that start within 2 hours are unavailable; checkout is blocked until one is chosen.
-- [ ] Place a test order. In the admin: the order is attributed to **Headless**, *Gift message* appears on the item, and *Delivery date* and *Delivery time* appear under Additional details, in the confirmation email and on the packing slip.
+- [ ] Place a test order. In the admin: the order is attributed to **Headless**, *Gift message* appears on the item, and *Delivery date* and *Delivery time* appear under Additional details and the delivery is in the order Note, in the confirmation email and on the packing slip.
 - [ ] Customer accounts: Account → Sign in sends a code by email, returns to `/account` showing orders and addresses, checkout opens signed in, and Sign out returns to the home page.
 - [ ] WhatsApp button opens a chat with the right number (and the product's link on product pages).
 - [ ] Visit `<store>.myshopify.com/products/<handle>`: it redirects to `/shop/<handle>` on the website.
@@ -387,7 +387,7 @@ The Storefront API has no contact-form or (stable) newsletter mutation, so the s
 5. Send a test message from `/contact`. The "Website enquiry" metaobject definition is created automatically on the first message.
 6. **Be told about new messages:** in **Shopify Flow**, create a workflow *Customer tags added* → condition *tags include `website-enquiry` or `website-contact`* → **Send internal email** to the team.
 
-If the token is missing or Shopify cannot be reached, the forms never lose a message: they show a prefilled email to `hello@maisonbotaniqueflowers.com` instead (`src/lib/site.ts`).
+If the token is missing or Shopify cannot be reached, the forms never lose a message: they show a prefilled email to `maisonbotaniqueflowers@gmail.com` instead (`src/lib/site.ts`).
 
 ## 14. Customer accounts
 
@@ -434,7 +434,7 @@ Same-day delivery is offered across the whole UAE, for **AED 30 in Dubai** and *
 
 1. **Settings → Shipping and delivery → General shipping rates** (or the delivery profile for these products).
 2. A **Dubai** zone with a flat rate of **AED 30**, and a **rest of the UAE** zone with a flat rate of **AED 40**. Set them up as shipping zones by emirate, or as local delivery zones if the team delivers itself.
-3. No free-shipping threshold or JVC exemption.
+3. No free-shipping threshold and no free-delivery rate or discount for any area or building: every order pays AED 30 or AED 40. Check that no free-shipping rate or automatic discount exists in Shopify.
 4. Test an address in Dubai and one in Abu Dhabi at checkout: the totals should add AED 30 and AED 40.
 
 ## Troubleshooting
