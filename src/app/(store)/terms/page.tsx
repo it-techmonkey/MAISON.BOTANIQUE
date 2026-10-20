@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <InfoPage
-      draft
       hero={{
         eyebrow: { en: 'Terms', ar: 'الشروط' },
         title: { en: 'The fine print, kept simple.', ar: 'التفاصيل، ببساطة.' },
