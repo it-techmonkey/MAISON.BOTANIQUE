@@ -130,3 +130,15 @@ test('browser projection retains shopping and search facts and reduces repeated 
   assert.equal(restored.description, '');
   assert.equal(full.products[0].description, product.description);
 });
+
+test('sale tag reads the saving from the two prices shown', async () => {
+  const { discountPercent, percentLabel } = await import('../src/lib/discount.ts');
+  assert.equal(discountPercent(235, 261), 10);
+  assert.equal(discountPercent(249, 277), 10);
+  assert.equal(discountPercent(999, 1110), 10);
+  assert.equal(discountPercent(235, null), 0);
+  assert.equal(discountPercent(235, 235), 0);
+  assert.equal(discountPercent(300, 250), 0);
+  assert.equal(percentLabel(10, false), '10%');
+  assert.equal(percentLabel(25, true), '٢٥٪');
+});

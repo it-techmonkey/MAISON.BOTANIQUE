@@ -13,6 +13,7 @@ import {
 import { useDubaiNow } from '@/lib/use-today';
 import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import type { Product } from '@/lib/types';
+import SaleTag from './SaleTag';
 import { useStore } from './StoreProvider';
 import { WhatsAppIcon } from './WhatsAppButton';
 
@@ -245,6 +246,7 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
               <span className="qa-size-price">
                 {size.available ? formatAED(size.price, ar) : t.soldOut}
                 {size.available && size.compareAtPrice && <s aria-label={`${t.was} ${formatAED(size.compareAtPrice, ar)}`}>{formatAED(size.compareAtPrice, ar)}</s>}
+                {size.available && <SaleTag price={size.price} compareAtPrice={size.compareAtPrice} />}
               </span>
             </label>
           ))}</div>

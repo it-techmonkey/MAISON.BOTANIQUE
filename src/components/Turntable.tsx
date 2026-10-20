@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import { trackHeroClicked, trackHeroNavigated } from '@/lib/analytics/track';
 import { formatMoney } from '@/lib/format';
+import SaleTag from './store/SaleTag';
 import { useStore } from './store/StoreProvider';
 import '../styles/turntable.css';
 
@@ -221,6 +222,8 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
               <h2>{productName}</h2>
               <p className="tt-product__price">
                 {live ? (arabic ? 'من' : 'From') : (arabic ? 'السعر' : 'Price')} <span aria-hidden="true">·</span> {price}
+                {current.compareAtPrice && <s aria-label={`${arabic ? 'بدلاً من' : 'was'} ${formatMoney(current.compareAtPrice, current.currencyCode, arabic)}`}>{formatMoney(current.compareAtPrice, current.currencyCode, arabic)}</s>}
+                <SaleTag price={current.price} compareAtPrice={current.compareAtPrice} />
               </p>
             </div>
             <div className="tt-product__actions">

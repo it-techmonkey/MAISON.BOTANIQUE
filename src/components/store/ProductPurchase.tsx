@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import { trackProductViewed } from '@/lib/analytics/track';
 import { occasionPath, findOccasion } from '@/lib/site';
 import type { Product } from '@/lib/types';
+import SaleTag from './SaleTag';
 import { PurchaseOptions, formatAED } from './ShopSheets';
 import { useStore } from './StoreProvider';
 import '@/styles/shop.css';
@@ -39,6 +40,7 @@ function Purchase({ product }: { product: Product }) {
       <p className="purchase__price">
         <strong>{many ? `${t('From', 'من')} ` : ''}{formatAED(product.price, ar)}</strong>
         {product.compareAtPrice && <s>{formatAED(product.compareAtPrice, ar)}</s>}
+        <SaleTag price={product.price} compareAtPrice={product.compareAtPrice} />
       </p>
       {(ar ? product.lineAr : product.line) && <p className="purchase__line">{ar ? product.lineAr : product.line}</p>}
       {composition.length > 0

@@ -7,6 +7,7 @@ import type { Product } from '@/lib/types';
 import { useStore } from './StoreProvider';
 import { isMostLoved } from '@/lib/most-loved';
 import { occasionHash } from '@/lib/site';
+import SaleTag from './SaleTag';
 
 const PAGE = 24;
 /** List and search events wait until the visitor stops typing or clicking. */
@@ -150,6 +151,7 @@ function Piece({ product, index, t, ar, onOpen }: { product: Product; index: num
       <div className="mbc-cap">
         <h3><button type="button" onClick={() => onOpen(product, index + 1)}>{name}</button></h3>
         <span className="mbc-line">{ar ? product.lineAr : product.line}</span>
+        <SaleTag className="mbc-sale" price={product.price} compareAtPrice={product.compareAtPrice} />
         <div className="mbc-row">
           <span className="mbc-price">
             <small>{many ? `${t.from} ` : ''}AED</small> {fmt(product.price, ar)}
