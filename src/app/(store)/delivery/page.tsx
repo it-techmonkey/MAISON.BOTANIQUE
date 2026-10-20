@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 export default function DeliveryPage() {
   return (
     <InfoPage
-      draft
       hero={{
         eyebrow: { en: 'Delivery & care', ar: 'التوصيل والعناية' },
         title: { en: 'A little beauty, delivered to your door.', ar: 'قليل من الجمال، يصل إلى بابك.' },

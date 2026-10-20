@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <InfoPage
-      draft
       hero={{
         eyebrow: { en: 'Privacy', ar: 'الخصوصية' },
         title: { en: 'Your information, handled with care.', ar: 'معلوماتك، نتعامل معها بعناية.' },

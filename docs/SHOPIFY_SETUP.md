@@ -317,7 +317,7 @@ The site is set up for `maisonbotaniqueflowers.com`. If the final domain is diff
 - [ ] **Web analytics → Web analytics domains** (and **Session replay → Authorized domains**, if set): replace the old domain.
 
 **Content**
-- [ ] `src/lib/site.ts`: `email` (`maisonbotaniqueflowers@gmail.com`), if the mailbox moves to the new domain, and the `SITE_URL` fallback.
+- [ ] `src/lib/site.ts`: `email` (`hello@maisonbotaniqueflowers.com`), if the mailbox moves to the new domain, and the `SITE_URL` fallback.
 - [ ] The privacy and terms pages read the email from `src/lib/site.ts`; review their wording.
 - [ ] Docs only: `README.md`, `.env.example`, this guide and `docs/shopify-checkout-pixel.js` comments.
 
@@ -385,7 +385,7 @@ The Storefront API has no contact-form or (stable) newsletter mutation, so the s
 5. Send a test message from `/contact`. The "Website enquiry" metaobject definition is created automatically on the first message.
 6. **Be told about new messages:** in **Shopify Flow**, create a workflow *Customer tags added* → condition *tags include `website-enquiry` or `website-contact`* → **Send internal email** to the team.
 
-If the token is missing or Shopify cannot be reached, the forms never lose a message: they show a prefilled email to `maisonbotaniqueflowers@gmail.com` instead (`src/lib/site.ts`).
+If the token is missing or Shopify cannot be reached, the forms never lose a message: they show a prefilled email to `hello@maisonbotaniqueflowers.com` instead (`src/lib/site.ts`).
 
 ## 14. Customer accounts
 

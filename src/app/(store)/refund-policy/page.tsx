@@ -33,7 +33,19 @@ export default function RefundPolicyPage() {
         {
           title: { en: 'What we will do', ar: 'ما سنقوم به' },
           paragraphs: [
-            { en: 'If your request is accepted, we will replace the arrangement or refund the order to your original payment method, and we will confirm which by email.', ar: 'إذا قُبل طلبك، فسنستبدل التنسيق أو نردّ قيمة الطلب إلى وسيلة الدفع الأصلية، وسنؤكد لك ذلك عبر البريد الإلكتروني.' },
+            { en: 'We reply by email once we have seen your photograph. If your request is accepted, we will either replace the arrangement or refund the order, and we will confirm which by email.', ar: 'نردّ عليك عبر البريد الإلكتروني بعد الاطلاع على صورتك. إذا قُبل طلبك، فسنستبدل التنسيق أو نردّ قيمة الطلب، وسنؤكد لك ذلك عبر البريد الإلكتروني.' },
+          ],
+        },
+        {
+          title: { en: 'How refunds are paid', ar: 'كيف يُدفع المبلغ المسترد' },
+          paragraphs: [
+            { en: 'A refund covers the price of the affected arrangement and is paid to the original payment method, in UAE dirhams. Your bank or card provider may take several working days to show it on your statement.', ar: 'يشمل الاسترداد سعر التنسيق المتضرر، ويُدفع إلى وسيلة الدفع الأصلية بالدرهم الإماراتي. قد يستغرق ظهوره في كشف حسابك عدة أيام عمل بحسب البنك أو مزوّد البطاقة.' },
+          ],
+        },
+        {
+          title: { en: 'What we cannot refund', ar: 'ما لا يمكننا استرداده' },
+          paragraphs: [
+            { en: 'We cannot refund an order for a change of mind, for natural variation in seasonal flowers, or because the address was incomplete or no one was available to receive the delivery. If a delivery could not be made, write to us and we will help arrange the next step.', ar: 'لا يمكننا استرداد قيمة الطلب بسبب تغيير الرأي، أو الاختلاف الطبيعي في الزهور الموسمية، أو لأن العنوان غير مكتمل أو لم يكن هناك من يستلم الطلب. إذا تعذّر التوصيل، راسلنا وسنساعدك في ترتيب الخطوة التالية.' },
           ],
         },
         {

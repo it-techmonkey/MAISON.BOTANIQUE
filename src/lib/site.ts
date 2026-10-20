@@ -36,7 +36,7 @@ export const SITE = {
   },
   city: { en: 'Dubai, United Arab Emirates', ar: 'دبي، الإمارات العربية المتحدة' },
   /** Public enquiries inbox. Confirm the mailbox exists before launch. */
-  email: 'maisonbotaniqueflowers@gmail.com',
+  email: 'hello@maisonbotaniqueflowers.com',
   /** International format without spaces, e.g. '+9715XXXXXXXX'. Hidden until set. */
   phone: null as string | null,
   /**
