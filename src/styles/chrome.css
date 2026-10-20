@@ -12,14 +12,14 @@
 
 .nav-occasions { position: relative; }
 .nav-occasions > button { border: 0; background: transparent; color: inherit; padding: 10px 0; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
-.nav-occasions > button span { font-size: 8px; margin-inline-start: 3px; }
+.nav-occasions > button span { font-size: 11px; margin-inline-start: 3px; }
 .nav-occasions__list { position: absolute; top: calc(100% + 14px); inset-inline-start: -22px; min-width: 230px; display: none; flex-direction: column; padding: 12px 0; background: var(--paper); border: 1px solid var(--line); box-shadow: 0 24px 40px -28px rgb(30 31 28 / 45%); }
 .nav-occasions__list.is-open { display: flex; }
 .primary-nav .nav-occasions__list a { padding: 9px 22px; font: 400 17px/1.2 var(--font-display); letter-spacing: 0; text-transform: none; }
 .primary-nav .nav-occasions__list a::after { display: none; }
 .nav-occasions__list a:hover { background: var(--paper-deep); }
 .nav-shop > button { border: 0; background: transparent; color: inherit; padding: 10px 0; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
-.nav-shop > button span { font-size: 8px; margin-inline-start: 3px; }
+.nav-shop > button span { font-size: 11px; margin-inline-start: 3px; }
 .nav-shop__panel { position: fixed; inset-inline: 0; top: calc(var(--offer-h) + 80px); display: none; grid-template-columns: repeat(3, minmax(0, 220px)) 1fr; gap: 0 56px; padding: 30px clamp(22px, 3.3vw, 62px) 34px; background: var(--paper); border-block: 1px solid var(--line); box-shadow: 0 30px 50px -40px rgb(30 31 28 / 45%); }
 .nav-shop__panel.is-open { display: grid; }
 .nav-shop__col { display: grid; align-content: start; gap: 2px; }
@@ -97,9 +97,29 @@
 }
 @media (max-width: 640px) {
   :root { --offer-h: 34px; }
-  .offer-bar__text { gap: 8px; font-size: 10px; letter-spacing: .12em; }
+  .offer-bar__text { gap: 8px; font-size: 11px; letter-spacing: .12em; }
   .offer-bar__lead { display: none; }
   .bag-toast { inset-inline: 16px; width: auto; bottom: calc(68px + env(safe-area-inset-bottom)); grid-template-columns: 44px 1fr auto; }
   .bag-toast img { width: 44px; height: 44px; }
   .bag-toast .bag-toast__close { display: none; }
+}
+
+.offer-bar__track { display: flex; width: max-content; animation: offer-run 42s linear infinite; }
+.offer-bar:hover .offer-bar__track, .offer-bar:focus-visible .offer-bar__track { animation-play-state: paused; }
+.offer-bar__run { display: flex; flex: 0 0 auto; align-items: center; }
+.offer-bar__run span { padding-inline: 30px; font: 600 var(--fs-label)/1 var(--font-body); letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; position: relative; }
+.offer-bar__run span::after { content: '✦'; position: absolute; inset-inline-end: -5px; font-size: 11px; letter-spacing: 0; color: #e7c9a0; top: 1px; }
+.offer-bar__run .offer-bar__claim { margin-inline: 6px 30px; padding: 6px 12px; background: #f7f4ee; color: #673c43; }
+.offer-bar__run .offer-bar__claim::after { display: none; }
+[dir='rtl'] .offer-bar__track { animation-name: offer-run-rtl; }
+[dir='rtl'] .offer-bar__run span { font-family: var(--font-arabic); letter-spacing: 0; text-transform: none; font-size: 13.5px; }
+@keyframes offer-run { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes offer-run-rtl { from { transform: translateX(0); } to { transform: translateX(50%); } }
+
+.offer-bar__run span { font-size: 11px; }
+@media (prefers-reduced-motion: reduce) {
+ .offer-bar__track { animation: none; width: 100%; justify-content: center; }
+ .offer-bar__run { flex-wrap: wrap; justify-content: center; }
+ .offer-bar__run > span:not(:first-child), .offer-bar__run + .offer-bar__run { display: none; }
+ .offer-bar__run span { white-space: normal; text-align: center; line-height: 1.3; padding-inline: 8px; }
 }

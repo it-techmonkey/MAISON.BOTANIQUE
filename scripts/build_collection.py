@@ -225,6 +225,8 @@ def main():
         })
     out.sort(key=lambda x: x["order"])
     OUT_JSON.write_text(json.dumps({"hero": ov.get("hero", []), "products": out}, ensure_ascii=False, indent=1) + "\n")
+    import subprocess
+    subprocess.run([sys.executable, "-I", str(ROOT / "scripts" / "sync_preview_prices.py")], check=True)
     print(f"{len(out)} products -> {OUT_JSON.relative_to(ROOT)}")
     for h, why in skipped:
         print(f"  skipped {h}: {why}", file=sys.stderr)

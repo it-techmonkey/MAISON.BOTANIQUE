@@ -30,7 +30,7 @@ export default function FaqPage() {
           },
           {
             title: { en: 'Where do you deliver?', ar: 'إلى أين توصلون؟' },
-            paragraphs: [{ en: 'We deliver across the UAE, with same-day delivery available everywhere. Delivery is AED 30 in Dubai and AED 40 elsewhere in the UAE, shown at checkout before you pay.', ar: 'نوصل في جميع أنحاء الإمارات، مع توصيل في اليوم نفسه في كل مكان. التوصيل ٣٠ درهماً في دبي و٤٠ درهماً في بقية الإمارات، ويظهر عند الدفع وقبل إتمامه.' }],
+            paragraphs: [{ en: 'We deliver across the UAE, with same-day delivery in Dubai. Delivery is AED 30 in Dubai and AED 40 elsewhere in the UAE. Enter the full recipient delivery address at checkout, including building, apartment and area.', ar: 'نوصل في جميع الإمارات، مع توصيل في اليوم نفسه في دبي. التوصيل ٣٠ درهماً في دبي و٤٠ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى والشقة والمنطقة.' }],
           },
           {
             title: { en: 'Will my flowers look exactly like the photograph?', ar: 'هل ستبدو زهوري تماماً كما في الصورة؟' },

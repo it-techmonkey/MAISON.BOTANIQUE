@@ -45,14 +45,14 @@ export function parseEnquiry(raw: unknown): { ok: true; value: EnquiryInput } | 
     consent: body.consent === true,
     locale: body.locale === 'ar' ? 'ar' : 'en',
   };
-  // Launch offer: a WhatsApp number or an email, and consent to receive the code.
+  // A contact is required for the offer; marketing consent is optional.
   if (kind === 'offer') {
     if (value.phone) {
       value.phone = uaeMobile(value.phone);
       if (!value.phone) return { ok: false, field: 'phone' };
       value.email = '';
     } else if (!EMAIL.test(value.email)) return { ok: false, field: 'email' };
-    return value.consent ? { ok: true, value } : { ok: false, field: 'consent' };
+    return { ok: true, value };
   }
   // Checked in the order the fields appear on the page.
   if (kind !== 'newsletter' && !value.name) return { ok: false, field: 'name' };

@@ -4,8 +4,7 @@
 // note, so on the order it appears under "Additional details", at the top as
 // the order Note, and in the order webhook.
 //
-// PROVISIONAL RULES: replace with the owner's confirmed windows, cutoff,
-// booking horizon and closed dates.
+// Owner approved 19 October 2026: daily windows, three-hour lead and 60-day horizon.
 
 export const DELIVERY_DATE_KEY = 'Delivery date';
 export const DELIVERY_TIME_KEY = 'Delivery time';

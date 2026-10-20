@@ -28,7 +28,7 @@ export interface ProductCustomField {
 }
 
 /** How the collection is browsed: the product's room, flowers and format. */
-export type ProductRoom = 'roses' | 'bouquets' | 'vases' | 'gifts' | 'grand' | 'beauty' | 'hampers';
+export type ProductRoom = 'roses' | 'bouquets' | 'vases' | 'gifts' | 'grand' | 'beauty' | 'hampers' | 'money';
 export type ProductFormat = 'bouquet' | 'box' | 'vase' | 'gift';
 
 export interface Product {

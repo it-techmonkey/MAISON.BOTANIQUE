@@ -14,9 +14,9 @@ export interface Bilingual {
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://maisonbotaniqueflowers.com').replace(/\/+$/, '');
 
 /** The welcome offer's discount code (create it in Shopify Discounts), shown in the banner and after the sign-up. */
-export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'BLOOM25').trim();
+export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'MAISON25').trim();
 
-/** The seven emirates, where same-day delivery is offered. */
+/** The seven emirates served; same-day delivery is advertised for Dubai. */
 export const EMIRATES: Bilingual[] = [
   { en: 'Dubai', ar: 'دبي' },
   { en: 'Abu Dhabi', ar: 'أبوظبي' },
@@ -144,17 +144,20 @@ export const OCCASIONS: Occasion[] = [
   },
   {
     id: 'just-because',
-    name: { en: 'Just Because', ar: 'من دون مناسبة' },
-    line: { en: 'No date on the calendar. Every reason.', ar: 'لا موعد في التقويم، وكل الأسباب.' },
-    intro: {
-      en: 'Make an ordinary day feel a little less ordinary. No occasion required.',
-      ar: 'اجعل يوماً عادياً أقل اعتيادية قليلاً. لا حاجة إلى مناسبة.',
-    },
-    image: '/assets/gift-concept.jpg',
+    name: { en: 'Gifts for her', ar: 'هدايا لها' },
+    line: { en: 'A gesture, chosen for her.', ar: 'لفتة مختارة لها.' },
+    intro: { en: 'Flowers, beauty gifts and thoughtful combinations, chosen for the women who matter to you.', ar: 'زهور وهدايا جمال وتنسيقات مدروسة، مختارة للنساء العزيزات عليك.' },
+    image: '/assets/sunlit-cut.jpg',
   },
 ];
 
+export function occasionSlug(id: string) { return id === 'just-because' ? 'gifts-for-her' : id; }
+/** Occasions are filters on the one collection, not pages of their own. */
+export function occasionHash(id: string) { return `occasion/${occasionSlug(id)}`; }
+export function occasionPath(id: string) { return `/shop#${occasionHash(id)}`; }
+
 export function findOccasion(id: string) {
+  if (id === 'gifts-for-her') id = 'just-because';
   return OCCASIONS.find((occasion) => occasion.id === id);
 }
 
@@ -261,7 +264,7 @@ export const SERVICES: Service[] = [
 
 /** Header navigation, as on the storefront design: occasions, the three product types, gifting. */
 export const NAV_LINKS = [
-  { href: '/occasions', label: { en: 'Occasions', ar: 'المناسبات' } },
+  { href: '/#occasions', label: { en: 'Occasions', ar: 'المناسبات' } },
   { href: '/shop?type=bouquets', label: { en: 'Bouquets', ar: 'باقات' } },
   { href: '/shop?type=gifts', label: { en: 'Gifts', ar: 'هدايا' } },
   { href: '/shop?type=preserved', label: { en: 'Preserved', ar: 'ورود محفوظة' } },

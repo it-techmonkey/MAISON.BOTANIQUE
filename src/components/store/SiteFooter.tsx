@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useMemo } from 'react';
 import { TAB_IDS, liveCatalogGroups } from '@/lib/catalog-groups';
-import { SITE } from '@/lib/site';
+import { occasionHash, SITE } from '@/lib/site';
 import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import { NewsletterForm } from './Forms';
 import { InstagramIcon } from './icons';
@@ -14,17 +14,19 @@ import { WhatsAppIcon } from './WhatsAppButton';
 const FOOTER = {
   en: {
     shop: 'Shop', occasions: 'Occasions', help: 'Help', bloom: 'Stay in bloom',
+    delivery: 'Same-day delivery in Dubai. AED 30 in Dubai · AED 40 elsewhere in the UAE.',
     bloomLine: 'Be the first to know about new collections and offers.',
     whatsapp: 'WhatsApp', language: 'العربية', top: 'Back to top',
     notice: 'Prices are in AED. Delivery and any taxes are confirmed at checkout.',
-    preview: 'Preview for review. Prices are samples and payments are not live.',
+    preview: 'Preview for review. Payments are not live.',
   },
   ar: {
     shop: 'تسوّق', occasions: 'المناسبات', help: 'المساعدة', bloom: 'ابقَ في أجواء الزهور',
+    delivery: 'توصيل في اليوم نفسه في دبي. ٣٠ درهماً في دبي، و٤٠ درهماً في بقية الإمارات.',
     bloomLine: 'كن أول من يعرف عن المجموعات والعروض الجديدة.',
     whatsapp: 'واتساب', language: 'English', top: 'العودة للأعلى',
     notice: 'الأسعار بالدرهم الإماراتي. يُؤكَّد التوصيل وأي ضرائب عند الدفع.',
-    preview: 'معاينة للمراجعة. الأسعار تجريبية والدفع غير مفعل.',
+    preview: 'معاينة للمراجعة. الدفع غير مفعل.',
   },
 };
 
@@ -58,6 +60,7 @@ export default function SiteFooter() {
       <div className="mb-footer__cols" data-track-section="footer_links">
         <div className="mb-footer__brand">
           <span>MAISON</span><strong>BOTANIQUE</strong>
+          <p>{t.delivery}</p>
           <p className="mb-footer__social">
             {SITE.instagram && <a href={`https://instagram.com/${SITE.instagram}`} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><InstagramIcon /></a>}
             {whatsapp && <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label={t.whatsapp}><WhatsAppIcon /></a>}
@@ -70,7 +73,7 @@ export default function SiteFooter() {
         </nav>
         <nav aria-label={t.occasions}>
           <h2>{t.occasions}</h2>
-          {occasions.map((occasion) => <Link key={occasion.id} href={`/occasions/${occasion.id}`}>{label(occasion)}</Link>)}
+          {occasions.map((occasion) => <CollectionLink key={occasion.id} hash={occasionHash(occasion.id)}>{label(occasion)}</CollectionLink>)}
         </nav>
         <nav aria-label={t.help}>
           <h2>{t.help}</h2>

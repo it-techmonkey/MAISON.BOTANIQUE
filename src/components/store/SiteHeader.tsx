@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { BUDGET_BANDS, liveCatalogGroups } from '@/lib/catalog-groups';
-import { OFFER_CODE } from '@/lib/site';
 import { SearchIcon } from './icons';
 import { useStore } from './StoreProvider';
 
@@ -19,25 +18,28 @@ export function Logo() {
  * elsewhere it navigates to /shop with the hash.
  */
 export function CollectionLink({ hash, onClick, children, className, 'aria-label': ariaLabel }: { hash: string; onClick?: () => void; children: ReactNode; className?: string; 'aria-label'?: string }) {
-  const onShop = usePathname() === '/shop';
+  const pathname = usePathname();
+  const onShop = pathname === '/' || pathname === '/shop';
   return onShop
     ? <a className={className} href={`#${hash}`} onClick={onClick} aria-label={ariaLabel}>{children}</a>
     : <Link className={className} href={`/shop#${hash}`} onClick={onClick} aria-label={ariaLabel}>{children}</Link>;
 }
 
-// The welcome offer sits above the header: one short, focused message. The
-// whole bar opens the sign-up.
+// The opening offer runs above the header; the whole ribbon opens the sign-up.
+const OFFER = {
+  en: ['Welcome offer · 25% off your first order', 'Same-day delivery in Dubai · Delivery across the UAE', 'Pre-book up to 60 days ahead'],
+  ar: ['عرض الترحيب · خصم ٢٥٪ على طلبك الأول', 'توصيل في اليوم نفسه في دبي · توصيل في جميع الإمارات', 'احجز مسبقاً حتى ٦٠ يوماً'],
+};
+
 function OfferBar() {
   const { ar, openOffer } = useStore();
+  const items = OFFER[ar ? 'ar' : 'en'];
+  const claim = ar ? 'احصل على خصم ٢٥٪ ←' : 'Claim your 25% →';
+  // Rendered twice so the loop is seamless; screen readers get the copy once from the label.
+  const run = <span className="offer-bar__run" aria-hidden="true">{items.map((item) => <span key={item}>{item}</span>)}<span className="offer-bar__claim">{claim}</span></span>;
   return (
-    <button type="button" className="offer-bar" data-track-location="offer_bar" onClick={openOffer}
-      aria-label={ar ? `عرض الترحيب: خصم ٢٥٪ على طلبك الأول. استخدم الرمز ${OFFER_CODE}` : `Welcome offer: 25% off your first order. Use code ${OFFER_CODE}`}>
-      <span className="offer-bar__text" aria-hidden="true">
-        <span className="offer-bar__lead">{ar ? 'عرض الترحيب · ' : 'Welcome offer · '}</span>
-        <span>{ar ? 'خصم ٢٥٪ على طلبك الأول' : '25% off your first order'}</span>
-        <span className="offer-bar__sep">|</span>
-        <span>{ar ? 'استخدم الرمز ' : 'Use code '}<strong dir="ltr">{OFFER_CODE}</strong></span>
-      </span>
+    <button type="button" className="offer-bar" data-track-location="offer_bar" onClick={openOffer} aria-label={`${items.join('. ')}. ${claim}`}>
+      <span className="offer-bar__track">{run}{run}</span>
     </button>
   );
 }
@@ -59,7 +61,7 @@ export default function SiteHeader() {
     let queued = false;
     const update = () => {
       queued = false;
-      const hero = document.getElementById('home-hero');
+      const hero = document.getElementById('turntable');
       setScrolled(hero ? hero.getBoundingClientRect().bottom <= 150 : window.scrollY > 24);
     };
     const onScroll = () => {

@@ -5,6 +5,8 @@ import { trackProductClicked, trackProductListViewed, trackProductsSearched } fr
 import { BUDGET_BANDS, GROUP_ALIASES, TAB_IDS, budgetOf, liveCatalogGroups, type LiveCatalogGroups } from '@/lib/catalog-groups';
 import type { Product } from '@/lib/types';
 import { useStore } from './StoreProvider';
+import { isMostLoved } from '@/lib/most-loved';
+import { occasionHash } from '@/lib/site';
 
 const PAGE = 24;
 /** List and search events wait until the visitor stops typing or clicking. */
@@ -23,7 +25,7 @@ const EMPTY: State = { group: 'all', occasion: [], budget: [], stems: [], query:
 
 const COPY = {
   en: {
-    title: 'The Collection', sample: 'Sample prices',
+    title: 'The Collection',
     search: 'Search the collection', searchPlaceholder: 'Search roses, lilies, birthday…',
     shopBy: 'Shop by occasion', refine: 'Refine', sort: 'Sort', clear: 'Clear all', close: 'Close',
     show: 'Show pieces',
@@ -33,10 +35,9 @@ const COPY = {
     personalised: 'Personalised', from: 'From', sizes: 'sizes', add: 'Add', addFull: 'Add to bag', was: 'was',
     more: 'Show more', soldOut: 'Sold out',
     empty: 'Nothing matches all of that yet.', reset: 'Clear the refinements',
-    trust: ['Hand-tied in Dubai', 'A handwritten card with every gift', 'Same-day delivery across the UAE', 'No prices travel with the gift'],
   },
   ar: {
-    title: 'المجموعة', sample: 'أسعار تجريبية',
+    title: 'المجموعة',
     search: 'ابحث في المجموعة', searchPlaceholder: 'ابحث عن ورود، زنبق، عيد ميلاد…',
     shopBy: 'تسوّق حسب المناسبة', refine: 'تصفية', sort: 'ترتيب', clear: 'مسح الكل', close: 'إغلاق',
     show: 'اعرض القطع',
@@ -46,7 +47,6 @@ const COPY = {
     personalised: 'مخصص', from: 'من', sizes: 'أحجام', add: 'أضف', addFull: 'أضف إلى الحقيبة', was: 'بدلاً من',
     more: 'اعرض المزيد', soldOut: 'نفدت الكمية',
     empty: 'لا توجد قطع تطابق كل هذه الخيارات.', reset: 'امسح الخيارات',
-    trust: ['تُنسَّق يدوياً في دبي', 'بطاقة بخط اليد مع كل هدية', 'توصيل في اليوم نفسه في جميع أنحاء الإمارات', 'لا تُرفق الأسعار مع الهدية'],
   },
 };
 type Copy = typeof COPY.en;
@@ -72,7 +72,7 @@ function matches(p: Product, state: State, catalog: LiveCatalogGroups, skip?: 'o
 function stateFromHash(hash: string, catalog: LiveCatalogGroups): State | null {
   const value = decodeURIComponent((hash || '').replace(/^#/, ''));
   if (value.startsWith('occasion/')) {
-    const id = value.slice(9);
+    const id = value.slice(9) === 'gifts-for-her' ? 'just-because' : value.slice(9);
     return catalog.occasions.some((o) => o.id === id) ? { ...EMPTY, occasion: [id] } : null;
   }
   if (value.startsWith('budget/')) {
@@ -144,7 +144,8 @@ function Piece({ product, index, t, ar, onOpen }: { product: Product; index: num
           sizes="(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 25vw"
           alt={ar ? name : product.imageAlt} width="480" height="480"
           loading={index < 4 ? 'eager' : 'lazy'} fetchPriority={index < 4 ? 'high' : 'auto'} decoding="async" />
-        {product.custom && <span className="mbc-badge">{t.personalised}</span>}
+        {isMostLoved(product.id) ? <span className="mbc-badge mbc-badge--loved">{ar ? 'الأكثر حباً' : 'Most loved'}</span>
+          : product.custom && <span className="mbc-badge">{t.personalised}</span>}
       </button>
       <div className="mbc-cap">
         <h3><button type="button" onClick={() => onOpen(product, index + 1)}>{name}</button></h3>
@@ -167,7 +168,7 @@ function Piece({ product, index, t, ar, onOpen }: { product: Product; index: num
  * budget, stems), sorting and a grid that loads 24 at a time. Every piece
  * opens the quick-add sheet.
  */
-export default function CollectionBrowser({ listId = 'home', initialOccasion }: { listId?: string; initialOccasion?: string }) {
+export default function CollectionBrowser({ listId = 'home', initialOccasion, showOccasions = true }: { listId?: string; initialOccasion?: string; showOccasions?: boolean }) {
   const { ar, live, products, openProduct } = useStore();
   const t = COPY[ar ? 'ar' : 'en'];
   const catalog = useMemo(() => liveCatalogGroups(products), [products]);
@@ -228,7 +229,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion }: 
     const on = state.occasion.length === 1 && state.occasion[0] === id;
     setState((s) => ({ ...s, occasion: on ? [] : [id] }));
     setShown(PAGE);
-    setHash(on ? '#shop' : `#occasion/${id}`);
+    setHash(on ? '#shop' : `#${occasionHash(id)}`);
     scrollToGrid();
   };
 
@@ -286,7 +287,6 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion }: 
       <div className="mbc-in mbc-head">
         <div className="mbc-head-title">
           <h2 id="mbc-title">{currentGroup && currentGroup.id !== 'all' ? (ar ? currentGroup.ar : currentGroup.en) : t.title}</h2>
-          {!live && <span className="mbc-head-count">{t.sample}</span>}
         </div>
         <label className="mbc-search"><span className="mbc-sr">{t.search}</span>
           <input ref={searchRef} type="search" value={state.query} placeholder={t.searchPlaceholder}
@@ -294,7 +294,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion }: 
         </label>
       </div>
 
-      <div className="mbc-in">
+      {showOccasions && <div className="mbc-in">
         <h3 className="mbc-sc mbc-occ-title">{t.shopBy}</h3>
         <div className="mbc-occasions">{occasionTiles.map((o) => {
           const on = state.occasion.length === 1 && state.occasion[0] === o.id;
@@ -305,7 +305,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion }: 
             </button>
           );
         })}</div>
-      </div>
+      </div>}
 
       <nav className="mbc-rooms" ref={roomsRef} aria-label={t.title}>
         <div className="mbc-in mbc-rooms-in">
@@ -336,8 +336,6 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion }: 
           </div>
         )}
       </div>
-
-      <ul className="mbc-trust mbc-in">{t.trust.map((line) => <li key={line}>{line}</li>)}</ul>
 
       <div className={`mbc-mbar${inView && !refineOpen ? ' is-on' : ''}`}>
         <button type="button" onClick={() => setRefineOpen(true)}>{t.refine}{refinements ? ` (${fmt(refinements, ar)})` : ''}</button>
