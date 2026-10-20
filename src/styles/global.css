@@ -426,3 +426,24 @@ main { display: block; min-height: 60vh; }
 .mbc-price s::after, .tt-product__price s::after, .qa-size-price s::after, .purchase__price s::after {
   content: ''; position: absolute; inset-inline: -2px; top: 54%; border-top: 2px solid currentColor; pointer-events: none;
 }
+
+/* Phones: finger-sized targets for the header, "View all" links and the Add buttons on cards. */
+@media (max-width: 640px) {
+  .site-header__brand, .header-action:not(.header-action--account) { display: inline-flex; align-items: center; min-height: 44px; }
+  .site-header__actions { gap: 2px; }
+  .header-action { padding-inline: 6px; }
+  .menu-button { width: 44px; height: 44px; }
+  .hs-viewall { display: inline-flex; align-items: center; min-height: 44px; }
+  .mbc .mbc-add { min-height: 40px; display: inline-flex; align-items: center; justify-content: center; }
+}
+@media (max-width: 360px) { .header-action { padding-inline: 4px; } .site-header { padding-inline: 12px; } .menu-button { width: 40px; } }
+
+/* Phones: 16px text in form fields (smaller sizes make iOS zoom the page on focus), and roomier footer links. */
+@media (max-width: 640px) {
+  .mb-footer .newsletter input[type='email'], .delivery-picker__calendar input, .search-field input, .select-field select, .inline-select select { font-size: 16px; }
+  .mbc-search input { padding-block: 13px; }
+  .mb-footer__cols > * { gap: 0; }
+  .mb-footer__cols > * > a, .mb-footer__cols > * > nav > a { display: block; padding-block: 11px; }
+  .mb-footer__cols > * > h2 { margin-bottom: 4px; }
+  .mb-footer__actions button, .mb-footer__actions a { min-height: 44px; display: inline-flex; align-items: center; padding-inline: 4px; }
+}

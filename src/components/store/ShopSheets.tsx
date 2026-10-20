@@ -48,7 +48,7 @@ const copy = {
     cardEmpty: 'Write what you would say if you were there.', signedAs: 'Signed', secret: 'Keep it a secret', secretSign: 'Someone who adores you',
     dubai: 'Dubai', anotherDay: 'Another day',
     deliveryRow: 'Delivery day and time', earliest: 'Earliest', chooseDelivery: 'Choose day and time', useEarliest: 'Use this time', changeDelivery: 'Change',
-    deliveryOrderWide: 'One delivery for your whole order. Enter the full recipient address at checkout.', deliverySaved: 'Saved for your order',
+    deliverySaved: 'Saved for your order',
     letterLabel: 'Your letter', ageLabel: 'Age on the arrangement', chooseLetter: 'Choose a letter to continue', chooseAge: 'Add the age to continue', chooseCustom: 'Add your personalisation to continue',
     signedLine: 'Signed', anonymousLine: 'Signed anonymously', customLine: 'Personalisation', was: 'was', soldOut: 'Sold out',
     viewDetails: 'View full details',
@@ -79,7 +79,7 @@ const copy = {
     cardEmpty: 'اكتب ما كنت ستقوله لو كنت هناك.', signedAs: 'التوقيع', secret: 'أبقِها مفاجأة', secretSign: 'شخص يحبك',
     dubai: 'دبي', anotherDay: 'يوم آخر',
     deliveryRow: 'يوم التوصيل ووقته', earliest: 'أقرب موعد', chooseDelivery: 'اختر اليوم والوقت', useEarliest: 'اعتمد هذا الموعد', changeDelivery: 'تغيير',
-    deliveryOrderWide: 'توصيل واحد لطلبك كله. أدخل عنوان المستلم كاملاً عند الدفع.', deliverySaved: 'تم حفظه لطلبك',
+    deliverySaved: 'تم حفظه لطلبك',
     letterLabel: 'الحرف', ageLabel: 'العمر على التنسيق', chooseLetter: 'اختر الحرف للمتابعة', chooseAge: 'أضف العمر للمتابعة', chooseCustom: 'أضف التخصيص للمتابعة',
     signedLine: 'التوقيع', anonymousLine: 'توقيع مجهول', customLine: 'التخصيص', was: 'بدلاً من', soldOut: 'نفدت الكمية',
     viewDetails: 'عرض كل التفاصيل',
@@ -369,7 +369,6 @@ function ProductDelivery({ t, value, onChange }: { t: Copy; value: Partial<Deliv
       </div>
       {open && <DeliveryPicker t={t} scope="product" value={value} problem={null}
         onChange={(next) => { onChange(next); if (next.date && next.slotId && now && !checkSchedule(next, now)) trackDeliveryScheduled(next as DeliverySchedule, 'product_page'); }} />}
-      <p className="pd-note">{t.deliveryOrderWide}</p>
     </section>
   );
 }
