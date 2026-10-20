@@ -8,6 +8,7 @@ import { useStore } from './StoreProvider';
 import { isMostLoved } from '@/lib/most-loved';
 import { occasionHash } from '@/lib/site';
 import SaleTag from './SaleTag';
+import Money from './Money';
 
 const PAGE = 24;
 /** List and search events wait until the visitor stops typing or clicking. */
@@ -154,7 +155,7 @@ function Piece({ product, index, t, ar, onOpen }: { product: Product; index: num
         <SaleTag className="mbc-sale" price={product.price} compareAtPrice={product.compareAtPrice} />
         <div className="mbc-row">
           <span className="mbc-price">
-            <small>{many ? `${t.from} ` : ''}AED</small> {fmt(product.price, ar)}
+            {many && <small>{t.from} </small>}<Money amount={product.price} ar={ar} whole />
             {product.compareAtPrice && <s aria-label={`${t.was} AED ${fmt(product.compareAtPrice, ar)}`}>{fmt(product.compareAtPrice, ar)}</s>}
           </span>
           <button type="button" className="mbc-add" onClick={() => onOpen(product, index + 1)} disabled={!product.available}

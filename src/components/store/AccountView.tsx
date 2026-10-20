@@ -6,8 +6,8 @@ import { Suspense, useEffect, useState } from 'react';
 import { identifyCustomer, resetIdentity } from '@/lib/analytics/track';
 import { forgetCart } from '@/lib/cart/use-shop-cart';
 import { DELIVERY_DATE_KEY, DELIVERY_TIME_KEY, formatDeliveryDate } from '@/lib/delivery';
-import { formatMoney } from '@/lib/format';
 import { useStore } from './StoreProvider';
+import Money from './Money';
 
 interface AccountOrder {
   id: string;
@@ -175,7 +175,7 @@ export default function AccountView() {
                       <span className="account-order__status">
                         {[fulfilment, financial].filter(Boolean).map((status) => (ar ? status!.ar : status!.en)).join(' · ')}
                       </span>
-                      <strong>{formatMoney(Number(order.totalPrice.amount), order.totalPrice.currencyCode, ar)}</strong>
+                      <strong><Money amount={Number(order.totalPrice.amount)} currency={order.totalPrice.currencyCode} ar={ar} /></strong>
                       <a className="arrow-link" href={order.statusPageUrl} target="_blank" rel="noopener">
                         {t('Order details', 'تفاصيل الطلب')}<span aria-hidden="true">↗</span>
                       </a>

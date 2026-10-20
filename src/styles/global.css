@@ -412,3 +412,10 @@ main { display: block; min-height: 60vh; }
 .tt-product__price s { margin-inline-start: 6px; opacity: .7; }
 .sale-tag.mbc-sale { align-self: flex-start; margin: auto 0 0; }
 .mbc-cap .mbc-sale + .mbc-row { margin-top: 4px; padding-top: 0; }
+
+/* Prices with the Dirham sign (Money.tsx, Dirham.tsx). */
+.money { display: inline-flex; align-items: baseline; white-space: nowrap; unicode-bidi: isolate; }
+.dirham { height: .76em; width: auto; flex: none; margin-inline-end: .3em; fill: currentColor; vertical-align: baseline; position: relative; top: .03em; }
+.money--after .dirham { margin-inline-end: 0; margin-inline-start: .3em; }
+/* Existing rules such as ".purchase__price span" must not restyle the price pieces. */
+.money .money__n, .purchase__price .money, .purchase__price .money .money__n { font: inherit; color: inherit; letter-spacing: inherit; }

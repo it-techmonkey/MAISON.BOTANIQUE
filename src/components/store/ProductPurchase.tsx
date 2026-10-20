@@ -9,6 +9,7 @@ import SaleTag from './SaleTag';
 import { PurchaseOptions, formatAED } from './ShopSheets';
 import { useStore } from './StoreProvider';
 import '@/styles/shop.css';
+import Money from './Money';
 
 /** Name, price and the purchase options on the product page (the same options as the quick-add sheet). */
 export default function ProductPurchase({ handle }: { handle: string }) {
@@ -38,8 +39,8 @@ function Purchase({ product }: { product: Product }) {
       <p className="eyebrow">{product.no ? `N° ${String(product.no).padStart(3, '0')} · ` : ''}{ar ? product.categoryAr : product.category}</p>
       <h1>{name}</h1>
       <p className="purchase__price">
-        <strong>{many ? `${t('From', 'من')} ` : ''}{formatAED(product.price, ar)}</strong>
-        {product.compareAtPrice && <s>{formatAED(product.compareAtPrice, ar)}</s>}
+        <strong>{many ? `${t('From', 'من')} ` : ''}<Money amount={product.price} ar={ar} whole /></strong>
+        {product.compareAtPrice && <s aria-label={`${t('was', 'كان')} ${formatAED(product.compareAtPrice, ar)}`}><Money amount={product.compareAtPrice} ar={ar} whole /></s>}
         <SaleTag price={product.price} compareAtPrice={product.compareAtPrice} />
       </p>
       {(ar ? product.lineAr : product.line) && <p className="purchase__line">{ar ? product.lineAr : product.line}</p>}
