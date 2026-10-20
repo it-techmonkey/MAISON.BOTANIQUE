@@ -12,7 +12,7 @@ const { parseEnquiry } = await import('../src/lib/enquiry.ts');
 const { checkEnquiryLimit, readEnquiryBody } = await import('../src/lib/enquiry-limit.ts');
 const { openOfferSession, sealOffer } = await import('../src/lib/offer-session.ts');
 const { getWelcomeCode, WelcomeNotEligible } = await import('../src/lib/shopify/welcome-offer.ts');
-const { BUDGET_BANDS, GROUPS, budgetOf, liveCatalogGroups } = await import('../src/lib/catalog-groups.ts');
+const { BUDGET_BANDS, GROUPS, budgetOf, isPlant, liveCatalogGroups } = await import('../src/lib/catalog-groups.ts');
 const { browserCatalog, hydrateBrowserCatalog } = await import('../src/lib/browser-catalog.ts');
 const { upsertCustomer } = await import('../src/lib/shopify/forms.ts');
 
@@ -153,4 +153,19 @@ test('makeup and beauty pieces sit in Makeup & Beauty only, not also in Gifts & 
   assert.equal(group('gifts').test(teddy), true);
   assert.equal(group('gifts').test(hamper), true);
   assert.equal(group('beauty').test(teddy), false);
+});
+
+test('orchid plants and forever roses sit in Plants & Preserved, not in Gifts & Add-ons', () => {
+  const group = (id) => GROUPS.find((item) => item.id === id);
+  for (const name of ['White Orchid Plant', 'Pink, Dark Pink & White Phalaenopsis Plant', '2 stems White Orchid Plant in Pot', 'Forever Rose', 'Red Trio Forever Rose']) {
+    const plant = { name, room: 'hampers', format: 'gift' };
+    assert.equal(isPlant(plant), true, name);
+    assert.equal(group('plants').test(plant), true, name);
+    assert.equal(group('gifts').test(plant), false, name);
+  }
+  for (const name of ['Red Roses & Phalaenopsis Orchid in a Box', 'Red Roses & White Phalaenopsis Orchid in a Round Box', 'Orchid Wellness Hamper', 'Tower Arrangement of Blue Orchids', 'Golden Treats Hamper', 'Bloom & Teddy Delight']) {
+    const other = { name, room: 'hampers', format: 'gift' };
+    assert.equal(isPlant(other), false, name);
+    assert.equal(group('gifts').test(other), true, name);
+  }
 });
