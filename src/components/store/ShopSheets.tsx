@@ -32,8 +32,7 @@ const copy = {
     day_closed: "We aren't delivering on that day. Please choose another.",
     deliveryLine: 'Arrives', askAbout: 'Ask about this bouquet on WhatsApp',
     helpOrder: 'Questions? Chat with us on WhatsApp', orderWhatsapp: 'Order on WhatsApp instead',
-    addBag: 'Add to bag', subtotal: 'Subtotal', delivery: 'Delivery',
-    deliveryLater: 'AED 30 in Dubai · AED 40 elsewhere in the UAE',
+    addBag: 'Add to bag', subtotal: 'Subtotal',
     offerLine: 'Welcome offer: 25% off your first order with your code at checkout.',
     included: "What's included", alsoLike: 'You may also like',
     previewCheckout: 'Preview checkout', secureCheckout: 'Continue to secure checkout',
@@ -64,8 +63,7 @@ const copy = {
     day_closed: 'لا نوصّل في هذا اليوم. يرجى اختيار يوم آخر.',
     deliveryLine: 'موعد الوصول', askAbout: 'استفسر عن هذه الباقة عبر واتساب',
     helpOrder: 'لديك سؤال؟ تحدّث معنا عبر واتساب', orderWhatsapp: 'اطلب عبر واتساب بدلاً من ذلك',
-    addBag: 'أضف إلى الحقيبة', subtotal: 'المجموع الفرعي', delivery: 'التوصيل',
-    deliveryLater: '٣٠ درهماً في دبي، و٤٠ درهماً في بقية الإمارات',
+    addBag: 'أضف إلى الحقيبة', subtotal: 'المجموع الفرعي',
     offerLine: 'عرض الترحيب: خصم ٢٥٪ على طلبك الأول برمزك عند الدفع.',
     included: 'ما يتضمنه', alsoLike: 'قد يعجبك أيضاً',
     previewCheckout: 'معاينة الدفع', secureCheckout: 'متابعة الدفع الآمن',
@@ -483,15 +481,19 @@ function Bag() {
     }
   }
 
+  const welcome = (
+    <section className="bag-welcome">
+      {welcomeCode ? <>
+        <p>{cart.shopifyCart?.discountCodes.some((item) => item.applicable && item.code === welcomeCode) ? (ar ? 'تم تطبيق خصم الترحيب' : 'Welcome discount applied') : (ar ? 'رمز الترحيب جاهز للدفع' : 'Welcome code ready for checkout')}</p>
+        <label><input type="checkbox" checked={useWelcome} onChange={(event) => { setUseWelcome(event.target.checked); void cart.applyWelcomeOffer?.(event.target.checked).catch(() => setError(t.error)); }} />{ar ? 'استخدم عرض الترحيب' : 'Use my welcome offer'}</label>
+      </> : <button type="button" className="button button--ghost" onClick={openOffer}>{ar ? 'احصل على خصم ٢٥٪ على طلبك الأول' : 'Get 25% off your first order'}</button>}
+    </section>
+  );
+
   return (
     <DialogShell onClose={close} label={review ? t.reviewTitle : t.bag} kind="cart">
       <div className="ll-cart-header"><span className="ll-shop-kicker">MAISON BOTANIQUE / DUBAI</span><h2>{review ? t.reviewTitle : t.bag}</h2></div>
-      {!review && <section className="bag-welcome">
-        {welcomeCode ? <>
-          <p>{cart.shopifyCart?.discountCodes.some((item) => item.applicable && item.code === welcomeCode) ? (ar ? 'تم تطبيق خصم الترحيب' : 'Welcome discount applied') : (ar ? 'رمز الترحيب جاهز للدفع' : 'Welcome code ready for checkout')}</p>
-          <label><input type="checkbox" checked={useWelcome} onChange={(event) => { setUseWelcome(event.target.checked); void cart.applyWelcomeOffer?.(event.target.checked).catch(() => setError(t.error)); }} />{ar ? 'استخدم عرض الترحيب' : 'Use my welcome offer'}</label>
-        </> : <button type="button" className="button button--ghost" onClick={openOffer}>{ar ? 'احصل على خصم ٢٥٪ على طلبك الأول' : 'Get 25% off your first order'}</button>}
-      </section>}
+      {!review && lines.length === 0 && welcome}
       {review ? (
         <div className="ll-cart-review">
           <div className="ll-review-symbol" aria-hidden="true">MB</div>
@@ -517,6 +519,7 @@ function Bag() {
         </div>
       ) : <>
         <div className="ll-cart-lines" aria-busy={cart.busy}>
+          {welcome}
           {lines.map((line) => (
             <article className="ll-cart-line" key={line.key}>
               <img src={line.image} alt="" />
@@ -545,7 +548,6 @@ function Bag() {
           <div className="ll-cart-totals">
             <div><span>{t.subtotal}</span><strong>{formatAED(subtotal.amount, ar)}</strong></div>
             {summary && <div><span>{t.deliveryLine}</span><span data-ph-mask>{summary}</span></div>}
-            <div><span>{t.delivery}</span><span>{t.deliveryLater}</span></div>
           </div>
           <p className="ll-cart-offer">{t.offerLine}</p>
           {blocked && <p className="ll-cart-date-alert" role="status">{t[blocked]}</p>}

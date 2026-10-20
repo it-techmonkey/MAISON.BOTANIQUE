@@ -1,3 +1,5 @@
+> Current context: read [current status](CURRENT_STATUS.md) and [catalogue ownership](DATA_FLOW.md). Setup instructions are not evidence of live configuration; catalogue seed commands require separate approval.
+
 # Shopify setup guide
 
 How to connect the Maison Botanique Next.js storefront to Shopify, from an empty store to a tested order. The store is a **client transfer store** created from the agency's Partner account: build and test everything there, then transfer it to the client (step 1).
@@ -350,7 +352,7 @@ Use the development store, or the production store with test payments turned on:
 - [ ] Products, prices, sold-out sizes, filters, search and the hero gallery match Shopify, in English and Arabic.
 - [ ] Add two sizes of a product with different gift notes. They stay separate lines, and quantities and removal work.
 - [ ] Reload the page: the bag is still there. Open the site in another browser: the bag is empty (carts belong to a browser).
-- [ ] Checkout totals, VAT, delivery fees (AED 30 Dubai, AED 40 elsewhere in the UAE) and the `BLOOM25` discount are correct. Arabic checkout opens in Arabic.
+- [ ] Checkout totals, VAT, delivery fees (AED 30 Dubai, AED 50 elsewhere in the UAE) and the `BLOOM25` discount are correct. Arabic checkout opens in Arabic.
 - [ ] Delivery: the product page and the bag require a day and a window; today's windows that start within 2 hours are unavailable; checkout is blocked until one is chosen.
 - [ ] Place a test order. In the admin: the order is attributed to **Headless**, *Gift message* appears on the item, and *Delivery date* and *Delivery time* appear under Additional details and the delivery is in the order Note, in the confirmation email and on the packing slip.
 - [ ] Customer accounts: Account → Sign in sends a code by email, returns to `/account` showing orders and addresses, checkout opens signed in, and Sign out returns to the home page.
@@ -428,12 +430,12 @@ Sign-ups need `SHOPIFY_FORMS_ADMIN_TOKEN` (step 13); without it the visitor stil
 
 ## 18. Delivery fees and coverage
 
-Same-day delivery is offered across the whole UAE, for **AED 30 in Dubai** and **AED 40 elsewhere in the UAE**. The website states this in the ribbon, the bag, the footer, the delivery page, the FAQ and product pages. Shopify must charge the same amounts, or customers will see a different fee at checkout:
+Same-day delivery is offered across the whole UAE, for **AED 30 in Dubai** and **AED 50 elsewhere in the UAE**. The website states this in the footer, the residences page, the delivery page and the FAQ; the bag and product pages leave the fee to checkout. Shopify must charge the same amounts, or customers will see a different fee at checkout:
 
 1. **Settings → Shipping and delivery → General shipping rates** (or the delivery profile for these products).
-2. A **Dubai** zone with a flat rate of **AED 30**, and a **rest of the UAE** zone with a flat rate of **AED 40**. Set them up as shipping zones by emirate, or as local delivery zones if the team delivers itself.
-3. No free-shipping threshold and no free-delivery rate or discount for any area or building: every order pays AED 30 or AED 40. Check that no free-shipping rate or automatic discount exists in Shopify.
-4. Test an address in Dubai and one in Abu Dhabi at checkout: the totals should add AED 30 and AED 40.
+2. A **Dubai** zone with a flat rate of **AED 30**, and a **rest of the UAE** zone with a flat rate of **AED 50**. Set them up as shipping zones by emirate, or as local delivery zones if the team delivers itself.
+3. No free-shipping threshold and no free-delivery rate or discount for any area or building: every order pays AED 30 or AED 50. Check that no free-shipping rate or automatic discount exists in Shopify.
+4. Test an address in Dubai and one in Abu Dhabi at checkout: the totals should add AED 30 and AED 50.
 
 ## Troubleshooting
 

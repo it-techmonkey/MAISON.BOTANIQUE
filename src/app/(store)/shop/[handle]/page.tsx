@@ -38,8 +38,8 @@ const DETAILS = [
   {
     title: { en: 'Delivery', ar: 'التوصيل' },
     body: {
-      en: 'Same-day delivery across the UAE. AED 30 in Dubai, AED 40 elsewhere in the UAE. Choose the day and a three-hour window (9am to 9pm) in your bag; same-day windows close three hours before they start.',
-      ar: 'توصيل في اليوم نفسه في جميع أنحاء الإمارات. ٣٠ درهماً في دبي، و٤٠ درهماً في بقية الإمارات. اختر اليوم وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، وتُغلق فترات اليوم نفسه قبل بدايتها بثلاث ساعات.',
+      en: 'Same-day delivery across the UAE; the delivery fee for your address is shown at checkout. Choose the day and a three-hour window (9am to 9pm) in your bag; same-day windows close three hours before they start.',
+      ar: 'توصيل في اليوم نفسه في جميع أنحاء الإمارات، وتظهر رسوم التوصيل لعنوانك عند الدفع. اختر اليوم وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، وتُغلق فترات اليوم نفسه قبل بدايتها بثلاث ساعات.',
     },
   },
   {

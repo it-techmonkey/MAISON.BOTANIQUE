@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "shopify:auth": "node --env-file-if-exists=.env.local scripts/shopify-auth.mjs",
     "theme:zip": "node scripts/theme-zip.mjs",
     "shopify:catalog": "node --env-file-if-exists=.env.local scripts/shopify-catalog-sync.mjs",

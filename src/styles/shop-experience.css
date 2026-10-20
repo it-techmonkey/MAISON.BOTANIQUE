@@ -408,3 +408,28 @@ a.ll-shop-primary { text-decoration: none; box-sizing: border-box; }
 
 .bag-welcome { padding: 16px 24px; border-bottom: 1px solid var(--line); font-size: 13px; }
 .bag-welcome label { display: flex; align-items: center; gap: 8px; margin-top: 8px; min-height: 44px; }
+
+/* Bag on phones: a short fixed header and footer, so the pieces, the welcome
+   offer and the delivery day have room to breathe in between. */
+.ll-cart-lines > .bag-welcome { margin: -8px -34px 0; padding-inline: 34px; }
+.ll-cart-line + .dl-picker { border-top: 0; }
+.qa-days .qa-day { grid-template-rows: 1fr auto; align-items: center; min-height: 74px; padding: 10px 4px 12px; text-align: center; }
+.qa-days .qa-day span { letter-spacing: .08em; line-height: 1.25; text-wrap: balance; }
+@media (max-width: 760px) {
+  .ll-cart-header { padding-block: 26px 16px; padding-inline-end: 76px; }
+  .ll-cart-header h2 { margin-top: 6px; font-size: 38px; }
+  .ll-shop-panel--cart .ll-shop-close { top: 14px; width: 44px; height: 44px; }
+  .ll-cart-lines > .bag-welcome { padding-block: 14px; }
+  .ll-cart-lines .ll-cart-line { padding: 18px 0; }
+  .ll-cart-footer { padding-block: 14px max(16px, env(safe-area-inset-bottom)); }
+  .ll-cart-totals > div { margin-bottom: 6px; }
+  .ll-cart-footer .ll-shop-primary { margin-top: 12px; }
+  .ll-cart-offer { margin-top: 6px; font-size: 14px; }
+}
+@media (max-width: 430px) {
+  .ll-cart-lines > .bag-welcome { margin-inline: -22px; padding-inline: 22px; }
+}
+@media (max-width: 380px) {
+  .qa-days { gap: 6px; }
+  .qa-days .qa-day span { letter-spacing: .04em; }
+}

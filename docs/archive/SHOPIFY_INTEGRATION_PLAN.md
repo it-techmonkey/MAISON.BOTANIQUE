@@ -1,3 +1,5 @@
+> Historical record. Use [current status](../CURRENT_STATUS.md) for the maintained project state.
+
 # Shopify integration and merge plan
 
 **Decision, 16 October 2026:** use the current bilingual editorial storefront as the visual and interaction baseline, connect it to Shopify for commerce, and add consent-aware storefront and checkout analytics. The GitHub branch is for review. Do not merge it into `main` until the owner explicitly approves that action.
