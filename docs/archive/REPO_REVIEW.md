@@ -1,3 +1,5 @@
+> Historical record. Use [current status](../CURRENT_STATUS.md) for the maintained project state.
+
 # Original repository review
 
 Reviewed 16 October 2026 against `main` at `7b3199b`. This branch contains the newer Maison Botanique review storefront. The original Next.js implementation remains available on `main`; no original content has been treated as an approved business fact.

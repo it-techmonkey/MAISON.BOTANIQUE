@@ -1,3 +1,5 @@
+> Historical record. Use [current status](../CURRENT_STATUS.md) for the maintained project state.
+
 # Maison Botanique · floral direction
 
 This publicly viewable review storefront is a design and shopping-flow concept for Dubai gifting. Maison Botanique is the confirmed brand; the imagery, copy, prices and catalog remain provisional.

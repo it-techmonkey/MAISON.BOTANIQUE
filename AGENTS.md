@@ -7,3 +7,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Project workflow
+
+Read [README.md](README.md), [docs/CURRENT_STATUS.md](docs/CURRENT_STATUS.md), [docs/DATA_FLOW.md](docs/DATA_FLOW.md) and [docs/WORKFLOW.md](docs/WORKFLOW.md). In the full workspace also read the parent AGENTS.md. Work on review branches from fresh origin/main; main deploys production and requires separate explicit approval. Do not run catalogue seeding, paid image generation, or live settings changes as part of cleanup. Never commit local credentials, working media, customer records or recovery snapshots.
