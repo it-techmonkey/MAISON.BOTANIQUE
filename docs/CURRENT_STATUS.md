@@ -20,9 +20,11 @@ This cleanup preserves that newer application baseline.
 - Signature / Grand / Luxe; only flowers multiply; one Signature photo per product.
 - No product counts in customer UI. Paper/ivory backgrounds; Cormorant Garamond italic for card previews.
 - Preserve the current three-product scroll hero, arrows, approved headline and four promises.
-- 25% off eligible first orders, MAISON25 fallback; no first-100 or advertised candle claim.
+- 25% off eligible first orders, MAISON25 fallback; no first-100 or advertised candle claim. Revised 20 October 2026:
+  struck prices carry a calculated "10% off" tag and the desktop side tab reads "25 + 10% off" (PR #6).
+- Prices show the new UAE Dirham sign instead of the letters AED (PR #6).
 - Same-day promise is Dubai only. Free JVC requires the full recipient address; AED 30 elsewhere in Dubai,
-  AED 40 elsewhere in the UAE. Four daily delivery windows, three-hour lead, 60-day horizon.
+  AED 50 elsewhere in the UAE (revised 20 October 2026; code change in PR #5). Four daily delivery windows, three-hour lead, 60-day horizon.
 - Keep real gift brands and seasonal products. Do not publish competitor florist material.
 - Money bouquet cash principal is separate; only the arrangement fee is paid/discounted online.
 - Preserve working WhatsApp configuration; no public street address in LocalBusiness markup.
