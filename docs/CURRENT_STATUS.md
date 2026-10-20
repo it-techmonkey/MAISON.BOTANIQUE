@@ -25,8 +25,9 @@ This cleanup preserves that newer application baseline.
 - Prices show the new UAE Dirham sign instead of the letters AED (PR #6).
 - Product names and URLs changed on 20 October 2026: every product has a brand-style name ("Eloise — Pink & White Rose Bouquet"), an
   Arabic name and a matching handle (`catalog/shopify-export/product-renames.json`). Old `/shop/<handle>` URLs redirect (next.config.ts).
-  The data and images are renamed in the repository; **Shopify is changed only by `npm run shopify:names-prices -- --apply`**, which also
-  writes the 40-60% compare-at prices. Until that runs, `scripts/check_prices.py` fails its live check and the site shows the old names.
+  The data and images are renamed in the repository, and `npm run shopify:names-prices -- --apply` was run on 20 October 2026 (318 products,
+  813 compare-at prices; live check passes). Re-run it only after changing `product-renames.json` or the ledger. Image alt text on Shopify
+  still quotes the old names.
 - Same-day delivery wording is as on main on 20 October 2026 (UAE-wide, no free JVC) and is still under owner discussion. AED 30 in Dubai,
   AED 50 elsewhere in the UAE (revised 20 October 2026; code change in PR #5). Four daily delivery windows, three-hour lead, 60-day horizon.
 - Keep real gift brands and seasonal products. Do not publish competitor florist material.
