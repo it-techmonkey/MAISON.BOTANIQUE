@@ -145,7 +145,9 @@ function ensureEnquiryDefinition() {
         name: 'Website enquiry',
         description: 'Messages sent from the contact and services forms on the website.',
         displayNameKey: 'email',
-        access: { admin: 'MERCHANT_READ_WRITE', storefront: 'NONE' },
+        // Merchants always read and write it in the admin; `access.admin` is only
+        // allowed on app-reserved types, and Shopify rejects the whole definition with it.
+        access: { storefront: 'NONE' },
         fieldDefinitions: ENQUIRY_FIELDS,
       },
     });
