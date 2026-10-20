@@ -17,7 +17,7 @@ const OPEN_DELAY_MS = 1500;
 
 const COPY = {
   en: {
-    eyebrow: 'Welcome offer', title: '25% off your first order', sub: 'Sign up and get 25% off your first order. Free delivery in JVC.',
+    eyebrow: 'Welcome offer', title: '25% off your first order', sub: 'Sign up and get 25% off your first order.',
     whatsapp: 'WhatsApp', email: 'Email', phoneLabel: 'WhatsApp number', phonePh: '50 123 4567', emailLabel: 'Email address', emailPh: 'you@example.com',
     consent: 'Send me occasional Maison offers by email or SMS (optional). I can unsubscribe at any time.', privacy: 'Privacy policy',
     cta: 'Get my code', sending: 'Sending…', no: 'No thanks', invalidPhone: 'Enter a UAE mobile number, for example 50 123 4567.', invalidEmail: 'Enter a valid email address.', needConsent: 'Tick the box so we can send your code.',
@@ -27,7 +27,7 @@ const COPY = {
     tab: '25% off', close: 'Close',
   },
   ar: {
-    eyebrow: 'عرض الترحيب', title: 'خصم ٢٥٪ على طلبك الأول', sub: 'سجّل واحصل على خصم ٢٥٪ على طلبك الأول. توصيل مجاني في JVC.',
+    eyebrow: 'عرض الترحيب', title: 'خصم ٢٥٪ على طلبك الأول', sub: 'سجّل واحصل على خصم ٢٥٪ على طلبك الأول.',
     whatsapp: 'واتساب', email: 'البريد', phoneLabel: 'رقم واتساب', phonePh: '50 123 4567', emailLabel: 'البريد الإلكتروني', emailPh: 'you@example.com',
     consent: 'أرسلوا لي عروض ميزون بالبريد أو الرسائل النصية (اختياري). يمكنني إلغاء الاشتراك في أي وقت.', privacy: 'سياسة الخصوصية',
     cta: 'احصل على الرمز', sending: 'جارٍ الإرسال…', no: 'لا، شكراً', invalidPhone: 'أدخل رقم هاتف إماراتياً، مثل 50 123 4567.', invalidEmail: 'أدخل بريداً إلكترونياً صحيحاً.', needConsent: 'ضع علامة في المربع لنرسل لك الرمز.',
