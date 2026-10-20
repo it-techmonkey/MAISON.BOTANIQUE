@@ -33,7 +33,7 @@ Money bouquet cash value must be collected separately from the online arrangemen
 
 No area or building gets free delivery: the website says AED 30 in Dubai and AED 40 elsewhere in the UAE. Shopify checkout shipping must charge the same. Verify that a Dubai address (for example Marina) is AED 30 and another emirate is AED 40 before release, and that no free-shipping rate or automatic discount exists.
 
-Approved picker rules: 9am–noon, noon–3pm, 3–6pm, 6–9pm; three-hour lead; daily; up to 60 days ahead. Public same-day promise is Dubai only. Other UAE delivery is described separately.
+Approved picker rules: 9am–noon, noon–3pm, 3–6pm, 6–9pm; three-hour lead; daily; up to 60 days ahead. Same-day delivery is offered across the whole UAE; only the fee differs (AED 30 Dubai, AED 40 elsewhere).
 
 ## Enquiry firewall
 
