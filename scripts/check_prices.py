@@ -6,7 +6,7 @@ No writes are made to Shopify or local catalogue files.
 import csv
 import json
 import os
-from decimal import Decimal, ROUND_HALF_EVEN
+from decimal import Decimal
 from pathlib import Path
 from urllib.request import Request, urlopen
 
@@ -35,8 +35,11 @@ def check_prices():
             assert price > 0 and compare > price, f'Invalid prices for {sku}'
             assert price == Decimal(row['price']), f'Selling price mismatch: {sku}'
             assert compare == Decimal(row['compare_at_price']), f'Compare-at mismatch: {sku}'
-            # The approved 19 Oct ledger rounds compare-at prices to whole AED.
-            assert compare == (price / Decimal('.9')).quantize(Decimal('1'), rounding=ROUND_HALF_EVEN), f'10% rule: {sku}'
+            # Owner decision 20 Oct: the selling price is 40-60% off the struck-through price
+            # (scripts/strikethrough_rule.py). Compare-at prices are whole AED, so allow a point either side.
+            assert compare == compare.to_integral_value(), f'Compare-at is not whole AED: {sku}'
+            off = (1 - price / compare) * 100
+            assert Decimal('39') <= off <= Decimal('61'), f'Strikethrough outside 40-60% off ({off:.1f}%): {sku}'
             assert Decimal(str(product['price'])) + Decimal(str(size['add'])) == price, f'Size increment: {sku}'
     assert seen == set(expected), 'Missing or extra bundled variants'
 

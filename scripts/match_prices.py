@@ -9,7 +9,7 @@ Every product in catalog/shopify-export/shopify-push.json carries a
 For each variant this writes the selling price, taken from the research
 data (GiftyGram per size; UAEFlowers' Classic, Deluxe and Premium tiers),
 and the strikethrough ("compare at") price, set so the selling price is
-exactly STRIKETHROUGH_DISCOUNT below it (rounded to whole dirhams).
+40-60% below it, fixed per product (see strikethrough_rule.py, rounded to whole dirhams).
 
 Output: catalog/shopify-export/variant-prices.csv, one row per SKU with the
 source and how the price was matched. scripts/shopify-catalog-sync.mjs reads it.
@@ -33,12 +33,7 @@ OUT = ROOT / "catalog" / "shopify-export" / "variant-prices.csv"
 # Maison tier -> UAEFlowers upgrade option (the mapping the catalog was built with).
 UAE_TIERS = {"signature": "Classic", "grand": "Deluxe", "luxe": "Premium"}
 UAE_ORDER = ["Classic", "Deluxe", "Premium"]
-# The selling price is this much off the strikethrough price (owner decision, 2026-10-19).
-STRIKETHROUGH_DISCOUNT = 0.10
-
-
-def strikethrough(price):
-    return round(price / (1 - STRIKETHROUGH_DISCOUNT))
+from strikethrough_rule import strikethrough  # noqa: E402  (40-60% off, owner decision 2026-10-20)
 
 
 def money(value):
@@ -168,7 +163,7 @@ def main():
             problems.append(f"{product['handle']}: {error}")
             continue
         for variant, price in zip(variants, matched):
-            compare = strikethrough(price["price"])
+            compare = strikethrough(price["price"], product["handle"])
             rows.append({
                 "handle": product["handle"], "sku": variant["sku"], "option": variant["option"],
                 "price": f"{price['price']:.2f}", "compare_at_price": f"{compare:.2f}" if compare else "",

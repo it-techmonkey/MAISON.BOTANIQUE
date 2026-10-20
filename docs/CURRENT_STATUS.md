@@ -21,7 +21,7 @@ This cleanup preserves that newer application baseline.
 - No product counts in customer UI. Paper/ivory backgrounds; Cormorant Garamond italic for card previews.
 - Preserve the current three-product scroll hero, arrows, approved headline and four promises.
 - 25% off eligible first orders, MAISON25 fallback; no first-100 or advertised candle claim. Revised 20 October 2026:
-  struck prices carry a calculated "10% off" tag and the desktop side tab reads "25 + 10% off" (PR #6).
+  struck prices carry a calculated "NN% off" tag (40-60%, fixed per product) and the desktop side tab reads "25% + up to 60% off".
 - Prices show the new UAE Dirham sign instead of the letters AED (PR #6).
 - Same-day delivery wording is as on main on 20 October 2026 (UAE-wide, no free JVC) and is still under owner discussion. AED 30 in Dubai,
   AED 50 elsewhere in the UAE (revised 20 October 2026; code change in PR #5). Four daily delivery windows, three-hour lead, 60-day horizon.
