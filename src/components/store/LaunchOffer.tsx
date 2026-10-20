@@ -24,7 +24,7 @@ const COPY = {
     failed: 'Something went wrong. Please try again in a moment.',
     doneTitle: 'Your code is ready', doneSub: 'Your code is ready for checkout. Your details have been saved.',
     copy: 'Copy code', copied: 'Copied', shop: 'Start shopping', terms: 'One use per customer · 25% off products.',
-    tab: '25 + 10% off', close: 'Close',
+    tab: '25% + up to 60% off', close: 'Close',
   },
   ar: {
     eyebrow: 'عرض الترحيب', title: 'خصم ٢٥٪ على طلبك الأول', sub: 'سجّل واحصل على خصم ٢٥٪ على طلبك الأول.',
@@ -34,7 +34,7 @@ const COPY = {
     failed: 'حدث خطأ ما. يرجى المحاولة بعد قليل.',
     doneTitle: 'رمزك جاهز', doneSub: 'رمزك جاهز للدفع. تم حفظ بياناتك.',
     copy: 'انسخ الرمز', copied: 'تم النسخ', shop: 'ابدأ التسوق', terms: 'استخدام واحد لكل عميل · خصم ٢٥٪ على المنتجات.',
-    tab: 'خصم ٢٥ + ١٠٪', close: 'إغلاق',
+    tab: 'خصم ٢٥٪ + حتى ٦٠٪', close: 'إغلاق',
   },
 };
 
@@ -159,7 +159,7 @@ export default function LaunchOffer() {
       <div className="lo-scrim" onMouseDown={(event) => { if (event.target === event.currentTarget) dismiss(); }}>
         <section className="lo-panel" ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="lo-title" dir={ar ? 'rtl' : 'ltr'} data-track-location="launch_offer">
           <button type="button" className="lo-close" aria-label={t.close} onClick={dismiss}>×</button>
-          <div className="lo-photo" aria-hidden="true"><img src="/collection/classic-pink-and-white-rose-bouquet-960.webp" alt="" /></div>
+          <div className="lo-photo" aria-hidden="true"><img src="/collection/eloise-pink-and-white-rose-bouquet-960.webp" alt="" /></div>
           <div className="lo-body">
             <span className="lo-eyebrow">{t.eyebrow}</span>
             {saved.code ? <>

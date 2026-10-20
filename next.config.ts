@@ -1,5 +1,11 @@
+import { readFileSync } from 'node:fs';
 import type { NextConfig } from 'next';
 import { POSTHOG_HOSTS, POSTHOG_RELAY_PATH } from './src/lib/analytics/config';
+
+// Product names and URLs changed on 2026-10-20: each old /shop/<handle> goes to the new one.
+const renamedProducts: Array<{ oldHandle: string; handle: string }> = JSON.parse(
+  readFileSync(new URL('./catalog/shopify-export/product-renames.json', import.meta.url), 'utf8'),
+);
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -29,6 +35,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/jvc', destination: '/?offer=open', permanent: true },
+      ...renamedProducts.map(({ oldHandle, handle }) => ({ source: `/shop/${oldHandle}`, destination: `/shop/${handle}`, permanent: true })),
       // Occasions are filters on the collection now, not pages.
       { source: '/occasions/just-because', destination: '/shop#occasion/gifts-for-her', permanent: true },
       { source: '/occasions/:occasion', destination: '/shop#occasion/:occasion', permanent: true },

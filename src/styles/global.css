@@ -179,7 +179,7 @@ main { display: block; min-height: 60vh; }
   color: var(--ink); border-bottom: 1px solid transparent;
   transition: background-color 350ms ease, border-color 350ms ease;
 }
-.site-header--solid { background: rgba(245, 242, 235, .94); border-bottom-color: var(--mb-taupe); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.site-header--solid { background: var(--paper); border-bottom-color: var(--mb-taupe); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
 /* The header and hero keep the design's normal line height (the rest of the site uses 1.55). */
 .site-header, .tt-section, .tt-fallback { line-height: normal; }
 .site-header__brand { justify-self: start; display: inline-flex; text-decoration: none; }
@@ -424,5 +424,5 @@ main { display: block; min-height: 60vh; }
    does not pass through the inline-flex price (Money.tsx) and never crosses the Dirham sign. */
 .mbc-price s, .tt-product__price s, .qa-size-price s, .purchase__price s { position: relative; display: inline-block; text-decoration: none; }
 .mbc-price s::after, .tt-product__price s::after, .qa-size-price s::after, .purchase__price s::after {
-  content: ''; position: absolute; inset-inline: -2px; top: 54%; border-top: 1.5px solid currentColor; pointer-events: none;
+  content: ''; position: absolute; inset-inline: -2px; top: 54%; border-top: 2px solid currentColor; pointer-events: none;
 }

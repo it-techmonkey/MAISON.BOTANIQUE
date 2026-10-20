@@ -4,7 +4,7 @@ import { discountPercent, percentLabel } from '@/lib/discount';
 import { useStore } from './StoreProvider';
 
 /**
- * "10% off" beside a struck-through price. Worked out from the two prices,
+ * "52% off" beside a struck-through price. Worked out from the two prices,
  * so it always matches what the shopper sees; hidden below a 5% saving.
  */
 export default function SaleTag({ price, compareAtPrice, className = '' }: { price: number; compareAtPrice: number | null | undefined; className?: string }) {
