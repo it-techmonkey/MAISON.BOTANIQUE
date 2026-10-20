@@ -176,6 +176,8 @@
 .ll-cart-line h3 { margin: 5px 0 5px; font: 500 24px/1.05 var(--font-display); letter-spacing: -.02em; }
 .ll-cart-line p { margin: 0; font-size: 12px; line-height: 1.5; }
 .ll-cart-line-detail { overflow-wrap: anywhere; color: #5a5454; }
+.ll-shop-primary.is-blocked { cursor: not-allowed; opacity: .55; }
+.ll-shop-primary.is-blocked:hover { color: #fff; background: var(--ll-red); border-color: var(--ll-red); }
 .ll-cart-date-alert { margin-top: 7px !important; padding: 8px; color: var(--ll-red); background: #f6e5e9; font-size: 12px; font-weight: 700; }
 .ll-cart-controls { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 12px; }
 .ll-quantity { display: flex; height: 38px; align-items: center; border: 1px solid rgb(23 25 22 / 22%); }

@@ -16,7 +16,7 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://maisonbota
 /** The welcome offer's discount code (create it in Shopify Discounts), shown in the banner and after the sign-up. */
 export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'MAISON25').trim();
 
-/** The seven emirates served; same-day delivery is advertised for Dubai. */
+/** The seven emirates served, all with same-day delivery. */
 export const EMIRATES: Bilingual[] = [
   { en: 'Dubai', ar: 'دبي' },
   { en: 'Abu Dhabi', ar: 'أبوظبي' },
@@ -36,7 +36,7 @@ export const SITE = {
   },
   city: { en: 'Dubai, United Arab Emirates', ar: 'دبي، الإمارات العربية المتحدة' },
   /** Public enquiries inbox. Confirm the mailbox exists before launch. */
-  email: 'hello@maisonbotaniqueflowers.com',
+  email: 'maisonbotaniqueflowers@gmail.com',
   /** International format without spaces, e.g. '+9715XXXXXXXX'. Hidden until set. */
   phone: null as string | null,
   /**
@@ -286,4 +286,5 @@ export const HELP_LINKS = [
   { href: '/contact', label: { en: 'Contact', ar: 'تواصل معنا' } },
   { href: '/privacy', label: { en: 'Privacy', ar: 'الخصوصية' } },
   { href: '/terms', label: { en: 'Terms', ar: 'الشروط' } },
+  { href: '/refund-policy', label: { en: 'Refund policy', ar: 'سياسة الاسترداد' } },
 ];

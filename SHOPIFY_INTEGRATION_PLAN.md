@@ -5,9 +5,9 @@
 ## Branch and code strategy
 
 - `main` in `it-techmonkey/MAISON.BOTANIQUE` is the original Next.js concept. `codex/editorial-storefront-preview` is a Vite/React replacement at the repository root. A normal merge would replace most Next.js files. Review it as a complete storefront candidate, not as a small component patch.
-- Keep the current hero, horizontal collection, search, occasion/type filters, Arabic RTL flow, product details, gift note, preferred-date entry, and JVC proof as the starting point.
+- Keep the current hero, horizontal collection, search, occasion/type filters, Arabic RTL flow, product details, gift note, preferred-date entry, as the starting point.
 - Reuse the original repository's content separation and typed catalog idea where helpful. Do not import its unverified contact details, service promises, testimonials, product names, prices, or photos as real business data. Its images require source rights and actual-product checks.
-- **Update, 17 October 2026:** the storefront was moved from Vite to Next.js 16 (App Router, TypeScript) to match the team's other headless Shopify builds and to render the catalog on the server. The design, bilingual behavior and `/jvc` proof were ported unchanged. Catalog, cart, checkout handoff, Shopify analytics and the catalog webhook are implemented. On request, analytics track every visitor without a consent prompt, which supersedes the consent-first approach below; store configuration is in [docs/SHOPIFY_SETUP.md](docs/SHOPIFY_SETUP.md).
+- **Update, 17 October 2026:** the storefront was moved from Vite to Next.js 16 (App Router, TypeScript) to match the team's other headless Shopify builds and to render the catalog on the server. The design and bilingual behavior were ported unchanged. Catalog, cart, checkout handoff, Shopify analytics and the catalog webhook are implemented. On request, analytics track every visitor without a consent prompt, which supersedes the consent-first approach below; store configuration is in [docs/SHOPIFY_SETUP.md](docs/SHOPIFY_SETUP.md).
 
 ## Commerce work, in order
 
@@ -15,7 +15,7 @@
 2. **Catalog.** Replace sample product records and prices with Storefront API data. Preserve a stable mapping to the current design order and filters. Query the AE market and English/Arabic localization; use Shopify availability and merchandise prices as the source of truth.
 3. **Cart.** Replace the browser-only sample bag with a persisted Shopify cart. Set buyer country to AE and carry each selected variant and quantity. Confirm that gift notes and the chosen date appear in the order/fulfilment workflow; a preferred date must be validated against real delivery capacity before it is promised.
 4. **Checkout.** Send customers to the cart's Shopify-hosted `checkoutUrl`. Show the Storefront API cart cost and currency rather than local arithmetic, and verify discounts, tax, shipping, stock changes, checkout errors, abandoned/recovered carts, and English/Arabic handoff.
-5. **JVC launch offer.** Implement the 25% first-100-orders limit and one-candle entitlement in Shopify with enforceable rules, inventory accounting, and approved terms. The current page is only a proof and must not be treated as the enforcement mechanism.
+5. **Welcome offer.** A single code (BLOOM25, 25% off a first order, one use per customer) created in Shopify. Delivery is never free: AED 30 in Dubai and AED 40 elsewhere in the UAE, for every area.
 
 ## Analytics and privacy
 
@@ -34,7 +34,7 @@
 
 ## Inputs still needed
 
-Shopify store domain and authorized admin access; Headless public token (private tokens stay server-side); final catalog/variants and imagery; Arabic product translations; Dubai delivery rules; JVC offer terms; approved analytics destination and privacy/consent wording; final logo, contact details, and policies.
+Shopify store domain and authorized admin access; Headless public token (private tokens stay server-side); final catalog/variants and imagery; Arabic product translations; Dubai delivery rules; welcome offer terms; approved analytics destination and privacy/consent wording; final logo, contact details, and policies.
 
 ## Shopify references
 

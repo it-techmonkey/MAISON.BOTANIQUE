@@ -30,11 +30,15 @@ export default function FaqPage() {
           },
           {
             title: { en: 'Where do you deliver?', ar: 'إلى أين توصلون؟' },
-            paragraphs: [{ en: 'We deliver across the UAE, with same-day delivery in Dubai. Delivery is free in JVC, AED 30 elsewhere in Dubai and AED 50 elsewhere in the UAE. Enter the full recipient delivery address at checkout, including building, apartment and area.', ar: 'نوصل في جميع الإمارات، مع توصيل في اليوم نفسه في دبي. التوصيل مجاني في JVC، و٣٠ درهماً في بقية دبي، و٥٠ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى والشقة والمنطقة.' }],
+            paragraphs: [{ en: 'We deliver same day across the UAE. Delivery is AED 30 in Dubai and AED 50 elsewhere in the UAE. Enter the full recipient delivery address at checkout, including building, apartment and area.', ar: 'نوصل في اليوم نفسه في جميع أنحاء الإمارات. التوصيل ٣٠ درهماً في دبي و٥٠ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى والشقة والمنطقة.' }],
           },
           {
             title: { en: 'Will my flowers look exactly like the photograph?', ar: 'هل ستبدو زهوري تماماً كما في الصورة؟' },
             paragraphs: [{ en: 'Every arrangement is made by hand with seasonal flowers, so each one is a little different. If a stem is not at its best, we use one of equal quality and a similar feeling.', ar: 'كل تنسيق يُصنع يدوياً بزهور موسمية، لذا يختلف كل واحد قليلاً. إذا لم تكن زهرة في أفضل حالاتها، نستخدم أخرى بالجودة نفسها وبإحساس مشابه.' }],
+          },
+          {
+            title: { en: 'What if my flowers arrive damaged?', ar: 'ماذا لو وصلت زهوري تالفة؟' },
+            paragraphs: [{ en: 'Send us your request within 30 minutes of delivery, with your order number and a photograph, and we will replace the arrangement or refund the order. See our refund policy for details.', ar: 'أرسل إلينا طلبك خلال ٣٠ دقيقة من التوصيل مع رقم طلبك وصورة، وسنستبدل التنسيق أو نردّ قيمة الطلب. راجع سياسة الاسترداد لمعرفة التفاصيل.' }],
           },
           {
             title: { en: 'How do I pay?', ar: 'كيف أدفع؟' },

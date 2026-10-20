@@ -47,7 +47,7 @@ export default function TermsPage() {
         {
           title: { en: 'If something is not right', ar: 'إذا لم يكن شيء ما كما ينبغي' },
           paragraphs: [
-            { en: 'If your flowers arrive damaged or not as described, please send us a photograph within 24 hours of delivery and we will make it right.', ar: 'إذا وصلت زهورك تالفة أو بخلاف الوصف، يرجى إرسال صورة إلينا خلال ٢٤ ساعة من التوصيل وسنعالج الأمر.' },
+            { en: `If your flowers arrive damaged or not as described, send us your request within 30 minutes of delivery, at ${SITE.email}. Our refund policy explains what we will do.`, ar: `إذا وصلت زهورك تالفة أو بخلاف الوصف، أرسل إلينا طلبك خلال ٣٠ دقيقة من التوصيل على ${SITE.email}. توضّح سياسة الاسترداد ما سنقوم به.` },
           ],
         },
       ]} />

@@ -42,6 +42,8 @@ export interface ShopifyCart {
   subtotal: Money;
   /** Cart-level attributes: the delivery schedule and the analytics IDs. */
   attributes: Record<string, string>;
+  /** Becomes the order's note: the readable delivery date and time for the shop team. */
+  note: string;
   lines: ShopifyCartLine[];
 }
 
@@ -57,6 +59,7 @@ const CART_FIELDS = `#graphql
     updatedAt
     checkoutUrl
     totalQuantity
+    note
     discountCodes { code applicable }
     attributes { key value }
     cost { subtotalAmount { amount currencyCode } totalAmount { amount currencyCode } }
@@ -100,6 +103,13 @@ const CART_ATTRIBUTES_UPDATE = `#graphql
   ${CART_FIELDS}
 `;
 
+const CART_NOTE_UPDATE = `#graphql
+  mutation CartNoteUpdate($cartId: ID!, $note: String!, ${CONTEXT_VARS}) ${CONTEXT} {
+    cartNoteUpdate(cartId: $cartId, note: $note) { cart { ...CartFields } ${USER_ERRORS} }
+  }
+  ${CART_FIELDS}
+`;
+
 const CART_CREATE = `#graphql
   mutation CartCreate($input: CartInput!, ${CONTEXT_VARS}) ${CONTEXT} {
     cartCreate(input: $input) { cart { ...CartFields } ${USER_ERRORS} }
@@ -134,6 +144,7 @@ interface RawCart {
   updatedAt: string;
   checkoutUrl: string;
   totalQuantity: number;
+  note?: string | null;
   discountCodes: Array<{ code: string; applicable: boolean }>;
   attributes: Array<{ key: string; value: string | null }>;
   cost: { subtotalAmount: RawMoney; totalAmount: RawMoney };
@@ -169,6 +180,7 @@ function normalizeCart(raw: RawCart): ShopifyCart {
     totalQuantity: raw.totalQuantity,
     discountCodes: raw.discountCodes ?? [],
     subtotal: money(raw.cost.subtotalAmount),
+    note: raw.note ?? '',
     attributes: Object.fromEntries(raw.attributes.map((attribute) => [attribute.key, attribute.value ?? ''])),
     lines: raw.lines.nodes.map((line) => ({
       id: line.id,
@@ -214,10 +226,15 @@ export async function fetchCart(cartId: string, locale: Locale) {
 
 export type CartAttribute = { key: string; value: string };
 
-export function createCart(lines: CartLineInput[], locale: Locale, attributes: CartAttribute[] = []) {
+export function createCart(lines: CartLineInput[], locale: Locale, attributes: CartAttribute[] = [], note = '') {
   return mutate(CART_CREATE, 'cartCreate', {
-    input: { lines, attributes, buyerIdentity: { countryCode: shopifyConfig.country } },
+    input: { lines, attributes, ...(note ? { note } : {}), buyerIdentity: { countryCode: shopifyConfig.country } },
   }, locale);
+}
+
+/** Sets the cart note, which Shopify copies to the order's Notes. */
+export function updateCartNote(cartId: string, note: string, locale: Locale) {
+  return mutate(CART_NOTE_UPDATE, 'cartNoteUpdate', { cartId, note }, locale);
 }
 
 /**
