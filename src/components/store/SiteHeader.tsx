@@ -56,13 +56,17 @@ export default function SiteHeader() {
   const direct = ['roses', 'gifts', 'grand-gestures', 'under-300'].map(findGroup).filter((group) => group !== null);
 
   // Over the home hero the header stays transparent for the whole pinned
-  // scene, and takes its paper background once the hero has moved past it.
+  // scene, and takes its paper background once the hero has moved past it,
+  // or as soon as the hero's text would slide up underneath it (phones).
   useEffect(() => {
     let queued = false;
     const update = () => {
       queued = false;
       const hero = document.getElementById('turntable');
-      setScrolled(hero ? hero.getBoundingClientRect().bottom <= 150 : window.scrollY > 24);
+      if (!hero) { setScrolled(window.scrollY > 24); return; }
+      const headerBottom = document.querySelector('.site-header')?.getBoundingClientRect().bottom ?? 0;
+      const copyTop = hero.querySelector('.tt-copy')?.getBoundingClientRect().top ?? Infinity;
+      setScrolled(hero.getBoundingClientRect().bottom <= 150 || copyTop < headerBottom);
     };
     const onScroll = () => {
       if (queued) return;
