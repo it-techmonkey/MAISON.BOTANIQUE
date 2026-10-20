@@ -11,6 +11,7 @@
     "shopify:auth": "node --env-file-if-exists=.env.local scripts/shopify-auth.mjs",
     "theme:zip": "node scripts/theme-zip.mjs",
     "shopify:catalog": "node --env-file-if-exists=.env.local scripts/shopify-catalog-sync.mjs",
+    "shopify:names-prices": "node --env-file-if-exists=.env.local scripts/shopify-update-names-prices.mjs",
     "catalog:prices": "python scripts/match_prices.py",
     "prebuild": "python3 -I scripts/check_prices.py",
     "test": "node --import ./scripts/test-loader.mjs --test tests/*.test.mjs"

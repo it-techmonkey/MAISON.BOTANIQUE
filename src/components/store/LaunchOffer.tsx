@@ -159,7 +159,7 @@ export default function LaunchOffer() {
       <div className="lo-scrim" onMouseDown={(event) => { if (event.target === event.currentTarget) dismiss(); }}>
         <section className="lo-panel" ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="lo-title" dir={ar ? 'rtl' : 'ltr'} data-track-location="launch_offer">
           <button type="button" className="lo-close" aria-label={t.close} onClick={dismiss}>×</button>
-          <div className="lo-photo" aria-hidden="true"><img src="/collection/classic-pink-and-white-rose-bouquet-960.webp" alt="" /></div>
+          <div className="lo-photo" aria-hidden="true"><img src="/collection/eloise-pink-and-white-rose-bouquet-960.webp" alt="" /></div>
           <div className="lo-body">
             <span className="lo-eyebrow">{t.eyebrow}</span>
             {saved.code ? <>
