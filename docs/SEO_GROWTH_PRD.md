@@ -14,7 +14,7 @@ The search destination is `https://www.maisonbotaniqueflowers.com`. The bare dom
 | --- | --- | --- |
 | Search is closed | Live `robots.txt` says `Disallow: /`; root layout has `noindex, nofollow` while `SITE_INDEXABLE` is not `true`. | Public pages are not currently eligible for ordinary indexing. |
 | Canonical host differs | Bare domain returns a 308 to `www`; code fallback and `.env.example` use bare domain. Production environment value is not visible here. | Canonicals/sitemap may point to a redirect. |
-| Shopify-style paths fail | Live `www/products/eloise-51-pink-rose-bouquet` returned 404. | Product discovery routes can lose shoppers. |
+| Shopify-style paths fail | The real Eloise handle loads on `shop./products/eloise-pink-and-white-rose-bouquet`, while the matching live `www/products/eloise-pink-and-white-rose-bouquet` returned 404. | Product discovery routes can lose shoppers. |
 | Search pages are thinly linked | Main navigation uses filters or fragments; `/shop` is rendered largely from client state. | Important themes have no strong crawlable landing URL. |
 | Product answers are unused | `answerSummary` and `faq` load from Shopify but are not visible on product pages. | Helpful answers are absent from the rendered page. |
 | Delivery claims conflict | Maintained owner decision says same-day Dubai; current product and delivery copy says same-day across the UAE. | A factual launch review is necessary before inviting search traffic. |
