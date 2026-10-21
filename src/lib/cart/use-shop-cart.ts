@@ -10,9 +10,11 @@ import { isValidDate } from '@/lib/format';
 import { isShopifyConfigured } from '@/lib/shopify/config';
 import {
   ANONYMOUS_ATTRIBUTE, CUSTOM_ATTRIBUTE, GIFT_NOTE_ATTRIBUTE, SIGNED_ATTRIBUTE,
-  addCartLines, createCart, fetchCart, getCheckoutUrl, removeCartLines, updateCartAttributes, updateCartLines, updateCartNote,
+  addCartLines, createCart, fetchCart, getCheckoutUrl, removeCartLines, updateCartAttributes, updateCartLineAttributes,
+  updateCartLines, updateCartNote,
   type CartAttribute, type CartLineInput, type ShopifyCart,
 } from '@/lib/shopify/cart';
+import { deliveryLineUpdates, findAddedLine, missingAttributes, withDeliveryProperty } from '@/lib/cart/line-attributes';
 import { createCartAnalyticsStore, getShopifyAnalytics, startCartAnalytics } from '@/lib/analytics/shopify';
 import { analyticsCartAttributes, trackCartError, trackProductAdded, trackProductRemoved } from '@/lib/analytics/track';
 import type { CatalogSource, Locale, Money, Product, ProductSize } from '@/lib/types';
@@ -268,6 +270,15 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
   }), [cart, productByHandle]);
   linesRef.current = lines;
 
+  /** Writes the visible Delivery property on every line that lacks the current slot. */
+  const syncLineDelivery = useCallback(async (target: ShopifyCart, schedule: DeliverySchedule, cartLocale: Locale) => {
+    const updates = deliveryLineUpdates(target.lines, schedule);
+    if (!updates.length) return target;
+    const next = await updateCartLineAttributes(target.id, updates, cartLocale);
+    commit(next);
+    return next;
+  }, [commit]);
+
   /** Saves the schedule in the browser and, when a cart exists, on the cart. */
   const applyDelivery = useCallback(async (schedule: DeliverySchedule) => {
     setStoredDelivery(schedule);
@@ -286,16 +297,43 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     }
     // The readable copy becomes the order note in Shopify.
     const note = deliveryNote(schedule);
-    if (note && latest.note !== note) commit(await updateCartNote(latest.id, note, localeRef.current));
-  }, [commit]);
+    if (note && latest.note !== note) {
+      latest = await updateCartNote(latest.id, note, localeRef.current);
+      commit(latest);
+    }
+    // Checkout shows line properties, not attributes or the note.
+    await syncLineDelivery(latest, schedule, localeRef.current);
+  }, [commit, syncLineDelivery]);
 
   const setDelivery = useCallback(async (schedule: DeliverySchedule) => {
     await enqueue('schedule_delivery', () => applyDelivery(schedule));
   }, [applyDelivery, enqueue]);
 
+  /**
+   * Shopify sometimes returns the new line without its properties (seen once
+   * in live testing, cause unknown). Compare, re-apply once, and fail loudly
+   * rather than leave a bag that shows a note Shopify does not hold.
+   */
+  const verifyAddedLine = useCallback(async (
+    next: ShopifyCart, before: ShopifyCart | null, variantId: string, sent: Array<{ key: string; value: string }>,
+  ) => {
+    if (!sent.length) return next;
+    const added = findAddedLine(before?.lines ?? [], next.lines, variantId);
+    if (added && !missingAttributes(sent, added.attributes).length) return next;
+    console.warn('[cart] line properties missing after add; re-applying');
+    if (!added) throw new Error('Added cart line not found');
+    const merged = [...Object.entries(added.attributes).map(([key, value]) => ({ key, value })).filter(({ key }) => !sent.some((item) => item.key === key)), ...sent];
+    const repaired = await updateCartLineAttributes(next.id, [{ id: added.id, attributes: merged }], localeRef.current);
+    commit(repaired);
+    const again = findAddedLine(before?.lines ?? [], repaired.lines, variantId) ?? repaired.lines.find((line) => line.id === added.id);
+    if (!again || missingAttributes(sent, again.attributes).length) throw new Error('Cart line properties were not saved');
+    return repaired;
+  }, [commit]);
+
   const addItem = useCallback(async (product: Product, options: AddItemOptions = {}) => {
     const size = chooseSize(product, options.sizeId);
     if (!size?.variantId || !size.available) return;
+    const variantId = size.variantId;
     const attributes: CartLineInput['attributes'] = [];
     const note = options.note?.trim().slice(0, NOTE_LIMIT);
     if (note) attributes.push({ key: GIFT_NOTE_ATTRIBUTE, value: note });
@@ -303,11 +341,12 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     if (custom) attributes.push({ key: CUSTOM_ATTRIBUTE, value: custom });
     if (options.anonymous) attributes.push({ key: ANONYMOUS_ATTRIBUTE, value: 'Yes' });
     else if (options.signedAs?.trim()) attributes.push({ key: SIGNED_ATTRIBUTE, value: options.signedAs.trim().slice(0, 60) });
-    const lineInput = [{ merchandiseId: size.variantId, quantity: 1, attributes }];
 
     await enqueue('add', async () => {
       const current = cartRef.current;
       const schedule = options.delivery ?? deliveryRef.current;
+      const sentAttributes = withDeliveryProperty(attributes, schedule);
+      const lineInput = [{ merchandiseId: variantId, quantity: 1, attributes: sentAttributes }];
       const newCartAttributes = () => [...analyticsCartAttributes(), ...(schedule ? scheduleAttributes(schedule) : [])];
       let next: ShopifyCart;
       try {
@@ -320,12 +359,13 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
         next = await createCart(lineInput, localeRef.current, newCartAttributes(), schedule ? deliveryNote(schedule) : '');
       }
       commit(next);
+      next = await verifyAddedLine(next, current, variantId, sentAttributes);
       if (options.delivery) await applyDelivery(options.delivery);
       trackProductAdded(product, size, {
         quantity: 1, cartId: next.id, hasGiftNote: Boolean(note), hasDeliveryDate: Boolean(schedule), source: options.source ?? 'unknown',
       });
     });
-  }, [applyDelivery, commit, enqueue]);
+  }, [applyDelivery, commit, enqueue, verifyAddedLine]);
 
   const updateQuantity = useCallback((key: string, quantity: number) => {
     const nextQuantity = clampQuantity(quantity);
@@ -397,11 +437,17 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
         console.warn('[cart] delivery note', cause);
       }
     }
+    // The visible per-line copy is what checkout shows. Never blocks checkout.
+    try {
+      latest = await syncLineDelivery(latest, schedule, checkoutLocale);
+    } catch (cause) {
+      console.warn('[cart] line delivery', cause);
+    }
     const url = new URL(await getCheckoutUrl(current.id, checkoutLocale));
     // Signed-in customers go straight to checkout with their details.
     if ((await getAccountStatus()).loggedIn) url.searchParams.set('logged_in', 'true');
     return url.toString();
-  }, [commit, applyWelcomeOffer]);
+  }, [commit, applyWelcomeOffer, syncLineDelivery]);
 
   return {
     applyWelcomeOffer,
