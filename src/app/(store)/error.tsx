@@ -1,6 +1,6 @@
 'use client';
 
-import posthog from 'posthog-js';
+import { postHog } from '@/lib/analytics/posthog-client';
 import { useEffect } from 'react';
 import { T } from '@/components/store/StoreProvider';
 
@@ -8,7 +8,7 @@ import { T } from '@/components/store/StoreProvider';
 export default function StoreError({ error, retry }: { error: unknown; retry: () => void }) {
   useEffect(() => {
     console.error(error);
-    if (posthog.__loaded) posthog.captureException(error, { boundary: 'store' });
+    postHog.run((posthog) => posthog.captureException(error, { boundary: 'store' }));
   }, [error]);
 
   return (

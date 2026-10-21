@@ -308,16 +308,16 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     await enqueue('add', async () => {
       const current = cartRef.current;
       const schedule = options.delivery ?? deliveryRef.current;
-      const newCartAttributes = () => [...analyticsCartAttributes(), ...(schedule ? scheduleAttributes(schedule) : [])];
+      const newCartAttributes = async () => [...await analyticsCartAttributes(), ...(schedule ? scheduleAttributes(schedule) : [])];
       let next: ShopifyCart;
       try {
         next = current
           ? await addCartLines(current.id, lineInput, localeRef.current)
-          : await createCart(lineInput, localeRef.current, newCartAttributes(), schedule ? deliveryNote(schedule) : '');
+          : await createCart(lineInput, localeRef.current, await newCartAttributes(), schedule ? deliveryNote(schedule) : '');
       } catch (cause) {
         // The saved cart may have been checked out in another tab.
         if (!current) throw cause;
-        next = await createCart(lineInput, localeRef.current, newCartAttributes(), schedule ? deliveryNote(schedule) : '');
+        next = await createCart(lineInput, localeRef.current, await newCartAttributes(), schedule ? deliveryNote(schedule) : '');
       }
       commit(next);
       if (options.delivery) await applyDelivery(options.delivery);
@@ -375,7 +375,7 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     // Stamp the delivery schedule and the current PostHog visitor and session
     // on the cart. Analytics never blocks checkout; the schedule does.
     let latest = current;
-    const updates = [...scheduleAttributes(schedule), ...analyticsCartAttributes()];
+    const updates = [...scheduleAttributes(schedule), ...await analyticsCartAttributes()];
     const needsUpdate = updates.some(({ key, value }) => current.attributes[key] !== value);
     if (needsUpdate) {
       try {
