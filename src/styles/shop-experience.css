@@ -187,7 +187,7 @@
 .ll-cart-footer { padding: 22px 34px 26px; background: var(--ll-paper); border-top: 1px solid rgb(23 25 22 / 17%); }
 .ll-cart-totals > div { display: flex; justify-content: space-between; gap: 14px; margin-bottom: 11px; font-size: 13px; }
 .ll-cart-totals strong { font-size: 20px; }
-.ll-cart-totals > div:nth-child(2) { color: #625b5b; font-size: 12px; }
+.ll-cart-totals > div:not(:first-child) { color: #625b5b; font-size: 12px; }
 .ll-cart-footer .ll-shop-primary { margin-top: 22px; }
 .ll-cart-disclaimer { display: block; margin-top: 12px; font-size: 11px; letter-spacing: .09em; color: #665f60; text-align: center; text-transform: uppercase; }
 .ll-cart-empty { margin: auto 34px; padding: 50px 0; text-align: center; }
@@ -483,3 +483,9 @@ a.ll-shop-primary { text-decoration: none; box-sizing: border-box; }
 .ll-cart-line h3 { margin: 0 0 6px; font-size: 21px; }
 .ll-cart-line .ll-cart-controls { margin-top: 14px; }
 .dl-picker { margin-top: 20px; }
+
+/* Bag: delivery fee note and discounted subtotal */
+.ll-cart-totals > .ll-cart-fee-note { display: block; margin: -4px 0 11px; color: #625b5b; font-size: 12px; line-height: 1.5; }
+.ll-cart-fee-note .money { white-space: nowrap; }
+.ll-cart-was { margin-inline-end: 6px; color: #625b5b; font-size: 14px; font-weight: 400; }
+.bag-welcome .bag-welcome-hint { margin-top: 2px; color: #625b5b; font-size: 12px; }
