@@ -253,6 +253,14 @@ export function updateCartLines(cartId: string, lines: Array<{ id: string; quant
   return mutate(CART_LINES_UPDATE, 'cartLinesUpdate', { cartId, lines }, locale);
 }
 
+/**
+ * Replaces the attributes of existing lines. Pass each line's full set:
+ * Shopify drops keys left out. Quantities are left as they are.
+ */
+export function updateCartLineAttributes(cartId: string, lines: Array<{ id: string; attributes: CartAttribute[] }>, locale: Locale) {
+  return mutate(CART_LINES_UPDATE, 'cartLinesUpdate', { cartId, lines }, locale);
+}
+
 export function removeCartLines(cartId: string, lineIds: string[], locale: Locale) {
   return mutate(CART_LINES_REMOVE, 'cartLinesRemove', { cartId, lineIds }, locale);
 }
