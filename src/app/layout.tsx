@@ -7,10 +7,11 @@ import ShopifyScriptTags from '@/components/analytics/ShopifyScriptTags';
 import { SITE_URL } from '@/lib/site';
 
 // Storefront typography: Cormorant Garamond for headlines, DM Sans for body
-// and UI, Noto Naskh Arabic for the Arabic storefront.
+// and UI, Noto Naskh Arabic for the Arabic storefront. The Arabic face (92KB)
+// is not preloaded: English pages never need it, and Arabic text requests it.
 const display = Cormorant_Garamond({ subsets: ['latin'], weight: ['300', '400', '500', '600'], style: ['normal', 'italic'], variable: '--font-cormorant', display: 'swap' });
 const body = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans', display: 'swap' });
-const arabic = Noto_Naskh_Arabic({ subsets: ['arabic'], variable: '--font-naskh', display: 'swap' });
+const arabic = Noto_Naskh_Arabic({ subsets: ['arabic'], variable: '--font-naskh', display: 'swap', preload: false });
 
 // The review site stays out of search results until SITE_INDEXABLE=true.
 const indexable = process.env.SITE_INDEXABLE === 'true';

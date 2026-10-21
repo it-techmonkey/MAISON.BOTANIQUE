@@ -6,6 +6,8 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { trackHeroClicked, trackHeroNavigated } from '@/lib/analytics/track';
 import { formatMoney } from '@/lib/format';
+import { imageAt, imageSrcSet } from '@/lib/images';
+import { useAfterLoad } from '@/lib/use-after-load';
 import SaleTag from './store/SaleTag';
 import { useStore } from './store/StoreProvider';
 import '../styles/turntable.css';
@@ -25,6 +27,10 @@ const MOBILE_SHADOW_REST = { ...SHADOW_REST, xPercent: 0 };
 const isMobile = () => typeof window !== 'undefined' && window.matchMedia(MOBILE).matches;
 const restPose = () => (isMobile() ? MOBILE_REST_POSE : REST_POSE);
 const shadowRest = () => (isMobile() ? MOBILE_SHADOW_REST : SHADOW_REST);
+
+/** The photo is a 2:3 portrait sized by the stage height (see .tt-artwork__photo). */
+const HERO_WIDTHS = [480, 720, 960, 1200];
+const HERO_SIZES = '(max-width: 680px) 46vh, 64vh';
 
 /** Product names longer than this use the smaller two-line title. */
 const LONG_TITLE_CHARACTERS = 22;
@@ -53,6 +59,7 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
   const onActiveChangeRef = useRef(onActiveChange);
   const [active, setActive] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const afterLoad = useAfterLoad();
   const arabic = locale === 'ar';
   onActiveChangeRef.current = onActiveChange;
 
@@ -242,9 +249,12 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
               // photo inside is always a 2:3 portrait, so any product photo
               // (square, landscape) takes the same tall shape as the design.
               <div key={product.id || index} className={`tt-artwork__image${index === active ? ' is-active' : ''}`} aria-hidden={index !== active}>
-                <img className="tt-artwork__photo" src={product.image}
+                {/* Only the first photo is on screen at load; the other two
+                    wait for the page to load, so they don't slow it down. */}
+                <img className="tt-artwork__photo" src={index === 0 || afterLoad ? imageAt(product.image, 960) : undefined}
+                  srcSet={index === 0 || afterLoad ? imageSrcSet(product.image, HERO_WIDTHS) : undefined} sizes={HERO_SIZES}
                   alt={index === active ? (arabic ? product.nameAr || product.name : product.name) : ''}
-                  fetchPriority={index === 0 ? 'high' : 'auto'} loading="eager" decoding="async" />
+                  fetchPriority={index === 0 ? 'high' : 'low'} loading="eager" decoding={index === 0 ? 'auto' : 'async'} />
               </div>
             ))}
           </div>

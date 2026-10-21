@@ -31,7 +31,7 @@ export function PageHero({ eyebrow, title, intro, image, children }: PageHeroPro
       </div>
       {image && (
         <div className="page-hero__media">
-          <Image src={image} alt="" fill priority sizes="(max-width: 900px) 100vw, 50vw" />
+          <Image src={image} alt="" fill loading="eager" fetchPriority="high" sizes="(max-width: 900px) 100vw, 50vw" />
         </div>
       )}
     </header>

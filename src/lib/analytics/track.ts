@@ -11,20 +11,22 @@
 // - Purchases are recorded server-side from Shopify's paid-order webhook, not here.
 // - No names, emails, phone numbers or gift notes are ever sent.
 
-import posthog from 'posthog-js';
 import type { Locale, Product, ProductSize } from '@/lib/types';
 import type { ShopifyCart } from '@/lib/shopify/cart';
 import type { CartLineView } from '@/lib/cart/use-shop-cart';
 import type { EnquiryKind } from '@/lib/enquiry';
 import { dubaiNow, windowLabel, type DeliverySchedule, type ScheduleProblem } from '@/lib/delivery';
 import { CART_ATTRIBUTE_DISTINCT_ID, CART_ATTRIBUTE_SESSION_ID, isPostHogEnabled } from './config';
+import { postHog } from './posthog-client';
 import { publishCartViewed, publishProductViewed, publishSearchViewed } from './shopify';
 
 type Properties = Record<string, unknown>;
 
+/** Sends now, or once PostHog has loaded (posthog-client.ts), stamped with the time it happened. */
 function capture(event: string, properties: Properties, options?: { beacon?: boolean }) {
-  if (!isPostHogEnabled || !posthog.__loaded) return;
-  posthog.capture(event, properties, options?.beacon ? { transport: 'sendBeacon' } : undefined);
+  if (!isPostHogEnabled) return;
+  const timestamp = new Date();
+  postHog.run((posthog) => posthog.capture(event, properties, { timestamp, ...(options?.beacon ? { transport: 'sendBeacon' as const } : {}) }));
 }
 
 function productProperties(product: Product, size?: ProductSize | null, quantity = 1): Properties {
@@ -178,8 +180,11 @@ export function trackCartError(operation: string) {
 }
 
 /** The hidden cart attributes that tie a Shopify order back to this PostHog visitor and session. */
-export function analyticsCartAttributes(): Array<{ key: string; value: string }> {
-  if (!isPostHogEnabled || !posthog.__loaded) return [];
+export async function analyticsCartAttributes(): Promise<Array<{ key: string; value: string }>> {
+  if (!isPostHogEnabled) return [];
+  // A visitor can add to the bag before PostHog has loaded; wait briefly for it.
+  const posthog = await postHog.ready(1500);
+  if (!posthog) return [];
   const distinctId = posthog.get_distinct_id();
   const sessionId = posthog.get_session_id();
   return [
@@ -224,14 +229,13 @@ export function trackPageNotFound(path: string, referrer: string) {
 }
 
 export function trackLocale(locale: Locale, changed: boolean) {
-  if (!isPostHogEnabled || !posthog.__loaded) return;
-  posthog.register({ locale });
+  if (!isPostHogEnabled) return;
+  postHog.run((posthog) => posthog.register({ locale }));
   if (changed) capture('Language Changed', { locale });
 }
 
 export function registerCatalogSource(source: 'sample' | 'shopify') {
-  if (!isPostHogEnabled || !posthog.__loaded) return;
-  posthog.register({ catalog_source: source });
+  postHog.run((posthog) => posthog.register({ catalog_source: source }));
 }
 
 // ---------------------------------------------------------------------------
@@ -243,18 +247,19 @@ export function registerCatalogSource(source: 'sample' | 'shopify') {
  * the order webhook uses. Only the Shopify customer ID is sent.
  */
 export function identifyCustomer(customerGid: string) {
-  if (!isPostHogEnabled || !posthog.__loaded) return;
   const id = customerGid.split('/').pop();
-  if (!id) return;
+  if (!isPostHogEnabled || !id) return;
   const distinctId = `shopify_customer:${id}`;
-  if (posthog.get_distinct_id() === distinctId) return;
-  posthog.identify(distinctId, { shopify_customer_id: id, has_customer_account: true });
-  capture('Signed In', {});
+  postHog.run((posthog) => {
+    if (posthog.get_distinct_id() === distinctId) return;
+    posthog.identify(distinctId, { shopify_customer_id: id, has_customer_account: true });
+    capture('Signed In', {});
+  });
 }
 
 /** Called on sign-out, so the next person on this device starts anonymous. */
 export function resetIdentity() {
-  if (!isPostHogEnabled || !posthog.__loaded) return;
+  if (!isPostHogEnabled) return;
   capture('Signed Out', {}, { beacon: true });
-  posthog.reset();
+  postHog.run((posthog) => posthog.reset());
 }
