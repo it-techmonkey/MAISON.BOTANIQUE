@@ -187,8 +187,13 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
   const bodyRef = useRef<HTMLDivElement>(null);
   const [backToTop, setBackToTop] = useState(0);
   const searchRef = useRef<HTMLInputElement>(null);
-  const closeRefine = useCallback(() => setRefineOpen(false), []);
-  const refineState = useCallback((fn: (s: State) => State) => { setState(fn); setShown(PAGE); }, []);
+  // The open Refine drawer locks page scrolling, so a change made in it goes back to the top once it closes.
+  const refineChanged = useRef(false);
+  const closeRefine = useCallback(() => {
+    setRefineOpen(false);
+    if (refineChanged.current) { refineChanged.current = false; window.setTimeout(() => setBackToTop((n) => n + 1), 80); }
+  }, []);
+  const refineState = useCallback((fn: (s: State) => State) => { setState(fn); setShown(PAGE); refineChanged.current = true; }, []);
 
   const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const scrollToGrid = useCallback(() => {
@@ -240,8 +245,8 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
     window.scrollTo({ top, behavior: reduced() ? 'instant' : 'smooth' });
   }, [revealed]);
 
-  // Choosing another category starts it from the first piece: if the visitor had scrolled down the
-  // grid, go back up to just under the sticky tab bar. Runs after the new list has rendered.
+  // Choosing another category, or changing Refine or Sort, starts the list from its first piece: if the
+  // visitor had scrolled down the grid, go back up to just under the sticky tab bar. Runs after the new list has rendered.
   useEffect(() => {
     const rooms = roomsRef.current;
     const body = bodyRef.current;
@@ -299,7 +304,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
   }, [products, state, sort, catalog]);
   const refinements = state.occasion.length + state.budget.length + state.stems.length;
   const visible = list.slice(0, shown);
-  const nextSort = () => setSort(SORTS[(SORTS.indexOf(sort) + 1) % SORTS.length]);
+  const nextSort = () => { setSort(SORTS[(SORTS.indexOf(sort) + 1) % SORTS.length]); setBackToTop((n) => n + 1); };
   const occasionLabel = (id: string) => { const o = catalog.occasions.find((x) => x.id === id); return o ? (ar ? o.ar : o.en) : id; };
   const chips: Array<['occasion' | 'budget' | 'stems', string, string]> = [
     ...state.occasion.map((id): ['occasion', string, string] => ['occasion', id, occasionLabel(id)]),
@@ -364,12 +369,12 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
       <div className="mbc-in mbc-body" ref={bodyRef}>
         <div className="mbc-active" aria-live="polite">
           {chips.map(([group, id, label]) => (
-            <button type="button" key={`${group}-${id}`} onClick={() => { setState((s) => ({ ...s, [group]: s[group].filter((x) => x !== id) })); if (group === 'occasion') setHash('#shop'); }}>{label}</button>
+            <button type="button" key={`${group}-${id}`} onClick={() => { setState((s) => ({ ...s, [group]: s[group].filter((x) => x !== id) })); setBackToTop((n) => n + 1); if (group === 'occasion') setHash('#shop'); }}>{label}</button>
           ))}
         </div>
         <div className="mbc-grid">
           {visible.length ? visible.map((product, index) => <Piece key={product.id} product={product} index={index} t={t} ar={ar} onOpen={open} />)
-            : <div className="mbc-empty">{t.empty}<button type="button" onClick={() => setState(EMPTY)}>{t.reset}</button></div>}
+            : <div className="mbc-empty">{t.empty}<button type="button" onClick={() => { setState(EMPTY); setBackToTop((n) => n + 1); }}>{t.reset}</button></div>}
         </div>
         {list.length > 0 && (
           <div className="mbc-more">
