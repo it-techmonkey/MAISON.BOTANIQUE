@@ -73,7 +73,7 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
         </nav>
         <div className="product-layout">
           <div className="product-gallery" style={{ backgroundColor: product.bg }}>
-            <Image src={product.image} alt={product.imageAlt || product.name} fill priority sizes="(max-width: 900px) 100vw, 55vw" />
+            <Image src={product.image} alt={product.imageAlt || product.name} fill loading="eager" fetchPriority="high" sizes="(max-width: 900px) 100vw, 55vw" />
           </div>
           <div className="product-info">
             <ProductPurchase handle={product.id} />

@@ -7,6 +7,8 @@ import type { Product } from '@/lib/types';
 import { useStore } from './StoreProvider';
 import { isMostLoved } from '@/lib/most-loved';
 import { occasionHash } from '@/lib/site';
+import { imageAt, imageSrcSet } from '@/lib/images';
+import { useAfterLoad } from '@/lib/use-after-load';
 import SaleTag from './SaleTag';
 import Money from './Money';
 
@@ -136,16 +138,21 @@ function RefineDrawer({ open, onClose, state, setState, products, catalog, t, ar
   );
 }
 
-function Piece({ product, index, t, ar, onOpen }: { product: Product; index: number; t: Copy; ar: boolean; onOpen: (product: Product, position: number) => void }) {
+/** Grid photos: two columns on phones, three on tablets, four on desktop. */
+const PIECE_WIDTHS = [240, 360, 480, 720, 960];
+const PIECE_SIZES = '(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 25vw';
+
+function Piece({ product, index, eager, t, ar, onOpen }: { product: Product; index: number; eager: boolean; t: Copy; ar: boolean; onOpen: (product: Product, position: number) => void }) {
   const name = ar ? product.nameAr : product.name;
+  // Photos past the first row wait for the page to load (see useAfterLoad).
+  const show = useAfterLoad() || eager;
   const many = product.sizes.length > 1;
   return (
     <article className="mbc-piece">
       <button type="button" className="mbc-frame" onClick={() => onOpen(product, index + 1)} aria-label={name}>
-        <img src={product.imageSmall} srcSet={`${product.imageSmall} 480w, ${product.image} 960w`}
-          sizes="(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 25vw"
-          alt={ar ? name : product.imageAlt} width="480" height="480"
-          loading={index < 4 ? 'eager' : 'lazy'} fetchPriority={index < 4 ? 'high' : 'auto'} decoding="async" />
+        <img src={show ? imageAt(product.image, 480) : undefined} srcSet={show ? imageSrcSet(product.image, PIECE_WIDTHS) : undefined} sizes={PIECE_SIZES}
+          alt={show ? (ar ? name : product.imageAlt) : ''} width="480" height="480"
+          loading={eager ? 'eager' : 'lazy'} fetchPriority={eager && index === 0 ? 'high' : 'auto'} decoding="async" />
         {isMostLoved(product.id) ? <span className="mbc-badge mbc-badge--loved">{ar ? 'الأكثر حباً' : 'Most loved'}</span>
           : product.custom && <span className="mbc-badge">{t.personalised}</span>}
       </button>
@@ -171,7 +178,11 @@ function Piece({ product, index, t, ar, onOpen }: { product: Product; index: num
  * budget, stems), sorting and a grid that loads 24 at a time. Every piece
  * opens the quick-add sheet.
  */
-export default function CollectionBrowser({ listId = 'home', initialOccasion, showOccasions = true }: { listId?: string; initialOccasion?: string; showOccasions?: boolean }) {
+export default function CollectionBrowser({ listId = 'home', initialOccasion, showOccasions = true, eagerImages = 0 }: {
+  listId?: string; initialOccasion?: string; showOccasions?: boolean;
+  /** Grid photos loaded straight away: the first row when the grid starts on screen, none below the home hero. */
+  eagerImages?: number;
+}) {
   const { ar, live, products, openProduct } = useStore();
   const t = COPY[ar ? 'ar' : 'en'];
   const catalog = useMemo(() => liveCatalogGroups(products), [products]);
@@ -179,6 +190,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
   const [sort, setSort] = useState<Sort>('featured');
   const [shown, setShown] = useState(PAGE);
   const [refineOpen, setRefineOpen] = useState(false);
+  const afterLoad = useAfterLoad();
   const [inView, setInView] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const roomsRef = useRef<HTMLElement>(null);
@@ -303,7 +315,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
           const on = state.occasion.length === 1 && state.occasion[0] === o.id;
           return (
             <button type="button" key={o.id} className="mbc-occ" aria-pressed={on} onClick={() => setOccasion(o.id)}>
-              <span className="mbc-occ-img">{o.image && <img src={o.image} alt="" loading="lazy" width="96" height="96" />}</span>
+              <span className="mbc-occ-img">{o.image && afterLoad && <img src={imageAt(o.image, 240)} alt="" loading="lazy" width="96" height="96" />}</span>
               <span className="mbc-occ-name">{ar ? o.ar : o.en}</span>
             </button>
           );
@@ -329,7 +341,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
           ))}
         </div>
         <div className="mbc-grid">
-          {visible.length ? visible.map((product, index) => <Piece key={product.id} product={product} index={index} t={t} ar={ar} onOpen={open} />)
+          {visible.length ? visible.map((product, index) => <Piece key={product.id} product={product} index={index} eager={index < eagerImages} t={t} ar={ar} onOpen={open} />)
             : <div className="mbc-empty">{t.empty}<button type="button" onClick={() => setState(EMPTY)}>{t.reset}</button></div>}
         </div>
         {list.length > 0 && (

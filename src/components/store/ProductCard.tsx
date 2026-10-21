@@ -7,6 +7,7 @@ import { trackProductClicked, trackProductListViewed, type ProductListContext } 
 import { isMostLoved } from '@/lib/most-loved';
 import type { Product } from '@/lib/types';
 import { useStore } from './StoreProvider';
+import { useAfterLoad } from '@/lib/use-after-load';
 import '@/styles/catalog.css';
 import Money from './Money';
 
@@ -15,14 +16,17 @@ interface ProductCardProps {
   /** `sizes` attribute for the responsive image. */
   sizes?: string;
   priority?: boolean;
+  /** Hold the photo back until the page has loaded (rails below the fold). */
+  deferImage?: boolean;
   /** The list the card appears in and its 1-based position, for click analytics. */
   list?: ProductListContext;
   position?: number;
 }
 
 /** Photograph, price and both next steps (details or straight to the bag) on every card. */
-export function ProductCard({ product, sizes = '(max-width: 640px) 92vw, (max-width: 1100px) 46vw, 24vw', priority = false, list, position = 0 }: ProductCardProps) {
+export function ProductCard({ product, sizes = '(max-width: 640px) 92vw, (max-width: 1100px) 46vw, 24vw', priority = false, deferImage = false, list, position = 0 }: ProductCardProps) {
   const { ar, t, addToBag } = useStore();
+  const afterLoad = useAfterLoad();
   const onOpen = () => { if (list) trackProductClicked(product, list, position); };
   const name = ar ? product.nameAr : product.name;
   const href = `/shop/${product.id}`;
@@ -31,7 +35,7 @@ export function ProductCard({ product, sizes = '(max-width: 640px) 92vw, (max-wi
   return (
     <article className="product-card">
       <Link href={href} className="product-card__media" style={{ backgroundColor: product.bg }} tabIndex={-1} aria-hidden="true" onClick={onOpen}>
-        <Image src={product.image} alt="" fill sizes={sizes} priority={priority} />
+        {(!deferImage || afterLoad) && <Image src={product.image} alt="" fill sizes={sizes} loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : 'auto'} />}
         {!product.available ? <span className="product-card__badge">{t('Sold out', 'نفدت الكمية')}</span>
           : isMostLoved(product.id) && <span className="product-card__badge">{t('Most loved', 'الأكثر حباً')}</span>}
       </Link>
@@ -89,7 +93,7 @@ export function ProductRail({ products, label, listId }: { products: Product[]; 
       </div>
       <div className="rail__track" ref={railRef} onScroll={update} role="region" aria-label={label} tabIndex={0}>
         {products.map((product, index) => (
-          <ProductCard key={product.id} product={product} list={{ listId }} position={index + 1}
+          <ProductCard key={product.id} product={product} list={{ listId }} position={index + 1} deferImage
             sizes="(max-width: 640px) 78vw, (max-width: 1100px) 42vw, 24vw" />
         ))}
       </div>

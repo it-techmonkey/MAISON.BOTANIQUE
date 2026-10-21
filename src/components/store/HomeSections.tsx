@@ -1,6 +1,8 @@
 'use client';
 
 import { occasionHash } from '@/lib/site';
+import { imageAt } from '@/lib/images';
+import { useAfterLoad } from '@/lib/use-after-load';
 import { CollectionLink } from './SiteHeader';
 
 import Link from 'next/link';
@@ -20,6 +22,7 @@ function SectionHead({ id, title, href, label }: { id?: string; title: string; h
 /** Shop by occasion: one round photograph per occasion, each a different piece. */
 function OccasionTiles() {
   const { ar, t, products } = useStore();
+  const afterLoad = useAfterLoad();
   const { occasions } = useMemo(() => liveCatalogGroups(products), [products]);
   const tiles = useMemo(() => {
     const used = new Set<string>();
@@ -38,7 +41,7 @@ function OccasionTiles() {
         {tiles.map((tile) => (
           <li key={tile.id}>
             <CollectionLink hash={occasionHash(tile.id)}>
-              <span className="hs-occasions__img">{tile.image && <img src={tile.image} alt="" loading="lazy" width="120" height="120" />}</span>
+              <span className="hs-occasions__img">{tile.image && afterLoad && <img src={imageAt(tile.image, 320)} alt="" loading="lazy" width="120" height="120" />}</span>
               <span>{ar ? tile.ar : tile.en}</span>
             </CollectionLink>
           </li>
@@ -51,9 +54,10 @@ function OccasionTiles() {
 /** Shop by budget: four bands, each with a photograph of a piece in that band. */
 function BudgetTiles() {
   const { ar, t, products } = useStore();
+  const afterLoad = useAfterLoad();
   const tiles = useMemo(() => BUDGET_BANDS.map((band) => ({
     ...band,
-    image: products.find((product) => budgetOf(product.price) === band.id && product.available)?.imageSmall,
+    image: products.find((product) => budgetOf(product.price) === band.id && product.available)?.imageSmall ?? '',
   })).filter((tile) => tile.image), [products]);
 
   return (
@@ -64,7 +68,7 @@ function BudgetTiles() {
           <li key={tile.id}>
             <CollectionLink hash={`budget/${tile.id}`}>
               <span className="hs-budget__copy"><span>{ar ? tile.ar : tile.en}</span><span aria-hidden="true">→</span></span>
-              <img src={tile.image} alt="" loading="lazy" width="240" height="240" />
+              <img src={afterLoad ? imageAt(tile.image, 360) : undefined} alt="" loading="lazy" width="240" height="240" />
             </CollectionLink>
           </li>
         ))}

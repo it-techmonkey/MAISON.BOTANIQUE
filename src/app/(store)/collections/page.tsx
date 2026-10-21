@@ -26,13 +26,15 @@ export default async function CollectionsPage() {
         intro={{ en: 'Pieces gathered by theme, season and gesture.', ar: 'قطع مجمّعة حسب الطابع والموسم واللفتة.' }} />
       {collections.length ? (
         <ul className="occasion-list">
-          {collections.map((collection) => {
+          {collections.map((collection, index) => {
             const image = collection.image ?? imageOf.get(collection.productIds[0]) ?? '/assets/placeholder.svg';
             return (
               <li key={collection.id}>
                 <Link href={`/collections/${collection.id}`} className="occasion-card">
                   <span className="occasion-card__media">
-                    <Image src={image} alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+                    {/* The first row is on screen at load (one card on phones, three on desktop). */}
+                    <Image src={image} alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                      loading={index < 3 ? 'eager' : 'lazy'} fetchPriority={index === 0 ? 'high' : 'auto'} />
                   </span>
                   <span className="occasion-card__index">
                     <T en={`${collection.productIds.length} ${collection.productIds.length === 1 ? 'piece' : 'pieces'}`}
