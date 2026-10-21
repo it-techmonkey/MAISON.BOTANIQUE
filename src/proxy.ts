@@ -101,5 +101,5 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   // Everything except Next's static output, public files and the PostHog relay.
-  matcher: ['/((?!_next/static|_next/image|_next/data|assets/|brand/|favicon\\.svg|mb-relay/).*)'],
+  matcher: ['/((?!_next/static|_next/image|_next/data|assets/|brand/|favicon\\.(?:svg|ico)|icon\\.png|apple-icon\\.png|mb-relay/).*)'],
 };

@@ -11,7 +11,7 @@ export interface Bilingual {
  * The website's public URL, without a trailing slash. Set NEXT_PUBLIC_SITE_URL
  * on the host; the fallback is used only when it is missing.
  */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://maisonbotaniqueflowers.com').replace(/\/+$/, '');
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.maisonbotaniqueflowers.com').replace(/\/+$/, '');
 
 /** The welcome offer's discount code (create it in Shopify Discounts), shown in the banner and after the sign-up. */
 export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'MAISON25').trim();
@@ -19,7 +19,7 @@ export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'MAISON2
 /** Delivery fees in AED, shown in the bag. Shopify shipping rates must match; change both together. */
 export const DELIVERY_FEES = { dubai: 30, otherEmirates: 50 } as const;
 
-/** The seven emirates served, all with same-day delivery. */
+/** The seven emirates served. The same-day promise applies to Dubai only. */
 export const EMIRATES: Bilingual[] = [
   { en: 'Dubai', ar: 'دبي' },
   { en: 'Abu Dhabi', ar: 'أبوظبي' },

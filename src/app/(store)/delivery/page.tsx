@@ -4,7 +4,7 @@ import '@/styles/pages.css';
 
 export const metadata: Metadata = {
   title: 'Delivery & care',
-  description: 'How Maison Botanique delivers across the UAE, with same-day delivery, and how to care for your flowers once they arrive.',
+  description: 'Delivery across the UAE, including same-day service in Dubai, with Maison Botanique flower care guidance.',
   alternates: { canonical: '/delivery' },
 };
 
@@ -22,13 +22,13 @@ export default function DeliveryPage() {
         {
           title: { en: 'Where we deliver', ar: 'أين نوصل' },
           paragraphs: [
-            { en: 'We deliver same day across the UAE. Delivery is AED 30 in Dubai and AED 50 elsewhere in the UAE. Enter the full recipient address at checkout, including building or villa, apartment number and area.', ar: 'نوصل في اليوم نفسه في جميع أنحاء الإمارات. التوصيل ٣٠ درهماً في دبي و٥٠ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى أو الفيلا ورقم الشقة والمنطقة.' },
+            { en: 'We offer same-day delivery in Dubai and also deliver across the UAE. Delivery is AED 30 in Dubai and AED 50 elsewhere in the UAE. Enter the full recipient address at checkout, including building or villa, apartment number and area.', ar: 'نوفر التوصيل في اليوم نفسه داخل دبي، ونوصل أيضاً إلى جميع أنحاء الإمارات. التوصيل ٣٠ درهماً في دبي و٥٠ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى أو الفيلا ورقم الشقة والمنطقة.' },
           ],
         },
         {
           title: { en: 'Choosing a date', ar: 'اختيار التاريخ' },
           paragraphs: [
-            { en: 'Choose the delivery day and a three-hour window (9am to 9pm) in your bag, today or up to 60 days ahead. Same-day windows stay open until three hours before they start. One delivery per order; if anything needs to change, we let you know straight away.', ar: 'اختر يوم التوصيل وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، لليوم نفسه أو حتى 60 يوماً مقدماً. تبقى فترات اليوم نفسه متاحة حتى ثلاث ساعات قبل بدايتها. توصيل واحد لكل طلب، ونخبرك فوراً إذا احتاج أي شيء إلى تغيير.' },
+            { en: 'Choose the delivery day and a three-hour window (9am to 9pm) in your bag, up to 60 days ahead. In Dubai, same-day windows stay open until three hours before they start. One delivery per order; if anything needs to change, we let you know straight away.', ar: 'اختر يوم التوصيل وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، حتى 60 يوماً مقدماً. داخل دبي، تبقى فترات اليوم نفسه متاحة حتى ثلاث ساعات قبل بدايتها. توصيل واحد لكل طلب، ونخبرك فوراً إذا احتاج أي شيء إلى تغيير.' },
           ],
         },
         {

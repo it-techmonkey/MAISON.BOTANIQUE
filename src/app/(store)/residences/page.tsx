@@ -6,7 +6,7 @@ export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: 'Flowers for your building',
-  description: 'Premium flowers delivered to your apartment, across all seven emirates, with same-day delivery.',
+  description: 'Premium flowers delivered to your apartment across the UAE, with same-day delivery in Dubai.',
   alternates: { canonical: '/residences' },
 };
 

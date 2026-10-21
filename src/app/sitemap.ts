@@ -9,7 +9,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages = ['', '/shop', '/collections', '/residences', '/services', '/atelier', '/contact', '/delivery', '/faq', '/privacy', '/terms', '/refund-policy'];
   return [
     ...pages.map((path) => ({ url: `${SITE_URL}${path}` })),
-    ...collections.map((collection) => ({ url: `${SITE_URL}/collections/${collection.id}` })),
-    ...products.map((product) => ({ url: `${SITE_URL}/shop/${product.id}` })),
+    ...collections.filter((collection) => collection.id !== 'frontpage' && collection.productIds.length > 0)
+      .map((collection) => ({ url: `${SITE_URL}/collections/${collection.id}`, lastModified: collection.updatedAt })),
+    ...products.map((product) => ({ url: `${SITE_URL}/shop/${product.id}`, lastModified: product.updatedAt })),
   ];
 }

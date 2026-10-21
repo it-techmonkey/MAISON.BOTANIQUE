@@ -73,7 +73,7 @@ cp .env.example .env.local
 | `SHOPIFY_WEBHOOK_SECRET` | Recommended | Webhook signing secret (steps 8 and 10) |
 | `NEXT_PUBLIC_SHOPIFY_SHOP_ID`, `NEXT_PUBLIC_SHOPIFY_STOREFRONT_ID` | Shopify analytics | Step 3 |
 | `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_REGION` | PostHog | PostHog project settings (step 8) |
-| `NEXT_PUBLIC_SITE_URL` | Site | The website's public URL, `https://maisonbotaniqueflowers.com` |
+| `NEXT_PUBLIC_SITE_URL` | Site | The canonical website URL, `https://www.maisonbotaniqueflowers.com` |
 | `SITE_INDEXABLE` | Launch switch | `false` until launch day |
 | `SHOPIFY_ADMIN_CLIENT_ID`, `SHOPIFY_ADMIN_CLIENT_SECRET` | Seed script only | Dev Dashboard app (step 5A). Local only; never put these on the host. |
 | `SHOPIFY_ADMIN_REFRESH_TOKEN` | Seed script only | Written automatically by `npm run shopify:auth` (step 5A). Local only. |
