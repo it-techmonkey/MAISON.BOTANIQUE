@@ -56,5 +56,8 @@ before regenerating or syncing catalogue files.
 
 ## Deployment
 
+See [CI/CD setup and release checks](docs/CI_CD.md) for GitHub Actions, main
+protection and Vercel deployment gating.
+
 Production is techmonkeys-projects / maison-botanique on Vercel. Changes to `main` deploy to production and
 need the owner's explicit approval. Work on a review branch and PR. Do not use the old laptop `.vercel` link.
