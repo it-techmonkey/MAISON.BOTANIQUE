@@ -23,7 +23,6 @@ export const metadata: Metadata = {
     template: '%s · Maison Botanique',
   },
   description: 'Considered bouquets and thoughtful gifts for the people, places and moments that matter. A floral house in Dubai.',
-  icons: { icon: { url: '/favicon.svg', type: 'image/svg+xml' } },
   openGraph: { siteName: 'Maison Botanique', type: 'website', locale: 'en_AE', alternateLocale: ['ar_AE'] },
   robots: indexable ? { index: true, follow: true } : { index: false, follow: false },
   verification: {

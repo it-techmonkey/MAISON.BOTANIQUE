@@ -18,6 +18,8 @@ The search destination is `https://www.maisonbotaniqueflowers.com`. The bare dom
 | Search pages are thinly linked | Main navigation uses filters or fragments; `/shop` is rendered largely from client state. | Important themes have no strong crawlable landing URL. |
 | Product answers are unused | `answerSummary` and `faq` load from Shopify but are not visible on product pages. | Helpful answers are absent from the rendered page. |
 | Delivery claims conflict | Maintained owner decision says same-day Dubai; current product and delivery copy says same-day across the UAE. | A factual launch review is necessary before inviting search traffic. |
+| Standard icons missing | `/favicon.ico` returned 404 and the site had no Apple touch icon; only `/favicon.svg` was linked. | Browser and mobile search identity is incomplete. |
+| Lighthouse SEO baseline | The 21 Oct launch-readiness session reported 66–69 and identified the intentional `noindex` as its only failing SEO audit. The underlying Lighthouse report was not saved in this workspace. | Record this as a session-reported baseline, then rerun the audit on production after indexing is opened. Do not treat the score as a ranking metric. |
 
 The attached plan's search volumes, ranking difficulty, AI citation patterns, and one-to-two-week indexing forecast are hypotheses, not measured Maison data. Search Console access, Business Profile eligibility, live checkout, and Merchant Center status are unverified. A sitemap or recrawl request does not guarantee indexing or higher rankings.
 
@@ -52,6 +54,7 @@ These are topics to test, not measured search-volume claims. Record the current 
 
 1. Owner identifies who controls Google Search Console, Bing Webmaster Tools, Google Business Profile, Shopify theme, and Vercel production variables. Search existing properties/listings before creating duplicates.
 2. Confirm the public canonical host (`www` is the current redirect destination). In Vercel set `NEXT_PUBLIC_SITE_URL=https://www.maisonbotaniqueflowers.com` for production after the review branch is approved and before opening indexing. Set verification tokens only after the respective search property is created.
+   `SITE_INDEXABLE` remains the **single indexing switch**: both the robots meta tag and `robots.txt` read it. Keep it false in Vercel until the owner approves launch. After merging the reviewed code and passing the launch checks, set `SITE_INDEXABLE=true` in the Vercel **production** environment, redeploy, and verify both outputs on the live domain. This review PR and its preview do not open indexing.
 3. Verify delivery by emirate, fees, JVC address rule, daily cut-off, real checkout and support channel. Rewrite every public same-day claim to match the verified operation. The maintained decision is same-day Dubai only; the present live copy is broader. This is a launch blocker, not a reason to invent a new promise.
 4. Inspect Google Business Profile eligibility. A service-area business needs a genuine staffed/operational address for verification; hide it publicly if customers do not visit. Do not create a virtual-office profile or publish the address just for SEO.
 5. Take a read-only live Shopify/product and compare-at-price review before any Merchant Center feed. Never overwrite current Shopify data with recorded exports.
@@ -76,6 +79,8 @@ These are topics to test, not measured search-volume claims. Record the current 
 | Verification hooks | Optional Google and Bing meta tokens via environment variables. | Tags appear only when values are configured. No token in Git. |
 | Search-ready home snippet | Clear title/description naming flowers and Dubai, while preserving the approved visible headline. | One H1 and canonical `/`; no unapproved delivery guarantee. |
 | Consistent delivery wording | Replace UAE-wide same-day wording in EN/AR visible copy and metadata with the maintained Dubai-only same-day scope. | No page promises same-day service outside Dubai; checkout eligibility still requires a separate live test. |
+| Search and Apple icons | Render the existing MB favicon artwork as a 96 px PNG, a multi-size ICO and a 180 px Apple icon using Next.js app icon conventions. | `/favicon.ico`, `/icon.png` and `/apple-icon.png` return image responses, and the home page links to the PNG/ICO and Apple icon. |
+| Closed indexing gate | Keep `SITE_INDEXABLE` as the only setting controlling both `robots.txt` and the robots meta tag. | The review preview stays `noindex` and disallows crawling; only an approved Vercel production setting change plus redeploy opens the live site. |
 
 Run `npm test`, Python tooling tests, `npm run typecheck`, `npm run build`, and a preview crawl. Check EN/AR, 1440/414/390/360/320 px, reduced motion and the buying flow for visible changes. Open a review PR and Vercel preview. Do not merge or set `SITE_INDEXABLE=true` as part of the PR.
 
