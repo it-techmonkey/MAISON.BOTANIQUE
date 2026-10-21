@@ -184,6 +184,8 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
   const [revealed, setRevealed] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const roomsRef = useRef<HTMLElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const [backToTop, setBackToTop] = useState(0);
   const searchRef = useRef<HTMLInputElement>(null);
   const closeRefine = useCallback(() => setRefineOpen(false), []);
   const refineState = useCallback((fn: (s: State) => State) => { setState(fn); setShown(PAGE); }, []);
@@ -238,6 +240,17 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
     window.scrollTo({ top, behavior: reduced() ? 'instant' : 'smooth' });
   }, [revealed]);
 
+  // Choosing another category starts it from the first piece: if the visitor had scrolled down the
+  // grid, go back up to just under the sticky tab bar. Runs after the new list has rendered.
+  useEffect(() => {
+    const rooms = roomsRef.current;
+    const body = bodyRef.current;
+    if (!backToTop || !rooms || !body) return;
+    const stuckAt = Number.parseFloat(getComputedStyle(rooms).top) || 0;
+    const top = body.getBoundingClientRect().top + window.scrollY - stuckAt - rooms.offsetHeight;
+    if (window.scrollY > top + 2) window.scrollTo({ top, behavior: reduced() ? 'instant' : 'smooth' });
+  }, [backToTop]);
+
   // The phone Refine/Sort bar only appears while the collection is on screen.
   useEffect(() => {
     const node = sectionRef.current;
@@ -252,6 +265,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
     setState((s) => ({ ...s, group }));
     setShown(PAGE);
     setHash(group === 'all' ? '#shop' : `#${group}`);
+    setBackToTop((n) => n + 1);
   };
   const setOccasion = (id: string) => {
     const on = state.occasion.length === 1 && state.occasion[0] === id;
@@ -347,7 +361,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
         </div>
       </nav>
 
-      <div className="mbc-in mbc-body">
+      <div className="mbc-in mbc-body" ref={bodyRef}>
         <div className="mbc-active" aria-live="polite">
           {chips.map(([group, id, label]) => (
             <button type="button" key={`${group}-${id}`} onClick={() => { setState((s) => ({ ...s, [group]: s[group].filter((x) => x !== id) })); if (group === 'occasion') setHash('#shop'); }}>{label}</button>
