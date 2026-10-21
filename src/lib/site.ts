@@ -11,7 +11,7 @@ export interface Bilingual {
  * The website's public URL, without a trailing slash. Set NEXT_PUBLIC_SITE_URL
  * on the host; the fallback is used only when it is missing.
  */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://maisonbotaniqueflowers.com').replace(/\/+$/, '');
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.maisonbotaniqueflowers.com').replace(/\/+$/, '');
 
 /** The welcome offer's discount code (create it in Shopify Discounts), shown in the banner and after the sign-up. */
 export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'MAISON25').trim();

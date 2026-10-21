@@ -5,6 +5,7 @@ import AnalyticsListeners from '@/components/analytics/AnalyticsListeners';
 import ShopifyAnalytics from '@/components/analytics/ShopifyAnalytics';
 import ShopifyScriptTags from '@/components/analytics/ShopifyScriptTags';
 import { SITE_URL } from '@/lib/site';
+import { siteSchema } from '@/lib/site-schema';
 
 // Storefront typography: Cormorant Garamond for headlines, DM Sans for body
 // and UI, Noto Naskh Arabic for the Arabic storefront.
@@ -25,6 +26,10 @@ export const metadata: Metadata = {
   icons: { icon: { url: '/favicon.svg', type: 'image/svg+xml' } },
   openGraph: { siteName: 'Maison Botanique', type: 'website', locale: 'en_AE', alternateLocale: ['ar_AE'] },
   robots: indexable ? { index: true, follow: true } : { index: false, follow: false },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.BING_SITE_VERIFICATION ? { 'msvalidate.01': process.env.BING_SITE_VERIFICATION } : undefined,
+  },
 };
 
 export const viewport: Viewport = {
@@ -41,6 +46,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" dir="ltr" className={`${display.variable} ${body.variable} ${arabic.variable}`} suppressHydrationWarning>
       <head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema()).replace(/</g, '\\u003c') }} />
         <script dangerouslySetInnerHTML={{ __html: localeScript }} />
         <ShopifyScriptTags />
       </head>

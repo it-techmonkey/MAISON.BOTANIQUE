@@ -35,6 +35,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/jvc', destination: '/?offer=open', permanent: true },
+      ...renamedProducts.map(({ oldHandle, handle }) => ({ source: `/products/${oldHandle}`, destination: `/shop/${handle}`, permanent: true })),
+      { source: '/products/:handle', destination: '/shop/:handle', permanent: true },
+      { source: '/products', destination: '/shop', permanent: true },
+      { source: '/collections/all', destination: '/shop', permanent: true },
+      { source: '/policies/refund-policy', destination: '/refund-policy', permanent: true },
+      { source: '/policies/privacy-policy', destination: '/privacy', permanent: true },
+      { source: '/policies/terms-of-service', destination: '/terms', permanent: true },
       ...renamedProducts.map(({ oldHandle, handle }) => ({ source: `/shop/${oldHandle}`, destination: `/shop/${handle}`, permanent: true })),
       // Occasions are filters on the collection now, not pages.
       { source: '/occasions/just-because', destination: '/shop#occasion/gifts-for-her', permanent: true },

@@ -1,11 +1,17 @@
 import type { Product } from './types';
 
 export function productSchema(product: Product, siteUrl: string) {
-  const businessId = `${siteUrl}/#business`;
+  const businessId = `${siteUrl}/#organization`;
   return {
     '@context': 'https://schema.org',
     '@graph': [
-      { '@type': 'LocalBusiness', '@id': businessId, name: 'Maison Botanique', url: siteUrl, areaServed: { '@type': 'Country', name: 'United Arab Emirates' } },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Shop', item: `${siteUrl}/shop` },
+          { '@type': 'ListItem', position: 2, name: product.name, item: `${siteUrl}/shop/${product.id}` },
+        ],
+      },
       {
         '@type': 'Product', name: product.name, image: [product.image],
         description: product.answerSummary || product.description,

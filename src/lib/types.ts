@@ -32,6 +32,8 @@ export type ProductRoom = 'roses' | 'bouquets' | 'vases' | 'gifts' | 'grand' | '
 export type ProductFormat = 'bouquet' | 'box' | 'vase' | 'gift';
 
 export interface Product {
+  /** Shopify content update time, when loaded live; absent in the recorded preview. */
+  updatedAt?: string;
   /** Shopify product handle. */
   id: string;
   /** `gid://shopify/Product/…` for live products; null in the sample catalog. */
@@ -93,6 +95,8 @@ export interface Product {
 export type CatalogSource = 'sample' | 'shopify';
 
 export interface Collection {
+  /** Shopify content update time, when loaded live; absent in the recorded preview. */
+  updatedAt?: string;
   /** Shopify collection handle. */
   id: string;
   /** `gid://shopify/Collection/…` for live collections; null in the sample catalog. */

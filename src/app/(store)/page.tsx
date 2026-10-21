@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Turntable from '@/components/Turntable';
 import HeroPromises from '@/components/store/HeroPromises';
 import CollectionBrowser from '@/components/store/CollectionBrowser';
@@ -8,6 +9,12 @@ import '@/styles/home.css';
 // Rebuild at most every five minutes; the Shopify product webhook
 // (/api/revalidate) refreshes the catalog immediately after an edit.
 export const revalidate = 300;
+
+export const metadata: Metadata = {
+  title: { absolute: 'Flower Delivery in Dubai | Maison Botanique' },
+  description: 'Explore bouquets and thoughtful gifts from Maison Botanique, with a handwritten card and delivery across the UAE.',
+  alternates: { canonical: '/' },
+};
 
 // The complete shopping journey, with the standalone /shop kept for direct links.
 export default function HomePage() {

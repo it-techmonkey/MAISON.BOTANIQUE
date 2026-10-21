@@ -45,6 +45,7 @@ type MetafieldKey = typeof METAFIELD_KEYS[number];
 const PRODUCT_FIELDS = `#graphql
   fragment CatalogProduct on Product {
     id
+    updatedAt
     handle
     title
     description
@@ -90,6 +91,7 @@ const COLLECTIONS_QUERY = `#graphql
     collections(first: $first, after: $after, sortKey: TITLE) {
       nodes {
         id
+        updatedAt
         handle
         title
         description
@@ -124,6 +126,7 @@ interface ShopifyVariant {
 }
 interface ShopifyProduct {
   id: string;
+  updatedAt: string;
   handle: string;
   title: string;
   description: string;
@@ -137,6 +140,7 @@ interface ShopifyProduct {
 }
 interface ShopifyCollection {
   id: string;
+  updatedAt: string;
   handle: string;
   title: string;
   description: string;
@@ -277,6 +281,7 @@ function mapShopifyProduct(product: ShopifyProduct): Product | null {
 
   return {
     id: product.handle,
+    updatedAt: product.updatedAt,
     shopifyId: product.id,
     no: toNumber(fields.catalog_number),
     name: product.title,
@@ -329,6 +334,7 @@ function inDisplayOrder(products: Product[]) {
 function mapShopifyCollection(collection: ShopifyCollection, arabic: ShopifyCollection | undefined, known: Set<string>): Collection {
   return {
     id: collection.handle,
+    updatedAt: collection.updatedAt,
     shopifyId: collection.id,
     title: collection.title,
     titleAr: arabic?.title || collection.title,
