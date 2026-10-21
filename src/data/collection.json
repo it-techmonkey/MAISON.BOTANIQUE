@@ -254,7 +254,7 @@
       "name": "Perle — 100 White Rose Bouquet",
       "nameAr": "بيرل — باقة من 100 وردة بيضاء",
       "room": "roses",
-      "price": 999.0,
+      "price": 699.0,
       "sizes": [
         {
           "id": "signature",
@@ -264,8 +264,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-RB-034-SIG",
-          "price": 999.0,
-          "compareAtPrice": 2437.0
+          "price": 699.0,
+          "compareAtPrice": 1705.0
         },
         {
           "id": "grand",
@@ -273,10 +273,10 @@
           "nameAr": "غراند",
           "detail": "200 white roses",
           "detailAr": "ضعف الكمية",
-          "add": 949.0,
+          "add": 664.0,
           "sku": "MB-RB-034-GRD",
-          "price": 1948.0,
-          "compareAtPrice": 4751.0
+          "price": 1363.0,
+          "compareAtPrice": 3324.0
         },
         {
           "id": "luxe",
@@ -284,10 +284,10 @@
           "nameAr": "لوكس",
           "detail": "300 white roses",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 1948.0,
+          "add": 1363.0,
           "sku": "MB-RB-034-LUX",
-          "price": 2947.0,
-          "compareAtPrice": 7188.0
+          "price": 2062.0,
+          "compareAtPrice": 5029.0
         }
       ],
       "line": "100 white roses, tied with ribbon",
@@ -317,7 +317,7 @@
       "image": "/collection/perle-100-white-rose-bouquet-960.webp",
       "imageSmall": "/collection/perle-100-white-rose-bouquet-480.webp",
       "alt": "Perle — 100 White Rose Bouquet - 100 White Roses, by Maison Botanique",
-      "compareAtPrice": 2437.0
+      "compareAtPrice": 1705.0
     },
     {
       "id": "roxane-classic-romance-rose-bouquet",
@@ -325,7 +325,7 @@
       "name": "Roxane — Classic Romance Rose Bouquet",
       "nameAr": "روكسان — باقة ورد رومانسية كلاسيكية",
       "room": "roses",
-      "price": 899.0,
+      "price": 699.0,
       "sizes": [
         {
           "id": "signature",
@@ -335,8 +335,8 @@
           "detailAr": "100 وردة",
           "add": 0.0,
           "sku": "MB-RB-025-SIG",
-          "price": 899.0,
-          "compareAtPrice": 1798.0
+          "price": 699.0,
+          "compareAtPrice": 1398.0
         },
         {
           "id": "grand",
@@ -344,10 +344,10 @@
           "nameAr": "غراند",
           "detail": "200 roses (red and white)",
           "detailAr": "200 وردة",
-          "add": 854.0,
+          "add": 664.0,
           "sku": "MB-RB-025-GRD",
-          "price": 1753.0,
-          "compareAtPrice": 3506.0
+          "price": 1363.0,
+          "compareAtPrice": 2726.0
         },
         {
           "id": "luxe",
@@ -355,10 +355,10 @@
           "nameAr": "لوكس",
           "detail": "300 roses (red and white)",
           "detailAr": "300 وردة",
-          "add": 1753.0,
+          "add": 1363.0,
           "sku": "MB-RB-025-LUX",
-          "price": 2652.0,
-          "compareAtPrice": 5304.0
+          "price": 2062.0,
+          "compareAtPrice": 4124.0
         }
       ],
       "line": "100 roses (red and white), black paper packing",
@@ -388,7 +388,7 @@
       "image": "/collection/roxane-classic-romance-rose-bouquet-960.webp",
       "imageSmall": "/collection/roxane-classic-romance-rose-bouquet-480.webp",
       "alt": "Roxane — Classic Romance Rose Bouquet - 100 Roses (Red and White), by Maison Botanique",
-      "compareAtPrice": 1798.0
+      "compareAtPrice": 1398.0
     },
     {
       "id": "aveline-red-pink-and-white-rose-bouquet",
@@ -1457,7 +1457,7 @@
       "name": "Seraphine — Pastel Rose Bouquet",
       "nameAr": "سيرافين — باقة ورد بألوان الباستيل",
       "room": "roses",
-      "price": 399.0,
+      "price": 300.0,
       "sizes": [
         {
           "id": "signature",
@@ -1467,8 +1467,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-RB-012-SIG",
-          "price": 399.0,
-          "compareAtPrice": 907.0
+          "price": 300.0,
+          "compareAtPrice": 682.0
         },
         {
           "id": "grand",
@@ -1476,10 +1476,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 379.0,
+          "add": 285.0,
           "sku": "MB-RB-012-GRD",
-          "price": 778.0,
-          "compareAtPrice": 1768.0
+          "price": 585.0,
+          "compareAtPrice": 1330.0
         },
         {
           "id": "luxe",
@@ -1487,10 +1487,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 778.0,
+          "add": 585.0,
           "sku": "MB-RB-012-LUX",
-          "price": 1177.0,
-          "compareAtPrice": 2675.0
+          "price": 885.0,
+          "compareAtPrice": 2011.0
         }
       ],
       "line": "20 White Roses",
@@ -1527,7 +1527,7 @@
       "image": "/collection/seraphine-pastel-rose-bouquet-960.webp",
       "imageSmall": "/collection/seraphine-pastel-rose-bouquet-480.webp",
       "alt": "Seraphine — Pastel Rose Bouquet - 20 White Roses, by Maison Botanique",
-      "compareAtPrice": 907.0
+      "compareAtPrice": 682.0
     },
     {
       "id": "odette-red-and-pink-rose-wrap",
@@ -2119,7 +2119,7 @@
       "name": "Rosette — 40 Pink Rose Bouquet",
       "nameAr": "روزيت — باقة من 40 وردة وردية",
       "room": "roses",
-      "price": 399.0,
+      "price": 300.0,
       "sizes": [
         {
           "id": "signature",
@@ -2129,8 +2129,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-RB-060-SIG",
-          "price": 399.0,
-          "compareAtPrice": 782.0
+          "price": 300.0,
+          "compareAtPrice": 588.0
         },
         {
           "id": "grand",
@@ -2138,10 +2138,10 @@
           "nameAr": "غراند",
           "detail": "80 pink roses",
           "detailAr": "ضعف الزهور",
-          "add": 379.0,
+          "add": 285.0,
           "sku": "MB-RB-060-GRD",
-          "price": 778.0,
-          "compareAtPrice": 1525.0
+          "price": 585.0,
+          "compareAtPrice": 1147.0
         },
         {
           "id": "luxe",
@@ -2149,10 +2149,10 @@
           "nameAr": "لوكس",
           "detail": "120 pink roses",
           "detailAr": "ثلاثة أضعاف الزهور",
-          "add": 778.0,
+          "add": 585.0,
           "sku": "MB-RB-060-LUX",
-          "price": 1177.0,
-          "compareAtPrice": 2308.0
+          "price": 885.0,
+          "compareAtPrice": 1735.0
         }
       ],
       "line": "40 pink roses, elegant paper wrapping",
@@ -2183,7 +2183,7 @@
       "image": "/collection/rosette-40-pink-rose-bouquet-960.webp",
       "imageSmall": "/collection/rosette-40-pink-rose-bouquet-480.webp",
       "alt": "Rosette — 40 Pink Rose Bouquet - 40 pink roses, by Maison Botanique",
-      "compareAtPrice": 782.0
+      "compareAtPrice": 588.0
     },
     {
       "id": "eternelle-anniversary-rose-bouquet",
@@ -3356,7 +3356,7 @@
       "name": "Alba — Classic White Rose Bouquet",
       "nameAr": "ألبا — باقة ورد أبيض كلاسيكية",
       "room": "roses",
-      "price": 929.0,
+      "price": 699.0,
       "sizes": [
         {
           "id": "signature",
@@ -3366,8 +3366,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-RB-043-SIG",
-          "price": 929.0,
-          "compareAtPrice": 1689.0
+          "price": 699.0,
+          "compareAtPrice": 1271.0
         },
         {
           "id": "grand",
@@ -3375,10 +3375,10 @@
           "nameAr": "غراند",
           "detail": "202 white roses",
           "detailAr": "ضعف الكمية",
-          "add": 883.0,
+          "add": 664.0,
           "sku": "MB-RB-043-GRD",
-          "price": 1812.0,
-          "compareAtPrice": 3295.0
+          "price": 1363.0,
+          "compareAtPrice": 2478.0
         },
         {
           "id": "luxe",
@@ -3386,10 +3386,10 @@
           "nameAr": "لوكس",
           "detail": "303 white roses",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 1812.0,
+          "add": 1363.0,
           "sku": "MB-RB-043-LUX",
-          "price": 2741.0,
-          "compareAtPrice": 4984.0
+          "price": 2062.0,
+          "compareAtPrice": 3749.0
         }
       ],
       "line": "101 white roses, white ribbon tie",
@@ -3420,7 +3420,7 @@
       "image": "/collection/alba-classic-white-rose-bouquet-960.webp",
       "imageSmall": "/collection/alba-classic-white-rose-bouquet-480.webp",
       "alt": "Alba — Classic White Rose Bouquet - 101 White Roses, by Maison Botanique",
-      "compareAtPrice": 1689.0
+      "compareAtPrice": 1271.0
     },
     {
       "id": "triade-three-colour-rose-bouquet",
@@ -3568,7 +3568,7 @@
       "name": "Lavinia — 20 Purple Rose Bouquet",
       "nameAr": "لافينيا — باقة من 20 وردة بنفسجية",
       "room": "roses",
-      "price": 289.0,
+      "price": 229.0,
       "sizes": [
         {
           "id": "signature",
@@ -3578,8 +3578,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-RB-046-SIG",
-          "price": 289.0,
-          "compareAtPrice": 602.0
+          "price": 229.0,
+          "compareAtPrice": 477.0
         },
         {
           "id": "grand",
@@ -3587,10 +3587,10 @@
           "nameAr": "غراند",
           "detail": "40 purple roses",
           "detailAr": "ضعف الكمية",
-          "add": 275.0,
+          "add": 218.0,
           "sku": "MB-RB-046-GRD",
-          "price": 564.0,
-          "compareAtPrice": 1175.0
+          "price": 447.0,
+          "compareAtPrice": 931.0
         },
         {
           "id": "luxe",
@@ -3598,10 +3598,10 @@
           "nameAr": "لوكس",
           "detail": "60 purple roses",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 564.0,
+          "add": 447.0,
           "sku": "MB-RB-046-LUX",
-          "price": 853.0,
-          "compareAtPrice": 1777.0
+          "price": 676.0,
+          "compareAtPrice": 1408.0
         }
       ],
       "line": "20 purple roses, hand-tied with ribbons",
@@ -3628,7 +3628,7 @@
       "image": "/collection/lavinia-20-purple-rose-bouquet-960.webp",
       "imageSmall": "/collection/lavinia-20-purple-rose-bouquet-480.webp",
       "alt": "Lavinia — 20 Purple Rose Bouquet - 20 Purple Roses, by Maison Botanique",
-      "compareAtPrice": 602.0
+      "compareAtPrice": 477.0
     },
     {
       "id": "monogram-personalised-letter-red-rose-bouquet",
@@ -3721,7 +3721,7 @@
       "name": "Coeur — Heart-Shaped Red Rose Bouquet",
       "nameAr": "كور — باقة ورد أحمر على شكل قلب",
       "room": "roses",
-      "price": 440.0,
+      "price": 540.0,
       "sizes": [
         {
           "id": "signature",
@@ -3731,8 +3731,8 @@
           "detailAr": "75 وردة",
           "add": 0.0,
           "sku": "MB-RB-050-SIG",
-          "price": 440.0,
-          "compareAtPrice": 759.0
+          "price": 540.0,
+          "compareAtPrice": 931.0
         },
         {
           "id": "grand",
@@ -3740,10 +3740,10 @@
           "nameAr": "غراند",
           "detail": "101 roses",
           "detailAr": "101 وردة",
-          "add": 200.0,
+          "add": 295.0,
           "sku": "MB-RB-050-GRD",
-          "price": 640.0,
-          "compareAtPrice": 1103.0
+          "price": 835.0,
+          "compareAtPrice": 1440.0
         },
         {
           "id": "luxe",
@@ -3751,10 +3751,10 @@
           "nameAr": "لوكس",
           "detail": "201 roses",
           "detailAr": "201 وردة",
-          "add": 760.0,
+          "add": 955.0,
           "sku": "MB-RB-050-LUX",
-          "price": 1200.0,
-          "compareAtPrice": 2069.0
+          "price": 1495.0,
+          "compareAtPrice": 2578.0
         }
       ],
       "line": "75 roses",
@@ -3780,7 +3780,7 @@
       "image": "/collection/coeur-heart-shaped-red-rose-bouquet-960.webp",
       "imageSmall": "/collection/coeur-heart-shaped-red-rose-bouquet-480.webp",
       "alt": "Coeur — Heart-Shaped Red Rose Bouquet - Premium red roses arranged in a heart shape, by Maison Botanique",
-      "compareAtPrice": 759.0
+      "compareAtPrice": 931.0
     },
     {
       "id": "prism-rainbow-ombre-rose-bouquet",
@@ -4539,12 +4539,12 @@
       "compareAtPrice": 1125.0
     },
     {
-      "id": "tansy-tanacetum-flower-bag",
+      "id": "tansy-tanacetum-flower-bouquet",
       "no": 68,
-      "name": "Tansy — Tanacetum Flower Bag",
-      "nameAr": "تانسي — حقيبة زهور التاناسيتوم",
+      "name": "Tansy — Tanacetum Flower Bouquet",
+      "nameAr": "تانسي — باقة زهور التاناسيتوم",
       "room": "bouquets",
-      "price": 375.0,
+      "price": 299.0,
       "sizes": [
         {
           "id": "signature",
@@ -4554,8 +4554,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-GM-007-SIG",
-          "price": 375.0,
-          "compareAtPrice": 708.0
+          "price": 299.0,
+          "compareAtPrice": 564.0
         },
         {
           "id": "grand",
@@ -4563,10 +4563,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 356.0,
+          "add": 284.0,
           "sku": "MB-GM-007-GRD",
-          "price": 731.0,
-          "compareAtPrice": 1379.0
+          "price": 583.0,
+          "compareAtPrice": 1100.0
         },
         {
           "id": "luxe",
@@ -4574,22 +4574,22 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 731.0,
+          "add": 583.0,
           "sku": "MB-GM-007-LUX",
-          "price": 1106.0,
-          "compareAtPrice": 2087.0
+          "price": 882.0,
+          "compareAtPrice": 1664.0
         }
       ],
-      "line": "Tanacetum in a clear handled bag",
-      "lineAr": "10 سيقان تاناسيتوم (من نوع الفيفرفيو) · حقيبة أكريليك بيد",
+      "line": "Tanacetum bouquet with a black ribbon",
+      "lineAr": "10 سيقان تاناسيتوم (من نوع الفيفرفيو) · ورق تغليف",
       "composition": [
         "10 Tanacetum (feverfew-type) stems",
-        "Handled acrylic bag",
+        "Wrapping paper",
         "Black ribbon"
       ],
       "compositionAr": [
         "10 سيقان تاناسيتوم (من نوع الفيفرفيو)",
-        "حقيبة أكريليك بيد",
+        "ورق تغليف",
         "شريط أسود"
       ],
       "feature": "",
@@ -4604,10 +4604,10 @@
       "format": "bouquet",
       "order": 168,
       "custom": null,
-      "image": "/collection/tansy-tanacetum-flower-bag-960.webp",
-      "imageSmall": "/collection/tansy-tanacetum-flower-bag-480.webp",
-      "alt": "Tenacetum Bag - 10 Tanacetum (feverfew-type) stems, by Maison Botanique",
-      "compareAtPrice": 708.0
+      "image": "/collection/tansy-tanacetum-flower-bouquet-960.webp",
+      "imageSmall": "/collection/tansy-tanacetum-flower-bouquet-480.webp",
+      "alt": "Tansy — Tanacetum Flower Bouquet - 10 Tanacetum (feverfew-type) stems, by Maison Botanique",
+      "compareAtPrice": 564.0
     },
     {
       "id": "lavande-lavender-flower-bouquet",
@@ -5028,7 +5028,7 @@
       "name": "Pomelo — Pink Summer Flower Bouquet",
       "nameAr": "بوميلو — باقة زهور صيفية وردية",
       "room": "bouquets",
-      "price": 325.0,
+      "price": 299.0,
       "sizes": [
         {
           "id": "signature",
@@ -5038,8 +5038,8 @@
           "detailAr": "51 وردة",
           "add": 0.0,
           "sku": "MB-GM-014-SIG",
-          "price": 325.0,
-          "compareAtPrice": 551.0
+          "price": 299.0,
+          "compareAtPrice": 507.0
         },
         {
           "id": "grand",
@@ -5047,10 +5047,10 @@
           "nameAr": "غراند",
           "detail": "101 roses",
           "detailAr": "101 وردة",
-          "add": 200.0,
+          "add": 175.0,
           "sku": "MB-GM-014-GRD",
-          "price": 525.0,
-          "compareAtPrice": 890.0
+          "price": 474.0,
+          "compareAtPrice": 803.0
         },
         {
           "id": "luxe",
@@ -5058,10 +5058,10 @@
           "nameAr": "لوكس",
           "detail": "201 roses",
           "detailAr": "201 وردة",
-          "add": 630.0,
+          "add": 579.0,
           "sku": "MB-GM-014-LUX",
-          "price": 955.0,
-          "compareAtPrice": 1619.0
+          "price": 878.0,
+          "compareAtPrice": 1488.0
         }
       ],
       "line": "51 roses",
@@ -5087,7 +5087,7 @@
       "image": "/collection/pomelo-pink-summer-flower-bouquet-960.webp",
       "imageSmall": "/collection/pomelo-pink-summer-flower-bouquet-480.webp",
       "alt": "Pomelo — Pink Summer Flower Bouquet - Hand-selected mixed pink seasonal flowers, by Maison Botanique",
-      "compareAtPrice": 551.0
+      "compareAtPrice": 507.0
     },
     {
       "id": "magnolia-pink-birthday-flower-bouquet-xl",
@@ -5095,7 +5095,7 @@
       "name": "Magnolia — Pink Birthday Flower Bouquet XL",
       "nameAr": "ماغنوليا — باقة زهور وردية لعيد الميلاد XL",
       "room": "bouquets",
-      "price": 1735.0,
+      "price": 999.0,
       "sizes": [
         {
           "id": "signature",
@@ -5105,18 +5105,18 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-GM-015-STD",
-          "price": 1735.0,
-          "compareAtPrice": 3541.0
+          "price": 999.0,
+          "compareAtPrice": 2039.0
         }
       ],
-      "line": "Extra-large pink flower arrangement",
-      "lineAr": "تنسيق زهور وردي كبير جداً · زينة رقم العمر وبطاقة عيد ميلاد",
+      "line": "100 pink roses in an extra-large arrangement",
+      "lineAr": "100 وردة وردية في تنسيق كبير جداً · زينة رقم العمر وبطاقة عيد ميلاد",
       "composition": [
-        "Extra-large pink flower arrangement",
+        "100 pink roses in an extra-large arrangement",
         "Age-number decoration and birthday card"
       ],
       "compositionAr": [
-        "تنسيق زهور وردي كبير جداً",
+        "100 وردة وردية في تنسيق كبير جداً",
         "زينة رقم العمر وبطاقة عيد ميلاد"
       ],
       "feature": "",
@@ -5136,8 +5136,8 @@
       },
       "image": "/collection/magnolia-pink-birthday-flower-bouquet-xl-960.webp",
       "imageSmall": "/collection/magnolia-pink-birthday-flower-bouquet-xl-480.webp",
-      "alt": "Magnolia — Pink Birthday Flower Bouquet XL - Extra-large pink flower arrangement, by Maison Botanique",
-      "compareAtPrice": 3541.0
+      "alt": "Magnolia — Pink Birthday Flower Bouquet XL - 100 pink roses in an extra-large arrangement, by Maison Botanique",
+      "compareAtPrice": 2039.0
     },
     {
       "id": "laurel-graduation-flower-bouquet",
@@ -5431,7 +5431,7 @@
       "name": "Scholar — Graduation Floral Bouquet",
       "nameAr": "سكولر — باقة زهور للتخرج",
       "room": "bouquets",
-      "price": 399.0,
+      "price": 349.0,
       "sizes": [
         {
           "id": "signature",
@@ -5441,8 +5441,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-GM-022-STD",
-          "price": 399.0,
-          "compareAtPrice": 753.0
+          "price": 349.0,
+          "compareAtPrice": 658.0
         }
       ],
       "line": "Orange-toned flowers and seasonal blooms",
@@ -5470,7 +5470,7 @@
       "image": "/collection/scholar-graduation-floral-bouquet-960.webp",
       "imageSmall": "/collection/scholar-graduation-floral-bouquet-480.webp",
       "alt": "Scholar — Graduation Floral Bouquet - Orange-toned flowers and seasonal blooms, by Maison Botanique",
-      "compareAtPrice": 753.0
+      "compareAtPrice": 658.0
     },
     {
       "id": "carnelian-large-birthday-bouquet-30-red-flowers",
@@ -5478,7 +5478,7 @@
       "name": "Carnelian — Large Birthday Bouquet, 30 Red Flowers",
       "nameAr": "كارنيليان — باقة كبيرة لعيد الميلاد من 30 زهرة حمراء",
       "room": "bouquets",
-      "price": 439.0,
+      "price": 399.0,
       "sizes": [
         {
           "id": "signature",
@@ -5488,8 +5488,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-GM-023-STD",
-          "price": 439.0,
-          "compareAtPrice": 813.0
+          "price": 399.0,
+          "compareAtPrice": 739.0
         }
       ],
       "line": "Large red rose bouquet (30 red roses)",
@@ -5517,7 +5517,7 @@
       "image": "/collection/carnelian-large-birthday-bouquet-30-red-flowers-960.webp",
       "imageSmall": "/collection/carnelian-large-birthday-bouquet-30-red-flowers-480.webp",
       "alt": "Happy Birthday Flower Large - 30 Red Bouquet - Large red rose bouquet (30 red roses), by Maison Botanique",
-      "compareAtPrice": 813.0
+      "compareAtPrice": 739.0
     },
     {
       "id": "coral-pink-graduation-bouquet",
@@ -5956,7 +5956,7 @@
       "name": "Hortense — Hydrangea & Carnation Bouquet",
       "nameAr": "هورتنس — باقة هيدرانجيا وقرنفل",
       "room": "bouquets",
-      "price": 625.0,
+      "price": 599.0,
       "sizes": [
         {
           "id": "signature",
@@ -5966,8 +5966,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-NB-005-SIG",
-          "price": 625.0,
-          "compareAtPrice": 1059.0
+          "price": 599.0,
+          "compareAtPrice": 1015.0
         },
         {
           "id": "grand",
@@ -5975,10 +5975,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 594.0,
+          "add": 569.0,
           "sku": "MB-NB-005-GRD",
-          "price": 1219.0,
-          "compareAtPrice": 2066.0
+          "price": 1168.0,
+          "compareAtPrice": 1980.0
         },
         {
           "id": "luxe",
@@ -5986,10 +5986,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 1219.0,
+          "add": 1168.0,
           "sku": "MB-NB-005-LUX",
-          "price": 1844.0,
-          "compareAtPrice": 3125.0
+          "price": 1767.0,
+          "compareAtPrice": 2995.0
         }
       ],
       "line": "4 pink hydrangeas",
@@ -6020,7 +6020,7 @@
       "image": "/collection/hortense-hydrangea-and-carnation-bouquet-960.webp",
       "imageSmall": "/collection/hortense-hydrangea-and-carnation-bouquet-480.webp",
       "alt": "Hortense — Hydrangea & Carnation Bouquet - 4 pink hydrangeas, by Maison Botanique",
-      "compareAtPrice": 1059.0
+      "compareAtPrice": 1015.0
     },
     {
       "id": "bella-rose-and-hydrangea-bouquet",
@@ -6853,7 +6853,7 @@
       "name": "Neige — White Flower Bouquet",
       "nameAr": "نيج — باقة زهور بيضاء",
       "room": "bouquets",
-      "price": 356.0,
+      "price": 299.0,
       "sizes": [
         {
           "id": "signature",
@@ -6863,8 +6863,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-NB-017-SIG",
-          "price": 356.0,
-          "compareAtPrice": 828.0
+          "price": 299.0,
+          "compareAtPrice": 695.0
         },
         {
           "id": "grand",
@@ -6872,10 +6872,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 338.0,
+          "add": 284.0,
           "sku": "MB-NB-017-GRD",
-          "price": 694.0,
-          "compareAtPrice": 1614.0
+          "price": 583.0,
+          "compareAtPrice": 1356.0
         },
         {
           "id": "luxe",
@@ -6883,10 +6883,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 694.0,
+          "add": 583.0,
           "sku": "MB-NB-017-LUX",
-          "price": 1050.0,
-          "compareAtPrice": 2442.0
+          "price": 882.0,
+          "compareAtPrice": 2051.0
         }
       ],
       "line": "2 White Lilies",
@@ -6925,7 +6925,7 @@
       "image": "/collection/neige-white-flower-bouquet-960.webp",
       "imageSmall": "/collection/neige-white-flower-bouquet-480.webp",
       "alt": "Neige — White Flower Bouquet - 2 White Lilies, by Maison Botanique",
-      "compareAtPrice": 828.0
+      "compareAtPrice": 695.0
     },
     {
       "id": "mosaic-mixed-flower-bouquet",
@@ -6933,7 +6933,7 @@
       "name": "Mosaic — Mixed Flower Bouquet",
       "nameAr": "موزاييك — باقة زهور مشكّلة",
       "room": "bouquets",
-      "price": 575.0,
+      "price": 499.0,
       "sizes": [
         {
           "id": "signature",
@@ -6943,8 +6943,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-NB-018-SIG",
-          "price": 575.0,
-          "compareAtPrice": 1150.0
+          "price": 499.0,
+          "compareAtPrice": 998.0
         },
         {
           "id": "grand",
@@ -6952,10 +6952,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 546.0,
+          "add": 474.0,
           "sku": "MB-NB-018-GRD",
-          "price": 1121.0,
-          "compareAtPrice": 2242.0
+          "price": 973.0,
+          "compareAtPrice": 1946.0
         },
         {
           "id": "luxe",
@@ -6963,10 +6963,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 1121.0,
+          "add": 973.0,
           "sku": "MB-NB-018-LUX",
-          "price": 1696.0,
-          "compareAtPrice": 3392.0
+          "price": 1472.0,
+          "compareAtPrice": 2944.0
         }
       ],
       "line": "3 white hydrangeas, pink and white wrapping paper, pink ribbon",
@@ -7007,7 +7007,7 @@
       "image": "/collection/mosaic-mixed-flower-bouquet-960.webp",
       "imageSmall": "/collection/mosaic-mixed-flower-bouquet-480.webp",
       "alt": "Mosaic — Mixed Flower Bouquet - 3 white hydrangeas, by Maison Botanique",
-      "compareAtPrice": 1150.0
+      "compareAtPrice": 998.0
     },
     {
       "id": "reverie-pastel-flower-bouquet",
@@ -7015,7 +7015,7 @@
       "name": "Reverie — Pastel Flower Bouquet",
       "nameAr": "ريفيري — باقة زهور بالباستيل",
       "room": "bouquets",
-      "price": 249.0,
+      "price": 199.0,
       "sizes": [
         {
           "id": "signature",
@@ -7025,8 +7025,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-NB-019-SIG",
-          "price": 249.0,
-          "compareAtPrice": 429.0
+          "price": 199.0,
+          "compareAtPrice": 343.0
         },
         {
           "id": "grand",
@@ -7034,10 +7034,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 237.0,
+          "add": 189.0,
           "sku": "MB-NB-019-GRD",
-          "price": 486.0,
-          "compareAtPrice": 838.0
+          "price": 388.0,
+          "compareAtPrice": 669.0
         },
         {
           "id": "luxe",
@@ -7045,10 +7045,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 486.0,
+          "add": 388.0,
           "sku": "MB-NB-019-LUX",
-          "price": 735.0,
-          "compareAtPrice": 1267.0
+          "price": 587.0,
+          "compareAtPrice": 1012.0
         }
       ],
       "line": "1 Blue Hydrangea, pastel wrapping paper",
@@ -7083,7 +7083,7 @@
       "image": "/collection/reverie-pastel-flower-bouquet-960.webp",
       "imageSmall": "/collection/reverie-pastel-flower-bouquet-480.webp",
       "alt": "Reverie — Pastel Flower Bouquet - 1 Blue Hydrangea, by Maison Botanique",
-      "compareAtPrice": 429.0
+      "compareAtPrice": 343.0
     },
     {
       "id": "aube-sunlit-flower-bouquet",
@@ -7091,7 +7091,7 @@
       "name": "Aube — Sunlit Flower Bouquet",
       "nameAr": "أوب — باقة زهور مشمسة",
       "room": "bouquets",
-      "price": 159.0,
+      "price": 129.0,
       "sizes": [
         {
           "id": "signature",
@@ -7101,8 +7101,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-NB-020-SIG",
-          "price": 159.0,
-          "compareAtPrice": 324.0
+          "price": 129.0,
+          "compareAtPrice": 263.0
         },
         {
           "id": "grand",
@@ -7110,10 +7110,10 @@
           "nameAr": "غراند",
           "detail": "6 bright sunflowers",
           "detailAr": "ضعف الكمية",
-          "add": 151.0,
+          "add": 123.0,
           "sku": "MB-NB-020-GRD",
-          "price": 310.0,
-          "compareAtPrice": 633.0
+          "price": 252.0,
+          "compareAtPrice": 514.0
         },
         {
           "id": "luxe",
@@ -7121,10 +7121,10 @@
           "nameAr": "لوكس",
           "detail": "9 bright sunflowers",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 310.0,
+          "add": 252.0,
           "sku": "MB-NB-020-LUX",
-          "price": 469.0,
-          "compareAtPrice": 957.0
+          "price": 381.0,
+          "compareAtPrice": 778.0
         }
       ],
       "line": "3 bright sunflowers",
@@ -7155,7 +7155,7 @@
       "image": "/collection/aube-sunlit-flower-bouquet-960.webp",
       "imageSmall": "/collection/aube-sunlit-flower-bouquet-480.webp",
       "alt": "Aube — Sunlit Flower Bouquet - 3 bright sunflowers, by Maison Botanique",
-      "compareAtPrice": 324.0
+      "compareAtPrice": 263.0
     },
     {
       "id": "ophelia-orchid-bouquet",
@@ -7163,7 +7163,7 @@
       "name": "Ophelia — Orchid Bouquet",
       "nameAr": "أوفيليا — باقة أوركيد",
       "room": "bouquets",
-      "price": 235.0,
+      "price": 199.0,
       "sizes": [
         {
           "id": "signature",
@@ -7173,8 +7173,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-NB-021-SIG",
-          "price": 235.0,
-          "compareAtPrice": 588.0
+          "price": 199.0,
+          "compareAtPrice": 498.0
         },
         {
           "id": "grand",
@@ -7182,10 +7182,10 @@
           "nameAr": "غراند",
           "detail": "20 purple orchids",
           "detailAr": "ضعف الكمية",
-          "add": 220.0,
+          "add": 186.0,
           "sku": "MB-NB-021-GRD",
-          "price": 455.0,
-          "compareAtPrice": 1138.0
+          "price": 385.0,
+          "compareAtPrice": 963.0
         },
         {
           "id": "luxe",
@@ -7193,10 +7193,10 @@
           "nameAr": "لوكس",
           "detail": "30 purple orchids",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 450.0,
+          "add": 380.0,
           "sku": "MB-NB-021-LUX",
-          "price": 685.0,
-          "compareAtPrice": 1712.0
+          "price": 579.0,
+          "compareAtPrice": 1448.0
         }
       ],
       "line": "10 purple orchids, wrapping paper",
@@ -7228,7 +7228,7 @@
       "image": "/collection/ophelia-orchid-bouquet-960.webp",
       "imageSmall": "/collection/ophelia-orchid-bouquet-480.webp",
       "alt": "Ophelia — Orchid Bouquet - 10 Purple Orchids, by Maison Botanique",
-      "compareAtPrice": 588.0
+      "compareAtPrice": 498.0
     },
     {
       "id": "lysandra-rose-and-lily-bouquet",
@@ -7691,7 +7691,7 @@
       "name": "Lilibet — Pink Lily Bouquet",
       "nameAr": "ليليبيت — باقة زنبق وردي",
       "room": "bouquets",
-      "price": 159.0,
+      "price": 129.0,
       "sizes": [
         {
           "id": "signature",
@@ -7701,8 +7701,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-NB-028-SIG",
-          "price": 159.0,
-          "compareAtPrice": 300.0
+          "price": 129.0,
+          "compareAtPrice": 243.0
         },
         {
           "id": "grand",
@@ -7710,10 +7710,10 @@
           "nameAr": "غراند",
           "detail": "6 pink lilies",
           "detailAr": "ضعف الكمية",
-          "add": 151.0,
+          "add": 123.0,
           "sku": "MB-NB-028-GRD",
-          "price": 310.0,
-          "compareAtPrice": 585.0
+          "price": 252.0,
+          "compareAtPrice": 475.0
         },
         {
           "id": "luxe",
@@ -7721,10 +7721,10 @@
           "nameAr": "لوكس",
           "detail": "9 pink lilies",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 310.0,
+          "add": 252.0,
           "sku": "MB-NB-028-LUX",
-          "price": 469.0,
-          "compareAtPrice": 885.0
+          "price": 381.0,
+          "compareAtPrice": 719.0
         }
       ],
       "line": "3 pink lilies",
@@ -7752,7 +7752,7 @@
       "image": "/collection/lilibet-pink-lily-bouquet-960.webp",
       "imageSmall": "/collection/lilibet-pink-lily-bouquet-480.webp",
       "alt": "Lilibet — Pink Lily Bouquet - 3 pink lilies, by Maison Botanique",
-      "compareAtPrice": 300.0
+      "compareAtPrice": 243.0
     },
     {
       "id": "dahlia-pink-flower-bouquet",
@@ -8056,50 +8056,50 @@
       "name": "Victoria — Regal Pink Lily Bouquet",
       "nameAr": "فيكتوريا — باقة زنبق وردي ملكية",
       "room": "bouquets",
-      "price": 239.0,
+      "price": 199.0,
       "sizes": [
         {
           "id": "signature",
           "name": "Signature",
           "nameAr": "سيغنتشر",
-          "detail": "5 stems of pink lilies (about 15 flowers in total)",
+          "detail": "5 stems of pink lilies",
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-NB-033-SIG",
-          "price": 239.0,
-          "compareAtPrice": 443.0
+          "price": 199.0,
+          "compareAtPrice": 369.0
         },
         {
           "id": "grand",
           "name": "Grand",
           "nameAr": "غراند",
-          "detail": "10 stems of pink lilies (about 15 flowers in total)",
+          "detail": "10 stems of pink lilies",
           "detailAr": "ضعف الكمية",
-          "add": 227.0,
+          "add": 189.0,
           "sku": "MB-NB-033-GRD",
-          "price": 466.0,
-          "compareAtPrice": 863.0
+          "price": 388.0,
+          "compareAtPrice": 719.0
         },
         {
           "id": "luxe",
           "name": "Luxe",
           "nameAr": "لوكس",
-          "detail": "15 stems of pink lilies (about 15 flowers in total)",
+          "detail": "15 stems of pink lilies",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 466.0,
+          "add": 388.0,
           "sku": "MB-NB-033-LUX",
-          "price": 705.0,
-          "compareAtPrice": 1306.0
+          "price": 587.0,
+          "compareAtPrice": 1087.0
         }
       ],
-      "line": "5 stems of pink lilies (about 15 flowers in total), grey wrapping pape",
-      "lineAr": "5 سيقان زنبق وردي (حوالي 15 زهرة في المجموع) · ورق تغليف رمادي",
+      "line": "5 stems of pink lilies, grey wrapping paper",
+      "lineAr": "5 سيقان زنبق وردي · ورق تغليف رمادي",
       "composition": [
-        "5 stems of pink lilies (about 15 flowers in total)",
+        "5 stems of pink lilies",
         "Grey wrapping paper"
       ],
       "compositionAr": [
-        "5 سيقان زنبق وردي (حوالي 15 زهرة في المجموع)",
+        "5 سيقان زنبق وردي",
         "ورق تغليف رمادي"
       ],
       "feature": "",
@@ -8116,8 +8116,8 @@
       "custom": null,
       "image": "/collection/victoria-regal-pink-lily-bouquet-960.webp",
       "imageSmall": "/collection/victoria-regal-pink-lily-bouquet-480.webp",
-      "alt": "Victoria — Regal Pink Lily Bouquet - 5 stems of pink lilies (about 15 flowers in total), by Maison Botanique",
-      "compareAtPrice": 443.0
+      "alt": "Victoria — Regal Pink Lily Bouquet - 5 stems of pink lilies, by Maison Botanique",
+      "compareAtPrice": 369.0
     },
     {
       "id": "mimosa-yellow-tulip-bouquet",
@@ -8340,7 +8340,7 @@
       "name": "Marisol — Pink Lily & Red Rose Wrap",
       "nameAr": "ماريسول — باقة زنبق وردي وورد أحمر",
       "room": "bouquets",
-      "price": 725.0,
+      "price": 699.0,
       "sizes": [
         {
           "id": "signature",
@@ -8350,8 +8350,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-NB-037-SIG",
-          "price": 725.0,
-          "compareAtPrice": 1250.0
+          "price": 699.0,
+          "compareAtPrice": 1205.0
         },
         {
           "id": "grand",
@@ -8359,10 +8359,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 689.0,
+          "add": 664.0,
           "sku": "MB-NB-037-GRD",
-          "price": 1414.0,
-          "compareAtPrice": 2438.0
+          "price": 1363.0,
+          "compareAtPrice": 2350.0
         },
         {
           "id": "luxe",
@@ -8370,10 +8370,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 1414.0,
+          "add": 1363.0,
           "sku": "MB-NB-037-LUX",
-          "price": 2139.0,
-          "compareAtPrice": 3688.0
+          "price": 2062.0,
+          "compareAtPrice": 3555.0
         }
       ],
       "line": "10 Pink Lilies",
@@ -8405,7 +8405,7 @@
       "image": "/collection/marisol-pink-lily-and-red-rose-wrap-960.webp",
       "imageSmall": "/collection/marisol-pink-lily-and-red-rose-wrap-480.webp",
       "alt": "Marisol — Pink Lily & Red Rose Wrap - 10 Pink Lilies, by Maison Botanique",
-      "compareAtPrice": 1250.0
+      "compareAtPrice": 1205.0
     },
     {
       "id": "solene-sunburst-flower-bouquet",
@@ -8491,7 +8491,7 @@
       "name": "Blanchette — Blush Flower Bouquet",
       "nameAr": "بلانشيت — باقة زهور وردية فاتحة",
       "room": "bouquets",
-      "price": 599.0,
+      "price": 549.0,
       "sizes": [
         {
           "id": "signature",
@@ -8501,8 +8501,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-NB-039-SIG",
-          "price": 599.0,
-          "compareAtPrice": 1175.0
+          "price": 549.0,
+          "compareAtPrice": 1076.0
         },
         {
           "id": "grand",
@@ -8510,10 +8510,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 569.0,
+          "add": 522.0,
           "sku": "MB-NB-039-GRD",
-          "price": 1168.0,
-          "compareAtPrice": 2290.0
+          "price": 1071.0,
+          "compareAtPrice": 2100.0
         },
         {
           "id": "luxe",
@@ -8521,10 +8521,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 1168.0,
+          "add": 1071.0,
           "sku": "MB-NB-039-LUX",
-          "price": 1767.0,
-          "compareAtPrice": 3465.0
+          "price": 1620.0,
+          "compareAtPrice": 3176.0
         }
       ],
       "line": "Pink gerberas (12 per the listing text), layered pink paper, satin rib",
@@ -8559,7 +8559,7 @@
       "image": "/collection/blanchette-blush-flower-bouquet-960.webp",
       "imageSmall": "/collection/blanchette-blush-flower-bouquet-480.webp",
       "alt": "Blanchette — Blush Flower Bouquet - Pink gerberas (12 per the listing text), by Maison Botanique",
-      "compareAtPrice": 1175.0
+      "compareAtPrice": 1076.0
     },
     {
       "id": "bordeaux-red-and-burgundy-flower-bouquet",
@@ -8687,7 +8687,7 @@
       "name": "Ballerina — Pink Hydrangea & Gerbera Bouquet",
       "nameAr": "باليرينا — باقة هيدرانجيا وجربيرا وردية",
       "room": "bouquets",
-      "price": 750.0,
+      "price": 599.0,
       "sizes": [
         {
           "id": "signature",
@@ -8697,8 +8697,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-NB-042-V1",
-          "price": 750.0,
-          "compareAtPrice": 1250.0
+          "price": 599.0,
+          "compareAtPrice": 998.0
         }
       ],
       "line": "Pink hydrangeas and pink gerberas, layered white wrap, white gift box,",
@@ -8737,7 +8737,7 @@
       "image": "/collection/ballerina-pink-hydrangea-and-gerbera-bouquet-960.webp",
       "imageSmall": "/collection/ballerina-pink-hydrangea-and-gerbera-bouquet-480.webp",
       "alt": "Ballerina — Pink Hydrangea & Gerbera Bouquet - Pink hydrangeas and pink gerberas, by Maison Botanique",
-      "compareAtPrice": 1250.0
+      "compareAtPrice": 998.0
     },
     {
       "id": "lilia-10-pink-lily-bouquet",
@@ -8745,7 +8745,7 @@
       "name": "Lilia — 10 Pink Lily Bouquet",
       "nameAr": "ليليا — باقة من 10 زنبق وردي",
       "room": "bouquets",
-      "price": 375.0,
+      "price": 349.0,
       "sizes": [
         {
           "id": "signature",
@@ -8755,8 +8755,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-NB-043-STD",
-          "price": 375.0,
-          "compareAtPrice": 833.0
+          "price": 349.0,
+          "compareAtPrice": 776.0
         }
       ],
       "line": "Pink lilies (10 stems per the title), pale pink wrap",
@@ -8784,7 +8784,7 @@
       "image": "/collection/lilia-10-pink-lily-bouquet-960.webp",
       "imageSmall": "/collection/lilia-10-pink-lily-bouquet-480.webp",
       "alt": "Lilia — 10 Pink Lily Bouquet - Pink lilies (10 stems per the title), by Maison Botanique",
-      "compareAtPrice": 833.0
+      "compareAtPrice": 776.0
     },
     {
       "id": "apollo-sunflower-and-white-hydrangea-bouquet",
@@ -8900,7 +8900,7 @@
       "name": "Anouk — White Tulip Bridal Bouquet",
       "nameAr": "أنوك — باقة عروس بالتوليب الأبيض",
       "room": "bouquets",
-      "price": 800.0,
+      "price": 599.0,
       "sizes": [
         {
           "id": "signature",
@@ -8910,8 +8910,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-NB-047-STD",
-          "price": 800.0,
-          "compareAtPrice": 2000.0
+          "price": 599.0,
+          "compareAtPrice": 1498.0
         }
       ],
       "line": "White tulips, satin ribbon wrap",
@@ -8939,52 +8939,7 @@
       "image": "/collection/anouk-white-tulip-bridal-bouquet-960.webp",
       "imageSmall": "/collection/anouk-white-tulip-bridal-bouquet-480.webp",
       "alt": "Anouk — White Tulip Bridal Bouquet - White tulips, by Maison Botanique",
-      "compareAtPrice": 2000.0
-    },
-    {
-      "id": "penelope-peony-birthday-bouquet",
-      "no": 135,
-      "name": "Penelope — Peony Birthday Bouquet",
-      "nameAr": "بينيلوبي — باقة عيد ميلاد بالفاوانيا",
-      "room": "bouquets",
-      "price": 1199.0,
-      "sizes": [
-        {
-          "id": "signature",
-          "name": "Signature",
-          "nameAr": "سيغنتشر",
-          "detail": "as pictured",
-          "detailAr": "كما في الصورة",
-          "add": 0.0,
-          "sku": "MB-NB-048-STD",
-          "price": 1199.0,
-          "compareAtPrice": 2788.0
-        }
-      ],
-      "line": "Fresh peonies (seasonal)",
-      "lineAr": "فاوانيا طازجة (موسمية) · بطاقة عيد ميلاد",
-      "composition": [
-        "Fresh peonies (seasonal)",
-        "Birthday card"
-      ],
-      "compositionAr": [
-        "فاوانيا طازجة (موسمية)",
-        "بطاقة عيد ميلاد"
-      ],
-      "feature": "",
-      "stems": null,
-      "occasions": [
-        "birthday",
-        "just-because"
-      ],
-      "flowers": [],
-      "format": "bouquet",
-      "order": 235,
-      "custom": null,
-      "image": "/collection/penelope-peony-birthday-bouquet-960.webp",
-      "imageSmall": "/collection/penelope-peony-birthday-bouquet-480.webp",
-      "alt": "Happy Birthday Flowers peonies bouquet - Fresh peonies (seasonal), by Maison Botanique",
-      "compareAtPrice": 2788.0
+      "compareAtPrice": 1498.0
     },
     {
       "id": "vesper-red-rose-vase-arrangement",
@@ -9278,7 +9233,7 @@
       "name": "Harvest — Mixed Flower Vase",
       "nameAr": "هارفست — مزهرية زهور مشكّلة",
       "room": "vases",
-      "price": 431.0,
+      "price": 399.0,
       "sizes": [
         {
           "id": "signature",
@@ -9288,8 +9243,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-VA-005-SIG",
-          "price": 431.0,
-          "compareAtPrice": 1026.0
+          "price": 399.0,
+          "compareAtPrice": 950.0
         },
         {
           "id": "grand",
@@ -9297,10 +9252,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 409.0,
+          "add": 379.0,
           "sku": "MB-VA-005-GRD",
-          "price": 840.0,
-          "compareAtPrice": 2000.0
+          "price": 778.0,
+          "compareAtPrice": 1852.0
         },
         {
           "id": "luxe",
@@ -9308,10 +9263,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 840.0,
+          "add": 778.0,
           "sku": "MB-VA-005-LUX",
-          "price": 1271.0,
-          "compareAtPrice": 3026.0
+          "price": 1177.0,
+          "compareAtPrice": 2802.0
         }
       ],
       "line": "7 Red Carnations, one-sided vase arrangement",
@@ -9349,7 +9304,7 @@
       "image": "/collection/harvest-mixed-flower-vase-960.webp",
       "imageSmall": "/collection/harvest-mixed-flower-vase-480.webp",
       "alt": "Harvest — Mixed Flower Vase - 7 Red Carnations, by Maison Botanique",
-      "compareAtPrice": 1026.0
+      "compareAtPrice": 950.0
     },
     {
       "id": "atelier-tulip-rose-and-hydrangea-vase",
@@ -9509,7 +9464,7 @@
       "name": "Chantilly — Blush & White Rose Vase",
       "nameAr": "شانتيلي — مزهرية ورد وردي وأبيض",
       "room": "vases",
-      "price": 431.0,
+      "price": 375.0,
       "sizes": [
         {
           "id": "signature",
@@ -9519,8 +9474,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-VA-009-SIG",
-          "price": 431.0,
-          "compareAtPrice": 798.0
+          "price": 375.0,
+          "compareAtPrice": 694.0
         },
         {
           "id": "grand",
@@ -9528,10 +9483,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 409.0,
+          "add": 356.0,
           "sku": "MB-VA-009-GRD",
-          "price": 840.0,
-          "compareAtPrice": 1556.0
+          "price": 731.0,
+          "compareAtPrice": 1354.0
         },
         {
           "id": "luxe",
@@ -9539,10 +9494,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 840.0,
+          "add": 731.0,
           "sku": "MB-VA-009-LUX",
-          "price": 1271.0,
-          "compareAtPrice": 2354.0
+          "price": 1106.0,
+          "compareAtPrice": 2048.0
         }
       ],
       "line": "12 pink roses, chic vase",
@@ -9574,7 +9529,7 @@
       "image": "/collection/chantilly-blush-and-white-rose-vase-960.webp",
       "imageSmall": "/collection/chantilly-blush-and-white-rose-vase-480.webp",
       "alt": "Chantilly — Blush & White Rose Vase - 12 pink roses, by Maison Botanique",
-      "compareAtPrice": 798.0
+      "compareAtPrice": 694.0
     },
     {
       "id": "frost-white-tulip-vase",
@@ -9732,7 +9687,7 @@
       "name": "Cardinal — Red Roses in a Vase",
       "nameAr": "كاردينال — ورد أحمر في مزهرية",
       "room": "vases",
-      "price": 999.0,
+      "price": 799.0,
       "sizes": [
         {
           "id": "signature",
@@ -9742,8 +9697,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-VA-012-SIG",
-          "price": 999.0,
-          "compareAtPrice": 2081.0
+          "price": 799.0,
+          "compareAtPrice": 1665.0
         },
         {
           "id": "grand",
@@ -9751,10 +9706,10 @@
           "nameAr": "غراند",
           "detail": "200 red roses",
           "detailAr": "ضعف الكمية",
-          "add": 949.0,
+          "add": 759.0,
           "sku": "MB-VA-012-GRD",
-          "price": 1948.0,
-          "compareAtPrice": 4058.0
+          "price": 1558.0,
+          "compareAtPrice": 3246.0
         },
         {
           "id": "luxe",
@@ -9762,10 +9717,10 @@
           "nameAr": "لوكس",
           "detail": "300 red roses",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 1948.0,
+          "add": 1558.0,
           "sku": "MB-VA-012-LUX",
-          "price": 2947.0,
-          "compareAtPrice": 6140.0
+          "price": 2357.0,
+          "compareAtPrice": 4910.0
         }
       ],
       "line": "100 red roses, glass vase",
@@ -9795,7 +9750,7 @@
       "image": "/collection/cardinal-red-roses-in-a-vase-960.webp",
       "imageSmall": "/collection/cardinal-red-roses-in-a-vase-480.webp",
       "alt": "Cardinal — Red Roses in a Vase - 100 Red Roses, by Maison Botanique",
-      "compareAtPrice": 2081.0
+      "compareAtPrice": 1665.0
     },
     {
       "id": "aria-lily-and-rose-glass-vase",
@@ -9879,7 +9834,7 @@
       "name": "Sage — Garden Pastel Arrangement",
       "nameAr": "ساج — تنسيق حديقة بألوان الباستيل",
       "room": "vases",
-      "price": 899.0,
+      "price": 799.0,
       "sizes": [
         {
           "id": "signature",
@@ -9889,8 +9844,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-VA-014-SIG",
-          "price": 899.0,
-          "compareAtPrice": 1913.0
+          "price": 799.0,
+          "compareAtPrice": 1700.0
         },
         {
           "id": "grand",
@@ -9898,10 +9853,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 854.0,
+          "add": 759.0,
           "sku": "MB-VA-014-GRD",
-          "price": 1753.0,
-          "compareAtPrice": 3730.0
+          "price": 1558.0,
+          "compareAtPrice": 3315.0
         },
         {
           "id": "luxe",
@@ -9909,10 +9864,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 1753.0,
+          "add": 1558.0,
           "sku": "MB-VA-014-LUX",
-          "price": 2652.0,
-          "compareAtPrice": 5643.0
+          "price": 2357.0,
+          "compareAtPrice": 5015.0
         }
       ],
       "line": "4 stems of pink hydrangeas, glass vase",
@@ -9955,7 +9910,7 @@
       "image": "/collection/sage-garden-pastel-arrangement-960.webp",
       "imageSmall": "/collection/sage-garden-pastel-arrangement-480.webp",
       "alt": "Sage — Garden Pastel Arrangement - 4 stems of pink hydrangeas, by Maison Botanique",
-      "compareAtPrice": 1913.0
+      "compareAtPrice": 1700.0
     },
     {
       "id": "bonnie-pink-tulips-in-a-vase",
@@ -10178,7 +10133,7 @@
       "name": "Primrose — Pink Roses in a Vase",
       "nameAr": "بريمروز — ورد وردي في مزهرية",
       "room": "vases",
-      "price": 575.0,
+      "price": 499.0,
       "sizes": [
         {
           "id": "signature",
@@ -10188,8 +10143,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-VA-018-SIG",
-          "price": 575.0,
-          "compareAtPrice": 1337.0
+          "price": 499.0,
+          "compareAtPrice": 1160.0
         },
         {
           "id": "grand",
@@ -10197,10 +10152,10 @@
           "nameAr": "غراند",
           "detail": "100 pink roses",
           "detailAr": "ضعف الكمية",
-          "add": 546.0,
+          "add": 474.0,
           "sku": "MB-VA-018-GRD",
-          "price": 1121.0,
-          "compareAtPrice": 2607.0
+          "price": 973.0,
+          "compareAtPrice": 2263.0
         },
         {
           "id": "luxe",
@@ -10208,10 +10163,10 @@
           "nameAr": "لوكس",
           "detail": "150 pink roses",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 1121.0,
+          "add": 973.0,
           "sku": "MB-VA-018-LUX",
-          "price": 1696.0,
-          "compareAtPrice": 3944.0
+          "price": 1472.0,
+          "compareAtPrice": 3423.0
         }
       ],
       "line": "50 pink roses, glass vase",
@@ -10241,7 +10196,7 @@
       "image": "/collection/primrose-pink-roses-in-a-vase-960.webp",
       "imageSmall": "/collection/primrose-pink-roses-in-a-vase-480.webp",
       "alt": "Primrose — Pink Roses in a Vase - 50 Pink Roses, by Maison Botanique",
-      "compareAtPrice": 1337.0
+      "compareAtPrice": 1160.0
     },
     {
       "id": "lagoon-blue-orchids-in-a-vase",
@@ -11017,7 +10972,7 @@
       "name": "Noir — Black Box of 100 Red Roses",
       "nameAr": "نوار — صندوق أسود من 100 وردة حمراء",
       "room": "vases",
-      "price": 999.0,
+      "price": 799.0,
       "sizes": [
         {
           "id": "signature",
@@ -11027,8 +10982,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-BX-005-SIG",
-          "price": 999.0,
-          "compareAtPrice": 1885.0
+          "price": 799.0,
+          "compareAtPrice": 1508.0
         },
         {
           "id": "grand",
@@ -11036,10 +10991,10 @@
           "nameAr": "غراند",
           "detail": "200 red roses",
           "detailAr": "ضعف الكمية",
-          "add": 949.0,
+          "add": 759.0,
           "sku": "MB-BX-005-GRD",
-          "price": 1948.0,
-          "compareAtPrice": 3675.0
+          "price": 1558.0,
+          "compareAtPrice": 2940.0
         },
         {
           "id": "luxe",
@@ -11047,10 +11002,10 @@
           "nameAr": "لوكس",
           "detail": "300 red roses",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 1948.0,
+          "add": 1558.0,
           "sku": "MB-BX-005-LUX",
-          "price": 2947.0,
-          "compareAtPrice": 5560.0
+          "price": 2357.0,
+          "compareAtPrice": 4447.0
         }
       ],
       "line": "100 red roses, black box",
@@ -11081,7 +11036,7 @@
       "image": "/collection/noir-black-box-of-100-red-roses-960.webp",
       "imageSmall": "/collection/noir-black-box-of-100-red-roses-480.webp",
       "alt": "Noir — Black Box of 100 Red Roses - 100 Red Roses, by Maison Botanique",
-      "compareAtPrice": 1885.0
+      "compareAtPrice": 1508.0
     },
     {
       "id": "valerie-pink-rose-box",
@@ -11160,7 +11115,7 @@
       "name": "Rondelle — Soft Round Flower Box",
       "nameAr": "روندل — صندوق زهور دائري ناعم",
       "room": "vases",
-      "price": 729.0,
+      "price": 629.0,
       "sizes": [
         {
           "id": "signature",
@@ -11170,8 +11125,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-BX-007-SIG",
-          "price": 729.0,
-          "compareAtPrice": 1822.0
+          "price": 629.0,
+          "compareAtPrice": 1573.0
         },
         {
           "id": "grand",
@@ -11179,10 +11134,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 693.0,
+          "add": 598.0,
           "sku": "MB-BX-007-GRD",
-          "price": 1422.0,
-          "compareAtPrice": 3555.0
+          "price": 1227.0,
+          "compareAtPrice": 3068.0
         },
         {
           "id": "luxe",
@@ -11190,10 +11145,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 1422.0,
+          "add": 1227.0,
           "sku": "MB-BX-007-LUX",
-          "price": 2151.0,
-          "compareAtPrice": 5378.0
+          "price": 1856.0,
+          "compareAtPrice": 4640.0
         }
       ],
       "line": "15 Stems Pink Spray Roses",
@@ -11232,7 +11187,7 @@
       "image": "/collection/rondelle-soft-round-flower-box-960.webp",
       "imageSmall": "/collection/rondelle-soft-round-flower-box-480.webp",
       "alt": "Rondelle — Soft Round Flower Box - 15 Stems Pink Spray Roses, by Maison Botanique",
-      "compareAtPrice": 1822.0
+      "compareAtPrice": 1573.0
     },
     {
       "id": "dolce-pink-and-white-rose-box",
@@ -11391,7 +11346,7 @@
       "name": "Daphne — Pink Lily Box",
       "nameAr": "دافني — صندوق زنبق وردي",
       "room": "vases",
-      "price": 225.0,
+      "price": 199.0,
       "sizes": [
         {
           "id": "signature",
@@ -11401,8 +11356,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-BX-010-SIG",
-          "price": 225.0,
-          "compareAtPrice": 500.0
+          "price": 199.0,
+          "compareAtPrice": 442.0
         },
         {
           "id": "grand",
@@ -11410,10 +11365,10 @@
           "nameAr": "غراند",
           "detail": "10 pink lilies",
           "detailAr": "ضعف الكمية",
-          "add": 214.0,
+          "add": 189.0,
           "sku": "MB-BX-010-GRD",
-          "price": 439.0,
-          "compareAtPrice": 976.0
+          "price": 388.0,
+          "compareAtPrice": 862.0
         },
         {
           "id": "luxe",
@@ -11421,10 +11376,10 @@
           "nameAr": "لوكس",
           "detail": "15 pink lilies",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 439.0,
+          "add": 388.0,
           "sku": "MB-BX-010-LUX",
-          "price": 664.0,
-          "compareAtPrice": 1476.0
+          "price": 587.0,
+          "compareAtPrice": 1304.0
         }
       ],
       "line": "5 pink lilies, black box",
@@ -11456,7 +11411,7 @@
       "image": "/collection/daphne-pink-lily-box-960.webp",
       "imageSmall": "/collection/daphne-pink-lily-box-480.webp",
       "alt": "Daphne — Pink Lily Box - 5 Pink Lilies, by Maison Botanique",
-      "compareAtPrice": 500.0
+      "compareAtPrice": 442.0
     },
     {
       "id": "hestia-white-lily-box",
@@ -11680,7 +11635,7 @@
       "name": "Amore — Red & Gold Rose Heart Box",
       "nameAr": "أمور — صندوق قلب بالورد الأحمر والذهبي",
       "room": "vases",
-      "price": 515.0,
+      "price": 475.0,
       "sizes": [
         {
           "id": "signature",
@@ -11690,8 +11645,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-BX-014-SIG",
-          "price": 515.0,
-          "compareAtPrice": 888.0
+          "price": 475.0,
+          "compareAtPrice": 819.0
         },
         {
           "id": "grand",
@@ -11699,10 +11654,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 489.0,
+          "add": 451.0,
           "sku": "MB-BX-014-GRD",
-          "price": 1004.0,
-          "compareAtPrice": 1731.0
+          "price": 926.0,
+          "compareAtPrice": 1597.0
         },
         {
           "id": "luxe",
@@ -11710,10 +11665,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 1004.0,
+          "add": 926.0,
           "sku": "MB-BX-014-LUX",
-          "price": 1519.0,
-          "compareAtPrice": 2619.0
+          "price": 1401.0,
+          "compareAtPrice": 2416.0
         }
       ],
       "line": "15 red roses, heart-shaped box",
@@ -11743,7 +11698,7 @@
       "image": "/collection/amore-red-and-gold-rose-heart-box-960.webp",
       "imageSmall": "/collection/amore-red-and-gold-rose-heart-box-480.webp",
       "alt": "Amore — Red & Gold Rose Heart Box - 15 red roses, by Maison Botanique",
-      "compareAtPrice": 888.0
+      "compareAtPrice": 819.0
     },
     {
       "id": "posy-blush-pink-rose-box",
@@ -12825,7 +12780,7 @@
       "name": "Gaia — Gerbera & Rose Box",
       "nameAr": "غايا — صندوق جربيرا وورد",
       "room": "vases",
-      "price": 1379.0,
+      "price": 999.0,
       "sizes": [
         {
           "id": "signature",
@@ -12835,8 +12790,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-BX-030-SIG",
-          "price": 1379.0,
-          "compareAtPrice": 2337.0
+          "price": 999.0,
+          "compareAtPrice": 1693.0
         },
         {
           "id": "grand",
@@ -12844,10 +12799,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 1310.0,
+          "add": 949.0,
           "sku": "MB-BX-030-GRD",
-          "price": 2689.0,
-          "compareAtPrice": 4558.0
+          "price": 1948.0,
+          "compareAtPrice": 3302.0
         },
         {
           "id": "luxe",
@@ -12855,10 +12810,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 2689.0,
+          "add": 1948.0,
           "sku": "MB-BX-030-LUX",
-          "price": 4068.0,
-          "compareAtPrice": 6895.0
+          "price": 2947.0,
+          "compareAtPrice": 4995.0
         }
       ],
       "line": "20 Stems of Pink Gerberas",
@@ -12891,7 +12846,7 @@
       "image": "/collection/gaia-gerbera-and-rose-box-960.webp",
       "imageSmall": "/collection/gaia-gerbera-and-rose-box-480.webp",
       "alt": "Gaia — Gerbera & Rose Box - 20 Stems of Pink Gerberas, by Maison Botanique",
-      "compareAtPrice": 2337.0
+      "compareAtPrice": 1693.0
     },
     {
       "id": "opal-white-flower-box",
@@ -12899,7 +12854,7 @@
       "name": "Opal — White Flower Box",
       "nameAr": "أوبال — صندوق زهور بيضاء",
       "room": "vases",
-      "price": 755.0,
+      "price": 599.0,
       "sizes": [
         {
           "id": "signature",
@@ -12909,8 +12864,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-BX-031-SIG",
-          "price": 755.0,
-          "compareAtPrice": 1348.0
+          "price": 599.0,
+          "compareAtPrice": 1070.0
         },
         {
           "id": "grand",
@@ -12918,10 +12873,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 717.0,
+          "add": 569.0,
           "sku": "MB-BX-031-GRD",
-          "price": 1472.0,
-          "compareAtPrice": 2629.0
+          "price": 1168.0,
+          "compareAtPrice": 2086.0
         },
         {
           "id": "luxe",
@@ -12929,10 +12884,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 1472.0,
+          "add": 1168.0,
           "sku": "MB-BX-031-LUX",
-          "price": 2227.0,
-          "compareAtPrice": 3977.0
+          "price": 1767.0,
+          "compareAtPrice": 3155.0
         }
       ],
       "line": "5 white roses, cream round box",
@@ -12974,7 +12929,7 @@
       "image": "/collection/opal-white-flower-box-960.webp",
       "imageSmall": "/collection/opal-white-flower-box-480.webp",
       "alt": "Opal — White Flower Box - 5 white roses, by Maison Botanique",
-      "compareAtPrice": 1348.0
+      "compareAtPrice": 1070.0
     },
     {
       "id": "tangerine-rose-and-gerbera-box",
@@ -13176,7 +13131,7 @@
       "name": "Aphrodite — Red Rose Basket",
       "nameAr": "أفروديت — سلة ورد أحمر",
       "room": "vases",
-      "price": 315.0,
+      "price": 350.0,
       "sizes": [
         {
           "id": "signature",
@@ -13186,8 +13141,8 @@
           "detailAr": "51 وردة",
           "add": 0.0,
           "sku": "MB-BX-035-SIG",
-          "price": 315.0,
-          "compareAtPrice": 534.0
+          "price": 350.0,
+          "compareAtPrice": 593.0
         },
         {
           "id": "grand",
@@ -13195,10 +13150,10 @@
           "nameAr": "غراند",
           "detail": "101 roses",
           "detailAr": "101 وردة",
-          "add": 200.0,
+          "add": 233.0,
           "sku": "MB-BX-035-GRD",
-          "price": 515.0,
-          "compareAtPrice": 873.0
+          "price": 583.0,
+          "compareAtPrice": 988.0
         }
       ],
       "line": "51 roses, white wicker basket with its own water source",
@@ -13229,7 +13184,7 @@
       "image": "/collection/aphrodite-red-rose-basket-960.webp",
       "imageSmall": "/collection/aphrodite-red-rose-basket-480.webp",
       "alt": "Aphrodite — Red Rose Basket - Fresh red roses, by Maison Botanique",
-      "compareAtPrice": 534.0
+      "compareAtPrice": 593.0
     },
     {
       "id": "jubilee-birthday-red-rose-box-with-balloons",
@@ -13340,7 +13295,7 @@
       "name": "Cadence — Graduation Flower Box",
       "nameAr": "كادنس — صندوق زهور للتخرج",
       "room": "vases",
-      "price": 379.0,
+      "price": 299.0,
       "sizes": [
         {
           "id": "signature",
@@ -13350,8 +13305,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-BX-038-STD",
-          "price": 379.0,
-          "compareAtPrice": 702.0
+          "price": 299.0,
+          "compareAtPrice": 554.0
         }
       ],
       "line": "Bright sunflowers, premium gift box, no vase needed",
@@ -13383,7 +13338,7 @@
       "image": "/collection/cadence-graduation-flower-box-960.webp",
       "imageSmall": "/collection/cadence-graduation-flower-box-480.webp",
       "alt": "Cadence — Graduation Flower Box - Bright sunflowers, by Maison Botanique",
-      "compareAtPrice": 702.0
+      "compareAtPrice": 554.0
     },
     {
       "id": "versailles-four-tier-rose-tower",
@@ -13458,7 +13413,7 @@
       "name": "Atlantis — Blue Orchid Tower",
       "nameAr": "أتلانتس — برج أوركيد أزرق",
       "room": "grand",
-      "price": 689.0,
+      "price": 789.0,
       "sizes": [
         {
           "id": "signature",
@@ -13468,8 +13423,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-GG-002-SIG",
-          "price": 689.0,
-          "compareAtPrice": 1406.0
+          "price": 789.0,
+          "compareAtPrice": 1610.0
         },
         {
           "id": "grand",
@@ -13479,8 +13434,8 @@
           "detailAr": "ضعف كمية طقم سيغنتشر",
           "add": 655.0,
           "sku": "MB-GG-002-GRD",
-          "price": 1344.0,
-          "compareAtPrice": 2743.0
+          "price": 1444.0,
+          "compareAtPrice": 2947.0
         },
         {
           "id": "luxe",
@@ -13490,8 +13445,8 @@
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
           "add": 1344.0,
           "sku": "MB-GG-002-LUX",
-          "price": 2033.0,
-          "compareAtPrice": 4149.0
+          "price": 2133.0,
+          "compareAtPrice": 4353.0
         }
       ],
       "line": "Tower Arrangement of 60 Stems of Blue Orchids",
@@ -13519,7 +13474,7 @@
       "image": "/collection/atlantis-blue-orchid-tower-960.webp",
       "imageSmall": "/collection/atlantis-blue-orchid-tower-480.webp",
       "alt": "Atlantis — Blue Orchid Tower - Tower Arrangement of 60 Stems of Blue Orchids, by Maison Botanique",
-      "compareAtPrice": 1406.0
+      "compareAtPrice": 1610.0
     },
     {
       "id": "chandelier-pink-and-white-floral-stand",
@@ -13669,7 +13624,7 @@
       "name": "Monarch — 200 Roses in a Vase",
       "nameAr": "مونارك — 200 وردة في مزهرية",
       "room": "grand",
-      "price": 2099.0,
+      "price": 1499.0,
       "sizes": [
         {
           "id": "signature",
@@ -13679,8 +13634,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-GG-005-STD",
-          "price": 2099.0,
-          "compareAtPrice": 3748.0
+          "price": 1499.0,
+          "compareAtPrice": 2677.0
         }
       ],
       "line": "200 red roses, presented in a glass vase",
@@ -13710,7 +13665,7 @@
       "image": "/collection/monarch-200-roses-in-a-vase-960.webp",
       "imageSmall": "/collection/monarch-200-roses-in-a-vase-480.webp",
       "alt": "Monarch — 200 Roses in a Vase - 200 red roses, by Maison Botanique",
-      "compareAtPrice": 3748.0
+      "compareAtPrice": 2677.0
     },
     {
       "id": "macaron-pastel-flower-tower",
@@ -13718,7 +13673,7 @@
       "name": "Macaron — Pastel Flower Tower",
       "nameAr": "ماكارون — برج زهور بالباستيل",
       "room": "grand",
-      "price": 2799.0,
+      "price": 1999.0,
       "sizes": [
         {
           "id": "signature",
@@ -13728,8 +13683,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-GG-006-SIG",
-          "price": 2799.0,
-          "compareAtPrice": 4998.0
+          "price": 1999.0,
+          "compareAtPrice": 3570.0
         },
         {
           "id": "grand",
@@ -13737,10 +13692,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 2659.0,
+          "add": 1899.0,
           "sku": "MB-GG-006-GRD",
-          "price": 5458.0,
-          "compareAtPrice": 9746.0
+          "price": 3898.0,
+          "compareAtPrice": 6961.0
         },
         {
           "id": "luxe",
@@ -13748,10 +13703,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 5458.0,
+          "add": 3898.0,
           "sku": "MB-GG-006-LUX",
-          "price": 8257.0,
-          "compareAtPrice": 14745.0
+          "price": 5897.0,
+          "compareAtPrice": 10530.0
         }
       ],
       "line": "100 Pink Roses",
@@ -13784,7 +13739,7 @@
       "image": "/collection/macaron-pastel-flower-tower-960.webp",
       "imageSmall": "/collection/macaron-pastel-flower-tower-480.webp",
       "alt": "Macaron — Pastel Flower Tower - 100 Pink Roses, by Maison Botanique",
-      "compareAtPrice": 4998.0
+      "compareAtPrice": 3570.0
     },
     {
       "id": "imperial-300-rose-bouquet",
@@ -13792,7 +13747,7 @@
       "name": "Imperial — 300 Rose Bouquet",
       "nameAr": "إمبريال — باقة من 300 وردة",
       "room": "grand",
-      "price": 2799.0,
+      "price": 1999.0,
       "sizes": [
         {
           "id": "signature",
@@ -13802,8 +13757,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-GG-007-SIG",
-          "price": 2799.0,
-          "compareAtPrice": 5598.0
+          "price": 1999.0,
+          "compareAtPrice": 3998.0
         },
         {
           "id": "grand",
@@ -13811,10 +13766,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 2659.0,
+          "add": 1899.0,
           "sku": "MB-GG-007-GRD",
-          "price": 5458.0,
-          "compareAtPrice": 10916.0
+          "price": 3898.0,
+          "compareAtPrice": 7796.0
         },
         {
           "id": "luxe",
@@ -13822,10 +13777,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 5458.0,
+          "add": 3898.0,
           "sku": "MB-GG-007-LUX",
-          "price": 8257.0,
-          "compareAtPrice": 16514.0
+          "price": 5897.0,
+          "compareAtPrice": 11794.0
         }
       ],
       "line": "Bouquet of 300 stems of red roses in nice wrapping",
@@ -13851,7 +13806,7 @@
       "image": "/collection/imperial-300-rose-bouquet-960.webp",
       "imageSmall": "/collection/imperial-300-rose-bouquet-480.webp",
       "alt": "Imperial — 300 Rose Bouquet - Bouquet of 300 stems of red roses in nice wrapping, by Maison Botanique",
-      "compareAtPrice": 5598.0
+      "compareAtPrice": 3998.0
     },
     {
       "id": "sapphire-blue-orchids-on-a-stand",
@@ -14091,7 +14046,7 @@
       "name": "Sultana — XXXL Box of 300 Red Roses",
       "nameAr": "سلطانة — صندوق XXXL من 300 وردة حمراء",
       "room": "grand",
-      "price": 2675.0,
+      "price": 2229.0,
       "sizes": [
         {
           "id": "signature",
@@ -14101,8 +14056,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-GG-011-SIG",
-          "price": 2675.0,
-          "compareAtPrice": 4458.0
+          "price": 2229.0,
+          "compareAtPrice": 3715.0
         },
         {
           "id": "grand",
@@ -14110,10 +14065,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 2541.0,
+          "add": 2118.0,
           "sku": "MB-GG-011-GRD",
-          "price": 5216.0,
-          "compareAtPrice": 8693.0
+          "price": 4347.0,
+          "compareAtPrice": 7245.0
         },
         {
           "id": "luxe",
@@ -14121,10 +14076,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 5216.0,
+          "add": 4347.0,
           "sku": "MB-GG-011-LUX",
-          "price": 7891.0,
-          "compareAtPrice": 13152.0
+          "price": 6576.0,
+          "compareAtPrice": 10960.0
         }
       ],
       "line": "Indulge in pure luxury with this breathtaking arrangement of 300 velve",
@@ -14151,7 +14106,7 @@
       "image": "/collection/sultana-xxxl-box-of-300-red-roses-960.webp",
       "imageSmall": "/collection/sultana-xxxl-box-of-300-red-roses-480.webp",
       "alt": "Sultana — XXXL Box of 300 Red Roses - Indulge in pure luxury with this breathtaking arrangement of 300 velvety red roses, exquisitely complemented by lush green fillers, by Maison Botanique",
-      "compareAtPrice": 4458.0
+      "compareAtPrice": 3715.0
     },
     {
       "id": "sol-xxxl-rose-dome",
@@ -14159,7 +14114,7 @@
       "name": "Sol — XXXL Rose Dome",
       "nameAr": "سول — قبة ورد XXXL",
       "room": "grand",
-      "price": 2165.0,
+      "price": 1999.0,
       "sizes": [
         {
           "id": "signature",
@@ -14169,8 +14124,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-GG-012-SIG",
-          "price": 2165.0,
-          "compareAtPrice": 5280.0
+          "price": 1999.0,
+          "compareAtPrice": 4876.0
         },
         {
           "id": "grand",
@@ -14178,10 +14133,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 2057.0,
+          "add": 1899.0,
           "sku": "MB-GG-012-GRD",
-          "price": 4222.0,
-          "compareAtPrice": 10298.0
+          "price": 3898.0,
+          "compareAtPrice": 9507.0
         },
         {
           "id": "luxe",
@@ -14189,10 +14144,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 4222.0,
+          "add": 3898.0,
           "sku": "MB-GG-012-LUX",
-          "price": 6387.0,
-          "compareAtPrice": 15578.0
+          "price": 5897.0,
+          "compareAtPrice": 14383.0
         }
       ],
       "line": "A vibrant arrangement of 200 peach, yellow, and orange roses with gree",
@@ -14221,7 +14176,7 @@
       "image": "/collection/sol-xxxl-rose-dome-960.webp",
       "imageSmall": "/collection/sol-xxxl-rose-dome-480.webp",
       "alt": "Sol — XXXL Rose Dome - A vibrant arrangement of 200 peach, yellow, and orange roses with green fillers, beautifully presented in a round white box, by Maison Botanique",
-      "compareAtPrice": 5280.0
+      "compareAtPrice": 4876.0
     },
     {
       "id": "zenith-401-rose-bouquet",
@@ -14229,7 +14184,7 @@
       "name": "Zenith — 401 Rose Bouquet",
       "nameAr": "زينيث — باقة من 401 وردة",
       "room": "grand",
-      "price": 3200.0,
+      "price": 2800.0,
       "sizes": [
         {
           "id": "signature",
@@ -14239,8 +14194,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-GG-013-STD",
-          "price": 3200.0,
-          "compareAtPrice": 5614.0
+          "price": 2800.0,
+          "compareAtPrice": 4912.0
         }
       ],
       "line": "401 premium long stem roses in full bloom perfection",
@@ -14268,7 +14223,7 @@
       "image": "/collection/zenith-401-rose-bouquet-960.webp",
       "imageSmall": "/collection/zenith-401-rose-bouquet-480.webp",
       "alt": "Zenith — 401 Rose Bouquet - 401 premium long stem roses in full bloom perfection, by Maison Botanique",
-      "compareAtPrice": 5614.0
+      "compareAtPrice": 4912.0
     },
     {
       "id": "maharani-500-red-roses-xxxl",
@@ -14276,7 +14231,7 @@
       "name": "Maharani — 500 Red Roses XXXL",
       "nameAr": "مهاراني — 500 وردة حمراء XXXL",
       "room": "grand",
-      "price": 3699.0,
+      "price": 2999.0,
       "sizes": [
         {
           "id": "signature",
@@ -14286,8 +14241,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-GG-014-STD",
-          "price": 3699.0,
-          "compareAtPrice": 6378.0
+          "price": 2999.0,
+          "compareAtPrice": 5171.0
         }
       ],
       "line": "500 premium long stem red roses in show stopping XXXL presentation",
@@ -14316,7 +14271,7 @@
       "image": "/collection/maharani-500-red-roses-xxxl-960.webp",
       "imageSmall": "/collection/maharani-500-red-roses-xxxl-480.webp",
       "alt": "Maharani — 500 Red Roses XXXL - 500 premium long stem red roses in show stopping XXXL presentation, by Maison Botanique",
-      "compareAtPrice": 6378.0
+      "compareAtPrice": 5171.0
     },
     {
       "id": "swan-white-orchid-plant",
@@ -14324,7 +14279,7 @@
       "name": "Swan — White Orchid Plant",
       "nameAr": "سوان — نبتة أوركيد أبيض",
       "room": "hampers",
-      "price": 719.0,
+      "price": 649.0,
       "sizes": [
         {
           "id": "signature",
@@ -14334,8 +14289,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-PP-001-SIG",
-          "price": 719.0,
-          "compareAtPrice": 1383.0
+          "price": 649.0,
+          "compareAtPrice": 1248.0
         },
         {
           "id": "grand",
@@ -14343,10 +14298,10 @@
           "nameAr": "غراند",
           "detail": "6 stems of white phalaenopsis orchids",
           "detailAr": "ضعف الكمية",
-          "add": 686.0,
+          "add": 620.0,
           "sku": "MB-PP-001-GRD",
-          "price": 1405.0,
-          "compareAtPrice": 2702.0
+          "price": 1269.0,
+          "compareAtPrice": 2440.0
         },
         {
           "id": "luxe",
@@ -14354,10 +14309,10 @@
           "nameAr": "لوكس",
           "detail": "9 stems of white phalaenopsis orchids",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 1406.0,
+          "add": 1270.0,
           "sku": "MB-PP-001-LUX",
-          "price": 2125.0,
-          "compareAtPrice": 4087.0
+          "price": 1919.0,
+          "compareAtPrice": 3690.0
         }
       ],
       "line": "3 stems of white phalaenopsis orchids",
@@ -14387,7 +14342,7 @@
       "image": "/collection/swan-white-orchid-plant-960.webp",
       "imageSmall": "/collection/swan-white-orchid-plant-480.webp",
       "alt": "Swan — White Orchid Plant - 3 Stems of White Phalaenopsis Orchids, by Maison Botanique",
-      "compareAtPrice": 1383.0
+      "compareAtPrice": 1248.0
     },
     {
       "id": "cadenza-four-pink-orchid-plants",
@@ -14395,7 +14350,7 @@
       "name": "Cadenza — Four Pink Orchid Plants",
       "nameAr": "كادنزا — أربع نباتات أوركيد وردي",
       "room": "hampers",
-      "price": 879.0,
+      "price": 699.0,
       "sizes": [
         {
           "id": "signature",
@@ -14405,8 +14360,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-PP-002-SIG",
-          "price": 879.0,
-          "compareAtPrice": 1724.0
+          "price": 699.0,
+          "compareAtPrice": 1371.0
         },
         {
           "id": "grand",
@@ -14414,10 +14369,10 @@
           "nameAr": "غراند",
           "detail": "8 dark pink phalaenopsis orchid",
           "detailAr": "ضعف الكمية",
-          "add": 835.0,
+          "add": 664.0,
           "sku": "MB-PP-002-GRD",
-          "price": 1714.0,
-          "compareAtPrice": 3361.0
+          "price": 1363.0,
+          "compareAtPrice": 2673.0
         },
         {
           "id": "luxe",
@@ -14425,10 +14380,10 @@
           "nameAr": "لوكس",
           "detail": "12 dark pink phalaenopsis orchid",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 1714.0,
+          "add": 1363.0,
           "sku": "MB-PP-002-LUX",
-          "price": 2593.0,
-          "compareAtPrice": 5084.0
+          "price": 2062.0,
+          "compareAtPrice": 4043.0
         }
       ],
       "line": "4 dark pink phalaenopsis orchid",
@@ -14459,7 +14414,7 @@
       "image": "/collection/cadenza-four-pink-orchid-plants-960.webp",
       "imageSmall": "/collection/cadenza-four-pink-orchid-plants-480.webp",
       "alt": "Cadenza — Four Pink Orchid Plants - 4 Dark Pink Phalaenopsis Orchid, by Maison Botanique",
-      "compareAtPrice": 1724.0
+      "compareAtPrice": 1371.0
     },
     {
       "id": "lotus-pink-phalaenopsis-orchid-plant",
@@ -14467,7 +14422,7 @@
       "name": "Lotus — Pink Phalaenopsis Orchid Plant",
       "nameAr": "لوتس — نبتة أوركيد فالنوبسيس وردي",
       "room": "hampers",
-      "price": 935.0,
+      "price": 735.0,
       "sizes": [
         {
           "id": "signature",
@@ -14477,8 +14432,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-PP-013-SIG",
-          "price": 935.0,
-          "compareAtPrice": 1948.0
+          "price": 735.0,
+          "compareAtPrice": 1531.0
         },
         {
           "id": "grand",
@@ -14486,10 +14441,10 @@
           "nameAr": "غراند",
           "detail": "8 pink phalaenopsis orchid stems",
           "detailAr": "ضعف الزهور",
-          "add": 890.0,
+          "add": 700.0,
           "sku": "MB-PP-013-GRD",
-          "price": 1825.0,
-          "compareAtPrice": 3802.0
+          "price": 1435.0,
+          "compareAtPrice": 2990.0
         },
         {
           "id": "luxe",
@@ -14497,10 +14452,10 @@
           "nameAr": "لوكس",
           "detail": "12 pink phalaenopsis orchid stems",
           "detailAr": "ثلاثة أضعاف الزهور",
-          "add": 1824.0,
+          "add": 1434.0,
           "sku": "MB-PP-013-LUX",
-          "price": 2759.0,
-          "compareAtPrice": 5748.0
+          "price": 2169.0,
+          "compareAtPrice": 4519.0
         }
       ],
       "line": "4 pink phalaenopsis orchid stems",
@@ -14531,7 +14486,7 @@
       "image": "/collection/lotus-pink-phalaenopsis-orchid-plant-960.webp",
       "imageSmall": "/collection/lotus-pink-phalaenopsis-orchid-plant-480.webp",
       "alt": "Lotus — Pink Phalaenopsis Orchid Plant - 4 pink phalaenopsis orchid stems, by Maison Botanique",
-      "compareAtPrice": 1948.0
+      "compareAtPrice": 1531.0
     },
     {
       "id": "lalita-pink-orchid-in-a-pot",
@@ -14609,7 +14564,7 @@
       "name": "Nirvana — Phalaenopsis Orchid Plant",
       "nameAr": "نيرفانا — نبتة أوركيد فالنوبسيس",
       "room": "hampers",
-      "price": 249.0,
+      "price": 199.0,
       "sizes": [
         {
           "id": "signature",
@@ -14619,8 +14574,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-PP-005-SIG",
-          "price": 249.0,
-          "compareAtPrice": 579.0
+          "price": 199.0,
+          "compareAtPrice": 463.0
         },
         {
           "id": "grand",
@@ -14628,10 +14583,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 237.0,
+          "add": 189.0,
           "sku": "MB-PP-005-GRD",
-          "price": 486.0,
-          "compareAtPrice": 1130.0
+          "price": 388.0,
+          "compareAtPrice": 902.0
         },
         {
           "id": "luxe",
@@ -14639,10 +14594,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 486.0,
+          "add": 388.0,
           "sku": "MB-PP-005-LUX",
-          "price": 735.0,
-          "compareAtPrice": 1709.0
+          "price": 587.0,
+          "compareAtPrice": 1365.0
         }
       ],
       "line": "Single white phalaenopsis orchid stem in a sleek glass vase, approxima",
@@ -14670,7 +14625,7 @@
       "image": "/collection/nirvana-phalaenopsis-orchid-plant-960.webp",
       "imageSmall": "/collection/nirvana-phalaenopsis-orchid-plant-480.webp",
       "alt": "Nirvana — Phalaenopsis Orchid Plant - Single white phalaenopsis orchid stem in a sleek glass vase, approximately 70 cm tall, by Maison Botanique",
-      "compareAtPrice": 579.0
+      "compareAtPrice": 463.0
     },
     {
       "id": "tricolore-pink-and-white-phalaenopsis-plant",
@@ -14678,7 +14633,7 @@
       "name": "Tricolore — Pink & White Phalaenopsis Plant",
       "nameAr": "تريكولور — نبتة أوركيد فالنوبسيس وردي وأبيض",
       "room": "hampers",
-      "price": 999.0,
+      "price": 799.0,
       "sizes": [
         {
           "id": "signature",
@@ -14688,8 +14643,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-PP-006-SIG",
-          "price": 999.0,
-          "compareAtPrice": 2379.0
+          "price": 799.0,
+          "compareAtPrice": 1902.0
         },
         {
           "id": "grand",
@@ -14697,10 +14652,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 949.0,
+          "add": 759.0,
           "sku": "MB-PP-006-GRD",
-          "price": 1948.0,
-          "compareAtPrice": 4638.0
+          "price": 1558.0,
+          "compareAtPrice": 3710.0
         },
         {
           "id": "luxe",
@@ -14708,10 +14663,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 1948.0,
+          "add": 1558.0,
           "sku": "MB-PP-006-LUX",
-          "price": 2947.0,
-          "compareAtPrice": 7017.0
+          "price": 2357.0,
+          "compareAtPrice": 5612.0
         }
       ],
       "line": "2 Pink Phalaenopsis Plants",
@@ -14746,7 +14701,7 @@
       "image": "/collection/tricolore-pink-and-white-phalaenopsis-plant-960.webp",
       "imageSmall": "/collection/tricolore-pink-and-white-phalaenopsis-plant-480.webp",
       "alt": "Tricolore — Pink & White Phalaenopsis Plant - 2 Pink Phalaenopsis Plants, by Maison Botanique",
-      "compareAtPrice": 2379.0
+      "compareAtPrice": 1902.0
     },
     {
       "id": "mulberry-purple-phalaenopsis-orchid-plant",
@@ -14754,7 +14709,7 @@
       "name": "Mulberry — Purple Phalaenopsis Orchid Plant",
       "nameAr": "مولبيري — نبتة أوركيد فالنوبسيس بنفسجي",
       "room": "hampers",
-      "price": 249.0,
+      "price": 219.0,
       "sizes": [
         {
           "id": "signature",
@@ -14764,8 +14719,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-PP-007-SIG",
-          "price": 249.0,
-          "compareAtPrice": 593.0
+          "price": 219.0,
+          "compareAtPrice": 521.0
         },
         {
           "id": "grand",
@@ -14773,10 +14728,10 @@
           "nameAr": "غراند",
           "detail": "2 stem purple phalaenopsis orchid plant",
           "detailAr": "ضعف الكمية",
-          "add": 237.0,
+          "add": 208.0,
           "sku": "MB-PP-007-GRD",
-          "price": 486.0,
-          "compareAtPrice": 1157.0
+          "price": 427.0,
+          "compareAtPrice": 1017.0
         },
         {
           "id": "luxe",
@@ -14784,10 +14739,10 @@
           "nameAr": "لوكس",
           "detail": "3 stem purple phalaenopsis orchid plant",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 486.0,
+          "add": 427.0,
           "sku": "MB-PP-007-LUX",
-          "price": 735.0,
-          "compareAtPrice": 1750.0
+          "price": 646.0,
+          "compareAtPrice": 1538.0
         }
       ],
       "line": "1 stem purple phalaenopsis orchid plant",
@@ -14815,7 +14770,7 @@
       "image": "/collection/mulberry-purple-phalaenopsis-orchid-plant-960.webp",
       "imageSmall": "/collection/mulberry-purple-phalaenopsis-orchid-plant-480.webp",
       "alt": "Mulberry — Purple Phalaenopsis Orchid Plant - 1 Stem Mulberry — Purple Phalaenopsis Orchid Plant, by Maison Botanique",
-      "compareAtPrice": 593.0
+      "compareAtPrice": 521.0
     },
     {
       "id": "fuchsia-dark-pink-phalaenopsis-orchid-plant",
@@ -14823,7 +14778,7 @@
       "name": "Fuchsia — Dark Pink Phalaenopsis Orchid Plant",
       "nameAr": "فوشيا — نبتة أوركيد فالنوبسيس وردي داكن",
       "room": "hampers",
-      "price": 269.0,
+      "price": 229.0,
       "sizes": [
         {
           "id": "signature",
@@ -14833,8 +14788,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-PP-008-SIG",
-          "price": 269.0,
-          "compareAtPrice": 456.0
+          "price": 229.0,
+          "compareAtPrice": 388.0
         },
         {
           "id": "grand",
@@ -14842,10 +14797,10 @@
           "nameAr": "غراند",
           "detail": "2 stem of dark pink phalaenopsis orchid plant",
           "detailAr": "ضعف الكمية",
-          "add": 256.0,
+          "add": 218.0,
           "sku": "MB-PP-008-GRD",
-          "price": 525.0,
-          "compareAtPrice": 890.0
+          "price": 447.0,
+          "compareAtPrice": 758.0
         },
         {
           "id": "luxe",
@@ -14853,10 +14808,10 @@
           "nameAr": "لوكس",
           "detail": "3 stem of dark pink phalaenopsis orchid plant",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 525.0,
+          "add": 447.0,
           "sku": "MB-PP-008-LUX",
-          "price": 794.0,
-          "compareAtPrice": 1346.0
+          "price": 676.0,
+          "compareAtPrice": 1146.0
         }
       ],
       "line": "1 stem of dark pink phalaenopsis orchid plant",
@@ -14887,7 +14842,7 @@
       "image": "/collection/fuchsia-dark-pink-phalaenopsis-orchid-plant-960.webp",
       "imageSmall": "/collection/fuchsia-dark-pink-phalaenopsis-orchid-plant-480.webp",
       "alt": "Fuchsia — Dark Pink Phalaenopsis Orchid Plant - 1 stem of dark pink phalaenopsis orchid plant, by Maison Botanique",
-      "compareAtPrice": 456.0
+      "compareAtPrice": 388.0
     },
     {
       "id": "gardenia-white-orchid-in-a-pot",
@@ -14895,7 +14850,7 @@
       "name": "Gardenia — White Orchid in a Pot",
       "nameAr": "غاردينيا — أوركيد أبيض في إناء",
       "room": "hampers",
-      "price": 1029.0,
+      "price": 799.0,
       "sizes": [
         {
           "id": "signature",
@@ -14905,8 +14860,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-PP-009-SIG",
-          "price": 1029.0,
-          "compareAtPrice": 2100.0
+          "price": 799.0,
+          "compareAtPrice": 1631.0
         },
         {
           "id": "grand",
@@ -14914,10 +14869,10 @@
           "nameAr": "غراند",
           "detail": "12 stems of white phalaenopsis orchid plant",
           "detailAr": "ضعف الكمية",
-          "add": 978.0,
+          "add": 759.0,
           "sku": "MB-PP-009-GRD",
-          "price": 2007.0,
-          "compareAtPrice": 4096.0
+          "price": 1558.0,
+          "compareAtPrice": 3180.0
         },
         {
           "id": "luxe",
@@ -14925,10 +14880,10 @@
           "nameAr": "لوكس",
           "detail": "18 stems of white phalaenopsis orchid plant",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 2007.0,
+          "add": 1558.0,
           "sku": "MB-PP-009-LUX",
-          "price": 3036.0,
-          "compareAtPrice": 6196.0
+          "price": 2357.0,
+          "compareAtPrice": 4810.0
         }
       ],
       "line": "6 stems of white phalaenopsis orchid plant",
@@ -14960,7 +14915,7 @@
       "image": "/collection/gardenia-white-orchid-in-a-pot-960.webp",
       "imageSmall": "/collection/gardenia-white-orchid-in-a-pot-480.webp",
       "alt": "Gardenia — White Orchid in a Pot - 6 stems of white phalaenopsis orchid plant, by Maison Botanique",
-      "compareAtPrice": 2100.0
+      "compareAtPrice": 1631.0
     },
     {
       "id": "everly-romantic-flower-bouquet",
@@ -14968,7 +14923,7 @@
       "name": "Everly — Romantic Flower Bouquet",
       "nameAr": "إيفرلي — باقة زهور رومانسية",
       "room": "bouquets",
-      "price": 239.0,
+      "price": 199.0,
       "sizes": [
         {
           "id": "signature",
@@ -14978,8 +14933,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-GM-027-SIG",
-          "price": 239.0,
-          "compareAtPrice": 531.0
+          "price": 199.0,
+          "compareAtPrice": 442.0
         },
         {
           "id": "grand",
@@ -14987,10 +14942,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف الكمية",
-          "add": 227.0,
+          "add": 189.0,
           "sku": "MB-GM-027-GRD",
-          "price": 466.0,
-          "compareAtPrice": 1036.0
+          "price": 388.0,
+          "compareAtPrice": 862.0
         },
         {
           "id": "luxe",
@@ -14998,10 +14953,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف الكمية",
-          "add": 466.0,
+          "add": 388.0,
           "sku": "MB-GM-027-LUX",
-          "price": 705.0,
-          "compareAtPrice": 1567.0
+          "price": 587.0,
+          "compareAtPrice": 1304.0
         }
       ],
       "line": "5 White Lisianthus, premium brown & red wrapping",
@@ -15038,7 +14993,7 @@
       "image": "/collection/everly-romantic-flower-bouquet-960.webp",
       "imageSmall": "/collection/everly-romantic-flower-bouquet-480.webp",
       "alt": "Everly — Romantic Flower Bouquet - 5 White Lisianthus, by Maison Botanique",
-      "compareAtPrice": 531.0
+      "compareAtPrice": 442.0
     },
     {
       "id": "gemini-twin-stem-white-orchid-plant",
@@ -15046,7 +15001,7 @@
       "name": "Gemini — Twin-Stem White Orchid Plant",
       "nameAr": "جيميني — نبتة أوركيد أبيض بساقين",
       "room": "hampers",
-      "price": 349.0,
+      "price": 299.0,
       "sizes": [
         {
           "id": "signature",
@@ -15056,8 +15011,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-PP-010-STD",
-          "price": 349.0,
-          "compareAtPrice": 793.0
+          "price": 299.0,
+          "compareAtPrice": 680.0
         }
       ],
       "line": "2 stems of white phalaenopsis orchid plant",
@@ -15087,7 +15042,7 @@
       "image": "/collection/gemini-twin-stem-white-orchid-plant-960.webp",
       "imageSmall": "/collection/gemini-twin-stem-white-orchid-plant-480.webp",
       "alt": "Gemini — Twin-Stem White Orchid Plant - 2 stems of white phalaenopsis orchid plant, by Maison Botanique",
-      "compareAtPrice": 793.0
+      "compareAtPrice": 680.0
     },
     {
       "id": "everlasting-preserved-rose",
@@ -15095,7 +15050,7 @@
       "name": "Everlasting — Preserved Rose",
       "nameAr": "إيفرلاستينغ — وردة محفوظة",
       "room": "hampers",
-      "price": 249.0,
+      "price": 209.0,
       "sizes": [
         {
           "id": "signature",
@@ -15105,8 +15060,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-PP-011-STD",
-          "price": 249.0,
-          "compareAtPrice": 429.0
+          "price": 209.0,
+          "compareAtPrice": 360.0
         }
       ],
       "line": "1 genuine preserved rose",
@@ -15135,7 +15090,7 @@
       "image": "/collection/everlasting-preserved-rose-960.webp",
       "imageSmall": "/collection/everlasting-preserved-rose-480.webp",
       "alt": "Everlasting — Preserved Rose - 1 genuine preserved rose, by Maison Botanique",
-      "compareAtPrice": 429.0
+      "compareAtPrice": 360.0
     },
     {
       "id": "trinity-three-preserved-red-roses",
@@ -15143,7 +15098,7 @@
       "name": "Trinity — Three Preserved Red Roses",
       "nameAr": "ترينيتي — ثلاث ورود حمراء محفوظة",
       "room": "hampers",
-      "price": 749.0,
+      "price": 649.0,
       "sizes": [
         {
           "id": "signature",
@@ -15153,8 +15108,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-PP-012-STD",
-          "price": 749.0,
-          "compareAtPrice": 1827.0
+          "price": 649.0,
+          "compareAtPrice": 1583.0
         }
       ],
       "line": "3 preserved red roses",
@@ -15184,7 +15139,7 @@
       "image": "/collection/trinity-three-preserved-red-roses-960.webp",
       "imageSmall": "/collection/trinity-three-preserved-red-roses-480.webp",
       "alt": "Trinity — Three Preserved Red Roses - 3 preserved red roses, by Maison Botanique",
-      "compareAtPrice": 1827.0
+      "compareAtPrice": 1583.0
     },
     {
       "id": "orchard-fruit-and-flower-basket",
@@ -15192,7 +15147,7 @@
       "name": "Orchard — Fruit & Flower Basket",
       "nameAr": "أورشارد — سلة فواكه وزهور",
       "room": "gifts",
-      "price": 499.0,
+      "price": 449.0,
       "sizes": [
         {
           "id": "signature",
@@ -15202,8 +15157,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-FB-001-SIG",
-          "price": 499.0,
-          "compareAtPrice": 960.0
+          "price": 449.0,
+          "compareAtPrice": 863.0
         },
         {
           "id": "grand",
@@ -15211,10 +15166,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 474.0,
+          "add": 427.0,
           "sku": "MB-FB-001-GRD",
-          "price": 973.0,
-          "compareAtPrice": 1871.0
+          "price": 876.0,
+          "compareAtPrice": 1685.0
         },
         {
           "id": "luxe",
@@ -15222,10 +15177,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 973.0,
+          "add": 876.0,
           "sku": "MB-FB-001-LUX",
-          "price": 1472.0,
-          "compareAtPrice": 2831.0
+          "price": 1325.0,
+          "compareAtPrice": 2548.0
         }
       ],
       "line": "Juicy oranges",
@@ -15260,7 +15215,7 @@
       "image": "/collection/orchard-fruit-and-flower-basket-960.webp",
       "imageSmall": "/collection/orchard-fruit-and-flower-basket-480.webp",
       "alt": "Orchard — Fruit & Flower Basket - Juicy oranges, by Maison Botanique",
-      "compareAtPrice": 960.0
+      "compareAtPrice": 863.0
     },
     {
       "id": "cupid-heart-rose-and-chocolate-arrangement",
@@ -15268,7 +15223,7 @@
       "name": "Cupid — Heart Rose & Chocolate Arrangement",
       "nameAr": "كيوبيد — تنسيق قلب من الورد والشوكولاتة",
       "room": "gifts",
-      "price": 875.0,
+      "price": 699.0,
       "sizes": [
         {
           "id": "signature",
@@ -15278,8 +15233,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-FB-002-SIG",
-          "price": 875.0,
-          "compareAtPrice": 2083.0
+          "price": 699.0,
+          "compareAtPrice": 1664.0
         },
         {
           "id": "grand",
@@ -15287,10 +15242,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 831.0,
+          "add": 664.0,
           "sku": "MB-FB-002-GRD",
-          "price": 1706.0,
-          "compareAtPrice": 4062.0
+          "price": 1363.0,
+          "compareAtPrice": 3245.0
         },
         {
           "id": "luxe",
@@ -15298,10 +15253,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 1706.0,
+          "add": 1363.0,
           "sku": "MB-FB-002-LUX",
-          "price": 2581.0,
-          "compareAtPrice": 6145.0
+          "price": 2062.0,
+          "compareAtPrice": 4910.0
         }
       ],
       "line": "50 red roses, 24 pieces of Ferrero Rocher chocolates",
@@ -15331,7 +15286,7 @@
       "image": "/collection/cupid-heart-rose-and-chocolate-arrangement-960.webp",
       "imageSmall": "/collection/cupid-heart-rose-and-chocolate-arrangement-480.webp",
       "alt": "Cupid — Heart Rose & Chocolate Arrangement - 50 red roses, by Maison Botanique",
-      "compareAtPrice": 2083.0
+      "compareAtPrice": 1664.0
     },
     {
       "id": "cashmere-white-flower-gift-set",
@@ -15489,7 +15444,7 @@
       "name": "Sangria — Red Rose & Fruit Basket",
       "nameAr": "سانغريا — سلة ورد أحمر وفواكه",
       "room": "gifts",
-      "price": 449.0,
+      "price": 399.0,
       "sizes": [
         {
           "id": "signature",
@@ -15499,8 +15454,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-FB-005-STD",
-          "price": 449.0,
-          "compareAtPrice": 935.0
+          "price": 399.0,
+          "compareAtPrice": 831.0
         }
       ],
       "line": "12 Red Roses, basket",
@@ -15532,7 +15487,7 @@
       "image": "/collection/sangria-red-rose-and-fruit-basket-960.webp",
       "imageSmall": "/collection/sangria-red-rose-and-fruit-basket-480.webp",
       "alt": "Sangria — Red Rose & Fruit Basket - 12 Red Roses, by Maison Botanique",
-      "compareAtPrice": 935.0
+      "compareAtPrice": 831.0
     },
     {
       "id": "peaches-peach-flower-and-teddy-gift",
@@ -15620,7 +15575,7 @@
       "name": "Cotton Candy — Pink Baby Rose Birthday Bouquet with Balloons",
       "nameAr": "كوتون كاندي — باقة ورد بيبي وردي لعيد الميلاد مع بالونات",
       "room": "gifts",
-      "price": 714.0,
+      "price": 649.0,
       "sizes": [
         {
           "id": "mb-fb-009-sig-pin",
@@ -15630,8 +15585,8 @@
           "detailAr": "Signature – 35 roses / Pink",
           "add": 0.0,
           "sku": "MB-FB-009-SIG-PIN",
-          "price": 714.0,
-          "compareAtPrice": 1298.0
+          "price": 649.0,
+          "compareAtPrice": 1180.0
         },
         {
           "id": "mb-fb-009-sig-whi",
@@ -15641,8 +15596,8 @@
           "detailAr": "Signature – 35 roses / White",
           "add": 0.0,
           "sku": "MB-FB-009-SIG-WHI",
-          "price": 714.0,
-          "compareAtPrice": 1298.0
+          "price": 649.0,
+          "compareAtPrice": 1180.0
         },
         {
           "id": "mb-fb-009-sig-gol",
@@ -15652,8 +15607,8 @@
           "detailAr": "Signature – 35 roses / Gold",
           "add": 0.0,
           "sku": "MB-FB-009-SIG-GOL",
-          "price": 714.0,
-          "compareAtPrice": 1298.0
+          "price": 649.0,
+          "compareAtPrice": 1180.0
         },
         {
           "id": "mb-fb-009-grd-pin",
@@ -15661,10 +15616,10 @@
           "nameAr": "Grand – 50 roses / Pink",
           "detail": "Grand – 50 roses / Pink",
           "detailAr": "Grand – 50 roses / Pink",
-          "add": 300.0,
+          "add": 238.0,
           "sku": "MB-FB-009-GRD-PIN",
-          "price": 1014.0,
-          "compareAtPrice": 1844.0
+          "price": 887.0,
+          "compareAtPrice": 1613.0
         },
         {
           "id": "mb-fb-009-grd-whi",
@@ -15672,10 +15627,10 @@
           "nameAr": "Grand – 50 roses / White",
           "detail": "Grand – 50 roses / White",
           "detailAr": "Grand – 50 roses / White",
-          "add": 300.0,
+          "add": 238.0,
           "sku": "MB-FB-009-GRD-WHI",
-          "price": 1014.0,
-          "compareAtPrice": 1844.0
+          "price": 887.0,
+          "compareAtPrice": 1613.0
         },
         {
           "id": "mb-fb-009-grd-gol",
@@ -15683,10 +15638,10 @@
           "nameAr": "Grand – 50 roses / Gold",
           "detail": "Grand – 50 roses / Gold",
           "detailAr": "Grand – 50 roses / Gold",
-          "add": 300.0,
+          "add": 238.0,
           "sku": "MB-FB-009-GRD-GOL",
-          "price": 1014.0,
-          "compareAtPrice": 1844.0
+          "price": 887.0,
+          "compareAtPrice": 1613.0
         },
         {
           "id": "mb-fb-009-lux-pin",
@@ -15694,10 +15649,10 @@
           "nameAr": "Luxe – 70 roses / Pink",
           "detail": "Luxe – 70 roses / Pink",
           "detailAr": "Luxe – 70 roses / Pink",
-          "add": 680.0,
+          "add": 553.0,
           "sku": "MB-FB-009-LUX-PIN",
-          "price": 1394.0,
-          "compareAtPrice": 2535.0
+          "price": 1202.0,
+          "compareAtPrice": 2185.0
         },
         {
           "id": "mb-fb-009-lux-whi",
@@ -15705,10 +15660,10 @@
           "nameAr": "Luxe – 70 roses / White",
           "detail": "Luxe – 70 roses / White",
           "detailAr": "Luxe – 70 roses / White",
-          "add": 680.0,
+          "add": 553.0,
           "sku": "MB-FB-009-LUX-WHI",
-          "price": 1394.0,
-          "compareAtPrice": 2535.0
+          "price": 1202.0,
+          "compareAtPrice": 2185.0
         },
         {
           "id": "mb-fb-009-lux-gol",
@@ -15716,10 +15671,10 @@
           "nameAr": "Luxe – 70 roses / Gold",
           "detail": "Luxe – 70 roses / Gold",
           "detailAr": "Luxe – 70 roses / Gold",
-          "add": 680.0,
+          "add": 553.0,
           "sku": "MB-FB-009-LUX-GOL",
-          "price": 1394.0,
-          "compareAtPrice": 2535.0
+          "price": 1202.0,
+          "compareAtPrice": 2185.0
         }
       ],
       "line": "35 roses, helium balloons",
@@ -15749,7 +15704,7 @@
       "image": "/collection/cotton-candy-pink-baby-rose-birthday-bouquet-with-balloons-960.webp",
       "imageSmall": "/collection/cotton-candy-pink-baby-rose-birthday-bouquet-with-balloons-480.webp",
       "alt": "Cotton Candy — Pink Baby Rose Birthday Bouquet with Balloons - 35 or 50 baby roses, by Maison Botanique",
-      "compareAtPrice": 1298.0
+      "compareAtPrice": 1180.0
     },
     {
       "id": "honors-graduation-lily-bouquet-and-teddy",
@@ -15807,7 +15762,7 @@
       "name": "Patisserie — Chocolate Bouquet, Cake & Teddy",
       "nameAr": "باتيسيري — باقة شوكولاتة مع كعكة ودبدوب",
       "room": "gifts",
-      "price": 510.0,
+      "price": 499.0,
       "sizes": [
         {
           "id": "signature",
@@ -15817,8 +15772,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-CG-001-SIG",
-          "price": 510.0,
-          "compareAtPrice": 927.0
+          "price": 499.0,
+          "compareAtPrice": 907.0
         },
         {
           "id": "grand",
@@ -15826,10 +15781,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 485.0,
+          "add": 475.0,
           "sku": "MB-CG-001-GRD",
-          "price": 995.0,
-          "compareAtPrice": 1809.0
+          "price": 974.0,
+          "compareAtPrice": 1771.0
         },
         {
           "id": "luxe",
@@ -15837,10 +15792,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 995.0,
+          "add": 974.0,
           "sku": "MB-CG-001-LUX",
-          "price": 1505.0,
-          "compareAtPrice": 2736.0
+          "price": 1473.0,
+          "compareAtPrice": 2678.0
         }
       ],
       "line": "32 Ferrero Rocher chocolates arranged as a bouquet, 18-inch (medium) t",
@@ -15868,7 +15823,7 @@
       "image": "/collection/patisserie-chocolate-bouquet-cake-and-teddy-960.webp",
       "imageSmall": "/collection/patisserie-chocolate-bouquet-cake-and-teddy-480.webp",
       "alt": "Patisserie — Chocolate Bouquet, Cake & Teddy - 32 Ferrero Rocher chocolates arranged as a bouquet, by Maison Botanique",
-      "compareAtPrice": 927.0
+      "compareAtPrice": 907.0
     },
     {
       "id": "cocoa-chocolate-bouquet-with-small-teddy",
@@ -16619,7 +16574,7 @@
       "name": "Merlot — Red Flowers & Ferrero Rocher",
       "nameAr": "ميرلو — زهور حمراء مع فيريرو روشيه",
       "room": "gifts",
-      "price": 1199.0,
+      "price": 999.0,
       "sizes": [
         {
           "id": "signature",
@@ -16629,8 +16584,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-CG-013-SIG",
-          "price": 1199.0,
-          "compareAtPrice": 2607.0
+          "price": 999.0,
+          "compareAtPrice": 2172.0
         },
         {
           "id": "grand",
@@ -16638,10 +16593,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 1139.0,
+          "add": 949.0,
           "sku": "MB-CG-013-GRD",
-          "price": 2338.0,
-          "compareAtPrice": 5083.0
+          "price": 1948.0,
+          "compareAtPrice": 4235.0
         },
         {
           "id": "luxe",
@@ -16649,10 +16604,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 2338.0,
+          "add": 1948.0,
           "sku": "MB-CG-013-LUX",
-          "price": 3537.0,
-          "compareAtPrice": 7689.0
+          "price": 2947.0,
+          "compareAtPrice": 6407.0
         }
       ],
       "line": "100 Red Roses, clear glass vase",
@@ -16684,7 +16639,7 @@
       "image": "/collection/merlot-red-flowers-and-ferrero-rocher-960.webp",
       "imageSmall": "/collection/merlot-red-flowers-and-ferrero-rocher-480.webp",
       "alt": "Merlot — Red Flowers & Ferrero Rocher - 100 Red Roses, by Maison Botanique",
-      "compareAtPrice": 2607.0
+      "compareAtPrice": 2172.0
     },
     {
       "id": "spring-tulips-teddy-and-16-pistachio-chocolates",
@@ -16950,7 +16905,7 @@
       "name": "Bluebird — Blue Flowers, Teddy & Ferrero Rocher",
       "nameAr": "بلوبيرد — زهور زرقاء ودبدوب وفيريرو روشيه",
       "room": "gifts",
-      "price": 389.0,
+      "price": 299.0,
       "sizes": [
         {
           "id": "signature",
@@ -16960,8 +16915,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-CG-018-SIG",
-          "price": 389.0,
-          "compareAtPrice": 884.0
+          "price": 299.0,
+          "compareAtPrice": 680.0
         },
         {
           "id": "grand",
@@ -16969,10 +16924,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 370.0,
+          "add": 284.0,
           "sku": "MB-CG-018-GRD",
-          "price": 759.0,
-          "compareAtPrice": 1725.0
+          "price": 583.0,
+          "compareAtPrice": 1325.0
         },
         {
           "id": "luxe",
@@ -16980,10 +16935,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 759.0,
+          "add": 583.0,
           "sku": "MB-CG-018-LUX",
-          "price": 1148.0,
-          "compareAtPrice": 2609.0
+          "price": 882.0,
+          "compareAtPrice": 2005.0
         }
       ],
       "line": "5 Stems of Fresh Blue Delphinium, white teddy bear with cute t-shirt",
@@ -17013,7 +16968,7 @@
       "image": "/collection/bluebird-blue-flowers-teddy-and-ferrero-rocher-960.webp",
       "imageSmall": "/collection/bluebird-blue-flowers-teddy-and-ferrero-rocher-480.webp",
       "alt": "Bluebird — Blue Flowers, Teddy & Ferrero Rocher - 5 Stems of Fresh Blue Delphinium, by Maison Botanique",
-      "compareAtPrice": 884.0
+      "compareAtPrice": 680.0
     },
     {
       "id": "honeybear-teddy-with-16-ferrero-rocher",
@@ -17308,7 +17263,7 @@
       "name": "Ganache — Flower & Chocolate Box",
       "nameAr": "غاناش — صندوق زهور وشوكولاتة",
       "room": "gifts",
-      "price": 1369.0,
+      "price": 1199.0,
       "sizes": [
         {
           "id": "signature",
@@ -17318,8 +17273,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-FT-001-SIG",
-          "price": 1369.0,
-          "compareAtPrice": 2684.0
+          "price": 1199.0,
+          "compareAtPrice": 2351.0
         },
         {
           "id": "grand",
@@ -17327,10 +17282,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 1301.0,
+          "add": 1139.0,
           "sku": "MB-FT-001-GRD",
-          "price": 2670.0,
-          "compareAtPrice": 5235.0
+          "price": 2338.0,
+          "compareAtPrice": 4584.0
         },
         {
           "id": "luxe",
@@ -17338,10 +17293,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 2670.0,
+          "add": 2338.0,
           "sku": "MB-FT-001-LUX",
-          "price": 4039.0,
-          "compareAtPrice": 7920.0
+          "price": 3537.0,
+          "compareAtPrice": 6935.0
         }
       ],
       "line": "100 Red Roses, clear glass vase",
@@ -17373,7 +17328,7 @@
       "image": "/collection/ganache-flower-and-chocolate-box-960.webp",
       "imageSmall": "/collection/ganache-flower-and-chocolate-box-480.webp",
       "alt": "Ganache — Flower & Chocolate Box - 100 Red Roses, by Maison Botanique",
-      "compareAtPrice": 2684.0
+      "compareAtPrice": 2351.0
     },
     {
       "id": "eternity-red-roses-and-chocolate-box",
@@ -17672,7 +17627,7 @@
       "name": "Snowdrop — White Bloom Gift Set",
       "nameAr": "سنودروب — طقم هدية زهور بيضاء",
       "room": "gifts",
-      "price": 719.0,
+      "price": 549.0,
       "sizes": [
         {
           "id": "signature",
@@ -17682,8 +17637,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-FT-006-SIG",
-          "price": 719.0,
-          "compareAtPrice": 1798.0
+          "price": 549.0,
+          "compareAtPrice": 1373.0
         },
         {
           "id": "grand",
@@ -17691,10 +17646,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 683.0,
+          "add": 522.0,
           "sku": "MB-FT-006-GRD",
-          "price": 1402.0,
-          "compareAtPrice": 3505.0
+          "price": 1071.0,
+          "compareAtPrice": 2678.0
         },
         {
           "id": "luxe",
@@ -17702,10 +17657,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 1402.0,
+          "add": 1071.0,
           "sku": "MB-FT-006-LUX",
-          "price": 2121.0,
-          "compareAtPrice": 5302.0
+          "price": 1620.0,
+          "compareAtPrice": 4050.0
         }
       ],
       "line": "40 White Roses, white paper wrapping",
@@ -17735,7 +17690,7 @@
       "image": "/collection/snowdrop-white-bloom-gift-set-960.webp",
       "imageSmall": "/collection/snowdrop-white-bloom-gift-set-480.webp",
       "alt": "Snowdrop — White Bloom Gift Set - 40 White Roses, by Maison Botanique",
-      "compareAtPrice": 1798.0
+      "compareAtPrice": 1373.0
     },
     {
       "id": "sugarplum-carnations-chrysanthemums-and-cake",
@@ -18036,7 +17991,7 @@
       "name": "Sultan — 100 Red Roses & Pistachio Chocolate Box",
       "nameAr": "سلطان — 100 وردة حمراء مع علبة شوكولاتة الفستق",
       "room": "gifts",
-      "price": 1039.0,
+      "price": 899.0,
       "sizes": [
         {
           "id": "signature",
@@ -18046,8 +18001,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-FT-012-SIG",
-          "price": 1039.0,
-          "compareAtPrice": 2165.0
+          "price": 899.0,
+          "compareAtPrice": 1873.0
         },
         {
           "id": "grand",
@@ -18055,10 +18010,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 987.0,
+          "add": 854.0,
           "sku": "MB-FT-012-GRD",
-          "price": 2026.0,
-          "compareAtPrice": 4221.0
+          "price": 1753.0,
+          "compareAtPrice": 3652.0
         },
         {
           "id": "luxe",
@@ -18066,10 +18021,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 2026.0,
+          "add": 1753.0,
           "sku": "MB-FT-012-LUX",
-          "price": 3065.0,
-          "compareAtPrice": 6385.0
+          "price": 2652.0,
+          "compareAtPrice": 5525.0
         }
       ],
       "line": "100 Red Roses, 6 pcs pistache petite indulgence chocolate box",
@@ -18098,7 +18053,7 @@
       "image": "/collection/sultan-100-red-roses-and-pistachio-chocolate-box-960.webp",
       "imageSmall": "/collection/sultan-100-red-roses-and-pistachio-chocolate-box-480.webp",
       "alt": "Sultan — 100 Red Roses & Pistachio Chocolate Box - 100 Red Roses, by Maison Botanique",
-      "compareAtPrice": 2165.0
+      "compareAtPrice": 1873.0
     },
     {
       "id": "medjool-flower-bouquet-and-dates",
@@ -18330,7 +18285,7 @@
       "name": "Mousseline — White Roses Vase & Chocolate Mousse",
       "nameAr": "موسلين — مزهرية ورد أبيض مع موس الشوكولاتة",
       "room": "gifts",
-      "price": 619.0,
+      "price": 499.0,
       "sizes": [
         {
           "id": "signature",
@@ -18340,8 +18295,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-FT-016-SIG",
-          "price": 619.0,
-          "compareAtPrice": 1125.0
+          "price": 499.0,
+          "compareAtPrice": 907.0
         },
         {
           "id": "grand",
@@ -18349,10 +18304,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 588.0,
+          "add": 474.0,
           "sku": "MB-FT-016-GRD",
-          "price": 1207.0,
-          "compareAtPrice": 2195.0
+          "price": 973.0,
+          "compareAtPrice": 1769.0
         },
         {
           "id": "luxe",
@@ -18360,10 +18315,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 1207.0,
+          "add": 973.0,
           "sku": "MB-FT-016-LUX",
-          "price": 1826.0,
-          "compareAtPrice": 3320.0
+          "price": 1472.0,
+          "compareAtPrice": 2676.0
         }
       ],
       "line": "20 White Roses with Chocolate Mousse Cake and Balloons",
@@ -18391,7 +18346,7 @@
       "image": "/collection/mousseline-white-roses-vase-and-chocolate-mousse-960.webp",
       "imageSmall": "/collection/mousseline-white-roses-vase-and-chocolate-mousse-480.webp",
       "alt": "Mousseline — White Roses Vase & Chocolate Mousse - 20 White Roses with Chocolate Mousse Cake and Balloons, by Maison Botanique",
-      "compareAtPrice": 1125.0
+      "compareAtPrice": 907.0
     },
     {
       "id": "nocciola-roses-and-ferrero-rocher-box",
@@ -18399,7 +18354,7 @@
       "name": "Nocciola — Roses & Ferrero Rocher Box",
       "nameAr": "نوتشيولا — صندوق ورد مع فيريرو روشيه",
       "room": "gifts",
-      "price": 399.0,
+      "price": 349.0,
       "sizes": [
         {
           "id": "signature",
@@ -18409,8 +18364,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-FT-017-STD",
-          "price": 399.0,
-          "compareAtPrice": 950.0
+          "price": 349.0,
+          "compareAtPrice": 831.0
         }
       ],
       "line": "25 pink roses, 16 pieces of Ferrero Rocher chocolates",
@@ -18442,7 +18397,7 @@
       "image": "/collection/nocciola-roses-and-ferrero-rocher-box-960.webp",
       "imageSmall": "/collection/nocciola-roses-and-ferrero-rocher-box-480.webp",
       "alt": "Nocciola — Roses & Ferrero Rocher Box - 25 pink roses, by Maison Botanique",
-      "compareAtPrice": 950.0
+      "compareAtPrice": 831.0
     },
     {
       "id": "pomegranate-pink-and-red-roses-with-16-pistachio-chocolates",
@@ -18450,7 +18405,7 @@
       "name": "Pomegranate — Pink & Red Roses with 16 Pistachio Chocolates",
       "nameAr": "رمان — ورد وردي وأحمر مع 16 شوكولاتة بالفستق",
       "room": "gifts",
-      "price": 229.0,
+      "price": 199.0,
       "sizes": [
         {
           "id": "signature",
@@ -18460,8 +18415,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-FT-018-SIG",
-          "price": 229.0,
-          "compareAtPrice": 509.0
+          "price": 199.0,
+          "compareAtPrice": 442.0
         },
         {
           "id": "grand",
@@ -18469,10 +18424,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 218.0,
+          "add": 189.0,
           "sku": "MB-FT-018-GRD",
-          "price": 447.0,
-          "compareAtPrice": 993.0
+          "price": 388.0,
+          "compareAtPrice": 862.0
         },
         {
           "id": "luxe",
@@ -18480,10 +18435,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 447.0,
+          "add": 388.0,
           "sku": "MB-FT-018-LUX",
-          "price": 676.0,
-          "compareAtPrice": 1502.0
+          "price": 587.0,
+          "compareAtPrice": 1304.0
         }
       ],
       "line": "6 pink roses, 16 pieces of pistache chocolates",
@@ -18516,7 +18471,7 @@
       "image": "/collection/pomegranate-pink-and-red-roses-with-16-pistachio-chocolates-960.webp",
       "imageSmall": "/collection/pomegranate-pink-and-red-roses-with-16-pistachio-chocolates-480.webp",
       "alt": "Pomegranate — Pink & Red Roses with 16 Pistachio Chocolates - 6 pink roses, by Maison Botanique",
-      "compareAtPrice": 509.0
+      "compareAtPrice": 442.0
     },
     {
       "id": "caramel-blue-flowers-and-fudge-gift",
@@ -18670,7 +18625,7 @@
       "name": "Sunbeam — Sunny Flower Gift",
       "nameAr": "سنبيم — هدية زهور مشمسة",
       "room": "gifts",
-      "price": 539.0,
+      "price": 499.0,
       "sizes": [
         {
           "id": "signature",
@@ -18680,8 +18635,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-FT-021-SIG",
-          "price": 539.0,
-          "compareAtPrice": 962.0
+          "price": 499.0,
+          "compareAtPrice": 891.0
         },
         {
           "id": "grand",
@@ -18689,10 +18644,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 512.0,
+          "add": 474.0,
           "sku": "MB-FT-021-GRD",
-          "price": 1051.0,
-          "compareAtPrice": 1877.0
+          "price": 973.0,
+          "compareAtPrice": 1737.0
         },
         {
           "id": "luxe",
@@ -18700,10 +18655,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 1051.0,
+          "add": 973.0,
           "sku": "MB-FT-021-LUX",
-          "price": 1590.0,
-          "compareAtPrice": 2839.0
+          "price": 1472.0,
+          "compareAtPrice": 2629.0
         }
       ],
       "line": "10 Sunflowers Bouquet, 25 pcs pistache signature temptation chocolate ",
@@ -18734,7 +18689,7 @@
       "image": "/collection/sunbeam-sunny-flower-gift-960.webp",
       "imageSmall": "/collection/sunbeam-sunny-flower-gift-480.webp",
       "alt": "Sunbeam — Sunny Flower Gift - 10 Sunflowers Bouquet, by Maison Botanique",
-      "compareAtPrice": 962.0
+      "compareAtPrice": 891.0
     },
     {
       "id": "velvet-red-rose-bouquet-and-red-velvet-cake",
@@ -19402,7 +19357,7 @@
       "name": "Vanille — White Roses & 24 Ferrero Rocher",
       "nameAr": "فانيل — ورد أبيض مع 24 فيريرو روشيه",
       "room": "gifts",
-      "price": 349.0,
+      "price": 299.0,
       "sizes": [
         {
           "id": "signature",
@@ -19412,8 +19367,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-FT-031-SIG",
-          "price": 349.0,
-          "compareAtPrice": 684.0
+          "price": 299.0,
+          "compareAtPrice": 586.0
         },
         {
           "id": "grand",
@@ -19421,10 +19376,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 332.0,
+          "add": 284.0,
           "sku": "MB-FT-031-GRD",
-          "price": 681.0,
-          "compareAtPrice": 1335.0
+          "price": 583.0,
+          "compareAtPrice": 1143.0
         },
         {
           "id": "luxe",
@@ -19432,10 +19387,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 681.0,
+          "add": 583.0,
           "sku": "MB-FT-031-LUX",
-          "price": 1030.0,
-          "compareAtPrice": 2020.0
+          "price": 882.0,
+          "compareAtPrice": 1729.0
         }
       ],
       "line": "20 White Roses with Ferrero Rocher 24 Pcs",
@@ -19462,7 +19417,7 @@
       "image": "/collection/vanille-white-roses-and-24-ferrero-rocher-960.webp",
       "imageSmall": "/collection/vanille-white-roses-and-24-ferrero-rocher-480.webp",
       "alt": "Vanille — White Roses & 24 Ferrero Rocher - 20 White Roses with Ferrero Rocher 24 Pcs, by Maison Botanique",
-      "compareAtPrice": 684.0
+      "compareAtPrice": 586.0
     },
     {
       "id": "nectar-white-rose-bouquet-and-honey-cake",
@@ -20411,7 +20366,7 @@
       "name": "Rosy — Red Flowers & Teddy Gift",
       "nameAr": "روزي — زهور حمراء مع دبدوب",
       "room": "gifts",
-      "price": 769.0,
+      "price": 599.0,
       "sizes": [
         {
           "id": "signature",
@@ -20421,8 +20376,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-TC-002-SIG",
-          "price": 769.0,
-          "compareAtPrice": 1451.0
+          "price": 599.0,
+          "compareAtPrice": 1130.0
         },
         {
           "id": "grand",
@@ -20430,10 +20385,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 731.0,
+          "add": 569.0,
           "sku": "MB-TC-002-GRD",
-          "price": 1500.0,
-          "compareAtPrice": 2830.0
+          "price": 1168.0,
+          "compareAtPrice": 2204.0
         },
         {
           "id": "luxe",
@@ -20441,10 +20396,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 1500.0,
+          "add": 1168.0,
           "sku": "MB-TC-002-LUX",
-          "price": 2269.0,
-          "compareAtPrice": 4281.0
+          "price": 1767.0,
+          "compareAtPrice": 3334.0
         }
       ],
       "line": "60 Red Roses, premium wrapping",
@@ -20477,7 +20432,7 @@
       "image": "/collection/rosy-red-flowers-and-teddy-gift-960.webp",
       "imageSmall": "/collection/rosy-red-flowers-and-teddy-gift-480.webp",
       "alt": "Rosy — Red Flowers & Teddy Gift - 60 Red Roses, by Maison Botanique",
-      "compareAtPrice": 1451.0
+      "compareAtPrice": 1130.0
     },
     {
       "id": "sweetie-red-and-pink-roses-with-teddy",
@@ -20485,7 +20440,7 @@
       "name": "Sweetie — Red & Pink Roses with Teddy",
       "nameAr": "سويتي — ورد أحمر ووردي مع دبدوب",
       "room": "gifts",
-      "price": 239.0,
+      "price": 199.0,
       "sizes": [
         {
           "id": "signature",
@@ -20495,8 +20450,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-TC-003-SIG",
-          "price": 239.0,
-          "compareAtPrice": 419.0
+          "price": 199.0,
+          "compareAtPrice": 349.0
         },
         {
           "id": "grand",
@@ -20504,10 +20459,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 227.0,
+          "add": 189.0,
           "sku": "MB-TC-003-GRD",
-          "price": 466.0,
-          "compareAtPrice": 818.0
+          "price": 388.0,
+          "compareAtPrice": 681.0
         },
         {
           "id": "luxe",
@@ -20515,10 +20470,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 466.0,
+          "add": 388.0,
           "sku": "MB-TC-003-LUX",
-          "price": 705.0,
-          "compareAtPrice": 1237.0
+          "price": 587.0,
+          "compareAtPrice": 1030.0
         }
       ],
       "line": "5 Red Roses, black wrapping",
@@ -20554,7 +20509,7 @@
       "image": "/collection/sweetie-red-and-pink-roses-with-teddy-960.webp",
       "imageSmall": "/collection/sweetie-red-and-pink-roses-with-teddy-480.webp",
       "alt": "Sweetie — Red & Pink Roses with Teddy - 5 Red Roses, by Maison Botanique",
-      "compareAtPrice": 419.0
+      "compareAtPrice": 349.0
     },
     {
       "id": "buttercup-sunflowers-teddy-and-balloon",
@@ -20562,7 +20517,7 @@
       "name": "Buttercup — Sunflowers, Teddy & Balloon",
       "nameAr": "بتركب — دوار الشمس ودبدوب وبالون",
       "room": "gifts",
-      "price": 279.0,
+      "price": 219.0,
       "sizes": [
         {
           "id": "signature",
@@ -20572,8 +20527,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-TC-004-SIG",
-          "price": 279.0,
-          "compareAtPrice": 517.0
+          "price": 219.0,
+          "compareAtPrice": 406.0
         },
         {
           "id": "grand",
@@ -20581,10 +20536,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 265.0,
+          "add": 208.0,
           "sku": "MB-TC-004-GRD",
-          "price": 544.0,
-          "compareAtPrice": 1007.0
+          "price": 427.0,
+          "compareAtPrice": 791.0
         },
         {
           "id": "luxe",
@@ -20592,10 +20547,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 544.0,
+          "add": 427.0,
           "sku": "MB-TC-004-LUX",
-          "price": 823.0,
-          "compareAtPrice": 1524.0
+          "price": 646.0,
+          "compareAtPrice": 1196.0
         }
       ],
       "line": "3 fresh sunflowers, teddy bear",
@@ -20631,7 +20586,7 @@
       "image": "/collection/buttercup-sunflowers-teddy-and-balloon-960.webp",
       "imageSmall": "/collection/buttercup-sunflowers-teddy-and-balloon-480.webp",
       "alt": "Buttercup — Sunflowers, Teddy & Balloon - 3 fresh sunflowers, by Maison Botanique",
-      "compareAtPrice": 517.0
+      "compareAtPrice": 406.0
     },
     {
       "id": "tulle-tulips-and-teddy-gift",
@@ -20639,7 +20594,7 @@
       "name": "Tulle — Tulips & Teddy Gift",
       "nameAr": "تول — توليب مع دبدوب",
       "room": "gifts",
-      "price": 749.0,
+      "price": 699.0,
       "sizes": [
         {
           "id": "signature",
@@ -20649,8 +20604,8 @@
           "detailAr": "كما في الصورة",
           "add": 0.0,
           "sku": "MB-TC-005-SIG",
-          "price": 749.0,
-          "compareAtPrice": 1827.0
+          "price": 699.0,
+          "compareAtPrice": 1705.0
         },
         {
           "id": "grand",
@@ -20658,10 +20613,10 @@
           "nameAr": "غراند",
           "detail": "double the quantity",
           "detailAr": "ضعف كمية طقم سيغنتشر",
-          "add": 712.0,
+          "add": 664.0,
           "sku": "MB-TC-005-GRD",
-          "price": 1461.0,
-          "compareAtPrice": 3563.0
+          "price": 1363.0,
+          "compareAtPrice": 3324.0
         },
         {
           "id": "luxe",
@@ -20669,10 +20624,10 @@
           "nameAr": "لوكس",
           "detail": "triple the quantity",
           "detailAr": "ثلاثة أضعاف كمية طقم سيغنتشر",
-          "add": 1461.0,
+          "add": 1363.0,
           "sku": "MB-TC-005-LUX",
-          "price": 2210.0,
-          "compareAtPrice": 5390.0
+          "price": 2062.0,
+          "compareAtPrice": 5029.0
         }
       ],
       "line": "20 White & Pink Tulips, white jumbo teddy bear",
@@ -20703,7 +20658,7 @@
       "image": "/collection/tulle-tulips-and-teddy-gift-960.webp",
       "imageSmall": "/collection/tulle-tulips-and-teddy-gift-480.webp",
       "alt": "Tulle — Tulips & Teddy Gift - 20 White & Pink Tulips, by Maison Botanique",
-      "compareAtPrice": 1827.0
+      "compareAtPrice": 1705.0
     },
     {
       "id": "nectarine-peach-roses-teddy-and-balloon",
