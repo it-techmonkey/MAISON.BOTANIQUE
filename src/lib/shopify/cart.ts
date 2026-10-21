@@ -40,6 +40,8 @@ export interface ShopifyCart {
   totalQuantity: number;
   discountCodes: Array<{ code: string; applicable: boolean }>;
   subtotal: Money;
+  /** After cart-level discounts (the welcome offer); excludes delivery. */
+  total: Money;
   /** Cart-level attributes: the delivery schedule and the analytics IDs. */
   attributes: Record<string, string>;
   /** Becomes the order's note: the readable delivery date and time for the shop team. */
@@ -180,6 +182,7 @@ function normalizeCart(raw: RawCart): ShopifyCart {
     totalQuantity: raw.totalQuantity,
     discountCodes: raw.discountCodes ?? [],
     subtotal: money(raw.cost.subtotalAmount),
+    total: money(raw.cost.totalAmount),
     note: raw.note ?? '',
     attributes: Object.fromEntries(raw.attributes.map((attribute) => [attribute.key, attribute.value ?? ''])),
     lines: raw.lines.nodes.map((line) => ({

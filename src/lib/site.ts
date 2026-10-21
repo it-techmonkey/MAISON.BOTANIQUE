@@ -16,6 +16,9 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://maisonbota
 /** The welcome offer's discount code (create it in Shopify Discounts), shown in the banner and after the sign-up. */
 export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'MAISON25').trim();
 
+/** Delivery fees in AED, shown in the bag. Shopify shipping rates must match; change both together. */
+export const DELIVERY_FEES = { dubai: 30, otherEmirates: 50 } as const;
+
 /** The seven emirates served, all with same-day delivery. */
 export const EMIRATES: Bilingual[] = [
   { en: 'Dubai', ar: 'دبي' },
