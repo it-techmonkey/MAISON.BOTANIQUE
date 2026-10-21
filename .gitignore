@@ -19,3 +19,7 @@ next-env.d.ts
 
 # Built Shopify theme upload
 shopify-theme.zip
+
+# Playwright
+playwright-report/
+test-results/

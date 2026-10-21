@@ -11,6 +11,8 @@
 ## Checks
 
 Run npm test, Python unittest discovery, npm run typecheck, then npm run build (commands in README).
+Buying-flow tests (npm run test:e2e) run on every Vercel preview and can be started manually against production; see the
+Area → tests table in AGENTS.md for which tests belong to each part of the site.
 Typecheck generates Next.js route helpers first, so it also works in a fresh clone without a previous build.
 CI uses the lockfile, pinned official Actions, read-only repository permissions and no Shopify credentials.
 Installation scripts are disabled; enable a specific dependency's install step only after a concrete review.
@@ -32,3 +34,4 @@ Require PRs and block force pushes/deletion, including administrators where supp
 select the actual successful check name in GitHub. The connected account has write, not admin access;
 workflow preparation is not proof of branch protection. Plan support needs administrator verification.
 Repository visibility stays unchanged; do not add private business data to the public repo.
+Step-by-step owner instructions: [MAIN_PROTECTION.md](MAIN_PROTECTION.md).
