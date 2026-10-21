@@ -466,3 +466,13 @@ a.ll-shop-primary { text-decoration: none; box-sizing: border-box; }
 /* The grid column must be allowed to shrink below the "Signed" field plus the secret switch, or the sheet scrolls sideways on narrow phones. */
 .qa-section { grid-template-columns: minmax(0, 1fr); }
 .qa-sign input { width: 100%; }
+
+/* Simpler bag: one quiet offer line, a lighter item row, no repeated messages. */
+.bag-welcome { padding-block: 12px; border-bottom-color: rgb(23 25 22 / 10%); }
+.bag-welcome p { margin: 0; }
+.bag-welcome .button--ghost { min-height: 0; padding: 0; border: 0; background: none; color: var(--ink); font-size: 13px; text-decoration: underline; text-underline-offset: 4px; }
+.bag-welcome label { margin-top: 0; min-height: 36px; }
+.ll-cart-line { border-bottom-color: rgb(23 25 22 / 10%); }
+.ll-cart-line h3 { margin: 0 0 6px; font-size: 21px; }
+.ll-cart-line .ll-cart-controls { margin-top: 14px; }
+.dl-picker { margin-top: 20px; }
