@@ -7,6 +7,14 @@ const renamedProducts: Array<{ oldHandle: string; handle: string }> = JSON.parse
   readFileSync(new URL('./catalog/shopify-export/product-renames.json', import.meta.url), 'utf8'),
 );
 
+// Second hop for Tansy (21 Oct 2026: "Flower Bag" became "Flower Bouquet"), and products taken off the shop: their addresses
+// go to the Birthday filter so old links and search results do not dead-end.
+const interimRenames = [{ oldHandle: 'tansy-tanacetum-flower-bag', handle: 'tansy-tanacetum-flower-bouquet' }];
+const retiredProducts = new Set(['penelope-peony-birthday-bouquet']);
+const RETIRED_DESTINATION = '/shop#occasion/birthday';
+const productDestination = (handle: string) => (retiredProducts.has(handle) ? RETIRED_DESTINATION : `/shop/${handle}`);
+const allRenames = [...renamedProducts, ...interimRenames];
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -35,14 +43,16 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/jvc', destination: '/?offer=open', permanent: true },
-      ...renamedProducts.map(({ oldHandle, handle }) => ({ source: `/products/${oldHandle}`, destination: `/shop/${handle}`, permanent: true })),
+      ...allRenames.map(({ oldHandle, handle }) => ({ source: `/products/${oldHandle}`, destination: productDestination(handle), permanent: true })),
+      ...[...retiredProducts].map((handle) => ({ source: `/products/${handle}`, destination: RETIRED_DESTINATION, permanent: true })),
+      ...[...retiredProducts].map((handle) => ({ source: `/shop/${handle}`, destination: RETIRED_DESTINATION, permanent: true })),
       { source: '/products/:handle', destination: '/shop/:handle', permanent: true },
       { source: '/products', destination: '/shop', permanent: true },
       { source: '/collections/all', destination: '/shop', permanent: true },
       { source: '/policies/refund-policy', destination: '/refund-policy', permanent: true },
       { source: '/policies/privacy-policy', destination: '/privacy', permanent: true },
       { source: '/policies/terms-of-service', destination: '/terms', permanent: true },
-      ...renamedProducts.map(({ oldHandle, handle }) => ({ source: `/shop/${oldHandle}`, destination: `/shop/${handle}`, permanent: true })),
+      ...allRenames.map(({ oldHandle, handle }) => ({ source: `/shop/${oldHandle}`, destination: productDestination(handle), permanent: true })),
       // Occasions are filters on the collection now, not pages.
       { source: '/occasions/just-because', destination: '/shop#occasion/gifts-for-her', permanent: true },
       { source: '/occasions/:occasion', destination: '/shop#occasion/:occasion', permanent: true },

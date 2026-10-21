@@ -18203,7 +18203,7 @@
    }
   },
   {
-   "handle": "tansy-tanacetum-flower-bag",
+   "handle": "tansy-tanacetum-flower-bouquet",
    "catalog_number": 68,
    "reference_id": "REF-UAE-67e5400e1503451d1d758586",
    "collections": [
@@ -18221,9 +18221,9 @@
     "owner_to_confirm": "Confirm the exact flower: source calls it Tenacetum; photo shows chamomile-like blooms."
    },
    "input": {
-    "handle": "tansy-tanacetum-flower-bag",
-    "title": "Tansy — Tanacetum Flower Bag",
-    "descriptionHtml": "<p>Ten Tanacetum blooms, small white daisy-like flowers, arranged in a handled bag with a black ribbon.</p><p><strong>What's included</strong></p><ul><li>10 Tanacetum (feverfew-type) stems</li><li>Handled acrylic bag</li><li>Black ribbon</li></ul><p><strong>Choose your size</strong></p><ul><li><strong>Signature</strong> – as pictured</li><li><strong>Grand</strong> – double the quantity of the Signature set</li><li><strong>Luxe</strong> – triple the quantity of the Signature set</li></ul><p>The design stays the same; only the quantity changes. The photo shows the Signature size.</p>",
+    "handle": "tansy-tanacetum-flower-bouquet",
+    "title": "Tansy — Tanacetum Flower Bouquet",
+    "descriptionHtml": "<p>Ten Tanacetum blooms, small white daisy-like flowers, hand-tied into a bouquet with a black ribbon.</p><p><strong>What's included</strong></p><ul><li>10 Tanacetum (feverfew-type) stems</li><li>Wrapping paper</li><li>Black ribbon</li></ul><p><strong>Choose your size</strong></p><ul><li><strong>Signature</strong> – as pictured</li><li><strong>Grand</strong> – double the quantity of the Signature set</li><li><strong>Luxe</strong> – triple the quantity of the Signature set</li></ul><p>The design stays the same; only the quantity changes. The photo shows the Signature size.</p>",
     "vendor": "Maison Botanique",
     "productType": "Garden & mixed bouquets",
     "status": "DRAFT",
@@ -18232,8 +18232,8 @@
      "hand-tied bouquet"
     ],
     "seo": {
-     "title": "Tansy — Tanacetum Flower Bag | Maison Botanique",
-     "description": "Tansy — Tanacetum Flower Bag: 10 Tanacetum (feverfew-type) stems, Handled acrylic bag, Black ribbon. Order online in Dubai from Maison Botanique."
+     "title": "Tansy — Tanacetum Flower Bouquet | Maison Botanique",
+     "description": "Tansy — Tanacetum Flower Bouquet: 10 Tanacetum (feverfew-type) stems, Wrapping paper, Black ribbon. Order online in Dubai from Maison Botanique."
     },
     "productOptions": [
      {
@@ -18307,10 +18307,10 @@
     ],
     "files": [
      {
-      "originalSource": "images/tansy-tanacetum-flower-bag-1.webp",
-      "alt": "Tansy — Tanacetum Flower Bag - 10 Tanacetum (feverfew-type) stems, by Maison Botanique",
+      "originalSource": "images/tansy-tanacetum-flower-bouquet-1.webp",
+      "alt": "Tansy — Tanacetum Flower Bouquet - 10 Tanacetum (feverfew-type) stems, by Maison Botanique",
       "contentType": "IMAGE",
-      "filename": "tansy-tanacetum-flower-bag-1.webp"
+      "filename": "tansy-tanacetum-flower-bouquet-1.webp"
      }
     ],
     "metafields": [
@@ -18330,19 +18330,19 @@
       "namespace": "maison",
       "key": "answer_summary",
       "type": "multi_line_text_field",
-      "value": "Tansy — Tanacetum Flower Bag from Maison Botanique includes 10 Tanacetum (feverfew-type) stems, handled acrylic bag, black ribbon. Available in Signature, Grand, Luxe."
+      "value": "Tansy — Tanacetum Flower Bouquet from Maison Botanique includes 10 Tanacetum (feverfew-type) stems, wrapping paper, black ribbon. Available in Signature, Grand, Luxe."
      },
      {
       "namespace": "maison",
       "key": "answer_summary_ar",
       "type": "multi_line_text_field",
-      "value": "تانسي — حقيبة زهور التاناسيتوم من ميزون بوتانيك تشمل 10 سيقان تاناسيتوم (من نوع الفيفرفيو)، حقيبة أكريليك بيد، شريط أسود. متوفرة بأحجام سيغنتشر وغراند ولوكس."
+      "value": "تانسي — باقة زهور التاناسيتوم من ميزون بوتانيك تشمل 10 سيقان تاناسيتوم (من نوع الفيفرفيو)، ورق تغليف، شريط أسود. متوفرة بأحجام سيغنتشر وغراند ولوكس."
      },
      {
       "namespace": "maison",
       "key": "faq",
       "type": "json",
-      "value": "[{\"q\": \"What is included in Tansy — Tanacetum Flower Bag?\", \"a\": \"10 Tanacetum (feverfew-type) stems; Handled acrylic bag; Black ribbon\"}, {\"q\": \"What sizes does Tansy — Tanacetum Flower Bag come in?\", \"a\": \"Signature; Grand; Luxe\"}]"
+      "value": "[{\"q\": \"What is included in Tansy — Tanacetum Flower Bouquet?\", \"a\": \"10 Tanacetum (feverfew-type) stems; Wrapping paper; Black ribbon\"}, {\"q\": \"What sizes does Tansy — Tanacetum Flower Bouquet come in?\", \"a\": \"Signature; Grand; Luxe\"}]"
      },
      {
       "namespace": "maison",
@@ -18360,10 +18360,10 @@
    },
    "translations": {
     "ar": {
-     "title": "تانسي — حقيبة زهور التاناسيتوم",
-     "body_html": "<p>عشر زهور تاناسيتوم، وهي زهور بيضاء صغيرة تشبه الأقحوان، منسقة في حقيبة بيد وشريط أسود.</p><p><strong>ما يتضمنه</strong></p><ul><li>10 سيقان تاناسيتوم (من نوع الفيفرفيو)</li><li>حقيبة أكريليك بيد</li><li>شريط أسود</li></ul><p><strong>اختر حجمك</strong></p><ul><li><strong>سيغنتشر</strong> – كما في الصورة</li><li><strong>غراند</strong> – ضعف كمية طقم سيغنتشر</li><li><strong>لوكس</strong> – ثلاثة أضعاف كمية طقم سيغنتشر</li></ul><p>يبقى التصميم كما هو وتتغير الكمية فقط. الصورة تعرض حجم سيغنتشر.</p>",
-     "seo_title": "تانسي — حقيبة زهور التاناسيتوم | ميزون بوتانيك",
-     "seo_description": "تانسي — حقيبة زهور التاناسيتوم: 10 سيقان تاناسيتوم (من نوع الفيفرفيو)، حقيبة أكريليك بيد، شريط أسود. اطلب أونلاين في دبي من ميزون بوتانيك.",
+     "title": "تانسي — باقة زهور التاناسيتوم",
+     "body_html": "<p>عشر زهور تاناسيتوم، وهي زهور بيضاء صغيرة تشبه الأقحوان، مربوطة يدوياً في باقة مع شريط أسود.</p><p><strong>ما يتضمنه</strong></p><ul><li>10 سيقان تاناسيتوم (من نوع الفيفرفيو)</li><li>ورق تغليف</li><li>شريط أسود</li></ul><p><strong>اختر حجمك</strong></p><ul><li><strong>سيغنتشر</strong> – كما في الصورة</li><li><strong>غراند</strong> – ضعف كمية طقم سيغنتشر</li><li><strong>لوكس</strong> – ثلاثة أضعاف كمية طقم سيغنتشر</li></ul><p>يبقى التصميم كما هو وتتغير الكمية فقط. الصورة تعرض حجم سيغنتشر.</p>",
+     "seo_title": "تانسي — باقة زهور التاناسيتوم | ميزون بوتانيك",
+     "seo_description": "تانسي — باقة زهور التاناسيتوم: 10 سيقان تاناسيتوم (من نوع الفيفرفيو)، ورق تغليف، شريط أسود. اطلب أونلاين في دبي من ميزون بوتانيك.",
      "option_name": "الحجم",
      "option_values": [
       {
@@ -18380,7 +18380,7 @@
       }
      ],
      "image_alts": [
-      "تانسي — حقيبة زهور التاناسيتوم من ميزون بوتانيك"
+      "تانسي — باقة زهور التاناسيتوم من ميزون بوتانيك"
      ],
      "status": "machine_drafted_needs_native_review"
     }
@@ -19627,7 +19627,7 @@
    "input": {
     "handle": "magnolia-pink-birthday-flower-bouquet-xl",
     "title": "Magnolia — Pink Birthday Flower Bouquet XL",
-    "descriptionHtml": "<p>An oversized pink bouquet made for a big birthday, with a numeral to mark the age.</p><p><strong>What's included</strong></p><ul><li>Extra-large pink flower arrangement</li><li>Age-number decoration and birthday card</li></ul><p><strong>Personalise it:</strong> tell us the age number (1 to 50+) at checkout and we will add it to the arrangement.</p>",
+    "descriptionHtml": "<p>An oversized pink bouquet made for a big birthday, with a numeral to mark the age.</p><p><strong>What's included</strong></p><ul><li>100 pink roses in an extra-large arrangement</li><li>Age-number decoration and birthday card</li></ul><p><strong>Personalise it:</strong> tell us the age number (1 to 50+) at checkout and we will add it to the arrangement.</p>",
     "vendor": "Maison Botanique",
     "productType": "Garden & mixed bouquets",
     "status": "DRAFT",
@@ -19638,7 +19638,7 @@
     ],
     "seo": {
      "title": "Magnolia — Pink Birthday Flower Bouquet XL | Maison Botanique",
-     "description": "Magnolia — Pink Birthday Flower Bouquet XL: Extra-large pink flower arrangement, Age-number decoration and birthday card. Order online in Dubai from Maison Botanique."
+     "description": "Magnolia — Pink Birthday Flower Bouquet XL: 100 pink roses in an extra-large arrangement, Age-number decoration and birthday card. Order online in Dubai from Maison Botanique."
     },
     "productOptions": [
      {
@@ -19673,7 +19673,7 @@
     "files": [
      {
       "originalSource": "images/magnolia-pink-birthday-flower-bouquet-xl-1.webp",
-      "alt": "Magnolia — Pink Birthday Flower Bouquet XL - Extra-large pink flower arrangement, by Maison Botanique",
+      "alt": "Magnolia — Pink Birthday Flower Bouquet XL - 100 pink roses in an extra-large arrangement, by Maison Botanique",
       "contentType": "IMAGE",
       "filename": "magnolia-pink-birthday-flower-bouquet-xl-1.webp"
      }
@@ -19695,19 +19695,19 @@
       "namespace": "maison",
       "key": "answer_summary",
       "type": "multi_line_text_field",
-      "value": "Magnolia — Pink Birthday Flower Bouquet XL from Maison Botanique includes extra-large pink flower arrangement, age-number decoration and birthday card."
+      "value": "Magnolia — Pink Birthday Flower Bouquet XL from Maison Botanique includes 100 pink roses in an extra-large arrangement, age-number decoration and birthday card."
      },
      {
       "namespace": "maison",
       "key": "answer_summary_ar",
       "type": "multi_line_text_field",
-      "value": "ماغنوليا — باقة زهور وردية لعيد الميلاد XL من ميزون بوتانيك تشمل تنسيق زهور وردي كبير جداً، زينة رقم العمر وبطاقة عيد ميلاد."
+      "value": "ماغنوليا — باقة زهور وردية لعيد الميلاد XL من ميزون بوتانيك تشمل 100 وردة وردية في تنسيق كبير جداً، زينة رقم العمر وبطاقة عيد ميلاد."
      },
      {
       "namespace": "maison",
       "key": "faq",
       "type": "json",
-      "value": "[{\"q\": \"What is included in Magnolia — Pink Birthday Flower Bouquet XL?\", \"a\": \"Extra-large pink flower arrangement; Age-number decoration and birthday card\"}]"
+      "value": "[{\"q\": \"What is included in Magnolia — Pink Birthday Flower Bouquet XL?\", \"a\": \"100 pink roses in an extra-large arrangement; Age-number decoration and birthday card\"}]"
      },
      {
       "namespace": "maison",
@@ -19726,9 +19726,9 @@
    "translations": {
     "ar": {
      "title": "ماغنوليا — باقة زهور وردية لعيد الميلاد XL",
-     "body_html": "<p>باقة وردية ضخمة لعيد ميلاد كبير، مع رقم يشير إلى العمر.</p><p><strong>ما يتضمنه</strong></p><ul><li>تنسيق زهور وردي كبير جداً</li><li>زينة رقم العمر وبطاقة عيد ميلاد</li></ul><p><strong>خصصها:</strong> أخبرنا برقم العمر (من 1 إلى 50+) عند إتمام الطلب وسنضيفه إلى التنسيق.</p>",
+     "body_html": "<p>باقة وردية ضخمة لعيد ميلاد كبير، مع رقم يشير إلى العمر.</p><p><strong>ما يتضمنه</strong></p><ul><li>100 وردة وردية في تنسيق كبير جداً</li><li>زينة رقم العمر وبطاقة عيد ميلاد</li></ul><p><strong>خصصها:</strong> أخبرنا برقم العمر (من 1 إلى 50+) عند إتمام الطلب وسنضيفه إلى التنسيق.</p>",
      "seo_title": "ماغنوليا — باقة زهور وردية لعيد الميلاد XL | ميزون بوتانيك",
-     "seo_description": "ماغنوليا — باقة زهور وردية لعيد الميلاد XL: تنسيق زهور وردي كبير جداً، زينة رقم العمر وبطاقة عيد ميلاد. اطلب أونلاين في دبي من ميزون بوتانيك.",
+     "seo_description": "ماغنوليا — باقة زهور وردية لعيد الميلاد XL: 100 وردة وردية في تنسيق كبير جداً، زينة رقم العمر وبطاقة عيد ميلاد. اطلب أونلاين في دبي من ميزون بوتانيك.",
      "option_name": null,
      "option_values": [
       {
@@ -27103,7 +27103,7 @@
    "input": {
     "handle": "victoria-regal-pink-lily-bouquet",
     "title": "Victoria — Regal Pink Lily Bouquet",
-    "descriptionHtml": "<p>Five stems of pink lilies, about fifteen blooms in total, wrapped in sophisticated grey paper.</p><p><strong>What's included</strong></p><ul><li>5 stems of pink lilies (about 15 flowers in total)</li><li>Grey wrapping paper</li></ul><p><strong>Choose your size</strong></p><ul><li><strong>Signature</strong> – as pictured: 5 stems of pink lilies (about 15 flowers in total)</li><li><strong>Grand</strong> – double the quantity: 10 stems of pink lilies (about 15 flowers in total)</li><li><strong>Luxe</strong> – triple the quantity: 15 stems of pink lilies (about 15 flowers in total)</li></ul><p>The design, wrapping and fillers stay the same; only the quantity changes. The photo shows the Signature size.</p>",
+    "descriptionHtml": "<p>Five stems of pink lilies, wrapped in sophisticated grey paper.</p><p><strong>What's included</strong></p><ul><li>5 stems of pink lilies</li><li>Grey wrapping paper</li></ul><p><strong>Choose your size</strong></p><ul><li><strong>Signature</strong> – as pictured: 5 stems of pink lilies</li><li><strong>Grand</strong> – double the quantity: 10 stems of pink lilies</li><li><strong>Luxe</strong> – triple the quantity: 15 stems of pink lilies</li></ul><p>The design, wrapping and fillers stay the same; only the quantity changes. The photo shows the Signature size.</p>",
     "vendor": "Maison Botanique",
     "productType": "Named-flower bouquets",
     "status": "DRAFT",
@@ -27115,7 +27115,7 @@
     ],
     "seo": {
      "title": "Victoria — Regal Pink Lily Bouquet | Maison Botanique",
-     "description": "Victoria — Regal Pink Lily Bouquet: 5 stems of pink lilies (about 15 flowers in total), Grey wrapping paper. Order online in Dubai from Maison Botanique."
+     "description": "Victoria — Regal Pink Lily Bouquet: 5 stems of pink lilies, Grey wrapping paper. Order online in Dubai from Maison Botanique."
     },
     "productOptions": [
      {
@@ -27123,13 +27123,13 @@
       "position": 1,
       "values": [
        {
-        "name": "Signature – 5 stems of pink lilies (about 15 flowers in total)"
+        "name": "Signature – 5 stems of pink lilies"
        },
        {
-        "name": "Grand – 10 stems of pink lilies (about 15 flowers in total)"
+        "name": "Grand – 10 stems of pink lilies"
        },
        {
-        "name": "Luxe – 15 stems of pink lilies (about 15 flowers in total)"
+        "name": "Luxe – 15 stems of pink lilies"
        }
       ]
      }
@@ -27139,7 +27139,7 @@
       "optionValues": [
        {
         "optionName": "Size",
-        "name": "Signature – 5 stems of pink lilies (about 15 flowers in total)"
+        "name": "Signature – 5 stems of pink lilies"
        }
       ],
       "sku": "MB-NB-033-SIG",
@@ -27156,7 +27156,7 @@
       "optionValues": [
        {
         "optionName": "Size",
-        "name": "Grand – 10 stems of pink lilies (about 15 flowers in total)"
+        "name": "Grand – 10 stems of pink lilies"
        }
       ],
       "sku": "MB-NB-033-GRD",
@@ -27173,7 +27173,7 @@
       "optionValues": [
        {
         "optionName": "Size",
-        "name": "Luxe – 15 stems of pink lilies (about 15 flowers in total)"
+        "name": "Luxe – 15 stems of pink lilies"
        }
       ],
       "sku": "MB-NB-033-LUX",
@@ -27190,7 +27190,7 @@
     "files": [
      {
       "originalSource": "images/victoria-regal-pink-lily-bouquet-1.webp",
-      "alt": "Victoria — Regal Pink Lily Bouquet - 5 stems of pink lilies (about 15 flowers in total), by Maison Botanique",
+      "alt": "Victoria — Regal Pink Lily Bouquet - 5 stems of pink lilies, by Maison Botanique",
       "contentType": "IMAGE",
       "filename": "victoria-regal-pink-lily-bouquet-1.webp"
      }
@@ -27212,19 +27212,19 @@
       "namespace": "maison",
       "key": "answer_summary",
       "type": "multi_line_text_field",
-      "value": "Victoria — Regal Pink Lily Bouquet from Maison Botanique includes 5 stems of pink lilies (about 15 flowers in total), grey wrapping paper. Available in Signature – 5 stems of pink lilies (about 15 flowers in total), Grand – 10 stems of pink lilies (about 15 flowers in total), Luxe – 15 stems of pink lilies…"
+      "value": "Victoria — Regal Pink Lily Bouquet from Maison Botanique includes 5 stems of pink lilies, grey wrapping paper. Available in Signature – 5 stems of pink lilies, Grand – 10 stems of pink lilies, Luxe – 15 stems of pink lilies…"
      },
      {
       "namespace": "maison",
       "key": "answer_summary_ar",
       "type": "multi_line_text_field",
-      "value": "فيكتوريا — باقة زنبق وردي ملكية من ميزون بوتانيك تشمل 5 سيقان زنبق وردي (حوالي 15 زهرة في المجموع)، ورق تغليف رمادي. متوفرة بأحجام سيغنتشر وغراند ولوكس."
+      "value": "فيكتوريا — باقة زنبق وردي ملكية من ميزون بوتانيك تشمل 5 سيقان زنبق وردي، ورق تغليف رمادي. متوفرة بأحجام سيغنتشر وغراند ولوكس."
      },
      {
       "namespace": "maison",
       "key": "faq",
       "type": "json",
-      "value": "[{\"q\": \"What is included in Victoria — Regal Pink Lily Bouquet?\", \"a\": \"5 stems of pink lilies (about 15 flowers in total); Grey wrapping paper\"}, {\"q\": \"What sizes does Victoria — Regal Pink Lily Bouquet come in?\", \"a\": \"Signature – 5 stems of pink lilies (about 15 flowers in total); Grand – 10 stems of pink lilies (about 15 flowers in total); Luxe – 15 stems of pink lilies (about 15 flowers in total)\"}]"
+      "value": "[{\"q\": \"What is included in Victoria — Regal Pink Lily Bouquet?\", \"a\": \"5 stems of pink lilies; Grey wrapping paper\"}, {\"q\": \"What sizes does Victoria — Regal Pink Lily Bouquet come in?\", \"a\": \"Signature – 5 stems of pink lilies; Grand – 10 stems of pink lilies; Luxe – 15 stems of pink lilies\"}]"
      },
      {
       "namespace": "maison",
@@ -27243,22 +27243,22 @@
    "translations": {
     "ar": {
      "title": "فيكتوريا — باقة زنبق وردي ملكية",
-     "body_html": "<p>خمس سيقان من الزنبق الوردي، بحوالي خمس عشرة زهرة، بغلاف رمادي أنيق.</p><p><strong>ما يتضمنه</strong></p><ul><li>5 سيقان زنبق وردي (حوالي 15 زهرة في المجموع)</li><li>ورق تغليف رمادي</li></ul><p><strong>اختر حجمك</strong></p><ul><li><strong>سيغنتشر</strong> – كما في الصورة: </li><li><strong>غراند</strong> – ضعف الكمية: </li><li><strong>لوكس</strong> – ثلاثة أضعاف الكمية: </li></ul><p>يبقى التصميم والتغليف والحشوات كما هي، وتتغير الكمية فقط. الصورة تعرض حجم سيغنتشر.</p>",
+     "body_html": "<p>خمس سيقان من الزنبق الوردي بغلاف رمادي أنيق.</p><p><strong>ما يتضمنه</strong></p><ul><li>5 سيقان زنبق وردي</li><li>ورق تغليف رمادي</li></ul><p><strong>اختر حجمك</strong></p><ul><li><strong>سيغنتشر</strong> – كما في الصورة: </li><li><strong>غراند</strong> – ضعف الكمية: </li><li><strong>لوكس</strong> – ثلاثة أضعاف الكمية: </li></ul><p>يبقى التصميم والتغليف والحشوات كما هي، وتتغير الكمية فقط. الصورة تعرض حجم سيغنتشر.</p>",
      "seo_title": "فيكتوريا — باقة زنبق وردي ملكية | ميزون بوتانيك",
-     "seo_description": "فيكتوريا — باقة زنبق وردي ملكية: 5 سيقان زنبق وردي (حوالي 15 زهرة في المجموع)، ورق تغليف رمادي. اطلب أونلاين في دبي من ميزون بوتانيك.",
+     "seo_description": "فيكتوريا — باقة زنبق وردي ملكية: 5 سيقان زنبق وردي، ورق تغليف رمادي. اطلب أونلاين في دبي من ميزون بوتانيك.",
      "option_name": "الحجم",
      "option_values": [
       {
-       "en": "Signature – 5 stems of pink lilies (about 15 flowers in total)",
-       "ar": "سيغنتشر – 5 stems of pink lilies (about 15 flowers in total)"
+       "en": "Signature – 5 stems of pink lilies",
+       "ar": "سيغنتشر – 5 stems of pink lilies"
       },
       {
-       "en": "Grand – 10 stems of pink lilies (about 15 flowers in total)",
-       "ar": "غراند – 10 stems of pink lilies (about 15 flowers in total)"
+       "en": "Grand – 10 stems of pink lilies",
+       "ar": "غراند – 10 stems of pink lilies"
       },
       {
-       "en": "Luxe – 15 stems of pink lilies (about 15 flowers in total)",
-       "ar": "لوكس – 15 stems of pink lilies (about 15 flowers in total)"
+       "en": "Luxe – 15 stems of pink lilies",
+       "ar": "لوكس – 15 stems of pink lilies"
       }
      ],
      "image_alts": [
@@ -29470,136 +29470,6 @@
      ],
      "image_alts": [
       "أنوك — باقة عروس بالتوليب الأبيض من ميزون بوتانيك"
-     ],
-     "status": "machine_drafted_needs_native_review"
-    }
-   }
-  },
-  {
-   "handle": "penelope-peony-birthday-bouquet",
-   "catalog_number": 135,
-   "reference_id": "REF-GG-8098944516214",
-   "collections": [
-    "Named-flower bouquets"
-   ],
-   "publish_ready": false,
-   "review": {
-    "flags": [
-     "price_is_placeholder_competitor_reference",
-     "description_needs_owner_confirmation"
-    ],
-    "image_status": "approved_by_owner_2026-10-18",
-    "description_status": "draft_needs_owner_confirmation",
-    "owner_to_confirm": "Peonies are seasonal: confirm availability and count."
-   },
-   "input": {
-    "handle": "penelope-peony-birthday-bouquet",
-    "title": "Penelope — Peony Birthday Bouquet",
-    "descriptionHtml": "<p>Fresh peonies, one of the most coveted flowers, for a birthday that deserves more.</p><p><strong>What's included</strong></p><ul><li>Fresh peonies (seasonal)</li><li>Birthday card</li></ul>",
-    "vendor": "Maison Botanique",
-    "productType": "Named-flower bouquets",
-    "status": "DRAFT",
-    "tags": [
-     "Named-flower bouquets",
-     "hand-tied bouquet",
-     "peony"
-    ],
-    "seo": {
-     "title": "Penelope — Peony Birthday Bouquet | Maison Botanique",
-     "description": "Penelope — Peony Birthday Bouquet: Fresh peonies (seasonal), Birthday card. Order online in Dubai from Maison Botanique."
-    },
-    "productOptions": [
-     {
-      "name": "Title",
-      "position": 1,
-      "values": [
-       {
-        "name": "Default Title"
-       }
-      ]
-     }
-    ],
-    "variants": [
-     {
-      "optionValues": [
-       {
-        "optionName": "Title",
-        "name": "Default Title"
-       }
-      ],
-      "sku": "MB-NB-048-STD",
-      "price": "1199.00",
-      "compareAtPrice": null,
-      "taxable": true,
-      "inventoryPolicy": "DENY",
-      "inventoryItem": {
-       "requiresShipping": true,
-       "tracked": false
-      }
-     }
-    ],
-    "files": [
-     {
-      "originalSource": "images/penelope-peony-birthday-bouquet-1.webp",
-      "alt": "Penelope — Peony Birthday Bouquet - Fresh peonies (seasonal), by Maison Botanique",
-      "contentType": "IMAGE",
-      "filename": "penelope-peony-birthday-bouquet-1.webp"
-     }
-    ],
-    "metafields": [
-     {
-      "namespace": "maison",
-      "key": "reference_id",
-      "type": "single_line_text_field",
-      "value": "REF-GG-8098944516214"
-     },
-     {
-      "namespace": "maison",
-      "key": "review_flags",
-      "type": "single_line_text_field",
-      "value": "price_is_placeholder_competitor_reference;description_needs_owner_confirmation"
-     },
-     {
-      "namespace": "maison",
-      "key": "answer_summary",
-      "type": "multi_line_text_field",
-      "value": "Penelope — Peony Birthday Bouquet from Maison Botanique includes fresh peonies (seasonal), birthday card."
-     },
-     {
-      "namespace": "maison",
-      "key": "answer_summary_ar",
-      "type": "multi_line_text_field",
-      "value": "بينيلوبي — باقة عيد ميلاد بالفاوانيا من ميزون بوتانيك تشمل فاوانيا طازجة (موسمية)، بطاقة عيد ميلاد."
-     },
-     {
-      "namespace": "maison",
-      "key": "faq",
-      "type": "json",
-      "value": "[{\"q\": \"What is included in Penelope — Peony Birthday Bouquet?\", \"a\": \"Fresh peonies (seasonal); Birthday card\"}]"
-     },
-     {
-      "namespace": "maison",
-      "key": "image_status",
-      "type": "single_line_text_field",
-      "value": "approved_by_owner_2026-10-18"
-     }
-    ]
-   },
-   "translations": {
-    "ar": {
-     "title": "بينيلوبي — باقة عيد ميلاد بالفاوانيا",
-     "body_html": "<p>فاوانيا طازجة، من أكثر الزهور المرغوبة، لعيد ميلاد يستحق أكثر.</p><p><strong>ما يتضمنه</strong></p><ul><li>فاوانيا طازجة (موسمية)</li><li>بطاقة عيد ميلاد</li></ul>",
-     "seo_title": "بينيلوبي — باقة عيد ميلاد بالفاوانيا | ميزون بوتانيك",
-     "seo_description": "بينيلوبي — باقة عيد ميلاد بالفاوانيا: فاوانيا طازجة (موسمية)، بطاقة عيد ميلاد. اطلب أونلاين في دبي من ميزون بوتانيك.",
-     "option_name": "العنوان",
-     "option_values": [
-      {
-       "en": "Default Title",
-       "ar": "Default Title"
-      }
-     ],
-     "image_alts": [
-      "بينيلوبي — باقة عيد ميلاد بالفاوانيا من ميزون بوتانيك"
      ],
      "status": "machine_drafted_needs_native_review"
     }

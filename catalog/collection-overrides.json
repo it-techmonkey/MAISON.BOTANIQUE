@@ -3,12 +3,11 @@
   "hero": ["eloise-pink-and-white-rose-bouquet", "beau-red-roses-in-glass-with-plush-bear", "perle-100-white-rose-bouquet"],
   "products": {
     "missive-mixed-flower-bouquet": {"name": "Missive — Mixed Flower Bouquet", "nameAr": "ميسيف — باقة زهور مشكّلة", "line": "12 red roses, pink spray roses, blush wrap"},
-    "tansy-tanacetum-flower-bag": {"name": "Tansy — Tanacetum Flower Bag", "line": "Tanacetum in a clear handled bag", "nameAr": "تانسي — حقيبة زهور التاناسيتوم"},
+    "tansy-tanacetum-flower-bouquet": {"name": "Tansy — Tanacetum Flower Bouquet", "line": "Tanacetum bouquet with a black ribbon", "nameAr": "تانسي — باقة زهور التاناسيتوم"},
     "monogram-personalised-letter-red-rose-bouquet": {"name": "Monogram — Personalised Letter Red Rose Bouquet", "line": "Red roses, your letter in white roses", "occasions": ["love", "birthday"], "nameAr": "مونوغرام — باقة ورد أحمر بحرف مخصص"},
     "prism-rainbow-ombre-rose-bouquet": {"name": "Prism — Rainbow Ombré Rose Bouquet", "nameAr": "بريزم — باقة ورد بتدرج قوس قزح"},
     "ines-red-and-white-rose-bouquet": {"name": "Ines — Red & White Rose Bouquet", "nameAr": "إينيس — باقة ورد أحمر وأبيض"},
     "onyx-black-graduation-bouquet": {"name": "Onyx — Black Graduation Bouquet", "nameAr": "أونيكس — باقة تخرج سوداء"},
-    "penelope-peony-birthday-bouquet": {"name": "Penelope — Peony Birthday Bouquet", "nameAr": "بينيلوبي — باقة عيد ميلاد بالفاوانيا"},
     "carnelian-large-birthday-bouquet-30-red-flowers": {"name": "Carnelian — Large Birthday Bouquet, 30 Red Flowers", "nameAr": "كارنيليان — باقة كبيرة لعيد الميلاد من 30 زهرة حمراء"},
     "rose-spray-rose-bouquet": {"name": "Rosé — Spray Rose Bouquet", "nameAr": "روزيه — باقة ورد سبراي"},
     "eloise-pink-and-white-rose-bouquet": {"order": 1, "line": "51 pink and white roses, ivory wrap", "name": "Eloise — Pink & White Rose Bouquet", "nameAr": "إيلويز — باقة ورد وردي وأبيض"},
