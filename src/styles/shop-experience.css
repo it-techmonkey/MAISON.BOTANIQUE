@@ -310,9 +310,7 @@ fieldset.qa-section > .qa-legend + * { clear: both; }
 .qa-pocket { position: absolute; inset: auto 0 0; height: 64%; z-index: 2; background: #ede5d5; border-top: 1px solid #dcd2bf; }
 .qa-pocket::before { content: ''; position: absolute; inset: 0; opacity: .8; background: linear-gradient(to top right, transparent 49.6%, #dcd2bf 50%, transparent 50.4%), linear-gradient(to top left, transparent 49.6%, #dcd2bf 50%, transparent 50.4%); }
 .qa-seal { position: absolute; z-index: 3; left: 50%; bottom: 30%; transform: translateX(-50%); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 36% 32%, #8b4b55, #673c43 58%, #4b2a30); color: #efd9d5; font: italic 400 14px/1 var(--font-display); box-shadow: 0 3px 5px rgb(0 0 0 / 25%); }
-.ll-shop-panel--quickadd textarea { width: 100%; min-height: 84px; resize: vertical; border: 0; border-bottom: 1px solid var(--ink); background: transparent; padding: 6px 0; font: 400 19px/1.4 var(--font-display); color: var(--ink); }
-.qa-starters { display: flex; flex-wrap: wrap; gap: 6px 18px; }
-.qa-starters button { border: 0; background: none; padding: 0; text-align: start; font: italic 400 16px/1.35 var(--font-display); color: var(--qa-ink-2); border-bottom: 1px solid var(--qa-hair); }
+.ll-shop-panel--quickadd textarea { width: 100%; min-height: 60px; resize: vertical; border: 0; border-bottom: 1px solid var(--ink); background: transparent; padding: 6px 0; font: 400 19px/1.4 var(--font-display); color: var(--ink); }
 .qa-sign { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 .qa-sign input { flex: 1; min-width: 0; }
 .qa-sign input:disabled { opacity: .4; }
@@ -332,7 +330,7 @@ fieldset.qa-section > .qa-legend + * { clear: both; }
 .qa-add { width: 100%; border: 0; background: var(--qa-noir); color: #f7f4ee; padding: 18px; font: 500 11px/1 var(--font-body); letter-spacing: .22em; text-transform: uppercase; transition: background .3s; }
 .qa-add:hover:not(:disabled) { background: #000; }
 [dir='rtl'] .ll-shop-panel--quickadd :is(.qa-kicker, .qa-legend > span, .qa-label, .qa-custom label, .qa-day span, .qa-add) { font-family: var(--font-arabic); letter-spacing: 0; text-transform: none; font-size: 13px; }
-[dir='rtl'] .ll-shop-panel--quickadd :is(.qa-hero h2, .qa-size-name strong, .qa-size-name em, .qa-legend em, .qa-starters button, .qa-assure, textarea) { font-family: var(--font-arabic); font-style: normal; }
+[dir='rtl'] .ll-shop-panel--quickadd :is(.qa-hero h2, .qa-size-name strong, .qa-size-name em, .qa-legend em, .qa-assure, textarea) { font-family: var(--font-arabic); font-style: normal; }
 [dir='rtl'] .qa-hero h2 { font-size: 26px; line-height: 1.35; }
 [dir='rtl'] fieldset.qa-section > .qa-legend { float: right; }
 
@@ -453,7 +451,16 @@ a.ll-shop-primary { text-decoration: none; box-sizing: border-box; }
 .pd-link { min-height: 44px; padding: 0; border: 0; background: none; color: var(--ink); font-size: 13px; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
 .pd-note { margin: 8px 0 0; font-size: 12px; line-height: 1.5; color: var(--qa-ink-2); }
 .qa-delivery .dl-picker-product { margin-top: 12px; padding: 0; border: 0; }
-.qa-ask { display: inline-flex; margin-top: 4px; }
+.pd-actions { align-items: center; }
+/* WhatsApp enquiry as an icon beside delivery; the label shows on hover or keyboard focus, phones tap straight through. */
+.pd-ask { position: relative; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--qa-hair); border-radius: 50%; color: #25d366; }
+.pd-ask svg { width: 20px; height: 20px; }
+.pd-ask:hover, .pd-ask:focus-visible { border-color: var(--ink); }
+.pd-ask::after { content: attr(data-tip); position: absolute; bottom: calc(100% + 8px); inset-inline-end: 0; padding: 7px 10px; background: var(--qa-noir); color: #f7f4ee; font: 400 12px/1.3 var(--font-body); white-space: nowrap; pointer-events: none; opacity: 0; transform: translateY(4px); transition: opacity .2s, transform .2s; }
+@media (hover: hover) { .pd-ask:hover::after { opacity: 1; transform: none; } }
+.pd-ask:focus-visible::after { opacity: 1; transform: none; }
+[dir='rtl'] .pd-ask::after { font-family: var(--font-arabic); }
+@media (prefers-reduced-motion: reduce) { .pd-ask::after { transition: none; } }
 [dir='rtl'] .pd-label { letter-spacing: 0; text-transform: none; font-size: 12px; }
 
 /* Phones, product page: the WhatsApp button sits above the sticky "Add to bag" bar, and the size rows

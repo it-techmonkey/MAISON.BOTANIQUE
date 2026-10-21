@@ -33,16 +33,27 @@ export function isWhatsappOpen(now = new Date()) {
   return minutes >= WHATSAPP_HOURS.open && minutes < WHATSAPP_HOURS.close;
 }
 
+/** What the product enquiry names. The link lets WhatsApp show the product photo. */
+export interface ProductEnquiry { name: string; size: string; price?: string; delivery?: string; url?: string }
+
 const MESSAGES = {
   en: {
     general: 'Hello Maison Botanique, I have a question about an order.',
-    product: (name: string, size: string) => `Hello Maison Botanique, I'd like to ask about "${name}" (${size}).`,
+    product: (p: ProductEnquiry) => [
+      `Hello Maison Botanique, I'd like to ask about "${p.name}" (${p.size}${p.price ? `, ${p.price}` : ''}).`,
+      p.delivery && `Delivery: ${p.delivery}`,
+      p.url,
+    ].filter(Boolean).join('\n'),
     events: 'Hello Maison Botanique, I would like to discuss flowers for an event (wedding, corporate or a large order).',
     bag: (lines: string, delivery: string) => `Hello Maison Botanique, I'd like to order:\n${lines}${delivery ? `\n\nDelivery: ${delivery}` : ''}`,
   },
   ar: {
     general: 'مرحباً ميزون بوتانيك، لدي استفسار عن طلب.',
-    product: (name: string, size: string) => `مرحباً ميزون بوتانيك، أود الاستفسار عن «${name}» (${size}).`,
+    product: (p: ProductEnquiry) => [
+      `مرحباً ميزون بوتانيك، أود الاستفسار عن «${p.name}» (${p.size}${p.price ? `، ${p.price}` : ''}).`,
+      p.delivery && `التوصيل: ${p.delivery}`,
+      p.url,
+    ].filter(Boolean).join('\n'),
     events: 'مرحباً ميزون بوتانيك، أود مناقشة تنسيق زهور لمناسبة (زفاف أو شركة أو طلب كبير).',
     bag: (lines: string, delivery: string) => `مرحباً ميزون بوتانيك، أود طلب:\n${lines}${delivery ? `\n\nالتوصيل: ${delivery}` : ''}`,
   },
@@ -51,6 +62,6 @@ const MESSAGES = {
 export const whatsappMessage = {
   general: (arabic: boolean) => MESSAGES[arabic ? 'ar' : 'en'].general,
   events: (arabic: boolean) => MESSAGES[arabic ? 'ar' : 'en'].events,
-  product: (arabic: boolean, name: string, size: string) => MESSAGES[arabic ? 'ar' : 'en'].product(name, size),
+  product: (arabic: boolean, enquiry: ProductEnquiry) => MESSAGES[arabic ? 'ar' : 'en'].product(enquiry),
   bag: (arabic: boolean, lines: string, delivery: string) => MESSAGES[arabic ? 'ar' : 'en'].bag(lines, delivery),
 };

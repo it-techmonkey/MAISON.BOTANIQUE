@@ -11,6 +11,7 @@ import {
   type DeliverySchedule, type ScheduleProblem,
 } from '@/lib/delivery';
 import { useDubaiNow } from '@/lib/use-today';
+import { SITE_URL } from '@/lib/site';
 import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import type { Product } from '@/lib/types';
 import { PROMISES } from './HeroPromises';
@@ -32,7 +33,7 @@ const copy = {
     windowLegend: 'Time', missing_date: 'Choose a delivery day and time to continue.', missing_slot: 'Choose a delivery time to continue.',
     date_passed: 'That delivery day has passed. Please choose another.', slot_passed: 'That delivery time has passed. Please choose another.',
     day_closed: "We aren't delivering on that day. Please choose another.",
-    deliveryLine: 'Arrives', askAbout: 'Ask about this bouquet on WhatsApp',
+    deliveryLine: 'Arrives', askAbout: 'Ask about this gift on WhatsApp',
     helpOrder: 'Questions? Chat with us on WhatsApp', orderWhatsapp: 'Order on WhatsApp instead',
     addBag: 'Add to bag', subtotal: 'Subtotal',
     offerLine: 'Welcome offer: 25% off your first order with your code at checkout.',
@@ -63,7 +64,7 @@ const copy = {
     windowLegend: 'الوقت', missing_date: 'اختر يوم التوصيل ووقته للمتابعة.', missing_slot: 'اختر وقت التوصيل للمتابعة.',
     date_passed: 'انقضى يوم التوصيل هذا. يرجى اختيار يوم آخر.', slot_passed: 'انقضى موعد التوصيل هذا. يرجى اختيار موعد آخر.',
     day_closed: 'لا نوصّل في هذا اليوم. يرجى اختيار يوم آخر.',
-    deliveryLine: 'موعد الوصول', askAbout: 'استفسر عن هذه الباقة عبر واتساب',
+    deliveryLine: 'موعد الوصول', askAbout: 'استفسر عن هذه الهدية عبر واتساب',
     helpOrder: 'لديك سؤال؟ تحدّث معنا عبر واتساب', orderWhatsapp: 'اطلب عبر واتساب بدلاً من ذلك',
     addBag: 'أضف إلى الحقيبة', subtotal: 'المجموع الفرعي',
     offerLine: 'عرض الترحيب: خصم ٢٥٪ على طلبك الأول برمزك عند الدفع.',
@@ -139,29 +140,6 @@ function DialogShell({ children, onClose, label, kind }: { children: ReactNode; 
   );
 }
 
-const STARTERS: Record<'en' | 'ar', Record<string, string[]>> = {
-  en: {
-    birthday: ["Happy birthday. Here's to the year ahead, and every year after.", 'Another year of you. Lucky us.'],
-    love: ['Still you. Always you.', 'For every ordinary day you made extraordinary.'],
-    thanks: ['Thank you, truly. This is a small part of what I owe you.', 'For everything you did, quietly and so well.'],
-    sorry: ['I was wrong. These are the first part of my apology.'],
-    'get-well': ["Get well soon. We're keeping your seat warm."],
-    'new-baby': ['Welcome to the world, little one.', 'Congratulations on your beautiful new arrival.'],
-    congratulations: ['You earned every bit of this. Congratulations.'],
-    'just-because': ['No reason at all. Just you.', 'Thinking of you today.'],
-  },
-  ar: {
-    birthday: ['عيد ميلاد سعيد، وكل عام وأنت بخير.', 'سنة جديدة من وجودك. ما أسعدنا بك.'],
-    love: ['أنت دائماً، أنت فقط.', 'أحبك اليوم أكثر من الأمس.'],
-    thanks: ['شكراً من القلب، هذه لفتة صغيرة أمام كل ما قدمته.'],
-    sorry: ['كنت مخطئاً، وهذه أول كلمات اعتذاري.'],
-    'get-well': ['سلامتك، ننتظر عودتك بخير.'],
-    'new-baby': ['أهلاً بك في هذا العالم يا صغيري.', 'مبارك المولود الجديد.'],
-    congratulations: ['تستحق كل هذا النجاح. مبارك.'],
-    'just-because': ['من دون مناسبة، فقط لأنك أنت.', 'أفكر فيك اليوم.'],
-  },
-};
-
 function CardPreview({ message, signedAs, anonymous, t }: { message: string; signedAs: string; anonymous: boolean; t: Copy }) {
   const arabic = /[؀-ۿ]/.test(message);
   return (
@@ -201,14 +179,18 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
   const [custom, setCustom] = useState('');
   const noteReported = useRef(false);
   const chosen = product.sizes.find((size) => size.id === sizeId) ?? firstAvailable;
-  const occasion = product.occasions[0] ?? 'just-because';
-  const starters = STARTERS[ar ? 'ar' : 'en'][occasion] ?? STARTERS[ar ? 'ar' : 'en']['just-because'];
   const composition = (ar ? product.compositionAr : product.composition) ?? [];
   const field = product.custom;
   const customMissing = Boolean(field) && !custom.trim();
   const number = product.no ? `N° ${String(product.no).padStart(3, '0')}` : '';
   const name = ar ? product.nameAr : product.name;
-  const askLink = whatsappLink(whatsappMessage.product(ar, name, ar ? chosen.nameAr : chosen.name));
+  const deliveryChosen = Boolean(delivery.date && delivery.slotId && nowDubai && !checkSchedule(delivery, nowDubai));
+  const askLink = whatsappLink(whatsappMessage.product(ar, {
+    name, size: ar ? chosen.nameAr : chosen.name,
+    price: chosen.available ? formatAED(chosen.price, ar) : '',
+    delivery: deliveryChosen ? `${formatDeliveryDate(delivery.date!, ar)} · ${windowLabel(delivery.slotId!, ar)}` : '',
+    url: `${SITE_URL}/shop/${product.id}`,
+  }));
 
   const chooseSize = (id: string) => {
     setSizeId(id);
@@ -264,14 +246,13 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
           </div>}
         </fieldset>
 
-        <ProductDelivery t={t} value={delivery} onChange={setDelivery} />
+        <ProductDelivery t={t} value={delivery} onChange={setDelivery} askLink={askLink} />
 
         <section className="qa-section" aria-labelledby={`qa-card-title-${product.id}`}>
           <div className="qa-legend"><span id={`qa-card-title-${product.id}`}>{t.yourCard}</span><em>{t.handwritten}</em></div>
           <CardPreview message={note.trim()} signedAs={signedAs.trim()} anonymous={anonymous} t={t} />
           <label className="qa-label" htmlFor={`gift-note-${product.id}`}>{t.giftNote}</label>
-          <textarea id={`gift-note-${product.id}`} value={note} maxLength={NOTE_LIMIT} rows={3} onChange={(event) => setNote(event.target.value)} onBlur={reportNote} placeholder={t.notePlaceholder} />
-          <div className="qa-starters">{starters.map((line) => <button type="button" key={line} onClick={() => setNote(line)}>{line}</button>)}</div>
+          <textarea id={`gift-note-${product.id}`} value={note} maxLength={NOTE_LIMIT} rows={2} onChange={(event) => setNote(event.target.value)} onBlur={reportNote} placeholder={t.notePlaceholder} />
           <div className="qa-sign">
             <input aria-label={t.signedAs} placeholder={t.signedAs} value={signedAs} maxLength={60} disabled={anonymous} onChange={(event) => setSignedAs(event.target.value)} />
             <button type="button" role="switch" aria-checked={anonymous} className="qa-switch" onClick={() => setAnonymous(!anonymous)}><i />{t.secret}</button>
@@ -281,7 +262,6 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
         <ul className="qa-promises" aria-label={ar ? 'وعودنا' : 'Our promises'}>
           {PROMISES.map((item) => <li key={item.text.en}>{item.icon}<span>{ar ? item.text.ar : item.text.en}</span></li>)}
         </ul>
-        {askLink && <a className="wa-inline qa-ask" href={askLink} target="_blank" rel="noopener noreferrer"><WhatsAppIcon />{t.askAbout}</a>}
         {related.length > 0 && onOpen && <section className="qa-related" aria-labelledby={`qa-related-title-${product.id}`}>
           <h3 id={`qa-related-title-${product.id}`} className="qa-included">{t.alsoLike}</h3>
           <div className="qa-related-row">{related.map((item) => (
@@ -346,7 +326,7 @@ function earliestSlot(now: NonNullable<ReturnType<typeof useDubaiNow>>): Deliver
  * window and lets the shopper use it or choose another. The choice is for the whole order and is
  * saved to the cart with the add; it never blocks "Add to bag".
  */
-function ProductDelivery({ t, value, onChange }: { t: Copy; value: Partial<DeliverySchedule>; onChange: (next: Partial<DeliverySchedule>) => void }) {
+function ProductDelivery({ t, value, onChange, askLink }: { t: Copy; value: Partial<DeliverySchedule>; onChange: (next: Partial<DeliverySchedule>) => void; askLink: string | null }) {
   const { ar } = useStore();
   const now = useDubaiNow();
   const complete = Boolean(value.date && value.slotId && now && !checkSchedule(value, now));
@@ -364,6 +344,7 @@ function ProductDelivery({ t, value, onChange }: { t: Copy; value: Partial<Deliv
         </div>
         <div className="pd-actions">
           {!complete && earliest && <button type="button" className="pd-link" onClick={() => { onChange(earliest); trackDeliveryScheduled(earliest, 'product_page'); }}>{t.useEarliest}</button>}
+          {askLink && <a className="pd-ask" href={askLink} target="_blank" rel="noopener noreferrer" aria-label={t.askAbout} data-tip={t.askAbout}><WhatsAppIcon /></a>}
         </div>
       </div>
       <DeliveryPicker t={t} scope="product" value={value} problem={null}
