@@ -264,6 +264,8 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
           </div>}
         </fieldset>
 
+        <ProductDelivery t={t} value={delivery} onChange={setDelivery} />
+
         <section className="qa-section" aria-labelledby={`qa-card-title-${product.id}`}>
           <div className="qa-legend"><span id={`qa-card-title-${product.id}`}>{t.yourCard}</span><em>{t.handwritten}</em></div>
           <CardPreview message={note.trim()} signedAs={signedAs.trim()} anonymous={anonymous} t={t} />
@@ -279,7 +281,6 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
         <ul className="qa-promises" aria-label={ar ? 'وعودنا' : 'Our promises'}>
           {PROMISES.map((item) => <li key={item.text.en}>{item.icon}<span>{ar ? item.text.ar : item.text.en}</span></li>)}
         </ul>
-        <ProductDelivery t={t} value={delivery} onChange={setDelivery} />
         {askLink && <a className="wa-inline qa-ask" href={askLink} target="_blank" rel="noopener noreferrer"><WhatsAppIcon />{t.askAbout}</a>}
         {related.length > 0 && onOpen && <section className="qa-related" aria-labelledby={`qa-related-title-${product.id}`}>
           <h3 id={`qa-related-title-${product.id}`} className="qa-included">{t.alsoLike}</h3>
@@ -341,14 +342,13 @@ function earliestSlot(now: NonNullable<ReturnType<typeof useDubaiNow>>): Deliver
 }
 
 /**
- * Delivery day and time on the product page. Collapsed by default so it never gets in the way:
- * it suggests the earliest window and lets the shopper use it or choose another. The choice is
- * for the whole order and is saved to the cart with the add; it never blocks "Add to bag".
+ * Delivery day and time on the product page. The picker is always open: it suggests the earliest
+ * window and lets the shopper use it or choose another. The choice is for the whole order and is
+ * saved to the cart with the add; it never blocks "Add to bag".
  */
 function ProductDelivery({ t, value, onChange }: { t: Copy; value: Partial<DeliverySchedule>; onChange: (next: Partial<DeliverySchedule>) => void }) {
   const { ar } = useStore();
   const now = useDubaiNow();
-  const [open, setOpen] = useState(false);
   const complete = Boolean(value.date && value.slotId && now && !checkSchedule(value, now));
   const earliest = now ? earliestSlot(now) : null;
   const dayWord = (date: string) => (now && date === now.date ? (ar ? 'اليوم' : 'Today') : now && date === addDays(now.date, 1) ? (ar ? 'غداً' : 'Tomorrow') : formatDeliveryDate(date, ar));
@@ -364,11 +364,10 @@ function ProductDelivery({ t, value, onChange }: { t: Copy; value: Partial<Deliv
         </div>
         <div className="pd-actions">
           {!complete && earliest && <button type="button" className="pd-link" onClick={() => { onChange(earliest); trackDeliveryScheduled(earliest, 'product_page'); }}>{t.useEarliest}</button>}
-          <button type="button" className="pd-link" aria-expanded={open} onClick={() => setOpen(!open)}>{complete ? t.changeDelivery : t.chooseDelivery}</button>
         </div>
       </div>
-      {open && <DeliveryPicker t={t} scope="product" value={value} problem={null}
-        onChange={(next) => { onChange(next); if (next.date && next.slotId && now && !checkSchedule(next, now)) trackDeliveryScheduled(next as DeliverySchedule, 'product_page'); }} />}
+      <DeliveryPicker t={t} scope="product" value={value} problem={null}
+        onChange={(next) => { onChange(next); if (next.date && next.slotId && now && !checkSchedule(next, now)) trackDeliveryScheduled(next as DeliverySchedule, 'product_page'); }} />
     </section>
   );
 }
@@ -479,7 +478,6 @@ function Bag() {
   const summary = cart.delivery ? deliverySummary(cart.delivery, ar) : '';
   // Checkout stays closed until a delivery day and a time window that can still be booked are chosen.
   const blocked = checkSchedule(schedule, now ?? undefined);
-  const helpLink = whatsappLink(whatsappMessage.general(ar));
   const orderLink = lines.length ? whatsappLink(whatsappMessage.bag(ar, bagSummary(lines, ar), summary)) : null;
   const close = () => { cart.clearError(); setCartOpen(false); };
 
@@ -577,7 +575,6 @@ function Bag() {
             <article className="ll-cart-line" key={line.key}>
               <img src={line.image} alt="" />
               <div className="ll-cart-line-info">
-                <span className="ll-cart-line-category">{ar ? line.categoryAr : line.category}</span>
                 <h3>{line.product ? <a href={`/shop/${line.product.id}`}>{ar ? line.nameAr : line.name}</a> : (ar ? line.nameAr : line.name)}</h3>
                 <p>{ar ? line.sizeNameAr : line.sizeName} · <Money amount={line.unitPrice.amount} ar={ar} whole /> {t.each}</p>
                 {line.custom && <p className="ll-cart-line-detail">{t.customLine}: {line.custom}</p>}
@@ -595,14 +592,12 @@ function Bag() {
             </article>
           ))}
           <DeliveryPicker t={t} value={schedule} onChange={changeSchedule} problem={problem} />
-          {helpLink && <p className="dl-help"><a className="wa-inline" href={helpLink} target="_blank" rel="noopener noreferrer"><WhatsAppIcon />{t.helpOrder}</a></p>}
         </div>
         <div className="ll-cart-footer">
           <div className="ll-cart-totals">
             <div><span>{t.subtotal}</span><strong><Money amount={subtotal.amount} ar={ar} whole /></strong></div>
             {summary && <div><span>{t.deliveryLine}</span><span data-ph-mask>{summary}</span></div>}
           </div>
-          <p className="ll-cart-offer">{t.offerLine}</p>
           {blocked && <p className="ll-cart-date-alert" role="status">{t[blocked]}</p>}
           <button className={`ll-shop-primary${blocked ? ' is-blocked' : ''}`} type="button" onClick={handleCheckout}
             disabled={pending || cart.busy} aria-disabled={blocked ? true : undefined}>
