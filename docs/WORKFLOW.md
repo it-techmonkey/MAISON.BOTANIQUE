@@ -11,7 +11,7 @@
 ## Checks
 
 Run npm test, Python unittest discovery, npm run typecheck, then npm run build (commands in README).
-Buying-flow tests (npm run test:e2e) run on every Vercel preview and hourly on production; see the
+Buying-flow tests (npm run test:e2e) run on every Vercel preview and can be started manually against production; see the
 Area → tests table in AGENTS.md for which tests belong to each part of the site.
 Typecheck generates Next.js route helpers first, so it also works in a fresh clone without a previous build.
 CI uses the lockfile, pinned official Actions, read-only repository permissions and no Shopify credentials.

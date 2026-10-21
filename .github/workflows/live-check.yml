@@ -1,14 +1,9 @@
 name: Live checkout check
 
-# Every hour, runs the read-only buying-flow tests tagged @live against the
-# production site. Nothing is ordered and no contact, address, discount or
-# payment details are entered; the run stops on Shopify's checkout page.
-# A failure emails the person who last changed the schedule below (GitHub's
-# rule for scheduled workflows) and opens or updates a "Live checkout check
-# failing" issue, which notifies repository watchers.
+# Runs the @live buying-flow tests against production only when started manually.
+# Nothing is ordered and no contact, address, discount or payment details are
+# entered; the run stops on Shopify's checkout page.
 on:
-  schedule:
-    - cron: '17 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -45,21 +40,3 @@ jobs:
             playwright-report/
             test-results/
           retention-days: 14
-
-  alert:
-    needs: live
-    if: failure() && github.event_name == 'schedule'
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-    steps:
-      - name: Open or update the failure issue
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: |
-          title="Live checkout check failing"
-          number=$(gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number')
-          body="The hourly check of https://maisonbotaniqueflowers.com failed at $(date -u '+%Y-%m-%d %H:%M UTC'). The buying flow or the Shopify checkout handoff may be broken. Run: $RUN_URL"
-          if [ -n "$number" ]; then gh issue comment "$number" --body "$body"; else gh issue create --title "$title" --body "$body"; fi

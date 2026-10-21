@@ -6,7 +6,7 @@ import { test as base, expect, type Page } from '@playwright/test';
 
 /** A best-selling flower product with Signature, Grand and Luxe sizes. Override with E2E_PRODUCT. */
 export const PRODUCT = process.env.E2E_PRODUCT || 'eloise-pink-and-white-rose-bouquet';
-/** Hourly live check: a disconnected checkout or a missing WhatsApp number is a failure, not a note. */
+/** Production live check: a disconnected checkout or a missing WhatsApp number is a failure, not a note. */
 export const EXPECT_LIVE = process.env.E2E_EXPECT_LIVE === '1';
 export const CHECKOUT_HOST = process.env.E2E_CHECKOUT_HOST || 'shop.maisonbotaniqueflowers.com';
 

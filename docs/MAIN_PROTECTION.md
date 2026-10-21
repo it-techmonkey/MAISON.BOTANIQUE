@@ -60,17 +60,14 @@ request can't merge. Fix the preview, or use the admin bypass from step 3 if you
 
 Both are free for public repositories.
 
-## 4. Make sure failure emails reach you
+## 4. Run the production check manually
 
-The hourly **Live checkout check** emails the person who last changed its schedule line when it fails.
-That is whoever merges the pull request that adds it. It also opens or updates a GitHub issue titled
-**"Live checkout check failing"**.
+Before launch, **Live checkout check** has no schedule. It opens a Shopify checkout without placing an
+order, so each run can appear in Shopify's reached-checkout figures.
 
-1. github.com → your avatar → **Settings** → **Notifications** → **System** → **Actions**: choose
-   **Email**, and tick **Only notify for failed workflows**.
-2. On the repository page, click **Watch** → **Custom** → tick **Issues**, so the failure issue emails you too.
-3. After merging, open **Actions** → **Live checkout check** → **Run workflow** once. That confirms it passes
-   on production. A scheduled workflow only runs once its file is on `main`.
+1. After merging, open **Actions** → **Live checkout check** → **Run workflow** once and review the result.
+2. To receive workflow failure emails, open github.com → your avatar → **Settings** → **Notifications** →
+   **System** → **Actions**, choose **Email**, and tick **Only notify for failed workflows**.
 
-GitHub pauses scheduled workflows in public repositories after 60 days with no commits. If that happens,
-the Actions tab shows a banner with an **Enable workflow** button.
+Decide whether to enable an hourly schedule after launch. At that cadence, the check would open roughly
+24 test checkouts per day; the owner must approve that measurement impact before the schedule is added.

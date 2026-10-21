@@ -4,7 +4,7 @@ import { defineConfig, devices } from '@playwright/test';
 //   E2E_BASE_URL=https://<vercel-preview> npx playwright test
 // Without E2E_BASE_URL they start the local production build (`npm run build` first).
 // E2E_EXPECT_LIVE=1 makes the Shopify checkout and WhatsApp tests fail, instead of
-// noting a gap, when the site is not connected to Shopify (used by the hourly live check).
+// noting a gap, when the site is not connected to Shopify (used by the manual production check).
 const baseURL = process.env.E2E_BASE_URL?.replace(/\/+$/, '') || 'http://localhost:3000';
 
 export default defineConfig({

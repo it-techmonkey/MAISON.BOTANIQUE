@@ -14,7 +14,7 @@ Read [README.md](README.md), [docs/CURRENT_STATUS.md](docs/CURRENT_STATUS.md), [
 
 ## Area → tests
 
-If you change an area, run its tests and update them in the same branch. Unit and data tests run with `npm test`; buying-flow tests run with `npm run test:e2e` (set `E2E_BASE_URL` to a preview, or `npm run build` first to test locally). Tests tagged `@live` (home, add to bag, checkout handoff, WhatsApp product link) also run hourly against production (`.github/workflows/live-check.yml`); keep that set small and free of catalogue-specific details.
+If you change an area, run its tests and update them in the same branch. Unit and data tests run with `npm test`; buying-flow tests run with `npm run test:e2e` (set `E2E_BASE_URL` to a preview, or `npm run build` first to test locally). Tests tagged `@live` (home, add to bag, checkout handoff, WhatsApp product link) can also run manually against production (`.github/workflows/live-check.yml`); keep that set small and free of catalogue-specific details.
 
 | Area (main files) | Unit / data tests | Buying-flow tests (`tests/e2e/`) |
 | --- | --- | --- |
@@ -30,4 +30,4 @@ If you change an area, run its tests and update them in the same branch. Unit an
 | Catalogue data (`src/data/collection.json`, `scripts/build_collection.py`) | `catalogue.test.mjs` | — |
 | Delivery-fee wording (footer, FAQ, delivery, residences) | `catalogue.test.mjs` | — |
 
-The buying-flow tests never enter contact, address, discount or payment details and never submit a form. On a preview without Shopify or WhatsApp settings they note "not exercised" instead of failing; with `E2E_EXPECT_LIVE=1` (the hourly check) that becomes a failure.
+The buying-flow tests never enter contact, address, discount or payment details and never submit a form. On a preview without Shopify or WhatsApp settings they note "not exercised" instead of failing; with `E2E_EXPECT_LIVE=1` (the manual production check) that becomes a failure.
