@@ -6,7 +6,7 @@ import { BUDGET_BANDS, GROUP_ALIASES, TAB_IDS, budgetOf, liveCatalogGroups, type
 import type { Product } from '@/lib/types';
 import { useStore } from './StoreProvider';
 import { isMostLoved } from '@/lib/most-loved';
-import { occasionHash } from '@/lib/site';
+import { SHOW_COLLECTION_EVENT, occasionHash, type ShowCollectionDetail } from '@/lib/site';
 import SaleTag from './SaleTag';
 import Money from './Money';
 
@@ -180,6 +180,8 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
   const [shown, setShown] = useState(PAGE);
   const [refineOpen, setRefineOpen] = useState(false);
   const [inView, setInView] = useState(false);
+  const [occasionRow, setOccasionRow] = useState(showOccasions);
+  const [revealed, setRevealed] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const roomsRef = useRef<HTMLElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -212,6 +214,29 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
     window.addEventListener('hashchange', apply);
     return () => { window.clearTimeout(timer); window.removeEventListener('hashchange', apply); };
   }, [catalog, scrollToGrid, initialOccasion]);
+
+  // "View all" on the home page: the whole collection, unfiltered. From Shop by
+  // Occasion it also brings in the collection's own occasion row. The scroll
+  // waits for that render so the row is measured in place.
+  useEffect(() => {
+    const show = (event: Event) => {
+      const detail = (event as CustomEvent<ShowCollectionDetail>).detail;
+      setState(EMPTY);
+      setShown(PAGE);
+      if (detail?.occasions) setOccasionRow(true);
+      setRevealed((n) => n + 1);
+    };
+    window.addEventListener(SHOW_COLLECTION_EVENT, show);
+    return () => window.removeEventListener(SHOW_COLLECTION_EVENT, show);
+  }, []);
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!revealed || !section) return;
+    // Land the collection's title just under the header (and offer bar), whatever their height.
+    const header = document.querySelector('.site-header')?.getBoundingClientRect().bottom ?? 0;
+    const top = section.getBoundingClientRect().top + window.scrollY - header;
+    window.scrollTo({ top, behavior: reduced() ? 'instant' : 'smooth' });
+  }, [revealed]);
 
   // The phone Refine/Sort bar only appears while the collection is on screen.
   useEffect(() => {
@@ -297,7 +322,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
         </label>
       </div>
 
-      {showOccasions && <div className="mbc-in">
+      {occasionRow && <div className="mbc-in">
         <h3 className="mbc-sc mbc-occ-title">{t.shopBy}</h3>
         <div className="mbc-occasions">{occasionTiles.map((o) => {
           const on = state.occasion.length === 1 && state.occasion[0] === o.id;
