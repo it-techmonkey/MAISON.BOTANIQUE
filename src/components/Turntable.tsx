@@ -4,7 +4,6 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Link from 'next/link';
 import { trackHeroClicked, trackHeroNavigated } from '@/lib/analytics/track';
 import { formatMoney } from '@/lib/format';
 import SaleTag from './store/SaleTag';
@@ -195,7 +194,7 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
           <p className="tt-intro__eyebrow">{arabic ? 'زهور، بإحساس' : 'Flowers, with feeling'}</p>
           <h1>{arabic ? <>زهور جميلة.<br />تصل بعناية.</> : <>Beautiful flowers.<br />Thoughtfully delivered.</>}</h1>
           <p>{arabic ? 'لفتات مدروسة، تحملها الزهور إلى من نحب.' : 'Considered gestures, beautifully expressed in flowers.'}</p>
-          <Link className="button" href="/shop">{arabic ? 'تسوّق المجموعة' : 'Shop the collection'}</Link>
+          <a className="button" href="#shop">{arabic ? 'تسوّق المجموعة' : 'Shop the collection'}</a>
         </div>
       </section>
     );

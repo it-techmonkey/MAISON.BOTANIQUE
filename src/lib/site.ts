@@ -155,6 +155,9 @@ export function occasionSlug(id: string) { return id === 'just-because' ? 'gifts
 /** Occasions are filters on the one collection, not pages of their own. */
 export function occasionHash(id: string) { return `occasion/${occasionSlug(id)}`; }
 export function occasionPath(id: string) { return `/shop#${occasionHash(id)}`; }
+/** Window event that asks the home collection to clear its filters and come into view. */
+export const SHOW_COLLECTION_EVENT = 'maison:show-collection';
+export type ShowCollectionDetail = { occasions?: boolean };
 
 export function findOccasion(id: string) {
   if (id === 'gifts-for-her') id = 'just-because';
