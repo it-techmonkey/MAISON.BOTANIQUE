@@ -5,14 +5,28 @@ on:
     branches: [main]
   push:
     branches: [main]
+  merge_group:
+    types: [checks_requested]
+  workflow_dispatch:
+
+# Keep main's commit checks independent: Vercel gates each production release on them.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
 
 jobs:
   verify:
+    # Keep this name stable in GitHub branch protection and Vercel Deployment Checks.
+    name: verify
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
+    env:
+      CI: 'true'
+      NEXT_TELEMETRY_DISABLED: '1'
+      SITE_INDEXABLE: 'false'
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
@@ -24,8 +38,24 @@ jobs:
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - run: npm ci --ignore-scripts
-      - run: npm test
-      - run: python3 -I -m unittest discover -s tests -p 'test_*.py'
-      - run: npm run typecheck
-      - run: npm run build
+      - name: Install locked dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts
+      - name: Run Node tests
+        run: npm test
+      - name: Run Python tests
+        run: python3 -I -m unittest discover -s tests -p 'test_*.py'
+      - name: Generate route types and check TypeScript
+        run: npm run typecheck
+      - name: Validate recorded prices and build storefront
+        run: npm run build
+      - name: Install Chromium and system dependencies
+        run: npx --no-install playwright install --with-deps chromium
+      - name: Test buying flows against the local production build
+        run: npm run test:e2e
+      - name: Upload browser test report
+        if: ${{ !cancelled() && hashFiles('playwright-report/**') != '' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: playwright-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: playwright-report/
+          retention-days: 7
