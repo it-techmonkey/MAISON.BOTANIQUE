@@ -29,6 +29,23 @@ The attached plan's search volumes, ranking difficulty, AI citation patterns, an
 
 **Pilot:** 1 occasion collection, 1 useful Dubai delivery page, a National Day collection/guide if approved, and visible answer blocks on 20 real best sellers. Continue only when pages are crawlable, accurate, receiving relevant impressions, and some visitors progress toward a bag or order. Review after 4 and 8 weeks; do not treat 14-day indexing or an order as guaranteed pass/fail criteria.
 
+### Initial query-to-page map
+
+These are topics to test, not measured search-volume claims. Record the current Search Console query/page pair before writing a new page; keep one primary landing URL per intent to avoid competing with ourselves.
+
+| Priority | Search intent | Primary landing page | What makes it worth indexing |
+| --- | --- | --- | --- |
+| P0 | Flower delivery Dubai; luxury flowers Dubai | Home, then the verified Dubai delivery page | Real delivery terms, real arrangements, contact and working checkout. |
+| P0 | Birthday flowers Dubai | One Birthday collection URL | Tagged birthday products, price range, card examples and delivery answer. |
+| P0 | Rose bouquet Dubai; 100 roses Dubai | Existing rose collection and the relevant exact-size product | Real rose counts by Signature/Grand/Luxe, accurate image and stock. |
+| P1 | Gifts for her Dubai | Approved Gifts for her curation, with a crawlable collection route | The approved 24 products, real brands and gift combinations. |
+| P1 | Get well flowers Dubai; new baby gifts | Separate occasion URLs only after the first pilot works | Distinct products and answers, including hospital delivery only after operations confirms it. |
+| P1 | Flowers and chocolates; preserved roses | Matching existing collections | Product-specific contents and care, no invented brand or lifespan claims. |
+| P1 | UAE National Day gifts | One seasonal URL, reused and refreshed annually | Approved real stock, UAE-specific timing and card wording. |
+| P2 | Flowers under AED 300; grand bouquets | Server-rendered budget/category collection routes | Actual products in the band; no thin copy or indexable filter permutations. |
+| P2 | Flower delivery Abu Dhabi / JVC | At most one page per genuinely distinct service area | Verified fee, window, delivery experience and original proof. |
+| Later | Arabic equivalents of proven intents | Proper `/ar/` equivalents | Fully translated main content, native review and hreflang. |
+
 ## Delivery plan
 
 ### Phase 0 — ownership and factual launch gate (this week)
@@ -40,6 +57,13 @@ The attached plan's search volumes, ranking difficulty, AI citation patterns, an
 5. Take a read-only live Shopify/product and compare-at-price review before any Merchant Center feed. Never overwrite current Shopify data with recorded exports.
 
 **Exit:** one factual delivery matrix and one canonical domain, plus owners for each external account. No live indexing switch yet.
+
+**Account setup runbook for the owner:**
+
+1. In Google Search Console, search your Google account for an existing property first. If none exists, create a **URL-prefix** property for `https://www.maisonbotaniqueflowers.com/` and choose HTML tag verification. Send the token value to the Vercel administrator through a private channel, not this repository. The new `GOOGLE_SITE_VERIFICATION` host variable prints the tag after the reviewed code is deployed. Confirm ownership in Search Console.
+2. In Bing Webmaster Tools, check for an existing site and import the verified Google property if available. If that route is unavailable, use Bing's meta-tag token via the private `BING_SITE_VERIFICATION` host variable. Keep both tools under an account the business controls.
+3. After indexability opens, submit `https://www.maisonbotaniqueflowers.com/sitemap.xml` in both tools. Inspect the home page, a real product and the Birthday pilot URL. Record the indexed/canonical result after crawling; do not submit hundreds of individual URLs.
+4. Search Google Maps for an existing Maison Botanique profile before creating one. If there is a real eligible fulfilment location, verify the business, set it as a service-area business and hide the address if customers are not served there. Fill the actual contact, hours, categories and service areas. Keep this separate from the website's no-street-address rule.
 
 ### Phase 1 — technical launch foundations (current review PR)
 
@@ -78,6 +102,10 @@ Run `npm test`, Python tooling tests, `npm run typecheck`, `npm run build`, and 
 ### Phase 4 — repeatable growth (quarterly)
 
 Use Search Console queries to choose one page with commercial intent and a realistic opportunity. Improve its answer, product selection and internal links, then let it be recrawled. Publish original seasonal or care content when it serves a customer decision; a useful guide every 2–4 weeks is a starting capacity, not a ranking quota. Pitch editors and real UAE gift guides with specific products and photography. Record actual earned links and referral sales. Refresh or merge weak pages quarterly. Plan Ramadan, both Eids, Valentine's and UAE Mother's Day 8–10 weeks before the event; confirm lunar dates closer to launch.
+
+**Editorial queue:** start with the questions customers actually ask: which rose size to send, what arrives with a handwritten card, how to care for fresh flowers in Dubai heat, preserved-flower care, and how to choose an occasion gift by budget. Every guide should name real Maison products, use approved photographs, link to one appropriate collection and a few products, and be reviewed for EN/AR accuracy. A blog index can wait until there are at least three worthwhile guides; standalone commerce pages take precedence.
+
+**Seasonal preparation:** National Day (2 Dec 2026) needs approved page/product selection by 10 Nov; Christmas/New Year by late Nov; Valentine's 2027 by early Jan; Ramadan and Eid drafts 8–10 weeks ahead; UAE Mother's Day (21 Mar) by early Feb. Islamic holiday dates are forecasts until officially confirmed. Existing Diwali proposal work stays in its separate worktree.
 
 ## Operating calendar and automation
 
