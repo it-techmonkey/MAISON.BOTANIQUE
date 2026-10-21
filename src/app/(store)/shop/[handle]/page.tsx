@@ -38,8 +38,8 @@ const DETAILS = [
   {
     title: { en: 'Delivery', ar: 'التوصيل' },
     body: {
-      en: 'Same-day delivery across the UAE; the delivery fee for your address is shown at checkout. Choose the day and a three-hour window (9am to 9pm) in your bag; same-day windows close three hours before they start.',
-      ar: 'توصيل في اليوم نفسه في جميع أنحاء الإمارات، وتظهر رسوم التوصيل لعنوانك عند الدفع. اختر اليوم وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، وتُغلق فترات اليوم نفسه قبل بدايتها بثلاث ساعات.',
+      en: 'Same-day delivery is available in Dubai; we also deliver across the UAE. The delivery fee for your address is shown at checkout. Choose the day and a three-hour window (9am to 9pm) in your bag; Dubai same-day windows close three hours before they start.',
+      ar: 'التوصيل في اليوم نفسه متاح داخل دبي، ونوصل أيضاً إلى جميع أنحاء الإمارات. تظهر رسوم التوصيل لعنوانك عند الدفع. اختر اليوم وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، وتُغلق فترات اليوم نفسه داخل دبي قبل بدايتها بثلاث ساعات.',
     },
   },
   {

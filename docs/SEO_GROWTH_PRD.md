@@ -51,6 +51,7 @@ The attached plan's search volumes, ranking difficulty, AI citation patterns, an
 | Site identity | Organization/WebSite schema without an unverified address or phone; product seller references the shared organization; product breadcrumb schema. | JSON-LD parses; URLs match the canonical host; no false LocalBusiness claim. |
 | Verification hooks | Optional Google and Bing meta tokens via environment variables. | Tags appear only when values are configured. No token in Git. |
 | Search-ready home snippet | Clear title/description naming flowers and Dubai, while preserving the approved visible headline. | One H1 and canonical `/`; no unapproved delivery guarantee. |
+| Consistent delivery wording | Replace UAE-wide same-day wording in EN/AR visible copy and metadata with the maintained Dubai-only same-day scope. | No page promises same-day service outside Dubai; checkout eligibility still requires a separate live test. |
 
 Run `npm test`, Python tooling tests, `npm run typecheck`, `npm run build`, and a preview crawl. Check EN/AR, 1440/414/390/360/320 px, reduced motion and the buying flow for visible changes. Open a review PR and Vercel preview. Do not merge or set `SITE_INDEXABLE=true` as part of the PR.
 
