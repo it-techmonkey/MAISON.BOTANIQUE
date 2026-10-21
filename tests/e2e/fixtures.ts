@@ -71,6 +71,8 @@ export function notConnected(what: string) {
   const message = `${what} is not connected on this deployment, so this part was not exercised.`;
   expect(EXPECT_LIVE, message).toBe(false);
   test.info().annotations.push({ type: 'not exercised', description: message });
+  // Shown on the GitHub check summary, so a green run does not hide the gap.
+  if (process.env.GITHUB_ACTIONS) console.log(`::warning title=Not exercised::${test.info().title}: ${message}`);
 }
 
 /** The page never scrolls sideways. */

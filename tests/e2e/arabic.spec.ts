@@ -1,7 +1,7 @@
 // Area: Arabic and right-to-left layout.
 import { test, expect, openProduct, addToBag, openBag, expectNoHorizontalScroll, notConnected } from './fixtures';
 
-test('switching to Arabic turns the page right-to-left and translates the shop @live', async ({ page }) => {
+test('switching to Arabic turns the page right-to-left and translates the shop', async ({ page }) => {
   await page.goto('/');
   await page.locator('.site-header').getByRole('button', { name: 'التبديل إلى العربية' }).click();
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');

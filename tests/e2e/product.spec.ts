@@ -1,7 +1,7 @@
 // Area: product page, sizes and add to bag.
 import { test, expect, PRODUCT, openProduct, addToBag, openBag } from './fixtures';
 
-test('product page shows name, price, struck price, off tag and the three sizes @live', async ({ page }) => {
+test('product page shows name, price, struck price, off tag and the three sizes', async ({ page }) => {
   await openProduct(page);
   await expect(page.locator('.purchase__price strong')).toContainText(/\d/);
   await expect(page.locator('.purchase__price s')).toBeVisible();

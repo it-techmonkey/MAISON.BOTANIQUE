@@ -10,7 +10,7 @@ test('home page shows the approved hero headline and the collection @live', asyn
   await expect(page.locator('#shop .mbc-piece').first()).toBeVisible();
 });
 
-test('shop tabs filter the collection and update the link @live', async ({ page }) => {
+test('shop tabs filter the collection and update the link', async ({ page }) => {
   await page.goto('/shop');
   await expect(page.locator('.mbc-piece').first()).toBeVisible();
   const roses = page.locator('.mbc-room', { hasText: /^Roses$/ });

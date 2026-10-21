@@ -46,9 +46,9 @@ WhatsApp tests report "not exercised" instead of really testing. Production is f
 To check it worked, open any pull request. The merge button should say that **verify** and **e2e** are
 required, and a direct `git push origin main` should be refused.
 
-Note: `e2e` runs after Vercel finishes the preview. If Vercel ever skips a preview (a build error, or a
-paused project), the check stays "Expected — waiting" and the pull request can't merge. Fix the preview,
-or use the admin bypass from step 3 if you set one.
+Note: `e2e` runs when Vercel finishes the preview. A failed preview build fails `e2e`. If Vercel makes
+no preview at all (for example a paused project), the check stays "Expected — waiting" and the pull
+request can't merge. Fix the preview, or use the admin bypass from step 3 if you set one.
 
 ## 3. Secret scanning and push protection (GitHub)
 

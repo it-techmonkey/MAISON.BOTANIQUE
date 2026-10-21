@@ -3,7 +3,7 @@ import { test, expect, openProduct, addToBag, openBag, expectNoHorizontalScroll 
 
 test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
 
-test('home, shop and info pages fit a 390px phone @live', async ({ page }) => {
+test('home, shop and info pages fit a 390px phone', async ({ page }) => {
   for (const path of ['/', '/shop', '/delivery', '/faq']) {
     await page.goto(path);
     await expect(page.locator('#site-footer')).toBeAttached();

@@ -15,7 +15,7 @@ const addDays = (date: string, days: number) => {
 };
 const STARTS = [9 * 60, 12 * 60, 15 * 60, 18 * 60];
 
-test('quick days start today in Dubai, or tomorrow after the last same-day cut-off @live', async ({ page }) => {
+test('quick days start today in Dubai, or tomorrow after the last same-day cut-off', async ({ page }) => {
   await openProduct(page);
   const now = dubaiNow();
   // Skip the minute either side of the last same-day cut-off (3pm Dubai).
@@ -54,7 +54,7 @@ test('another day accepts up to 60 days ahead and refuses day 61', async ({ page
   await expect(page.locator('.dl-picker-product .dl-window')).toHaveCount(0);
 });
 
-test('the bag will not go to checkout until a day and time are chosen @live', async ({ page }) => {
+test('the bag will not go to checkout until a day and time are chosen', async ({ page }) => {
   await openProduct(page);
   await addToBag(page);
   const bag = await openBag(page);

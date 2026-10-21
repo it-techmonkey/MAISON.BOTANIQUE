@@ -18,7 +18,7 @@ test('product enquiry link carries name, size, price, delivery and product link 
   expect(text).toMatch(new RegExp(`https://[^\\s]+/shop/${PRODUCT}$`));
 });
 
-test('bag "Order on WhatsApp" link lists the line and the delivery @live', async ({ page }) => {
+test('bag "Order on WhatsApp" link lists the line and the delivery', async ({ page }) => {
   await openProduct(page);
   if (!(await page.locator('.qa-delivery .pd-ask').count())) return notConnected('WhatsApp number');
   const name = (await page.locator('.purchase h1').innerText()).trim();
