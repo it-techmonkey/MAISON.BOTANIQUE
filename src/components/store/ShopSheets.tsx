@@ -19,6 +19,7 @@ import SaleTag from './SaleTag';
 import { useStore } from './StoreProvider';
 import { WhatsAppIcon } from './WhatsAppButton';
 import Money from './Money';
+import { DELIVERY_FEES } from '@/lib/site';
 
 const NOTE_LIMIT = 280;
 
@@ -513,10 +514,14 @@ function Bag() {
     }
   }
 
+  const welcomeApplied = !!cart.shopifyCart?.discountCodes.some((item) => item.applicable && item.code === welcomeCode);
+  const afterDiscount = cart.shopifyCart?.total ?? subtotal;
+  const discounted = welcomeApplied && afterDiscount.amount < subtotal.amount;
   const welcome = (
     <section className="bag-welcome">
       {welcomeCode ? <>
-        <p>{cart.shopifyCart?.discountCodes.some((item) => item.applicable && item.code === welcomeCode) ? (ar ? 'تم تطبيق خصم الترحيب' : 'Welcome discount applied') : (ar ? 'رمز الترحيب جاهز للدفع' : 'Welcome code ready for checkout')}</p>
+        <p>{welcomeApplied ? (ar ? 'تم تطبيق خصم الترحيب' : 'Welcome discount applied') : (ar ? 'رمز الترحيب جاهز للدفع' : 'Welcome code ready for checkout')}</p>
+        {/^MB25-/i.test(welcomeCode) && <p className="bag-welcome-hint">{ar ? 'استخدم البريد الإلكتروني نفسه عند الدفع.' : 'Use the same email at checkout.'}</p>}
         <label><input type="checkbox" checked={useWelcome} onChange={(event) => { setUseWelcome(event.target.checked); void cart.applyWelcomeOffer?.(event.target.checked).catch(() => setError(t.error)); }} />{ar ? 'استخدم عرض الترحيب' : 'Use my welcome offer'}</label>
       </> : <button type="button" className="button button--ghost" onClick={openOffer}>{ar ? 'احصل على خصم ٢٥٪ على طلبك الأول' : 'Get 25% off your first order'}</button>}
     </section>
@@ -576,7 +581,12 @@ function Bag() {
         </div>
         <div className="ll-cart-footer">
           <div className="ll-cart-totals">
-            <div><span>{t.subtotal}</span><strong><Money amount={subtotal.amount} ar={ar} whole /></strong></div>
+            <div><span>{t.subtotal}</span><strong>{discounted
+              ? <><s className="ll-cart-was"><Money amount={subtotal.amount} ar={ar} whole /></s> <Money amount={afterDiscount.amount} ar={ar} whole /></>
+              : <Money amount={subtotal.amount} ar={ar} whole />}</strong></div>
+            <p className="ll-cart-fee-note">{ar
+              ? <>التوصيل: <Money amount={DELIVERY_FEES.dubai} ar={ar} whole /> في دبي · <Money amount={DELIVERY_FEES.otherEmirates} ar={ar} whole /> للإمارات الأخرى، تُضاف عند الدفع</>
+              : <>Delivery: <Money amount={DELIVERY_FEES.dubai} ar={ar} whole /> in Dubai · <Money amount={DELIVERY_FEES.otherEmirates} ar={ar} whole /> other emirates, added at checkout</>}</p>
             {summary && <div><span>{t.deliveryLine}</span><span data-ph-mask>{summary}</span></div>}
           </div>
           {blocked && <p className="ll-cart-date-alert" role="status">{t[blocked]}</p>}

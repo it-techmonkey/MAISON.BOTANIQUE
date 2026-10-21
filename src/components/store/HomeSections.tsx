@@ -1,20 +1,28 @@
 'use client';
 
-import { occasionHash } from '@/lib/site';
+import { SHOW_COLLECTION_EVENT, occasionHash, type ShowCollectionDetail } from '@/lib/site';
 import { imageAt } from '@/lib/images';
 import { useAfterLoad } from '@/lib/use-after-load';
 import { CollectionLink } from './SiteHeader';
 
-import Link from 'next/link';
-import { useMemo } from 'react';
+import { useMemo, type MouseEvent } from 'react';
 import { BUDGET_BANDS, budgetOf, liveCatalogGroups } from '@/lib/catalog-groups';
 import { useStore } from './StoreProvider';
 
-function SectionHead({ id, title, href, label }: { id?: string; title: string; href: string; label: string }) {
+/**
+ * "View all" goes down to the full collection just below on the home page,
+ * cleared of any filter, rather than to the separate /shop page.
+ */
+function SectionHead({ id, title, label, occasions = false }: { id?: string; title: string; label: string; occasions?: boolean }) {
+  const viewAll = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    history.replaceState(null, '', '#shop');
+    window.dispatchEvent(new CustomEvent<ShowCollectionDetail>(SHOW_COLLECTION_EVENT, { detail: { occasions } }));
+  };
   return (
     <div className="hs-head">
       <h2 id={id}>{title}</h2>
-      <Link className="hs-viewall" href={href}>{label} <span aria-hidden="true">→</span></Link>
+      <a className="hs-viewall" href="#shop" onClick={viewAll}>{label} <span aria-hidden="true">→</span></a>
     </div>
   );
 }
@@ -36,7 +44,7 @@ function OccasionTiles() {
 
   return (
     <section id="occasions" className="hs" aria-labelledby="hs-occasions" data-track-section="home_occasions" data-track-location="home_occasions">
-      <SectionHead id="hs-occasions" title={t('Shop by Occasion', 'تسوّق حسب المناسبة')} href="/shop" label={t('View all', 'عرض الكل')} />
+      <SectionHead id="hs-occasions" title={t('Shop by Occasion', 'تسوّق حسب المناسبة')} occasions label={t('View all', 'عرض الكل')} />
       <ul className="hs-occasions">
         {tiles.map((tile) => (
           <li key={tile.id}>
@@ -62,7 +70,7 @@ function BudgetTiles() {
 
   return (
     <section className="hs" aria-labelledby="hs-budget" data-track-section="home_budget" data-track-location="home_budget">
-      <SectionHead id="hs-budget" title={t('A gift for every gesture', 'هدية لكل لفتة')} href="/shop" label={t('View all', 'عرض الكل')} />
+      <SectionHead id="hs-budget" title={t('A gift for every gesture', 'هدية لكل لفتة')} label={t('View all', 'عرض الكل')} />
       <ul className="hs-budget">
         {tiles.map((tile) => (
           <li key={tile.id}>

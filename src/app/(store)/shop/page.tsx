@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ShopPage() {
   return (
     <div className="section--top">
-      <CollectionBrowser listId="shop" eagerImages={2} />
+      <CollectionBrowser listId="shop" eagerImages={6} />
     </div>
   );
 }

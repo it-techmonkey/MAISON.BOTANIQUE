@@ -59,7 +59,8 @@ export async function ResidencesPage() {
               {EMIRATES.map((emirate) => <li key={emirate.en}><Bi text={emirate} /></li>)}
             </ul>
             <p><Bi text={{ en: 'Same-day delivery across the UAE. AED 30 in Dubai, AED 50 elsewhere in the UAE.', ar: 'توصيل في اليوم نفسه في جميع أنحاء الإمارات. ٣٠ درهماً في دبي، و٥٠ درهماً في بقية الإمارات.' }} /></p>
-            <ArrowLink href="/shop" variant="button" label={{ en: 'Shop now', ar: 'تسوّق الآن' }} />
+            {/* Home only: the collection is just above, so stay on the page. */}
+            <a className="button" href="#shop"><span><Bi text={{ en: 'Shop now', ar: 'تسوّق الآن' }} /></span><span aria-hidden="true">↗</span></a>
           </aside>
         </div>
       </section>

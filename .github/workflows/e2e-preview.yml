@@ -1,0 +1,49 @@
+name: Buying-flow e2e (preview)
+
+# Runs the Playwright buying-flow tests (tests/e2e) against each successful
+# Vercel preview deployment. Vercel reports deployments to GitHub, so this job
+# shows up as the "e2e" check on the pull request's latest commit. A failed
+# preview build fails this check too (a skipped job would count as passed).
+on:
+  deployment_status:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: e2e-${{ github.event.deployment.sha }}
+  cancel-in-progress: true
+
+jobs:
+  e2e:
+    if: github.event.deployment.environment == 'Preview' && contains(fromJSON('["success","failure","error"]'), github.event.deployment_status.state)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      E2E_BASE_URL: ${{ github.event.deployment_status.environment_url }}
+    steps:
+      - name: Fail when the Vercel preview did not deploy
+        if: github.event.deployment_status.state != 'success'
+        run: |
+          echo "::error::Vercel preview ${{ github.event.deployment_status.state }}: fix the preview build, then the e2e tests run."
+          exit 1
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.deployment.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - name: Run buying-flow tests against ${{ env.E2E_BASE_URL }}
+        run: npx playwright test
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: failure()
+        with:
+          name: playwright-report-preview
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14

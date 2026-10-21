@@ -16,6 +16,9 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://maisonbota
 /** The welcome offer's discount code (create it in Shopify Discounts), shown in the banner and after the sign-up. */
 export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'MAISON25').trim();
 
+/** Delivery fees in AED, shown in the bag. Shopify shipping rates must match; change both together. */
+export const DELIVERY_FEES = { dubai: 30, otherEmirates: 50 } as const;
+
 /** The seven emirates served, all with same-day delivery. */
 export const EMIRATES: Bilingual[] = [
   { en: 'Dubai', ar: 'دبي' },
@@ -155,6 +158,9 @@ export function occasionSlug(id: string) { return id === 'just-because' ? 'gifts
 /** Occasions are filters on the one collection, not pages of their own. */
 export function occasionHash(id: string) { return `occasion/${occasionSlug(id)}`; }
 export function occasionPath(id: string) { return `/shop#${occasionHash(id)}`; }
+/** Window event that asks the home collection to clear its filters and come into view. */
+export const SHOW_COLLECTION_EVENT = 'maison:show-collection';
+export type ShowCollectionDetail = { occasions?: boolean };
 
 export function findOccasion(id: string) {
   if (id === 'gifts-for-her') id = 'just-because';
