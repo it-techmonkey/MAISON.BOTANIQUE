@@ -18,7 +18,7 @@ test('product page, quick-add sheet and bag fit a 390px phone', async ({ page })
   await addToBag(page);
   const bag = await openBag(page);
   const box = await bag.boundingBox();
-  expect(box!.width).toBeLessThanOrEqual(390);
+  expect(box!.width).toBeLessThanOrEqual(390.5); // sub-pixel rounding while the sheet slides in
   await expectNoHorizontalScroll(page, 'bag open');
 
   await page.keyboard.press('Escape');
@@ -26,7 +26,7 @@ test('product page, quick-add sheet and bag fit a 390px phone', async ({ page })
   await page.locator('.mbc-piece .mbc-add').first().click();
   const sheet = page.locator('.ll-shop-panel--quickadd');
   await expect(sheet).toBeVisible();
-  expect((await sheet.boundingBox())!.width).toBeLessThanOrEqual(390);
+  expect((await sheet.boundingBox())!.width).toBeLessThanOrEqual(390.5); // sub-pixel rounding while the sheet slides in
   await expectNoHorizontalScroll(page, 'quick-add sheet');
 });
 
