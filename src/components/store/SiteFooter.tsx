@@ -14,7 +14,7 @@ import { WhatsAppIcon } from './WhatsAppButton';
 const FOOTER = {
   en: {
     shop: 'Shop', occasions: 'Occasions', help: 'Help', bloom: 'Stay in bloom',
-    delivery: 'Same-day delivery in Dubai. UAE delivery: AED 30 in Dubai · AED 50 elsewhere.',
+    delivery: 'Same-day delivery in Dubai. UAE delivery: AED 30 in Dubai · AED 50 elsewhere in the UAE.',
     bloomLine: 'Be the first to know about new collections and offers.',
     whatsapp: 'WhatsApp', language: 'العربية', top: 'Back to top',
     notice: 'Prices are in AED. Delivery and any taxes are confirmed at checkout.',
