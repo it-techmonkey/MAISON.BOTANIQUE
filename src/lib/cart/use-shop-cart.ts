@@ -14,7 +14,7 @@ import {
   updateCartLines, updateCartNote,
   type CartAttribute, type CartLineInput, type ShopifyCart,
 } from '@/lib/shopify/cart';
-import { deliveryLineUpdates, findAddedLine, missingAttributes, withDeliveryProperty } from '@/lib/cart/line-attributes';
+import { deliveryLineUpdates, ensureAddedLineAttributes, withDeliveryProperty } from '@/lib/cart/line-attributes';
 import { createCartAnalyticsStore, getShopifyAnalytics, startCartAnalytics } from '@/lib/analytics/shopify';
 import { analyticsCartAttributes, trackCartError, trackProductAdded, trackProductRemoved } from '@/lib/analytics/track';
 import type { CatalogSource, Locale, Money, Product, ProductSize } from '@/lib/types';
@@ -316,19 +316,10 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
    */
   const verifyAddedLine = useCallback(async (
     next: ShopifyCart, before: ShopifyCart | null, variantId: string, sent: Array<{ key: string; value: string }>,
-  ) => {
-    if (!sent.length) return next;
-    const added = findAddedLine(before?.lines ?? [], next.lines, variantId);
-    if (added && !missingAttributes(sent, added.attributes).length) return next;
-    console.warn('[cart] line properties missing after add; re-applying');
-    if (!added) throw new Error('Added cart line not found');
-    const merged = [...Object.entries(added.attributes).map(([key, value]) => ({ key, value })).filter(({ key }) => !sent.some((item) => item.key === key)), ...sent];
-    const repaired = await updateCartLineAttributes(next.id, [{ id: added.id, attributes: merged }], localeRef.current);
-    commit(repaired);
-    const again = findAddedLine(before?.lines ?? [], repaired.lines, variantId) ?? repaired.lines.find((line) => line.id === added.id);
-    if (!again || missingAttributes(sent, again.attributes).length) throw new Error('Cart line properties were not saved');
-    return repaired;
-  }, [commit]);
+  ) => ensureAddedLineAttributes(
+    next, before, variantId, sent,
+    (cartId, line) => updateCartLineAttributes(cartId, [line], localeRef.current), commit,
+  ), [commit]);
 
   const addItem = useCallback(async (product: Product, options: AddItemOptions = {}) => {
     const size = chooseSize(product, options.sizeId);

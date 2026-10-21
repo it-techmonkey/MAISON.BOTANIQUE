@@ -49,3 +49,24 @@ export function findAddedLine<T extends LineLike>(before: T[], after: T[], varia
     ?? sameVariant.find((line) => line.quantity > (previous.get(line.id)?.quantity ?? 0))
     ?? null;
 }
+
+interface CartLike { id: string; lines: LineLike[] }
+
+/** Re-applies missing properties once, then reports a cart error if they still are not saved. */
+export async function ensureAddedLineAttributes<T extends CartLike>(
+  next: T, before: T | null, variantId: string, sent: LineAttribute[],
+  repair: (cartId: string, line: { id: string; attributes: LineAttribute[] }) => Promise<T>,
+  commit: (cart: T) => void,
+): Promise<T> {
+  if (!sent.length) return next;
+  const added = findAddedLine(before?.lines ?? [], next.lines, variantId);
+  if (added && !missingAttributes(sent, added.attributes).length) return next;
+  console.warn('[cart] line properties missing after add; re-applying');
+  if (!added) throw new Error('Added cart line not found');
+  const merged = [...toList(added.attributes).filter(({ key }) => !sent.some((item) => item.key === key)), ...sent];
+  const repaired = await repair(next.id, { id: added.id, attributes: merged });
+  commit(repaired);
+  const again = findAddedLine(before?.lines ?? [], repaired.lines, variantId) ?? repaired.lines.find((line) => line.id === added.id);
+  if (!again || missingAttributes(sent, again.attributes).length) throw new Error('Cart line properties were not saved');
+  return repaired;
+}
