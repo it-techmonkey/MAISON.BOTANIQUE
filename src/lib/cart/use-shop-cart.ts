@@ -3,11 +3,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { attachCartToCustomer, clearAttachedCart, getAccountStatus, writeCartCookie } from '@/lib/account/client';
 import {
-  DELIVERY_DATE_KEY, DELIVERY_TIME_KEY, checkSchedule, deliveryNote, findSlot, scheduleAttributes, scheduleFromAttributes,
+  DELIVERY_DATE_KEY, DELIVERY_TIME_KEY, checkSchedule, deliveryNote, dubaiNow, findSlot, scheduleAttributes, scheduleFromAttributes,
+  usableSchedule,
   type DeliverySchedule, type ScheduleProblem,
 } from '@/lib/delivery';
 import { isValidDate } from '@/lib/format';
 import { isShopifyConfigured } from '@/lib/shopify/config';
+import { useDubaiNow } from '@/lib/use-today';
 import {
   ANONYMOUS_ATTRIBUTE, CUSTOM_ATTRIBUTE, GIFT_NOTE_ATTRIBUTE, SIGNED_ATTRIBUTE,
   addCartLines, createCart, fetchCart, getCheckoutUrl, removeCartLines, updateCartAttributes, updateCartLineAttributes,
@@ -113,7 +115,11 @@ const DELIVERY_KEY = 'maison-botanique-delivery';
 function readStoredDelivery(): DeliverySchedule | null {
   try {
     const value = JSON.parse(localStorage.getItem(DELIVERY_KEY) || 'null');
-    return value && isValidDate(value.date) && findSlot(value.slotId) ? { date: value.date, slotId: value.slotId } : null;
+    const saved = value && isValidDate(value.date) && findSlot(value.slotId) ? { date: value.date, slotId: value.slotId } : null;
+    // A day or window from an earlier visit that has since passed is forgotten, not restored.
+    const usable = usableSchedule(saved, dubaiNow());
+    if (!usable) localStorage.removeItem(DELIVERY_KEY);
+    return usable;
   } catch { return null; }
 }
 function writeStoredDelivery(schedule: DeliverySchedule | null) {
@@ -238,10 +244,14 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
   }, [cart, busy, restored, analyticsStore]);
 
   // The schedule on the cart wins; before a cart exists, the one chosen in this browser.
-  const delivery = useMemo(
+  const savedDelivery = useMemo(
     () => (cart ? scheduleFromAttributes(cart.attributes) : null) ?? storedDelivery,
     [cart, storedDelivery],
   );
+  // A restored cart can still carry a day or window that has since passed. It is not offered as
+  // the shopper's choice or added to new lines; choosing again replaces it on the cart.
+  const now = useDubaiNow();
+  const delivery = useMemo(() => (now ? usableSchedule(savedDelivery, now) : null), [savedDelivery, now]);
   deliveryRef.current = delivery;
 
   const productByHandle = useMemo(() => new Map(products.map((product) => [product.id, product])), [products]);
@@ -497,7 +507,9 @@ function safePreviewLine(raw: unknown, products: Product[]): PreviewLine | null 
 
 function usePreviewCart(products: Product[]): ShopCart {
   const [saved, setSaved] = useState<PreviewLine[]>([]);
-  const [delivery, setDeliveryState] = useState<DeliverySchedule | null>(null);
+  const [storedDelivery, setDeliveryState] = useState<DeliverySchedule | null>(null);
+  const now = useDubaiNow();
+  const delivery = useMemo(() => (now ? usableSchedule(storedDelivery, now) : null), [storedDelivery, now]);
   // State rather than a ref, so the first save waits for the restored lines.
   const [loaded, setLoaded] = useState(false);
 
