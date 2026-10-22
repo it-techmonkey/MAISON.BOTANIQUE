@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { trackHeroClicked, trackHeroNavigated } from '@/lib/analytics/track';
 import { formatMoney } from '@/lib/format';
 import SaleTag from './store/SaleTag';
+import ScrollHint from './store/ScrollHint';
 import { useStore } from './store/StoreProvider';
 import '../styles/turntable.css';
 import Money from './store/Money';
@@ -256,6 +257,7 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
             </div>
           </div>
         </div>
+        <ScrollHint />
       </div>
     </section>
   );
