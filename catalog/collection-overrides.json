@@ -1,6 +1,6 @@
 {
   "_note": "Storefront overrides on top of catalog/shopify-export/products.json. Every product with a generated image and a price is shown. This file only renames, writes card lines, sets the featured order and corrects automatic occasion tags. Apply the renames to the Shopify export before import.",
-  "hero": ["eloise-pink-and-white-rose-bouquet", "beau-red-roses-in-glass-with-plush-bear", "perle-100-white-rose-bouquet"],
+  "hero": ["eloise-pink-and-white-rose-bouquet", "aimee-red-rose-bouquet", "perle-100-white-rose-bouquet"],
   "products": {
     "missive-mixed-flower-bouquet": {"name": "Missive — Mixed Flower Bouquet", "nameAr": "ميسيف — باقة زهور مشكّلة", "line": "12 red roses, pink spray roses, blush wrap"},
     "tansy-tanacetum-flower-bouquet": {"name": "Tansy — Tanacetum Flower Bouquet", "line": "Tanacetum bouquet with a black ribbon", "nameAr": "تانسي — باقة زهور التاناسيتوم"},
@@ -10,6 +10,7 @@
     "onyx-black-graduation-bouquet": {"name": "Onyx — Black Graduation Bouquet", "nameAr": "أونيكس — باقة تخرج سوداء"},
     "carnelian-large-birthday-bouquet-30-red-flowers": {"name": "Carnelian — Large Birthday Bouquet, 30 Red Flowers", "nameAr": "كارنيليان — باقة كبيرة لعيد الميلاد من 30 زهرة حمراء"},
     "rose-spray-rose-bouquet": {"name": "Rosé — Spray Rose Bouquet", "nameAr": "روزيه — باقة ورد سبراي"},
+    "aimee-red-rose-bouquet": {"order": 0, "line": "51 red roses, white wrap, red ribbon", "lineAr": "51 وردة حمراء، غلاف أبيض وشريط أحمر", "occasions": ["love", "birthday", "just-because"], "name": "Aimée — Red Rose Bouquet", "nameAr": "إيميه — باقة ورد أحمر"},
     "eloise-pink-and-white-rose-bouquet": {"order": 1, "line": "51 pink and white roses, ivory wrap", "name": "Eloise — Pink & White Rose Bouquet", "nameAr": "إيلويز — باقة ورد وردي وأبيض"},
     "beau-red-roses-in-glass-with-plush-bear": {"order": 2, "line": "30 red roses in glass, plush bear", "name": "Beau — Red Roses in Glass with Plush Bear", "nameAr": "بو — ورد أحمر في زجاج مع دبدوب"},
     "rosamund-blush-pink-rose-bouquet": {"order": 3, "line": "51 blush roses, soft pink wrap", "name": "Rosamund — Blush Pink Rose Bouquet", "nameAr": "روزاموند — باقة ورد وردي فاتح"},

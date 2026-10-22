@@ -1,10 +1,82 @@
 {
   "hero": [
     "eloise-pink-and-white-rose-bouquet",
-    "beau-red-roses-in-glass-with-plush-bear",
+    "aimee-red-rose-bouquet",
     "perle-100-white-rose-bouquet"
   ],
   "products": [
+    {
+      "id": "aimee-red-rose-bouquet",
+      "no": 332,
+      "name": "Aimée — Red Rose Bouquet",
+      "nameAr": "إيميه — باقة ورد أحمر",
+      "room": "roses",
+      "price": 235.0,
+      "sizes": [
+        {
+          "id": "signature",
+          "name": "Signature",
+          "nameAr": "سيغنتشر",
+          "detail": "51 roses",
+          "detailAr": "51 وردة",
+          "add": 0.0,
+          "sku": "MB-RB-065-SIG",
+          "price": 235.0,
+          "compareAtPrice": 420.0
+        },
+        {
+          "id": "grand",
+          "name": "Grand",
+          "nameAr": "غراند",
+          "detail": "101 roses",
+          "detailAr": "101 وردة",
+          "add": 235.0,
+          "sku": "MB-RB-065-GRD",
+          "price": 470.0,
+          "compareAtPrice": 839.0
+        },
+        {
+          "id": "luxe",
+          "name": "Luxe",
+          "nameAr": "لوكس",
+          "detail": "201 roses",
+          "detailAr": "201 وردة",
+          "add": 705.0,
+          "sku": "MB-RB-065-LUX",
+          "price": 940.0,
+          "compareAtPrice": 1679.0
+        }
+      ],
+      "line": "51 red roses, white wrap, red ribbon",
+      "lineAr": "51 وردة حمراء، غلاف أبيض وشريط أحمر",
+      "composition": [
+        "Hand-selected red roses",
+        "White paper wrap",
+        "Red satin ribbon"
+      ],
+      "compositionAr": [
+        "ورود حمراء منتقاة يدوياً",
+        "غلاف ورقي أبيض",
+        "شريط ساتان أحمر"
+      ],
+      "feature": "",
+      "stems": 51,
+      "occasions": [
+        "love",
+        "birthday",
+        "just-because"
+      ],
+      "flowers": [
+        "rose"
+      ],
+      "format": "bouquet",
+      "order": 0,
+      "custom": null,
+      "image": "/collection/aimee-red-rose-bouquet-960.webp",
+      "imageSmall": "/collection/aimee-red-rose-bouquet-480.webp",
+      "alt": "Aimée — Red Rose Bouquet - Hand-selected red roses in white wrap, by Maison Botanique",
+      "compareAtPrice": 420.0
+    },
     {
       "id": "eloise-pink-and-white-rose-bouquet",
       "no": 50,

@@ -42044,6 +42044,144 @@
      "a": "L'Oreal Hyaluron Expert eye serum 20 ml; L'Oreal Hyaluron Expert night cream mask 50 ml; L'Oreal Hyaluron Expert day cream SPF20 50 ml; L'Oreal replumping hyaluronic acid face wash 200 ml; pink pillar candle 7.5 × 10 cm; 2 white lilies; 10 white roses sprayed purple; purple baby's breath; green fillers; wooden tray"
     }
    ]
+  },
+  {
+   "reference_id": "REF-GG-8243635650678",
+   "catalog_number": 332,
+   "title": "Aimée — Red Rose Bouquet",
+   "handle": "aimee-red-rose-bouquet",
+   "vendor": "Maison Botanique",
+   "product_type": "Rose bouquets",
+   "status": "draft",
+   "published": false,
+   "tags": [
+    "Rose bouquets",
+    "hand-tied bouquet",
+    "red",
+    "rose"
+   ],
+   "collections": [
+    "Rose bouquets"
+   ],
+   "body_html": "<p>A full, round bouquet of red roses wrapped in crisp white paper and tied with a red satin ribbon: the classic way to say I love you.</p><p><strong>What's included</strong></p><ul><li>Hand-selected red roses</li><li>White paper wrap</li><li>Red satin ribbon</li></ul><p><strong>Choose your size</strong></p><ul><li><strong>Signature: 51 roses</strong> – as pictured</li><li><strong>Grand: 101 roses</strong></li><li><strong>Luxe: 201 roses</strong></li></ul><p>The design stays the same; only the quantity changes. The photo shows the smallest size.</p>",
+   "seo": {
+    "title": "Aimée — 51 Red Rose Bouquet | Maison Botanique",
+    "description": "Aimée — 51 hand-selected red roses in white wrap with a red satin ribbon. Also in 101 and 201 roses. Order online in Dubai from Maison Botanique."
+   },
+   "options": [
+    {
+     "name": "Size",
+     "values": [
+      "Signature – 51 roses",
+      "Grand – 101 roses",
+      "Luxe – 201 roses"
+     ],
+     "name_ar": "الحجم"
+    }
+   ],
+   "variants": [
+    {
+     "option1": "Signature – 51 roses",
+     "sku": "MB-RB-065-SIG",
+     "price": "235.00",
+     "compare_at_price": null,
+     "requires_shipping": true,
+     "taxable": true,
+     "inventory_management": null,
+     "inventory_policy": "deny",
+     "weight": null,
+     "barcode": null
+    },
+    {
+     "option1": "Grand – 101 roses",
+     "sku": "MB-RB-065-GRD",
+     "price": "470.00",
+     "compare_at_price": null,
+     "requires_shipping": true,
+     "taxable": true,
+     "inventory_management": null,
+     "inventory_policy": "deny",
+     "weight": null,
+     "barcode": null
+    },
+    {
+     "option1": "Luxe – 201 roses",
+     "sku": "MB-RB-065-LUX",
+     "price": "940.00",
+     "compare_at_price": null,
+     "requires_shipping": true,
+     "taxable": true,
+     "inventory_management": null,
+     "inventory_policy": "deny",
+     "weight": null,
+     "barcode": null
+    }
+   ],
+   "images": [
+    {
+     "position": 1,
+     "filename": "images/aimee-red-rose-bouquet-1.webp",
+     "alt": "Aimée — Red Rose Bouquet - Hand-selected red roses in white wrap, by Maison Botanique",
+     "width": 1024,
+     "height": 1024,
+     "alt_ar": "إيميه — باقة ورد أحمر من ميزون بوتانيك"
+    }
+   ],
+   "image_status": "approved_by_owner_2026-10-22",
+   "translations": {
+    "ar": {
+     "title": "إيميه — باقة ورد أحمر",
+     "body_html": "<p>باقة دائرية سخية من الورود الحمراء ملفوفة بورق أبيض ناصع ومربوطة بشريط ساتان أحمر: الطريقة الكلاسيكية لقول أحبك.</p><p><strong>ما يتضمنه</strong></p><ul><li>ورود حمراء منتقاة يدوياً</li><li>غلاف ورقي أبيض</li><li>شريط ساتان أحمر</li></ul><p><strong>اختر حجمك</strong></p><ul><li><strong>سيغنتشر</strong> – 51 وردة – كما في الصورة</li><li><strong>غراند</strong> – 101 وردة</li><li><strong>لوكس</strong> – 201 وردة</li></ul><p>يبقى التصميم كما هو وتتغير الكمية فقط. الصورة تعرض أصغر حجم.</p>",
+     "status": "machine_drafted_needs_native_review",
+     "seo": {
+      "title": "إيميه — باقة 51 وردة حمراء | ميزون بوتانيك دبي",
+      "description": "إيميه — 51 وردة حمراء منتقاة يدوياً بغلاف أبيض وشريط ساتان أحمر. متوفرة أيضاً بـ 101 و201 وردة. اطلب أونلاين في دبي من ميزون بوتانيك."
+     }
+    }
+   },
+   "review_flags": [
+    "price_is_placeholder_competitor_reference",
+    "description_needs_owner_confirmation"
+   ],
+   "metafields": [
+    {
+     "namespace": "maison",
+     "key": "reference_id",
+     "type": "single_line_text_field",
+     "value": "REF-GG-8243635650678"
+    },
+    {
+     "namespace": "maison",
+     "key": "review_flags",
+     "type": "single_line_text_field",
+     "value": "price_is_placeholder_competitor_reference;description_needs_owner_confirmation"
+    },
+    {
+     "namespace": "maison",
+     "key": "answer_summary",
+     "type": "multi_line_text_field",
+     "value": "Aimée — Red Rose Bouquet from Maison Botanique includes hand-selected red roses in white paper wrap with a red satin ribbon. Available in Signature – 51 roses, Grand – 101 roses, Luxe – 201 roses."
+    }
+   ],
+   "body_html_original": "<p><strong>What's included</strong></p><ul><li>Premium red roses hand arranged by expert florists, white wrapping</li></ul>",
+   "visual_spec": "Full, dense, round dome of deep red roses, tightly packed, in crisp white paper wrap with layered pointed folds and a red satin ribbon bow at the stems. 51-rose size.",
+   "owner_to_confirm": "Approved by owner 22 Oct 2026: white wrap, red ribbon, AED 235 / 470 / 940, struck prices 420 / 839 / 1679, hero slot 2, first in display order. Created in Shopify via connector 22 Oct 2026. Confirm the red rose variety.",
+   "description_status": "draft_needs_owner_confirmation",
+   "image_prompt": "Premium editorial product photograph for Maison Botanique, a Dubai luxury floral gifting house. Product: Aimée — Red Rose Bouquet. Contents, as listed: Hand-selected red roses, white paper wrap, red satin ribbon; Signature: 51 roses – as pictured; Grand: 101 roses; Luxe: 201 roses. Detailed visual specification: Full, dense, round dome of deep red roses, tightly packed, in crisp white paper wrap with layered pointed folds and a red satin ribbon bow at the stems. 51-rose size. Show exactly the listed items, colours and quantities and nothing extra: do not add other flowers, items or colours, and do not show more than the listed quantity of any item. Make the arrangement look full, fresh and natural, with believable petals, glass and shadows. Hand-tied bouquet in tissue/paper wrap with a ribbon, whole bouquet visible from a three-quarter view, stems and wrap shown. Setting: a travertine plinth against a muted sage wall, soft diffused daylight. Directional soft light, tactile natural textures, deep botanical green, ivory, blush and oxblood palette, shallow depth of field, photorealistic. Attach a small ivory gift-card tag reading MAISON BOTANIQUE exactly as in the reference image (copy its lettering and layout exactly). Square 1:1 composition, product centred with breathing room. Brand products and characters named in the listing may appear in their genuine packaging (if a character cannot be rendered, use a close plush). No other text, no years or dates, no prices, no watermarks, no other logos, no hands or people.",
+   "answer_summary": {
+    "en": "Aimée — Red Rose Bouquet from Maison Botanique includes hand-selected red roses in white paper wrap with a red satin ribbon. Available in Signature – 51 roses, Grand – 101 roses, Luxe – 201 roses.",
+    "ar": "إيميه — باقة ورد أحمر من ميزون بوتانيك تشمل ورود حمراء منتقاة يدوياً بغلاف ورقي أبيض وشريط ساتان أحمر. متوفرة بأحجام سيغنتشر وغراند ولوكس."
+   },
+   "faq": [
+    {
+     "q": "What is included in Aimée — Red Rose Bouquet?",
+     "a": "Hand-selected red roses, white paper wrap and a red satin ribbon"
+    },
+    {
+     "q": "What sizes does Aimée — Red Rose Bouquet come in?",
+     "a": "Signature – 51 roses; Grand – 101 roses; Luxe – 201 roses"
+    }
+   ]
   }
  ]
 }
