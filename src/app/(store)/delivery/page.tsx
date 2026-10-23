@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { InfoPage } from '@/components/store/blocks';
+import { JVC_FREE_DELIVERY } from '@/lib/jvc-delivery';
 import '@/styles/pages.css';
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function DeliveryPage() {
           title: { en: 'Where we deliver', ar: 'أين نوصل' },
           paragraphs: [
             { en: 'We offer same-day delivery in Dubai and also deliver across the UAE. Delivery is AED 30 in Dubai and AED 50 elsewhere in the UAE. Enter the full recipient address at checkout, including building or villa, apartment number and area.', ar: 'نوفر التوصيل في اليوم نفسه داخل دبي، ونوصل أيضاً إلى جميع أنحاء الإمارات. التوصيل ٣٠ درهماً في دبي و٥٠ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى أو الفيلا ورقم الشقة والمنطقة.' },
+            ...(JVC_FREE_DELIVERY ? [{ en: 'Delivery to Jumeirah Village Circle (JVC) is free. Tick the JVC box in your bag and enter the full recipient address at checkout; we check every address before dispatch, and if it is outside JVC the usual AED 30 applies.', ar: 'التوصيل إلى جميرا فيليج سيركل (JVC) مجاني. حدّد خيار JVC في حقيبتك وأدخل عنوان المستلم كاملاً عند الدفع؛ نتحقق من كل عنوان قبل التوصيل، وإن كان خارج JVC تُطبّق رسوم ٣٠ درهماً المعتادة.' }] : []),
           ],
         },
         {
