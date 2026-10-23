@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 
 const {
   DELIVERY_RULES, addDays, bookableDays, checkSchedule, dateOpen, dubaiNow, earliestDate, lastBookableDate,
-  scheduleAttributes, scheduleFromAttributes, slotsFor, windowLabel, windowsFor,
+  scheduleAttributes, scheduleFromAttributes, slotsFor, usableSchedule, windowLabel, windowsFor,
 } = await import('../src/lib/delivery.ts');
 
 const at = (date, hh, mm = 0) => ({ date, minutes: hh * 60 + mm });
@@ -82,4 +82,17 @@ test('the schedule round-trips through Shopify cart attributes', () => {
   const attributes = scheduleAttributes(schedule);
   assert.deepEqual(attributes, [{ key: 'Delivery date', value: '2026-10-23' }, { key: 'Delivery time', value: '3pm – 6pm' }]);
   assert.deepEqual(scheduleFromAttributes(Object.fromEntries(attributes.map((a) => [a.key, a.value]))), schedule);
+});
+
+test('a schedule saved on an earlier visit is dropped once it can no longer be booked', () => {
+  // Reported 22 Oct 2026, 18:30 Dubai: a 21 Oct choice came back as "That delivery day has passed".
+  const now = at('2026-10-22', 18, 30);
+  assert.equal(usableSchedule({ date: '2026-10-21', slotId: 'afternoon' }, now), null);
+  assert.equal(usableSchedule({ date: '2026-10-22', slotId: 'evening' }, now), null);
+  assert.equal(usableSchedule({ date: '2026-12-22', slotId: 'morning' }, now), null);
+  assert.equal(usableSchedule(null, now), null);
+  assert.deepEqual(usableSchedule({ date: '2026-10-23', slotId: 'morning' }, now), { date: '2026-10-23', slotId: 'morning' });
+  assert.deepEqual(usableSchedule({ date: '2026-12-21', slotId: 'evening' }, now), { date: '2026-12-21', slotId: 'evening' });
+  // Earlier the same day, today's evening window is still open.
+  assert.deepEqual(usableSchedule({ date: '2026-10-22', slotId: 'evening' }, at('2026-10-22', 15, 0)), { date: '2026-10-22', slotId: 'evening' });
 });

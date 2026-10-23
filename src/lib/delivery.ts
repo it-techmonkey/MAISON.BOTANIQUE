@@ -112,6 +112,14 @@ export function checkSchedule(schedule: Partial<DeliverySchedule> | null, now: D
   return null;
 }
 
+/**
+ * A schedule restored from an earlier visit (browser storage or the Shopify cart), or null once its
+ * day or window can no longer be booked, so a stale choice is never shown or sent as the shopper's.
+ */
+export function usableSchedule(schedule: DeliverySchedule | null, now: DubaiNow = dubaiNow()): DeliverySchedule | null {
+  return schedule && !checkSchedule(schedule, now) ? schedule : null;
+}
+
 function hourLabel(minutes: number, arabic: boolean) {
   return new Intl.DateTimeFormat(arabic ? 'ar-AE' : 'en-US', { hour: 'numeric', minute: minutes % 60 ? '2-digit' : undefined, timeZone: 'UTC' })
     .format(new Date(Date.UTC(2000, 0, 1, Math.floor(minutes / 60), minutes % 60)))
