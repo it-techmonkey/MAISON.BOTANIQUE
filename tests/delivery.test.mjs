@@ -1,4 +1,4 @@
-// Delivery picker rules (src/lib/delivery.ts): Dubai time, three-hour lead,
+// Delivery picker rules (src/lib/delivery.ts): Dubai time, one-hour lead,
 // 60-day horizon, passed days and windows. Owner rules, 19 October 2026.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -11,27 +11,30 @@ const {
 const at = (date, hh, mm = 0) => ({ date, minutes: hh * 60 + mm });
 const open = (date, now) => slotsFor(date, now).map((slot) => slot.id);
 
-test('four daily windows, 9am to 9pm, three-hour lead, 60 days ahead', () => {
+test('four daily windows, 9am to 9pm, one-hour lead, 60 days ahead', () => {
   assert.deepEqual(DELIVERY_RULES.windows.map((w) => [w.id, w.start / 60, w.end / 60]), [
     ['morning', 9, 12], ['midday', 12, 15], ['afternoon', 15, 18], ['evening', 18, 21],
   ]);
-  assert.equal(DELIVERY_RULES.leadMinutes, 180);
+  assert.equal(DELIVERY_RULES.leadMinutes, 60);
   assert.equal(DELIVERY_RULES.maxDaysAhead, 60);
   assert.equal(windowLabel('morning', false), '9am – 12pm');
   assert.equal(windowLabel('evening', false), '6pm – 9pm');
 });
 
-test('a same-day window closes exactly three hours before it starts', () => {
-  assert.deepEqual(open('2026-10-21', at('2026-10-21', 5, 59)), ['morning', 'midday', 'afternoon', 'evening']);
-  assert.deepEqual(open('2026-10-21', at('2026-10-21', 6, 0)), ['morning', 'midday', 'afternoon', 'evening']);
-  assert.deepEqual(open('2026-10-21', at('2026-10-21', 6, 1)), ['midday', 'afternoon', 'evening']);
-  assert.deepEqual(open('2026-10-21', at('2026-10-21', 12, 0)), ['afternoon', 'evening']);
-  assert.deepEqual(open('2026-10-21', at('2026-10-21', 15, 0)), ['evening']);
-  assert.deepEqual(open('2026-10-21', at('2026-10-21', 15, 1)), []);
+test('a same-day window closes exactly one hour before it starts', () => {
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 7, 59)), ['morning', 'midday', 'afternoon', 'evening']);
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 8, 0)), ['morning', 'midday', 'afternoon', 'evening']);
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 8, 1)), ['midday', 'afternoon', 'evening']);
+  // At 11:00 the noon window is still bookable: only the 1pm or 2pm customer needs it.
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 11, 0)), ['midday', 'afternoon', 'evening']);
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 11, 1)), ['afternoon', 'evening']);
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 14, 0)), ['afternoon', 'evening']);
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 17, 0)), ['evening']);
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 17, 1)), []);
   // Passed windows stay listed but disabled, so the picker layout does not jump.
   const windows = windowsFor('2026-10-21', at('2026-10-21', 10, 0));
   assert.equal(windows.length, 4);
-  assert.deepEqual(windows.filter((w) => !w.available).map((w) => w.id), ['morning', 'midday']);
+  assert.deepEqual(windows.filter((w) => !w.available).map((w) => w.id), ['morning']);
 });
 
 test('tomorrow is fully open even late tonight', () => {
@@ -39,8 +42,8 @@ test('tomorrow is fully open even late tonight', () => {
 });
 
 test('after the last same-day cut-off the earliest date moves to tomorrow', () => {
-  assert.equal(earliestDate(at('2026-10-21', 14, 59)), '2026-10-21');
-  assert.equal(earliestDate(at('2026-10-21', 15, 1)), '2026-10-22');
+  assert.equal(earliestDate(at('2026-10-21', 16, 59)), '2026-10-21');
+  assert.equal(earliestDate(at('2026-10-21', 17, 1)), '2026-10-22');
   assert.deepEqual(bookableDays(3, at('2026-10-21', 20, 0)), ['2026-10-22', '2026-10-23', '2026-10-24']);
 });
 
@@ -57,7 +60,7 @@ test('booking horizon: today plus 60 days, nothing after, nothing in the past', 
 });
 
 test('checkSchedule names each problem the bag shows', () => {
-  const now = at('2026-10-21', 13);
+  const now = at('2026-10-21', 14, 30);
   assert.equal(checkSchedule(null, now), 'missing_date');
   assert.equal(checkSchedule({ date: '2026-10-22' }, now), 'missing_slot');
   assert.equal(checkSchedule({ date: '2026-10-22', slotId: 'brunch' }, now), 'missing_slot');
