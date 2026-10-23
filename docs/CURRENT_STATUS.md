@@ -28,8 +28,10 @@ This cleanup preserves that newer application baseline.
   The data and images are renamed in the repository, and `npm run shopify:names-prices -- --apply` was run on 20 October 2026 (318 products,
   813 compare-at prices; live check passes). Re-run it only after changing `product-renames.json` or the ledger. Image alt text on Shopify
   still quotes the old names.
-- Same-day delivery wording is as on main on 20 October 2026 (UAE-wide). JVC free delivery was decided on 23 October 2026 (tick-box in the bag, free-delivery code capped at the AED 30 rate, address verified by the team); built behind a switch and not live until the Shopify discount exists. AED 30 in Dubai,
-  AED 50 elsewhere in the UAE (revised 20 October 2026; code change in PR #5). Four daily delivery windows, three-hour lead, 60-day horizon.
+- Same-day delivery wording is as on main on 20 October 2026 (UAE-wide). JVC free delivery was decided on 23 October 2026 (tick-box in the bag,
+  free-delivery code capped at the AED 30 rate, address verified by the team); built behind a switch and not live until the Shopify discount
+  exists. AED 30 in Dubai, AED 50 elsewhere in the UAE (revised 20 October 2026; code change in PR #5). Four daily delivery windows,
+  one-hour lead (shortened from three hours on 23 October 2026), 60-day horizon.
 - Keep real gift brands and seasonal products. Do not publish competitor florist material.
 - Money bouquet cash principal is separate; only the arrangement fee is paid/discounted online.
 - Preserve working WhatsApp configuration; no public street address in LocalBusiness markup.
