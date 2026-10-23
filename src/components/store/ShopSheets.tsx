@@ -20,6 +20,7 @@ import { useStore } from './StoreProvider';
 import { WhatsAppIcon } from './WhatsAppButton';
 import Money from './Money';
 import { DELIVERY_FEES } from '@/lib/site';
+import { JVC_FREE_DELIVERY } from '@/lib/jvc-delivery';
 
 const NOTE_LIMIT = 280;
 
@@ -584,7 +585,19 @@ function Bag() {
             <div><span>{t.subtotal}</span><strong>{discounted
               ? <><s className="ll-cart-was"><Money amount={subtotal.amount} ar={ar} whole /></s> <Money amount={afterDiscount.amount} ar={ar} whole /></>
               : <Money amount={subtotal.amount} ar={ar} whole />}</strong></div>
-            <p className="ll-cart-fee-note">{ar
+            {JVC_FREE_DELIVERY && (
+              <label className="ll-cart-jvc">
+                <input type="checkbox" checked={cart.jvcDelivery} disabled={cart.busy}
+                  onChange={(event) => { setError(''); void cart.setJvcDelivery(event.target.checked).catch(() => setError(ar ? 'تعذّر تطبيق التوصيل المجاني. يمكنك المتابعة بدونه.' : 'Free JVC delivery could not be applied. You can continue without it.')); }} />
+                <span>
+                  <strong>{ar ? 'هل التوصيل إلى جميرا فيليج سيركل (JVC)؟ التوصيل مجاني' : 'Delivering to Jumeirah Village Circle (JVC)? Delivery is free'}</strong>
+                  <small>{ar ? 'أدخل عنوان المستلم كاملاً عند الدفع. نتحقق من كل عنوان قبل التوصيل، وإن لم يكن في JVC تُضاف رسوم ٣٠ درهماً.' : 'Enter the full recipient address at checkout. We check every address before dispatch; if it is not in JVC, delivery is AED 30.'}</small>
+                </span>
+              </label>
+            )}
+            <p className="ll-cart-fee-note">{JVC_FREE_DELIVERY && cart.jvcDelivery
+              ? (ar ? 'التوصيل: مجاني إلى JVC، نتحقق من العنوان قبل التوصيل' : 'Delivery: free to JVC, address checked before dispatch')
+              : ar
               ? <>التوصيل: <Money amount={DELIVERY_FEES.dubai} ar={ar} whole /> في دبي · <Money amount={DELIVERY_FEES.otherEmirates} ar={ar} whole /> للإمارات الأخرى، تُضاف عند الدفع</>
               : <>Delivery: <Money amount={DELIVERY_FEES.dubai} ar={ar} whole /> in Dubai · <Money amount={DELIVERY_FEES.otherEmirates} ar={ar} whole /> other emirates, added at checkout</>}</p>
             {summary && <div><span>{t.deliveryLine}</span><span data-ph-mask>{summary}</span></div>}
