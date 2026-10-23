@@ -4,7 +4,8 @@
 // note, so on the order it appears under "Additional details", at the top as
 // the order Note, and in the order webhook.
 //
-// Owner approved 19 October 2026: daily windows, three-hour lead and 60-day horizon.
+// Owner approved 19 October 2026: daily windows and a 60-day horizon. The lead
+// was three hours; the owner shortened it to one hour on 23 October 2026.
 
 export const DELIVERY_DATE_KEY = 'Delivery date';
 export const DELIVERY_TIME_KEY = 'Delivery time';
@@ -24,7 +25,7 @@ export const DELIVERY_RULES = {
     { id: 'evening', start: 18 * 60, end: 21 * 60 },
   ] as DeliveryWindow[],
   /** A same-day window closes this long before it starts. */
-  leadMinutes: 180,
+  leadMinutes: 60,
   /** Pre-booking horizon. */
   maxDaysAhead: 60,
   /** 'YYYY-MM-DD' dates with no deliveries. */
