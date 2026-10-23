@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent } from 'react';
 import { trackProductClicked, trackProductListViewed, trackProductsSearched } from '@/lib/analytics/track';
 import { BUDGET_BANDS, GROUP_ALIASES, TAB_IDS, budgetOf, liveCatalogGroups, type LiveCatalogGroups } from '@/lib/catalog-groups';
 import type { Product } from '@/lib/types';
@@ -139,18 +139,25 @@ function RefineDrawer({ open, onClose, state, setState, products, catalog, t, ar
 function Piece({ product, index, t, ar, onOpen }: { product: Product; index: number; t: Copy; ar: boolean; onOpen: (product: Product, position: number) => void }) {
   const name = ar ? product.nameAr : product.name;
   const many = product.sizes.length > 1;
+  const href = `/shop/${product.id}`;
+  // A real link for crawlers, new tabs and long-press; a plain click opens the quick-add sheet.
+  const openSheet = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    onOpen(product, index + 1);
+  };
   return (
     <article className="mbc-piece">
-      <button type="button" className="mbc-frame" onClick={() => onOpen(product, index + 1)} aria-label={name}>
+      <a className="mbc-frame" href={href} onClick={openSheet} aria-label={name}>
         <img src={product.imageSmall} srcSet={`${product.imageSmall} 480w, ${product.image} 960w`}
           sizes="(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 25vw"
           alt={ar ? name : product.imageAlt} width="480" height="480"
           loading={index < 4 ? 'eager' : 'lazy'} fetchPriority={index < 4 ? 'high' : 'auto'} decoding="async" />
         {isMostLoved(product.id) ? <span className="mbc-badge mbc-badge--loved">{ar ? 'الأكثر حباً' : 'Most loved'}</span>
           : product.custom && <span className="mbc-badge">{t.personalised}</span>}
-      </button>
+      </a>
       <div className="mbc-cap">
-        <h3><button type="button" onClick={() => onOpen(product, index + 1)}>{name}</button></h3>
+        <h3><a href={href} onClick={openSheet}>{name}</a></h3>
         <span className="mbc-line">{ar ? product.lineAr : product.line}</span>
         <SaleTag className="mbc-sale" price={product.price} compareAtPrice={product.compareAtPrice} />
         <div className="mbc-row">
