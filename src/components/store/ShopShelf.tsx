@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react';
 import { liveCatalogGroups } from '@/lib/catalog-groups';
+import type { Product } from '@/lib/types';
 import { CollectionLink } from './SiteHeader';
 import { useStore } from './StoreProvider';
 
@@ -17,10 +18,22 @@ export default function ShopShelf() {
   const { ar, t, products } = useStore();
   const chips = useMemo(() => {
     const { findGroup } = liveCatalogGroups(products);
+    // Every chip gets its own photograph: a piece already shown on an earlier chip is skipped, and
+    // some chips prefer something that is not a rose, so the row does not repeat the same bouquet.
+    const prefer: Record<string, (product: Product) => boolean> = {
+      bouquets: (product) => !product.flowers.includes('rose'),
+      'under-300': (product) => !product.flowers.includes('rose'),
+    };
+    const used = new Set<string>();
     return SHELF_GROUPS.flatMap((id) => {
       const group = findGroup(id);
-      const photo = group && products.find((product) => product.available && product.imageSmall && group.test(product))?.imageSmall;
-      return group && photo ? [{ id, label: ar ? group.ar : group.en, photo }] : [];
+      if (!group) return [];
+      const pool = products.filter((product) => product.available && product.imageSmall && group.test(product));
+      const wanted = prefer[id];
+      const pick = (wanted && pool.find((product) => !used.has(product.id) && wanted(product))) || pool.find((product) => !used.has(product.id)) || pool[0];
+      if (!pick) return [];
+      used.add(pick.id);
+      return [{ id, label: ar ? group.ar : group.en, photo: pick.imageSmall }];
     });
   }, [ar, products]);
 
