@@ -86,3 +86,21 @@ test('the schedule round-trips through Shopify cart attributes', () => {
   assert.deepEqual(attributes, [{ key: 'Delivery date', value: '2026-10-23' }, { key: 'Delivery time', value: '3pm – 6pm' }]);
   assert.deepEqual(scheduleFromAttributes(Object.fromEntries(attributes.map((a) => [a.key, a.value]))), schedule);
 });
+
+// Diwali pre-order (owner, 25 October 2026): an order holding the marigold toran
+// is delivered from 5 November, through a week after Diwali (src/data/seasonal-products.json).
+test('a pre-order range limits delivery to its dates', () => {
+  const range = { from: '2026-11-05', to: '2026-11-08' };
+  const now = at('2026-10-25', 10);
+  assert.equal(dateOpen('2026-10-26', now, range), false);
+  assert.equal(dateOpen('2026-11-05', now, range), true);
+  assert.equal(dateOpen('2026-11-08', now, range), true);
+  assert.equal(dateOpen('2026-11-09', now, range), false);
+  assert.deepEqual(bookableDays(4, now, range), ['2026-11-05', '2026-11-06', '2026-11-07', '2026-11-08']);
+  assert.equal(earliestDate(now, range), '2026-11-05');
+  assert.equal(lastBookableDate(now, range), '2026-11-08');
+  assert.equal(checkSchedule({ date: '2026-10-26', slotId: 'morning' }, now, range), 'day_closed');
+  assert.equal(checkSchedule({ date: '2026-11-06', slotId: 'evening' }, now, range), null);
+  // Without a pre-order the normal schedule is unchanged.
+  assert.equal(checkSchedule({ date: '2026-10-26', slotId: 'morning' }, now), null);
+});

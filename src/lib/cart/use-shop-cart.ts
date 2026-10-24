@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { attachCartToCustomer, clearAttachedCart, getAccountStatus, writeCartCookie } from '@/lib/account/client';
+import { deliveryRangeFor } from '@/lib/seasonal';
 import {
   DELIVERY_DATE_KEY, DELIVERY_TIME_KEY, checkSchedule, deliveryNote, findSlot, scheduleAttributes, scheduleFromAttributes,
   type DeliverySchedule, type ScheduleProblem,
@@ -422,7 +423,7 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     // No checkout URL is handed out without a delivery date and time that can
     // still be booked, whichever screen asks for it.
     const schedule = deliveryRef.current;
-    const problem = checkSchedule(schedule);
+    const problem = checkSchedule(schedule, undefined, deliveryRangeFor(linesRef.current.map((line) => line.product?.id ?? '')));
     if (problem || !schedule) throw new DeliveryRequiredError(problem ?? 'missing_date');
     // Stamp the delivery schedule and the current PostHog visitor and session
     // on the cart. Analytics never blocks checkout; the schedule does.

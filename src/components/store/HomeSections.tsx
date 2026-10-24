@@ -6,6 +6,8 @@ import { CollectionLink } from './SiteHeader';
 import { useMemo, type MouseEvent } from 'react';
 import { BUDGET_BANDS, budgetOf, liveCatalogGroups } from '@/lib/catalog-groups';
 import { useStore } from './StoreProvider';
+import { DiwaliBar, HalloweenShelf } from './SeasonalBands';
+import { isSeasonal } from '@/lib/seasonal';
 
 /**
  * "View all" goes down to the full collection just below on the home page,
@@ -32,7 +34,7 @@ function OccasionTiles() {
   const tiles = useMemo(() => {
     const used = new Set<string>();
     return occasions.map((occasion) => {
-      const items = products.filter((product) => product.occasions.includes(occasion.id));
+      const items = products.filter((product) => product.occasions.includes(occasion.id) && !isSeasonal(product.id));
       const pick = items.find((product) => !used.has(product.id)) ?? items[0];
       if (pick) used.add(pick.id);
       return { ...occasion, image: pick?.imageSmall };
@@ -61,7 +63,7 @@ function BudgetTiles() {
   const { ar, t, products } = useStore();
   const tiles = useMemo(() => BUDGET_BANDS.map((band) => ({
     ...band,
-    image: products.find((product) => budgetOf(product.price) === band.id && product.available)?.imageSmall,
+    image: products.find((product) => budgetOf(product.price) === band.id && product.available && !isSeasonal(product.id))?.imageSmall,
   })).filter((tile) => tile.image), [products]);
 
   return (
@@ -82,12 +84,15 @@ function BudgetTiles() {
 }
 
 // Home order (owner, 19 Oct): A gift for every gesture, then Shop by Occasion,
-// then straight into the full collection. Most loved is a tag on products
+// then straight into the full collection. Seasonal (owner, 25 Oct 2026): the
+// Halloween shelf comes before A gift for every gesture, the Diwali band after it. Most loved is a tag on products
 // (src/data/most-loved.json), not a section.
 export default function HomeSections() {
   return (
     <>
+      <HalloweenShelf />
       <BudgetTiles />
+      <DiwaliBar />
       <OccasionTiles />
     </>
   );
