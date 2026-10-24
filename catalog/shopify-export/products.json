@@ -42182,6 +42182,916 @@
      "a": "Signature – 51 roses; Grand – 101 roses; Luxe – 201 roses"
     }
    ]
+  },
+  {
+   "reference_id": "MB-SEASONAL-2026-pumpkin-and-pralines",
+   "catalog_number": 333,
+   "title": "Pumpkin & Pralines — Flowers in a Pumpkin with Ferrero Rocher",
+   "handle": "pumpkin-and-pralines",
+   "vendor": "Maison Botanique",
+   "product_type": "Flowers & treats",
+   "status": "active",
+   "published": true,
+   "tags": [
+    "flower:rose",
+    "flower:carnation",
+    "flower:chrysanthemum",
+    "format:gift",
+    "occasion:just-because",
+    "occasion:thanks",
+    "season:halloween"
+   ],
+   "collections": [],
+   "body_html": "<p><strong>What's included</strong></p><ul><li>8 orange roses, 5 red carnations, 3 red button chrysanthemum stems and eucalyptus</li><li>Arranged in a real pumpkin with a watertight liner</li><li>Ferrero Rocher 24 pcs, boxed separately</li></ul><p>One size, as pictured.</p>",
+   "seo": {
+    "title": "Pumpkin & Pralines | Maison Botanique",
+    "description": "Pumpkin & Pralines: Orange roses in a real pumpkin, 24 Ferrero Rocher. Order online in Dubai from Maison Botanique."
+   },
+   "options": [
+    {
+     "name": "Size",
+     "values": [
+      "Signature"
+     ]
+    }
+   ],
+   "variants": [
+    {
+     "option1": "Signature",
+     "sku": "MB-SE-001-SIG",
+     "price": "299.00",
+     "compare_at_price": "400.00",
+     "requires_shipping": true,
+     "taxable": true,
+     "inventory_management": null,
+     "inventory_policy": "deny",
+     "weight": null,
+     "barcode": null
+    }
+   ],
+   "images": [
+    {
+     "position": 1,
+     "filename": "images/pumpkin-and-pralines-1.webp",
+     "alt": "Orange roses, red carnations and eucalyptus in a real pumpkin beside a box of 24 Ferrero Rocher",
+     "width": 960,
+     "height": 960,
+     "alt_ar": "بمبكن آند برالين — زهور في يقطينة مع فيريرو روشيه"
+    }
+   ],
+   "image_status": "ai_concept_round4_pending_real_sample",
+   "translations": {
+    "ar": {
+     "title": "بمبكن آند برالين — زهور في يقطينة مع فيريرو روشيه",
+     "body_html": "<p>ما يتضمنه<br>8 ورود برتقالية و5 قرنفل أحمر و3 أغصان أقحوان أحمر وأوكالبتوس<br>منسقة في يقطينة حقيقية ببطانة مانعة للتسرب<br>فيريرو روشيه 24 قطعة في علبة منفصلة</p>"
+    }
+   },
+   "review_flags": [
+    "seasonal_2026",
+    "owner_price_2026-10-25",
+    "recipe_proposed_not_approved",
+    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule",
+    "published_by_owner_2026-10-25"
+   ],
+   "metafields": [
+    {
+     "namespace": "maison",
+     "key": "card_line",
+     "type": "single_line_text_field",
+     "value": "Orange roses in a real pumpkin, 24 Ferrero Rocher"
+    },
+    {
+     "namespace": "maison",
+     "key": "card_line_ar",
+     "type": "single_line_text_field",
+     "value": "ورود برتقالية في يقطينة حقيقية، مع 24 فيريرو روشيه"
+    },
+    {
+     "namespace": "maison",
+     "key": "composition",
+     "type": "list.single_line_text_field",
+     "value": "[\"8 orange roses, 5 red carnations, 3 red button chrysanthemum stems and eucalyptus\", \"Arranged in a real pumpkin with a watertight liner\", \"Ferrero Rocher 24 pcs, boxed separately\"]"
+    },
+    {
+     "namespace": "maison",
+     "key": "composition_ar",
+     "type": "list.single_line_text_field",
+     "value": "[\"8 ورود برتقالية و5 قرنفل أحمر و3 أغصان أقحوان أحمر وأوكالبتوس\", \"منسقة في يقطينة حقيقية ببطانة مانعة للتسرب\", \"فيريرو روشيه 24 قطعة في علبة منفصلة\"]"
+    },
+    {
+     "namespace": "maison",
+     "key": "sort_order",
+     "type": "number_integer",
+     "value": "1"
+    },
+    {
+     "namespace": "maison",
+     "key": "catalog_number",
+     "type": "number_integer",
+     "value": "333"
+    },
+    {
+     "namespace": "maison",
+     "key": "room",
+     "type": "single_line_text_field",
+     "value": "gifts"
+    },
+    {
+     "namespace": "maison",
+     "key": "size_details",
+     "type": "json",
+     "value": "[{\"name\": \"Signature\", \"nameAr\": \"سيغنتشر\", \"detail\": \"as pictured\", \"detailAr\": \"كما في الصورة\"}]"
+    },
+    {
+     "namespace": "maison",
+     "key": "title_ar",
+     "type": "single_line_text_field",
+     "value": "بمبكن آند برالين — زهور في يقطينة مع فيريرو روشيه"
+    },
+    {
+     "namespace": "maison",
+     "key": "description_ar",
+     "type": "multi_line_text_field",
+     "value": "ما يتضمنه\n8 ورود برتقالية و5 قرنفل أحمر و3 أغصان أقحوان أحمر وأوكالبتوس\nمنسقة في يقطينة حقيقية ببطانة مانعة للتسرب\nفيريرو روشيه 24 قطعة في علبة منفصلة"
+    },
+    {
+     "namespace": "maison",
+     "key": "answer_summary",
+     "type": "multi_line_text_field",
+     "value": "Pumpkin & Pralines — Flowers in a Pumpkin with Ferrero Rocher from Maison Botanique includes 8 orange roses, 5 red carnations, 3 red button chrysanthemum stems and eucalyptus; Arranged in a real pumpkin with a watertight liner; Ferrero Rocher 24 pcs, boxed separately. One size, as pictured."
+    },
+    {
+     "namespace": "maison",
+     "key": "answer_summary_ar",
+     "type": "multi_line_text_field",
+     "value": "بمبكن آند برالين — زهور في يقطينة مع فيريرو روشيه من ميزون بوتانيك: 8 ورود برتقالية و5 قرنفل أحمر و3 أغصان أقحوان أحمر وأوكالبتوس؛ منسقة في يقطينة حقيقية ببطانة مانعة للتسرب؛ فيريرو روشيه 24 قطعة في علبة منفصلة. حجم واحد كما في الصورة."
+    },
+    {
+     "namespace": "maison",
+     "key": "faq",
+     "type": "json",
+     "value": "[{\"q\": \"What is included in Pumpkin & Pralines — Flowers in a Pumpkin with Ferrero Rocher?\", \"a\": \"8 orange roses, 5 red carnations, 3 red button chrysanthemum stems and eucalyptus; Arranged in a real pumpkin with a watertight liner; Ferrero Rocher 24 pcs, boxed separately\"}]"
+    },
+    {
+     "namespace": "maison",
+     "key": "image_status",
+     "type": "single_line_text_field",
+     "value": "ai_concept_round4_pending_real_sample"
+    },
+    {
+     "namespace": "maison",
+     "key": "stem_count",
+     "type": "number_integer",
+     "value": "16"
+    }
+   ],
+   "body_html_original": "",
+   "visual_spec": null,
+   "owner_to_confirm": "Publish date; real sample photo; stem recipe",
+   "description_status": "machine_draft_ar",
+   "image_prompt": "See review/seasonal/2026-10-24/round4/IMAGE-BRIEF.md",
+   "legacy_variants_removed": "",
+   "answer_summary": {
+    "en": "Pumpkin & Pralines — Flowers in a Pumpkin with Ferrero Rocher from Maison Botanique includes 8 orange roses, 5 red carnations, 3 red button chrysanthemum stems and eucalyptus; Arranged in a real pumpkin with a watertight liner; Ferrero Rocher 24 pcs, boxed separately. One size, as pictured.",
+    "ar": "بمبكن آند برالين — زهور في يقطينة مع فيريرو روشيه من ميزون بوتانيك: 8 ورود برتقالية و5 قرنفل أحمر و3 أغصان أقحوان أحمر وأوكالبتوس؛ منسقة في يقطينة حقيقية ببطانة مانعة للتسرب؛ فيريرو روشيه 24 قطعة في علبة منفصلة. حجم واحد كما في الصورة."
+   },
+   "faq": [
+    {
+     "q": "What is included in Pumpkin & Pralines — Flowers in a Pumpkin with Ferrero Rocher?",
+     "a": "8 orange roses, 5 red carnations, 3 red button chrysanthemum stems and eucalyptus; Arranged in a real pumpkin with a watertight liner; Ferrero Rocher 24 pcs, boxed separately"
+    }
+   ]
+  },
+  {
+   "reference_id": "MB-SEASONAL-2026-the-pumpkin-basket",
+   "catalog_number": 334,
+   "title": "The Pumpkin Basket — Roses, Carnations & Mini Pumpkins",
+   "handle": "the-pumpkin-basket",
+   "vendor": "Maison Botanique",
+   "product_type": "Vases & Boxes",
+   "status": "active",
+   "published": true,
+   "tags": [
+    "flower:rose",
+    "flower:carnation",
+    "flower:chrysanthemum",
+    "format:box",
+    "occasion:just-because",
+    "occasion:thanks",
+    "season:halloween"
+   ],
+   "collections": [],
+   "body_html": "<p><strong>What's included</strong></p><ul><li>7 orange roses, 5 red carnations, 3 red button chrysanthemum stems and eucalyptus</li><li>Woven wicker basket with three mini pumpkins</li></ul><p>One size, as pictured.</p>",
+   "seo": {
+    "title": "The Pumpkin Basket | Maison Botanique",
+    "description": "The Pumpkin Basket: Orange roses, red carnations, three mini pumpkins. Order online in Dubai from Maison Botanique."
+   },
+   "options": [
+    {
+     "name": "Size",
+     "values": [
+      "Signature"
+     ]
+    }
+   ],
+   "variants": [
+    {
+     "option1": "Signature",
+     "sku": "MB-SE-002-SIG",
+     "price": "259.00",
+     "compare_at_price": "400.00",
+     "requires_shipping": true,
+     "taxable": true,
+     "inventory_management": null,
+     "inventory_policy": "deny",
+     "weight": null,
+     "barcode": null
+    }
+   ],
+   "images": [
+    {
+     "position": 1,
+     "filename": "images/the-pumpkin-basket-1.webp",
+     "alt": "Wicker basket of orange roses and red carnations with three mini pumpkins",
+     "width": 960,
+     "height": 960,
+     "alt_ar": "سلة اليقطين — ورود وقرنفل ويقطينات صغيرة"
+    }
+   ],
+   "image_status": "ai_concept_round4_pending_real_sample",
+   "translations": {
+    "ar": {
+     "title": "سلة اليقطين — ورود وقرنفل ويقطينات صغيرة",
+     "body_html": "<p>ما يتضمنه<br>7 ورود برتقالية و5 قرنفل أحمر و3 أغصان أقحوان أحمر وأوكالبتوس<br>سلة خوص منسوجة مع ثلاث يقطينات صغيرة</p>"
+    }
+   },
+   "review_flags": [
+    "seasonal_2026",
+    "owner_price_2026-10-25",
+    "recipe_proposed_not_approved",
+    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule",
+    "published_by_owner_2026-10-25"
+   ],
+   "metafields": [
+    {
+     "namespace": "maison",
+     "key": "card_line",
+     "type": "single_line_text_field",
+     "value": "Orange roses, red carnations, three mini pumpkins"
+    },
+    {
+     "namespace": "maison",
+     "key": "card_line_ar",
+     "type": "single_line_text_field",
+     "value": "ورود برتقالية وقرنفل أحمر وثلاث يقطينات صغيرة"
+    },
+    {
+     "namespace": "maison",
+     "key": "composition",
+     "type": "list.single_line_text_field",
+     "value": "[\"7 orange roses, 5 red carnations, 3 red button chrysanthemum stems and eucalyptus\", \"Woven wicker basket with three mini pumpkins\"]"
+    },
+    {
+     "namespace": "maison",
+     "key": "composition_ar",
+     "type": "list.single_line_text_field",
+     "value": "[\"7 ورود برتقالية و5 قرنفل أحمر و3 أغصان أقحوان أحمر وأوكالبتوس\", \"سلة خوص منسوجة مع ثلاث يقطينات صغيرة\"]"
+    },
+    {
+     "namespace": "maison",
+     "key": "sort_order",
+     "type": "number_integer",
+     "value": "2"
+    },
+    {
+     "namespace": "maison",
+     "key": "catalog_number",
+     "type": "number_integer",
+     "value": "334"
+    },
+    {
+     "namespace": "maison",
+     "key": "room",
+     "type": "single_line_text_field",
+     "value": "vases"
+    },
+    {
+     "namespace": "maison",
+     "key": "size_details",
+     "type": "json",
+     "value": "[{\"name\": \"Signature\", \"nameAr\": \"سيغنتشر\", \"detail\": \"as pictured\", \"detailAr\": \"كما في الصورة\"}]"
+    },
+    {
+     "namespace": "maison",
+     "key": "title_ar",
+     "type": "single_line_text_field",
+     "value": "سلة اليقطين — ورود وقرنفل ويقطينات صغيرة"
+    },
+    {
+     "namespace": "maison",
+     "key": "description_ar",
+     "type": "multi_line_text_field",
+     "value": "ما يتضمنه\n7 ورود برتقالية و5 قرنفل أحمر و3 أغصان أقحوان أحمر وأوكالبتوس\nسلة خوص منسوجة مع ثلاث يقطينات صغيرة"
+    },
+    {
+     "namespace": "maison",
+     "key": "answer_summary",
+     "type": "multi_line_text_field",
+     "value": "The Pumpkin Basket — Roses, Carnations & Mini Pumpkins from Maison Botanique includes 7 orange roses, 5 red carnations, 3 red button chrysanthemum stems and eucalyptus; Woven wicker basket with three mini pumpkins. One size, as pictured."
+    },
+    {
+     "namespace": "maison",
+     "key": "answer_summary_ar",
+     "type": "multi_line_text_field",
+     "value": "سلة اليقطين — ورود وقرنفل ويقطينات صغيرة من ميزون بوتانيك: 7 ورود برتقالية و5 قرنفل أحمر و3 أغصان أقحوان أحمر وأوكالبتوس؛ سلة خوص منسوجة مع ثلاث يقطينات صغيرة. حجم واحد كما في الصورة."
+    },
+    {
+     "namespace": "maison",
+     "key": "faq",
+     "type": "json",
+     "value": "[{\"q\": \"What is included in The Pumpkin Basket — Roses, Carnations & Mini Pumpkins?\", \"a\": \"7 orange roses, 5 red carnations, 3 red button chrysanthemum stems and eucalyptus; Woven wicker basket with three mini pumpkins\"}]"
+    },
+    {
+     "namespace": "maison",
+     "key": "image_status",
+     "type": "single_line_text_field",
+     "value": "ai_concept_round4_pending_real_sample"
+    },
+    {
+     "namespace": "maison",
+     "key": "stem_count",
+     "type": "number_integer",
+     "value": "15"
+    }
+   ],
+   "body_html_original": "",
+   "visual_spec": null,
+   "owner_to_confirm": "Publish date; real sample photo; stem recipe",
+   "description_status": "machine_draft_ar",
+   "image_prompt": "See review/seasonal/2026-10-24/round4/IMAGE-BRIEF.md",
+   "legacy_variants_removed": "",
+   "answer_summary": {
+    "en": "The Pumpkin Basket — Roses, Carnations & Mini Pumpkins from Maison Botanique includes 7 orange roses, 5 red carnations, 3 red button chrysanthemum stems and eucalyptus; Woven wicker basket with three mini pumpkins. One size, as pictured.",
+    "ar": "سلة اليقطين — ورود وقرنفل ويقطينات صغيرة من ميزون بوتانيك: 7 ورود برتقالية و5 قرنفل أحمر و3 أغصان أقحوان أحمر وأوكالبتوس؛ سلة خوص منسوجة مع ثلاث يقطينات صغيرة. حجم واحد كما في الصورة."
+   },
+   "faq": [
+    {
+     "q": "What is included in The Pumpkin Basket — Roses, Carnations & Mini Pumpkins?",
+     "a": "7 orange roses, 5 red carnations, 3 red button chrysanthemum stems and eucalyptus; Woven wicker basket with three mini pumpkins"
+    }
+   ]
+  },
+  {
+   "reference_id": "MB-SEASONAL-2026-jack-o-bloom",
+   "catalog_number": 335,
+   "title": "Jack-o'-Bloom — Roses in a Lantern Pumpkin Pot",
+   "handle": "jack-o-bloom",
+   "vendor": "Maison Botanique",
+   "product_type": "Vases & Boxes",
+   "status": "active",
+   "published": true,
+   "tags": [
+    "flower:rose",
+    "flower:chrysanthemum",
+    "flower:lisianthus",
+    "format:vase",
+    "occasion:just-because",
+    "occasion:thanks",
+    "season:halloween"
+   ],
+   "collections": [],
+   "body_html": "<p><strong>What's included</strong></p><ul><li>5 orange roses, 5 white chrysanthemums and 3 purple lisianthus stems</li><li>Ceramic jack-o'-lantern pot with a battery tea light</li></ul><p>One size, as pictured.</p>",
+   "seo": {
+    "title": "Jack-o'-Bloom | Maison Botanique",
+    "description": "Jack-o'-Bloom: Orange roses, white chrysanthemums, purple lisianthus. Order online in Dubai from Maison Botanique."
+   },
+   "options": [
+    {
+     "name": "Size",
+     "values": [
+      "Signature"
+     ]
+    }
+   ],
+   "variants": [
+    {
+     "option1": "Signature",
+     "sku": "MB-SE-003-SIG",
+     "price": "259.00",
+     "compare_at_price": "400.00",
+     "requires_shipping": true,
+     "taxable": true,
+     "inventory_management": null,
+     "inventory_policy": "deny",
+     "weight": null,
+     "barcode": null
+    }
+   ],
+   "images": [
+    {
+     "position": 1,
+     "filename": "images/jack-o-bloom-1.webp",
+     "alt": "Orange roses, white chrysanthemums and purple lisianthus in a ceramic jack-o-lantern pot",
+     "width": 960,
+     "height": 960,
+     "alt_ar": "جاك أو بلوم — ورود في وعاء يقطين مضيء"
+    }
+   ],
+   "image_status": "ai_concept_round4_pending_real_sample",
+   "translations": {
+    "ar": {
+     "title": "جاك أو بلوم — ورود في وعاء يقطين مضيء",
+     "body_html": "<p>ما يتضمنه<br>5 ورود برتقالية و5 أقحوان أبيض و3 أغصان ليزيانثوس بنفسجي<br>وعاء خزفي على شكل يقطينة مع شمعة تعمل بالبطارية</p>"
+    }
+   },
+   "review_flags": [
+    "seasonal_2026",
+    "owner_price_2026-10-25",
+    "recipe_proposed_not_approved",
+    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule",
+    "published_by_owner_2026-10-25"
+   ],
+   "metafields": [
+    {
+     "namespace": "maison",
+     "key": "card_line",
+     "type": "single_line_text_field",
+     "value": "Orange roses, white chrysanthemums, purple lisianthus"
+    },
+    {
+     "namespace": "maison",
+     "key": "card_line_ar",
+     "type": "single_line_text_field",
+     "value": "ورود برتقالية وأقحوان أبيض وليزيانثوس بنفسجي"
+    },
+    {
+     "namespace": "maison",
+     "key": "composition",
+     "type": "list.single_line_text_field",
+     "value": "[\"5 orange roses, 5 white chrysanthemums and 3 purple lisianthus stems\", \"Ceramic jack-o'-lantern pot with a battery tea light\"]"
+    },
+    {
+     "namespace": "maison",
+     "key": "composition_ar",
+     "type": "list.single_line_text_field",
+     "value": "[\"5 ورود برتقالية و5 أقحوان أبيض و3 أغصان ليزيانثوس بنفسجي\", \"وعاء خزفي على شكل يقطينة مع شمعة تعمل بالبطارية\"]"
+    },
+    {
+     "namespace": "maison",
+     "key": "sort_order",
+     "type": "number_integer",
+     "value": "3"
+    },
+    {
+     "namespace": "maison",
+     "key": "catalog_number",
+     "type": "number_integer",
+     "value": "335"
+    },
+    {
+     "namespace": "maison",
+     "key": "room",
+     "type": "single_line_text_field",
+     "value": "vases"
+    },
+    {
+     "namespace": "maison",
+     "key": "size_details",
+     "type": "json",
+     "value": "[{\"name\": \"Signature\", \"nameAr\": \"سيغنتشر\", \"detail\": \"as pictured\", \"detailAr\": \"كما في الصورة\"}]"
+    },
+    {
+     "namespace": "maison",
+     "key": "title_ar",
+     "type": "single_line_text_field",
+     "value": "جاك أو بلوم — ورود في وعاء يقطين مضيء"
+    },
+    {
+     "namespace": "maison",
+     "key": "description_ar",
+     "type": "multi_line_text_field",
+     "value": "ما يتضمنه\n5 ورود برتقالية و5 أقحوان أبيض و3 أغصان ليزيانثوس بنفسجي\nوعاء خزفي على شكل يقطينة مع شمعة تعمل بالبطارية"
+    },
+    {
+     "namespace": "maison",
+     "key": "answer_summary",
+     "type": "multi_line_text_field",
+     "value": "Jack-o'-Bloom — Roses in a Lantern Pumpkin Pot from Maison Botanique includes 5 orange roses, 5 white chrysanthemums and 3 purple lisianthus stems; Ceramic jack-o'-lantern pot with a battery tea light. One size, as pictured."
+    },
+    {
+     "namespace": "maison",
+     "key": "answer_summary_ar",
+     "type": "multi_line_text_field",
+     "value": "جاك أو بلوم — ورود في وعاء يقطين مضيء من ميزون بوتانيك: 5 ورود برتقالية و5 أقحوان أبيض و3 أغصان ليزيانثوس بنفسجي؛ وعاء خزفي على شكل يقطينة مع شمعة تعمل بالبطارية. حجم واحد كما في الصورة."
+    },
+    {
+     "namespace": "maison",
+     "key": "faq",
+     "type": "json",
+     "value": "[{\"q\": \"What is included in Jack-o'-Bloom — Roses in a Lantern Pumpkin Pot?\", \"a\": \"5 orange roses, 5 white chrysanthemums and 3 purple lisianthus stems; Ceramic jack-o'-lantern pot with a battery tea light\"}]"
+    },
+    {
+     "namespace": "maison",
+     "key": "image_status",
+     "type": "single_line_text_field",
+     "value": "ai_concept_round4_pending_real_sample"
+    },
+    {
+     "namespace": "maison",
+     "key": "stem_count",
+     "type": "number_integer",
+     "value": "13"
+    }
+   ],
+   "body_html_original": "",
+   "visual_spec": null,
+   "owner_to_confirm": "Publish date; real sample photo; stem recipe",
+   "description_status": "machine_draft_ar",
+   "image_prompt": "See review/seasonal/2026-10-24/round4/IMAGE-BRIEF.md",
+   "legacy_variants_removed": "",
+   "answer_summary": {
+    "en": "Jack-o'-Bloom — Roses in a Lantern Pumpkin Pot from Maison Botanique includes 5 orange roses, 5 white chrysanthemums and 3 purple lisianthus stems; Ceramic jack-o'-lantern pot with a battery tea light. One size, as pictured.",
+    "ar": "جاك أو بلوم — ورود في وعاء يقطين مضيء من ميزون بوتانيك: 5 ورود برتقالية و5 أقحوان أبيض و3 أغصان ليزيانثوس بنفسجي؛ وعاء خزفي على شكل يقطينة مع شمعة تعمل بالبطارية. حجم واحد كما في الصورة."
+   },
+   "faq": [
+    {
+     "q": "What is included in Jack-o'-Bloom — Roses in a Lantern Pumpkin Pot?",
+     "a": "5 orange roses, 5 white chrysanthemums and 3 purple lisianthus stems; Ceramic jack-o'-lantern pot with a battery tea light"
+    }
+   ]
+  },
+  {
+   "reference_id": "MB-SEASONAL-2026-the-midnight-pumpkin",
+   "catalog_number": 336,
+   "title": "The Midnight Pumpkin — Red & Black Roses in Charcoal",
+   "handle": "the-midnight-pumpkin",
+   "vendor": "Maison Botanique",
+   "product_type": "Vases & Boxes",
+   "status": "active",
+   "published": true,
+   "tags": [
+    "flower:rose",
+    "flower:chrysanthemum",
+    "format:vase",
+    "occasion:just-because",
+    "season:halloween"
+   ],
+   "collections": [],
+   "body_html": "<p><strong>What's included</strong></p><ul><li>7 deep red roses, 3 black roses, 3 red button chrysanthemum stems and eucalyptus</li><li>Matte charcoal ceramic pumpkin vase with a black satin ribbon</li></ul><p>One size, as pictured.</p>",
+   "seo": {
+    "title": "The Midnight Pumpkin | Maison Botanique",
+    "description": "The Midnight Pumpkin: Deep red and black roses, charcoal pumpkin vase. Order online in Dubai from Maison Botanique."
+   },
+   "options": [
+    {
+     "name": "Size",
+     "values": [
+      "Signature"
+     ]
+    }
+   ],
+   "variants": [
+    {
+     "option1": "Signature",
+     "sku": "MB-SE-004-SIG",
+     "price": "259.00",
+     "compare_at_price": "400.00",
+     "requires_shipping": true,
+     "taxable": true,
+     "inventory_management": null,
+     "inventory_policy": "deny",
+     "weight": null,
+     "barcode": null
+    }
+   ],
+   "images": [
+    {
+     "position": 1,
+     "filename": "images/the-midnight-pumpkin-1.webp",
+     "alt": "Deep red and black roses in a matte charcoal pumpkin vase with a black ribbon",
+     "width": 960,
+     "height": 960,
+     "alt_ar": "يقطينة منتصف الليل — ورود حمراء وسوداء"
+    }
+   ],
+   "image_status": "ai_concept_round4_pending_real_sample",
+   "translations": {
+    "ar": {
+     "title": "يقطينة منتصف الليل — ورود حمراء وسوداء",
+     "body_html": "<p>ما يتضمنه<br>7 ورود حمراء داكنة و3 ورود سوداء و3 أغصان أقحوان أحمر وأوكالبتوس<br>مزهرية خزفية فحمية على شكل يقطينة مع شريطة ساتان سوداء</p>"
+    }
+   },
+   "review_flags": [
+    "seasonal_2026",
+    "owner_price_2026-10-25",
+    "recipe_proposed_not_approved",
+    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule",
+    "published_by_owner_2026-10-25"
+   ],
+   "metafields": [
+    {
+     "namespace": "maison",
+     "key": "card_line",
+     "type": "single_line_text_field",
+     "value": "Deep red and black roses, charcoal pumpkin vase"
+    },
+    {
+     "namespace": "maison",
+     "key": "card_line_ar",
+     "type": "single_line_text_field",
+     "value": "ورود حمراء داكنة وسوداء في مزهرية يقطين فحمية"
+    },
+    {
+     "namespace": "maison",
+     "key": "composition",
+     "type": "list.single_line_text_field",
+     "value": "[\"7 deep red roses, 3 black roses, 3 red button chrysanthemum stems and eucalyptus\", \"Matte charcoal ceramic pumpkin vase with a black satin ribbon\"]"
+    },
+    {
+     "namespace": "maison",
+     "key": "composition_ar",
+     "type": "list.single_line_text_field",
+     "value": "[\"7 ورود حمراء داكنة و3 ورود سوداء و3 أغصان أقحوان أحمر وأوكالبتوس\", \"مزهرية خزفية فحمية على شكل يقطينة مع شريطة ساتان سوداء\"]"
+    },
+    {
+     "namespace": "maison",
+     "key": "sort_order",
+     "type": "number_integer",
+     "value": "4"
+    },
+    {
+     "namespace": "maison",
+     "key": "catalog_number",
+     "type": "number_integer",
+     "value": "336"
+    },
+    {
+     "namespace": "maison",
+     "key": "room",
+     "type": "single_line_text_field",
+     "value": "vases"
+    },
+    {
+     "namespace": "maison",
+     "key": "size_details",
+     "type": "json",
+     "value": "[{\"name\": \"Signature\", \"nameAr\": \"سيغنتشر\", \"detail\": \"as pictured\", \"detailAr\": \"كما في الصورة\"}]"
+    },
+    {
+     "namespace": "maison",
+     "key": "title_ar",
+     "type": "single_line_text_field",
+     "value": "يقطينة منتصف الليل — ورود حمراء وسوداء"
+    },
+    {
+     "namespace": "maison",
+     "key": "description_ar",
+     "type": "multi_line_text_field",
+     "value": "ما يتضمنه\n7 ورود حمراء داكنة و3 ورود سوداء و3 أغصان أقحوان أحمر وأوكالبتوس\nمزهرية خزفية فحمية على شكل يقطينة مع شريطة ساتان سوداء"
+    },
+    {
+     "namespace": "maison",
+     "key": "answer_summary",
+     "type": "multi_line_text_field",
+     "value": "The Midnight Pumpkin — Red & Black Roses in Charcoal from Maison Botanique includes 7 deep red roses, 3 black roses, 3 red button chrysanthemum stems and eucalyptus; Matte charcoal ceramic pumpkin vase with a black satin ribbon. One size, as pictured."
+    },
+    {
+     "namespace": "maison",
+     "key": "answer_summary_ar",
+     "type": "multi_line_text_field",
+     "value": "يقطينة منتصف الليل — ورود حمراء وسوداء من ميزون بوتانيك: 7 ورود حمراء داكنة و3 ورود سوداء و3 أغصان أقحوان أحمر وأوكالبتوس؛ مزهرية خزفية فحمية على شكل يقطينة مع شريطة ساتان سوداء. حجم واحد كما في الصورة."
+    },
+    {
+     "namespace": "maison",
+     "key": "faq",
+     "type": "json",
+     "value": "[{\"q\": \"What is included in The Midnight Pumpkin — Red & Black Roses in Charcoal?\", \"a\": \"7 deep red roses, 3 black roses, 3 red button chrysanthemum stems and eucalyptus; Matte charcoal ceramic pumpkin vase with a black satin ribbon\"}]"
+    },
+    {
+     "namespace": "maison",
+     "key": "image_status",
+     "type": "single_line_text_field",
+     "value": "ai_concept_round4_pending_real_sample"
+    },
+    {
+     "namespace": "maison",
+     "key": "stem_count",
+     "type": "number_integer",
+     "value": "13"
+    }
+   ],
+   "body_html_original": "",
+   "visual_spec": null,
+   "owner_to_confirm": "Publish date; real sample photo; stem recipe",
+   "description_status": "machine_draft_ar",
+   "image_prompt": "See review/seasonal/2026-10-24/round4/IMAGE-BRIEF.md",
+   "legacy_variants_removed": "",
+   "answer_summary": {
+    "en": "The Midnight Pumpkin — Red & Black Roses in Charcoal from Maison Botanique includes 7 deep red roses, 3 black roses, 3 red button chrysanthemum stems and eucalyptus; Matte charcoal ceramic pumpkin vase with a black satin ribbon. One size, as pictured.",
+    "ar": "يقطينة منتصف الليل — ورود حمراء وسوداء من ميزون بوتانيك: 7 ورود حمراء داكنة و3 ورود سوداء و3 أغصان أقحوان أحمر وأوكالبتوس؛ مزهرية خزفية فحمية على شكل يقطينة مع شريطة ساتان سوداء. حجم واحد كما في الصورة."
+   },
+   "faq": [
+    {
+     "q": "What is included in The Midnight Pumpkin — Red & Black Roses in Charcoal?",
+     "a": "7 deep red roses, 3 black roses, 3 red button chrysanthemum stems and eucalyptus; Matte charcoal ceramic pumpkin vase with a black satin ribbon"
+    }
+   ]
+  },
+  {
+   "reference_id": "MB-SEASONAL-2026-marigold-toran",
+   "catalog_number": 337,
+   "title": "Marigold Toran — Fresh Diwali Doorway Garland",
+   "handle": "marigold-toran",
+   "vendor": "Maison Botanique",
+   "product_type": "Diwali",
+   "status": "active",
+   "published": true,
+   "tags": [
+    "flower:marigold",
+    "format:gift",
+    "season:diwali",
+    "preorder"
+   ],
+   "collections": [],
+   "body_html": "<p><strong>What's included</strong></p><ul><li>Fresh orange and golden marigolds, strung by hand with leaf accents</li><li>Cotton ties for hanging above the door</li><li>Delivered from 5 November, through 15 November</li></ul><p><strong>Choose your length</strong></p><ul><li>2 ft – single door</li><li>4 ft – wide door</li><li>6 ft – double door</li></ul><p>Diwali pre-order: paid at checkout, delivered on the day you choose from 5 November.</p>",
+   "seo": {
+    "title": "Marigold Toran | Maison Botanique",
+    "description": "Marigold Toran: Fresh marigolds strung for your door · Diwali pre-order. Order online in Dubai from Maison Botanique."
+   },
+   "options": [
+    {
+     "name": "Length",
+     "values": [
+      "2 ft",
+      "4 ft",
+      "6 ft"
+     ]
+    }
+   ],
+   "variants": [
+    {
+     "option1": "2 ft",
+     "sku": "MB-SE-005-2FT",
+     "price": "99.00",
+     "compare_at_price": null,
+     "requires_shipping": true,
+     "taxable": true,
+     "inventory_management": null,
+     "inventory_policy": "deny",
+     "weight": null,
+     "barcode": null
+    },
+    {
+     "option1": "4 ft",
+     "sku": "MB-SE-005-4FT",
+     "price": "175.00",
+     "compare_at_price": null,
+     "requires_shipping": true,
+     "taxable": true,
+     "inventory_management": null,
+     "inventory_policy": "deny",
+     "weight": null,
+     "barcode": null
+    },
+    {
+     "option1": "6 ft",
+     "sku": "MB-SE-005-6FT",
+     "price": "250.00",
+     "compare_at_price": null,
+     "requires_shipping": true,
+     "taxable": true,
+     "inventory_management": null,
+     "inventory_policy": "deny",
+     "weight": null,
+     "barcode": null
+    }
+   ],
+   "images": [
+    {
+     "position": 1,
+     "filename": "images/marigold-toran-1.webp",
+     "alt": "Fresh orange and yellow marigold toran with scallops and hanging tassels on an ivory wall",
+     "width": 960,
+     "height": 960,
+     "alt_ar": "إكليل القطيفة — زينة ديوالي طازجة للباب"
+    }
+   ],
+   "image_status": "ai_concept_round4_pending_real_sample",
+   "translations": {
+    "ar": {
+     "title": "إكليل القطيفة — زينة ديوالي طازجة للباب",
+     "body_html": "<p>ما يتضمنه<br>قطيفة برتقالية وذهبية طازجة منظومة يدويًا مع أوراق خضراء<br>أربطة قطنية لتعليقه فوق الباب<br>توصيل من 5 إلى 8 نوفمبر لديوالي</p>"
+    }
+   },
+   "review_flags": [
+    "seasonal_2026",
+    "owner_price_2026-10-25",
+    "recipe_proposed_not_approved",
+    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule",
+    "published_by_owner_2026-10-25"
+   ],
+   "metafields": [
+    {
+     "namespace": "maison",
+     "key": "card_line",
+     "type": "single_line_text_field",
+     "value": "Fresh marigolds strung for your door · Diwali pre-order"
+    },
+    {
+     "namespace": "maison",
+     "key": "card_line_ar",
+     "type": "single_line_text_field",
+     "value": "قطيفة طازجة منظومة لبابكم · طلب مسبق لديوالي"
+    },
+    {
+     "namespace": "maison",
+     "key": "composition",
+     "type": "list.single_line_text_field",
+     "value": "[\"Fresh orange and golden marigolds, strung by hand with leaf accents\", \"Cotton ties for hanging above the door\", \"Delivered from 5 November, through 15 November\"]"
+    },
+    {
+     "namespace": "maison",
+     "key": "composition_ar",
+     "type": "list.single_line_text_field",
+     "value": "[\"قطيفة برتقالية وذهبية طازجة منظومة يدويًا مع أوراق خضراء\", \"أربطة قطنية لتعليقه فوق الباب\", \"التوصيل من 5 إلى 15 نوفمبر\"]"
+    },
+    {
+     "namespace": "maison",
+     "key": "sort_order",
+     "type": "number_integer",
+     "value": "5"
+    },
+    {
+     "namespace": "maison",
+     "key": "catalog_number",
+     "type": "number_integer",
+     "value": "337"
+    },
+    {
+     "namespace": "maison",
+     "key": "room",
+     "type": "single_line_text_field",
+     "value": "gifts"
+    },
+    {
+     "namespace": "maison",
+     "key": "size_details",
+     "type": "json",
+     "value": "[{\"name\": \"2 ft\", \"nameAr\": \"2 قدم\", \"detail\": \"single door\", \"detailAr\": \"باب واحد\"}, {\"name\": \"4 ft\", \"nameAr\": \"4 أقدام\", \"detail\": \"wide door\", \"detailAr\": \"باب عريض\"}, {\"name\": \"6 ft\", \"nameAr\": \"6 أقدام\", \"detail\": \"double door\", \"detailAr\": \"باب مزدوج\"}]"
+    },
+    {
+     "namespace": "maison",
+     "key": "title_ar",
+     "type": "single_line_text_field",
+     "value": "إكليل القطيفة — زينة ديوالي طازجة للباب"
+    },
+    {
+     "namespace": "maison",
+     "key": "description_ar",
+     "type": "multi_line_text_field",
+     "value": "ما يتضمنه\nقطيفة برتقالية وذهبية طازجة منظومة يدويًا مع أوراق خضراء\nأربطة قطنية لتعليقه فوق الباب\nالتوصيل من 5 إلى 15 نوفمبر"
+    },
+    {
+     "namespace": "maison",
+     "key": "answer_summary",
+     "type": "multi_line_text_field",
+     "value": "Marigold Toran — Fresh Diwali Doorway Garland from Maison Botanique: fresh marigolds strung for your door, in 2 ft, 4 ft or 6 ft. Diwali pre-order, delivered from 5 November through 15 November."
+    },
+    {
+     "namespace": "maison",
+     "key": "answer_summary_ar",
+     "type": "multi_line_text_field",
+     "value": "إكليل القطيفة — زينة ديوالي طازجة للباب من ميزون بوتانيك: قطيفة طازجة لبابكم بطول 2 أو 4 أو 6 أقدام. طلب مسبق لديوالي، التوصيل من 5 إلى 15 نوفمبر."
+    },
+    {
+     "namespace": "maison",
+     "key": "faq",
+     "type": "json",
+     "value": "[{\"q\": \"What is included in Marigold Toran — Fresh Diwali Doorway Garland?\", \"a\": \"Fresh orange and golden marigolds, strung by hand with leaf accents; Cotton ties for hanging above the door; Delivered 5–8 November for Diwali\"}]"
+    },
+    {
+     "namespace": "maison",
+     "key": "image_status",
+     "type": "single_line_text_field",
+     "value": "ai_concept_round4_pending_real_sample"
+    }
+   ],
+   "body_html_original": "",
+   "visual_spec": null,
+   "owner_to_confirm": "Publish date; real sample photo; stem recipe; delivery 5–15 Nov with maker",
+   "description_status": "machine_draft_ar",
+   "image_prompt": "See review/seasonal/2026-10-24/round4/IMAGE-BRIEF.md",
+   "legacy_variants_removed": "",
+   "answer_summary": {
+    "en": "Marigold Toran — Fresh Diwali Doorway Garland from Maison Botanique: fresh marigolds strung for your door, in 2 ft, 4 ft or 6 ft. Diwali pre-order, delivered from 5 November through 15 November.",
+    "ar": "إكليل القطيفة — زينة ديوالي طازجة للباب من ميزون بوتانيك: قطيفة طازجة لبابكم بطول 2 أو 4 أو 6 أقدام. طلب مسبق لديوالي، التوصيل من 5 إلى 15 نوفمبر."
+   },
+   "faq": [
+    {
+     "q": "What is included in Marigold Toran — Fresh Diwali Doorway Garland?",
+     "a": "Fresh orange and golden marigolds, strung by hand with leaf accents; Cotton ties for hanging above the door; Delivered from 5 November, through 15 November"
+    }
+   ]
   }
  ]
 }

@@ -375,6 +375,7 @@ fieldset.qa-section > .qa-legend + * { clear: both; }
 /* Delivery day and window for the whole order, inside the bag. */
 .ll-shop-panel--cart { --qa-hair: #d9d2c5; --qa-ink-2: #4f5a4b; }
 .dl-picker { margin-top: 8px; padding-bottom: 8px; }
+.dl-preorder { margin: 0 0 10px; padding: 8px 10px; background: #f6ecd8; color: #5a3a12; font-size: 13px; line-height: 1.4; }
 .dl-windows { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
 .dl-window { position: relative; padding: 12px 8px; border: 1px solid var(--qa-hair); text-align: center; font-size: 13px; cursor: pointer; }
 .dl-window input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }

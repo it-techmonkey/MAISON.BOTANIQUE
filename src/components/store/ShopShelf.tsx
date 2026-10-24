@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react';
 import { liveCatalogGroups } from '@/lib/catalog-groups';
+import { isSeasonal } from '@/lib/seasonal';
 import type { Product } from '@/lib/types';
 import { CollectionLink } from './SiteHeader';
 import { useStore } from './StoreProvider';
@@ -28,7 +29,7 @@ export default function ShopShelf() {
     return SHELF_GROUPS.flatMap((id) => {
       const group = findGroup(id);
       if (!group) return [];
-      const pool = products.filter((product) => product.available && product.imageSmall && group.test(product));
+      const pool = products.filter((product) => product.available && product.imageSmall && !isSeasonal(product.id) && group.test(product));
       const wanted = prefer[id];
       const pick = (wanted && pool.find((product) => !used.has(product.id) && wanted(product))) || pool.find((product) => !used.has(product.id)) || pool[0];
       if (!pick) return [];

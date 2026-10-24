@@ -68,18 +68,28 @@ export function isValidDate(value: unknown): value is string {
   return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
 }
 
-export const lastBookableDate = (now: DubaiNow = dubaiNow()) => addDays(now.date, DELIVERY_RULES.maxDaysAhead);
+/**
+ * Dates (YYYY-MM-DD, inclusive) an order is limited to, e.g. a Diwali pre-order
+ * that is only delivered 5–8 November. null means the normal schedule.
+ */
+export interface DeliveryRange { from: string; to: string }
+
+export const lastBookableDate = (now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) => {
+  const horizon = addDays(now.date, DELIVERY_RULES.maxDaysAhead);
+  return range && range.to < horizon ? range.to : horizon;
+};
 
 /** Is the business delivering at all on this date (ignoring the time of day)? */
-export function dateOpen(date: string, now: DubaiNow = dubaiNow()) {
-  if (!isValidDate(date) || date < now.date || date > lastBookableDate(now)) return false;
+export function dateOpen(date: string, now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) {
+  if (!isValidDate(date) || date < now.date || date > lastBookableDate(now, range)) return false;
+  if (range && date < range.from) return false;
   if (DELIVERY_RULES.blackoutDates.includes(date)) return false;
   return !DELIVERY_RULES.closedWeekdays.includes(new Date(`${date}T00:00:00Z`).getUTCDay());
 }
 
 /** Every window on a date, with whether it can still be booked. */
-export function windowsFor(date: string, now: DubaiNow = dubaiNow()) {
-  const open = dateOpen(date, now);
+export function windowsFor(date: string, now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) {
+  const open = dateOpen(date, now, range);
   return DELIVERY_RULES.windows.map((slot) => ({
     ...slot,
     available: open && (date !== now.date || slot.start - DELIVERY_RULES.leadMinutes >= now.minutes),
@@ -87,29 +97,29 @@ export function windowsFor(date: string, now: DubaiNow = dubaiNow()) {
 }
 
 /** Windows that can still be booked on a date. */
-export const slotsFor = (date: string, now: DubaiNow = dubaiNow()) => windowsFor(date, now).filter((slot) => slot.available);
+export const slotsFor = (date: string, now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) => windowsFor(date, now, range).filter((slot) => slot.available);
 
 /** The next few dates that still have at least one open window. */
-export function bookableDays(count = 3, now: DubaiNow = dubaiNow()) {
+export function bookableDays(count = 3, now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) {
   const days: string[] = [];
   for (let offset = 0; offset <= DELIVERY_RULES.maxDaysAhead && days.length < count; offset += 1) {
     const date = addDays(now.date, offset);
-    if (slotsFor(date, now).length) days.push(date);
+    if (slotsFor(date, now, range).length) days.push(date);
   }
   return days;
 }
 
 /** The first date with an open window. */
-export const earliestDate = (now: DubaiNow = dubaiNow()) => bookableDays(1, now)[0] ?? addDays(now.date, 1);
+export const earliestDate = (now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) => bookableDays(1, now, range)[0] ?? range?.from ?? addDays(now.date, 1);
 
 export type ScheduleProblem = 'missing_date' | 'missing_slot' | 'date_passed' | 'day_closed' | 'slot_passed';
 
-export function checkSchedule(schedule: Partial<DeliverySchedule> | null, now: DubaiNow = dubaiNow()): ScheduleProblem | null {
+export function checkSchedule(schedule: Partial<DeliverySchedule> | null, now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null): ScheduleProblem | null {
   if (!schedule?.date) return 'missing_date';
   if (!schedule.slotId || !findSlot(schedule.slotId)) return 'missing_slot';
   if (schedule.date < now.date) return 'date_passed';
-  if (!dateOpen(schedule.date, now)) return 'day_closed';
-  if (!slotsFor(schedule.date, now).some((slot) => slot.id === schedule.slotId)) return 'slot_passed';
+  if (!dateOpen(schedule.date, now, range)) return 'day_closed';
+  if (!slotsFor(schedule.date, now, range).some((slot) => slot.id === schedule.slotId)) return 'slot_passed';
   return null;
 }
 

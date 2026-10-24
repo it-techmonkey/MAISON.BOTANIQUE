@@ -12,6 +12,7 @@
 import giftsForHer from '@/data/gifts-for-her.json';
 import { slugify } from '@/lib/format';
 import { roomOf } from '@/lib/catalog-groups';
+import { withSeasonalPreview } from '@/lib/seasonal';
 import type { Catalog, Collection, Product, ProductCustomField, ProductFormat, ProductRoom, ProductSize } from '@/lib/types';
 import { isShopifyConfigured, shopifyConfig, shopifyConfigError } from './config';
 import { storefrontFetch } from './storefront';
@@ -382,7 +383,7 @@ async function exportCatalog(): Promise<Catalog> {
       answerSummary: '', answerSummaryAr: '', faq: [],
     };
   });
-  return { source: 'sample', products: inDisplayOrder(products), collections: [] };
+  return { source: 'sample', products: withSeasonalPreview(inDisplayOrder(products)), collections: [] };
 }
 
 // ---------------------------------------------------------------------------
@@ -414,5 +415,5 @@ export async function getCatalog(): Promise<Catalog> {
     .map((collection) => mapShopifyCollection(collection, arabicCollectionById.get(collection.id), known))
     .filter((collection) => collection.productIds.length > 0);
 
-  return { source: 'shopify', products, collections };
+  return { source: 'shopify', products: withSeasonalPreview(products), collections };
 }
