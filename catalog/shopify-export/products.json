@@ -42190,8 +42190,8 @@
    "handle": "pumpkin-and-pralines",
    "vendor": "Maison Botanique",
    "product_type": "Flowers & treats",
-   "status": "draft",
-   "published": false,
+   "status": "active",
+   "published": true,
    "tags": [
     "flower:rose",
     "flower:carnation",
@@ -42248,10 +42248,10 @@
    },
    "review_flags": [
     "seasonal_2026",
-    "created_in_shopify_as_draft_2026-10-25",
     "owner_price_2026-10-25",
     "recipe_proposed_not_approved",
-    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule"
+    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule",
+    "published_by_owner_2026-10-25"
    ],
    "metafields": [
     {
@@ -42369,8 +42369,8 @@
    "handle": "the-pumpkin-basket",
    "vendor": "Maison Botanique",
    "product_type": "Vases & Boxes",
-   "status": "draft",
-   "published": false,
+   "status": "active",
+   "published": true,
    "tags": [
     "flower:rose",
     "flower:carnation",
@@ -42427,10 +42427,10 @@
    },
    "review_flags": [
     "seasonal_2026",
-    "created_in_shopify_as_draft_2026-10-25",
     "owner_price_2026-10-25",
     "recipe_proposed_not_approved",
-    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule"
+    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule",
+    "published_by_owner_2026-10-25"
    ],
    "metafields": [
     {
@@ -42548,8 +42548,8 @@
    "handle": "jack-o-bloom",
    "vendor": "Maison Botanique",
    "product_type": "Vases & Boxes",
-   "status": "draft",
-   "published": false,
+   "status": "active",
+   "published": true,
    "tags": [
     "flower:rose",
     "flower:chrysanthemum",
@@ -42606,10 +42606,10 @@
    },
    "review_flags": [
     "seasonal_2026",
-    "created_in_shopify_as_draft_2026-10-25",
     "owner_price_2026-10-25",
     "recipe_proposed_not_approved",
-    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule"
+    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule",
+    "published_by_owner_2026-10-25"
    ],
    "metafields": [
     {
@@ -42727,8 +42727,8 @@
    "handle": "the-midnight-pumpkin",
    "vendor": "Maison Botanique",
    "product_type": "Vases & Boxes",
-   "status": "draft",
-   "published": false,
+   "status": "active",
+   "published": true,
    "tags": [
     "flower:rose",
     "flower:chrysanthemum",
@@ -42783,10 +42783,10 @@
    },
    "review_flags": [
     "seasonal_2026",
-    "created_in_shopify_as_draft_2026-10-25",
     "owner_price_2026-10-25",
     "recipe_proposed_not_approved",
-    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule"
+    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule",
+    "published_by_owner_2026-10-25"
    ],
    "metafields": [
     {
@@ -42904,8 +42904,8 @@
    "handle": "marigold-toran",
    "vendor": "Maison Botanique",
    "product_type": "Diwali",
-   "status": "draft",
-   "published": false,
+   "status": "active",
+   "published": true,
    "tags": [
     "flower:marigold",
     "format:gift",
@@ -42985,10 +42985,10 @@
    },
    "review_flags": [
     "seasonal_2026",
-    "created_in_shopify_as_draft_2026-10-25",
     "owner_price_2026-10-25",
     "recipe_proposed_not_approved",
-    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule"
+    "prices_in_src_data_seasonal-products_json_not_ledger_owner_discount_outside_40_60_rule",
+    "published_by_owner_2026-10-25"
    ],
    "metafields": [
     {
