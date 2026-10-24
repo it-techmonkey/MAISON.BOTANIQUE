@@ -104,10 +104,38 @@
   .rb__media { min-height: 0; height: 64vw; max-height: 380px; }
 }
 
-/* Diwali teaser: the residences band's layout and colours, mirrored so the photograph sits on the other side. */
-.rb--diwali { grid-template-columns: minmax(0, .58fr) minmax(0, .42fr); margin-top: clamp(44px, 6vw, 84px); }
-.rb--diwali .rb__media { order: 2; }
-@media (max-width: 800px) { .rb--diwali { grid-template-columns: 1fr; } .rb--diwali .rb__media { order: 0; } }
+/* ---------- Diwali teaser (home) ---------- */
+/* A marigold garland hung over the top of the band, like a toran over a doorway (DiwaliBand draws it). */
+.diw { width: min(calc(100% - 2 * var(--gutter)), 1320px); margin: clamp(52px, 7vw, 100px) auto 0; }
+.diw__wall { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 20px 40px; padding: 108px clamp(24px, 5vw, 72px) clamp(28px, 3.5vw, 44px); background: var(--paper-deep); }
+.diw__garland { position: absolute; inset: 0 auto auto 0; display: block; cursor: pointer; touch-action: manipulation; --lean: 0; }
+.diw__lean { transform-origin: 50% 9px; transform: rotate(calc(var(--lean) * 0.8deg)); transition: transform 600ms var(--ease); }
+.diw__strand { animation: diw-sway 5.2s ease-in-out infinite alternate; }
+.diw__strand.is-rustling-0 { animation: diw-rustle-a 1.6s ease-out, diw-sway 5.2s ease-in-out 1.6s infinite alternate; }
+.diw__strand.is-rustling-1 { animation: diw-rustle-b 1.6s ease-out, diw-sway 5.2s ease-in-out 1.6s infinite alternate; }
+.diw__petal { transform-box: fill-box; transform-origin: center; opacity: 0; animation: diw-fall 1.7s ease-in both; }
+.diw__copy { display: grid; gap: 12px; max-width: 56ch; }
+.diw__copy .eyebrow { margin: 0; }
+.diw__copy h2 { font: 400 clamp(32px, 3.4vw, 50px)/1.04 var(--font-display); letter-spacing: -.02em; text-wrap: balance; }
+[dir='rtl'] .diw__copy h2 { line-height: 1.35; letter-spacing: 0; }
+.diw__copy p:not(.eyebrow) { margin: 0; color: var(--muted); line-height: 1.6; }
+.diw__aside { display: grid; justify-items: end; gap: 14px; }
+.diw__date { margin: 0; font: italic 400 clamp(30px, 3vw, 44px)/1 var(--font-display); }
+[dir='rtl'] .diw__date { font-family: var(--font-arabic); font-style: normal; }
+@keyframes diw-sway { from { transform: rotate(-2.4deg); } to { transform: rotate(2.4deg); } }
+@keyframes diw-rustle-a { 0% { transform: rotate(0); } 18% { transform: rotate(-9deg); } 42% { transform: rotate(7deg); } 66% { transform: rotate(-4deg); } 100% { transform: rotate(0); } }
+@keyframes diw-rustle-b { 0% { transform: rotate(0); } 18% { transform: rotate(9deg); } 42% { transform: rotate(-7deg); } 66% { transform: rotate(4deg); } 100% { transform: rotate(0); } }
+@keyframes diw-fall { 0% { opacity: 0; transform: translate(0, 0) rotate(0); } 12% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--drift, 0), 150px) rotate(260deg); } }
+@media (max-width: 760px) {
+  .diw__wall { grid-template-columns: 1fr; padding-top: 104px; }
+  .diw__aside { justify-items: start; grid-auto-flow: row; }
+  .diw__date { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .diw__strand, .diw__strand.is-rustling-0, .diw__strand.is-rustling-1 { animation: none; }
+  .diw__lean { transition: none; transform: none; }
+  .diw__petal { display: none; }
+}
 
 /* ---------- Residences page ---------- */
 .res { padding-top: var(--chrome); }

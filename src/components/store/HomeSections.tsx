@@ -2,6 +2,7 @@
 
 import { SHOW_COLLECTION_EVENT, occasionHash, type ShowCollectionDetail } from '@/lib/site';
 import { CollectionLink } from './SiteHeader';
+import DiwaliBand from './DiwaliBand';
 
 import { useMemo, type MouseEvent } from 'react';
 import { BUDGET_BANDS, budgetOf, liveCatalogGroups } from '@/lib/catalog-groups';
@@ -81,13 +82,14 @@ function BudgetTiles() {
   );
 }
 
-// Home order (owner, 19 Oct): A gift for every gesture, then Shop by Occasion,
+// Home order (owner, 19 Oct): A gift for every gesture, the Diwali teaser (24 Oct), then Shop by Occasion,
 // then straight into the full collection. Most loved is a tag on products
 // (src/data/most-loved.json), not a section.
 export default function HomeSections() {
   return (
     <>
       <BudgetTiles />
+      <DiwaliBand />
       <OccasionTiles />
     </>
   );
