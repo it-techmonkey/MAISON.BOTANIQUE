@@ -12,11 +12,12 @@ import { useStore } from './StoreProvider';
 // leans the garland and a tap shakes petals loose. Reduced-motion visitors get it still.
 
 const DIWALI = Date.UTC(2026, 10, 8);
-const TOP = 12;             // y of the pins
-const SAG = 34;             // how far a swag droops between two pins
-const SEGMENT = 250;        // target width of one swag
-const STEP = 17;            // spacing of flowers along a swag
-const HEIGHT = 128;
+const TOP = 14;             // y of the pins
+const SAG = 30;             // how far a swag droops between two pins
+const SEGMENT = 270;        // target width of one swag
+const STEP = 19;            // spacing of flowers along a swag
+const HEIGHT = 120;
+const FS = 1.18;            // marigold size multiplier
 
 type Spot = { x: number; y: number; rotate: number; scale: number; tone: number };
 
@@ -56,13 +57,13 @@ function layout(width: number) {
   }
   const strands = pins.map((x, i) => {
     const kind: 'diya' | 'bud' = i % 3 === 1 ? 'diya' : 'bud';
-    const length = kind === 'diya' ? 40 : 30 + (i % 3) * 10;
-    const count = Math.floor((length - 6) / 15);
+    const length = kind === 'diya' ? 34 : 26 + (i % 3) * 8;
+    const count = Math.floor((length - 4) / 17);
     return {
       x,
       kind,
       endY: TOP + length,
-      flowers: Array.from({ length: count }, (_, k): Spot => ({ x, y: TOP + 15 * (k + 1), rotate: (i * 29 + k * 61) % 360, scale: 0.9, tone: 1 })),
+      flowers: Array.from({ length: count }, (_, k): Spot => ({ x, y: TOP + 17 * (k + 1), rotate: (i * 29 + k * 61) % 360, scale: 0.9, tone: 1 })),
     };
   });
   return { pins, swags, flowers, leaves, strands };
@@ -84,6 +85,13 @@ function Marigold({ id, outer, mid, inner, core }: { id: string; outer: string; 
   );
 }
 
+const PEEK = [
+  { en: 'Marigold toran', ar: 'توران القطيفة', icon: <><path d="M3 8 Q16 22 29 8" /><circle cx="8" cy="13" r="1.6" /><circle cx="16" cy="17" r="1.6" /><circle cx="24" cy="13" r="1.6" /><path d="M16 19 V27" /></> },
+  { en: 'Diya sets', ar: 'مجموعات الديا', icon: <><path d="M5 17 Q16 14 27 17 Q24 27 16 27 Q8 27 5 17Z" /><path d="M16 14 C12 9 15 5 16 3 C17 5 20 9 16 14Z" /></> },
+  { en: 'Mithai & bloom hampers', ar: 'سلال الحلوى والزهور', icon: <><rect x="5" y="14" width="22" height="13" rx="1.5" /><path d="M4 14 H28 V10 H4Z" /><path d="M16 10 V27" /><path d="M16 10 C12 4 8 7 11 9 M16 10 C20 4 24 7 21 9" /></> },
+  { en: 'Family name tags', ar: 'بطاقات اسم العائلة', icon: <><path d="M6 8 H26 V24 H6Z" /><path d="M10 14 H22 M10 19 H18" /><path d="M16 3 V8" /></> },
+] as const;
+
 const LIGHTS = [[6, 14], [14, 62], [24, 28], [33, 80], [44, 18], [53, 70], [63, 30], [72, 84], [82, 22], [91, 60], [97, 36], [9, 90], [38, 52], [68, 56]];
 
 export default function DiwaliBand() {
@@ -94,8 +102,10 @@ export default function DiwaliBand() {
   const [gusting, setGusting] = useState(false);
   const gustTimer = useRef(0);
   const [days, setDays] = useState<number | null>(null);
+  const [family, setFamily] = useState('');
   const [petals, setPetals] = useState<Array<{ id: number; x: number; delay: number; drift: number }>>([]);
-  const notify = whatsappLink('Hello Maison Botanique, please tell me when the Diwali pre-orders open.');
+  const name = family.trim().slice(0, 22);
+  const notify = whatsappLink(`Hello Maison Botanique, please tell me when the Diwali pre-orders open.${name ? ` I would like a toran name tag for the ${name} family.` : ''}`);
   const label = { en: 'Tell me when it opens', ar: 'أخبروني عند الفتح' };
   const number = (n: number) => (ar ? n.toLocaleString('ar-AE') : String(n));
 
@@ -131,6 +141,20 @@ export default function DiwaliBand() {
 
   const { pins, swags, flowers, leaves, strands } = width ? layout(width) : { pins: [], swags: [], flowers: [], leaves: [], strands: [] };
 
+  // The family-name tag hangs from the middle swag (a preview of a possible personalised toran).
+  const tag = (() => {
+    if (pins.length < 2) return null;
+    const m = Math.floor((pins.length - 1) / 2);
+    const [x0, x1] = [pins[m], pins[m + 1]];
+    const cx = (x0 + x1) / 2;
+    const text = name ? (ar ? `عائلة ${name}` : `The ${name} family`) : (ar ? 'اسم عائلتكم هنا' : 'Your family name');
+    const plateW = Math.min(width < 520 ? 150 : 250, Math.max(130, text.length * 11 + 44));
+    const yAt = (x: number) => { const t = (x - x0) / (x1 - x0); return TOP + 4 * SAG * t * (1 - t); };
+    const left = cx - plateW / 2 + 22;
+    const right = cx + plateW / 2 - 22;
+    return { cx, plateW, text, left, right, yLeft: yAt(left), yRight: yAt(right), top: Math.max(yAt(left), yAt(right)) + 24 };
+  })();
+
   const lean = (event: PointerEvent<HTMLDivElement>) => {
     const box = event.currentTarget.getBoundingClientRect();
     garland.current?.style.setProperty('--lean', String(((event.clientX - box.left) / box.width - 0.5) * 2));
@@ -144,7 +168,7 @@ export default function DiwaliBand() {
   };
 
   const flower = (spot: Spot, key: string | number, wave: number) => (
-    <g key={key} transform={`translate(${spot.x} ${spot.y}) rotate(${spot.rotate}) scale(${spot.scale})`}>
+    <g key={key} transform={`translate(${spot.x} ${spot.y}) rotate(${spot.rotate}) scale(${spot.scale * FS})`}>
       <use href={spot.tone ? '#diw-m2' : '#diw-m1'} className="diw__ripple" style={{ animationDelay: `${wave}s` }} />
     </g>
   );
@@ -197,6 +221,16 @@ export default function DiwaliBand() {
                   </g>
                 </g>
               ))}
+              {tag && (
+                <g className="diw__swing diw__tag" style={{ transformOrigin: `${tag.cx}px ${tag.top - 24}px`, animationDelay: '-1.1s' }}>
+                  <line x1={tag.left} y1={tag.yLeft} x2={tag.cx - tag.plateW / 2 + 12} y2={tag.top} stroke="#C9A25A" strokeWidth="1.2" />
+                  <line x1={tag.right} y1={tag.yRight} x2={tag.cx + tag.plateW / 2 - 12} y2={tag.top} stroke="#C9A25A" strokeWidth="1.2" />
+                  <rect x={tag.cx - tag.plateW / 2} y={tag.top} width={tag.plateW} height="40" rx="3" fill="#FBF3E4" stroke="#E4B861" strokeWidth="1.6" />
+                  <rect x={tag.cx - tag.plateW / 2 + 4} y={tag.top + 4} width={tag.plateW - 8} height="32" rx="2" fill="none" stroke="#E4B861" strokeWidth=".6" strokeOpacity=".7" />
+                  <text x={tag.cx} y={tag.top + 22} textAnchor="middle" className={`diw__tagname${name ? '' : ' is-empty'}`}>{tag.text}</text>
+                  <text x={tag.cx} y={tag.top + 33} textAnchor="middle" className="diw__tagyear">{ar ? 'ديوالي ٢٠٢٦' : 'Diwali 2026'}</text>
+                </g>
+              )}
               <circle cx={pins[0]} cy={TOP} r="3.4" fill="#E4B861" />
               <circle cx={pins[pins.length - 1]} cy={TOP} r="3.4" fill="#E4B861" />
             </g>
@@ -208,10 +242,17 @@ export default function DiwaliBand() {
         <div className="diw__copy">
           <p className="diw__eyebrow"><Bi text={{ en: 'Coming soon · Diwali', ar: 'قريباً · ديوالي' }} /></p>
           <h2 id="diw-title"><Bi text={{ en: 'Diwali, the Maison way.', ar: 'ديوالي على طريقة ميزون.' }} /></h2>
-          <p className="diw__text"><Bi text={{ en: 'Marigold and thoughtful gifting are on their way. Pre-orders open soon, beginning with a marigold toran for your doorway.', ar: 'القطيفة وهدايا مدروسة في الطريق إليكم. يفتح الحجز المسبق قريباً، ونبدأ بتوران من القطيفة لمدخل بيتكم.' }} /></p>
-          {notify
-            ? <a className="diw__cta" href={notify} target="_blank" rel="noopener noreferrer"><span><Bi text={label} /></span><span aria-hidden="true">↗</span></a>
-            : <ArrowLink href="/contact" variant="button" label={label} />}
+          <p className="diw__text"><Bi text={{ en: 'Pre-orders open soon, starting with a marigold toran for your doorway.', ar: 'يفتح الحجز المسبق قريباً، ونبدأ بتوران من القطيفة لمدخل بيتكم.' }} /></p>
+          <div className="diw__form">
+            <label className="diw__field">
+              <span className="diw__sr">{ar ? 'اسم العائلة' : 'Family name'}</span>
+              <input id="diw-name" type="text" inputMode="text" autoComplete="off" maxLength={22} value={family} onChange={(event) => setFamily(event.target.value)}
+                placeholder={ar ? 'شاهدوا اسم عائلتكم على التوران' : 'See your family name on the toran'} />
+            </label>
+            {notify
+              ? <a className="diw__cta" href={notify} target="_blank" rel="noopener noreferrer"><span><Bi text={label} /></span><span aria-hidden="true">↗</span></a>
+              : <ArrowLink href="/contact" variant="button" label={label} />}
+          </div>
         </div>
         <div className="diw__count" aria-live="polite">
           {days !== null && days > 0 ? (
@@ -223,6 +264,17 @@ export default function DiwaliBand() {
             <p className="diw__number diw__number--word"><Bi text={{ en: 'Diwali', ar: 'ديوالي' }} /></p>
           )}
           <p className="diw__date"><Bi text={{ en: 'Sunday 8 November', ar: 'الأحد ٨ نوفمبر' }} /></p>
+        </div>
+        <div className="diw__peek">
+          <p className="diw__peekhead"><Bi text={{ en: 'Sneak peek · the range is still being chosen', ar: 'لمحة أولى · ما زلنا نختار المجموعة' }} /></p>
+          <ul>
+            {PEEK.map((item) => (
+              <li key={item.en}>
+                <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true" fill="none" stroke="#E9C173" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{item.icon}</svg>
+                <span><Bi text={item} /></span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
