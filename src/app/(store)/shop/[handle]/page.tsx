@@ -26,11 +26,23 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<'/shop/[handle]'>): Promise<Metadata> {
   const product = await findProduct((await params).handle);
   if (!product) return {};
+  const description = product.answerSummary || product.description || `${product.name} from Maison Botanique, Dubai.`;
   return {
     title: product.name,
-    description: product.answerSummary || product.description || `${product.name} from Maison Botanique, Dubai.`,
+    description,
     alternates: { canonical: `/shop/${product.id}` },
-    openGraph: { title: product.name, description: product.description, images: [{ url: product.image }] },
+    // A page's openGraph replaces the layout's, so the shared fields are repeated here. The photo comes from
+    // opengraph-image.tsx beside this file (a JPEG, so WhatsApp shows it).
+    openGraph: {
+      // Next.js 16 rejects og:type 'product' at build time; link previews treat 'website' the same.
+      type: 'website',
+      url: `/shop/${product.id}`,
+      siteName: 'Maison Botanique',
+      locale: 'en_AE',
+      alternateLocale: ['ar_AE'],
+      title: product.name,
+      description,
+    },
   };
 }
 
