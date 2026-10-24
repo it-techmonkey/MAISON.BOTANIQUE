@@ -28,10 +28,13 @@ function daysToDiwali() {
   return Math.round((DIWALI - today) / 86_400_000);
 }
 
-function layout(width: number) {
+function layout(width: number, compact: boolean) {
+  const sag = compact ? 22 : SAG;
+  const step = compact ? 16 : STEP;
+  const segWidth = compact ? 200 : SEGMENT;
   const left = 18;
   const right = width - 18;
-  const segments = Math.max(2, Math.round((right - left) / SEGMENT));
+  const segments = Math.max(2, Math.round((right - left) / segWidth));
   const pins = Array.from({ length: segments + 1 }, (_, i) => left + ((right - left) * i) / segments);
   const swags: string[] = [];
   const flowers: Spot[] = [];
@@ -39,9 +42,9 @@ function layout(width: number) {
   for (let i = 0; i < segments; i += 1) {
     const [x0, x1] = [pins[i], pins[i + 1]];
     const cx = (x0 + x1) / 2;
-    const cy = TOP + SAG * 2;
+    const cy = TOP + sag * 2;
     swags.push(`M${x0} ${TOP} Q${cx} ${cy} ${x1} ${TOP}`);
-    const count = Math.max(5, Math.floor(((x1 - x0) * 1.08) / STEP));
+    const count = Math.max(5, Math.floor(((x1 - x0) * 1.08) / step));
     for (let k = 0; k < count; k += 1) {
       const t = (k + 0.5) / count;
       const u = 1 - t;
@@ -57,7 +60,7 @@ function layout(width: number) {
   }
   const strands = pins.map((x, i) => {
     const kind: 'diya' | 'bud' = i % 3 === 1 ? 'diya' : 'bud';
-    const length = kind === 'diya' ? 34 : 26 + (i % 3) * 8;
+    const length = compact ? (kind === 'diya' ? 26 : 20 + (i % 3) * 6) : (kind === 'diya' ? 34 : 26 + (i % 3) * 8);
     const count = Math.floor((length - 4) / 17);
     return {
       x,
@@ -86,10 +89,10 @@ function Marigold({ id, outer, mid, inner, core }: { id: string; outer: string; 
 }
 
 const PEEK = [
-  { en: 'Marigold toran', ar: 'توران القطيفة', icon: <><path d="M3 8 Q16 22 29 8" /><circle cx="8" cy="13" r="1.6" /><circle cx="16" cy="17" r="1.6" /><circle cx="24" cy="13" r="1.6" /><path d="M16 19 V27" /></> },
-  { en: 'Diya sets', ar: 'مجموعات الديا', icon: <><path d="M5 17 Q16 14 27 17 Q24 27 16 27 Q8 27 5 17Z" /><path d="M16 14 C12 9 15 5 16 3 C17 5 20 9 16 14Z" /></> },
-  { en: 'Mithai & bloom hampers', ar: 'سلال الحلوى والزهور', icon: <><rect x="5" y="14" width="22" height="13" rx="1.5" /><path d="M4 14 H28 V10 H4Z" /><path d="M16 10 V27" /><path d="M16 10 C12 4 8 7 11 9 M16 10 C20 4 24 7 21 9" /></> },
-  { en: 'Family name tags', ar: 'بطاقات اسم العائلة', icon: <><path d="M6 8 H26 V24 H6Z" /><path d="M10 14 H22 M10 19 H18" /><path d="M16 3 V8" /></> },
+  { en: 'Toran', ar: 'توران', note: { en: 'for your doorway', ar: 'لمدخل بيتكم' }, src: '/assets/diwali/toran.jpg' },
+  { en: 'Pooja blooms', ar: 'زهور البوجا', note: { en: 'for Lakshmi Pooja', ar: 'للاكشمي بوجا' }, src: '/assets/diwali/pooja.jpg' },
+  { en: 'Diya glow', ar: 'وهج الديا', note: { en: 'lamps and lights', ar: 'مصابيح وأضواء' }, src: '/assets/diwali/diya.jpg' },
+  { en: 'Mithai & blooms', ar: 'حلوى وزهور', note: { en: 'gift boxes', ar: 'صناديق هدايا' }, src: '/collection/midas-golden-treats-hamper-960.webp' },
 ] as const;
 
 const LIGHTS = [[6, 14], [14, 62], [24, 28], [33, 80], [44, 18], [53, 70], [63, 30], [72, 84], [82, 22], [91, 60], [97, 36], [9, 90], [38, 52], [68, 56]];
@@ -139,7 +142,10 @@ export default function DiwaliBand() {
     return () => { window.clearInterval(timer); window.clearTimeout(first); window.clearTimeout(gustTimer.current); };
   }, []);
 
-  const { pins, swags, flowers, leaves, strands } = width ? layout(width) : { pins: [], swags: [], flowers: [], leaves: [], strands: [] };
+  const compact = width > 0 && width < 520;
+  const fs = compact ? 1 : FS;
+  const sagNow = compact ? 22 : SAG;
+  const { pins, swags, flowers, leaves, strands } = width ? layout(width, compact) : { pins: [], swags: [], flowers: [], leaves: [], strands: [] };
 
   // The family-name tag hangs from the middle swag (a preview of a possible personalised toran).
   const tag = (() => {
@@ -149,7 +155,7 @@ export default function DiwaliBand() {
     const cx = (x0 + x1) / 2;
     const text = name ? (ar ? `عائلة ${name}` : `The ${name} family`) : (ar ? 'اسم عائلتكم هنا' : 'Your family name');
     const plateW = Math.min(width < 520 ? 150 : 250, Math.max(130, text.length * 11 + 44));
-    const yAt = (x: number) => { const t = (x - x0) / (x1 - x0); return TOP + 4 * SAG * t * (1 - t); };
+    const yAt = (x: number) => { const t = (x - x0) / (x1 - x0); return TOP + 4 * sagNow * t * (1 - t); };
     const left = cx - plateW / 2 + 22;
     const right = cx + plateW / 2 - 22;
     return { cx, plateW, text, left, right, yLeft: yAt(left), yRight: yAt(right), top: Math.max(yAt(left), yAt(right)) + 24 };
@@ -168,7 +174,7 @@ export default function DiwaliBand() {
   };
 
   const flower = (spot: Spot, key: string | number, wave: number) => (
-    <g key={key} transform={`translate(${spot.x} ${spot.y}) rotate(${spot.rotate}) scale(${spot.scale * FS})`}>
+    <g key={key} transform={`translate(${spot.x} ${spot.y}) rotate(${spot.rotate}) scale(${spot.scale * fs})`}>
       <use href={spot.tone ? '#diw-m2' : '#diw-m1'} className="diw__ripple" style={{ animationDelay: `${wave}s` }} />
     </g>
   );
@@ -186,7 +192,7 @@ export default function DiwaliBand() {
         </svg>
         {LIGHTS.map(([x, y], i) => <span key={i} className="diw__light" style={{ left: `${x}%`, top: `${y}%`, animationDelay: `${(i * 0.7) % 4}s`, animationDuration: `${2.6 + (i % 4)}s` }} aria-hidden="true" />)}
         {width > 0 && (
-          <svg ref={garland} className={`diw__garland${gusting ? ' is-gust' : ''}`} width={width} height={HEIGHT} viewBox={`0 0 ${width} ${HEIGHT}`} aria-hidden="true" onClick={shake}>
+          <svg ref={garland} className={`diw__garland${gusting ? ' is-gust' : ''}`} width={width} height={compact ? 96 : HEIGHT} viewBox={`0 0 ${width} ${compact ? 96 : HEIGHT}`} aria-hidden="true" onClick={shake}>
             <defs>
               <Marigold id="diw-m1" outer="#F59A14" mid="#EE8410" inner="#DD690A" core="#9E4306" />
               <Marigold id="diw-m2" outer="#FBBE2B" mid="#F7A91C" inner="#EE8E10" core="#B35208" />
@@ -242,7 +248,7 @@ export default function DiwaliBand() {
         <div className="diw__copy">
           <p className="diw__eyebrow"><Bi text={{ en: 'Coming soon · Diwali', ar: 'قريباً · ديوالي' }} /></p>
           <h2 id="diw-title"><Bi text={{ en: 'Diwali, the Maison way.', ar: 'ديوالي على طريقة ميزون.' }} /></h2>
-          <p className="diw__text"><Bi text={{ en: 'Pre-orders open soon, starting with a marigold toran for your doorway.', ar: 'يفتح الحجز المسبق قريباً، ونبدأ بتوران من القطيفة لمدخل بيتكم.' }} /></p>
+          <p className="diw__text"><Bi text={{ en: 'Pre-orders open soon, starting with a marigold toran.', ar: 'يفتح الحجز المسبق قريباً، ونبدأ بتوران من القطيفة.' }} /></p>
           <div className="diw__form">
             <label className="diw__field">
               <span className="diw__sr">{ar ? 'اسم العائلة' : 'Family name'}</span>
@@ -266,12 +272,13 @@ export default function DiwaliBand() {
           <p className="diw__date"><Bi text={{ en: 'Sunday 8 November', ar: 'الأحد ٨ نوفمبر' }} /></p>
         </div>
         <div className="diw__peek">
-          <p className="diw__peekhead"><Bi text={{ en: 'Sneak peek · the range is still being chosen', ar: 'لمحة أولى · ما زلنا نختار المجموعة' }} /></p>
+          <p className="diw__peekhead"><Bi text={{ en: 'Sneak peek · range still being chosen', ar: 'لمحة أولى · ما زلنا نختار المجموعة' }} /></p>
           <ul>
             {PEEK.map((item) => (
               <li key={item.en}>
-                <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true" fill="none" stroke="#E9C173" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{item.icon}</svg>
-                <span><Bi text={item} /></span>
+                <img src={item.src} alt="" width="88" height="88" loading="lazy" />
+                <span className="diw__peekname"><Bi text={item} /></span>
+                <span className="diw__peeknote"><Bi text={item.note} /></span>
               </li>
             ))}
           </ul>
