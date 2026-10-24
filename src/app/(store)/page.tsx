@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Turntable from '@/components/Turntable';
 import HeroPromises from '@/components/store/HeroPromises';
+import ShopShelf from '@/components/store/ShopShelf';
 import CollectionBrowser from '@/components/store/CollectionBrowser';
 import HomeSections from '@/components/store/HomeSections';
 import { ResidencesBand } from '@/components/store/Residences';
@@ -21,6 +22,7 @@ export default function HomePage() {
   return (
     <>
       <Turntable />
+      <ShopShelf />
       <HeroPromises />
       <HomeSections />
       <CollectionBrowser listId="home" showOccasions={false} />
