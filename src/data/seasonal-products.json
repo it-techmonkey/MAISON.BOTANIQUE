@@ -22,7 +22,7 @@
       "compositionAr": ["8 ورود برتقالية و5 قرنفل أحمر و3 أغصان أقحوان أحمر وأوكالبتوس", "منسقة في يقطينة حقيقية ببطانة مانعة للتسرب", "فيريرو روشيه 24 قطعة في علبة منفصلة"],
       "stems": 16,
       "imageAlt": "Orange roses, red carnations and eucalyptus in a real pumpkin beside a box of 24 Ferrero Rocher",
-      "sizes": [{ "id": "signature", "name": "Signature", "nameAr": "سيغنتشر", "detail": "as pictured", "detailAr": "كما في الصورة", "price": 299, "compareAtPrice": 400 }]
+      "sizes": [{ "id": "signature", "sku": "MB-SE-001-SIG", "name": "Signature", "nameAr": "سيغنتشر", "detail": "as pictured", "detailAr": "كما في الصورة", "price": 299, "compareAtPrice": 400 }]
     },
     {
       "id": "the-pumpkin-basket",
@@ -40,7 +40,7 @@
       "compositionAr": ["7 ورود برتقالية و5 قرنفل أحمر و3 أغصان أقحوان أحمر وأوكالبتوس", "سلة خوص منسوجة مع ثلاث يقطينات صغيرة"],
       "stems": 15,
       "imageAlt": "Wicker basket of orange roses and red carnations with three mini pumpkins",
-      "sizes": [{ "id": "signature", "name": "Signature", "nameAr": "سيغنتشر", "detail": "as pictured", "detailAr": "كما في الصورة", "price": 259, "compareAtPrice": 400 }]
+      "sizes": [{ "id": "signature", "sku": "MB-SE-002-SIG", "name": "Signature", "nameAr": "سيغنتشر", "detail": "as pictured", "detailAr": "كما في الصورة", "price": 259, "compareAtPrice": 400 }]
     },
     {
       "id": "jack-o-bloom",
@@ -58,7 +58,7 @@
       "compositionAr": ["5 ورود برتقالية و5 أقحوان أبيض و3 أغصان ليزيانثوس بنفسجي", "وعاء خزفي على شكل يقطينة مع شمعة تعمل بالبطارية"],
       "stems": 13,
       "imageAlt": "Orange roses, white chrysanthemums and purple lisianthus in a ceramic jack-o-lantern pot",
-      "sizes": [{ "id": "signature", "name": "Signature", "nameAr": "سيغنتشر", "detail": "as pictured", "detailAr": "كما في الصورة", "price": 259, "compareAtPrice": 400 }]
+      "sizes": [{ "id": "signature", "sku": "MB-SE-003-SIG", "name": "Signature", "nameAr": "سيغنتشر", "detail": "as pictured", "detailAr": "كما في الصورة", "price": 259, "compareAtPrice": 400 }]
     },
     {
       "id": "the-midnight-pumpkin",
@@ -76,7 +76,7 @@
       "compositionAr": ["7 ورود حمراء داكنة و3 ورود سوداء و3 أغصان أقحوان أحمر وأوكالبتوس", "مزهرية خزفية فحمية على شكل يقطينة مع شريطة ساتان سوداء"],
       "stems": 13,
       "imageAlt": "Deep red and black roses in a matte charcoal pumpkin vase with a black ribbon",
-      "sizes": [{ "id": "signature", "name": "Signature", "nameAr": "سيغنتشر", "detail": "as pictured", "detailAr": "كما في الصورة", "price": 259, "compareAtPrice": 400 }]
+      "sizes": [{ "id": "signature", "sku": "MB-SE-004-SIG", "name": "Signature", "nameAr": "سيغنتشر", "detail": "as pictured", "detailAr": "كما في الصورة", "price": 259, "compareAtPrice": 400 }]
     },
     {
       "id": "marigold-toran",
@@ -96,9 +96,9 @@
       "imageAlt": "Fresh orange and yellow marigold toran with scallops and hanging tassels on an ivory wall",
       "option": "Length",
       "sizes": [
-        { "id": "2-ft", "name": "2 ft", "nameAr": "2 قدم", "detail": "single door", "detailAr": "باب واحد", "price": 99, "compareAtPrice": null },
-        { "id": "4-ft", "name": "4 ft", "nameAr": "4 أقدام", "detail": "wide door", "detailAr": "باب عريض", "price": 175, "compareAtPrice": null },
-        { "id": "6-ft", "name": "6 ft", "nameAr": "6 أقدام", "detail": "double door", "detailAr": "باب مزدوج", "price": 250, "compareAtPrice": null }
+        { "id": "2-ft", "sku": "MB-SE-005-2FT", "name": "2 ft", "nameAr": "2 قدم", "detail": "single door", "detailAr": "باب واحد", "price": 99, "compareAtPrice": null },
+        { "id": "4-ft", "sku": "MB-SE-005-4FT", "name": "4 ft", "nameAr": "4 أقدام", "detail": "wide door", "detailAr": "باب عريض", "price": 175, "compareAtPrice": null },
+        { "id": "6-ft", "sku": "MB-SE-005-6FT", "name": "6 ft", "nameAr": "6 أقدام", "detail": "double door", "detailAr": "باب مزدوج", "price": 250, "compareAtPrice": null }
       ]
     }
   ]
