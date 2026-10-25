@@ -1,6 +1,6 @@
 // Seasonal buying-flow regression: no delivery before a pre-order, after an
 // occasion, or across Halloween and Diwali in one order.
-import { test, expect, openProduct, addToBag, openBag } from './fixtures';
+import { test, expect, openProduct, useEarliestDelivery, addToBag, openBag, isLiveCheckout } from './fixtures';
 
 const atDubaiNoon = (date: string) => new Date(`${date}T08:00:00Z`);
 async function openClosedSeasonal(page: import('@playwright/test').Page, handle: string) {
@@ -58,4 +58,25 @@ test('ordering closes when the last delivery window can no longer be booked', as
   await openClosedSeasonal(page, 'pumpkin-and-pralines');
   await expect(page.locator('.dl-picker-product [role="alert"]')).toContainText('has ended');
   await expect(page.locator('.qa-add')).toBeDisabled();
+});
+
+test('a saved early date cannot be sent through the seasonal WhatsApp order link', async ({ page }) => {
+  await page.clock.install({ time: atDubaiNoon('2026-10-25') });
+  await openProduct(page);
+  await useEarliestDelivery(page);
+  await addToBag(page);
+  await openProduct(page, 'marigold-toran');
+  await addToBag(page);
+  const bag = await openBag(page);
+  await expect(bag.locator('.dl-picker .ll-cart-date-alert')).toContainText('choose another');
+  await expect(bag.locator('.ll-cart-totals')).not.toContainText('Arrives');
+  await expect(bag.getByRole('link', { name: 'Order on WhatsApp instead' })).toHaveCount(0);
+  await bag.locator('.dl-picker .qa-day').first().click();
+  await bag.locator('.dl-picker .dl-window input:enabled').first().check();
+  await expect(bag).toContainText(/Arrives\s*Thu 5 Nov/);
+  const whatsapp = bag.getByRole('link', { name: 'Order on WhatsApp instead' });
+  if (await isLiveCheckout(page)) {
+    await expect(whatsapp).toBeVisible();
+    await expect(whatsapp).toHaveAttribute('href', /Delivery%3A%20Thu%205%20Nov/);
+  }
 });

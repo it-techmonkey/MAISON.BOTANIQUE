@@ -3,7 +3,7 @@
 **Date:** 25 October 2026
 **Branch:** `fix/seasonal-postpublish-fixes`
 **Baseline:** Created from `origin/main` at `577f4f0` (PR #35), then rebased onto `ed0017f` (PR #36 price fix)
-**Status:** Implemented and verified in the review preview. Production release remains a separate owner decision.
+**Status:** PR #37 merged and deployed; R9 follow-up implemented and locally verified.
 
 ## 1. Problem and outcome
 
@@ -23,6 +23,7 @@ Five seasonal products were published before their home sections and delivery gu
 | R6 | Mobile cards and price are legible. | At 320, 360, 390 and 414 px, short Halloween display names and a swipe cue make the four products discoverable; toran “From” price is clear above its action, away from fireworks. Full product names remain on product pages and accessible links. |
 | R7 | Existing storefront behavior stays intact. | English/Arabic RTL, reduced motion, keyboard navigation, cart options and standard non-seasonal delivery work. No page-level horizontal overflow at 320–1440 px. |
 | R8 | Product detail claims match seasonal delivery and care. | Toran and Halloween pages state their actual date ranges; the toran page does not promise same-day delivery or give bouquet stem-trimming instructions. Product images render without a Next.js fill-parent warning. |
+| R9 | Alternate ordering respects seasonal dates. | A seasonal bag with no valid delivery slot cannot send an order request through WhatsApp or display a stale “Arrives” summary. A valid slot restores the WhatsApp order link with the correct date. |
 
 ## 3. Scope and decisions
 
@@ -60,4 +61,9 @@ Five seasonal products were published before their home sections and delivery gu
 | Campaign expiry | Verified locally | Frozen Dubai-clock browser tests hide Halloween after 31 October and Diwali after 15 November, and disable ordering after each window. |
 | Mobile and Arabic polish | Verified locally | English and Arabic visual review at 390 px; 320 px seasonal visual review. No horizontal page overflow at 1440, 414, 390, 360 or 320 px. Reduced-motion check passes. |
 | Tests and browser QA | Done locally | 44 Node tests, 5 Python tests, typecheck, production-mode build, and 32 Playwright flows passed. Product page and bag were checked for date copy, error recovery, the 5 November quick choice, and no Next.js image-parent warning. |
-| Review PR and preview | Done | [PR #37](https://github.com/it-techmonkey/MAISON.BOTANIQUE/pull/37); [Vercel preview](https://maison-botanique-git-fix-seasonal-p-3356b2-techmonkeys-projects.vercel.app). Vercel and GitHub checks passed; all four seasonal Playwright flows passed against the deployed URL. Production merge awaits owner approval. |
+| Review PR and preview | Done | [PR #37](https://github.com/it-techmonkey/MAISON.BOTANIQUE/pull/37) merged at `b1d113a`; [Vercel preview](https://maison-botanique-git-fix-seasonal-p-3356b2-techmonkeys-projects.vercel.app). Vercel and GitHub checks passed; all five seasonal Playwright flows passed against the deployed URL. Production deployment succeeded. |
+| R9 alternate ordering path | Locally verified; follow-up preview pending | A saved early-date cart now omits the stale “Arrives” summary and seasonal WhatsApp order link. Selecting a valid toran slot restores both. The focused Playwright regression passes; the full local suite passed 33 tests with one time-dependent skip. |
+
+## 7. Post-merge follow-up
+
+Live smoke testing after PR #37 merged found a saved toran cart with an October delivery date. Checkout correctly refused it, but the bag's WhatsApp order link still included the invalid date and the footer displayed “Arrives” with that date. R9 closes that alternate path in a small follow-up PR; the owner authorized merging the reviewed seasonal fixes on 25 October. The physical-sample checks in section 5 remain operational follow-up.
