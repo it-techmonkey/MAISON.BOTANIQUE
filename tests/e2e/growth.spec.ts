@@ -56,14 +56,13 @@ test('switching a shared guide preserves its campaign tags', async ({ page }) =>
   await expect(page).toHaveURL(/\/ar\/journal\?utm_source=instagram&utm_campaign=note_first_01$/);
 });
 
-test('new pages fit narrow screens and preserve reduced-motion access in both languages', async ({ page }) => {
+for (const width of [1440, 414, 390, 360, 320]) test(`new pages fit ${width}px and preserve reduced-motion access in both languages`, async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  for (const width of [1440, 414, 390, 360, 320]) {
-    await page.setViewportSize({ width, height: width > 1000 ? 900 : 844 });
-    for (const path of ['/occasions/love', '/ar/occasions/birthday', '/journal/send-flowers-to-dubai-from-abroad', '/ar/journal/birthday-card-messages']) {
-      await page.goto(path);
-      await expect(page.locator('h1')).toBeVisible();
-      await expectNoHorizontalScroll(page, `${path} at ${width}px`);
-    }
+  await page.setViewportSize({ width, height: width > 1000 ? 900 : 844 });
+  for (const path of ['/occasions/love', '/ar/occasions/birthday', '/journal/send-flowers-to-dubai-from-abroad', '/ar/journal/birthday-card-messages']) {
+    await page.goto(path, { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('h1')).toBeVisible();
+    await page.evaluate(() => document.fonts.ready);
+    await expectNoHorizontalScroll(page, `${path} at ${width}px`);
   }
 });
