@@ -19,13 +19,17 @@ const SEASONAL = new Set([...HALLOWEEN_HANDLES, ...DIWALI_HANDLES]);
 /** Seasonal pieces stay in the collection but never stand in for a category photo (owner, 25 Oct 2026). */
 export const isSeasonal = (id: string) => SEASONAL.has(id);
 
-const PREORDER: Record<string, DeliveryRange> = data.preorder;
+const DELIVERY_RANGES: Record<string, DeliveryRange> = data.deliveryRanges;
 
-export const preorderRange = (handle: string): DeliveryRange | null => PREORDER[handle] ?? null;
+export const seasonalDeliveryRange = (handle: string): DeliveryRange | null => DELIVERY_RANGES[handle] ?? null;
+export const seasonalExpired = (handle: string, dubaiDate: string) => {
+  const range = seasonalDeliveryRange(handle);
+  return Boolean(range && dubaiDate > range.to);
+};
 
 /** The dates every product in the bag can be delivered on, or null when there is no limit. */
 export function deliveryRangeFor(handles: readonly string[]): DeliveryRange | null {
-  const ranges = handles.map(preorderRange).filter((range): range is DeliveryRange => range !== null);
+  const ranges = handles.map(seasonalDeliveryRange).filter((range): range is DeliveryRange => range !== null);
   if (!ranges.length) return null;
   return ranges.reduce((a, b) => ({ from: a.from > b.from ? a.from : b.from, to: a.to < b.to ? a.to : b.to }));
 }

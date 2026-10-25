@@ -8,6 +8,7 @@ import { BUDGET_BANDS, budgetOf, liveCatalogGroups } from '@/lib/catalog-groups'
 import { useStore } from './StoreProvider';
 import { DiwaliBar, HalloweenShelf } from './SeasonalBands';
 import { isSeasonal } from '@/lib/seasonal';
+import { useDubaiNow } from '@/lib/use-today';
 
 /**
  * "View all" goes down to the full collection just below on the home page,
@@ -87,12 +88,13 @@ function BudgetTiles() {
 // then straight into the full collection. Seasonal (owner, 25 Oct 2026): the
 // Halloween shelf comes before A gift for every gesture, the Diwali band after it. Most loved is a tag on products
 // (src/data/most-loved.json), not a section.
-export default function HomeSections() {
+export default function HomeSections({ initialDubaiDate }: { initialDubaiDate: string }) {
+  const today = useDubaiNow()?.date ?? initialDubaiDate;
   return (
     <>
-      <HalloweenShelf />
+      <HalloweenShelf today={today} />
       <BudgetTiles />
-      <DiwaliBar />
+      <DiwaliBar today={today} />
       <OccasionTiles />
     </>
   );

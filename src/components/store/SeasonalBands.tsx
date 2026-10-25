@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useRef, type MouseEvent } from 'react';
 import { trackProductClicked } from '@/lib/analytics/track';
-import { DIWALI_HANDLES, HALLOWEEN_HANDLES, TORAN_HANDLE, pick } from '@/lib/seasonal';
+import { DIWALI_HANDLES, HALLOWEEN_HANDLES, TORAN_HANDLE, pick, seasonalExpired } from '@/lib/seasonal';
 import type { Product } from '@/lib/types';
 import Money from './Money';
 import SaleTag from './SaleTag';
@@ -35,18 +35,19 @@ const BURSTS: Array<[number, number, number, string, number]> = [
   [800, 320, 34, '#F6C35B', 0], [620, 70, 38, '#F07A8C', 1.1], [690, 260, 44, '#FFE9C2', 2.3], [930, 270, 50, '#F59A14', .6],
   [1260, 300, 40, '#E6B2FF', 1.8], [1150, 250, 30, '#F6C35B', 3.2], [560, 300, 28, '#E6B2FF', 2.9], [1290, 40, 26, '#F07A8C', .2],
 ];
+const svgPoint = (value: number) => Math.round(value * 1000) / 1000;
 
 function Burst({ x, y, r, color, delay }: { x: number; y: number; r: number; color: string; delay: number }) {
   const rays = Array.from({ length: 18 }, (_, i) => {
     const a = (i / 18) * Math.PI * 2;
-    return { x1: Math.cos(a) * r * .28, y1: Math.sin(a) * r * .28, x2: Math.cos(a) * r, y2: Math.sin(a) * r };
+    return { x1: svgPoint(Math.cos(a) * r * .28), y1: svgPoint(Math.sin(a) * r * .28), x2: svgPoint(Math.cos(a) * r), y2: svgPoint(Math.sin(a) * r) };
   });
   return (
     <g transform={`translate(${x} ${y})`} style={{ ['--d' as string]: `${-delay}s` }}>
       <line className="sea-trail" x1="0" y1={r * 3} x2="0" y2="0" stroke={color} strokeWidth="1.4" strokeLinecap="round" pathLength={1} />
       <g className="sea-burst">
         {rays.map((ray, i) => <line key={i} {...ray} stroke={color} strokeWidth="1.6" strokeLinecap="round" opacity=".85" />)}
-        {rays.map((ray, i) => <circle key={`d${i}`} cx={ray.x2 * 1.08} cy={ray.y2 * 1.08} r="2.2" fill={color} />)}
+        {rays.map((ray, i) => <circle key={`d${i}`} cx={svgPoint(ray.x2 * 1.08)} cy={svgPoint(ray.y2 * 1.08)} r="2.2" fill={color} />)}
         <circle r={r * .12} fill={color} opacity=".5" />
       </g>
     </g>
@@ -67,11 +68,11 @@ function Diya({ x, i }: { x: number; i: number }) {
 
 const PETALS = ['#F59A14', '#FAB82B', '#C2405A', '#FFF1DA'];
 
-export function DiwaliBar() {
+export function DiwaliBar({ today }: { today: string }) {
   const { ar, t, products } = useStore();
   const ref = usePauseOffscreen<HTMLElement>();
   const toran = pick(products, DIWALI_HANDLES).find((product) => product.id === TORAN_HANDLE);
-  if (!toran) return null;
+  if (!toran || seasonalExpired(TORAN_HANDLE, today)) return null;
   return (
     <section ref={ref} className="sea sea-dw" aria-labelledby="sea-dw-title" data-track-section="home_diwali" data-track-location="home_diwali">
       <svg className="sea-sky" viewBox="0 0 1320 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
@@ -85,7 +86,7 @@ export function DiwaliBar() {
       <div className="sea-dw-copy">
         <p className="sea-kicker">{t('Diwali · ', 'ديوالي · ')}<span className="sea-wide">{t('Sunday ', 'الأحد ')}</span>{t('8 November · Pre-orders open', '8 نوفمبر · الطلب المسبق مفتوح')}</p>
         <h2 id="sea-dw-title">{t('Ghar wali Diwali, here in Dubai.', 'ديوالي بدفء البيت، هنا في دبي.')}</h2>
-        <p className="sea-dw-line">{t('Fresh marigold torans for your door, delivered from 5 November.', 'أكاليل قطيفة طازجة لباب بيتكم، التوصيل ابتداءً من 5 نوفمبر.')}</p>
+        <p className="sea-dw-line">{t('Fresh marigold torans for your door, delivered 5–15 November.', 'أكاليل قطيفة طازجة لباب بيتكم، التوصيل من 5 إلى 15 نوفمبر.')}</p>
         <div className="sea-dw-act">
           <Link className="sea-cta" href={`/shop/${toran.id}`}>
             <span>{t('Pre-order the toran', 'اطلب الإكليل مسبقاً')}</span><span className="flip-rtl" aria-hidden="true">→</span>
@@ -125,6 +126,13 @@ function Bat({ top, width, duration, delay }: { top: number; width: number; dura
 function SeasonCard({ product, index, onOpen }: { product: Product; index: number; onOpen: (product: Product, position: number) => void }) {
   const { ar, t } = useStore();
   const name = ar ? product.nameAr : product.name;
+  const displayName = name.split(' — ')[0];
+  const displayLine = {
+    'pumpkin-and-pralines': t('Roses · 24 Ferrero', 'ورود · ٢٤ فيريرو'),
+    'the-pumpkin-basket': t('Roses · mini pumpkins', 'ورود · يقطينات صغيرة'),
+    'jack-o-bloom': t('Roses · lantern pumpkin pot', 'ورود · وعاء يقطين مضيء'),
+    'the-midnight-pumpkin': t('Dark roses · ceramic pumpkin', 'ورود داكنة · يقطينة خزفية'),
+  }[product.id] ?? (ar ? product.lineAr : product.line);
   const href = `/shop/${product.id}`;
   const many = product.sizes.length > 1;
   const open = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -140,8 +148,8 @@ function SeasonCard({ product, index, onOpen }: { product: Product; index: numbe
         <span className="mbc-badge sea-badge">{t('Halloween', 'هالوين')}</span>
       </a>
       <div className="mbc-cap">
-        <h3><a href={href} onClick={open}>{name}</a></h3>
-        <span className="mbc-line">{ar ? product.lineAr : product.line}</span>
+        <h3><a href={href} onClick={open} aria-label={name}>{displayName}</a></h3>
+        <span className="mbc-line">{displayLine}</span>
         <SaleTag className="mbc-sale" price={product.price} compareAtPrice={product.compareAtPrice} />
         <div className="mbc-row">
           <span className="mbc-price">
@@ -156,11 +164,11 @@ function SeasonCard({ product, index, onOpen }: { product: Product; index: numbe
   );
 }
 
-export function HalloweenShelf() {
+export function HalloweenShelf({ today }: { today: string }) {
   const { ar, t, products, openProduct } = useStore();
   const ref = usePauseOffscreen<HTMLElement>();
   const items = pick(products, HALLOWEEN_HANDLES);
-  if (!items.length) return null;
+  if (!items.length || seasonalExpired(HALLOWEEN_HANDLES[0], today)) return null;
   const onOpen = (product: Product, position: number) => {
     trackProductClicked(product, { listId: 'home_halloween' }, position);
     openProduct(product);
@@ -193,6 +201,7 @@ export function HalloweenShelf() {
         <p className="sea-kicker">{t('Halloween · Saturday 31 October', 'الهالوين · السبت 31 أكتوبر')}</p>
         <h2 id="sea-hw-title"><span className="sea-boo">{t('Boo.', 'بوو.')}</span> {t('We brought flowers.', 'أحضرنا الزهور.')}</h2>
         <p className="sea-hw-line">{t('Fresh flowers in pumpkins, for the host, the neighbours or someone you’d like to surprise.', 'زهور طازجة في يقطين، للمضيف أو للجيران أو لمن تحب أن تفاجئه.')}</p>
+        <p className="sea-hw-swipe">{t('Swipe to explore', 'اسحب للاستكشاف')} <span className="flip-rtl" aria-hidden="true">→</span></p>
       </div>
       <div className="sea-hw-row" role="region" aria-label={t('Halloween flowers', 'زهور الهالوين')} tabIndex={0}>
         {items.map((product, index) => <SeasonCard key={product.id} product={product} index={index} onOpen={onOpen} />)}

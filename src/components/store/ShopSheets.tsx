@@ -7,12 +7,12 @@ import {
 } from '@/lib/analytics/track';
 import { DeliveryRequiredError, type CartLineView } from '@/lib/cart/use-shop-cart';
 import {
-  type DeliveryRange, addDays, bookableDays, checkSchedule, dateOpen, deliverySummary, earliestDate, formatDeliveryDate, lastBookableDate, slotsFor, windowLabel, windowsFor,
+  type DeliveryRange, addDays, bookableDays, checkSchedule, dateOpen, deliverySummary, earliestDate, formatDeliveryDate, lastBookableDate, rangeProblem, slotsFor, windowLabel, windowsFor,
   type DeliverySchedule, type ScheduleProblem,
 } from '@/lib/delivery';
 import { useDubaiNow } from '@/lib/use-today';
 import { SITE_URL } from '@/lib/site';
-import { deliveryRangeFor } from '@/lib/seasonal';
+import { deliveryRangeFor, TORAN_HANDLE } from '@/lib/seasonal';
 import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import type { Product } from '@/lib/types';
 import { PROMISES } from './HeroPromises';
@@ -33,6 +33,11 @@ const copy = {
     presentation: 'Size', giftNote: 'Gift note', notePlaceholder: 'Your message, if you wish…',
     date: 'When should it arrive?',
     dateHint: 'Book today or up to 60 days ahead. One delivery date and time for the whole order.',
+    seasonalDateHint: 'Choose one delivery day and time within these dates for the whole order.',
+    seasonalWindow: 'Seasonal delivery',
+    range_conflict: 'Halloween and Diwali gifts need separate orders. Remove one to choose a delivery date.',
+    range_closed: 'Ordering for this seasonal delivery window has ended.',
+    orderSeparately: 'Place a separate order',
     windowLegend: 'Time', missing_date: 'Choose a delivery day and time to continue.', missing_slot: 'Choose a delivery time to continue.',
     date_passed: 'That delivery day has passed. Please choose another.', slot_passed: 'That delivery time has passed. Please choose another.',
     day_closed: "We aren't delivering on that day. Please choose another.",
@@ -64,6 +69,11 @@ const copy = {
     presentation: 'الحجم', giftNote: 'رسالة الإهداء', notePlaceholder: 'رسالتك إن رغبت…',
     date: 'متى تريد أن تصل؟',
     dateHint: 'احجز لليوم أو حتى ٦٠ يوماً مقدماً. موعد توصيل واحد للطلب كله.',
+    seasonalDateHint: 'اختر يوماً ووقتاً للتوصيل ضمن هذه التواريخ للطلب كله.',
+    seasonalWindow: 'توصيل المنتجات الموسمية',
+    range_conflict: 'تحتاج هدايا الهالوين وديوالي إلى طلبين منفصلين. أزل أحدهما لاختيار موعد التوصيل.',
+    range_closed: 'انتهت فترة طلب التوصيل لهذا المنتج الموسمي.',
+    orderSeparately: 'أنشئ طلباً منفصلاً',
     windowLegend: 'الوقت', missing_date: 'اختر يوم التوصيل ووقته للمتابعة.', missing_slot: 'اختر وقت التوصيل للمتابعة.',
     date_passed: 'انقضى يوم التوصيل هذا. يرجى اختيار يوم آخر.', slot_passed: 'انقضى موعد التوصيل هذا. يرجى اختيار موعد آخر.',
     day_closed: 'لا نوصّل في هذا اليوم. يرجى اختيار يوم آخر.',
@@ -188,7 +198,9 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
   const number = product.no ? `N° ${String(product.no).padStart(3, '0')}` : '';
   const name = ar ? product.nameAr : product.name;
   // A Diwali pre-order in the bag (or this product) limits the whole order to its delivery dates.
-  const range = deliveryRangeFor([...cart.lines.map((line) => line.product?.id ?? ''), product.id]);
+  const range = deliveryRangeFor([...cart.lines.map((line) => line.handle), product.id]);
+  const seasonalProblem = nowDubai ? rangeProblem(range, nowDubai) : null;
+  const unavailableSeasonal = seasonalProblem === 'range_conflict' || seasonalProblem === 'range_closed';
   const deliveryChosen = Boolean(delivery.date && delivery.slotId && nowDubai && !checkSchedule(delivery, nowDubai, range));
   const askLink = whatsappLink(whatsappMessage.product(ar, {
     name, size: ar ? chosen.nameAr : chosen.name,
@@ -265,7 +277,7 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
         </section>
 
         <ul className="qa-promises" aria-label={ar ? 'وعودنا' : 'Our promises'}>
-          {PROMISES.map((item) => <li key={item.text.en}>{item.icon}<span>{ar ? item.text.ar : item.text.en}</span></li>)}
+          {PROMISES.filter((item) => product.id !== TORAN_HANDLE || item.text.en !== 'Same-day delivery in Dubai').map((item) => <li key={item.text.en}>{item.icon}<span>{ar ? item.text.ar : item.text.en}</span></li>)}
         </ul>
         {related.length > 0 && onOpen && <section className="qa-related" aria-labelledby={`qa-related-title-${product.id}`}>
           <h3 id={`qa-related-title-${product.id}`} className="qa-included">{t.alsoLike}</h3>
@@ -279,12 +291,14 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
         </section>}
       </div>
       <div className="qa-foot">
-        <button className="qa-add" type="button" disabled={customMissing || !chosen.available}
+        <button className="qa-add" type="button" disabled={customMissing || !chosen.available || unavailableSeasonal}
           onClick={() => onAdd({
             sizeId: chosen.id, note: note.trim(), signedAs: signedAs.trim(), anonymous, custom: custom.trim(),
             ...(deliveryChosen ? { delivery: delivery as DeliverySchedule } : {}),
           })}>
-          {!chosen.available ? t.soldOut
+          {seasonalProblem === 'range_conflict' ? t.orderSeparately
+            : seasonalProblem === 'range_closed' ? t.range_closed
+            : !chosen.available ? t.soldOut
             : customMissing ? (field?.kind === 'letter' ? t.chooseLetter : field?.kind === 'age' ? t.chooseAge : t.chooseCustom)
             : <>{t.addBag} · <Money amount={chosen.price} ar={ar} whole /></>}
         </button>
@@ -381,6 +395,7 @@ function DeliveryPicker({ t, value, onChange, problem, scope = 'bag', range = nu
   const showOther = wantOther || other;
   const windows = date && now ? windowsFor(date, now, range) : [];
   const closed = Boolean(date) && Boolean(now) && !dateOpen(date, now!, range);
+  const seasonalProblem = now ? rangeProblem(range, now) : null;
   const dayLabel = (iso: string) => {
     if (iso === today) return ar ? 'اليوم' : 'Today';
     if (iso === addDays(today, 1)) return ar ? 'غداً' : 'Tomorrow';
@@ -394,9 +409,9 @@ function DeliveryPicker({ t, value, onChange, problem, scope = 'bag', range = nu
   return (
     <fieldset className={`qa-section${scope === 'bag' ? ' dl-picker' : ' dl-picker-product'}`} data-ph-mask>
       <legend className="qa-legend"><span>{t.date}</span><em>{t.dubai}</em></legend>
-      {range && <p className="dl-preorder">{ar
-        ? `طلب ديوالي المسبق: التوصيل من ${formatDeliveryDate(range.from, true)} إلى ${formatDeliveryDate(range.to, true)}`
-        : `Diwali pre-order: delivery ${formatDeliveryDate(range.from, false)} – ${formatDeliveryDate(range.to, false)}`}</p>}
+      {range && seasonalProblem !== 'range_conflict' && <p className="dl-preorder">{t.seasonalWindow}: {formatDeliveryDate(range.from, ar)} – {formatDeliveryDate(range.to, ar)}</p>}
+      {(seasonalProblem === 'range_conflict' || seasonalProblem === 'range_closed') && <p className="ll-cart-date-alert" role="alert">{t[seasonalProblem]}</p>}
+      {seasonalProblem !== 'range_conflict' && seasonalProblem !== 'range_closed' && <>
       <div className="qa-days">
         {quick.map((iso) => (
           <label key={iso} className={`qa-day${date === iso && !showOther ? ' is-selected' : ''}`}>
@@ -422,7 +437,8 @@ function DeliveryPicker({ t, value, onChange, problem, scope = 'bag', range = nu
         ))}
       </div>}
       {problem && problem !== 'day_closed' && <p className="ll-cart-date-alert" role="alert">{t[problem]}</p>}
-      <span className="ll-shop-help">{t.dateHint}</span>
+      <span className="ll-shop-help">{range ? t.seasonalDateHint : t.dateHint}</span>
+      </>}
     </fieldset>
   );
 }
@@ -466,7 +482,7 @@ function Bag() {
   const [draft, setDraft] = useState<Partial<DeliverySchedule>>(cart.delivery ?? {});
   useEffect(() => { if (cart.delivery) setDraft(cart.delivery); }, [cart.delivery]);
   const schedule = cart.delivery ?? draft;
-  const range = deliveryRangeFor(lines.map((line) => line.product?.id ?? ''));
+  const range = deliveryRangeFor(lines.map((line) => line.handle));
   const summary = cart.delivery ? deliverySummary(cart.delivery, ar) : '';
   // Checkout stays closed until a delivery day and a time window that can still be booked are chosen.
   const blocked = checkSchedule(schedule, now ?? undefined, range);
@@ -611,7 +627,7 @@ function Bag() {
               : <>Delivery: <Money amount={DELIVERY_FEES.dubai} ar={ar} whole /> in Dubai · <Money amount={DELIVERY_FEES.otherEmirates} ar={ar} whole /> other emirates, added at checkout</>}</p>
             {summary && <div><span>{t.deliveryLine}</span><span data-ph-mask>{summary}</span></div>}
           </div>
-          {blocked && <p className="ll-cart-date-alert" role="status">{t[blocked]}</p>}
+          {blocked && blocked !== 'range_conflict' && blocked !== 'range_closed' && <p className="ll-cart-date-alert" role="status">{t[blocked]}</p>}
           <button className={`ll-shop-primary${blocked ? ' is-blocked' : ''}`} type="button" onClick={handleCheckout}
             disabled={pending || cart.busy} aria-disabled={blocked ? true : undefined}>
             <span>{pending ? t.pending : cart.busy ? t.updating : live ? t.secureCheckout : t.previewCheckout}</span><ArrowIcon />
