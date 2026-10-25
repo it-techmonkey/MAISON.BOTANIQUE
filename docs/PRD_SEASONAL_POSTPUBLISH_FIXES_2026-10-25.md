@@ -3,7 +3,7 @@
 **Date:** 25 October 2026
 **Branch:** `fix/seasonal-postpublish-fixes`
 **Baseline:** Created from `origin/main` at `577f4f0` (PR #35), then rebased onto `ed0017f` (PR #36 price fix)
-**Status:** Implemented and locally verified; review preview pending. Production release remains a separate owner decision.
+**Status:** Implemented and verified in the review preview. Production release remains a separate owner decision.
 
 ## 1. Problem and outcome
 
@@ -55,9 +55,9 @@ Five seasonal products were published before their home sections and delivery gu
 | --- | --- | --- |
 | Fresh isolated worktree | Done | Created from `origin/main` at `577f4f0`; rebased onto `ed0017f` after PR #36 merged. |
 | PRD | Done | This document |
-| Price gate | Locally verified; live preview pending | PR #36 added seven seasonal variants outside the historical ledger. This branch adds a mocked paginated Storefront test that passes with the ledger and rejects changed prices, changed compare-at, and unknown SKUs. Local build has no Storefront credentials, so Vercel must verify live prices. |
+| Price gate | Verified in tests and deploy | PR #36 added seven seasonal variants outside the historical ledger. This branch adds a mocked paginated Storefront test that passes with the ledger and rejects changed prices, changed compare-at, and unknown SKUs. The Vercel preview build succeeded; the local build did not independently check live Shopify prices. |
 | Delivery and conflict rules | Verified | Toran 5–15 November, Halloween 25–31 October, mixed-cart and ended-window cases pass unit and browser tests. Cart checkout checks product handles even if a live product disappears from the catalogue. |
 | Campaign expiry | Verified locally | Frozen Dubai-clock browser tests hide Halloween after 31 October and Diwali after 15 November, and disable ordering after each window. |
 | Mobile and Arabic polish | Verified locally | English and Arabic visual review at 390 px; 320 px seasonal visual review. No horizontal page overflow at 1440, 414, 390, 360 or 320 px. Reduced-motion check passes. |
 | Tests and browser QA | Done locally | 44 Node tests, 5 Python tests, typecheck, production-mode build, and 32 Playwright flows passed. Product page and bag were checked for date copy, error recovery, the 5 November quick choice, and no Next.js image-parent warning. |
-| Review PR and preview | Pending |  |
+| Review PR and preview | Done | [PR #37](https://github.com/it-techmonkey/MAISON.BOTANIQUE/pull/37); [Vercel preview](https://maison-botanique-git-fix-seasonal-p-3356b2-techmonkeys-projects.vercel.app). Vercel and GitHub checks passed; all four seasonal Playwright flows passed against the deployed URL. Production merge awaits owner approval. |
