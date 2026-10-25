@@ -38,6 +38,7 @@ const HELP = [
   { href: '/refund-policy', en: 'Refund policy', ar: 'سياسة الاسترداد' },
   { href: '/contact', en: 'Contact us', ar: 'تواصل معنا' },
   { href: '/account', en: 'Your account', ar: 'حسابي' },
+  { href: '/faq', en: 'Ordering questions', ar: 'أسئلة حول الطلب' },
 ];
 
 const BASE = [
@@ -78,6 +79,7 @@ export default function SiteFooter() {
         </nav>
         <nav aria-label={t.help}>
           <h2>{t.help}</h2>
+          <Link href={ar ? '/ar/journal' : '/journal'}>{ar ? 'عن الإهداء' : 'Notes on giving'}</Link>
           {HELP.map((page) => <Link key={page.href} href={page.href}>{label(page)}</Link>)}
           {whatsapp && <a href={whatsapp} target="_blank" rel="noopener noreferrer">{t.whatsapp}</a>}
         </nav>

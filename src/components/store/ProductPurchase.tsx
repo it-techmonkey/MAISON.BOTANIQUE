@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { trackProductViewed } from '@/lib/analytics/track';
 import { occasionPath, findOccasion } from '@/lib/site';
+import { contentHref } from '@/lib/content-locale';
 import type { Product } from '@/lib/types';
 import SaleTag from './SaleTag';
 import { PurchaseOptions, formatAED } from './ShopSheets';
@@ -53,7 +54,7 @@ function Purchase({ product }: { product: Product }) {
           <span>{t('Lovely for', 'مناسبة لـ')}</span>
           {product.occasions.map((occasionId) => {
             const occasion = findOccasion(occasionId);
-            return occasion ? <Link key={occasionId} href={occasionPath(occasionId)}>{ar ? occasion.name.ar : occasion.name.en}</Link> : null;
+            return occasion ? <Link key={occasionId} href={contentHref(occasionPath(occasionId), ar ? 'ar' : 'en')}>{ar ? occasion.name.ar : occasion.name.en}</Link> : null;
           })}
         </p>
       )}
