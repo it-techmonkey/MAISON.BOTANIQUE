@@ -65,6 +65,7 @@
 .sea-hw h2 { margin-top: 10px; color: var(--bone); font: 400 clamp(30px, 2.8vw, 38px)/1.05 var(--font-display); letter-spacing: -.01em; text-shadow: 0 2px 14px rgb(0 0 0 / 40%); }
 .sea-boo { color: var(--pumpkin); font-style: italic; }
 .sea-hw-line { margin: 10px 0 0; color: #D9CDE6; font-size: var(--fs-small); line-height: 1.5; }
+.sea-hw-swipe { display: none; }
 .sea-hw-row { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
 .sea-hw-row:focus-visible { outline: 2px solid var(--ember); outline-offset: 6px; }
 .sea-hw .mbc-frame { box-shadow: 0 18px 36px rgb(0 0 0 / 45%); transition: box-shadow .4s; }
@@ -102,12 +103,14 @@
   .sea-dw h2 { margin-top: 10px; font-size: clamp(30px, 8.6vw, 38px); }
   .sea-dw-line { font-size: 15px; }
   .sea-dw-act { margin-top: 18px; }
+  .sea-from { order: -1; flex-basis: 100%; font-size: 19px; }
   .sea-cta { flex: 1 1 auto; min-height: 48px; }
   .sea-lamps { height: 70px; }
   .sea-hw.mbc { gap: 16px; padding: 24px 0 26px; }
   .sea-hw-head { padding-inline: 16px 110px; }
   .sea-hw h2 { font-size: 26px; }
   .sea-hw-line { display: none; }
+  .sea-hw-swipe { display: block; margin: 8px 0 0; color: #D9CDE6; font-size: 12px; line-height: 1.4; }
   .sea-moon { width: 110px; top: -34px; inset-inline-end: 4px; }
   .sea-branch { width: 170px; }
   .sea-hw-row { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-inline: 16px; scroll-padding-inline: 16px; scrollbar-width: none; }

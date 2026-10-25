@@ -2,7 +2,11 @@
   "_note": "Halloween and Diwali 2026 products. Shopify holds the live copies (owner prices; published 25 Oct 2026). Preview builds show these records only when Shopify does not return the product yet; production never does. Photos are AI concept images (review/seasonal/2026-10-24/round4) until real samples are photographed.",
   "halloween": ["pumpkin-and-pralines", "the-pumpkin-basket", "jack-o-bloom", "the-midnight-pumpkin"],
   "diwali": ["marigold-toran"],
-  "preorder": {
+  "deliveryRanges": {
+    "pumpkin-and-pralines": { "from": "2026-10-25", "to": "2026-10-31" },
+    "the-pumpkin-basket": { "from": "2026-10-25", "to": "2026-10-31" },
+    "jack-o-bloom": { "from": "2026-10-25", "to": "2026-10-31" },
+    "the-midnight-pumpkin": { "from": "2026-10-25", "to": "2026-10-31" },
     "marigold-toran": { "from": "2026-11-05", "to": "2026-11-15" }
   },
   "products": [

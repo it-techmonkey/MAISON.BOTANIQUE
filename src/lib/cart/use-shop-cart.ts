@@ -26,6 +26,8 @@ const MAX_QUANTITY = 99;
 
 export interface CartLineView {
   key: string;
+  /** Keep the Shopify handle even when its product is no longer in the live catalogue. */
+  handle: string;
   product: Product | null;
   size: ProductSize | null;
   name: string;
@@ -256,6 +258,7 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     const size = product?.sizes.find((item) => item.variantId === line.variantId) ?? null;
     return {
       key: line.id,
+      handle: line.productHandle,
       product,
       size,
       name: product?.name ?? line.productTitle,
@@ -423,7 +426,7 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     // No checkout URL is handed out without a delivery date and time that can
     // still be booked, whichever screen asks for it.
     const schedule = deliveryRef.current;
-    const problem = checkSchedule(schedule, undefined, deliveryRangeFor(linesRef.current.map((line) => line.product?.id ?? '')));
+    const problem = checkSchedule(schedule, undefined, deliveryRangeFor(linesRef.current.map((line) => line.handle)));
     if (problem || !schedule) throw new DeliveryRequiredError(problem ?? 'missing_date');
     // Stamp the delivery schedule and the current PostHog visitor and session
     // on the cart. Analytics never blocks checkout; the schedule does.
@@ -551,7 +554,7 @@ function usePreviewCart(products: Product[]): ShopCart {
     const size = product?.sizes.find((item) => item.id === line.sizeId);
     if (!product || !size) return [];
     return [{
-      key: line.key, product, size,
+      key: line.key, handle: line.productId, product, size,
       name: product.name, nameAr: product.nameAr,
       sizeName: size.name, sizeNameAr: size.nameAr,
       category: product.category, categoryAr: product.categoryAr,

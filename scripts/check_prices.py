@@ -21,7 +21,8 @@ def seasonal_prices():
 
 
 def check_prices():
-    rows = list(csv.DictReader((ROOT / 'catalog/shopify-export/variant-prices.csv').open()))
+    with (ROOT / 'catalog/shopify-export/variant-prices.csv').open() as ledger:
+        rows = list(csv.DictReader(ledger))
     expected = {row['sku']: row for row in rows}
     assert len(expected) == len(rows), 'Duplicate ledger SKUs'
     products = json.loads((ROOT / 'src/data/collection.json').read_text())['products']

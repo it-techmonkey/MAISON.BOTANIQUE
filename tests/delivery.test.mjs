@@ -2,6 +2,7 @@
 // 60-day horizon, passed days and windows. Owner rules, 19 October 2026.
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 
 const {
   DELIVERY_RULES, addDays, bookableDays, checkSchedule, dateOpen, dubaiNow, earliestDate, lastBookableDate,
@@ -10,6 +11,7 @@ const {
 
 const at = (date, hh, mm = 0) => ({ date, minutes: hh * 60 + mm });
 const open = (date, now) => slotsFor(date, now).map((slot) => slot.id);
+const seasonal = JSON.parse(readFileSync(new URL('../src/data/seasonal-products.json', import.meta.url), 'utf8')).deliveryRanges;
 
 test('four daily windows, 9am to 9pm, one-hour lead, 60 days ahead', () => {
   assert.deepEqual(DELIVERY_RULES.windows.map((w) => [w.id, w.start / 60, w.end / 60]), [
@@ -87,20 +89,36 @@ test('the schedule round-trips through Shopify cart attributes', () => {
   assert.deepEqual(scheduleFromAttributes(Object.fromEntries(attributes.map((a) => [a.key, a.value]))), schedule);
 });
 
-// Diwali pre-order (owner, 25 October 2026): an order holding the marigold toran
-// is delivered from 5 November, through a week after Diwali (src/data/seasonal-products.json).
+// The owner kept toran delivery open 5–15 November; Halloween ends 31 October.
 test('a pre-order range limits delivery to its dates', () => {
-  const range = { from: '2026-11-05', to: '2026-11-08' };
+  const range = seasonal['marigold-toran'];
   const now = at('2026-10-25', 10);
+  assert.deepEqual(range, { from: '2026-11-05', to: '2026-11-15' });
   assert.equal(dateOpen('2026-10-26', now, range), false);
   assert.equal(dateOpen('2026-11-05', now, range), true);
   assert.equal(dateOpen('2026-11-08', now, range), true);
-  assert.equal(dateOpen('2026-11-09', now, range), false);
+  assert.equal(dateOpen('2026-11-15', now, range), true);
+  assert.equal(dateOpen('2026-11-16', now, range), false);
   assert.deepEqual(bookableDays(4, now, range), ['2026-11-05', '2026-11-06', '2026-11-07', '2026-11-08']);
   assert.equal(earliestDate(now, range), '2026-11-05');
-  assert.equal(lastBookableDate(now, range), '2026-11-08');
+  assert.equal(lastBookableDate(now, range), '2026-11-15');
   assert.equal(checkSchedule({ date: '2026-10-26', slotId: 'morning' }, now, range), 'day_closed');
   assert.equal(checkSchedule({ date: '2026-11-06', slotId: 'evening' }, now, range), null);
+  assert.equal(checkSchedule({ date: '2026-11-15', slotId: 'evening' }, now, range), null);
+  assert.equal(checkSchedule(null, at('2026-11-16', 10), range), 'range_closed');
   // Without a pre-order the normal schedule is unchanged.
   assert.equal(checkSchedule({ date: '2026-10-26', slotId: 'morning' }, now), null);
+});
+
+test('Halloween ends on 31 October and cannot share a delivery date with the toran', () => {
+  const halloween = seasonal['pumpkin-and-pralines'];
+  assert.deepEqual(halloween, { from: '2026-10-25', to: '2026-10-31' });
+  for (const handle of ['the-pumpkin-basket', 'jack-o-bloom', 'the-midnight-pumpkin']) {
+    assert.deepEqual(seasonal[handle], halloween);
+  }
+  assert.equal(checkSchedule({ date: '2026-10-31', slotId: 'evening' }, at('2026-10-25', 10), halloween), null);
+  assert.equal(checkSchedule({ date: '2026-11-01', slotId: 'morning' }, at('2026-10-25', 10), halloween), 'day_closed');
+  assert.equal(checkSchedule(null, at('2026-11-01', 10), halloween), 'range_closed');
+  const mixed = { from: seasonal['marigold-toran'].from, to: halloween.to };
+  assert.equal(checkSchedule(null, at('2026-10-25', 10), mixed), 'range_conflict');
 });

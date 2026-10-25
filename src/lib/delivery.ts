@@ -112,9 +112,17 @@ export function bookableDays(count = 3, now: DubaiNow = dubaiNow(), range: Deliv
 /** The first date with an open window. */
 export const earliestDate = (now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) => bookableDays(1, now, range)[0] ?? range?.from ?? addDays(now.date, 1);
 
-export type ScheduleProblem = 'missing_date' | 'missing_slot' | 'date_passed' | 'day_closed' | 'slot_passed';
+export type ScheduleProblem = 'missing_date' | 'missing_slot' | 'date_passed' | 'day_closed' | 'slot_passed' | 'range_conflict' | 'range_closed';
+
+export function rangeProblem(range: DeliveryRange | null, now: DubaiNow = dubaiNow()): 'range_conflict' | 'range_closed' | null {
+  if (range && range.from > range.to) return 'range_conflict';
+  if (range && range.to < now.date) return 'range_closed';
+  return null;
+}
 
 export function checkSchedule(schedule: Partial<DeliverySchedule> | null, now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null): ScheduleProblem | null {
+  const rangeIssue = rangeProblem(range, now);
+  if (rangeIssue) return rangeIssue;
   if (!schedule?.date) return 'missing_date';
   if (!schedule.slotId || !findSlot(schedule.slotId)) return 'missing_slot';
   if (schedule.date < now.date) return 'date_passed';
