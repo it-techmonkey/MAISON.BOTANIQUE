@@ -483,10 +483,12 @@ function Bag() {
   useEffect(() => { if (cart.delivery) setDraft(cart.delivery); }, [cart.delivery]);
   const schedule = cart.delivery ?? draft;
   const range = deliveryRangeFor(lines.map((line) => line.handle));
-  const summary = cart.delivery ? deliverySummary(cart.delivery, ar) : '';
   // Checkout stays closed until a delivery day and a time window that can still be booked are chosen.
   const blocked = checkSchedule(schedule, now ?? undefined, range);
-  const orderLink = lines.length ? whatsappLink(whatsappMessage.bag(ar, bagSummary(lines, ar), summary)) : null;
+  const summary = cart.delivery && !blocked ? deliverySummary(cart.delivery, ar) : '';
+  // Seasonal orders need a valid schedule even when the shopper switches to WhatsApp.
+  const orderLink = lines.length && (!range || !blocked)
+    ? whatsappLink(whatsappMessage.bag(ar, bagSummary(lines, ar), summary)) : null;
   const close = () => { cart.clearError(); setCartOpen(false); };
 
   // One cart view per opening, reported once the cart has settled.
