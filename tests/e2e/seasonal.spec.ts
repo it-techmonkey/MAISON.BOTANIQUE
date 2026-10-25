@@ -52,3 +52,10 @@ test('Diwali band and toran ordering close after 15 November', async ({ page }) 
   await expect(page.locator('.dl-picker-product [role="alert"]')).toContainText('has ended');
   await expect(page.locator('.qa-add')).toBeDisabled();
 });
+
+test('ordering closes when the last delivery window can no longer be booked', async ({ page }) => {
+  await page.clock.install({ time: new Date('2026-10-31T13:01:00Z') });
+  await openClosedSeasonal(page, 'pumpkin-and-pralines');
+  await expect(page.locator('.dl-picker-product [role="alert"]')).toContainText('has ended');
+  await expect(page.locator('.qa-add')).toBeDisabled();
+});

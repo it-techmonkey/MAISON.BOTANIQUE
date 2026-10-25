@@ -105,6 +105,7 @@ test('a pre-order range limits delivery to its dates', () => {
   assert.equal(checkSchedule({ date: '2026-10-26', slotId: 'morning' }, now, range), 'day_closed');
   assert.equal(checkSchedule({ date: '2026-11-06', slotId: 'evening' }, now, range), null);
   assert.equal(checkSchedule({ date: '2026-11-15', slotId: 'evening' }, now, range), null);
+  assert.equal(checkSchedule(null, at('2026-11-15', 17, 1), range), 'range_closed');
   assert.equal(checkSchedule(null, at('2026-11-16', 10), range), 'range_closed');
   // Without a pre-order the normal schedule is unchanged.
   assert.equal(checkSchedule({ date: '2026-10-26', slotId: 'morning' }, now), null);
@@ -118,6 +119,7 @@ test('Halloween ends on 31 October and cannot share a delivery date with the tor
   }
   assert.equal(checkSchedule({ date: '2026-10-31', slotId: 'evening' }, at('2026-10-25', 10), halloween), null);
   assert.equal(checkSchedule({ date: '2026-11-01', slotId: 'morning' }, at('2026-10-25', 10), halloween), 'day_closed');
+  assert.equal(checkSchedule(null, at('2026-10-31', 17, 1), halloween), 'range_closed');
   assert.equal(checkSchedule(null, at('2026-11-01', 10), halloween), 'range_closed');
   const mixed = { from: seasonal['marigold-toran'].from, to: halloween.to };
   assert.equal(checkSchedule(null, at('2026-10-25', 10), mixed), 'range_conflict');

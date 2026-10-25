@@ -116,7 +116,7 @@ export type ScheduleProblem = 'missing_date' | 'missing_slot' | 'date_passed' | 
 
 export function rangeProblem(range: DeliveryRange | null, now: DubaiNow = dubaiNow()): 'range_conflict' | 'range_closed' | null {
   if (range && range.from > range.to) return 'range_conflict';
-  if (range && range.to < now.date) return 'range_closed';
+  if (range && !bookableDays(1, now, range).length) return 'range_closed';
   return null;
 }
 
