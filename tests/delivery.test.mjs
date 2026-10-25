@@ -6,12 +6,22 @@ import { readFileSync } from 'node:fs';
 
 const {
   DELIVERY_RULES, addDays, bookableDays, checkSchedule, dateOpen, dubaiNow, earliestDate, lastBookableDate,
-  scheduleAttributes, scheduleFromAttributes, slotsFor, windowLabel, windowsFor,
+  hourLabel, lastOrderTime, scheduleAttributes, scheduleFromAttributes, slotsFor, windowLabel, windowsFor,
 } = await import('../src/lib/delivery.ts');
 
 const at = (date, hh, mm = 0) => ({ date, minutes: hh * 60 + mm });
 const open = (date, now) => slotsFor(date, now).map((slot) => slot.id);
 const seasonal = JSON.parse(readFileSync(new URL('../src/data/seasonal-products.json', import.meta.url), 'utf8')).deliveryRanges;
+
+test('displayed order cutoff follows available windows and seasonal dates', () => {
+  assert.equal(hourLabel(lastOrderTime('2026-10-25', at('2026-10-25', 12)), false), '5pm');
+  assert.equal(lastOrderTime('2026-10-25', at('2026-10-25', 17)), 17 * 60);
+  assert.equal(lastOrderTime('2026-10-25', at('2026-10-25', 17, 1)), null);
+  const toran = seasonal['marigold-toran'];
+  assert.equal(lastOrderTime('2026-10-25', at('2026-10-25', 12), toran), null);
+  assert.equal(lastOrderTime(toran.to, at(toran.to, 0), toran), 17 * 60);
+  assert.equal(lastOrderTime(toran.to, at('2026-11-16', 12), toran), null);
+});
 
 test('four daily windows, 9am to 9pm, one-hour lead, 60 days ahead', () => {
   assert.deepEqual(DELIVERY_RULES.windows.map((w) => [w.id, w.start / 60, w.end / 60]), [

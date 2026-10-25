@@ -34,7 +34,7 @@
   --fs-small: 13px;
   --fs-label: 11px;
   /* The opening-offer ribbon above the header (chrome.css), and both together. */
-  --offer-h: 38px;
+  --offer-h: 44px;
   --chrome: calc(var(--header) + var(--offer-h));
   --ease: cubic-bezier(.22, 1, .36, 1);
 

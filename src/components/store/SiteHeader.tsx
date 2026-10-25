@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { BUDGET_BANDS, liveCatalogGroups } from '@/lib/catalog-groups';
 import { SearchIcon } from './icons';
+import { readState } from './LaunchOffer';
 import { useStore } from './StoreProvider';
 
 /** The storefront wordmark: small MAISON over a large BOTANIQUE. */
@@ -25,21 +26,21 @@ export function CollectionLink({ hash, onClick, children, className, 'aria-label
     : <Link className={className} href={`/shop#${hash}`} onClick={onClick} aria-label={ariaLabel}>{children}</Link>;
 }
 
-// The opening offer runs above the header; the whole ribbon opens the sign-up.
-const OFFER = {
-  en: ['Welcome offer · 25% off your first order', 'Same-day delivery in Dubai', 'Pre-book up to 60 days ahead'],
-  ar: ['عرض الترحيب · خصم ٢٥٪ على طلبك الأول', 'توصيل في اليوم نفسه داخل دبي', 'احجز مسبقاً حتى ٦٠ يوماً'],
-};
-
 function OfferBar() {
-  const { ar, openOffer } = useStore();
-  const items = OFFER[ar ? 'ar' : 'en'];
-  const claim = ar ? 'احصل على خصم ٢٥٪ ←' : 'Claim your 25% →';
-  // Rendered twice so the loop is seamless; screen readers get the copy once from the label.
-  const run = <span className="offer-bar__run" aria-hidden="true">{items.map((item) => <span key={item}>{item}</span>)}<span className="offer-bar__claim">{claim}</span></span>;
+  const { t, openOffer } = useStore();
+  const [claimed, setClaimed] = useState(false);
+  useEffect(() => {
+    const sync = () => setClaimed(Boolean(readState().code));
+    sync();
+    window.addEventListener('maison-offer-changed', sync);
+    window.addEventListener('storage', sync);
+    return () => { window.removeEventListener('maison-offer-changed', sync); window.removeEventListener('storage', sync); };
+  }, []);
+  const message = claimed ? t('Your 25% code is ready', 'رمز خصمك ٢٥٪ جاهز') : t('25% off your first order', 'خصم ٢٥٪ على طلبك الأول');
+  const action = claimed ? t('View code', 'عرض الرمز') : t('Claim', 'احصل عليه');
   return (
-    <button type="button" className="offer-bar" data-track-location="offer_bar" onClick={openOffer} aria-label={`${items.join('. ')}. ${claim}`}>
-      <span className="offer-bar__track">{run}{run}</span>
+    <button type="button" className="offer-bar" data-track-location="offer_bar" onClick={openOffer}>
+      <span className="offer-bar__text"><span>{message}</span><span aria-hidden="true">·</span><strong>{action} <span className="flip-rtl" aria-hidden="true">→</span></strong></span>
     </button>
   );
 }

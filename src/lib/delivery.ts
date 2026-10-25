@@ -99,6 +99,12 @@ export function windowsFor(date: string, now: DubaiNow = dubaiNow(), range: Deli
 /** Windows that can still be booked on a date. */
 export const slotsFor = (date: string, now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) => windowsFor(date, now, range).filter((slot) => slot.available);
 
+/** Last order time for a date that still has an available delivery window. */
+export function lastOrderTime(date: string, now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) {
+  const last = slotsFor(date, now, range).at(-1);
+  return last ? last.start - DELIVERY_RULES.leadMinutes : null;
+}
+
 /** The next few dates that still have at least one open window. */
 export function bookableDays(count = 3, now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) {
   const days: string[] = [];
@@ -131,7 +137,7 @@ export function checkSchedule(schedule: Partial<DeliverySchedule> | null, now: D
   return null;
 }
 
-function hourLabel(minutes: number, arabic: boolean) {
+export function hourLabel(minutes: number, arabic: boolean) {
   return new Intl.DateTimeFormat(arabic ? 'ar-AE' : 'en-US', { hour: 'numeric', minute: minutes % 60 ? '2-digit' : undefined, timeZone: 'UTC' })
     .format(new Date(Date.UTC(2000, 0, 1, Math.floor(minutes / 60), minutes % 60)))
     .replace(/\s/g, arabic ? ' ' : '')

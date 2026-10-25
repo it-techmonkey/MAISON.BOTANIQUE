@@ -40,7 +40,7 @@ const COPY = {
 
 interface Saved { savedDetails?: boolean; code?: string; channel?: 'whatsapp' | 'email'; dismissedAt?: number }
 
-function readState(): Saved {
+export function readState(): Saved {
   try {
     const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || {};
     if (state.code && state.code !== OFFER_CODE && !/^MB25-[A-F0-9]{20}$/.test(state.code)) { localStorage.removeItem(STORAGE_KEY); return {}; }
@@ -77,7 +77,7 @@ export default function LaunchOffer() {
     return () => window.clearTimeout(timer);
   }, []);
 
-  useEffect(() => { if (offerSignal) setOpen(true); }, [offerSignal]);
+  useEffect(() => { if (offerSignal) { setSaved(readState()); setOpen(true); } }, [offerSignal]);
 
   function dismiss() {
     setOpen(false);

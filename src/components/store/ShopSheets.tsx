@@ -7,7 +7,7 @@ import {
 } from '@/lib/analytics/track';
 import { DeliveryRequiredError, type CartLineView } from '@/lib/cart/use-shop-cart';
 import {
-  type DeliveryRange, addDays, bookableDays, checkSchedule, dateOpen, deliverySummary, earliestDate, formatDeliveryDate, lastBookableDate, rangeProblem, slotsFor, windowLabel, windowsFor,
+  type DeliveryRange, addDays, bookableDays, checkSchedule, dateOpen, deliverySummary, earliestDate, formatDeliveryDate, hourLabel, lastBookableDate, lastOrderTime, rangeProblem, slotsFor, windowLabel, windowsFor,
   type DeliverySchedule, type ScheduleProblem,
 } from '@/lib/delivery';
 import { useDubaiNow } from '@/lib/use-today';
@@ -17,6 +17,7 @@ import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import type { Product } from '@/lib/types';
 import { PROMISES } from './HeroPromises';
 import SaleTag from './SaleTag';
+import SeasonalBooking from './SeasonalBooking';
 import { useStore } from './StoreProvider';
 import { WhatsAppIcon } from './WhatsAppButton';
 import Money from './Money';
@@ -396,6 +397,7 @@ function DeliveryPicker({ t, value, onChange, problem, scope = 'bag', range = nu
   const windows = date && now ? windowsFor(date, now, range) : [];
   const closed = Boolean(date) && Boolean(now) && !dateOpen(date, now!, range);
   const seasonalProblem = now ? rangeProblem(range, now) : null;
+  const cutoff = now && (!date || date === today) ? lastOrderTime(today, now, range) : null;
   const dayLabel = (iso: string) => {
     if (iso === today) return ar ? 'اليوم' : 'Today';
     if (iso === addDays(today, 1)) return ar ? 'غداً' : 'Tomorrow';
@@ -409,7 +411,8 @@ function DeliveryPicker({ t, value, onChange, problem, scope = 'bag', range = nu
   return (
     <fieldset className={`qa-section${scope === 'bag' ? ' dl-picker' : ' dl-picker-product'}`} data-ph-mask>
       <legend className="qa-legend"><span>{t.date}</span><em>{t.dubai}</em></legend>
-      {range && seasonalProblem !== 'range_conflict' && <p className="dl-preorder">{t.seasonalWindow}: {formatDeliveryDate(range.from, ar)} – {formatDeliveryDate(range.to, ar)}</p>}
+      {cutoff !== null && <p className="dl-cutoff">{ar ? `للتوصيل اليوم داخل دبي، اطلب قبل ${hourLabel(cutoff, true)} بتوقيت دبي.` : `Same-day Dubai delivery: order by ${hourLabel(cutoff, false)} (Dubai time).`}</p>}
+      {range && seasonalProblem !== 'range_conflict' && <div className="dl-preorder"><span>{t.seasonalWindow}</span><SeasonalBooking range={range} /></div>}
       {(seasonalProblem === 'range_conflict' || seasonalProblem === 'range_closed') && <p className="ll-cart-date-alert" role="alert">{t[seasonalProblem]}</p>}
       {seasonalProblem !== 'range_conflict' && seasonalProblem !== 'range_closed' && <>
       <div className="qa-days">

@@ -3,10 +3,11 @@
 import Link from 'next/link';
 import { useEffect, useRef, type MouseEvent } from 'react';
 import { trackProductClicked } from '@/lib/analytics/track';
-import { DIWALI_HANDLES, HALLOWEEN_HANDLES, TORAN_HANDLE, pick, seasonalExpired } from '@/lib/seasonal';
+import { DIWALI_HANDLES, HALLOWEEN_HANDLES, TORAN_HANDLE, pick, seasonalDeliveryRange, seasonalExpired } from '@/lib/seasonal';
 import type { Product } from '@/lib/types';
 import Money from './Money';
 import SaleTag from './SaleTag';
+import SeasonalBooking from './SeasonalBooking';
 import { useStore } from './StoreProvider';
 import '@/styles/collection.css';
 import '@/styles/seasonal.css';
@@ -72,6 +73,7 @@ export function DiwaliBar({ today }: { today: string }) {
   const { ar, t, products } = useStore();
   const ref = usePauseOffscreen<HTMLElement>();
   const toran = pick(products, DIWALI_HANDLES).find((product) => product.id === TORAN_HANDLE);
+  const range = seasonalDeliveryRange(TORAN_HANDLE);
   if (!toran || seasonalExpired(TORAN_HANDLE, today)) return null;
   return (
     <section ref={ref} className="sea sea-dw" aria-labelledby="sea-dw-title" data-track-section="home_diwali" data-track-location="home_diwali">
@@ -84,9 +86,10 @@ export function DiwaliBar({ today }: { today: string }) {
       <img className="sea-toran" src="/seasonal/toran-cut-1200.webp" srcSet="/seasonal/toran-cut-600.webp 600w, /seasonal/toran-cut-1200.webp 1200w"
         sizes="(max-width: 860px) 100vw, 42vw" alt={t('Fresh orange and yellow marigold toran', 'إكليل قطيفة برتقالي وأصفر طازج')} width="1200" height="418" loading="lazy" decoding="async" />
       <div className="sea-dw-copy">
-        <p className="sea-kicker">{t('Diwali · ', 'ديوالي · ')}<span className="sea-wide">{t('Sunday ', 'الأحد ')}</span>{t('8 November · Pre-orders open', '8 نوفمبر · الطلب المسبق مفتوح')}</p>
+        <p className="sea-kicker">{t('Diwali · ', 'ديوالي · ')}<span className="sea-wide">{t('Sunday ', 'الأحد ')}</span>{t('8 November', '8 نوفمبر')}</p>
         <h2 id="sea-dw-title">{t('Ghar wali Diwali, here in Dubai.', 'ديوالي بدفء البيت، هنا في دبي.')}</h2>
-        <p className="sea-dw-line">{t('Fresh marigold torans for your door, delivered 5–15 November.', 'أكاليل قطيفة طازجة لباب بيتكم، التوصيل من 5 إلى 15 نوفمبر.')}</p>
+        <p className="sea-dw-line">{t('Fresh marigold torans for your door.', 'أكاليل قطيفة طازجة لباب بيتكم.')}</p>
+        {range && <SeasonalBooking range={range} />}
         <div className="sea-dw-act">
           <Link className="sea-cta" href={`/shop/${toran.id}`}>
             <span>{t('Pre-order the toran', 'اطلب الإكليل مسبقاً')}</span><span className="flip-rtl" aria-hidden="true">→</span>
@@ -168,6 +171,7 @@ export function HalloweenShelf({ today }: { today: string }) {
   const { ar, t, products, openProduct } = useStore();
   const ref = usePauseOffscreen<HTMLElement>();
   const items = pick(products, HALLOWEEN_HANDLES);
+  const range = seasonalDeliveryRange(HALLOWEEN_HANDLES[0]);
   if (!items.length || seasonalExpired(HALLOWEEN_HANDLES[0], today)) return null;
   const onOpen = (product: Product, position: number) => {
     trackProductClicked(product, { listId: 'home_halloween' }, position);
@@ -200,6 +204,7 @@ export function HalloweenShelf({ today }: { today: string }) {
       <div className="sea-hw-head">
         <p className="sea-kicker">{t('Halloween · Saturday 31 October', 'الهالوين · السبت 31 أكتوبر')}</p>
         <h2 id="sea-hw-title"><span className="sea-boo">{t('Boo.', 'بوو.')}</span> {t('We brought flowers.', 'أحضرنا الزهور.')}</h2>
+        {range && <SeasonalBooking range={range} />}
         <p className="sea-hw-line">{t('Fresh flowers in pumpkins, for the host, the neighbours or someone you’d like to surprise.', 'زهور طازجة في يقطين، للمضيف أو للجيران أو لمن تحب أن تفاجئه.')}</p>
         <p className="sea-hw-swipe">{t('Swipe to explore', 'اسحب للاستكشاف')} <span className="flip-rtl" aria-hidden="true">→</span></p>
       </div>
