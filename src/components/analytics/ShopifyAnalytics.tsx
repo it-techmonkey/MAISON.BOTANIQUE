@@ -2,9 +2,10 @@
 
 import { initializeShopifyScripts } from '@shopify/hydrogen';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { SHOPIFY_CONSENT, isShopifyAnalyticsEnabled } from '@/lib/analytics/shopify-config';
 import { publishPageViewed } from '@/lib/analytics/shopify';
+import { metaPageView } from '@/lib/analytics/meta-pixel';
 
 let initialized = false;
 
@@ -14,6 +15,7 @@ function Tracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const pageKey = `${pathname}?${searchParams.toString()}`;
+  const [metaAllowed, setMetaAllowed] = useState(false);
 
   useEffect(() => {
     if (initialized) return;
@@ -27,6 +29,24 @@ function Tracker() {
   }, [router]);
 
   useEffect(() => { publishPageViewed(); }, [pageKey]);
+
+  useEffect(() => {
+    const update = () => {
+      const privacy = window.Shopify?.customerPrivacy;
+      setMetaAllowed(Boolean(privacy?.consentStatus === 'loaded' && privacy.marketingAllowed() && privacy.saleOfDataAllowed()));
+    };
+    document.addEventListener('visitorConsentCollected', update);
+    document.addEventListener('consentTrackingApiLoaded', update);
+    update();
+    return () => {
+      document.removeEventListener('visitorConsentCollected', update);
+      document.removeEventListener('consentTrackingApiLoaded', update);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (metaAllowed && ['maisonbotaniqueflowers.com', 'www.maisonbotaniqueflowers.com'].includes(window.location.hostname)) metaPageView();
+  }, [pageKey, metaAllowed]);
 
   return null;
 }
