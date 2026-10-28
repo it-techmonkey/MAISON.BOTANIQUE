@@ -13,8 +13,16 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def seasonal_prices():
+    """Seasonal pieces (src/data/seasonal-products.json) carry the owner's own prices,
+    outside the ledger and the 40-60% struck-price rule (owner, 25 Oct 2026)."""
+    data = json.loads((ROOT / 'src/data/seasonal-products.json').read_text())
+    return {size['sku']: size for product in data['products'] for size in product['sizes']}
+
+
 def check_prices():
-    rows = list(csv.DictReader((ROOT / 'catalog/shopify-export/variant-prices.csv').open()))
+    with (ROOT / 'catalog/shopify-export/variant-prices.csv').open() as ledger:
+        rows = list(csv.DictReader(ledger))
     expected = {row['sku']: row for row in rows}
     assert len(expected) == len(rows), 'Duplicate ledger SKUs'
     products = json.loads((ROOT / 'src/data/collection.json').read_text())['products']
@@ -80,6 +88,15 @@ def check_prices():
             next_cursor = page['pageInfo']['endCursor']
             assert next_cursor and next_cursor != cursor, 'Invalid Shopify pagination'
             cursor = next_cursor
+        seasonal = seasonal_prices()
+        for sku, size in seasonal.items():
+            variant = live.pop(sku, None)
+            if variant is None:
+                continue  # not published yet
+            assert Decimal(variant['price']['amount']) == Decimal(str(size['price'])), f'Live seasonal price: {sku}'
+            compare = variant['compareAtPrice'] and Decimal(variant['compareAtPrice']['amount'])
+            expected_compare = size['compareAtPrice'] and Decimal(str(size['compareAtPrice']))
+            assert (compare or None) == (expected_compare or None), f'Live seasonal compare-at: {sku}'
         assert set(live) == seen, 'Live and bundled variant coverage differs'
         for sku, variant in live.items():
             assert Decimal(variant['price']['amount']) == Decimal(expected[sku]['price']), f'Live selling price: {sku}'

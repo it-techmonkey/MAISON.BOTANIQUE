@@ -1,5 +1,5 @@
 // Area: browsing and filters (home hero, /shop tabs, Refine drawer, search, quick-add).
-import { test, expect } from './fixtures';
+import { test, expect, addToBag } from './fixtures';
 
 const piecePrice = (piece: import('@playwright/test').Locator) =>
   piece.locator('.mbc-price > .money .money__n').innerText().then((text) => Number(text.replace(/[^\d.]/g, '')));
@@ -59,3 +59,26 @@ test('tapping a piece opens the quick-add sheet for it', async ({ page }) => {
   await page.keyboard.press('Escape');
   await expect(sheet).toBeHidden();
 });
+
+for (const path of ['/', '/shop']) {
+  test(`${path} grid links each piece to its product page, and a tap still opens the sheet`, async ({ page, request }) => {
+    // Crawlers read the server HTML, so the links must be there before any script runs.
+    const html = await (await request.get(path)).text();
+    expect(html.match(/href="\/shop\/[^"]+"/g)?.length ?? 0).toBeGreaterThanOrEqual(12);
+
+    await page.goto(path);
+    const first = page.locator('#shop .mbc-piece').first();
+    const link = first.locator('h3 a');
+    const href = await link.getAttribute('href');
+    expect(href).toMatch(/^\/shop\/[\w-]+$/);
+    await expect(first.locator('a.mbc-frame')).toHaveAttribute('href', href!);
+
+    const url = page.url();
+    const name = (await link.innerText()).trim();
+    await link.click();
+    const sheet = page.getByRole('dialog', { name });
+    await expect(sheet).toBeVisible();
+    expect(page.url()).toBe(url);
+    await addToBag(page);
+  });
+}

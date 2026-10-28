@@ -3,15 +3,15 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { trackHeroClicked, trackHeroNavigated } from '@/lib/analytics/track';
 import { formatMoney } from '@/lib/format';
+import { SHOW_COLLECTION_EVENT, type ShowCollectionDetail } from '@/lib/site';
 import SaleTag from './store/SaleTag';
 import { useStore } from './store/StoreProvider';
 import '../styles/turntable.css';
 import Money from './store/Money';
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
@@ -26,6 +26,9 @@ const isMobile = () => typeof window !== 'undefined' && window.matchMedia(MOBILE
 const restPose = () => (isMobile() ? MOBILE_REST_POSE : REST_POSE);
 const shadowRest = () => (isMobile() ? MOBILE_SHADOW_REST : SHADOW_REST);
 
+/** The featured arrangements advance on their own this often until the visitor takes over. */
+const AUTOPLAY_MS = 5500;
+
 /** Product names longer than this use the smaller two-line title. */
 const LONG_TITLE_CHARACTERS = 22;
 
@@ -34,9 +37,10 @@ interface TurntableProps {
 }
 
 /**
- * Home hero: three featured arrangements. The page scrolls normally; the
- * arrows move between arrangements, each one travelling through the scene
- * (the outgoing piece drifts up and away, the next arrives and settles).
+ * Home hero: three featured arrangements. The page scrolls normally (nothing is
+ * pinned). The arrangements advance on their own, and the arrows, dots and
+ * swipes move between them, each one travelling through the scene (the
+ * outgoing piece drifts up and away, the next arrives and settles).
  */
 export default function Turntable({ onActiveChange }: TurntableProps) {
   const { products, locale, live, openProduct } = useStore();
@@ -47,12 +51,17 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
   const count = looks.length;
   const sectionRef = useRef<HTMLElement>(null);
   const copyRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<ScrollTrigger | null>(null);
   const transitionRef = useRef<gsap.core.Timeline | null>(null);
   const activeRef = useRef(0);
   const onActiveChangeRef = useRef(onActiveChange);
   const [active, setActive] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
+  // Autoplay stops for good once the visitor moves the hero themselves, and
+  // pauses while the pointer or focus is on it or the hero is off screen.
+  const [manual, setManual] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
   const arabic = locale === 'ar';
   onActiveChangeRef.current = onActiveChange;
 
@@ -97,13 +106,14 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
     return () => media.revert();
   }, { scope: sectionRef, dependencies: [count] });
 
-  const goTo = useCallback((next: number) => {
+  const goTo = useCallback((next: number, heading?: 1 | -1) => {
     const from = activeRef.current;
     const bounded = clamp(next, 0, Math.max(count - 1, 0));
     if (bounded === from) return;
+    const direction = heading ?? (bounded > from ? 1 : -1);
     commitActive(bounded);
     const arrived = looks[bounded];
-    if (arrived) trackHeroNavigated(arrived, bounded > from ? 'next' : 'previous', bounded + 1, count);
+    if (arrived) trackHeroNavigated(arrived, direction > 0 ? 'next' : 'previous', bounded + 1, count);
 
     const section = sectionRef.current;
     if (!section || reducedMotion) return;
@@ -115,9 +125,8 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
 
     // A move during a move continues from wherever each piece is, rather than
     // snapping the running move to its end (that jump read as a stutter when
-    // scrolling quickly through the hero).
+    // clicking quickly through the hero).
     transitionRef.current?.kill();
-    const direction = bounded > from ? 1 : -1;
     const pose = restPose();
     const timeline = gsap.timeline({ defaults: { ease: 'power2.inOut', overwrite: 'auto' } });
     images.forEach((image) => {
@@ -133,36 +142,55 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
     transitionRef.current = timeline;
   }, [commitActive, count, looks, reducedMotion]);
 
-  // The scroll trigger reads goTo through a ref, so it is created once per
-  // product count instead of being torn down and re-pinned on every change.
-  const goToRef = useRef(goTo);
-  goToRef.current = goTo;
+  /** Moves one arrangement along, wrapping at either end. `byVisitor` ends autoplay. */
+  const step = useCallback((direction: 1 | -1, byVisitor = true) => {
+    if (count < 2) return;
+    if (byVisitor) setManual(true);
+    goTo((activeRef.current + direction + count) % count, direction);
+  }, [count, goTo]);
 
-  useGSAP(() => {
-    if (reducedMotion || count < 2 || !sectionRef.current) return;
-    const steps = count - 1;
-    const trigger = ScrollTrigger.create({
-      trigger: sectionRef.current,
-      pin: sectionRef.current.querySelector('.tt-stage'),
-      anticipatePin: 1,
-      start: 'top top',
-      end: () => `+=${window.innerHeight * 0.8 * steps}`,
-      invalidateOnRefresh: true,
-      // Each product owns an equal stretch of the scroll, centred on its stop,
-      // and the scroll comes to rest on a product rather than between two.
-      snap: { snapTo: 1 / steps, duration: { min: 0.25, max: 0.6 }, delay: 0.08, ease: 'power2.inOut', directional: true },
-      onUpdate: (self) => goToRef.current(Math.round(self.progress * steps)),
-    });
-    scrollRef.current = trigger;
-    return () => { scrollRef.current = null; trigger.kill(); };
-  }, { scope: sectionRef, dependencies: [count, reducedMotion], revertOnUpdate: true });
+  const jumpTo = (index: number) => {
+    setManual(true);
+    goTo(index);
+  };
 
-  function navigate(index: number) {
-    const bounded = clamp(index, 0, count - 1);
-    const trigger = scrollRef.current;
-    if (trigger) window.scrollTo({ top: trigger.start + (trigger.end - trigger.start) * bounded / Math.max(count - 1, 1), behavior: 'smooth' });
-    else goTo(bounded);
-  }
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || typeof IntersectionObserver === 'undefined') return undefined;
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.5 });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [count]);
+
+  // Autoplay: a fresh timer after every change, so a manual move or a pause
+  // never lands a second move straight after it.
+  useEffect(() => {
+    if (reducedMotion || manual || hovered || !visible || count < 2) return undefined;
+    const timer = window.setTimeout(() => step(1, false), AUTOPLAY_MS);
+    return () => window.clearTimeout(timer);
+  }, [active, count, hovered, manual, reducedMotion, step, visible]);
+
+  const onTouchStart = (event: React.TouchEvent) => {
+    const touch = event.touches[0];
+    touchStart.current = { x: touch.clientX, y: touch.clientY };
+  };
+  const onTouchEnd = (event: React.TouchEvent) => {
+    const start = touchStart.current;
+    touchStart.current = null;
+    if (!start) return;
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    // A deliberate sideways swipe moves one arrangement; vertical drags are page scrolls.
+    if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy) * 1.4) return;
+    step((dx < 0) !== arabic ? 1 : -1);
+  };
+
+  const showAll = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    history.replaceState(null, '', '#shop');
+    window.dispatchEvent(new CustomEvent<ShowCollectionDetail>(SHOW_COLLECTION_EVENT, { detail: { occasions: false } }));
+  };
 
   useEffect(() => () => { transitionRef.current?.kill(); }, []);
 
@@ -206,8 +234,10 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
 
   return (
     <section id="turntable" data-track-section="home_hero" ref={sectionRef} className={`tt-section${reducedMotion ? ' tt-section--reduced' : ''}`}
-      aria-label={arabic ? 'المجموعة المميزة' : 'The featured collection'} dir={arabic ? 'rtl' : 'ltr'}>
-      <div className="tt-stage">
+      aria-label={arabic ? 'المجموعة المميزة' : 'The featured collection'} dir={arabic ? 'rtl' : 'ltr'}
+      onPointerEnter={(event) => { if (event.pointerType === 'mouse') setHovered(true); }} onPointerLeave={() => setHovered(false)}
+      onFocusCapture={() => setHovered(true)} onBlurCapture={() => setHovered(false)}>
+      <div className="tt-stage" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <div className="tt-stage__inner">
           <div className="tt-copy" ref={copyRef} data-fit="0">
           <div className="tt-intro">
@@ -230,7 +260,7 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
               <button type="button" className="tt-product__add" onClick={() => { trackHeroClicked(current, 'add_to_bag', active + 1); openProduct(current); }} disabled={!current.available}>
                 {current.available ? (arabic ? 'أضف إلى الحقيبة' : 'Add to bag') : (arabic ? 'نفدت الكمية' : 'Sold out')}
               </button>
-              <a className="tt-product__discover" href="#occasions">{arabic ? 'تسوّق حسب المناسبة' : 'Shop by occasion'}</a>
+              <a className="tt-product__discover" href="#shop" onClick={showAll}>{arabic ? 'تسوّق الكل' : 'Shop all'}</a>
             </div>
           </div>
           </div>
@@ -250,9 +280,18 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
           </div>
 
           <div className="tt-footer">
+            <div className="tt-dots" role="group" aria-label={arabic ? 'اختيار التنسيق' : 'Choose an arrangement'}>
+              {looks.map((product, index) => (
+                <button key={product.id || index} type="button" className={`tt-dot${index === active ? ' is-active' : ''}`}
+                  data-running={index === active && !reducedMotion && !manual && !hovered && visible ? 'true' : 'false'}
+                  style={{ '--tt-autoplay': `${AUTOPLAY_MS}ms` } as React.CSSProperties}
+                  onClick={() => jumpTo(index)} aria-current={index === active}
+                  aria-label={`${arabic ? product.nameAr || product.name : product.name}`}><span /></button>
+              ))}
+            </div>
             <div className="tt-controls" aria-label={arabic ? 'التنقل بين التنسيقات' : 'Browse arrangements'}>
-              <button type="button" onClick={() => navigate(activeRef.current - 1)} disabled={active === 0} aria-label={arabic ? 'التنسيق السابق' : 'Previous arrangement'}>{arabic ? '→' : '←'}</button>
-              <button type="button" onClick={() => navigate(activeRef.current + 1)} disabled={active === count - 1} aria-label={arabic ? 'التنسيق التالي' : 'Next arrangement'}>{arabic ? '←' : '→'}</button>
+              <button type="button" onClick={() => step(-1)} aria-label={arabic ? 'التنسيق السابق' : 'Previous arrangement'}>{arabic ? '→' : '←'}</button>
+              <button type="button" onClick={() => step(1)} aria-label={arabic ? 'التنسيق التالي' : 'Next arrangement'}>{arabic ? '←' : '→'}</button>
             </div>
           </div>
         </div>

@@ -47,7 +47,7 @@ export async function getWelcomeCode(customerId: string) {
           context: { customers: { add: [customerId] } },
           customerGets: { value: { percentage: .25 }, items: { all: true } },
           appliesOncePerCustomer: true, usageLimit: 1,
-          combinesWith: { orderDiscounts: false, productDiscounts: false, shippingDiscounts: false },
+          combinesWith: { orderDiscounts: false, productDiscounts: false, shippingDiscounts: true },
         },
       },
     );

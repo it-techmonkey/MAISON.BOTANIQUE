@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import Turntable from '@/components/Turntable';
 import HeroPromises from '@/components/store/HeroPromises';
+import ShopShelf from '@/components/store/ShopShelf';
 import CollectionBrowser from '@/components/store/CollectionBrowser';
 import HomeSections from '@/components/store/HomeSections';
 import { ResidencesBand } from '@/components/store/Residences';
 import '@/styles/home.css';
+import { dubaiNow } from '@/lib/delivery';
 
 // Rebuild at most every five minutes; the Shopify product webhook
 // (/api/revalidate) refreshes the catalog immediately after an edit.
@@ -21,8 +23,9 @@ export default function HomePage() {
   return (
     <>
       <Turntable />
+      <ShopShelf />
       <HeroPromises />
-      <HomeSections />
+      <HomeSections initialDubaiDate={dubaiNow().date} />
       <CollectionBrowser listId="home" showOccasions={false} />
       <ResidencesBand />
     </>

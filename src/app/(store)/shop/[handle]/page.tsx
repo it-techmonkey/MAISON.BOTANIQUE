@@ -8,6 +8,8 @@ import ProductPurchase from '@/components/store/ProductPurchase';
 import { T } from '@/components/store/StoreProvider';
 import { SITE_URL } from '@/lib/site';
 import { productSchema } from '@/lib/product-schema';
+import { formatDeliveryDate } from '@/lib/delivery';
+import { seasonalDeliveryRange, TORAN_HANDLE } from '@/lib/seasonal';
 import { getCatalog } from '@/lib/shopify/catalog';
 import '@/styles/shop.css';
 
@@ -38,8 +40,8 @@ const DETAILS = [
   {
     title: { en: 'Delivery', ar: 'التوصيل' },
     body: {
-      en: 'Same-day delivery is available in Dubai; we also deliver across the UAE. The delivery fee for your address is shown at checkout. Choose the day and a three-hour window (9am to 9pm) in your bag; Dubai same-day windows close three hours before they start.',
-      ar: 'التوصيل في اليوم نفسه متاح داخل دبي، ونوصل أيضاً إلى جميع أنحاء الإمارات. تظهر رسوم التوصيل لعنوانك عند الدفع. اختر اليوم وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، وتُغلق فترات اليوم نفسه داخل دبي قبل بدايتها بثلاث ساعات.',
+      en: 'Same-day delivery is available in Dubai; we also deliver across the UAE. The delivery fee for your address is shown at checkout. Choose the day and a three-hour window (9am to 9pm) in your bag; Dubai same-day windows close one hour before they start.',
+      ar: 'التوصيل في اليوم نفسه متاح داخل دبي، ونوصل أيضاً إلى جميع أنحاء الإمارات. تظهر رسوم التوصيل لعنوانك عند الدفع. اختر اليوم وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، وتُغلق فترات اليوم نفسه داخل دبي قبل بدايتها بساعة واحدة.',
     },
   },
   {
@@ -61,6 +63,25 @@ const DETAILS = [
 export default async function ProductPage({ params }: PageProps<'/shop/[handle]'>) {
   const product = await findProduct((await params).handle);
   if (!product) notFound();
+  const range = seasonalDeliveryRange(product.id);
+  const details = DETAILS.map((item, index) => {
+    if (index === 0 && range) return { ...item, body: {
+      en: `This seasonal piece is delivered ${formatDeliveryDate(range.from, false)} – ${formatDeliveryDate(range.to, false)}. Choose a three-hour window for your order; delivery fees appear at checkout.`,
+      ar: `يتوفر توصيل هذا المنتج الموسمي من ${formatDeliveryDate(range.from, true)} إلى ${formatDeliveryDate(range.to, true)}. اختر فترة توصيل من ثلاث ساعات لطلبك؛ وتظهر الرسوم عند الدفع.`,
+    } };
+    if (index === 1 && product.id === TORAN_HANDLE) return { ...item, body: {
+      en: 'Fresh marigolds naturally vary a little in shade and fullness from the photograph.',
+      ar: 'تختلف أزهار القطيفة الطازجة طبيعياً قليلاً في اللون والكثافة عما يظهر في الصورة.',
+    } };
+    if (index === 2 && range) return { ...item, body: product.id === TORAN_HANDLE ? {
+      en: 'Keep the fresh toran in a cool, shaded place until you hang it. Avoid direct sun and heat.',
+      ar: 'احفظ إكليل القطيفة الطازج في مكان بارد ومظلل حتى تعلّقه، بعيداً عن الشمس المباشرة والحرارة.',
+    } : {
+      en: 'Keep the arrangement in a cool place away from direct sun and air-conditioning vents. Handle the vessel and flowers gently.',
+      ar: 'ضع التنسيق في مكان بارد بعيداً عن الشمس المباشرة وفتحات التكييف، وتعامل مع الوعاء والزهور برفق.',
+    } };
+    return item;
+  });
 
   return (
     <>
@@ -73,12 +94,12 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
         </nav>
         <div className="product-layout">
           <div className="product-gallery" style={{ backgroundColor: product.bg }}>
-            <Image src={product.image} alt={product.imageAlt || product.name} fill priority sizes="(max-width: 900px) 100vw, 55vw" />
+            <div className="product-gallery__media"><Image src={product.image} alt={product.imageAlt || product.name} fill priority sizes="(max-width: 900px) 100vw, 55vw" /></div>
           </div>
           <div className="product-info">
             <ProductPurchase handle={product.id} />
             <div className="details">
-              {DETAILS.map((item, index) => (
+              {details.map((item, index) => (
                 <details key={item.title.en} open={index === 0}>
                   <summary><Bi text={item.title} /></summary>
                   <p><Bi text={item.body} /></p>

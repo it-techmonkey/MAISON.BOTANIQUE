@@ -375,6 +375,7 @@ fieldset.qa-section > .qa-legend + * { clear: both; }
 /* Delivery day and window for the whole order, inside the bag. */
 .ll-shop-panel--cart { --qa-hair: #d9d2c5; --qa-ink-2: #4f5a4b; }
 .dl-picker { margin-top: 8px; padding-bottom: 8px; }
+.dl-preorder { margin: 0 0 10px; padding: 8px 10px; background: #f6ecd8; color: #5a3a12; font-size: 13px; line-height: 1.4; }
 .dl-windows { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
 .dl-window { position: relative; padding: 12px 8px; border: 1px solid var(--qa-hair); text-align: center; font-size: 13px; cursor: pointer; }
 .dl-window input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
@@ -489,3 +490,10 @@ a.ll-shop-primary { text-decoration: none; box-sizing: border-box; }
 .ll-cart-fee-note .money { white-space: nowrap; }
 .ll-cart-was { margin-inline-end: 6px; color: #625b5b; font-size: 14px; font-weight: 400; }
 .bag-welcome .bag-welcome-hint { margin-top: 2px; color: #625b5b; font-size: 12px; }
+
+/* Bag: free delivery to JVC, claimed by the customer and checked by the team. */
+.ll-cart-jvc { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; margin: 0 0 12px; padding: 12px 14px; border: 1px solid var(--line-strong); background: var(--paper-deep); cursor: pointer; }
+.ll-cart-jvc input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--ink); }
+.ll-cart-jvc strong { display: block; font-size: 14px; font-weight: 600; line-height: 1.35; }
+.ll-cart-jvc small { display: block; margin-top: 3px; color: #625b5b; font-size: 12px; line-height: 1.5; }
+.ll-cart-jvc:focus-within { outline: 3px solid currentColor; outline-offset: 2px; }

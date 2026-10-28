@@ -367,3 +367,46 @@
 @media (min-width: 681px) {
   .tt-copy { justify-content: center; gap: clamp(28px, 5vh, 56px); }
 }
+
+/* Shelf-first hero: nothing is pinned, and the hero stops short of the screen's
+   bottom edge so the shelf of categories below it (ShopShelf) shows on the first
+   screen. Visitors who never scroll can still see and tap into the shop. */
+.tt-section { --shelf-h: 190px; min-height: 0; }
+.tt-stage { height: clamp(560px, calc(100svh - var(--shelf-h)), 880px); min-height: 0; }
+@media (max-width: 680px) {
+  .tt-section { --shelf-h: 150px; }
+  .tt-stage { height: clamp(520px, calc(100svh - var(--shelf-h)), 760px); }
+}
+@media (prefers-reduced-motion: reduce) { .tt-stage { min-height: 0; } }
+
+/* Dots: one per arrangement; the active one fills over the autoplay interval. */
+.tt-dots { display: flex; align-items: center; gap: 4px; }
+.tt-dot { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.tt-dot span { position: relative; display: block; width: 28px; height: 3px; overflow: hidden; border-radius: 2px; background: color-mix(in srgb, var(--ink) 22%, transparent); }
+.tt-dot span::after { content: ''; position: absolute; inset: 0; background: var(--ink); transform: scaleX(0); transform-origin: left center; }
+[dir="rtl"] .tt-dot span::after { transform-origin: right center; }
+.tt-dot.is-active span::after { transform: scaleX(1); }
+.tt-dot.is-active[data-running="true"] span::after { animation: tt-dot-fill var(--tt-autoplay, 5500ms) linear both; }
+.tt-dot:focus-visible { outline: 3px solid currentColor; outline-offset: -4px; border-radius: 8px; }
+@keyframes tt-dot-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { .tt-dot.is-active[data-running="true"] span::after { animation: none; transform: scaleX(1); } }
+
+/* "Shop all" is a visible outlined button, not a text link. */
+.tt-product__discover { padding: 12px 18px; border: 1px solid var(--ink); background: transparent; text-decoration: none; }
+.tt-product__discover:hover { background: var(--ink); color: var(--paper); }
+@media (max-width: 680px) { .tt-footer { gap: 8px; } }
+
+/* Phones: the hero is laid out in a column (headline, photograph, product, buttons) so no text sits over the
+   photograph, whatever the screen height. The photograph's height follows the screen so the category row
+   below still shows on a tall phone. The arrows and dots sit over the photograph's bottom edge. */
+@media (max-width: 680px) {
+  .tt-section .tt-stage { height: auto; min-height: 0; overflow: visible; }
+  .tt-section .tt-stage__inner { height: auto; display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 8px; padding: calc(var(--chrome) + 18px) 20px 16px; }
+  .tt-section .tt-copy, .tt-section[dir='rtl'] .tt-copy { display: contents; }
+  .tt-section .tt-copy > .tt-intro { grid-row: 1; grid-column: 1; }
+  .tt-section .tt-artwork, .tt-section[dir='rtl'] .tt-artwork { grid-row: 2; grid-column: 1; position: relative; inset: auto; width: 100%; height: clamp(220px, calc(100svh - 560px), 360px); overflow: hidden; transform: none; }
+  .tt-section .tt-footer, .tt-section[dir='rtl'] .tt-footer { grid-row: 2; grid-column: 1; align-self: end; position: relative; inset: auto; z-index: 3; pointer-events: none; }
+  .tt-section .tt-footer > * { pointer-events: auto; }
+  .tt-section .tt-copy > .tt-product { grid-row: 3; grid-column: 1; max-width: none; }
+  .tt-product::before { display: none; }
+}

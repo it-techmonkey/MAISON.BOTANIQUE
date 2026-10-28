@@ -7,11 +7,12 @@ import {
 } from '@/lib/analytics/track';
 import { DeliveryRequiredError, type CartLineView } from '@/lib/cart/use-shop-cart';
 import {
-  addDays, bookableDays, checkSchedule, dateOpen, deliverySummary, earliestDate, formatDeliveryDate, lastBookableDate, slotsFor, windowLabel, windowsFor,
+  type DeliveryRange, addDays, bookableDays, checkSchedule, dateOpen, deliverySummary, earliestDate, formatDeliveryDate, lastBookableDate, rangeProblem, slotsFor, windowLabel, windowsFor,
   type DeliverySchedule, type ScheduleProblem,
 } from '@/lib/delivery';
 import { useDubaiNow } from '@/lib/use-today';
 import { SITE_URL } from '@/lib/site';
+import { deliveryRangeFor, TORAN_HANDLE } from '@/lib/seasonal';
 import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import type { Product } from '@/lib/types';
 import { PROMISES } from './HeroPromises';
@@ -20,6 +21,7 @@ import { useStore } from './StoreProvider';
 import { WhatsAppIcon } from './WhatsAppButton';
 import Money from './Money';
 import { DELIVERY_FEES } from '@/lib/site';
+import { JVC_FREE_DELIVERY } from '@/lib/jvc-delivery';
 
 const NOTE_LIMIT = 280;
 
@@ -31,6 +33,11 @@ const copy = {
     presentation: 'Size', giftNote: 'Gift note', notePlaceholder: 'Your message, if you wish…',
     date: 'When should it arrive?',
     dateHint: 'Book today or up to 60 days ahead. One delivery date and time for the whole order.',
+    seasonalDateHint: 'Choose one delivery day and time within these dates for the whole order.',
+    seasonalWindow: 'Seasonal delivery',
+    range_conflict: 'Halloween and Diwali gifts need separate orders. Remove one to choose a delivery date.',
+    range_closed: 'Ordering for this seasonal delivery window has ended.',
+    orderSeparately: 'Place a separate order',
     windowLegend: 'Time', missing_date: 'Choose a delivery day and time to continue.', missing_slot: 'Choose a delivery time to continue.',
     date_passed: 'That delivery day has passed. Please choose another.', slot_passed: 'That delivery time has passed. Please choose another.',
     day_closed: "We aren't delivering on that day. Please choose another.",
@@ -62,6 +69,11 @@ const copy = {
     presentation: 'الحجم', giftNote: 'رسالة الإهداء', notePlaceholder: 'رسالتك إن رغبت…',
     date: 'متى تريد أن تصل؟',
     dateHint: 'احجز لليوم أو حتى ٦٠ يوماً مقدماً. موعد توصيل واحد للطلب كله.',
+    seasonalDateHint: 'اختر يوماً ووقتاً للتوصيل ضمن هذه التواريخ للطلب كله.',
+    seasonalWindow: 'توصيل المنتجات الموسمية',
+    range_conflict: 'تحتاج هدايا الهالوين وديوالي إلى طلبين منفصلين. أزل أحدهما لاختيار موعد التوصيل.',
+    range_closed: 'انتهت فترة طلب التوصيل لهذا المنتج الموسمي.',
+    orderSeparately: 'أنشئ طلباً منفصلاً',
     windowLegend: 'الوقت', missing_date: 'اختر يوم التوصيل ووقته للمتابعة.', missing_slot: 'اختر وقت التوصيل للمتابعة.',
     date_passed: 'انقضى يوم التوصيل هذا. يرجى اختيار يوم آخر.', slot_passed: 'انقضى موعد التوصيل هذا. يرجى اختيار موعد آخر.',
     day_closed: 'لا نوصّل في هذا اليوم. يرجى اختيار يوم آخر.',
@@ -185,7 +197,11 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
   const customMissing = Boolean(field) && !custom.trim();
   const number = product.no ? `N° ${String(product.no).padStart(3, '0')}` : '';
   const name = ar ? product.nameAr : product.name;
-  const deliveryChosen = Boolean(delivery.date && delivery.slotId && nowDubai && !checkSchedule(delivery, nowDubai));
+  // A Diwali pre-order in the bag (or this product) limits the whole order to its delivery dates.
+  const range = deliveryRangeFor([...cart.lines.map((line) => line.handle), product.id]);
+  const seasonalProblem = nowDubai ? rangeProblem(range, nowDubai) : null;
+  const unavailableSeasonal = seasonalProblem === 'range_conflict' || seasonalProblem === 'range_closed';
+  const deliveryChosen = Boolean(delivery.date && delivery.slotId && nowDubai && !checkSchedule(delivery, nowDubai, range));
   const askLink = whatsappLink(whatsappMessage.product(ar, {
     name, size: ar ? chosen.nameAr : chosen.name,
     price: chosen.available ? formatAED(chosen.price, ar) : '',
@@ -247,7 +263,7 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
           </div>}
         </fieldset>
 
-        <ProductDelivery t={t} value={delivery} onChange={setDelivery} askLink={askLink} />
+        <ProductDelivery t={t} value={delivery} onChange={setDelivery} askLink={askLink} range={range} />
 
         <section className="qa-section" aria-labelledby={`qa-card-title-${product.id}`}>
           <div className="qa-legend"><span id={`qa-card-title-${product.id}`}>{t.yourCard}</span><em>{t.handwritten}</em></div>
@@ -261,7 +277,7 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
         </section>
 
         <ul className="qa-promises" aria-label={ar ? 'وعودنا' : 'Our promises'}>
-          {PROMISES.map((item) => <li key={item.text.en}>{item.icon}<span>{ar ? item.text.ar : item.text.en}</span></li>)}
+          {PROMISES.filter((item) => product.id !== TORAN_HANDLE || item.text.en !== 'Same-day delivery in Dubai').map((item) => <li key={item.text.en}>{item.icon}<span>{ar ? item.text.ar : item.text.en}</span></li>)}
         </ul>
         {related.length > 0 && onOpen && <section className="qa-related" aria-labelledby={`qa-related-title-${product.id}`}>
           <h3 id={`qa-related-title-${product.id}`} className="qa-included">{t.alsoLike}</h3>
@@ -275,12 +291,14 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
         </section>}
       </div>
       <div className="qa-foot">
-        <button className="qa-add" type="button" disabled={customMissing || !chosen.available}
+        <button className="qa-add" type="button" disabled={customMissing || !chosen.available || unavailableSeasonal}
           onClick={() => onAdd({
             sizeId: chosen.id, note: note.trim(), signedAs: signedAs.trim(), anonymous, custom: custom.trim(),
-            ...(delivery.date && delivery.slotId && nowDubai && !checkSchedule(delivery, nowDubai) ? { delivery: delivery as DeliverySchedule } : {}),
+            ...(deliveryChosen ? { delivery: delivery as DeliverySchedule } : {}),
           })}>
-          {!chosen.available ? t.soldOut
+          {seasonalProblem === 'range_conflict' ? t.orderSeparately
+            : seasonalProblem === 'range_closed' ? t.range_closed
+            : !chosen.available ? t.soldOut
             : customMissing ? (field?.kind === 'letter' ? t.chooseLetter : field?.kind === 'age' ? t.chooseAge : t.chooseCustom)
             : <>{t.addBag} · <Money amount={chosen.price} ar={ar} whole /></>}
         </button>
@@ -316,9 +334,9 @@ function QuickAdd({ product }: { product: Product }) {
 }
 
 /** The first window that can still be booked, for the collapsed delivery row. */
-function earliestSlot(now: NonNullable<ReturnType<typeof useDubaiNow>>): DeliverySchedule | null {
-  const date = earliestDate(now);
-  const slot = slotsFor(date, now)[0];
+function earliestSlot(now: NonNullable<ReturnType<typeof useDubaiNow>>, range: DeliveryRange | null = null): DeliverySchedule | null {
+  const date = earliestDate(now, range);
+  const slot = slotsFor(date, now, range)[0];
   return slot ? { date, slotId: slot.id } : null;
 }
 
@@ -327,11 +345,11 @@ function earliestSlot(now: NonNullable<ReturnType<typeof useDubaiNow>>): Deliver
  * window and lets the shopper use it or choose another. The choice is for the whole order and is
  * saved to the cart with the add; it never blocks "Add to bag".
  */
-function ProductDelivery({ t, value, onChange, askLink }: { t: Copy; value: Partial<DeliverySchedule>; onChange: (next: Partial<DeliverySchedule>) => void; askLink: string | null }) {
+function ProductDelivery({ t, value, onChange, askLink, range = null }: { t: Copy; value: Partial<DeliverySchedule>; onChange: (next: Partial<DeliverySchedule>) => void; askLink: string | null; range?: DeliveryRange | null }) {
   const { ar } = useStore();
   const now = useDubaiNow();
-  const complete = Boolean(value.date && value.slotId && now && !checkSchedule(value, now));
-  const earliest = now ? earliestSlot(now) : null;
+  const complete = Boolean(value.date && value.slotId && now && !checkSchedule(value, now, range));
+  const earliest = now ? earliestSlot(now, range) : null;
   const dayWord = (date: string) => (now && date === now.date ? (ar ? 'اليوم' : 'Today') : now && date === addDays(now.date, 1) ? (ar ? 'غداً' : 'Tomorrow') : formatDeliveryDate(date, ar));
   const describe = (schedule: DeliverySchedule) => `${dayWord(schedule.date)} · ${windowLabel(schedule.slotId, ar)}`;
   return (
@@ -348,16 +366,18 @@ function ProductDelivery({ t, value, onChange, askLink }: { t: Copy; value: Part
           {askLink && <a className="pd-ask" href={askLink} target="_blank" rel="noopener noreferrer" aria-label={t.askAbout} data-tip={t.askAbout}><WhatsAppIcon /></a>}
         </div>
       </div>
-      <DeliveryPicker t={t} scope="product" value={value} problem={null}
-        onChange={(next) => { onChange(next); if (next.date && next.slotId && now && !checkSchedule(next, now)) trackDeliveryScheduled(next as DeliverySchedule, 'product_page'); }} />
+      <DeliveryPicker t={t} scope="product" value={value} problem={null} range={range}
+        onChange={(next) => { onChange(next); if (next.date && next.slotId && now && !checkSchedule(next, now, range)) trackDeliveryScheduled(next as DeliverySchedule, 'product_page'); }} />
     </section>
   );
 }
 
 // One delivery for the whole order: the next open days, any later date up to
 // the booking horizon, then a time window. Passed windows are disabled.
-function DeliveryPicker({ t, value, onChange, problem, scope = 'bag' }: {
+function DeliveryPicker({ t, value, onChange, problem, scope = 'bag', range = null }: {
   t: Copy;
+  /** Dates a pre-order in the order is limited to. */
+  range?: DeliveryRange | null;
   /** 'bag' is the checkout picker; 'product' sits on the product page and must not be mistaken for it. */
   scope?: 'bag' | 'product';
   value: Partial<DeliverySchedule>;
@@ -367,27 +387,31 @@ function DeliveryPicker({ t, value, onChange, problem, scope = 'bag' }: {
   const { ar } = useStore();
   const now = useDubaiNow();
   const today = now?.date ?? '';
-  const quick = now ? bookableDays(3, now) : [];
+  const quick = now ? bookableDays(range ? 4 : 3, now, range) : [];
   const date = value.date ?? '';
   const other = Boolean(date) && !quick.includes(date);
   // "Another day" shows when the saved date is outside the quick days, or when the shopper asks for it.
   const [wantOther, setWantOther] = useState(false);
   const showOther = wantOther || other;
-  const windows = date && now ? windowsFor(date, now) : [];
-  const closed = Boolean(date) && Boolean(now) && !dateOpen(date, now!);
+  const windows = date && now ? windowsFor(date, now, range) : [];
+  const closed = Boolean(date) && Boolean(now) && !dateOpen(date, now!, range);
+  const seasonalProblem = now ? rangeProblem(range, now) : null;
   const dayLabel = (iso: string) => {
     if (iso === today) return ar ? 'اليوم' : 'Today';
     if (iso === addDays(today, 1)) return ar ? 'غداً' : 'Tomorrow';
     return new Intl.DateTimeFormat(ar ? 'ar-AE' : 'en-GB', { weekday: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`));
   };
   const chooseDate = (next: string) => {
-    const keep = value.slotId && now && windowsFor(next, now).some((slot) => slot.id === value.slotId && slot.available);
+    const keep = value.slotId && now && windowsFor(next, now, range).some((slot) => slot.id === value.slotId && slot.available);
     onChange({ date: next, slotId: keep ? value.slotId : undefined });
   };
 
   return (
     <fieldset className={`qa-section${scope === 'bag' ? ' dl-picker' : ' dl-picker-product'}`} data-ph-mask>
       <legend className="qa-legend"><span>{t.date}</span><em>{t.dubai}</em></legend>
+      {range && seasonalProblem !== 'range_conflict' && <p className="dl-preorder">{t.seasonalWindow}: {formatDeliveryDate(range.from, ar)} – {formatDeliveryDate(range.to, ar)}</p>}
+      {(seasonalProblem === 'range_conflict' || seasonalProblem === 'range_closed') && <p className="ll-cart-date-alert" role="alert">{t[seasonalProblem]}</p>}
+      {seasonalProblem !== 'range_conflict' && seasonalProblem !== 'range_closed' && <>
       <div className="qa-days">
         {quick.map((iso) => (
           <label key={iso} className={`qa-day${date === iso && !showOther ? ' is-selected' : ''}`}>
@@ -400,7 +424,7 @@ function DeliveryPicker({ t, value, onChange, problem, scope = 'bag' }: {
           <span>{t.anotherDay}</span><strong>…</strong>
         </label>
       </div>
-      {showOther && now && <input type="date" min={today} max={lastBookableDate(now)} value={other ? date : ''}
+      {showOther && now && <input type="date" min={range && range.from > today ? range.from : today} max={lastBookableDate(now, range)} value={other ? date : ''}
         onChange={(event) => (event.target.value ? chooseDate(event.target.value) : onChange({}))} aria-label={t.date} />}
       {closed && <p className="ll-cart-date-alert" role="alert">{date < today ? t.date_passed : t.day_closed}</p>}
       {date && !closed && <div className="dl-windows" role="radiogroup" aria-label={t.windowLegend}>
@@ -413,7 +437,8 @@ function DeliveryPicker({ t, value, onChange, problem, scope = 'bag' }: {
         ))}
       </div>}
       {problem && problem !== 'day_closed' && <p className="ll-cart-date-alert" role="alert">{t[problem]}</p>}
-      <span className="ll-shop-help">{t.dateHint}</span>
+      <span className="ll-shop-help">{range ? t.seasonalDateHint : t.dateHint}</span>
+      </>}
     </fieldset>
   );
 }
@@ -457,10 +482,13 @@ function Bag() {
   const [draft, setDraft] = useState<Partial<DeliverySchedule>>(cart.delivery ?? {});
   useEffect(() => { if (cart.delivery) setDraft(cart.delivery); }, [cart.delivery]);
   const schedule = cart.delivery ?? draft;
-  const summary = cart.delivery ? deliverySummary(cart.delivery, ar) : '';
+  const range = deliveryRangeFor(lines.map((line) => line.handle));
   // Checkout stays closed until a delivery day and a time window that can still be booked are chosen.
-  const blocked = checkSchedule(schedule, now ?? undefined);
-  const orderLink = lines.length ? whatsappLink(whatsappMessage.bag(ar, bagSummary(lines, ar), summary)) : null;
+  const blocked = checkSchedule(schedule, now ?? undefined, range);
+  const summary = cart.delivery && !blocked ? deliverySummary(cart.delivery, ar) : '';
+  // Seasonal orders need a valid schedule even when the shopper switches to WhatsApp.
+  const orderLink = lines.length && (!range || !blocked)
+    ? whatsappLink(whatsappMessage.bag(ar, bagSummary(lines, ar), summary)) : null;
   const close = () => { cart.clearError(); setCartOpen(false); };
 
   // One cart view per opening, reported once the cart has settled.
@@ -481,14 +509,14 @@ function Bag() {
     setDraft(next);
     setProblem(null);
     setError('');
-    if (next.date && next.slotId && !checkSchedule(next, now ?? undefined)) {
+    if (next.date && next.slotId && !checkSchedule(next, now ?? undefined, range)) {
       void cart.setDelivery(next as DeliverySchedule);
       trackDeliveryScheduled(next as DeliverySchedule, 'bag');
     }
   };
 
   async function handleCheckout() {
-    const found = checkSchedule(schedule, now ?? undefined);
+    const found = checkSchedule(schedule, now ?? undefined, range);
     if (found) {
       trackCheckoutFailed(found, cart.shopifyCart?.id ?? null, subtotal.amount);
       setProblem(found);
@@ -577,19 +605,31 @@ function Bag() {
               </div>
             </article>
           ))}
-          <DeliveryPicker t={t} value={schedule} onChange={changeSchedule} problem={problem} />
+          <DeliveryPicker t={t} value={schedule} onChange={changeSchedule} problem={problem} range={range} />
         </div>
         <div className="ll-cart-footer">
           <div className="ll-cart-totals">
             <div><span>{t.subtotal}</span><strong>{discounted
               ? <><s className="ll-cart-was"><Money amount={subtotal.amount} ar={ar} whole /></s> <Money amount={afterDiscount.amount} ar={ar} whole /></>
               : <Money amount={subtotal.amount} ar={ar} whole />}</strong></div>
-            <p className="ll-cart-fee-note">{ar
+            {JVC_FREE_DELIVERY && (
+              <label className="ll-cart-jvc">
+                <input type="checkbox" checked={cart.jvcDelivery} disabled={cart.busy}
+                  onChange={(event) => { setError(''); void cart.setJvcDelivery(event.target.checked).catch(() => setError(ar ? 'تعذّر تطبيق التوصيل المجاني. يمكنك المتابعة بدونه.' : 'Free JVC delivery could not be applied. You can continue without it.')); }} />
+                <span>
+                  <strong>{ar ? 'هل التوصيل إلى جميرا فيليج سيركل (JVC)؟ التوصيل مجاني' : 'Delivering to Jumeirah Village Circle (JVC)? Delivery is free'}</strong>
+                  <small>{ar ? 'أدخل عنوان المستلم كاملاً عند الدفع. نتحقق من كل عنوان قبل التوصيل، وإن لم يكن في JVC تُضاف رسوم ٣٠ درهماً.' : 'Enter the full recipient address at checkout. We check every address before dispatch; if it is not in JVC, delivery is AED 30.'}</small>
+                </span>
+              </label>
+            )}
+            <p className="ll-cart-fee-note">{JVC_FREE_DELIVERY && cart.jvcDelivery
+              ? (ar ? 'التوصيل: مجاني إلى JVC، نتحقق من العنوان قبل التوصيل' : 'Delivery: free to JVC, address checked before dispatch')
+              : ar
               ? <>التوصيل: <Money amount={DELIVERY_FEES.dubai} ar={ar} whole /> في دبي · <Money amount={DELIVERY_FEES.otherEmirates} ar={ar} whole /> للإمارات الأخرى، تُضاف عند الدفع</>
               : <>Delivery: <Money amount={DELIVERY_FEES.dubai} ar={ar} whole /> in Dubai · <Money amount={DELIVERY_FEES.otherEmirates} ar={ar} whole /> other emirates, added at checkout</>}</p>
             {summary && <div><span>{t.deliveryLine}</span><span data-ph-mask>{summary}</span></div>}
           </div>
-          {blocked && <p className="ll-cart-date-alert" role="status">{t[blocked]}</p>}
+          {blocked && blocked !== 'range_conflict' && blocked !== 'range_closed' && <p className="ll-cart-date-alert" role="status">{t[blocked]}</p>}
           <button className={`ll-shop-primary${blocked ? ' is-blocked' : ''}`} type="button" onClick={handleCheckout}
             disabled={pending || cart.busy} aria-disabled={blocked ? true : undefined}>
             <span>{pending ? t.pending : cart.busy ? t.updating : live ? t.secureCheckout : t.previewCheckout}</span><ArrowIcon />

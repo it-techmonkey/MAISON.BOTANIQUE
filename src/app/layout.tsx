@@ -37,9 +37,10 @@ export const viewport: Viewport = {
   themeColor: '#F5F2EB',
 };
 
-// Applies a saved Arabic preference before the first paint. The page stays
-// hidden until the store provider has rendered Arabic text (or 1.5s pass).
-const localeScript = `try{if(localStorage.getItem('maison-botanique-locale')==='ar'){var d=document.documentElement;d.lang='ar';d.dir='rtl';d.classList.add('mb-locale-pending');setTimeout(function(){d.classList.remove('mb-locale-pending')},1500)}}catch(e){}`;
+// Applies the Arabic preference before the first paint: ?lang=ar|en in the link
+// (saved for later pages), else the saved choice. The page stays hidden until
+// the store provider has rendered Arabic text (or 1.5s pass).
+const localeScript = `try{var k='maison-botanique-locale',q=new URLSearchParams(location.search).get('lang'),v=q==='ar'||q==='en'?q:null;try{if(v)localStorage.setItem(k,v);else v=localStorage.getItem(k)}catch(e){}if(v==='ar'){var d=document.documentElement;d.lang='ar';d.dir='rtl';d.classList.add('mb-locale-pending');setTimeout(function(){d.classList.remove('mb-locale-pending')},1500)}}catch(e){}`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
