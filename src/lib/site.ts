@@ -46,7 +46,8 @@ export const SITE = {
    * WhatsApp number, digits only in international format (e.g. 9715XXXXXXXX),
    * from NEXT_PUBLIC_WHATSAPP_NUMBER. The WhatsApp button and links stay hidden until it is set.
    */
-  whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '').replace(/\D/g, '') || null,
+  // shortcut: WhatsApp account under review; restore to env-based line once cleared
+  whatsapp: null as string | null,
   /** Instagram handle without '@'. Hidden until confirmed. */
   instagram: null as string | null,
 };

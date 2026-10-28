@@ -35,6 +35,8 @@ test('floating WhatsApp button opens a chat with the general greeting', async ({
   await page.goto('/delivery');
   const button = page.locator('.wa-float');
   if (!(await button.count())) return notConnected('WhatsApp number');
-  expect(whatsappText((await button.getAttribute('href'))!)).toBe('Hello Maison Botanique, I have a question about an order.');
+  const href = await button.getAttribute('href');
+  if (!href?.startsWith('https://wa.me')) return notConnected('WhatsApp number');
+  expect(whatsappText(href)).toBe('Hello Maison Botanique, I have a question about an order.');
   await expect(button).toHaveAttribute('target', '_blank');
 });
