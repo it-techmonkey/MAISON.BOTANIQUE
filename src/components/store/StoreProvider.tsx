@@ -62,8 +62,11 @@ export default function StoreProvider({ catalog: cards, children }: { catalog: B
   const cart = useShopCart(catalog.products, locale);
 
   useBrowserLayoutEffect(() => {
-    let saved: string | null = null;
-    try { saved = localStorage.getItem(LOCALE_STORAGE_KEY); } catch { /* Storage unavailable. */ }
+    // A ?lang=ar|en link (e.g. from an Arabic WhatsApp message) beats the saved choice.
+    let saved: string | null = new URLSearchParams(window.location.search).get('lang');
+    if (saved !== 'ar' && saved !== 'en') {
+      try { saved = localStorage.getItem(LOCALE_STORAGE_KEY); } catch { /* Storage unavailable. */ }
+    }
     if (saved === 'ar') setLocaleState('ar');
   }, []);
 
