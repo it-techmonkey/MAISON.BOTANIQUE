@@ -2,10 +2,10 @@
 
 import { initializeShopifyScripts } from '@shopify/hydrogen';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect } from 'react';
 import { SHOPIFY_CONSENT, isShopifyAnalyticsEnabled } from '@/lib/analytics/shopify-config';
 import { publishPageViewed } from '@/lib/analytics/shopify';
-import { metaPageView } from '@/lib/analytics/meta-pixel';
+import { metaTrack, rememberMetaClickId, setMetaConsent } from '@/lib/analytics/meta-pixel';
 
 let initialized = false;
 
@@ -15,7 +15,6 @@ function Tracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const pageKey = `${pathname}?${searchParams.toString()}`;
-  const [metaAllowed, setMetaAllowed] = useState(false);
 
   useEffect(() => {
     if (initialized) return;
@@ -30,10 +29,20 @@ function Tracker() {
 
   useEffect(() => { publishPageViewed(); }, [pageKey]);
 
+  return null;
+}
+
+/** Meta Pixel page views, sent only once Shopify's privacy settings allow marketing. */
+function MetaPixel() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const pageKey = `${pathname}?${searchParams.toString()}`;
+
   useEffect(() => {
+    rememberMetaClickId();
     const update = () => {
       const privacy = window.Shopify?.customerPrivacy;
-      setMetaAllowed(Boolean(privacy?.consentStatus === 'loaded' && privacy.marketingAllowed() && privacy.saleOfDataAllowed()));
+      setMetaConsent(privacy?.consentStatus === 'loaded' ? Boolean(privacy.marketingAllowed() && privacy.saleOfDataAllowed()) : null);
     };
     document.addEventListener('visitorConsentCollected', update);
     document.addEventListener('consentTrackingApiLoaded', update);
@@ -44,14 +53,11 @@ function Tracker() {
     };
   }, []);
 
-  useEffect(() => {
-    if (metaAllowed && ['maisonbotaniqueflowers.com', 'www.maisonbotaniqueflowers.com'].includes(window.location.hostname)) metaPageView();
-  }, [pageKey, metaAllowed]);
+  useEffect(() => { metaTrack('PageView'); }, [pageKey]);
 
   return null;
 }
 
 export default function ShopifyAnalytics() {
-  if (!isShopifyAnalyticsEnabled) return null;
-  return <Suspense fallback={null}><Tracker /></Suspense>;
+  return <Suspense fallback={null}><MetaPixel />{isShopifyAnalyticsEnabled && <Tracker />}</Suspense>;
 }
