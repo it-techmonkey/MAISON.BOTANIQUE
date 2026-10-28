@@ -5,6 +5,7 @@ import {
   trackCartViewed, trackCheckoutFailed, trackCheckoutStarted, trackDeliveryScheduled, trackGiftOptionAdded,
   trackProductSizeSelected, trackProductViewed,
 } from '@/lib/analytics/track';
+import { withMetaClickId } from '@/lib/analytics/meta-pixel';
 import { DeliveryRequiredError, type CartLineView } from '@/lib/cart/use-shop-cart';
 import {
   type DeliveryRange, addDays, bookableDays, checkSchedule, dateOpen, deliverySummary, earliestDate, formatDeliveryDate, lastBookableDate, rangeProblem, slotsFor, windowLabel, windowsFor,
@@ -529,7 +530,7 @@ function Bag() {
       const url = await cart.checkoutUrl(locale, useWelcome);
       if (!url) { setReview(true); setPending(false); return; }
       trackCheckoutStarted(lines, subtotal.amount, subtotal.currencyCode, cart.shopifyCart?.id ?? null, locale, cart.delivery);
-      window.location.assign(url);
+      window.location.assign(withMetaClickId(url));
     } catch (cause) {
       if (cause instanceof DeliveryRequiredError) {
         trackCheckoutFailed(cause.problem, cart.shopifyCart?.id ?? null, subtotal.amount);
