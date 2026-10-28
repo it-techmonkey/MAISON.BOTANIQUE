@@ -79,3 +79,23 @@ test('the delivery chosen on the product page carries into the bag', async ({ pa
   await expect(bag.locator('.ll-cart-totals')).toContainText(/Arrives.*(am|pm)/s);
   await expect(bag.locator('.ll-shop-primary')).not.toHaveAttribute('aria-disabled', 'true');
 });
+
+test('a delivery day saved on an earlier visit is not restored once it has passed', async ({ page }) => {
+  // Reported 22 Oct 2026: a day chosen yesterday showed "That delivery day has passed" on first load.
+  const yesterday = addDays(dubaiNow().date, -1);
+  await page.addInitScript((date) => {
+    try { localStorage.setItem('maison-botanique-delivery', JSON.stringify({ date, slotId: 'afternoon' })); } catch { /* storage blocked */ }
+  }, yesterday);
+  await openProduct(page);
+  const picker = page.locator('.dl-picker-product');
+  await expect(picker.locator('.qa-day').first()).toBeVisible();
+  await expect(picker.locator('[role="alert"]')).toHaveCount(0);
+  await expect(picker.locator('.qa-day.is-selected')).toHaveCount(0);
+  await expect(picker.locator('input[type="date"]')).toHaveCount(0);
+  await expect(page.locator('.qa-delivery .pd-link')).toBeVisible();
+  // The passed day is not stamped on the bag either.
+  await addToBag(page);
+  const bag = await openBag(page);
+  await expect(bag.locator('.ll-cart-date-alert[role="status"]')).toHaveText('Choose a delivery day and time to continue.');
+  expect(await page.evaluate(() => localStorage.getItem('maison-botanique-delivery'))).toBeNull();
+});
