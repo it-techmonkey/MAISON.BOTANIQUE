@@ -17,10 +17,10 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.maison
 export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'MAISON25').trim();
 
 /** Delivery fees in AED, shown in the bag. Shopify shipping rates must match; change both together. */
-export const DELIVERY_FEES = { dubai: 30, otherEmirates: 50 } as const;
+export const DELIVERY_FEES = { dubai: 30, otherEmirates: 65 } as const;
 const PUBLIC_PHONE = '+971545578803';
 
-/** The seven emirates served. The same-day promise applies to Dubai only. */
+/** The seven emirates served. Same-day delivery is offered in every emirate (owner decision, 29 Oct 2026). */
 export const EMIRATES: Bilingual[] = [
   { en: 'Dubai', ar: 'دبي' },
   { en: 'Abu Dhabi', ar: 'أبوظبي' },

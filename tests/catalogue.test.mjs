@@ -80,7 +80,7 @@ test('only flowers have Signature/Grand/Luxe sizes (gifts, chocolates and teddie
   assert.deepEqual(stale, [], 'fixed or removed: take these off PENDING_TIER_EXCEPTIONS');
 });
 
-test('delivery fee wording matches the owner rule everywhere it appears (AED 30 Dubai, AED 50 elsewhere)', () => {
+test('delivery fee wording matches the owner rule everywhere it appears (AED 30 Dubai, AED 65 elsewhere)', () => {
   // Fees are charged by Shopify shipping rates, not by site code. This guards the copy.
   const files = [
     'src/components/store/SiteFooter.tsx', 'src/components/store/Residences.tsx',
@@ -89,12 +89,12 @@ test('delivery fee wording matches the owner rule everywhere it appears (AED 30 
   for (const file of files) {
     const text = readFileSync(new URL(file, root), 'utf8');
     assert.match(text, /AED 30 in Dubai/, `${file}: English Dubai fee`);
-    assert.match(text, /AED 50 elsewhere in the UAE/, `${file}: English UAE fee`);
+    assert.match(text, /AED 65 elsewhere in the UAE/, `${file}: English UAE fee`);
     assert.match(text, /٣٠ درهماً في دبي/, `${file}: Arabic Dubai fee`);
-    assert.match(text, /٥٠ درهماً في بقية الإمارات/, `${file}: Arabic UAE fee`);
+    assert.match(text, /٦٥ درهماً في بقية الإمارات/, `${file}: Arabic UAE fee`);
   }
   // No page may promise another figure for delivery.
   const all = files.map((file) => readFileSync(new URL(file, root), 'utf8')).join('\n');
-  const other = [...all.matchAll(/AED (\d+)[^.\n]{0,40}(?:delivery|Dubai|UAE)/gi)].map((m) => m[1]).filter((n) => !['30', '50'].includes(n));
+  const other = [...all.matchAll(/AED (\d+)[^.\n]{0,40}(?:delivery|Dubai|UAE)/gi)].map((m) => m[1]).filter((n) => !['30', '65'].includes(n));
   assert.deepEqual(other, []);
 });

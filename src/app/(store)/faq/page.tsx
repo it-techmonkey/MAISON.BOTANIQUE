@@ -26,11 +26,11 @@ export default function FaqPage() {
           },
           {
             title: { en: 'Can I choose the delivery date and time?', ar: 'هل يمكنني اختيار تاريخ ووقت التوصيل؟' },
-            paragraphs: [{ en: 'Yes. Choose the day and a three-hour delivery window (9am to 9pm) in your bag, up to 60 days ahead. For same-day delivery in Dubai, order at least one hour before the window starts.', ar: 'نعم. اختر اليوم وفترة توصيل من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، حتى 60 يوماً مقدماً. للتوصيل في اليوم نفسه داخل دبي، اطلب قبل بداية الفترة بساعة واحدة على الأقل.' }],
+            paragraphs: [{ en: 'Yes. Choose the day and a three-hour delivery window (9am to 9pm) in your bag, up to 60 days ahead. For same-day delivery, order at least one hour before the window starts.', ar: 'نعم. اختر اليوم وفترة توصيل من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، حتى 60 يوماً مقدماً. للتوصيل في اليوم نفسه، اطلب قبل بداية الفترة بساعة واحدة على الأقل.' }],
           },
           {
             title: { en: 'Where do you deliver?', ar: 'إلى أين توصلون؟' },
-            paragraphs: [{ en: 'We offer same-day delivery in Dubai and also deliver across the UAE. Delivery is AED 30 in Dubai and AED 50 elsewhere in the UAE. Enter the full recipient delivery address at checkout, including building, apartment and area.', ar: 'نوفر التوصيل في اليوم نفسه داخل دبي، ونوصل أيضاً إلى جميع أنحاء الإمارات. التوصيل ٣٠ درهماً في دبي و٥٠ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى والشقة والمنطقة.' }],
+            paragraphs: [{ en: 'We offer same-day delivery across the UAE. Delivery is AED 30 in Dubai and AED 65 elsewhere in the UAE. Enter the full recipient delivery address at checkout, including building, apartment and area.', ar: 'نوفر التوصيل في اليوم نفسه إلى جميع أنحاء الإمارات. التوصيل ٣٠ درهماً في دبي و٦٥ درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى والشقة والمنطقة.' }],
           },
           {
             title: { en: 'Will my flowers look exactly like the photograph?', ar: 'هل ستبدو زهوري تماماً كما في الصورة؟' },
