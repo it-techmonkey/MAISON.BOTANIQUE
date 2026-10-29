@@ -1,7 +1,7 @@
 // Click-to-chat links (https://wa.me/<number>?text=…). No WhatsApp script or
 // API key is involved; the link opens the app on phones and WhatsApp Web on
-// desktops. Until NEXT_PUBLIC_WHATSAPP_NUMBER is set, every helper returns
-// null and the site hides its WhatsApp entry points.
+// desktops. The public phone is the fallback when no separate WhatsApp number
+// is configured.
 
 import { SITE } from './site';
 
