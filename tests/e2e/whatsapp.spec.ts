@@ -35,8 +35,19 @@ test('floating WhatsApp button opens a chat with the general greeting', async ({
   await page.goto('/delivery');
   const button = page.locator('.wa-float');
   if (!(await button.count())) return notConnected('WhatsApp number');
-  const href = await button.getAttribute('href');
-  if (!href?.startsWith('https://wa.me')) return notConnected('WhatsApp number');
-  expect(whatsappText(href)).toBe('Hello Maison Botanique, I have a question about an order.');
+  expect(whatsappText((await button.getAttribute('href'))!)).toBe('Hello Maison Botanique, I have a question about an order.');
   await expect(button).toHaveAttribute('target', '_blank');
+});
+
+test('footer and contact page link to the same WhatsApp number', async ({ page }) => {
+  await page.goto('/contact');
+  const floatHref = await page.locator('.wa-float').getAttribute('href');
+  if (!floatHref) return notConnected('WhatsApp number');
+  const number = new URL(floatHref).pathname;
+  const footerLinks = page.locator('footer a[href^="https://wa.me/"]');
+  await expect(footerLinks).toHaveCount(2);
+  for (const link of await footerLinks.all()) expect(new URL((await link.getAttribute('href'))!).pathname).toBe(number);
+  const contact = page.locator('.contact-details a[href^="https://wa.me/"]');
+  await expect(contact).toBeVisible();
+  expect(new URL((await contact.getAttribute('href'))!).pathname).toBe(number);
 });
