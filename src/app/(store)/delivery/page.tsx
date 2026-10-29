@@ -30,7 +30,7 @@ export default function DeliveryPage() {
         {
           title: { en: 'Choosing a date', ar: 'اختيار التاريخ' },
           paragraphs: [
-            { en: 'Choose the delivery day and a three-hour window (9am to 9pm) in your bag, up to 60 days ahead. Same-day windows stay open until one hour before they start. One delivery per order; if anything needs to change, we let you know straight away.', ar: 'اختر يوم التوصيل وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، حتى 60 يوماً مقدماً. تبقى فترات اليوم نفسه متاحة حتى ساعة واحدة قبل بدايتها. توصيل واحد لكل طلب، ونخبرك فوراً إذا احتاج أي شيء إلى تغيير.' },
+            { en: 'Choose the delivery day and a three-hour window (9am to 9pm) in your bag, up to 60 days ahead. Same-day windows stay open until one hour before they end, so the last online order is 8pm. For 9pm to 12am delivery, order on WhatsApp. One delivery per order; if anything needs to change, we let you know straight away.', ar: 'اختر يوم التوصيل وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، حتى 60 يوماً مقدماً. تبقى فترات اليوم نفسه متاحة حتى ساعة واحدة قبل نهايتها، أي آخر طلب عبر الموقع الساعة 8 مساءً. للتوصيل من 9 مساءً حتى 12 منتصف الليل، اطلب عبر واتساب. توصيل واحد لكل طلب، ونخبرك فوراً إذا احتاج أي شيء إلى تغيير.' },
           ],
         },
         {

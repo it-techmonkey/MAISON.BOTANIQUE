@@ -24,7 +24,7 @@ export const DELIVERY_RULES = {
     { id: 'afternoon', start: 15 * 60, end: 18 * 60 },
     { id: 'evening', start: 18 * 60, end: 21 * 60 },
   ] as DeliveryWindow[],
-  /** A same-day window closes this long before it starts. */
+  /** A same-day window closes this long before it ENDS (owner, 29 Oct 2026). 9pm–12am is WhatsApp-only, not a window. */
   leadMinutes: 60,
   /** Pre-booking horizon. */
   maxDaysAhead: 60,
@@ -92,7 +92,7 @@ export function windowsFor(date: string, now: DubaiNow = dubaiNow(), range: Deli
   const open = dateOpen(date, now, range);
   return DELIVERY_RULES.windows.map((slot) => ({
     ...slot,
-    available: open && (date !== now.date || slot.start - DELIVERY_RULES.leadMinutes >= now.minutes),
+    available: open && (date !== now.date || slot.end - DELIVERY_RULES.leadMinutes >= now.minutes),
   }));
 }
 

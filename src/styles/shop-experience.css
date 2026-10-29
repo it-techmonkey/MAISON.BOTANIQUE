@@ -497,3 +497,4 @@ a.ll-shop-primary { text-decoration: none; box-sizing: border-box; }
 .ll-cart-jvc strong { display: block; font-size: 14px; font-weight: 600; line-height: 1.35; }
 .ll-cart-jvc small { display: block; margin-top: 3px; color: #625b5b; font-size: 12px; line-height: 1.5; }
 .ll-cart-jvc:focus-within { outline: 3px solid currentColor; outline-offset: 2px; }
+.dl-night { display: block; margin-top: 8px; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; color: inherit; }

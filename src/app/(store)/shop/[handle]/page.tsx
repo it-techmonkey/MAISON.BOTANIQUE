@@ -54,7 +54,7 @@ const DETAILS = [
   {
     title: { en: 'Delivery', ar: 'التوصيل' },
     body: {
-      en: 'Same-day delivery is available across the UAE. The delivery fee for your address is shown at checkout. Choose the day and a three-hour window (9am to 9pm) in your bag; same-day windows close one hour before they start.',
+      en: 'Same-day delivery is available across the UAE. The delivery fee for your address is shown at checkout. Choose the day and a three-hour window (9am to 9pm) in your bag; same-day windows close one hour before they end (last online order 8pm). For 9pm to 12am, order on WhatsApp.',
       ar: 'التوصيل في اليوم نفسه متاح في جميع أنحاء الإمارات. تظهر رسوم التوصيل لعنوانك عند الدفع. اختر اليوم وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، وتُغلق فترات اليوم نفسه قبل بدايتها بساعة واحدة.',
     },
   },

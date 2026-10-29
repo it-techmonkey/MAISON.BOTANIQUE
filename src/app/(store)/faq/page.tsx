@@ -26,7 +26,7 @@ export default function FaqPage() {
           },
           {
             title: { en: 'Can I choose the delivery date and time?', ar: 'هل يمكنني اختيار تاريخ ووقت التوصيل؟' },
-            paragraphs: [{ en: 'Yes. Choose the day and a three-hour delivery window (9am to 9pm) in your bag, up to 60 days ahead. For same-day delivery, order at least one hour before the window starts.', ar: 'نعم. اختر اليوم وفترة توصيل من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، حتى 60 يوماً مقدماً. للتوصيل في اليوم نفسه، اطلب قبل بداية الفترة بساعة واحدة على الأقل.' }],
+            paragraphs: [{ en: 'Yes. Choose the day and a three-hour delivery window (9am to 9pm) in your bag, up to 60 days ahead. For same-day delivery, order at least one hour before the window ends, so the last online order is 8pm. For 9pm to 12am delivery, order on WhatsApp.', ar: 'نعم. اختر اليوم وفترة توصيل من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، حتى 60 يوماً مقدماً. للتوصيل في اليوم نفسه، اطلب قبل نهاية الفترة بساعة واحدة على الأقل، أي آخر طلب عبر الموقع الساعة 8 مساءً. للتوصيل من 9 مساءً حتى 12 منتصف الليل، اطلب عبر واتساب.' }],
           },
           {
             title: { en: 'Where do you deliver?', ar: 'إلى أين توصلون؟' },
