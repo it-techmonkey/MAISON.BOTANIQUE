@@ -1,10 +1,10 @@
 // Area: WhatsApp links. The wa.me message must name the product, size, price and product link.
-import { test, expect, PRODUCT, openProduct, useEarliestDelivery, addToBag, openBag, notConnected, whatsappText } from './fixtures';
+import { test, expect, PRODUCT, openProduct, useEarliestDelivery, addToBag, openBag, whatsappText } from './fixtures';
 
 test('product enquiry link carries name, size, price, delivery and product link @live', async ({ page }) => {
   await openProduct(page);
   const ask = page.locator('.qa-delivery .pd-ask');
-  if (!(await ask.count())) return notConnected('WhatsApp number');
+  await expect(ask).toBeVisible();
   const name = (await page.locator('.purchase h1').innerText()).trim();
   await page.locator('.qa-size', { hasText: 'Grand' }).click();
   const price = (await page.locator('.qa-size', { hasText: 'Grand' }).locator('.qa-size-price > .money .money__n').innerText()).trim();
@@ -20,7 +20,7 @@ test('product enquiry link carries name, size, price, delivery and product link 
 
 test('bag "Order on WhatsApp" link lists the line and the delivery', async ({ page }) => {
   await openProduct(page);
-  if (!(await page.locator('.qa-delivery .pd-ask').count())) return notConnected('WhatsApp number');
+  await expect(page.locator('.qa-delivery .pd-ask')).toBeVisible();
   const name = (await page.locator('.purchase h1').innerText()).trim();
   await useEarliestDelivery(page);
   await addToBag(page);
@@ -34,16 +34,16 @@ test('bag "Order on WhatsApp" link lists the line and the delivery', async ({ pa
 test('floating WhatsApp button opens a chat with the general greeting', async ({ page }) => {
   await page.goto('/delivery');
   const button = page.locator('.wa-float');
-  if (!(await button.count())) return notConnected('WhatsApp number');
+  await expect(button).toBeVisible();
   expect(whatsappText((await button.getAttribute('href'))!)).toBe('Hello Maison Botanique, I have a question about an order.');
   await expect(button).toHaveAttribute('target', '_blank');
 });
 
 test('footer and contact page link to the same WhatsApp number', async ({ page }) => {
   await page.goto('/contact');
+  await expect(page.locator('.wa-float')).toBeVisible();
   const floatHref = await page.locator('.wa-float').getAttribute('href');
-  if (!floatHref) return notConnected('WhatsApp number');
-  const number = new URL(floatHref).pathname;
+  const number = new URL(floatHref!).pathname;
   const footerLinks = page.locator('footer a[href^="https://wa.me/"]');
   await expect(footerLinks).toHaveCount(2);
   for (const link of await footerLinks.all()) expect(new URL((await link.getAttribute('href'))!).pathname).toBe(number);
