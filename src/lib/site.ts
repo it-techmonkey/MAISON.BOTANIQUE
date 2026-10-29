@@ -18,6 +18,7 @@ export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'MAISON2
 
 /** Delivery fees in AED, shown in the bag. Shopify shipping rates must match; change both together. */
 export const DELIVERY_FEES = { dubai: 30, otherEmirates: 50 } as const;
+const PUBLIC_PHONE = '+971545578803';
 
 /** The seven emirates served. The same-day promise applies to Dubai only. */
 export const EMIRATES: Bilingual[] = [
@@ -41,13 +42,12 @@ export const SITE = {
   /** Public enquiries inbox. Confirm the mailbox exists before launch. */
   email: 'hello@maisonbotaniqueflowers.com',
   /** International format without spaces, e.g. '+9715XXXXXXXX'. Hidden until set. */
-  phone: '+971545578803' as string | null,
+  phone: PUBLIC_PHONE as string | null,
   /**
    * WhatsApp number, digits only in international format (e.g. 9715XXXXXXXX),
-   * from NEXT_PUBLIC_WHATSAPP_NUMBER. The WhatsApp button and links stay hidden until it is set.
+   * from NEXT_PUBLIC_WHATSAPP_NUMBER, falling back to the confirmed public phone.
    */
-  // shortcut: WhatsApp account under review; restore to env-based line once cleared
-  whatsapp: null as string | null,
+  whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || PUBLIC_PHONE).replace(/\D/g, '') || null,
   /** Instagram handle without '@'. Hidden until confirmed. */
   instagram: null as string | null,
 };
