@@ -14,6 +14,8 @@ import type { Product, ProductFormat } from '@/lib/types';
 export const HALLOWEEN_HANDLES: readonly string[] = data.halloween;
 export const DIWALI_HANDLES: readonly string[] = data.diwali;
 export const TORAN_HANDLE = 'marigold-toran';
+/** Halloween pieces built in real pumpkins (owner confirmed 29 Oct 2026). The other two are ceramic, so they get no compostable note. */
+export const REAL_PUMPKIN_HANDLES: readonly string[] = ['pumpkin-and-pralines', 'the-pumpkin-basket'];
 
 const SEASONAL = new Set([...HALLOWEEN_HANDLES, ...DIWALI_HANDLES]);
 /** Seasonal pieces stay in the collection but never stand in for a category photo (owner, 25 Oct 2026). */

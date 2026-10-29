@@ -9,7 +9,7 @@ import { T } from '@/components/store/StoreProvider';
 import { SITE_URL } from '@/lib/site';
 import { productSchema } from '@/lib/product-schema';
 import { formatDeliveryDate } from '@/lib/delivery';
-import { seasonalDeliveryRange, TORAN_HANDLE } from '@/lib/seasonal';
+import { REAL_PUMPKIN_HANDLES, seasonalDeliveryRange, TORAN_HANDLE } from '@/lib/seasonal';
 import { getCatalog } from '@/lib/shopify/catalog';
 import '@/styles/shop.css';
 
@@ -87,6 +87,14 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
     if (index === 1 && product.id === TORAN_HANDLE) return { ...item, body: {
       en: 'Fresh marigolds naturally vary a little in shade and fullness from the photograph.',
       ar: 'تختلف أزهار القطيفة الطازجة طبيعياً قليلاً في اللون والكثافة عما يظهر في الصورة.',
+    } };
+    if (index === 1 && REAL_PUMPKIN_HANDLES.includes(product.id)) return { ...item, body: {
+      en: 'The pumpkin is real and natural, so its shape and shade vary slightly from the photograph. Flowers are natural and seasonal; if a stem is not at its best, we replace it with one of equal quality.',
+      ar: 'اليقطينة حقيقية وطبيعية، لذا يختلف شكلها ولونها قليلاً عن الصورة. الزهور طبيعية وموسمية؛ وإذا لم تكن زهرة ما في أفضل حالاتها نستبدلها بأخرى بالجودة نفسها.',
+    } };
+    if (index === 2 && REAL_PUMPKIN_HANDLES.includes(product.id)) return { ...item, body: {
+      en: 'Keep it in a cool place away from direct sun and air-conditioning vents. The pumpkin is compostable: once it starts to soften, remove the flowers and liner and compost the pumpkin.',
+      ar: 'ضعها في مكان بارد بعيداً عن الشمس المباشرة وفتحات التكييف. اليقطينة قابلة للتحلل: عندما تبدأ بالليونة، أزل الزهور والبطانة وضع اليقطينة في السماد.',
     } };
     if (index === 2 && range) return { ...item, body: product.id === TORAN_HANDLE ? {
       en: 'Keep the fresh toran in a cool, shaded place until you hang it. Avoid direct sun and heat.',
