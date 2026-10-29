@@ -74,6 +74,8 @@
 .sea-hw .mbc-cap h3 { color: var(--bone); font-size: 18px; }
 .sea-hw .mbc-line, .sea-hw .mbc-price s, .sea-hw .mbc-price small { color: #CDBFDB; }
 .sea-hw .mbc-price { color: var(--bone); }
+.sea-natural { display: flex; align-items: center; gap: 6px; margin-top: 2px; color: var(--pumpkin); font-size: var(--fs-small); line-height: 1.4; }
+.sea-natural svg { flex: none; }
 .sea-hw .mbc-add { border-color: var(--bone); color: var(--bone); }
 .sea-hw .mbc-add:hover, .sea-hw .mbc-add:focus-visible { background: var(--pumpkin); border-color: var(--pumpkin); color: #140B1E; }
 

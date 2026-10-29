@@ -13,7 +13,8 @@ import {
 } from '@/lib/delivery';
 import { useDubaiNow } from '@/lib/use-today';
 import { SITE_URL } from '@/lib/site';
-import { deliveryRangeFor, TORAN_HANDLE } from '@/lib/seasonal';
+import { deliveryRangeFor, REAL_PUMPKIN_HANDLES, TORAN_HANDLE } from '@/lib/seasonal';
+import PumpkinMark from './PumpkinMark';
 import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import type { Product } from '@/lib/types';
 import { PROMISES } from './HeroPromises';
@@ -292,6 +293,7 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
         </section>}
       </div>
       <div className="qa-foot">
+        {REAL_PUMPKIN_HANDLES.includes(product.id) && <p className="qa-natural"><PumpkinMark />{ar ? 'يقطينة حقيقية قابلة للتحلل، يختلف شكلها ولونها قليلاً عن الصورة.' : 'Real, compostable pumpkin: shape and shade vary slightly from the photo.'}</p>}
         <button className="qa-add" type="button" disabled={customMissing || !chosen.available || unavailableSeasonal}
           onClick={() => onAdd({
             sizeId: chosen.id, note: note.trim(), signedAs: signedAs.trim(), anonymous, custom: custom.trim(),
