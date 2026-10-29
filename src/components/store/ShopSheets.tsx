@@ -43,7 +43,7 @@ const copy = {
     windowLegend: 'Time', nightNote: 'Need 9pm – 12am? Order on WhatsApp', missing_date: 'Choose a delivery day and time to continue.', missing_slot: 'Choose a delivery time to continue.',
     date_passed: 'That delivery day has passed. Please choose another.', slot_passed: 'That delivery time has passed. Please choose another.',
     day_closed: "We aren't delivering on that day. Please choose another.",
-    deliveryLine: 'Arrives', askAbout: 'Ask about this gift on WhatsApp',
+    deliveryLine: 'Arrives', askAbout: 'Ask about this gift on WhatsApp', askUs: 'Ask us',
     helpOrder: 'Questions? Chat with us on WhatsApp', orderWhatsapp: 'Order on WhatsApp instead',
     addBag: 'Add to bag', subtotal: 'Subtotal',
     offerLine: 'Welcome offer: 25% off your first order with your code at checkout.',
@@ -79,7 +79,7 @@ const copy = {
     windowLegend: 'الوقت', nightNote: 'تريد من 9 مساءً حتى 12 منتصف الليل؟ اطلب عبر واتساب', missing_date: 'اختر يوم التوصيل ووقته للمتابعة.', missing_slot: 'اختر وقت التوصيل للمتابعة.',
     date_passed: 'انقضى يوم التوصيل هذا. يرجى اختيار يوم آخر.', slot_passed: 'انقضى موعد التوصيل هذا. يرجى اختيار موعد آخر.',
     day_closed: 'لا نوصّل في هذا اليوم. يرجى اختيار يوم آخر.',
-    deliveryLine: 'موعد الوصول', askAbout: 'استفسر عن هذه الهدية عبر واتساب',
+    deliveryLine: 'موعد الوصول', askAbout: 'استفسر عن هذه الهدية عبر واتساب', askUs: 'اسألنا',
     helpOrder: 'لديك سؤال؟ تحدّث معنا عبر واتساب', orderWhatsapp: 'اطلب عبر واتساب بدلاً من ذلك',
     addBag: 'أضف إلى الحقيبة', subtotal: 'المجموع الفرعي',
     offerLine: 'عرض الترحيب: خصم ٢٥٪ على طلبك الأول برمزك عند الدفع.',
@@ -294,6 +294,7 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
       </div>
       <div className="qa-foot">
         {REAL_PUMPKIN_HANDLES.includes(product.id) && <p className="qa-natural"><PumpkinMark />{ar ? 'يقطينة حقيقية قابلة للتحلل، يختلف شكلها ولونها قليلاً عن الصورة.' : 'Real, compostable pumpkin: shape and shade vary slightly from the photo.'}</p>}
+        {compact && askLink && <a className="qa-ask" href={askLink} target="_blank" rel="noopener noreferrer" aria-label={t.askAbout}><WhatsAppIcon /><span>{t.askUs}</span></a>}
         <button className="qa-add" type="button" disabled={customMissing || !chosen.available || unavailableSeasonal}
           onClick={() => onAdd({
             sizeId: chosen.id, note: note.trim(), signedAs: signedAs.trim(), anonymous, custom: custom.trim(),
