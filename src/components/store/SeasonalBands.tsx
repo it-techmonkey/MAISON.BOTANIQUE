@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useRef, type MouseEvent } from 'react';
 import { trackProductClicked } from '@/lib/analytics/track';
-import { DIWALI_HANDLES, HALLOWEEN_HANDLES, TORAN_HANDLE, pick, seasonalExpired } from '@/lib/seasonal';
+import { DIWALI_HANDLES, HALLOWEEN_HANDLES, REAL_PUMPKIN_HANDLES, TORAN_HANDLE, pick, seasonalExpired } from '@/lib/seasonal';
 import type { Product } from '@/lib/types';
 import Money from './Money';
 import SaleTag from './SaleTag';
@@ -150,6 +150,10 @@ function SeasonCard({ product, index, onOpen }: { product: Product; index: numbe
       <div className="mbc-cap">
         <h3><a href={href} onClick={open} aria-label={name}>{displayName}</a></h3>
         <span className="mbc-line">{displayLine}</span>
+        {REAL_PUMPKIN_HANDLES.includes(product.id) && <span className="sea-natural">
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M8 4.6c-4.6-1.6-6.6 1.2-6.6 4s2.2 4.8 4.4 4.8c1 0 1.7-.4 2.2-.4s1.2.4 2.2.4c2.2 0 4.4-2 4.4-4.8s-2-5.6-6.6-4Z" /><path d="M8 4.6C8 3.4 8.4 2.6 9.2 2" /><path d="M9.2 2c1.8-.2 3 .6 3.4 1.8-1.6.4-3-.2-3.4-1.8Z" />
+          </svg>{t('Real pumpkin · compostable', 'يقطينة حقيقية · قابلة للتحلل')}</span>}
         <SaleTag className="mbc-sale" price={product.price} compareAtPrice={product.compareAtPrice} />
         <div className="mbc-row">
           <span className="mbc-price">
