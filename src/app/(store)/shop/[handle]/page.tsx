@@ -36,6 +36,20 @@ export async function generateMetadata({ params }: PageProps<'/shop/[handle]'>):
   };
 }
 
+// Per-product FAQ/Q&A additions. Added one at a time by the daily content
+// task, highest order-count product first (private/sales/customer-sales-master).
+const FAQS_BY_PRODUCT: Record<string, { question: { en: string; ar: string }; answer: { en: string; ar: string } }[]> = {
+  'eloise-pink-and-white-rose-bouquet': [
+    {
+      question: { en: 'How many roses are in the Eloise bouquet?', ar: 'كم عدد الورود في باقة إيلويز؟' },
+      answer: {
+        en: 'Signature has 51 hand-selected pink and white roses, Grand has 101 and Luxe has 201, all gathered in the same ivory wrap. Only the rose count changes between sizes.',
+        ar: 'يضم حجم سيغنتشر 51 وردة وردية وبيضاء منتقاة يدوياً، وغراند 101 وردة، ولوكس 201 وردة، جميعها بالغلاف العاجي نفسه. يتغير عدد الورود فقط بين الأحجام.',
+      },
+    },
+  ],
+};
+
 const DETAILS = [
   {
     title: { en: 'Delivery', ar: 'التوصيل' },
@@ -64,7 +78,8 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
   const product = await findProduct((await params).handle);
   if (!product) notFound();
   const range = seasonalDeliveryRange(product.id);
-  const details = DETAILS.map((item, index) => {
+  const faqs = FAQS_BY_PRODUCT[product.id];
+  const details = [...DETAILS, ...(faqs ?? []).map((faq) => ({ title: faq.question, body: faq.answer }))].map((item, index) => {
     if (index === 0 && range) return { ...item, body: {
       en: `This seasonal piece is delivered ${formatDeliveryDate(range.from, false)} – ${formatDeliveryDate(range.to, false)}. Choose a three-hour window for your order; delivery fees appear at checkout.`,
       ar: `يتوفر توصيل هذا المنتج الموسمي من ${formatDeliveryDate(range.from, true)} إلى ${formatDeliveryDate(range.to, true)}. اختر فترة توصيل من ثلاث ساعات لطلبك؛ وتظهر الرسوم عند الدفع.`,
@@ -85,7 +100,7 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema(product, SITE_URL)).replace(/</g, '\\u003c') }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema(product, SITE_URL, faqs?.map((faq) => ({ question: faq.question.en, answer: faq.answer.en })))).replace(/</g, '\\u003c') }} />
       <div className="section section--top product-page">
         <nav className="breadcrumbs" aria-label="Breadcrumb">
           <Link href="/shop"><T en="Shop" ar="المتجر" /></Link>

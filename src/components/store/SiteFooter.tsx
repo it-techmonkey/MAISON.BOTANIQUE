@@ -34,7 +34,7 @@ const HELP = [
   { href: '/delivery', en: 'Delivery information', ar: 'معلومات التوصيل' },
   { href: '/delivery#where-we-deliver', en: 'Delivery areas', ar: 'مناطق التوصيل' },
   { href: '/residences', en: 'Flowers for your building', ar: 'زهور لمبناك' },
-  { href: '/delivery#caring-for-fresh-flowers', en: 'Flower care guide', ar: 'دليل العناية بالزهور' },
+  { href: '/guides/flower-care-air-conditioning', en: 'Flower care guide', ar: 'دليل العناية بالزهور' },
   { href: '/refund-policy', en: 'Refund policy', ar: 'سياسة الاسترداد' },
   { href: '/contact', en: 'Contact us', ar: 'تواصل معنا' },
   { href: '/account', en: 'Your account', ar: 'حسابي' },
