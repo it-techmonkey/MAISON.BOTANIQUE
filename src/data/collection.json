@@ -11,7 +11,7 @@
       "name": "Aimée — Red Rose Bouquet",
       "nameAr": "إيميه — باقة ورد أحمر",
       "room": "roses",
-      "price": 235.0,
+      "price": 289.0,
       "sizes": [
         {
           "id": "signature",
@@ -21,7 +21,7 @@
           "detailAr": "51 وردة",
           "add": 0.0,
           "sku": "MB-RB-065-SIG",
-          "price": 235.0,
+          "price": 289.0,
           "compareAtPrice": 420.0
         },
         {
@@ -30,7 +30,7 @@
           "nameAr": "غراند",
           "detail": "101 roses",
           "detailAr": "101 وردة",
-          "add": 235.0,
+          "add": 181.0,
           "sku": "MB-RB-065-GRD",
           "price": 470.0,
           "compareAtPrice": 839.0
@@ -41,7 +41,7 @@
           "nameAr": "لوكس",
           "detail": "201 roses",
           "detailAr": "201 وردة",
-          "add": 705.0,
+          "add": 651.0,
           "sku": "MB-RB-065-LUX",
           "price": 940.0,
           "compareAtPrice": 1679.0
@@ -83,7 +83,7 @@
       "name": "Eloise — Pink & White Rose Bouquet",
       "nameAr": "إيلويز — باقة ورد وردي وأبيض",
       "room": "roses",
-      "price": 235.0,
+      "price": 289.0,
       "sizes": [
         {
           "id": "signature",
@@ -93,7 +93,7 @@
           "detailAr": "51 وردة",
           "add": 0.0,
           "sku": "MB-RB-049-SIG",
-          "price": 235.0,
+          "price": 289.0,
           "compareAtPrice": 560.0
         },
         {
@@ -102,7 +102,7 @@
           "nameAr": "غراند",
           "detail": "101 roses",
           "detailAr": "101 وردة",
-          "add": 235.0,
+          "add": 181.0,
           "sku": "MB-RB-049-GRD",
           "price": 470.0,
           "compareAtPrice": 1119.0
@@ -113,7 +113,7 @@
           "nameAr": "لوكس",
           "detail": "201 roses",
           "detailAr": "201 وردة",
-          "add": 705.0,
+          "add": 651.0,
           "sku": "MB-RB-049-LUX",
           "price": 940.0,
           "compareAtPrice": 2238.0
@@ -226,7 +226,7 @@
       "name": "Rosamund — Blush Pink Rose Bouquet",
       "nameAr": "روزاموند — باقة ورد وردي فاتح",
       "room": "roses",
-      "price": 235.0,
+      "price": 289.0,
       "sizes": [
         {
           "id": "mb-rb-047-51",
@@ -235,7 +235,7 @@
           "nameAr": "51 roses",
           "detail": "51 roses",
           "detailAr": "51 roses",
-          "price": 235.0,
+          "price": 289.0,
           "compareAtPrice": 522.0,
           "add": 0.0
         },
@@ -248,7 +248,7 @@
           "detailAr": "101 roses",
           "price": 470.0,
           "compareAtPrice": 1044.0,
-          "add": 235.0
+          "add": 181.0
         },
         {
           "id": "mb-rb-047-201",
@@ -259,7 +259,7 @@
           "detailAr": "201 roses",
           "price": 940.0,
           "compareAtPrice": 2089.0,
-          "add": 705.0
+          "add": 651.0
         },
         {
           "id": "mb-rb-047-301",
@@ -270,7 +270,7 @@
           "detailAr": "301 roses",
           "price": 1410.0,
           "compareAtPrice": 3133.0,
-          "add": 1175.0
+          "add": 1121.0
         },
         {
           "id": "mb-rb-047-401",
@@ -281,7 +281,7 @@
           "detailAr": "401 roses",
           "price": 1880.0,
           "compareAtPrice": 4178.0,
-          "add": 1645.0
+          "add": 1591.0
         },
         {
           "id": "mb-rb-047-501",
@@ -292,7 +292,7 @@
           "detailAr": "501 roses",
           "price": 2350.0,
           "compareAtPrice": 5222.0,
-          "add": 2115.0
+          "add": 2061.0
         }
       ],
       "line": "51 blush roses, soft pink wrap",
@@ -468,7 +468,7 @@
       "name": "Aveline — Red, Pink & White Rose Bouquet",
       "nameAr": "أفلين — باقة ورد أحمر ووردي وأبيض",
       "room": "roses",
-      "price": 235.0,
+      "price": 289.0,
       "sizes": [
         {
           "id": "signature",
@@ -478,7 +478,7 @@
           "detailAr": "51 وردة",
           "add": 0.0,
           "sku": "MB-RB-051-SIG",
-          "price": 235.0,
+          "price": 289.0,
           "compareAtPrice": 420.0
         },
         {
@@ -487,7 +487,7 @@
           "nameAr": "غراند",
           "detail": "101 roses",
           "detailAr": "101 وردة",
-          "add": 235.0,
+          "add": 181.0,
           "sku": "MB-RB-051-GRD",
           "price": 470.0,
           "compareAtPrice": 839.0
@@ -498,7 +498,7 @@
           "nameAr": "لوكس",
           "detail": "201 roses",
           "detailAr": "201 وردة",
-          "add": 705.0,
+          "add": 651.0,
           "sku": "MB-RB-051-LUX",
           "price": 940.0,
           "compareAtPrice": 1679.0
@@ -538,7 +538,7 @@
       "name": "Nacre — Pearl White Rose Bouquet",
       "nameAr": "ناكر — باقة ورد أبيض لؤلؤي",
       "room": "roses",
-      "price": 235.0,
+      "price": 289.0,
       "sizes": [
         {
           "id": "signature",
@@ -548,7 +548,7 @@
           "detailAr": "51 وردة",
           "add": 0.0,
           "sku": "MB-RB-052-SIG",
-          "price": 235.0,
+          "price": 289.0,
           "compareAtPrice": 405.0
         },
         {
@@ -557,7 +557,7 @@
           "nameAr": "غراند",
           "detail": "101 roses",
           "detailAr": "101 وردة",
-          "add": 235.0,
+          "add": 181.0,
           "sku": "MB-RB-052-GRD",
           "price": 470.0,
           "compareAtPrice": 810.0
@@ -568,7 +568,7 @@
           "nameAr": "لوكس",
           "detail": "201 roses",
           "detailAr": "201 وردة",
-          "add": 705.0,
+          "add": 651.0,
           "sku": "MB-RB-052-LUX",
           "price": 940.0,
           "compareAtPrice": 1621.0
@@ -3927,7 +3927,7 @@
       "name": "Ines — Red & White Rose Bouquet",
       "nameAr": "إينيس — باقة ورد أحمر وأبيض",
       "room": "roses",
-      "price": 235.0,
+      "price": 289.0,
       "sizes": [
         {
           "id": "signature",
@@ -3937,7 +3937,7 @@
           "detailAr": "51 وردة",
           "add": 0.0,
           "sku": "MB-RB-054-SIG",
-          "price": 235.0,
+          "price": 289.0,
           "compareAtPrice": 522.0
         },
         {
@@ -3946,7 +3946,7 @@
           "nameAr": "غراند",
           "detail": "101 roses",
           "detailAr": "101 وردة",
-          "add": 235.0,
+          "add": 181.0,
           "sku": "MB-RB-054-GRD",
           "price": 470.0,
           "compareAtPrice": 1044.0
@@ -3957,7 +3957,7 @@
           "nameAr": "لوكس",
           "detail": "201 roses",
           "detailAr": "201 وردة",
-          "add": 705.0,
+          "add": 651.0,
           "sku": "MB-RB-054-LUX",
           "price": 940.0,
           "compareAtPrice": 2089.0

@@ -2,7 +2,7 @@ import { Bi } from './blocks';
 import { FlowerIcon, GiftIcon, HeartIcon, TruckIcon } from './icons';
 
 export const PROMISES = [
-  { icon: <TruckIcon />, text: { en: 'Same-day delivery in Dubai', ar: 'توصيل في اليوم نفسه داخل دبي' } },
+  { icon: <TruckIcon />, text: { en: 'Same-day delivery in the UAE', ar: 'توصيل في اليوم نفسه داخل الإمارات' } },
   { icon: <GiftIcon />, text: { en: 'A handwritten card with every gift', ar: 'بطاقة بخط اليد مع كل هدية' } },
   { icon: <FlowerIcon />, text: { en: 'Fresh, premium blooms', ar: 'زهور طازجة فاخرة' } },
   { icon: <HeartIcon />, text: { en: 'Thoughtfully packaged', ar: 'تغليف مدروس بعناية' } },

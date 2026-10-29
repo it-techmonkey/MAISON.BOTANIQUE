@@ -278,7 +278,7 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
         </section>
 
         <ul className="qa-promises" aria-label={ar ? 'وعودنا' : 'Our promises'}>
-          {PROMISES.filter((item) => product.id !== TORAN_HANDLE || item.text.en !== 'Same-day delivery in Dubai').map((item) => <li key={item.text.en}>{item.icon}<span>{ar ? item.text.ar : item.text.en}</span></li>)}
+          {PROMISES.filter((item) => product.id !== TORAN_HANDLE || item.text.en !== 'Same-day delivery in the UAE').map((item) => <li key={item.text.en}>{item.icon}<span>{ar ? item.text.ar : item.text.en}</span></li>)}
         </ul>
         {related.length > 0 && onOpen && <section className="qa-related" aria-labelledby={`qa-related-title-${product.id}`}>
           <h3 id={`qa-related-title-${product.id}`} className="qa-included">{t.alsoLike}</h3>

@@ -27,8 +27,8 @@ export function CollectionLink({ hash, onClick, children, className, 'aria-label
 
 // The opening offer runs above the header; the whole ribbon opens the sign-up.
 const OFFER = {
-  en: ['Welcome offer · 25% off your first order', 'Same-day delivery in Dubai', 'Pre-book up to 60 days ahead'],
-  ar: ['عرض الترحيب · خصم ٢٥٪ على طلبك الأول', 'توصيل في اليوم نفسه داخل دبي', 'احجز مسبقاً حتى ٦٠ يوماً'],
+  en: ['Welcome offer · 25% off your first order', 'Same-day delivery in the UAE', 'Pre-book up to 60 days ahead'],
+  ar: ['عرض الترحيب · خصم ٢٥٪ على طلبك الأول', 'توصيل في اليوم نفسه داخل الإمارات', 'احجز مسبقاً حتى ٦٠ يوماً'],
 };
 
 function OfferBar() {
