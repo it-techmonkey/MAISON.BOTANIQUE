@@ -169,7 +169,7 @@ function Piece({ product, index, t, ar, onOpen }: { product: Product; index: num
           <button type="button" className="mbc-add" onClick={() => onOpen(product, index + 1)} disabled={!product.available}
             aria-label={`${t.addFull}: ${name}`}>{product.available ? <>{t.add} <span aria-hidden="true">+</span></> : t.soldOut}</button>
         </div>
-        <FirstOrderPrice id={product.id} price={product.price} />
+        <FirstOrderPrice id={product.id} price={product.price} compact />
       </div>
     </article>
   );
