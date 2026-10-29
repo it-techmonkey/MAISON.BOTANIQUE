@@ -438,8 +438,8 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     const schedule = deliveryRef.current;
     const problem = checkSchedule(schedule, undefined, deliveryRangeFor(linesRef.current.map((line) => line.handle)));
     if (problem || !schedule) throw new DeliveryRequiredError(problem ?? 'missing_date');
-    // Stamp the delivery schedule and the current PostHog visitor and session
-    // on the cart. Analytics never blocks checkout; the schedule does.
+    // Stamp the delivery schedule, the visit source and the current PostHog
+    // visitor and session on the cart. Analytics never blocks checkout; the schedule does.
     let latest = current;
     const updates = [...scheduleAttributes(schedule), ...analyticsCartAttributes()];
     const needsUpdate = updates.some(({ key, value }) => current.attributes[key] !== value);
