@@ -72,6 +72,13 @@ export default function FlowerCareAcGuide() {
       </aside>
       <aside className="section callout">
         <div>
+          <h2><T en="Sending flowers to a host" ar="إرسال زهور إلى مضيف" /></h2>
+          <p><T en="Guests invited to dinner: how to choose an arrangement your host will enjoy." ar="للضيوف المدعوين إلى عشاء: كيف تختار تنسيقاً يستمتع به مضيفك." /></p>
+        </div>
+        <ArrowLink href="/guides/flowers-for-a-dinner-host" label={{ en: 'Dinner host guide', ar: 'دليل مضيف العشاء' }} />
+      </aside>
+      <aside className="section callout">
+        <div>
           <h2><T en="Delivery and more care tips" ar="التوصيل ونصائح عناية إضافية" /></h2>
           <p><T en="Delivery windows, areas and general care are covered on our delivery page." ar="تجد مواعيد التوصيل ومناطقه ونصائح العناية العامة في صفحة التوصيل." /></p>
         </div>
