@@ -4,6 +4,10 @@ English and Arabic flower and gift storefront, built with Next.js 16, React and 
 Start with [current status](docs/CURRENT_STATUS.md), [data ownership](docs/DATA_FLOW.md),
 and the [development workflow](docs/WORKFLOW.md). Earlier concept/merge reports are historical.
 
+Business workspace design work is preserved separately in
+[prototypes/business-workspace](prototypes/business-workspace/README.md), including version history,
+owner feedback, current proposal and implementation notes. It is not a storefront route or a shared application.
+
 ## Develop
 
 Use Node 22.18 or newer, Python 3 and the committed npm lockfile.
