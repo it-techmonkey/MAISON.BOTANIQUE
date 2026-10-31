@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import { ArrowLink, InfoPage } from '@/components/store/blocks';
+import { GuideHero, GuideProducts } from '@/components/store/GuideVisuals';
 import { T } from '@/components/store/StoreProvider';
 import { articleSchema } from '@/lib/article-schema';
+import { guideHeroImage } from '@/lib/guide-visuals';
 import '@/styles/pages.css';
 
 const PATH = '/guides/flower-care-air-conditioning';
@@ -12,13 +14,15 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: PATH },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', images: [guideHeroImage(PATH)!] },
 };
 
 export default function FlowerCareAcGuide() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema(PATH, TITLE, DESCRIPTION)).replace(/</g, '\\u003c') }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema(PATH, TITLE, DESCRIPTION, guideHeroImage(PATH))).replace(/</g, '\\u003c') }} />
       <InfoPage
+        media={<GuideHero path={PATH} />}
         hero={{
           eyebrow: { en: 'Flower care', ar: 'العناية بالزهور' },
           title: { en: 'Caring for fresh flowers in an air-conditioned Dubai home', ar: 'العناية بالزهور الطازجة في منزل مكيّف بدبي' },
@@ -63,6 +67,7 @@ export default function FlowerCareAcGuide() {
             ],
           },
         ]} />
+      <GuideProducts path={PATH} />
       <aside className="section callout">
         <div>
           <h2><T en="Choosing an arrangement" ar="اختيار التنسيق" /></h2>

@@ -24,3 +24,14 @@ test('health audit detects noindex and canonical regressions without pretending 
   assert.equal(safeBase('http://localhost:3012'), 'http://localhost:3012');
   for (const url of ['https://evil.example', 'http://www.maisonbotaniqueflowers.com', 'https://user:secret@www.maisonbotaniqueflowers.com', 'https://www.maisonbotaniqueflowers.com?token=secret']) assert.throws(() => safeBase(url));
 });
+
+test('every guide visual points at a real catalogue product and photo', async () => {
+  const { readFile, access } = await import('node:fs/promises');
+  const { GUIDE_VISUALS } = await import('../src/lib/guide-visuals.ts');
+  const { products } = JSON.parse(await readFile(new URL('../src/data/collection.json', import.meta.url), 'utf8'));
+  const ids = new Set(products.map((p) => p.id));
+  for (const [path, v] of Object.entries(GUIDE_VISUALS)) {
+    for (const id of [v.hero, ...v.products]) assert.ok(ids.has(id), `${path}: unknown product ${id}`);
+    await access(new URL(`../public/collection/${v.hero}-960.webp`, import.meta.url));
+  }
+});

@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import { ArrowLink, InfoPage } from '@/components/store/blocks';
+import { GuideHero, GuideProducts } from '@/components/store/GuideVisuals';
 import { T } from '@/components/store/StoreProvider';
 import { articleSchema } from '@/lib/article-schema';
+import { guideHeroImage } from '@/lib/guide-visuals';
 import { occasionPath } from '@/lib/site';
 import '@/styles/pages.css';
 
@@ -13,13 +15,15 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: PATH },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PATH, type: 'article', images: [guideHeroImage(PATH)!] },
 };
 
 export default function CongratulationsFlowersGuide() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema(PATH, TITLE, DESCRIPTION)).replace(/</g, '\\u003c') }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema(PATH, TITLE, DESCRIPTION, guideHeroImage(PATH))).replace(/</g, '\\u003c') }} />
       <InfoPage
+        media={<GuideHero path={PATH} />}
         hero={{
           eyebrow: { en: 'Occasion guide', ar: 'دليل المناسبات' },
           title: { en: 'Congratulations flowers in Dubai', ar: 'زهور التهنئة في دبي' },
@@ -48,6 +52,7 @@ export default function CongratulationsFlowersGuide() {
             ],
           },
         ]} />
+      <GuideProducts path={PATH} />
       <aside className="section callout">
         <div>
           <h2><T en="Browse congratulations flowers" ar="تصفح زهور التهنئة" /></h2>
