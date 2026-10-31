@@ -1,6 +1,8 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { contentLocale, translatedContentPath } from '@/lib/content-locale';
 import { useShopCart, type AddItemOptions, type ShopCart } from '@/lib/cart/use-shop-cart';
 import { setShopifyLocale } from '@/lib/analytics/shopify';
 import { registerCatalogSource, trackLocale } from '@/lib/analytics/track';
@@ -53,7 +55,10 @@ const useBrowserLayoutEffect = typeof window === 'undefined' ? useEffect : useLa
 
 export default function StoreProvider({ catalog: cards, children }: { catalog: BrowserCatalog; children: ReactNode }) {
   const catalog = useMemo(() => hydrateBrowserCatalog(cards), [cards]);
-  const [locale, setLocaleState] = useState<Locale>('en');
+  const pathname = usePathname();
+  const router = useRouter();
+  const [savedLocale, setLocaleState] = useState<Locale>('en');
+  const locale = contentLocale(pathname) ?? savedLocale;
   const [cartOpen, setCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [toast, setToast] = useState<StoreValue['toast']>(null);
@@ -91,7 +96,9 @@ export default function StoreProvider({ catalog: cards, children }: { catalog: B
     trackLocale(next, true);
     setLocaleState(next);
     try { localStorage.setItem(LOCALE_STORAGE_KEY, next); } catch { /* Private browsing may block storage. */ }
-  }, []);
+    const translated = translatedContentPath(pathname, next);
+    if (translated) router.push(`${translated}${window.location.search}${window.location.hash}`);
+  }, [pathname, router]);
 
   const { addItem } = cart;
   const addToBag = useCallback((product: Product, options?: AddItemOptions) => {
@@ -125,5 +132,5 @@ export default function StoreProvider({ catalog: cards, children }: { catalog: B
     openOffer,
   }), [locale, setLocale, catalog, cart, cartOpen, addToBag, selectedProduct, toast, dismissToast, offerSignal, openOffer]);
 
-  return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
+  return <StoreContext.Provider value={value}><div className="store-locale" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>{children}</div></StoreContext.Provider>;
 }

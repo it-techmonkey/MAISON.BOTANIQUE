@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { BUDGET_BANDS, liveCatalogGroups } from '@/lib/catalog-groups';
 import { SearchIcon } from './icons';
 import { useStore } from './StoreProvider';
+import { contentHref } from '@/lib/content-locale';
 
 /** The storefront wordmark: small MAISON over a large BOTANIQUE. */
 export function Logo() {
@@ -19,6 +20,9 @@ export function Logo() {
  */
 export function CollectionLink({ hash, onClick, children, className, 'aria-label': ariaLabel }: { hash: string; onClick?: () => void; children: ReactNode; className?: string; 'aria-label'?: string }) {
   const pathname = usePathname();
+  const { locale } = useStore();
+  const occasion = hash.match(/^occasion\/(birthday|love)$/)?.[1];
+  if (occasion) return <Link className={className} href={contentHref(`/occasions/${occasion}`, locale)} onClick={onClick} aria-label={ariaLabel}>{children}</Link>;
   const onShop = pathname === '/' || pathname === '/shop';
   return onShop
     ? <a className={className} href={`#${hash}`} onClick={onClick} aria-label={ariaLabel}>{children}</a>

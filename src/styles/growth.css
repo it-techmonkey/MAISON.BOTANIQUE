@@ -1,0 +1,34 @@
+/* New selling/editorial pages extend the existing paper, type and shopping components. */
+.store-locale[dir='rtl'] { font-family: var(--font-arabic); }
+.growth-page h1 { font-size: clamp(32px, 4.4vw, 64px); line-height: 1.05; letter-spacing: -.015em; max-width: 24ch; text-wrap: balance; }
+.growth-page h2 { font-size: clamp(26px, 2.7vw, 40px); line-height: 1.12; letter-spacing: -.015em; text-wrap: balance; }
+.growth-page p { font-size: 17px; line-height: 1.7; color: var(--ink); }
+.growth-page .arrow-link { font-size: 16px; line-height: 1.5; }
+.growth-opening { padding-top: 0; padding-bottom: 32px; }
+.growth-opening > p { max-width: 62ch; margin: 24px 0; }
+.growth-opening--contained { padding-bottom: 0; margin-bottom: 48px; }
+.growth-reading { padding-top: 32px; }
+.growth-advice, .growth-questions { max-width: 920px; margin-bottom: 64px; }
+.growth-advice p { max-width: 65ch; margin-top: 22px; }
+.growth-advice .arrow-link { margin-top: 24px; }
+.growth-questions > h2 { margin-bottom: 28px; }
+.growth-questions .faq { margin-bottom: 24px; }
+.growth-questions .faq p { color: var(--ink); font-size: 17px; }
+.growth-related { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px; margin-top: 32px; font-size: 16px; }
+.growth-journal-list { display: grid; gap: 48px; max-width: 920px; }
+.growth-journal-list article { padding: 28px; background: var(--paper-deep); }
+.growth-journal-list h2 { max-width: 30ch; }
+.growth-journal-list h2 a { text-decoration: none; }
+.growth-journal-list p { max-width: 60ch; margin: 20px 0; }
+.growth-prose { max-width: 72ch; }
+.growth-prose section { margin-bottom: 48px; }
+.growth-prose p { margin-top: 22px; }
+.growth-prose h2 { margin-bottom: 24px; }
+.growth-article .growth-related { max-width: 72ch; }
+.growth-product-answer { max-width: 65ch; margin-top: 32px; font-size: 17px; line-height: 1.7; }
+@media (max-width: 640px) {
+  .growth-page h1 { font-size: clamp(30px, 7.8vw, 42px); }
+  .growth-page p, .growth-questions .faq p { font-size: 16px; }
+  .growth-journal-list article { padding: 24px 20px; }
+}
+[dir='rtl'] .growth-page h1, [dir='rtl'] .growth-page h2 { letter-spacing: 0; line-height: 1.4; }

@@ -105,7 +105,7 @@ test('a schedule saved on an earlier visit is dropped once it can no longer be b
   assert.deepEqual(usableSchedule({ date: '2026-10-22', slotId: 'evening' }, at('2026-10-22', 15, 0)), { date: '2026-10-22', slotId: 'evening' });
 });
 
-// The owner kept toran delivery open 5–15 November; Halloween ends 31 October.
+// The owner kept toran delivery open 5–15 November; Halloween delivery ends Sunday 1 November.
 test('a pre-order range limits delivery to its dates', () => {
   const range = seasonal['marigold-toran'];
   const now = at('2026-10-25', 10);
@@ -127,16 +127,16 @@ test('a pre-order range limits delivery to its dates', () => {
   assert.equal(checkSchedule({ date: '2026-10-26', slotId: 'morning' }, now), null);
 });
 
-test('Halloween ends on 31 October and cannot share a delivery date with the toran', () => {
+test('Halloween ends on Sunday 1 November and cannot share a delivery date with the toran', () => {
   const halloween = seasonal['pumpkin-and-pralines'];
-  assert.deepEqual(halloween, { from: '2026-10-25', to: '2026-10-31' });
+  assert.deepEqual(halloween, { from: '2026-10-25', to: '2026-11-01' });
   for (const handle of ['the-pumpkin-basket', 'jack-o-bloom', 'the-midnight-pumpkin']) {
     assert.deepEqual(seasonal[handle], halloween);
   }
-  assert.equal(checkSchedule({ date: '2026-10-31', slotId: 'evening' }, at('2026-10-25', 10), halloween), null);
-  assert.equal(checkSchedule({ date: '2026-11-01', slotId: 'morning' }, at('2026-10-25', 10), halloween), 'day_closed');
-  assert.equal(checkSchedule(null, at('2026-10-31', 20, 1), halloween), 'range_closed');
-  assert.equal(checkSchedule(null, at('2026-11-01', 10), halloween), 'range_closed');
+  assert.equal(checkSchedule({ date: '2026-11-01', slotId: 'evening' }, at('2026-10-25', 10), halloween), null);
+  assert.equal(checkSchedule({ date: '2026-11-02', slotId: 'morning' }, at('2026-10-25', 10), halloween), 'day_closed');
+  assert.equal(checkSchedule(null, at('2026-11-01', 20, 1), halloween), 'range_closed');
+  assert.equal(checkSchedule(null, at('2026-11-02', 10), halloween), 'range_closed');
   const mixed = { from: seasonal['marigold-toran'].from, to: halloween.to };
   assert.equal(checkSchedule(null, at('2026-10-25', 10), mixed), 'range_conflict');
 });
