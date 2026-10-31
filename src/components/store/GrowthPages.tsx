@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import CollectionBrowser from './CollectionBrowser';
+import { GuideHero, GuideProducts } from './GuideVisuals';
 import { T } from './StoreProvider';
 import { contentHref } from '@/lib/content-locale';
+import { guideHeroImage } from '@/lib/guide-visuals';
 import { JOURNAL, OCCASION_CONTENT, ORDER_QUESTIONS, findJournalEntry, findOccasionContent, type Question } from '@/lib/growth-content';
 import { SITE_URL } from '@/lib/site';
 import type { Locale } from '@/lib/types';
@@ -17,7 +19,7 @@ export function contentMetadata(path: string, title: string, description: string
       canonical: contentHref(path, locale),
       languages: { 'en-AE': path, 'ar-AE': `/ar${path}`, 'x-default': path },
     },
-    openGraph: { title, description, url: contentHref(path, locale), type: 'website', locale: locale === 'ar' ? 'ar_AE' : 'en_AE', alternateLocale: [locale === 'ar' ? 'en_AE' : 'ar_AE'] },
+    openGraph: { title, description, url: contentHref(path, locale), type: 'website', ...(guideHeroImage(path) ? { images: [guideHeroImage(path)!] } : {}), locale: locale === 'ar' ? 'ar_AE' : 'en_AE', alternateLocale: [locale === 'ar' ? 'en_AE' : 'ar_AE'] },
   };
 }
 
@@ -76,16 +78,18 @@ export function JournalIndex({ locale = 'en' }: { locale?: Locale }) {
 export function JournalArticle({ slug, locale = 'en' }: { slug: string; locale?: Locale }) {
   const entry = findJournalEntry(slug);
   if (!entry) notFound();
-  const schema = { '@context': 'https://schema.org', '@type': 'Article', headline: entry.title[locale], description: entry.description[locale], inLanguage: locale === 'ar' ? 'ar-AE' : 'en-AE', mainEntityOfPage: `${SITE_URL}${contentHref(`/journal/${slug}`, locale)}`, author: { '@type': 'Organization', name: 'Maison Botanique', url: SITE_URL } };
+  const schema = { '@context': 'https://schema.org', '@type': 'Article', headline: entry.title[locale], description: entry.description[locale], inLanguage: locale === 'ar' ? 'ar-AE' : 'en-AE', mainEntityOfPage: `${SITE_URL}${contentHref(`/journal/${slug}`, locale)}`, author: { '@type': 'Organization', name: 'Maison Botanique', url: SITE_URL }, ...(guideHeroImage(`/journal/${slug}`) ? { image: `${SITE_URL}${guideHeroImage(`/journal/${slug}`)}` } : {}) };
   return <article className="section section--top growth-page growth-article" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
     <nav className="breadcrumbs" aria-label={locale === 'ar' ? 'مسار التصفح' : 'Breadcrumb'}>
       <Link href={contentHref('/journal', locale)}><T en="Notes on giving" ar="عن الإهداء" /></Link>
     </nav>
     <header className="growth-opening growth-opening--contained"><h1><T {...entry.title} /></h1><p><T {...entry.intro} /></p></header>
+    <GuideHero path={`/journal/${slug}`} />
     <div className="growth-prose">{entry.sections.map((section) => <section key={section.heading.en}>
       <h2><T {...section.heading} /></h2>{section.paragraphs.map((text) => <p key={text.en}><T {...text} /></p>)}
     </section>)}</div>
+    <GuideProducts path={`/journal/${slug}`} />
     <aside className="growth-related">
       <Link className="button" href={contentHref(`/occasions/${entry.occasion}`, locale)}><T {...entry.occasionLabel} /><span aria-hidden="true">↗</span></Link>
       <Link href="/delivery"><T en="Delivery information" ar="معلومات التوصيل" /></Link>

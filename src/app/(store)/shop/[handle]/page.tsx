@@ -50,6 +50,24 @@ const FAQS_BY_PRODUCT: Record<string, { question: { en: string; ar: string }; an
       },
     },
   ],
+  'aimee-red-rose-bouquet': [
+    {
+      question: { en: 'How many roses are in the Aimée bouquet?', ar: 'كم عدد الورود في باقة إيميه؟' },
+      answer: {
+        en: 'Signature has 51 hand-selected red roses, Grand has 101 and Luxe has 201, all wrapped in white paper with a red satin ribbon. Only the rose count changes between sizes.',
+        ar: 'يضم حجم سيغنتشر 51 وردة حمراء منتقاة يدوياً، وغراند 101 وردة، ولوكس 201 وردة، جميعها بغلاف ورقي أبيض وشريط ساتان أحمر. يتغير عدد الورود فقط بين الأحجام.',
+      },
+    },
+  ],
+  'aveline-red-pink-and-white-rose-bouquet': [
+    {
+      question: { en: 'How many roses are in the Aveline bouquet?', ar: 'كم عدد الورود في باقة أفلين؟' },
+      answer: {
+        en: 'Signature has 51 hand-selected red, pink and white roses, Grand has 101 and Luxe has 201. Only the rose count changes between sizes.',
+        ar: 'يضم حجم سيغنتشر 51 وردة حمراء ووردية وبيضاء منتقاة يدوياً، وغراند 101 وردة، ولوكس 201 وردة. يتغير عدد الورود فقط بين الأحجام.',
+      },
+    },
+  ],
 };
 
 const DETAILS = [

@@ -32,3 +32,11 @@
   .growth-journal-list article { padding: 24px 20px; }
 }
 [dir='rtl'] .growth-page h1, [dir='rtl'] .growth-page h2 { letter-spacing: 0; line-height: 1.4; }
+.guide-hero { margin: 0 0 40px; max-width: 1080px; }
+.guide-hero__media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+.guide-hero__media img { object-fit: contain; }
+.guide-hero figcaption { margin-top: 12px; font-size: 15px; color: var(--muted); }
+.guide-hero figcaption a { text-decoration: none; }
+.guide-products { padding-top: 32px; padding-bottom: 32px; }
+.guide-products h2 { font-size: clamp(24px, 2.4vw, 34px); margin-bottom: 24px; }
+@media (max-width: 640px) { .guide-hero__media { aspect-ratio: 4 / 3; } }
