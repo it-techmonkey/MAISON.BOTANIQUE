@@ -35,3 +35,12 @@ test('every guide visual points at a real catalogue product and photo', async ()
     await access(new URL(`../public/collection/${v.hero}-960.webp`, import.meta.url));
   }
 });
+
+test('journal copy is bilingual, has no clock cut-off or stale delivery fee, and every link target exists', () => {
+  const texts = JOURNAL.flatMap((e) => [e.title, e.description, e.intro, e.occasionLabel, ...e.sections.flatMap((s) => [s.heading, ...s.paragraphs])]);
+  for (const t of texts) {
+    assert.ok(t.en.trim() && t.ar.trim(), `missing translation: ${t.en.slice(0, 40)}`);
+    assert.ok(!/order by \d|cut-?off|AED 50\b/i.test(t.en), `forbidden wording: ${t.en.slice(0, 60)}`);
+  }
+  for (const e of JOURNAL) assert.ok(e.occasionHref || OCCASION_CONTENT.some((o) => o.slug === e.occasion), `${e.slug}: no landing page for occasion ${e.occasion}`);
+});

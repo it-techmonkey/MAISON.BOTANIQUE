@@ -91,7 +91,7 @@ export function JournalArticle({ slug, locale = 'en' }: { slug: string; locale?:
     </section>)}</div>
     <GuideProducts path={`/journal/${slug}`} />
     <aside className="growth-related">
-      <Link className="button" href={contentHref(`/occasions/${entry.occasion}`, locale)}><T {...entry.occasionLabel} /><span aria-hidden="true">↗</span></Link>
+      <Link className="button" href={entry.occasionHref ?? contentHref(`/occasions/${entry.occasion}`, locale)}><T {...entry.occasionLabel} /><span aria-hidden="true">↗</span></Link>
       <Link href="/delivery"><T en="Delivery information" ar="معلومات التوصيل" /></Link>
       <Link href="/contact"><T en="Ask the flower desk" ar="اسأل مكتب الزهور" /></Link>
     </aside>
