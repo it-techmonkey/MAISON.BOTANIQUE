@@ -53,9 +53,9 @@ const nextConfig: NextConfig = {
       { source: '/policies/privacy-policy', destination: '/privacy', permanent: true },
       { source: '/policies/terms-of-service', destination: '/terms', permanent: true },
       ...allRenames.map(({ oldHandle, handle }) => ({ source: `/shop/${oldHandle}`, destination: productDestination(handle), permanent: true })),
-      // Occasions are filters on the collection now, not pages.
+      // The initial SEO pilot has two useful landing pages; other occasions keep their filters.
       { source: '/occasions/just-because', destination: '/shop#occasion/gifts-for-her', permanent: true },
-      { source: '/occasions/:occasion', destination: '/shop#occasion/:occasion', permanent: true },
+      { source: '/occasions/:occasion((?!birthday$|love$)[^/]+)', destination: '/shop#occasion/:occasion', permanent: true },
       { source: '/occasions', destination: '/#occasions', permanent: true },
     ];
   },
