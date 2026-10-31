@@ -8,6 +8,7 @@ import { useStore } from './StoreProvider';
 import { isMostLoved } from '@/lib/most-loved';
 import { SHOW_COLLECTION_EVENT, occasionHash, type ShowCollectionDetail } from '@/lib/site';
 import SaleTag from './SaleTag';
+import FirstOrderPrice from './FirstOrderPrice';
 import Money from './Money';
 
 const PAGE = 24;
@@ -168,6 +169,7 @@ function Piece({ product, index, t, ar, onOpen }: { product: Product; index: num
           <button type="button" className="mbc-add" onClick={() => onOpen(product, index + 1)} disabled={!product.available}
             aria-label={`${t.addFull}: ${name}`}>{product.available ? <>{t.add} <span aria-hidden="true">+</span></> : t.soldOut}</button>
         </div>
+        <FirstOrderPrice id={product.id} price={product.price} compact />
       </div>
     </article>
   );
@@ -178,7 +180,8 @@ function Piece({ product, index, t, ar, onOpen }: { product: Product; index: num
  * budget, stems), sorting and a grid that loads 24 at a time. Every piece
  * opens the quick-add sheet.
  */
-export default function CollectionBrowser({ listId = 'home', initialOccasion, showOccasions = true }: { listId?: string; initialOccasion?: string; showOccasions?: boolean }) {
+export default function CollectionBrowser({ listId = 'home', initialOccasion, showOccasions = true, headingLevel = 2 }: { listId?: string; initialOccasion?: string; showOccasions?: boolean; headingLevel?: 1 | 2 }) {
+  const CollectionHeading = headingLevel === 1 ? 'h1' : 'h2';
   const { ar, live, products, openProduct } = useStore();
   const t = COPY[ar ? 'ar' : 'en'];
   const catalog = useMemo(() => liveCatalogGroups(products), [products]);
@@ -340,7 +343,7 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
     <section className="mbc" id="shop" ref={sectionRef} aria-labelledby="mbc-title" data-track-section={`${listId}_collection`}>
       <div className="mbc-in mbc-head">
         <div className="mbc-head-title">
-          <h2 id="mbc-title">{currentGroup && currentGroup.id !== 'all' ? (ar ? currentGroup.ar : currentGroup.en) : t.title}</h2>
+          <CollectionHeading className="mbc-heading" id="mbc-title">{currentGroup && currentGroup.id !== 'all' ? (ar ? currentGroup.ar : currentGroup.en) : t.title}</CollectionHeading>
         </div>
         <label className="mbc-search"><span className="mbc-sr">{t.search}</span>
           <input ref={searchRef} type="search" value={state.query} placeholder={t.searchPlaceholder}

@@ -14,7 +14,7 @@ import { WhatsAppIcon } from './WhatsAppButton';
 const FOOTER = {
   en: {
     shop: 'Shop', occasions: 'Occasions', help: 'Help', bloom: 'Stay in bloom',
-    delivery: 'Same-day delivery in Dubai. UAE delivery: AED 30 in Dubai · AED 50 elsewhere in the UAE.',
+    delivery: 'Same-day delivery in the UAE. Delivery: AED 30 in Dubai · AED 65 elsewhere in the UAE.',
     bloomLine: 'Be the first to know about new collections and offers.',
     whatsapp: 'WhatsApp', language: 'العربية', top: 'Back to top',
     notice: 'Prices are in AED. Delivery and any taxes are confirmed at checkout.',
@@ -22,7 +22,7 @@ const FOOTER = {
   },
   ar: {
     shop: 'تسوّق', occasions: 'المناسبات', help: 'المساعدة', bloom: 'ابقَ في أجواء الزهور',
-    delivery: 'توصيل في اليوم نفسه داخل دبي. نوصل إلى جميع أنحاء الإمارات: ٣٠ درهماً في دبي، و٥٠ درهماً في بقية الإمارات.',
+    delivery: 'توصيل في اليوم نفسه داخل الإمارات. رسوم التوصيل: ٣٠ درهماً في دبي، و٦٥ درهماً في بقية الإمارات.',
     bloomLine: 'كن أول من يعرف عن المجموعات والعروض الجديدة.',
     whatsapp: 'واتساب', language: 'English', top: 'العودة للأعلى',
     notice: 'الأسعار بالدرهم الإماراتي. يُؤكَّد التوصيل وأي ضرائب عند الدفع.',
@@ -38,6 +38,7 @@ const HELP = [
   { href: '/refund-policy', en: 'Refund policy', ar: 'سياسة الاسترداد' },
   { href: '/contact', en: 'Contact us', ar: 'تواصل معنا' },
   { href: '/account', en: 'Your account', ar: 'حسابي' },
+  { href: '/faq', en: 'Ordering questions', ar: 'أسئلة حول الطلب' },
 ];
 
 const BASE = [
@@ -78,6 +79,7 @@ export default function SiteFooter() {
         </nav>
         <nav aria-label={t.help}>
           <h2>{t.help}</h2>
+          <Link href={ar ? '/ar/journal' : '/journal'}>{ar ? 'عن الإهداء' : 'Notes on giving'}</Link>
           {HELP.map((page) => <Link key={page.href} href={page.href}>{label(page)}</Link>)}
           {whatsapp && <a href={whatsapp} target="_blank" rel="noopener noreferrer">{t.whatsapp}</a>}
         </nav>

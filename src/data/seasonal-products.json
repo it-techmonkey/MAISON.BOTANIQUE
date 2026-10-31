@@ -3,10 +3,10 @@
   "halloween": ["pumpkin-and-pralines", "the-pumpkin-basket", "jack-o-bloom", "the-midnight-pumpkin"],
   "diwali": ["marigold-toran"],
   "deliveryRanges": {
-    "pumpkin-and-pralines": { "from": "2026-10-25", "to": "2026-10-31" },
-    "the-pumpkin-basket": { "from": "2026-10-25", "to": "2026-10-31" },
-    "jack-o-bloom": { "from": "2026-10-25", "to": "2026-10-31" },
-    "the-midnight-pumpkin": { "from": "2026-10-25", "to": "2026-10-31" },
+    "pumpkin-and-pralines": { "from": "2026-10-25", "to": "2026-11-01" },
+    "the-pumpkin-basket": { "from": "2026-10-25", "to": "2026-11-01" },
+    "jack-o-bloom": { "from": "2026-10-25", "to": "2026-11-01" },
+    "the-midnight-pumpkin": { "from": "2026-10-25", "to": "2026-11-01" },
     "marigold-toran": { "from": "2026-11-05", "to": "2026-11-15" }
   },
   "products": [

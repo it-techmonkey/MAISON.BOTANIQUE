@@ -20,6 +20,7 @@ import { dubaiNow, windowLabel, type DeliverySchedule, type ScheduleProblem } fr
 import { CART_ATTRIBUTE_DISTINCT_ID, CART_ATTRIBUTE_SESSION_ID, isPostHogEnabled } from './config';
 import { publishCartViewed, publishProductViewed, publishSearchViewed } from './shopify';
 import { metaCheckout, metaProduct } from './meta-pixel';
+import { sourceCartAttributes } from './source';
 
 type Properties = Record<string, unknown>;
 
@@ -181,12 +182,13 @@ export function trackCartError(operation: string) {
   capture('Cart Error', { operation });
 }
 
-/** The hidden cart attributes that tie a Shopify order back to this PostHog visitor and session. */
+/** The hidden cart attributes that tie a Shopify order back to its source and to this PostHog visitor and session. */
 export function analyticsCartAttributes(): Array<{ key: string; value: string }> {
-  if (!isPostHogEnabled || !posthog.__loaded) return [];
+  if (!isPostHogEnabled || !posthog.__loaded) return sourceCartAttributes();
   const distinctId = posthog.get_distinct_id();
   const sessionId = posthog.get_session_id();
   return [
+    ...sourceCartAttributes(),
     ...(distinctId ? [{ key: CART_ATTRIBUTE_DISTINCT_ID, value: distinctId }] : []),
     ...(sessionId ? [{ key: CART_ATTRIBUTE_SESSION_ID, value: sessionId }] : []),
   ];

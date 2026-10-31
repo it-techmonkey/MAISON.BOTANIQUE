@@ -4,8 +4,10 @@ import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { trackProductViewed } from '@/lib/analytics/track';
 import { occasionPath, findOccasion } from '@/lib/site';
+import { contentHref } from '@/lib/content-locale';
 import type { Product } from '@/lib/types';
 import SaleTag from './SaleTag';
+import FirstOrderPrice from './FirstOrderPrice';
 import { PurchaseOptions, formatAED } from './ShopSheets';
 import { useStore } from './StoreProvider';
 import '@/styles/shop.css';
@@ -42,6 +44,7 @@ function Purchase({ product }: { product: Product }) {
         <strong>{many ? `${t('From', 'من')} ` : ''}<Money amount={product.price} ar={ar} whole /></strong>
         {product.compareAtPrice && <s aria-label={`${t('was', 'كان')} ${formatAED(product.compareAtPrice, ar)}`}><Money amount={product.compareAtPrice} ar={ar} whole /></s>}
         <SaleTag price={product.price} compareAtPrice={product.compareAtPrice} />
+        <FirstOrderPrice id={product.id} price={product.price} className="first-order--block" />
       </p>
       {(ar ? product.lineAr : product.line) && <p className="purchase__line">{ar ? product.lineAr : product.line}</p>}
       {composition.length > 0
@@ -53,7 +56,7 @@ function Purchase({ product }: { product: Product }) {
           <span>{t('Lovely for', 'مناسبة لـ')}</span>
           {product.occasions.map((occasionId) => {
             const occasion = findOccasion(occasionId);
-            return occasion ? <Link key={occasionId} href={occasionPath(occasionId)}>{ar ? occasion.name.ar : occasion.name.en}</Link> : null;
+            return occasion ? <Link key={occasionId} href={contentHref(occasionPath(occasionId), ar ? 'ar' : 'en')}>{ar ? occasion.name.ar : occasion.name.en}</Link> : null;
           })}
         </p>
       )}

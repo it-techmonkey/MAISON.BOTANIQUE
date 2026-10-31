@@ -13,7 +13,8 @@ import {
 } from '@/lib/delivery';
 import { useDubaiNow } from '@/lib/use-today';
 import { SITE_URL } from '@/lib/site';
-import { deliveryRangeFor, TORAN_HANDLE } from '@/lib/seasonal';
+import { deliveryRangeFor, REAL_PUMPKIN_HANDLES, TORAN_HANDLE } from '@/lib/seasonal';
+import PumpkinMark from './PumpkinMark';
 import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import type { Product } from '@/lib/types';
 import { PROMISES } from './HeroPromises';
@@ -39,10 +40,10 @@ const copy = {
     range_conflict: 'Halloween and Diwali gifts need separate orders. Remove one to choose a delivery date.',
     range_closed: 'Ordering for this seasonal delivery window has ended.',
     orderSeparately: 'Place a separate order',
-    windowLegend: 'Time', missing_date: 'Choose a delivery day and time to continue.', missing_slot: 'Choose a delivery time to continue.',
+    windowLegend: 'Time', nightNote: 'Need 9pm – 12am? Order on WhatsApp', missing_date: 'Choose a delivery day and time to continue.', missing_slot: 'Choose a delivery time to continue.',
     date_passed: 'That delivery day has passed. Please choose another.', slot_passed: 'That delivery time has passed. Please choose another.',
     day_closed: "We aren't delivering on that day. Please choose another.",
-    deliveryLine: 'Arrives', askAbout: 'Ask about this gift on WhatsApp',
+    deliveryLine: 'Arrives', askAbout: 'Ask about this gift on WhatsApp', askUs: 'Ask us',
     helpOrder: 'Questions? Chat with us on WhatsApp', orderWhatsapp: 'Order on WhatsApp instead',
     addBag: 'Add to bag', subtotal: 'Subtotal',
     offerLine: 'Welcome offer: 25% off your first order with your code at checkout.',
@@ -75,10 +76,10 @@ const copy = {
     range_conflict: 'تحتاج هدايا الهالوين وديوالي إلى طلبين منفصلين. أزل أحدهما لاختيار موعد التوصيل.',
     range_closed: 'انتهت فترة طلب التوصيل لهذا المنتج الموسمي.',
     orderSeparately: 'أنشئ طلباً منفصلاً',
-    windowLegend: 'الوقت', missing_date: 'اختر يوم التوصيل ووقته للمتابعة.', missing_slot: 'اختر وقت التوصيل للمتابعة.',
+    windowLegend: 'الوقت', nightNote: 'تريد من 9 مساءً حتى 12 منتصف الليل؟ اطلب عبر واتساب', missing_date: 'اختر يوم التوصيل ووقته للمتابعة.', missing_slot: 'اختر وقت التوصيل للمتابعة.',
     date_passed: 'انقضى يوم التوصيل هذا. يرجى اختيار يوم آخر.', slot_passed: 'انقضى موعد التوصيل هذا. يرجى اختيار موعد آخر.',
     day_closed: 'لا نوصّل في هذا اليوم. يرجى اختيار يوم آخر.',
-    deliveryLine: 'موعد الوصول', askAbout: 'استفسر عن هذه الهدية عبر واتساب',
+    deliveryLine: 'موعد الوصول', askAbout: 'استفسر عن هذه الهدية عبر واتساب', askUs: 'اسألنا',
     helpOrder: 'لديك سؤال؟ تحدّث معنا عبر واتساب', orderWhatsapp: 'اطلب عبر واتساب بدلاً من ذلك',
     addBag: 'أضف إلى الحقيبة', subtotal: 'المجموع الفرعي',
     offerLine: 'عرض الترحيب: خصم ٢٥٪ على طلبك الأول برمزك عند الدفع.',
@@ -278,7 +279,7 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
         </section>
 
         <ul className="qa-promises" aria-label={ar ? 'وعودنا' : 'Our promises'}>
-          {PROMISES.filter((item) => product.id !== TORAN_HANDLE || item.text.en !== 'Same-day delivery in Dubai').map((item) => <li key={item.text.en}>{item.icon}<span>{ar ? item.text.ar : item.text.en}</span></li>)}
+          {PROMISES.filter((item) => product.id !== TORAN_HANDLE || item.text.en !== 'Same-day delivery in the UAE').map((item) => <li key={item.text.en}>{item.icon}<span>{ar ? item.text.ar : item.text.en}</span></li>)}
         </ul>
         {related.length > 0 && onOpen && <section className="qa-related" aria-labelledby={`qa-related-title-${product.id}`}>
           <h3 id={`qa-related-title-${product.id}`} className="qa-included">{t.alsoLike}</h3>
@@ -292,6 +293,8 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
         </section>}
       </div>
       <div className="qa-foot">
+        {REAL_PUMPKIN_HANDLES.includes(product.id) && <p className="qa-natural"><PumpkinMark />{ar ? 'يقطينة حقيقية قابلة للتحلل، يختلف شكلها ولونها قليلاً عن الصورة.' : 'Real, compostable pumpkin: shape and shade vary slightly from the photo.'}</p>}
+        {compact && askLink && <a className="qa-ask" href={askLink} target="_blank" rel="noopener noreferrer" aria-label={t.askAbout}><WhatsAppIcon /><span>{t.askUs}</span></a>}
         <button className="qa-add" type="button" disabled={customMissing || !chosen.available || unavailableSeasonal}
           onClick={() => onAdd({
             sizeId: chosen.id, note: note.trim(), signedAs: signedAs.trim(), anonymous, custom: custom.trim(),
@@ -437,6 +440,7 @@ function DeliveryPicker({ t, value, onChange, problem, scope = 'bag', range = nu
           </label>
         ))}
       </div>}
+      {date && !closed && !range && <a className="dl-night" href={whatsappLink(whatsappMessage.general(ar)) ?? undefined} target="_blank" rel="noopener noreferrer">{t.nightNote}</a>}
       {problem && problem !== 'day_closed' && <p className="ll-cart-date-alert" role="alert">{t[problem]}</p>}
       <span className="ll-shop-help">{range ? t.seasonalDateHint : t.dateHint}</span>
       </>}

@@ -6,10 +6,12 @@ import { Bi, SectionHeading } from '@/components/store/blocks';
 import { CatalogRail } from '@/components/store/ProductCard';
 import ProductPurchase from '@/components/store/ProductPurchase';
 import { T } from '@/components/store/StoreProvider';
+import { OrderQuestions } from '@/components/store/GrowthPages';
+import { ORDER_QUESTIONS } from '@/lib/growth-content';
 import { SITE_URL } from '@/lib/site';
 import { productSchema } from '@/lib/product-schema';
 import { formatDeliveryDate } from '@/lib/delivery';
-import { seasonalDeliveryRange, TORAN_HANDLE } from '@/lib/seasonal';
+import { REAL_PUMPKIN_HANDLES, seasonalDeliveryRange, TORAN_HANDLE } from '@/lib/seasonal';
 import { getCatalog } from '@/lib/shopify/catalog';
 import '@/styles/shop.css';
 
@@ -48,14 +50,32 @@ const FAQS_BY_PRODUCT: Record<string, { question: { en: string; ar: string }; an
       },
     },
   ],
+  'aimee-red-rose-bouquet': [
+    {
+      question: { en: 'How many roses are in the Aimée bouquet?', ar: 'كم عدد الورود في باقة إيميه؟' },
+      answer: {
+        en: 'Signature has 51 hand-selected red roses, Grand has 101 and Luxe has 201, all wrapped in white paper with a red satin ribbon. Only the rose count changes between sizes.',
+        ar: 'يضم حجم سيغنتشر 51 وردة حمراء منتقاة يدوياً، وغراند 101 وردة، ولوكس 201 وردة، جميعها بغلاف ورقي أبيض وشريط ساتان أحمر. يتغير عدد الورود فقط بين الأحجام.',
+      },
+    },
+  ],
+  'aveline-red-pink-and-white-rose-bouquet': [
+    {
+      question: { en: 'How many roses are in the Aveline bouquet?', ar: 'كم عدد الورود في باقة أفلين؟' },
+      answer: {
+        en: 'Signature has 51 hand-selected red, pink and white roses, Grand has 101 and Luxe has 201. Only the rose count changes between sizes.',
+        ar: 'يضم حجم سيغنتشر 51 وردة حمراء ووردية وبيضاء منتقاة يدوياً، وغراند 101 وردة، ولوكس 201 وردة. يتغير عدد الورود فقط بين الأحجام.',
+      },
+    },
+  ],
 };
 
 const DETAILS = [
   {
     title: { en: 'Delivery', ar: 'التوصيل' },
     body: {
-      en: 'Same-day delivery is available in Dubai; we also deliver across the UAE. The delivery fee for your address is shown at checkout. Choose the day and a three-hour window (9am to 9pm) in your bag; Dubai same-day windows close one hour before they start.',
-      ar: 'التوصيل في اليوم نفسه متاح داخل دبي، ونوصل أيضاً إلى جميع أنحاء الإمارات. تظهر رسوم التوصيل لعنوانك عند الدفع. اختر اليوم وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، وتُغلق فترات اليوم نفسه داخل دبي قبل بدايتها بساعة واحدة.',
+      en: 'Same-day delivery is available across the UAE. The delivery fee for your address is shown at checkout. Choose the day and a three-hour window (9am to 9pm) in your bag; same-day windows close one hour before they end (last online order 8pm). For 9pm to 12am, order on WhatsApp.',
+      ar: 'التوصيل في اليوم نفسه متاح في جميع أنحاء الإمارات. تظهر رسوم التوصيل لعنوانك عند الدفع. اختر اليوم وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، وتُغلق فترات اليوم نفسه قبل بدايتها بساعة واحدة.',
     },
   },
   {
@@ -87,6 +107,14 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
     if (index === 1 && product.id === TORAN_HANDLE) return { ...item, body: {
       en: 'Fresh marigolds naturally vary a little in shade and fullness from the photograph.',
       ar: 'تختلف أزهار القطيفة الطازجة طبيعياً قليلاً في اللون والكثافة عما يظهر في الصورة.',
+    } };
+    if (index === 1 && REAL_PUMPKIN_HANDLES.includes(product.id)) return { ...item, body: {
+      en: 'The pumpkin is real and natural, so its shape and shade vary slightly from the photograph. Flowers are natural and seasonal; if a stem is not at its best, we replace it with one of equal quality.',
+      ar: 'اليقطينة حقيقية وطبيعية، لذا يختلف شكلها ولونها قليلاً عن الصورة. الزهور طبيعية وموسمية؛ وإذا لم تكن زهرة ما في أفضل حالاتها نستبدلها بأخرى بالجودة نفسها.',
+    } };
+    if (index === 2 && REAL_PUMPKIN_HANDLES.includes(product.id)) return { ...item, body: {
+      en: 'Keep it in a cool place away from direct sun and air-conditioning vents. The pumpkin is compostable: once it starts to soften, remove the flowers and liner and compost the pumpkin.',
+      ar: 'ضعها في مكان بارد بعيداً عن الشمس المباشرة وفتحات التكييف. اليقطينة قابلة للتحلل: عندما تبدأ بالليونة، أزل الزهور والبطانة وضع اليقطينة في السماد.',
     } };
     if (index === 2 && range) return { ...item, body: product.id === TORAN_HANDLE ? {
       en: 'Keep the fresh toran in a cool, shaded place until you hang it. Avoid direct sun and heat.',
@@ -123,6 +151,10 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
             </div>
           </div>
         </div>
+        {(product.answerSummary || product.answerSummaryAr) && <p className="growth-product-answer"><T en={product.answerSummary || product.description} ar={product.answerSummaryAr || product.descriptionAr} /></p>}
+      </div>
+      <div className="section growth-page growth-reading">
+        <OrderQuestions questions={ORDER_QUESTIONS.filter(({ question }) => ['Can I include a handwritten card?', 'Which size is in the photograph?'].includes(question.en))} />
       </div>
       <section className="section section--sand" aria-labelledby="related-title">
         <SectionHeading id="related-title"

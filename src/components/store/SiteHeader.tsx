@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { BUDGET_BANDS, liveCatalogGroups } from '@/lib/catalog-groups';
 import { SearchIcon } from './icons';
 import { useStore } from './StoreProvider';
+import { contentHref } from '@/lib/content-locale';
 
 /** The storefront wordmark: small MAISON over a large BOTANIQUE. */
 export function Logo() {
@@ -19,6 +20,9 @@ export function Logo() {
  */
 export function CollectionLink({ hash, onClick, children, className, 'aria-label': ariaLabel }: { hash: string; onClick?: () => void; children: ReactNode; className?: string; 'aria-label'?: string }) {
   const pathname = usePathname();
+  const { locale } = useStore();
+  const occasion = hash.match(/^occasion\/(birthday|love)$/)?.[1];
+  if (occasion) return <Link className={className} href={contentHref(`/occasions/${occasion}`, locale)} onClick={onClick} aria-label={ariaLabel}>{children}</Link>;
   const onShop = pathname === '/' || pathname === '/shop';
   return onShop
     ? <a className={className} href={`#${hash}`} onClick={onClick} aria-label={ariaLabel}>{children}</a>
@@ -27,8 +31,8 @@ export function CollectionLink({ hash, onClick, children, className, 'aria-label
 
 // The opening offer runs above the header; the whole ribbon opens the sign-up.
 const OFFER = {
-  en: ['Welcome offer · 25% off your first order', 'Same-day delivery in Dubai', 'Pre-book up to 60 days ahead'],
-  ar: ['عرض الترحيب · خصم ٢٥٪ على طلبك الأول', 'توصيل في اليوم نفسه داخل دبي', 'احجز مسبقاً حتى ٦٠ يوماً'],
+  en: ['Welcome offer · 25% off your first order', 'Same-day delivery in the UAE', 'Pre-book up to 60 days ahead'],
+  ar: ['عرض الترحيب · خصم ٢٥٪ على طلبك الأول', 'توصيل في اليوم نفسه داخل الإمارات', 'احجز مسبقاً حتى ٦٠ يوماً'],
 };
 
 function OfferBar() {
