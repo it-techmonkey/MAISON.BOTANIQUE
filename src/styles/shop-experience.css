@@ -500,3 +500,36 @@ a.ll-shop-primary { text-decoration: none; box-sizing: border-box; }
 .dl-night { display: block; margin-top: 8px; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; color: inherit; }
 .qa-natural { display: flex; align-items: flex-start; gap: 8px; margin: 0 0 10px; color: #8F4300; font-size: 13px; line-height: 1.4; }
 .qa-natural svg { flex: none; margin-top: 2px; }
+
+/* Product page buy bar: "Ask us" on WhatsApp beside "Add to bag". */
+.qa-page .qa-foot { display: flex; gap: 10px; align-items: stretch; }
+.qa-page .qa-add { flex: 1; width: auto; }
+.qa-ask { display: inline-flex; align-items: center; gap: 8px; padding-inline: 16px; border: 1px solid var(--qa-hair); color: var(--ink); font: 500 12px/1 var(--font-body); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.qa-ask svg { width: 20px; height: 20px; color: #25d366; }
+.qa-ask:hover, .qa-ask:focus-visible { border-color: var(--ink); }
+[dir='rtl'] .qa-ask { font-family: var(--font-arabic); letter-spacing: 0; text-transform: none; font-size: 13px; }
+
+/* Phones, product page (paid-ad visitors never scrolled, 29 Oct): a shorter photo so the name and price show on the first screen,
+   the size choice straight after the price, and the buy bar pinned to the screen from the start. */
+@media (max-width: 640px) {
+  .product-page { padding-bottom: 96px; }
+  .product-page .breadcrumbs { display: none; }
+  .product-page .product-gallery { width: 100%; aspect-ratio: 1 / 1; max-height: 34svh; }
+  .product-page .product-gallery img { object-position: 50% 35%; }
+  .purchase { display: flex; flex-direction: column; }
+  .product-page .purchase h1 { font-size: 34px; line-height: 1; }
+  [dir='rtl'] .product-page .purchase h1 { font-size: 30px; line-height: 1.3; }
+  .purchase .qa-page, .purchase .qa-scroll { display: contents; }
+  .purchase .qa-scroll > fieldset { order: 1; margin-top: 20px; }
+  .purchase :is(.purchase__line, .purchase__composition, .purchase__description, .purchase__occasions) { order: 2; }
+  .purchase .qa-scroll > .qa-delivery { order: 3; margin-top: 24px; }
+  .purchase .qa-scroll > section:not(.qa-delivery) { order: 4; margin-top: 24px; }
+  .purchase .qa-promises { order: 5; margin-top: 24px; }
+  .qa-page .qa-foot { position: fixed; inset-inline: 0; bottom: 0; z-index: 80; padding: 10px 20px max(10px, env(safe-area-inset-bottom)); }
+  .qa-ask { min-height: 48px; }
+  body:has(.qa-page) .wa-float { display: none; }
+}
+@media (max-width: 360px) {
+  .qa-page .qa-add { padding-inline: 8px; letter-spacing: .12em; white-space: nowrap; }
+  .qa-ask { padding-inline: 12px; }
+}
