@@ -6,7 +6,7 @@ import { readFileSync } from 'node:fs';
 
 const {
   DELIVERY_RULES, addDays, bookableDays, checkSchedule, dateOpen, dubaiNow, earliestDate, lastBookableDate,
-  scheduleAttributes, scheduleFromAttributes, slotsFor, windowLabel, windowsFor,
+  scheduleAttributes, scheduleFromAttributes, slotsFor, usableSchedule, windowLabel, windowsFor,
 } = await import('../src/lib/delivery.ts');
 
 const at = (date, hh, mm = 0) => ({ date, minutes: hh * 60 + mm });
@@ -23,18 +23,21 @@ test('four daily windows, 9am to 9pm, one-hour lead, 60 days ahead', () => {
   assert.equal(windowLabel('evening', false), '6pm – 9pm');
 });
 
-test('a same-day window closes exactly one hour before it starts', () => {
-  assert.deepEqual(open('2026-10-21', at('2026-10-21', 7, 59)), ['morning', 'midday', 'afternoon', 'evening']);
-  assert.deepEqual(open('2026-10-21', at('2026-10-21', 8, 0)), ['morning', 'midday', 'afternoon', 'evening']);
-  assert.deepEqual(open('2026-10-21', at('2026-10-21', 8, 1)), ['midday', 'afternoon', 'evening']);
-  // At 11:00 the noon window is still bookable: only the 1pm or 2pm customer needs it.
-  assert.deepEqual(open('2026-10-21', at('2026-10-21', 11, 0)), ['midday', 'afternoon', 'evening']);
-  assert.deepEqual(open('2026-10-21', at('2026-10-21', 11, 1)), ['afternoon', 'evening']);
-  assert.deepEqual(open('2026-10-21', at('2026-10-21', 14, 0)), ['afternoon', 'evening']);
-  assert.deepEqual(open('2026-10-21', at('2026-10-21', 17, 0)), ['evening']);
-  assert.deepEqual(open('2026-10-21', at('2026-10-21', 17, 1)), []);
+test('a same-day window closes exactly one hour before it ends', () => {
+  const all = ['morning', 'midday', 'afternoon', 'evening'];
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 7, 0)), all);
+  // A running window stays bookable: 10:30 can still book the 9am–12pm window.
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 11, 0)), all);
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 11, 1)), ['midday', 'afternoon', 'evening']);
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 14, 0)), ['midday', 'afternoon', 'evening']);
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 14, 1)), ['afternoon', 'evening']);
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 17, 1)), ['evening']);
+  // 7pm and 8pm can still book 6–9pm; after 8pm only tomorrow is left.
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 19, 0)), ['evening']);
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 20, 0)), ['evening']);
+  assert.deepEqual(open('2026-10-21', at('2026-10-21', 20, 1)), []);
   // Passed windows stay listed but disabled, so the picker layout does not jump.
-  const windows = windowsFor('2026-10-21', at('2026-10-21', 10, 0));
+  const windows = windowsFor('2026-10-21', at('2026-10-21', 12, 0));
   assert.equal(windows.length, 4);
   assert.deepEqual(windows.filter((w) => !w.available).map((w) => w.id), ['morning']);
 });
@@ -44,9 +47,9 @@ test('tomorrow is fully open even late tonight', () => {
 });
 
 test('after the last same-day cut-off the earliest date moves to tomorrow', () => {
-  assert.equal(earliestDate(at('2026-10-21', 16, 59)), '2026-10-21');
-  assert.equal(earliestDate(at('2026-10-21', 17, 1)), '2026-10-22');
-  assert.deepEqual(bookableDays(3, at('2026-10-21', 20, 0)), ['2026-10-22', '2026-10-23', '2026-10-24']);
+  assert.equal(earliestDate(at('2026-10-21', 20, 0)), '2026-10-21');
+  assert.equal(earliestDate(at('2026-10-21', 20, 1)), '2026-10-22');
+  assert.deepEqual(bookableDays(3, at('2026-10-21', 21, 0)), ['2026-10-22', '2026-10-23', '2026-10-24']);
 });
 
 test('booking horizon: today plus 60 days, nothing after, nothing in the past', () => {
@@ -68,7 +71,7 @@ test('checkSchedule names each problem the bag shows', () => {
   assert.equal(checkSchedule({ date: '2026-10-22', slotId: 'brunch' }, now), 'missing_slot');
   assert.equal(checkSchedule({ date: '2026-10-20', slotId: 'evening' }, now), 'date_passed');
   assert.equal(checkSchedule({ date: '2026-12-21', slotId: 'evening' }, now), 'day_closed');
-  assert.equal(checkSchedule({ date: '2026-10-21', slotId: 'afternoon' }, now), 'slot_passed');
+  assert.equal(checkSchedule({ date: '2026-10-21', slotId: 'midday' }, now), 'slot_passed');
   assert.equal(checkSchedule({ date: '2026-10-21', slotId: 'evening' }, now), null);
   assert.equal(checkSchedule({ date: '2026-12-20', slotId: 'morning' }, now), null);
 });
@@ -89,7 +92,20 @@ test('the schedule round-trips through Shopify cart attributes', () => {
   assert.deepEqual(scheduleFromAttributes(Object.fromEntries(attributes.map((a) => [a.key, a.value]))), schedule);
 });
 
-// The owner kept toran delivery open 5–15 November; Halloween ends 31 October.
+test('a schedule saved on an earlier visit is dropped once it can no longer be booked', () => {
+  // Reported 22 Oct 2026, 18:30 Dubai: a 21 Oct choice came back as "That delivery day has passed".
+  const now = at('2026-10-22', 20, 30);
+  assert.equal(usableSchedule({ date: '2026-10-21', slotId: 'afternoon' }, now), null);
+  assert.equal(usableSchedule({ date: '2026-10-22', slotId: 'evening' }, now), null);
+  assert.equal(usableSchedule({ date: '2026-12-22', slotId: 'morning' }, now), null);
+  assert.equal(usableSchedule(null, now), null);
+  assert.deepEqual(usableSchedule({ date: '2026-10-23', slotId: 'morning' }, now), { date: '2026-10-23', slotId: 'morning' });
+  assert.deepEqual(usableSchedule({ date: '2026-12-21', slotId: 'evening' }, now), { date: '2026-12-21', slotId: 'evening' });
+  // Earlier the same day, today's evening window is still open.
+  assert.deepEqual(usableSchedule({ date: '2026-10-22', slotId: 'evening' }, at('2026-10-22', 15, 0)), { date: '2026-10-22', slotId: 'evening' });
+});
+
+// The owner kept toran delivery open 5–15 November; Halloween delivery ends Sunday 1 November.
 test('a pre-order range limits delivery to its dates', () => {
   const range = seasonal['marigold-toran'];
   const now = at('2026-10-25', 10);
@@ -105,22 +121,22 @@ test('a pre-order range limits delivery to its dates', () => {
   assert.equal(checkSchedule({ date: '2026-10-26', slotId: 'morning' }, now, range), 'day_closed');
   assert.equal(checkSchedule({ date: '2026-11-06', slotId: 'evening' }, now, range), null);
   assert.equal(checkSchedule({ date: '2026-11-15', slotId: 'evening' }, now, range), null);
-  assert.equal(checkSchedule(null, at('2026-11-15', 17, 1), range), 'range_closed');
+  assert.equal(checkSchedule(null, at('2026-11-15', 20, 1), range), 'range_closed');
   assert.equal(checkSchedule(null, at('2026-11-16', 10), range), 'range_closed');
   // Without a pre-order the normal schedule is unchanged.
   assert.equal(checkSchedule({ date: '2026-10-26', slotId: 'morning' }, now), null);
 });
 
-test('Halloween ends on 31 October and cannot share a delivery date with the toran', () => {
+test('Halloween ends on Sunday 1 November and cannot share a delivery date with the toran', () => {
   const halloween = seasonal['pumpkin-and-pralines'];
-  assert.deepEqual(halloween, { from: '2026-10-25', to: '2026-10-31' });
+  assert.deepEqual(halloween, { from: '2026-10-25', to: '2026-11-01' });
   for (const handle of ['the-pumpkin-basket', 'jack-o-bloom', 'the-midnight-pumpkin']) {
     assert.deepEqual(seasonal[handle], halloween);
   }
-  assert.equal(checkSchedule({ date: '2026-10-31', slotId: 'evening' }, at('2026-10-25', 10), halloween), null);
-  assert.equal(checkSchedule({ date: '2026-11-01', slotId: 'morning' }, at('2026-10-25', 10), halloween), 'day_closed');
-  assert.equal(checkSchedule(null, at('2026-10-31', 17, 1), halloween), 'range_closed');
-  assert.equal(checkSchedule(null, at('2026-11-01', 10), halloween), 'range_closed');
+  assert.equal(checkSchedule({ date: '2026-11-01', slotId: 'evening' }, at('2026-10-25', 10), halloween), null);
+  assert.equal(checkSchedule({ date: '2026-11-02', slotId: 'morning' }, at('2026-10-25', 10), halloween), 'day_closed');
+  assert.equal(checkSchedule(null, at('2026-11-01', 20, 1), halloween), 'range_closed');
+  assert.equal(checkSchedule(null, at('2026-11-02', 10), halloween), 'range_closed');
   const mixed = { from: seasonal['marigold-toran'].from, to: halloween.to };
   assert.equal(checkSchedule(null, at('2026-10-25', 10), mixed), 'range_conflict');
 });

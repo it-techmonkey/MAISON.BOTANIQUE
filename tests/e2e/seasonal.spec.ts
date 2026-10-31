@@ -34,8 +34,14 @@ test('a toran and Halloween gift need separate orders', async ({ page }) => {
   await expect(page.locator('.qa-add')).toContainText('Place a separate order');
 });
 
-test('Halloween closes after 31 October while the Diwali pre-order remains visible', async ({ page }) => {
-  await page.clock.install({ time: atDubaiNoon('2026-11-01') });
+test('the pumpkin delivery picker runs to Sunday 1 November', async ({ page }) => {
+  await page.clock.install({ time: atDubaiNoon('2026-10-30') });
+  await openProduct(page, 'pumpkin-and-pralines');
+  await expect(page.locator('.dl-picker-product')).toContainText('Sun 1 Nov');
+});
+
+test('Halloween closes after 1 November while the Diwali pre-order remains visible', async ({ page }) => {
+  await page.clock.install({ time: atDubaiNoon('2026-11-02') });
   await page.goto('/');
   await expect(page.locator('.sea-hw')).toHaveCount(0);
   await expect(page.locator('.sea-dw')).toBeVisible();
@@ -54,7 +60,7 @@ test('Diwali band and toran ordering close after 15 November', async ({ page }) 
 });
 
 test('ordering closes when the last delivery window can no longer be booked', async ({ page }) => {
-  await page.clock.install({ time: new Date('2026-10-31T13:01:00Z') });
+  await page.clock.install({ time: new Date('2026-11-01T16:01:00Z') });
   await openClosedSeasonal(page, 'pumpkin-and-pralines');
   await expect(page.locator('.dl-picker-product [role="alert"]')).toContainText('has ended');
   await expect(page.locator('.qa-add')).toBeDisabled();

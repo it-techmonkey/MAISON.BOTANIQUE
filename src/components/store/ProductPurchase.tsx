@@ -7,6 +7,7 @@ import { occasionPath, findOccasion } from '@/lib/site';
 import { contentHref } from '@/lib/content-locale';
 import type { Product } from '@/lib/types';
 import SaleTag from './SaleTag';
+import FirstOrderPrice from './FirstOrderPrice';
 import { PurchaseOptions, formatAED } from './ShopSheets';
 import { useStore } from './StoreProvider';
 import '@/styles/shop.css';
@@ -43,6 +44,7 @@ function Purchase({ product }: { product: Product }) {
         <strong>{many ? `${t('From', 'من')} ` : ''}<Money amount={product.price} ar={ar} whole /></strong>
         {product.compareAtPrice && <s aria-label={`${t('was', 'كان')} ${formatAED(product.compareAtPrice, ar)}`}><Money amount={product.compareAtPrice} ar={ar} whole /></s>}
         <SaleTag price={product.price} compareAtPrice={product.compareAtPrice} />
+        <FirstOrderPrice id={product.id} price={product.price} className="first-order--block" />
       </p>
       {(ar ? product.lineAr : product.line) && <p className="purchase__line">{ar ? product.lineAr : product.line}</p>}
       {composition.length > 0

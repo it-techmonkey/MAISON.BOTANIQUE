@@ -11,7 +11,7 @@ import { ORDER_QUESTIONS } from '@/lib/growth-content';
 import { SITE_URL } from '@/lib/site';
 import { productSchema } from '@/lib/product-schema';
 import { formatDeliveryDate } from '@/lib/delivery';
-import { seasonalDeliveryRange, TORAN_HANDLE } from '@/lib/seasonal';
+import { REAL_PUMPKIN_HANDLES, seasonalDeliveryRange, TORAN_HANDLE } from '@/lib/seasonal';
 import { getCatalog } from '@/lib/shopify/catalog';
 import '@/styles/shop.css';
 
@@ -38,12 +38,26 @@ export async function generateMetadata({ params }: PageProps<'/shop/[handle]'>):
   };
 }
 
+// Per-product FAQ/Q&A additions. Added one at a time by the daily content
+// task, highest order-count product first (private/sales/customer-sales-master).
+const FAQS_BY_PRODUCT: Record<string, { question: { en: string; ar: string }; answer: { en: string; ar: string } }[]> = {
+  'eloise-pink-and-white-rose-bouquet': [
+    {
+      question: { en: 'How many roses are in the Eloise bouquet?', ar: 'كم عدد الورود في باقة إيلويز؟' },
+      answer: {
+        en: 'Signature has 51 hand-selected pink and white roses, Grand has 101 and Luxe has 201, all gathered in the same ivory wrap. Only the rose count changes between sizes.',
+        ar: 'يضم حجم سيغنتشر 51 وردة وردية وبيضاء منتقاة يدوياً، وغراند 101 وردة، ولوكس 201 وردة، جميعها بالغلاف العاجي نفسه. يتغير عدد الورود فقط بين الأحجام.',
+      },
+    },
+  ],
+};
+
 const DETAILS = [
   {
     title: { en: 'Delivery', ar: 'التوصيل' },
     body: {
-      en: 'Same-day delivery is available in Dubai; we also deliver across the UAE. The delivery fee for your address is shown at checkout. Choose the day and a three-hour window (9am to 9pm) in your bag; Dubai same-day windows close one hour before they start.',
-      ar: 'التوصيل في اليوم نفسه متاح داخل دبي، ونوصل أيضاً إلى جميع أنحاء الإمارات. تظهر رسوم التوصيل لعنوانك عند الدفع. اختر اليوم وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، وتُغلق فترات اليوم نفسه داخل دبي قبل بدايتها بساعة واحدة.',
+      en: 'Same-day delivery is available across the UAE. The delivery fee for your address is shown at checkout. Choose the day and a three-hour window (9am to 9pm) in your bag; same-day windows close one hour before they end (last online order 8pm). For 9pm to 12am, order on WhatsApp.',
+      ar: 'التوصيل في اليوم نفسه متاح في جميع أنحاء الإمارات. تظهر رسوم التوصيل لعنوانك عند الدفع. اختر اليوم وفترة من ثلاث ساعات (من 9 صباحاً حتى 9 مساءً) من حقيبتك، وتُغلق فترات اليوم نفسه قبل بدايتها بساعة واحدة.',
     },
   },
   {
@@ -66,7 +80,8 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
   const product = await findProduct((await params).handle);
   if (!product) notFound();
   const range = seasonalDeliveryRange(product.id);
-  const details = DETAILS.map((item, index) => {
+  const faqs = FAQS_BY_PRODUCT[product.id];
+  const details = [...DETAILS, ...(faqs ?? []).map((faq) => ({ title: faq.question, body: faq.answer }))].map((item, index) => {
     if (index === 0 && range) return { ...item, body: {
       en: `This seasonal piece is delivered ${formatDeliveryDate(range.from, false)} – ${formatDeliveryDate(range.to, false)}. Choose a three-hour window for your order; delivery fees appear at checkout.`,
       ar: `يتوفر توصيل هذا المنتج الموسمي من ${formatDeliveryDate(range.from, true)} إلى ${formatDeliveryDate(range.to, true)}. اختر فترة توصيل من ثلاث ساعات لطلبك؛ وتظهر الرسوم عند الدفع.`,
@@ -74,6 +89,14 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
     if (index === 1 && product.id === TORAN_HANDLE) return { ...item, body: {
       en: 'Fresh marigolds naturally vary a little in shade and fullness from the photograph.',
       ar: 'تختلف أزهار القطيفة الطازجة طبيعياً قليلاً في اللون والكثافة عما يظهر في الصورة.',
+    } };
+    if (index === 1 && REAL_PUMPKIN_HANDLES.includes(product.id)) return { ...item, body: {
+      en: 'The pumpkin is real and natural, so its shape and shade vary slightly from the photograph. Flowers are natural and seasonal; if a stem is not at its best, we replace it with one of equal quality.',
+      ar: 'اليقطينة حقيقية وطبيعية، لذا يختلف شكلها ولونها قليلاً عن الصورة. الزهور طبيعية وموسمية؛ وإذا لم تكن زهرة ما في أفضل حالاتها نستبدلها بأخرى بالجودة نفسها.',
+    } };
+    if (index === 2 && REAL_PUMPKIN_HANDLES.includes(product.id)) return { ...item, body: {
+      en: 'Keep it in a cool place away from direct sun and air-conditioning vents. The pumpkin is compostable: once it starts to soften, remove the flowers and liner and compost the pumpkin.',
+      ar: 'ضعها في مكان بارد بعيداً عن الشمس المباشرة وفتحات التكييف. اليقطينة قابلة للتحلل: عندما تبدأ بالليونة، أزل الزهور والبطانة وضع اليقطينة في السماد.',
     } };
     if (index === 2 && range) return { ...item, body: product.id === TORAN_HANDLE ? {
       en: 'Keep the fresh toran in a cool, shaded place until you hang it. Avoid direct sun and heat.',
@@ -87,7 +110,7 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema(product, SITE_URL)).replace(/</g, '\\u003c') }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema(product, SITE_URL, faqs?.map((faq) => ({ question: faq.question.en, answer: faq.answer.en })))).replace(/</g, '\\u003c') }} />
       <div className="section section--top product-page">
         <nav className="breadcrumbs" aria-label="Breadcrumb">
           <Link href="/shop"><T en="Shop" ar="المتجر" /></Link>

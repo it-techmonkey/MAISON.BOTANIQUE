@@ -24,7 +24,7 @@ export const DELIVERY_RULES = {
     { id: 'afternoon', start: 15 * 60, end: 18 * 60 },
     { id: 'evening', start: 18 * 60, end: 21 * 60 },
   ] as DeliveryWindow[],
-  /** A same-day window closes this long before it starts. */
+  /** A same-day window closes this long before it ENDS (owner, 29 Oct 2026). 9pm–12am is WhatsApp-only, not a window. */
   leadMinutes: 60,
   /** Pre-booking horizon. */
   maxDaysAhead: 60,
@@ -92,7 +92,7 @@ export function windowsFor(date: string, now: DubaiNow = dubaiNow(), range: Deli
   const open = dateOpen(date, now, range);
   return DELIVERY_RULES.windows.map((slot) => ({
     ...slot,
-    available: open && (date !== now.date || slot.start - DELIVERY_RULES.leadMinutes >= now.minutes),
+    available: open && (date !== now.date || slot.end - DELIVERY_RULES.leadMinutes >= now.minutes),
   }));
 }
 
@@ -129,6 +129,14 @@ export function checkSchedule(schedule: Partial<DeliverySchedule> | null, now: D
   if (!dateOpen(schedule.date, now, range)) return 'day_closed';
   if (!slotsFor(schedule.date, now, range).some((slot) => slot.id === schedule.slotId)) return 'slot_passed';
   return null;
+}
+
+/**
+ * A schedule restored from an earlier visit (browser storage or the Shopify cart), or null once its
+ * day or window can no longer be booked, so a stale choice is never shown or sent as the shopper's.
+ */
+export function usableSchedule(schedule: DeliverySchedule | null, now: DubaiNow = dubaiNow()): DeliverySchedule | null {
+  return schedule && !checkSchedule(schedule, now) ? schedule : null;
 }
 
 function hourLabel(minutes: number, arabic: boolean) {

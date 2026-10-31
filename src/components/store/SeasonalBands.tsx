@@ -3,9 +3,10 @@
 import Link from 'next/link';
 import { useEffect, useRef, type MouseEvent } from 'react';
 import { trackProductClicked } from '@/lib/analytics/track';
-import { DIWALI_HANDLES, HALLOWEEN_HANDLES, TORAN_HANDLE, pick, seasonalExpired } from '@/lib/seasonal';
+import { DIWALI_HANDLES, HALLOWEEN_HANDLES, REAL_PUMPKIN_HANDLES, TORAN_HANDLE, pick, seasonalExpired } from '@/lib/seasonal';
 import type { Product } from '@/lib/types';
 import Money from './Money';
+import PumpkinMark from './PumpkinMark';
 import SaleTag from './SaleTag';
 import { useStore } from './StoreProvider';
 import '@/styles/collection.css';
@@ -150,6 +151,8 @@ function SeasonCard({ product, index, onOpen }: { product: Product; index: numbe
       <div className="mbc-cap">
         <h3><a href={href} onClick={open} aria-label={name}>{displayName}</a></h3>
         <span className="mbc-line">{displayLine}</span>
+        {REAL_PUMPKIN_HANDLES.includes(product.id) && <span className="sea-natural">
+          <PumpkinMark />{t('Real pumpkin · compostable', 'يقطينة حقيقية · قابلة للتحلل')}</span>}
         <SaleTag className="mbc-sale" price={product.price} compareAtPrice={product.compareAtPrice} />
         <div className="mbc-row">
           <span className="mbc-price">

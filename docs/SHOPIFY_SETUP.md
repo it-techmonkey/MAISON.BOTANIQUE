@@ -353,7 +353,7 @@ Use the development store, or the production store with test payments turned on:
 - [ ] Products, prices, sold-out sizes, filters, search and the hero gallery match Shopify, in English and Arabic.
 - [ ] Add two sizes of a product with different gift notes. They stay separate lines, and quantities and removal work.
 - [ ] Reload the page: the bag is still there. Open the site in another browser: the bag is empty (carts belong to a browser).
-- [ ] Checkout totals, VAT, delivery fees (AED 30 Dubai, AED 50 elsewhere in the UAE) and the `BLOOM25` discount are correct. Arabic checkout opens in Arabic.
+- [ ] Checkout totals, VAT, delivery fees (AED 30 Dubai, AED 65 elsewhere in the UAE) and the `BLOOM25` discount are correct. Arabic checkout opens in Arabic.
 - [ ] Delivery: the product page and the bag require a day and a window; today's windows that start within 2 hours are unavailable; checkout is blocked until one is chosen.
 - [ ] Place a test order. In the admin: the order is attributed to **Headless**, *Gift message* appears on the item, and *Delivery date* and *Delivery time* appear under Additional details and the delivery is in the order Note, in the confirmation email and on the packing slip.
 - [ ] Customer accounts: Account → Sign in sends a code by email, returns to `/account` showing orders and addresses, checkout opens signed in, and Sign out returns to the home page.
@@ -431,18 +431,18 @@ Sign-ups need `SHOPIFY_FORMS_ADMIN_TOKEN` (step 13); without it the visitor stil
 
 ## 18. Delivery fees and coverage
 
-Same-day delivery is offered across the whole UAE, for **AED 30 in Dubai** and **AED 50 elsewhere in the UAE**. The website states this in the footer, the residences page, the delivery page and the FAQ; the bag and product pages leave the fee to checkout. Shopify must charge the same amounts, or customers will see a different fee at checkout:
+Same-day delivery is offered across the whole UAE, for **AED 30 in Dubai** and **AED 65 elsewhere in the UAE**. The website states this in the footer, the residences page, the delivery page and the FAQ; the bag and product pages leave the fee to checkout. Shopify must charge the same amounts, or customers will see a different fee at checkout:
 
 1. **Settings → Shipping and delivery → General shipping rates** (or the delivery profile for these products).
-2. A **Dubai** zone with a flat rate of **AED 30**, and a **rest of the UAE** zone with a flat rate of **AED 50**. Set them up as shipping zones by emirate, or as local delivery zones if the team delivers itself.
-3. No free-shipping threshold and no automatic free-shipping discount. The only free delivery is JVC (see "JVC free delivery" below): every other order pays AED 30 or AED 50.
-4. Test an address in Dubai and one in Abu Dhabi at checkout: the totals should add AED 30 and AED 50.
+2. A **Dubai** zone with a flat rate of **AED 30**, and a **rest of the UAE** zone with a flat rate of **AED 65**. Set them up as shipping zones by emirate, or as local delivery zones if the team delivers itself.
+3. No free-shipping threshold and no automatic free-shipping discount. The only free delivery is JVC (see "JVC free delivery" below): every other order pays AED 30 or AED 65.
+4. Test an address in Dubai and one in Abu Dhabi at checkout: the totals should add AED 30 and AED 65.
 
 ### JVC free delivery (owner decision, 23 October 2026)
 
 Shopify Basic cannot recognise JVC from an address, so the customer declares it in the bag and the team verifies it:
 
-1. In Shopify **Discounts**, create a **Free shipping** discount code (for example `JVCFREE`): applies to all countries, **excludes shipping rates over AED 30** (so it never discounts the AED 50 UAE rate), no minimum spend, no expiry, no limit on uses.
+1. In Shopify **Discounts**, create a **Free shipping** discount code (for example `JVCFREE`): applies to all countries, **excludes shipping rates over AED 30** (so it never discounts the AED 65 UAE rate), no minimum spend, no expiry, no limit on uses.
 2. **Let the welcome codes combine with it.** In Shopify Discounts, open MAISON25 and BLOOM25 and under "Combinations" tick **Shipping discounts** (they were off on 23 October 2026). New personalised first-order codes already combine with shipping discounts. Set the JVC code itself to combine with product and order discounts. Without this, a customer with a welcome code and the JVC box ticked loses one of them.
 3. On the host (Vercel) set `JVC_DELIVERY_CODE` to that code (server-only) and `NEXT_PUBLIC_JVC_FREE_DELIVERY=1`. Until both are set the tick-box and the public JVC sentence stay hidden.
 4. Test checkout: tick the JVC box in the bag, enter a JVC address and then a non-JVC Dubai address; shipping must show AED 0 for both (the rule is a claim, not an address check). Confirm an Abu Dhabi address still charges AED 50. Untick: shipping returns to AED 30.
