@@ -6,6 +6,8 @@ import { Bi, SectionHeading } from '@/components/store/blocks';
 import { CatalogRail } from '@/components/store/ProductCard';
 import ProductPurchase from '@/components/store/ProductPurchase';
 import { T } from '@/components/store/StoreProvider';
+import { OrderQuestions } from '@/components/store/GrowthPages';
+import { ORDER_QUESTIONS } from '@/lib/growth-content';
 import { SITE_URL } from '@/lib/site';
 import { productSchema } from '@/lib/product-schema';
 import { formatDeliveryDate } from '@/lib/delivery';
@@ -149,6 +151,10 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
             </div>
           </div>
         </div>
+        {(product.answerSummary || product.answerSummaryAr) && <p className="growth-product-answer"><T en={product.answerSummary || product.description} ar={product.answerSummaryAr || product.descriptionAr} /></p>}
+      </div>
+      <div className="section growth-page growth-reading">
+        <OrderQuestions questions={ORDER_QUESTIONS.filter(({ question }) => ['Can I include a handwritten card?', 'Which size is in the photograph?'].includes(question.en))} />
       </div>
       <section className="section section--sand" aria-labelledby="related-title">
         <SectionHeading id="related-title"
