@@ -106,14 +106,15 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
     return () => media.revert();
   }, { scope: sectionRef, dependencies: [count] });
 
-  const goTo = useCallback((next: number, heading?: 1 | -1) => {
+  /** Autoplay moves are not tracked: an open tab would send one event every few seconds for hours. */
+  const goTo = useCallback((next: number, heading: 1 | -1 | undefined, byVisitor: boolean) => {
     const from = activeRef.current;
     const bounded = clamp(next, 0, Math.max(count - 1, 0));
     if (bounded === from) return;
     const direction = heading ?? (bounded > from ? 1 : -1);
     commitActive(bounded);
     const arrived = looks[bounded];
-    if (arrived) trackHeroNavigated(arrived, direction > 0 ? 'next' : 'previous', bounded + 1, count);
+    if (arrived && byVisitor) trackHeroNavigated(arrived, direction > 0 ? 'next' : 'previous', bounded + 1, count);
 
     const section = sectionRef.current;
     if (!section || reducedMotion) return;
@@ -146,12 +147,12 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
   const step = useCallback((direction: 1 | -1, byVisitor = true) => {
     if (count < 2) return;
     if (byVisitor) setManual(true);
-    goTo((activeRef.current + direction + count) % count, direction);
+    goTo((activeRef.current + direction + count) % count, direction, byVisitor);
   }, [count, goTo]);
 
   const jumpTo = (index: number) => {
     setManual(true);
-    goTo(index);
+    goTo(index, undefined, true);
   };
 
   useEffect(() => {
