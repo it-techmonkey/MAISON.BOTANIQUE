@@ -21,7 +21,7 @@ Current source tokens: paper #F5F2EB, sand #EEEAE2, ink #26332B, muted #5D665B, 
 
 Signature content idea: Maison's handwritten card becomes the useful starting point for buying birthday flowers. The existing occasion collection and card field supply the interaction. Short practical guides support a matching selling task rather than unrelated traffic.
 
-Claims: same-day Dubai only, subject to available windows and one-hour lead; 60-day ordinary horizon, seasonal dates separate; AED 30 Dubai / AED 50 other UAE, JVC copy only behind the existing switch; payment acceptance only as offered at checkout. No new savings claims, shipping promises, physical product counts, qualifications, customer reviews or outcome statistics are invented. Native Arabic review remains an owner gate.
+Claims: same-day Dubai only, subject to available windows and one-hour lead; 60-day ordinary horizon, seasonal dates separate; AED 30 Dubai / AED 65 other UAE, JVC copy only behind the existing switch; payment acceptance only as offered at checkout. No new savings claims, shipping promises, physical product counts, qualifications, customer reviews or outcome statistics are invented. Native Arabic review remains an owner gate.
 
 ## Architecture limits
 

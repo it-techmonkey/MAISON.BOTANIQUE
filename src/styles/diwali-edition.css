@@ -37,12 +37,13 @@
 .dwe-gh p { margin: 2px 0 0; color: var(--cream-2); font-size: var(--fs-small); }
 .dwe-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 34px 24px; }
 
-/* Cards: the everyday card, recoloured. Photos are bright ivory scenes, so each sits in an arch window (the door) with a gold ring and a warm glow,
-   graded warm and shaded at the foot so it reads as lit by a diya rather than as a bright box. The arch is shallow so toran swags are not cropped. */
-.dwe .mbc-frame { background: transparent; border-radius: 50% 50% 6px 6px / 32% 32% 6px 6px;
-  box-shadow: 0 0 0 1px rgb(246 195 91 / 70%), 0 0 0 6px var(--night), 0 0 0 7px rgb(246 195 91 / 35%), 0 0 40px 6px rgb(246 183 60 / 25%); }
-.dwe .mbc-frame img { filter: brightness(.88) contrast(1.05) saturate(1.1) sepia(.15); }
-.dwe .mbc-frame::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, rgb(62 22 38 / 50%), rgb(62 22 38 / 0) 40%); }
+/* Cards: the everyday card, recoloured. Each photo hangs whole (never cropped or stretched) at the foot of an arched niche, the door:
+   a gold ring, a warm glow in the arch above it, and a dark mat so the bright ivory scene reads as lit rather than as a box. */
+.dwe .mbc-frame { display: flex; align-items: flex-end; aspect-ratio: 5 / 6; padding: 0 10px 10px; overflow: hidden;
+  border-radius: 50% 50% 6px 6px / 24% 24% 6px 6px;
+  background: radial-gradient(60% 24% at 50% 4%, rgb(246 183 60 / 55%), rgb(246 183 60 / 0) 100%), linear-gradient(180deg, #2A0F22, #1A0B1C);
+  box-shadow: 0 0 0 1px rgb(246 195 91 / 70%), 0 0 0 6px var(--night), 0 0 0 7px rgb(246 195 91 / 35%), 0 0 40px 6px rgb(246 183 60 / 22%); }
+.dwe .mbc-frame img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 3px; filter: brightness(.95) contrast(1.03) saturate(1.05); }
 .dwe-use { color: var(--gold-t); font: 600 11px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; margin-top: 4px; }
 .dwe .mbc-cap h3, .dwe .mbc-cap h3 a { color: var(--cream); }
 .dwe .mbc-line, .dwe .mbc-price s, .dwe .mbc-price small { color: var(--dim); }
