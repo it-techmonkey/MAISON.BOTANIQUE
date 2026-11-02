@@ -410,5 +410,18 @@
     }
    ]
   }
+ ],
+ "collections": [
+  {
+   "slug": "diwali",
+   "live": true,
+   "en": "Diwali 2026",
+   "ar": "ديوالي 2026",
+   "titleEn": "Build your own Diwali hamper",
+   "titleAr": "صمّم هدية ديوالي بنفسك",
+   "introEn": "Choose a handwoven basket, fill it with handcrafted pieces and add a festive treat.",
+   "introAr": "اختر سلة منسوجة يدوياً، واملأها بقطع مصنوعة يدوياً، وأضف حلوى احتفالية.",
+   "photo": "/hamper/hamper-hero.jpg"
+  }
  ]
 }

@@ -53,9 +53,9 @@ export default function ShopShelf() {
     <nav className="shelf" aria-label={t('Shop by category', 'تسوّق حسب الفئة')} data-track-section="home_shelf" data-track-location="home_shelf">
       <ul>
         <li>
-          <Link href="/diwali-hampers">
+          <Link href="/conscious-curations">
             <span className="shelf__img"><img src="/hamper/hamper-hero.jpg" alt="" loading="lazy" width="96" height="96" /></span>
-            <span>{t('Diwali hampers', 'هدايا ديوالي')}</span>
+            <span>{t('Conscious Curations', 'Conscious Curations')}</span>
           </Link>
         </li>
         {chips.map((chip) => (

@@ -42,6 +42,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: '/diwali-hampers', destination: '/conscious-curations/diwali', permanent: true },
       { source: '/jvc', destination: '/?offer=open', permanent: true },
       ...allRenames.map(({ oldHandle, handle }) => ({ source: `/products/${oldHandle}`, destination: productDestination(handle), permanent: true })),
       ...[...retiredProducts].map((handle) => ({ source: `/products/${handle}`, destination: RETIRED_DESTINATION, permanent: true })),

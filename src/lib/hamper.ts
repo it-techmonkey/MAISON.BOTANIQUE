@@ -59,3 +59,7 @@ export function hamperMessage(selection: HamperSelection) {
 }
 
 export const hamperWhatsappLink = (selection: HamperSelection) => `https://wa.me/${data.whatsapp}?text=${encodeURIComponent(hamperMessage(selection))}`;
+
+/** Sub-categories of the Conscious Curations page. Add an entry here and a route under /conscious-curations/<slug>. */
+export interface CuratedCollection { slug: string; live: boolean; en: string; ar: string; titleEn: string; titleAr: string; introEn: string; introAr: string; photo: string }
+export const CURATED_COLLECTIONS = data.collections as CuratedCollection[];

@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { HAMPER_SECTIONS, PICK_MAX, PICK_MIN, hamperCodeString, hamperProblems, hamperTotal, hamperWhatsappLink, type HamperItem, type HamperSection, type HamperSelection } from '@/lib/hamper';
+import Link from 'next/link';
+import CoBrand from './CoBrand';
 import { PageHero } from './blocks';
 import Money from './Money';
 import { useStore } from './StoreProvider';
@@ -101,7 +103,10 @@ export default function HamperBuilder() {
         intro={{
           en: 'Pick a handwoven basket, fill it with handcrafted pieces and add a festive treat. Curated by Conscious Curations and hand-packed with dried flowers and their brand ribbon.',
           ar: 'اختر سلة منسوجة يدوياً، واملأها بقطع مصنوعة يدوياً، وأضف حلوى احتفالية. من تنسيق Conscious Curations وتُغلَّف يدوياً بالزهور المجففة وشريط العلامة.',
-        }} />
+        }}>
+        <CoBrand />
+        <p className="cc-crumb"><Link href="/conscious-curations">← {t('Conscious Curations', 'Conscious Curations')}</Link></p>
+      </PageHero>
 
       <div className="hamper-layout">
         <div className="hamper-steps">

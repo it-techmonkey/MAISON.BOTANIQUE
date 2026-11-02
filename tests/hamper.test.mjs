@@ -37,3 +37,9 @@ test('the WhatsApp message carries the code, items, total and terms', () => {
   for (const part of ['B1 + L1 + L5 + T1 + F1', 'Sirohi elegant tray', 'Total: AED 300', '50% advance (AED 150)', 'before delivery']) assert.ok(message.includes(part), part);
   assert.ok(hamperWhatsappLink(example).startsWith('https://wa.me/971558436828?text='));
 });
+
+test('sub-categories are bilingual and have a photo; Diwali is live', async () => {
+  const { CURATED_COLLECTIONS } = await import('../src/lib/hamper.ts');
+  assert.ok(CURATED_COLLECTIONS.some((c) => c.slug === 'diwali' && c.live));
+  for (const c of CURATED_COLLECTIONS) assert.ok(c.en && c.ar && c.titleEn && c.titleAr && c.introEn && c.introAr && existsSync(`public${c.photo}`), c.slug);
+});
