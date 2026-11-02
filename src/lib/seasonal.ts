@@ -48,7 +48,7 @@ function previewProduct(item: typeof data.products[number], index: number): Prod
     room: room.id, category: room.en, categoryAr: room.ar,
     line: item.line, lineAr: item.lineAr, composition: item.composition, compositionAr: item.compositionAr,
     feature: '', stems: item.stems, flowers: item.flowers, format: item.format as ProductFormat,
-    order: index + 1, custom: null, productType: room.en, vendor: 'Maison Botanique', occasions: item.occasions,
+    order: index + 1, custom: null, productType: DIWALI_HANDLES.includes(item.id) ? 'Diwali' : room.en, vendor: 'Maison Botanique', occasions: item.occasions,
     image: `/seasonal/${item.id}-960.webp`, imageSmall: `/seasonal/${item.id}-480.webp`, imageAlt: item.imageAlt,
     price: lowest.price, compareAtPrice: lowest.compareAtPrice, currencyCode: 'AED', bg: '#E9E1D5', accent: '#673C43',
     description: item.composition.join(', '), descriptionAr: item.compositionAr.join('، '),
