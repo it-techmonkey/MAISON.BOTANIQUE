@@ -39,7 +39,7 @@ for (const width of [1440, 414, 390, 360, 320]) {
       await page.clock.install({ time: atDubaiNoon('2026-11-02') });
       await page.goto('/diwali');
       await expect(page.locator('.dwe h1')).toBeVisible();
-      await expect(page.locator('.dwe-fee')).toContainText(locale === 'ar' ? '٦٠ درهماً' : 'AED 60');
+      await expect(page.locator('.dwe-fee')).toContainText(locale === 'ar' ? '٦٥ درهماً' : 'AED 65');
       await expect(page.locator('.dwe-chip').first()).toHaveAttribute('aria-pressed', 'true');
       await expect(page.locator('.dwe-return')).toBeVisible();
       await expectNoHorizontalScroll(page, `/diwali ${width} ${locale}`);

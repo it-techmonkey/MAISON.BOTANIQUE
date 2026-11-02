@@ -83,7 +83,7 @@ export default function DiwaliEdition({ initialDubaiDate }: { initialDubaiDate: 
           <ol className="dwe-steps" aria-label={t('How it works', 'كيف يعمل')}>
             <li>{t('Pre-order now', 'اطلبوا الآن')}</li><li>{t('Delivered from 5 Nov', 'التوصيل من 5 نوفمبر')}</li><li>{t('Diwali · 8 Nov', 'ديوالي · 8 نوفمبر')}</li>
           </ol>
-          <p className="dwe-fee">{t('Delivery: AED 30 in Dubai · AED 60 elsewhere in the UAE.', 'رسوم التوصيل: ٣٠ درهماً في دبي، و٦٠ درهماً في بقية الإمارات.')}</p>
+          <p className="dwe-fee">{t('Delivery: AED 30 in Dubai · AED 65 elsewhere in the UAE.', 'رسوم التوصيل: ٣٠ درهماً في دبي، و٦٥ درهماً في بقية الإمارات.')}</p>
           {ended ? (
             <p className="dwe-ended">{t('Diwali delivery has ended for this year. ', 'انتهى توصيل ديوالي لهذا العام. ')}<Link href="/shop">{t('Shop everyday flowers', 'تسوقوا زهور كل يوم')} →</Link></p>
           ) : (
