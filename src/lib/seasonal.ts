@@ -14,6 +14,25 @@ import type { Product, ProductFormat } from '@/lib/types';
 export const HALLOWEEN_HANDLES: readonly string[] = data.halloween;
 export const DIWALI_HANDLES: readonly string[] = data.diwali;
 export const TORAN_HANDLE = 'marigold-toran';
+
+/** The Diwali Edition page: where each piece goes in the home. A group with nothing in the catalogue simply does not show. */
+export const DIWALI_GROUPS = [
+  { id: 'door', en: 'For the door', ar: 'للباب', lineEn: 'Hang it over the doorway.', lineAr: 'علّقوه فوق مدخل البيت.',
+    handles: ['marigold-toran', 'thoranam-door-arch', 'entrance-pair', 'the-marigold-welcome'] },
+  { id: 'doorstep', en: 'For the doorstep', ar: 'للعتبة', lineEn: 'Light up the threshold.', lineAr: 'أضيئوا العتبة.',
+    handles: ['the-doorstep-set', 'flower-rangoli-tray', 'marigold-urli'] },
+  { id: 'host', en: 'For the host', ar: 'للمضيف', lineEn: 'Arrive with something warm.', lineAr: 'احملوا معكم لمسة دافئة.',
+    handles: ['marigold-haat-bouquet', 'brass-lota-posy', 'the-marigold-and-mithai-trunk', 'the-hosts-trunk'] },
+] as const;
+
+/** One plain line on each card saying where it goes. */
+const USE = { door: ['Hangs on the door', 'يُعلَّق على الباب'], display: ['Hang and display', 'يُعلَّق ويُعرَض'], step: ['Place on the step', 'يوضع على العتبة'],
+  arrive: ['Arrive with it', 'تصلون به'], gift: ['Gift to the host', 'هدية للمضيف'] } as const;
+export const DIWALI_USE: Record<string, readonly [string, string]> = {
+  'marigold-toran': USE.door, 'thoranam-door-arch': USE.door, 'entrance-pair': USE.door, 'the-marigold-welcome': USE.display,
+  'the-doorstep-set': USE.step, 'flower-rangoli-tray': USE.step, 'marigold-urli': USE.step,
+  'marigold-haat-bouquet': USE.arrive, 'brass-lota-posy': USE.arrive, 'the-marigold-and-mithai-trunk': USE.gift, 'the-hosts-trunk': USE.gift,
+};
 /** Halloween pieces built in real pumpkins (owner confirmed 29 Oct 2026). The other two are ceramic, so they get no compostable note. */
 export const REAL_PUMPKIN_HANDLES: readonly string[] = ['pumpkin-and-pralines', 'the-pumpkin-basket'];
 
