@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { OCCASION_PAGE } from '@/lib/site';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { BUDGET_BANDS, liveCatalogGroups } from '@/lib/catalog-groups';
@@ -126,7 +127,9 @@ export default function SiteHeader() {
               <div id="nav-shop-panel" className={`nav-shop__panel${shopOpen ? ' is-open' : ''}`}>
                 <div className="nav-shop__col">
                   <h2>{t('By occasion', 'حسب المناسبة')}</h2>
-                  {occasions.map((occasion) => <CollectionLink key={occasion.id} hash={`occasion/${occasion.id}`} onClick={closeMenus}>{label(occasion)}</CollectionLink>)}
+                  {occasions.map((occasion) => OCCASION_PAGE[occasion.id]
+                  ? <Link key={occasion.id} href={OCCASION_PAGE[occasion.id]} onClick={closeMenus}>{label(occasion)}</Link>
+                  : <CollectionLink key={occasion.id} hash={`occasion/${occasion.id}`} onClick={closeMenus}>{label(occasion)}</CollectionLink>)}
                 </div>
                 <div className="nav-shop__col">
                   <h2>{t('By flower', 'حسب الزهرة')}</h2>
@@ -147,7 +150,9 @@ export default function SiteHeader() {
                 {t('Occasions', 'المناسبات')} <span aria-hidden="true">▾</span>
               </button>
               <div id="nav-occasions-list" className={`nav-occasions__list${occasionsOpen ? ' is-open' : ''}`}>
-                {occasions.map((occasion) => <CollectionLink key={occasion.id} hash={`occasion/${occasion.id}`} onClick={closeMenus}>{label(occasion)}</CollectionLink>)}
+                {occasions.map((occasion) => OCCASION_PAGE[occasion.id]
+                  ? <Link key={occasion.id} href={OCCASION_PAGE[occasion.id]} onClick={closeMenus}>{label(occasion)}</Link>
+                  : <CollectionLink key={occasion.id} hash={`occasion/${occasion.id}`} onClick={closeMenus}>{label(occasion)}</CollectionLink>)}
               </div>
             </div>
             {direct.filter((group) => group.id !== 'roses').map(groupLink)}

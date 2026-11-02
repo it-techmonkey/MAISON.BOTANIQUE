@@ -84,7 +84,7 @@ test('delivery fee wording matches the owner rule everywhere it appears (AED 30 
   // Fees are charged by Shopify shipping rates, not by site code. This guards the copy.
   const files = [
     'src/components/store/SiteFooter.tsx', 'src/components/store/Residences.tsx',
-    'src/app/(store)/delivery/page.tsx', 'src/app/(store)/faq/page.tsx',
+    'src/app/(store)/delivery/page.tsx', 'src/app/(store)/faq/page.tsx', 'src/components/store/DiwaliEdition.tsx',
   ];
   for (const file of files) {
     const text = readFileSync(new URL(file, root), 'utf8');

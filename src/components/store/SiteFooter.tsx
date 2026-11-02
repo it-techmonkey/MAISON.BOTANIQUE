@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useMemo } from 'react';
 import { TAB_IDS, liveCatalogGroups } from '@/lib/catalog-groups';
-import { occasionHash, SITE } from '@/lib/site';
+import { OCCASION_PAGE, occasionHash, SITE } from '@/lib/site';
 import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import { NewsletterForm } from './Forms';
 import { InstagramIcon } from './icons';
@@ -75,7 +75,9 @@ export default function SiteFooter() {
         </nav>
         <nav aria-label={t.occasions}>
           <h2>{t.occasions}</h2>
-          {occasions.map((occasion) => <CollectionLink key={occasion.id} hash={occasionHash(occasion.id)}>{label(occasion)}</CollectionLink>)}
+          {occasions.map((occasion) => OCCASION_PAGE[occasion.id]
+            ? <Link key={occasion.id} href={OCCASION_PAGE[occasion.id]}>{label(occasion)}</Link>
+            : <CollectionLink key={occasion.id} hash={occasionHash(occasion.id)}>{label(occasion)}</CollectionLink>)}
         </nav>
         <nav aria-label={t.help}>
           <h2>{t.help}</h2>
