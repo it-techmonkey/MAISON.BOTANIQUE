@@ -15,8 +15,8 @@ export const ORDER_QUESTIONS: Question[] = [
   {
     question: { en: 'How much is delivery?', ar: 'ما رسوم التوصيل؟' },
     answer: {
-      en: `Delivery is AED 30 in Dubai and AED 65 elsewhere in the UAE. ${JVC_FREE_DELIVERY ? 'JVC delivery is free: select the JVC option in your bag; we verify the full recipient address before dispatch. ' : ''}Enter the full recipient address at checkout, including the building, apartment and area. Same-day delivery is a Dubai service; check the available date for other emirates before ordering.`,
-      ar: `رسوم التوصيل 30 درهماً في دبي و65 درهماً في بقية الإمارات. ${JVC_FREE_DELIVERY ? 'التوصيل إلى JVC مجاني: حدد خيار JVC في الحقيبة؛ نتحقق من عنوان المستلم كاملاً قبل الإرسال. ' : ''}أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى والشقة والمنطقة. خدمة التوصيل في اليوم نفسه خاصة بدبي؛ تحقق من الموعد المتاح للإمارات الأخرى قبل الطلب.`,
+      en: `Delivery is AED 30 in Dubai and AED 60 elsewhere in the UAE. ${JVC_FREE_DELIVERY ? 'JVC delivery is free: select the JVC option in your bag; we verify the full recipient address before dispatch. ' : ''}Enter the full recipient address at checkout, including the building, apartment and area. Same-day delivery is a Dubai service; check the available date for other emirates before ordering.`,
+      ar: `رسوم التوصيل 30 درهماً في دبي و60 درهماً في بقية الإمارات. ${JVC_FREE_DELIVERY ? 'التوصيل إلى JVC مجاني: حدد خيار JVC في الحقيبة؛ نتحقق من عنوان المستلم كاملاً قبل الإرسال. ' : ''}أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى والشقة والمنطقة. خدمة التوصيل في اليوم نفسه خاصة بدبي؛ تحقق من الموعد المتاح للإمارات الأخرى قبل الطلب.`,
     },
   },
   {
@@ -185,7 +185,7 @@ export const JOURNAL: JournalEntry[] = [
       {
         heading: { en: 'Review payment and delivery', ar: 'راجع الدفع والتوصيل' },
         paragraphs: [
-          { en: 'Prices are in UAE dirhams. Delivery is AED 30 in Dubai and AED 65 elsewhere in the UAE; check the final charge and any eligible offer at checkout. Your bank may apply its own currency-conversion charges.', ar: 'الأسعار بالدرهم الإماراتي. رسوم التوصيل 30 درهماً في دبي و65 درهماً في بقية الإمارات؛ تحقق من المبلغ النهائي وأي عرض تستحقه عند الدفع. قد يطبق مصرفك رسوماً لتحويل العملة.' },
+          { en: 'Prices are in UAE dirhams. Delivery is AED 30 in Dubai and AED 60 elsewhere in the UAE; check the final charge and any eligible offer at checkout. Your bank may apply its own currency-conversion charges.', ar: 'الأسعار بالدرهم الإماراتي. رسوم التوصيل 30 درهماً في دبي و60 درهماً في بقية الإمارات؛ تحقق من المبلغ النهائي وأي عرض تستحقه عند الدفع. قد يطبق مصرفك رسوماً لتحويل العملة.' },
           { en: 'Use a payment method offered at checkout. Acceptance of an overseas card depends on the payment provider and your bank, so we do not promise that every card will work. If payment fails, contact the flower desk through the site and never send card details in a message.', ar: 'استخدم إحدى طرق الدفع المتاحة عند إتمام الطلب. يعتمد قبول البطاقة الأجنبية على مزود الدفع ومصرفك، لذلك لا نضمن قبول كل البطاقات. إذا تعذر الدفع، تواصل مع مكتب الزهور عبر الموقع ولا ترسل بيانات البطاقة في رسالة.' },
           { en: 'Keep the order confirmation and check the recipient address, date, window and card message. If anything needs correcting, contact the team promptly with the order number.', ar: 'احتفظ بتأكيد الطلب وراجع عنوان المستلم والتاريخ والفترة ورسالة البطاقة. إذا احتاج أي تفصيل إلى تعديل، تواصل مع الفريق سريعاً مع رقم الطلب.' },
         ],
@@ -265,7 +265,7 @@ export const JOURNAL: JournalEntry[] = [
         heading: { en: '3. Is the delivery fee clear before you pay?', ar: '٣. هل رسوم التوصيل واضحة قبل الدفع؟' },
         paragraphs: [
           { en: 'You should know the delivery fee before you enter payment details, and it should not change at the last step.', ar: 'يجب أن تعرف رسوم التوصيل قبل إدخال بيانات الدفع، وألا تتغير في الخطوة الأخيرة.' },
-          { en: 'Maison charges AED 30 in Dubai and AED 65 elsewhere in the UAE, and delivery to JVC is free. Our delivery page states it, and checkout shows the final charge.', ar: 'رسوم ميزون 30 درهماً في دبي و65 درهماً في بقية الإمارات، والتوصيل إلى JVC مجاني. تذكرها صفحة التوصيل، ويعرض الدفع المبلغ النهائي.' },
+          { en: 'Maison charges AED 30 in Dubai and AED 60 elsewhere in the UAE, and delivery to JVC is free. Our delivery page states it, and checkout shows the final charge.', ar: 'رسوم ميزون 30 درهماً في دبي و60 درهماً في بقية الإمارات، والتوصيل إلى JVC مجاني. تذكرها صفحة التوصيل، ويعرض الدفع المبلغ النهائي.' },
         ],
       },
       {
