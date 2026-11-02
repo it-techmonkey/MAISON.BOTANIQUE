@@ -44,6 +44,8 @@
   background: radial-gradient(60% 24% at 50% 4%, rgb(246 183 60 / 55%), rgb(246 183 60 / 0) 100%), linear-gradient(180deg, #2A0F22, #1A0B1C);
   box-shadow: 0 0 0 1px rgb(246 195 91 / 70%), 0 0 0 6px var(--night), 0 0 0 7px rgb(246 195 91 / 35%), 0 0 40px 6px rgb(246 183 60 / 22%); }
 .dwe .mbc-frame img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 3px; filter: brightness(.95) contrast(1.03) saturate(1.05); }
+.dwe-size { color: var(--cream-2); font-size: var(--fs-small); line-height: 1.4; }
+.dwe-size::first-letter { text-transform: uppercase; }
 .dwe-use { color: var(--gold-t); font: 600 11px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; margin-top: 4px; }
 .dwe .mbc-cap h3, .dwe .mbc-cap h3 a { color: var(--cream); }
 .dwe .mbc-line, .dwe .mbc-price s, .dwe .mbc-price small { color: var(--dim); }

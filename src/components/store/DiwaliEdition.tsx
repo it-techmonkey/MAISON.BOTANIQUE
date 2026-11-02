@@ -37,6 +37,7 @@ function Piece({ product, index, onOpen }: { product: Product; index: number; on
         {use && <span className="dwe-use">{ar ? use[1] : use[0]}</span>}
         <h3><a href={href} onClick={open} aria-label={name}>{name}</a></h3>
         <span className="mbc-line">{ar ? product.lineAr : product.line}</span>
+        {product.sizes[0]?.detail && <span className="dwe-size">{ar ? product.sizes[0].detailAr : product.sizes[0].detail}</span>}
         <SaleTag className="mbc-sale" price={product.price} compareAtPrice={product.compareAtPrice} />
         <div className="mbc-row">
           <span className="mbc-price">

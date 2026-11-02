@@ -26,3 +26,11 @@ test('English and Arabic lines match in count, and no Hindi script or product co
     assert.doesNotMatch(JSON.stringify(product), /[ऀ-ॿ]/, id);
   }
 });
+
+test('every size says how big it is, in English and Arabic (customers ask "how many feet?")', () => {
+  for (const id of added) for (const size of byId.get(id).sizes) {
+    assert.match(size.detail, /\b(ft|in|cm|stems)\b/, `${id} ${size.name}`);
+    assert.ok(size.detailAr.trim().length > 3, `${id} ${size.name} Arabic`);
+  }
+  assert.equal(byId.get('thoranam-door-arch').sizes.length, 1, 'Door Arch has no Grand');
+});
