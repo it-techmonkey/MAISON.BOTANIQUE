@@ -63,3 +63,10 @@ export const hamperWhatsappLink = (selection: HamperSelection) => `https://wa.me
 /** Sub-categories of the Conscious Curations page. Add an entry here and a route under /conscious-curations/<slug>. */
 export interface CuratedCollection { slug: string; live: boolean; en: string; ar: string; titleEn: string; titleAr: string; introEn: string; introAr: string; photo: string }
 export const CURATED_COLLECTIONS = data.collections as CuratedCollection[];
+
+/** Ready-made starting points: the customer taps one, then swaps pieces. Every preset must pass hamperProblems (see the test). */
+export interface HamperPreset extends HamperSelection { id: string; en: string; ar: string }
+export const HAMPER_PRESETS = data.presets as HamperPreset[];
+
+/** Cut-out photo used in the picture of the hamper. */
+export const hamperCutout = (code: string) => `/hamper/cut/${code.toLowerCase()}.webp`;

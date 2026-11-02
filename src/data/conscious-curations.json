@@ -423,5 +423,51 @@
    "introAr": "اختر سلة منسوجة يدوياً، واملأها بقطع مصنوعة يدوياً، وأضف حلوى احتفالية.",
    "photo": "/hamper/hamper-hero.jpg"
   }
+ ],
+ "presets": [
+  {
+   "id": "classic",
+   "en": "Classic",
+   "ar": "الكلاسيكية",
+   "basket": "B1",
+   "picks": [
+    "L1",
+    "L5",
+    "T1"
+   ],
+   "treats": [
+    "F1"
+   ]
+  },
+  {
+   "id": "puja",
+   "en": "Puja ritual",
+   "ar": "طقوس البوجا",
+   "basket": "B5",
+   "picks": [
+    "P2",
+    "P3",
+    "P4",
+    "L5"
+   ],
+   "treats": [
+    "F3"
+   ]
+  },
+  {
+   "id": "home",
+   "en": "Home & table",
+   "ar": "البيت والمائدة",
+   "basket": "B3",
+   "picks": [
+    "L1",
+    "T1",
+    "T3",
+    "W1"
+   ],
+   "treats": [
+    "F4"
+   ]
+  }
  ]
 }

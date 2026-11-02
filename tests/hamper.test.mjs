@@ -43,3 +43,10 @@ test('sub-categories are bilingual and have a photo; Diwali is live', async () =
   assert.ok(CURATED_COLLECTIONS.some((c) => c.slug === 'diwali' && c.live));
   for (const c of CURATED_COLLECTIONS) assert.ok(c.en && c.ar && c.titleEn && c.titleAr && c.introEn && c.introAr && existsSync(`public${c.photo}`), c.slug);
 });
+
+test('ready-made hamper ideas follow the rules and every item has a cut-out photo', async () => {
+  const { HAMPER_PRESETS, hamperCutout } = await import('../src/lib/hamper.ts');
+  assert.ok(HAMPER_PRESETS.length >= 3);
+  for (const preset of HAMPER_PRESETS) assert.deepEqual(hamperProblems(preset), [], preset.id);
+  for (const item of HAMPER_ITEMS) assert.ok(existsSync(`public${hamperCutout(item.code)}`), item.code);
+});

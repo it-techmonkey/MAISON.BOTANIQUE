@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { HAMPER_SECTIONS, HAMPER_ITEMS, PICK_MAX, PICK_MIN, hamperCodeString, hamperProblems, hamperTotal, hamperWhatsappLink, type HamperItem, type HamperSelection } from '@/lib/hamper';
+import HamperScene from './HamperScene';
+import { HAMPER_PRESETS, HAMPER_SECTIONS, HAMPER_ITEMS, PICK_MAX, PICK_MIN, hamperCodeString, hamperProblems, hamperTotal, hamperWhatsappLink, type HamperItem, type HamperSelection } from '@/lib/hamper';
 import Money from './Money';
 import { useStore } from './StoreProvider';
 
@@ -32,19 +33,6 @@ function Card({ item, chosen, locked, onToggle }: { item: HamperItem; chosen: bo
         <span className="hamper-card__price"><Money amount={item.price} ar={ar} />{item.unit && <small> {t('/ pair', '/ الزوج')}</small>}</span>
         <span className="sr-only">{chosen ? t('Chosen', 'تم الاختيار') : locked ? t('Hamper is full', 'السلة ممتلئة') : t('Choose', 'اختر')}</span>
       </button>
-    </li>
-  );
-}
-
-/** One place in the hamper picture: filled with the chosen photo, or an empty outline waiting for it. */
-function Slot({ item, empty, optional, onRemove }: { item?: HamperItem; empty: string; optional?: boolean; onRemove: (item: HamperItem) => void }) {
-  const { ar, t } = useStore();
-  if (!item) return <li className={`board-slot${optional ? ' is-optional' : ''}`}><span>{empty}</span></li>;
-  const name = ar ? item.ar : item.en;
-  return (
-    <li className="board-slot is-filled">
-      <img src={item.photo} alt={name} width="120" height="120" />
-      <button type="button" onClick={() => onRemove(item)} aria-label={`${t('Remove', 'إزالة')} ${name}`}>×</button>
     </li>
   );
 }
@@ -89,6 +77,13 @@ export default function HamperBuilder() {
     if (kind === 'basket' && selection.basket !== item.code) goTo('pieces');
   };
 
+  const applyPreset = (preset: (typeof HAMPER_PRESETS)[number]) => {
+    setSelection({ basket: preset.basket, picks: [...preset.picks], treats: [...preset.treats] });
+    goTo('pieces');
+    // On a phone the picture is below the cards, so show it straight away.
+    if (window.matchMedia('(max-width: 960px)').matches) previewRef.current?.showModal();
+  };
+
   const done: Record<Step, boolean> = { basket: !problems.includes('basket'), pieces: !problems.includes('few'), treat: !problems.includes('treat') };
   const badge: Record<Step, string> = {
     basket: done.basket ? '✓' : '0/1',
@@ -114,7 +109,6 @@ export default function HamperBuilder() {
   const basketItem = selection.basket ? byCode.get(selection.basket) : undefined;
   const pickItems = selection.picks.map((code) => byCode.get(code)!);
   const treatItems = selection.treats.map((code) => byCode.get(code)!);
-  const pieceSlots = Array.from({ length: PICK_MAX }, (_, i) => pickItems[i]);
 
   const send = ready
     ? <a className="button button--block" href={hamperWhatsappLink(selection)} target="_blank" rel="noopener noreferrer" data-track-location="hamper_whatsapp">{t('Send my hamper on WhatsApp', 'أرسل سلتي عبر واتساب')}</a>
@@ -123,6 +117,15 @@ export default function HamperBuilder() {
   return (
     <div className="hamper-layout" id="diwali-builder">
       <div className="hamper-browse">
+        <div className="hamper-presets">
+          <span>{t('Ready-made ideas, then make them yours', 'أفكار جاهزة، ثم عدّلها كما تحب')}</span>
+          {HAMPER_PRESETS.map((preset) => (
+            <button key={preset.id} type="button" onClick={() => applyPreset(preset)}>
+              {ar ? preset.ar : preset.en} · <Money amount={hamperTotal(preset)} ar={ar} />
+            </button>
+          ))}
+        </div>
+
         <div className="hamper-tabs" role="tablist" ref={tabsRef} aria-label={t('Hamper steps', 'خطوات السلة')}>
           {order.map((key, index) => (
             <button key={key} type="button" role="tab" id={`hamper-tab-${key}`} aria-selected={step === key} aria-controls="hamper-panel" className={done[key] ? 'is-done' : ''} onClick={() => goTo(key)}>
@@ -158,25 +161,19 @@ export default function HamperBuilder() {
       <aside className="hamper-summary" id="hamper-summary" aria-label={t('Your hamper', 'سلتك')}>
         <h2>{ready ? t('Your hamper is ready', 'سلتك جاهزة') : t('Your hamper', 'سلتك')}</h2>
 
-        <div className="board" aria-label={t('Your hamper at a glance', 'سلتك في لمحة')}>
-          <div className={`board-basket${basketItem ? ' is-filled' : ''}`}>
-            {basketItem ? (
-              <>
-                <img src={basketItem.photo} alt={ar ? basketItem.ar : basketItem.en} width="360" height="225" />
-                <span className="board-basket__name">{ar ? basketItem.ar : basketItem.en}</span>
-                <button type="button" onClick={() => toggle(basketItem)} aria-label={`${t('Remove', 'إزالة')} ${ar ? basketItem.ar : basketItem.en}`}>×</button>
-              </>
-            ) : <span>{t('Your basket', 'سلتك')}</span>}
-          </div>
-          <ul className="board-row board-row--pieces" aria-label={t('Handcrafted pieces', 'القطع اليدوية')}>
-            {pieceSlots.map((item, i) => <Slot key={item?.code ?? `p${i}`} item={item} empty={`${i + 1}`} optional={i >= PICK_MIN} onRemove={toggle} />)}
-          </ul>
-          <ul className="board-row board-row--treats" aria-label={t('Treats', 'الحلوى')}>
-            {(treatItems.length ? treatItems : [undefined]).map((item, i) => <Slot key={item?.code ?? `t${i}`} item={item} empty={t('Treat', 'حلوى')} onRemove={toggle} />)}
-          </ul>
-        </div>
+        <HamperScene basket={basketItem} picks={pickItems} treats={treatItems} onRemove={toggle} />
 
-        <button type="button" className="button button--ghost button--block hamper-preview-btn" disabled={!chosen.length} onClick={() => previewRef.current?.showModal()}>{t('See your hamper full size', 'شاهد سلتك بحجم كامل')}</button>
+        <dl className="hamper-total">
+          <div><dt>{t('Total', 'المجموع')}</dt><dd><Money amount={total} ar={ar} /></dd></div>
+          <div><dt>{t('50% advance to book', 'دفعة مقدمة 50٪ للحجز')}</dt><dd><Money amount={total / 2} ar={ar} /></dd></div>
+        </dl>
+
+        {ready
+          ? <p className="hamper-code"><span>{t('Your code', 'رمز سلتك')}</span> <bdi dir="ltr">{codes}</bdi></p>
+          : <ul className="hamper-missing" aria-live="polite">{missing.map((line) => <li key={line}>{line}</li>)}</ul>}
+
+        {send}
+        <button type="button" className="button button--ghost button--block hamper-preview-btn" disabled={!chosen.length} onClick={() => previewRef.current?.showModal()}>{t('See it full size', 'شاهدها بحجم كامل')}</button>
 
         {chosen.length > 0 && (
           <ul className="hamper-lines">
@@ -190,16 +187,6 @@ export default function HamperBuilder() {
           </ul>
         )}
 
-        <dl className="hamper-total">
-          <div><dt>{t('Total', 'المجموع')}</dt><dd><Money amount={total} ar={ar} /></dd></div>
-          <div><dt>{t('50% advance to book', 'دفعة مقدمة 50٪ للحجز')}</dt><dd><Money amount={total / 2} ar={ar} /></dd></div>
-        </dl>
-
-        {ready
-          ? <p className="hamper-code"><span>{t('Your code', 'رمز سلتك')}</span> <bdi dir="ltr">{codes}</bdi></p>
-          : <ul className="hamper-missing" aria-live="polite">{missing.map((line) => <li key={line}>{line}</li>)}</ul>}
-
-        {send}
         <details className="hamper-terms">
           <summary>{t('How ordering works', 'كيف يتم الطلب')}</summary>
           <ul>
@@ -217,35 +204,29 @@ export default function HamperBuilder() {
           <h2>{t('Your Diwali hamper', 'سلة ديوالي الخاصة بك')}</h2>
           <button type="button" onClick={() => previewRef.current?.close()} aria-label={t('Close', 'إغلاق')}>×</button>
         </div>
-        {basketItem ? (
-          <figure className="hamper-preview__basket">
-            <img src={basketItem.photo} alt={ar ? basketItem.ar : basketItem.en} width="420" height="420" />
-            <figcaption>{ar ? basketItem.ar : basketItem.en} · <Money amount={basketItem.price} ar={ar} /></figcaption>
-          </figure>
-        ) : <p className="hamper-empty">{t('No basket yet.', 'لم تختر سلة بعد.')}</p>}
+        <div className="hamper-preview__scene"><HamperScene basket={basketItem} picks={pickItems} treats={treatItems} /></div>
+        <p className="hamper-preview__total"><span>{t('Total', 'المجموع')}</span> <Money amount={total} ar={ar} /></p>
+        {ready ? <a className="button button--block" href={hamperWhatsappLink(selection)} target="_blank" rel="noopener noreferrer" data-track-location="hamper_whatsapp_preview">{t('Send my hamper on WhatsApp', 'أرسل سلتي عبر واتساب')}</a> : <p className="hamper-missing">{missing.join(' · ')}</p>}
         <ul className="hamper-preview__items">
-          {[...pickItems, ...treatItems].map((item) => (
+          {chosen.map((item) => (
             <li key={item.code}>
-              <img src={item.photo} alt={ar ? item.ar : item.en} width="200" height="200" />
+              <img src={item.photo} alt="" width="56" height="56" />
               <span>{ar ? item.ar : item.en}</span>
               <span><Money amount={item.price} ar={ar} /></span>
             </li>
           ))}
         </ul>
-        <p className="hamper-preview__total"><span>{t('Total', 'المجموع')}</span> <Money amount={total} ar={ar} /></p>
-        {ready ? <a className="button button--block" href={hamperWhatsappLink(selection)} target="_blank" rel="noopener noreferrer" data-track-location="hamper_whatsapp_preview">{t('Send my hamper on WhatsApp', 'أرسل سلتي عبر واتساب')}</a> : <p className="hamper-missing">{missing.join(' · ')}</p>}
+        <p className="hamper-preview__note">{t('An illustration of your selection. Conscious Curations hand-pack the real hamper.', 'صورة توضيحية لاختيارك. تُغلَّف السلة الحقيقية يدوياً من Conscious Curations.')}</p>
         <button type="button" className="hamper-clear" onClick={() => previewRef.current?.close()}>{t('Keep editing', 'متابعة التعديل')}</button>
       </dialog>
 
       <div className="hamper-bar" role="region" aria-label={t('Hamper total', 'مجموع السلة')}>
-        <span className="hamper-bar__thumbs" aria-hidden="true">
-          {chosen.slice(0, 4).map((item) => <img key={item.code} src={item.photo} alt="" width="36" height="36" />)}
-        </span>
+        <span className="hamper-bar__scene"><HamperScene basket={basketItem} picks={pickItems} treats={treatItems} mini /></span>
         <span className="hamper-bar__info">
           <span className="hamper-bar__total"><Money amount={total} ar={ar} /></span>
           <span className="hamper-bar__state">{ready ? t('Ready to send', 'جاهزة للإرسال') : missing[0]}</span>
         </span>
-        <a className="hamper-bar__go" href="#hamper-summary">{t('View hamper', 'عرض السلة')}</a>
+        <button type="button" className="hamper-bar__go" onClick={() => previewRef.current?.showModal()}>{t('See hamper', 'شاهد السلة')}</button>
       </div>
     </div>
   );
