@@ -1,11 +1,11 @@
 // Conscious Curations Diwali hampers: the partner's catalogue (src/data/conscious-curations.json,
 // prices exactly as in her catalogue; add any markup there) and the rules of her build-your-own hamper.
-// Orders go to the partner by WhatsApp with the code string; nothing here touches Shopify or checkout.
+// Each item is its own Shopify product (handle `cc-<code>`); the builder adds the chosen items to the bag, so ordering works like any other product.
 
 // Relative path with a JSON attribute so the unit test loader (which appends .ts to @/ paths) can read it.
 import data from '../data/conscious-curations.json' with { type: 'json' };
 
-export interface HamperItem { code: string; en: string; ar: string; noteEn: string; noteAr: string; price: number; unit?: string; photo: string }
+export interface HamperItem { code: string; /** Shopify product handle, to be created for each item. */ handle: string; en: string; ar: string; noteEn: string; noteAr: string; price: number; unit?: string; photo: string }
 export interface HamperSection { id: string; en: string; ar: string; kind: 'basket' | 'pick' | 'treat'; items: HamperItem[] }
 
 export const HAMPER_SECTIONS = data.sections as HamperSection[];
@@ -41,26 +41,6 @@ export function hamperProblems({ basket, picks, treats }: HamperSelection): Hamp
   if (!treats.length) problems.push('treat');
   return problems;
 }
-
-/** The message the partner receives (English: her catalogue and order form are English). */
-export function hamperMessage(selection: HamperSelection, note = '') {
-  const total = hamperTotal(selection);
-  const lines = hamperCodes(selection).map((code) => {
-    const item = byCode.get(code)!;
-    return `${item.code} ${item.en}${item.unit ? ' (pair)' : ''}, AED ${item.price}`;
-  });
-  return [
-    'Hello Conscious Curations, I’d like to order a Diwali hamper from the Maison Botanique website:',
-    `Code: ${hamperCodeString(selection)}`,
-    ...lines,
-    `Total: AED ${total}`,
-    ...(note.trim() ? [`Card message: ${note.trim().slice(0, 200)}`] : []),
-    `I understand that a 50% advance (AED ${total / 2}) books the order and the rest is settled before delivery. Delivery is at a small extra cost (free above AED 1,000).`,
-    'Please confirm the recipient’s name, address and the delivery date.',
-  ].join('\n');
-}
-
-export const hamperWhatsappLink = (selection: HamperSelection, note = '') => `https://wa.me/${data.whatsapp}?text=${encodeURIComponent(hamperMessage(selection, note))}`;
 
 /** Sub-categories of the Conscious Curations page. Add an entry here and a route under /conscious-curations/<slug>. */
 export interface CuratedCollection { slug: string; live: boolean; en: string; ar: string; titleEn: string; titleAr: string; introEn: string; introAr: string; photo: string }

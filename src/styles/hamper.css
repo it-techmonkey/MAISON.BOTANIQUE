@@ -29,7 +29,9 @@
 .hamper-photo figcaption { margin-top: 8px; color: var(--muted); font-size: 12.5px; line-height: 1.4; }
 .hamper-photo--scene figcaption { margin-top: 8px; }
 
-.hamper-photo__busy { margin: 8px 0 0; color: var(--muted); font-size: var(--fs-small); }
+.hamper-photo__frame { position: relative; }
+.hamper-photo.is-stale img { opacity: .45; filter: saturate(.6); }
+.hamper-photo__veil { position: absolute; inset: 0; display: grid; place-items: center; padding: 16px; background: rgb(245 242 235 / 38%); color: var(--ink); font: 500 15px/1.3 var(--font-body); text-align: center; }
 
 .hamper-total { margin: 14px 0 12px; }
 .hamper-total div { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; font-size: var(--fs-body); }
@@ -96,6 +98,9 @@
   .slot { scroll-margin-top: 340px; scroll-margin-bottom: 96px; }
   .hamper-photo { text-align: center; }
   .hamper-photo figcaption { display: none; }
+  .hamper-photo__veil { font-size: 12px; padding: 6px; }
+  .hamper-photo__frame { width: min(44vw, 210px); margin-inline: auto; }
+  .hamper-photo__frame img { width: 100%; }
   .hamper-total { margin: 6px 0 0; }
   .hamper-total div:first-child { font-size: 22px; }
   .hamper-total div:last-child, .hamper-visual__buy { display: none; }
@@ -145,4 +150,4 @@
   .cc-pillars ul { grid-template-columns: minmax(0, 1fr); }
   .cc-pillars li, .cc-pillars li + li { padding-inline: 0; border-inline-start: 0; border-bottom: 1px solid var(--line); }
 }
-@media (max-width: 520px) { 
+@media (max-width: 520px) { .hamper-photo__frame > img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border: 1px solid var(--line-strong); }

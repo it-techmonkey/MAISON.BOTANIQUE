@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { HAMPER_ITEMS, HAMPER_PRESETS, HAMPER_SECTIONS, HAMPER_SLOTS, presetPhoto, hamperCodeString, hamperProblems, hamperTotal, hamperWhatsappLink, selectionFromSlots, PICK_MIN, type HamperItem, type HamperSlot, type HamperSlots, type SlotId } from '@/lib/hamper';
+import { HAMPER_ITEMS, HAMPER_PRESETS, HAMPER_SECTIONS, HAMPER_SLOTS, presetPhoto, hamperCodeString, hamperProblems, hamperTotal, hamperCodes, selectionFromSlots, PICK_MIN, type HamperItem, type HamperSlot, type HamperSlots, type SlotId } from '@/lib/hamper';
 import HamperScene from './HamperScene';
 import Money from './Money';
 import { useStore } from './StoreProvider';
@@ -13,13 +13,15 @@ const START = HAMPER_PRESETS.find((preset) => preset.id === 'home') ?? HAMPER_PR
 const keyOf = (slots: HamperSlots) => hamperCodeString(selectionFromSlots(slots));
 
 export default function HamperBuilder() {
-  const { ar, t } = useStore();
+  const { ar, t, products, cart, setCartOpen } = useStore();
   const [slots, setSlots] = useState<HamperSlots>(START.slots);
   const [open, setOpen] = useState<SlotId | null>(null);
   const [note, setNote] = useState('');
   const [render, setRender] = useState<{ key: string; src: string } | null>(null);
-  const [rendering, setRendering] = useState(false);
+  const [failedKey, setFailedKey] = useState('');
+  const [adding, setAdding] = useState(false);
   const renderOff = useRef(false);
+  const lastPhoto = useRef<string | null>(presetPhoto(START.id));
   const rowRefs = useRef<Partial<Record<SlotId, HTMLLIElement | null>>>({});
 
   // Raises the floating WhatsApp button above the phone summary bar.
@@ -39,27 +41,28 @@ export default function HamperBuilder() {
   const renderBody = JSON.stringify(selection);
 
   // A swapped hamper gets its own photo: wait for the customer to settle, then ask the server (see /api/hamper-image).
-  // Without the service (503) or past its limits the tidy preview simply stays.
+  // Meanwhile the page keeps the last photo, dimmed. Without the service (503), past its limits or on a failure it shows the tidy preview.
   useEffect(() => {
-    if (matched || !ready || renderOff.current) { setRendering(false); return; }
+    if (matched || !ready || renderOff.current) return;
     const cached = renderCache.get(renderKey);
-    if (cached) { setRender({ key: renderKey, src: cached }); setRendering(false); return; }
+    if (cached) { setRender({ key: renderKey, src: cached }); return; }
     const controller = new AbortController();
     const timer = setTimeout(async () => {
-      setRendering(true);
       try {
         const response = await fetch('/api/hamper-image', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: renderBody, signal: controller.signal });
         if (response.status === 503 || response.status === 429) renderOff.current = true;
-        if (!response.ok) return;
+        if (!response.ok) { setFailedKey(renderKey); return; }
         const { image } = (await response.json()) as { image: string };
         renderCache.set(renderKey, image);
         setRender({ key: renderKey, src: image });
-      } catch { /* aborted or offline: keep the preview */ } finally {
-        if (!controller.signal.aborted) setRendering(false);
-      }
+      } catch { if (!controller.signal.aborted) setFailedKey(renderKey); }
     }, 1500);
     return () => { clearTimeout(timer); controller.abort(); };
   }, [matched, ready, renderKey, renderBody]);
+
+  const photo = matched ? presetPhoto(matched.id) : render?.key === renderKey ? render.src : null;
+  if (photo) lastPhoto.current = photo;
+  const waiting = !photo && !!lastPhoto.current && (!ready || (!renderOff.current && failedKey !== renderKey));
 
   const inHamper = new Set(Object.values(slots).filter(Boolean));
 
@@ -75,23 +78,40 @@ export default function HamperBuilder() {
   if (problems.includes('basket')) missing.push(t('Choose a basket', 'اختر سلة'));
   if (problems.includes('few')) missing.push(t(`Add at least ${PICK_MIN} handcrafted pieces`, `أضف ${PICK_MIN} قطع يدوية على الأقل`));
   if (problems.includes('treat')) missing.push(t('Add a festive treat', 'أضف حلوى احتفالية'));
-  const cta = t('Send my hamper on WhatsApp', 'أرسل سلتي عبر واتساب');
-  const send = ready
-    ? <a className="button button--block" href={hamperWhatsappLink(selection, note)} target="_blank" rel="noopener noreferrer" data-track-location="hamper_whatsapp">{cta}</a>
-    : <button type="button" className="button button--block" disabled>{cta}</button>;
+  // The chosen items are ordinary store products: the hamper goes into the bag as one line each, tied together by a shared label.
+  const parts = hamperCodes(selection).map((code) => products.find((product) => product.id === byCode.get(code)!.handle));
+  const orderable = ready && parts.every((product) => product?.available && product.sizes.some((size) => size.available));
+  const addHamper = async () => {
+    if (!orderable || adding) return;
+    setAdding(true);
+    const label = `Hamper ${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+    try {
+      for (const [index, product] of parts.entries()) {
+        await cart.addItem(product!, { sizeId: product!.sizes.find((size) => size.available)?.id, custom: label, note: index === 0 ? note : undefined, source: 'hamper_builder' });
+      }
+      setCartOpen(true);
+    } finally { setAdding(false); }
+  };
+  const cta = !ready || orderable ? t('Add hamper to bag', 'أضف السلة إلى الحقيبة') : t('Ordering opens soon', 'الطلب قريباً');
+  const send = <button type="button" className="button button--block" disabled={!orderable || adding} onClick={addHamper} data-track-location="hamper_add_to_bag">{cta}</button>;
 
   return (
     <div className="hamper-layout" id="diwali-builder">
       <div className="hamper-visual">
-        {matched ? (
+        {photo ? (
           <figure className="hamper-photo">
-            <img src={presetPhoto(matched.id)} alt={`${ar ? matched.ar : matched.en}: ${t('a ready-made Diwali hamper', 'سلة ديوالي جاهزة')}`} width="1024" height="1024" />
-            <figcaption>{t('Illustrative photo. Swap anything below and the picture updates.', 'صورة توضيحية. بدّل أي قطعة أدناه وستتحدث الصورة.')}</figcaption>
+            <img src={photo} alt={matched ? `${ar ? matched.ar : matched.en}: ${t('a ready-made Diwali hamper', 'سلة ديوالي جاهزة')}` : t('Your Diwali hamper', 'سلة ديوالي الخاصة بك')} width="1024" height="1024" />
+            <figcaption>{matched
+              ? t('Illustrative photo. Swap anything below and the picture updates.', 'صورة توضيحية. بدّل أي قطعة أدناه وستتحدث الصورة.')
+              : t('Illustration of your hamper. The real one is hand-packed by Conscious Curations.', 'صورة توضيحية لسلتك. تُغلَّف السلة الحقيقية يدوياً من Conscious Curations.')}</figcaption>
           </figure>
-        ) : render?.key === renderKey ? (
-          <figure className="hamper-photo">
-            <img src={render.src} alt={t('Your Diwali hamper', 'سلة ديوالي الخاصة بك')} width="1024" height="1024" />
-            <figcaption>{t('Illustration of your hamper. The real one is hand-packed by Conscious Curations.', 'صورة توضيحية لسلتك. تُغلَّف السلة الحقيقية يدوياً من Conscious Curations.')}</figcaption>
+        ) : waiting ? (
+          <figure className="hamper-photo is-stale">
+            <div className="hamper-photo__frame">
+              <img src={lastPhoto.current!} alt="" width="1024" height="1024" />
+              <span className="hamper-photo__veil" role="status">{ready ? t('Updating your hamper photo…', 'نحدّث صورة سلتك…') : missing[0]}</span>
+            </div>
+            <figcaption>{t('The photo above is from before your last change.', 'الصورة أعلاه قبل آخر تعديل لك.')}</figcaption>
           </figure>
         ) : (
           <figure className="hamper-photo hamper-photo--scene">
@@ -99,7 +119,6 @@ export default function HamperBuilder() {
             <figcaption>{t('Preview of your changes. The real hamper is hand-packed by Conscious Curations.', 'معاينة لتعديلاتك. تُغلَّف السلة الحقيقية يدوياً من Conscious Curations.')}</figcaption>
           </figure>
         )}
-        {rendering && <p className="hamper-photo__busy" role="status">{t('Creating a photo of your hamper…', 'نجهّز صورة لسلتك…')}</p>}
         <dl className="hamper-total">
           <div><dt>{t('Total', 'المجموع')}</dt><dd><Money amount={total} ar={ar} /></dd></div>
         </dl>
@@ -176,9 +195,7 @@ export default function HamperBuilder() {
           <span className="hamper-bar__total"><Money amount={total} ar={ar} /></span>
           <span className="hamper-bar__state">{ready ? t('Ready to send', 'جاهزة للإرسال') : missing[0]}</span>
         </span>
-        {ready
-          ? <a className="hamper-bar__go" href={hamperWhatsappLink(selection, note)} target="_blank" rel="noopener noreferrer" data-track-location="hamper_whatsapp_bar">{t('Send on WhatsApp', 'أرسل عبر واتساب')}</a>
-          : <button type="button" className="hamper-bar__go" disabled>{t('Send on WhatsApp', 'أرسل عبر واتساب')}</button>}
+        <button type="button" className="hamper-bar__go" disabled={!orderable || adding} onClick={addHamper}>{!ready || orderable ? t('Add to bag', 'أضف إلى الحقيبة') : t('Opens soon', 'قريباً')}</button>
       </div>
     </div>
   );

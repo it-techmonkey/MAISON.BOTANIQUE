@@ -1,6 +1,5 @@
 {
  "partner": "Conscious Curations",
- "whatsapp": "971558436828",
  "sections": [
   {
    "id": "B",
@@ -15,7 +14,8 @@
      "noteEn": "Woven from upcycled textile & plastic waste",
      "noteAr": "منسوجة من أقمشة وبلاستيك معاد تدويره",
      "price": 90,
-     "photo": "/hamper/b1.jpg"
+     "photo": "/hamper/b1.jpg",
+     "handle": "cc-b1"
     },
     {
      "code": "B2",
@@ -24,7 +24,8 @@
      "noteEn": "Woven from upcycled textile & plastic waste",
      "noteAr": "منسوجة من أقمشة وبلاستيك معاد تدويره",
      "price": 80,
-     "photo": "/hamper/b2.jpg"
+     "photo": "/hamper/b2.jpg",
+     "handle": "cc-b2"
     },
     {
      "code": "B3",
@@ -33,7 +34,8 @@
      "noteEn": "Woven from upcycled textile & plastic waste",
      "noteAr": "منسوجة من أقمشة وبلاستيك معاد تدويره",
      "price": 85,
-     "photo": "/hamper/b3.jpg"
+     "photo": "/hamper/b3.jpg",
+     "handle": "cc-b3"
     },
     {
      "code": "B4",
@@ -42,7 +44,8 @@
      "noteEn": "Woven from upcycled textile & plastic waste · a keepsake box",
      "noteAr": "منسوج من أقمشة وبلاستيك معاد تدويره · صندوق للذكرى",
      "price": 80,
-     "photo": "/hamper/b4.jpg"
+     "photo": "/hamper/b4.jpg",
+     "handle": "cc-b4"
     },
     {
      "code": "B5",
@@ -51,7 +54,8 @@
      "noteEn": "Water hyacinth, handwoven by women’s groups in Assam",
      "noteAr": "ورد النيل، منسوج يدوياً بأيدي مجموعات نسائية في آسام",
      "price": 65,
-     "photo": "/hamper/b5.jpg"
+     "photo": "/hamper/b5.jpg",
+     "handle": "cc-b5"
     },
     {
      "code": "B6",
@@ -60,7 +64,8 @@
      "noteEn": "Water hyacinth, handwoven by women’s groups in Assam",
      "noteAr": "ورد النيل، منسوج يدوياً بأيدي مجموعات نسائية في آسام",
      "price": 50,
-     "photo": "/hamper/b6.jpg"
+     "photo": "/hamper/b6.jpg",
+     "handle": "cc-b6"
     },
     {
      "code": "B7",
@@ -69,7 +74,8 @@
      "noteEn": "Water hyacinth, handwoven by women’s groups in Assam",
      "noteAr": "ورد النيل، منسوج يدوياً بأيدي مجموعات نسائية في آسام",
      "price": 45,
-     "photo": "/hamper/b7.jpg"
+     "photo": "/hamper/b7.jpg",
+     "handle": "cc-b7"
     },
     {
      "code": "B8",
@@ -78,7 +84,8 @@
      "noteEn": "Hand stitched by women in Bengal",
      "noteAr": "مخيطة يدوياً بأيدي نساء في البنغال",
      "price": 20,
-     "photo": "/hamper/b8.jpg"
+     "photo": "/hamper/b8.jpg",
+     "handle": "cc-b8"
     },
     {
      "code": "B9",
@@ -87,7 +94,8 @@
      "noteEn": "Reusable after gifting",
      "noteAr": "قابلة لإعادة الاستخدام بعد الإهداء",
      "price": 20,
-     "photo": "/hamper/b9.jpg"
+     "photo": "/hamper/b9.jpg",
+     "handle": "cc-b9"
     }
    ]
   },
@@ -104,7 +112,8 @@
      "noteEn": "Himalayan Origins · handmade terracotta",
      "noteAr": "هيمالايان أوريجنز · تراكوتا مصنوعة يدوياً",
      "price": 40,
-     "photo": "/hamper/l1.jpg"
+     "photo": "/hamper/l1.jpg",
+     "handle": "cc-l1"
     },
     {
      "code": "L2",
@@ -113,7 +122,8 @@
      "noteEn": "Handmade paper pulp · reusable every year",
      "noteAr": "عجينة ورق يدوية · تُستخدم كل عام",
      "price": 50,
-     "photo": "/hamper/l2.jpg"
+     "photo": "/hamper/l2.jpg",
+     "handle": "cc-l2"
     },
     {
      "code": "L3",
@@ -123,7 +133,8 @@
      "noteAr": "فخار أزرق مرسوم يدوياً · طقم من 2",
      "price": 25,
      "unit": "pair",
-     "photo": "/hamper/l3.jpg"
+     "photo": "/hamper/l3.jpg",
+     "handle": "cc-l3"
     },
     {
      "code": "L4",
@@ -132,7 +143,8 @@
      "noteEn": "Wooden hand block",
      "noteAr": "قالب خشبي منقوش يدوياً",
      "price": 25,
-     "photo": "/hamper/l4.jpg"
+     "photo": "/hamper/l4.jpg",
+     "handle": "cc-l4"
     },
     {
      "code": "L5",
@@ -142,7 +154,8 @@
      "noteAr": "قالب خشبي منقوش يدوياً · طقم من 2",
      "price": 25,
      "unit": "pair",
-     "photo": "/hamper/l5.jpg"
+     "photo": "/hamper/l5.jpg",
+     "handle": "cc-l5"
     },
     {
      "code": "L6",
@@ -152,7 +165,8 @@
      "noteAr": "فخار أزرق مرسوم يدوياً · طقم من 2",
      "price": 25,
      "unit": "pair",
-     "photo": "/hamper/l6.jpg"
+     "photo": "/hamper/l6.jpg",
+     "handle": "cc-l6"
     },
     {
      "code": "L7",
@@ -162,7 +176,8 @@
      "noteAr": "رانغولي من عجينة الورق · طقم من 2",
      "price": 35,
      "unit": "pair",
-     "photo": "/hamper/l7.jpg"
+     "photo": "/hamper/l7.jpg",
+     "handle": "cc-l7"
     },
     {
      "code": "L8",
@@ -172,7 +187,8 @@
      "noteAr": "رانغولي من عجينة الورق · طقم من 2",
      "price": 35,
      "unit": "pair",
-     "photo": "/hamper/l8.jpg"
+     "photo": "/hamper/l8.jpg",
+     "handle": "cc-l8"
     },
     {
      "code": "L9",
@@ -182,7 +198,8 @@
      "noteAr": "فخار أزرق مرسوم يدوياً · طقم من 2",
      "price": 25,
      "unit": "pair",
-     "photo": "/hamper/l9.jpg"
+     "photo": "/hamper/l9.jpg",
+     "handle": "cc-l9"
     }
    ]
   },
@@ -199,7 +216,8 @@
      "noteEn": "Hand-carved wooden block",
      "noteAr": "قالب خشبي منحوت يدوياً",
      "price": 35,
-     "photo": "/hamper/p1.jpg"
+     "photo": "/hamper/p1.jpg",
+     "handle": "cc-p1"
     },
     {
      "code": "P2",
@@ -208,7 +226,8 @@
      "noteEn": "Copper / brass coated · Indianartvilla",
      "noteAr": "مطلية بالنحاس · Indianartvilla",
      "price": 25,
-     "photo": "/hamper/p2.jpg"
+     "photo": "/hamper/p2.jpg",
+     "handle": "cc-p2"
     },
     {
      "code": "P3",
@@ -217,7 +236,8 @@
      "noteEn": "Handmade paper pulp rangoli tealight holder",
      "noteAr": "حامل شمعة رانغولي من عجينة الورق",
      "price": 40,
-     "photo": "/hamper/p3.jpg"
+     "photo": "/hamper/p3.jpg",
+     "handle": "cc-p3"
     },
     {
      "code": "P4",
@@ -226,7 +246,8 @@
      "noteEn": "Handmade paper pulp",
      "noteAr": "عجينة ورق يدوية",
      "price": 15,
-     "photo": "/hamper/p4.jpg"
+     "photo": "/hamper/p4.jpg",
+     "handle": "cc-p4"
     },
     {
      "code": "P5",
@@ -235,7 +256,8 @@
      "noteEn": "Pocket-sized prayer book",
      "noteAr": "كتاب صلوات بحجم الجيب",
      "price": 15,
-     "photo": "/hamper/p5.jpg"
+     "photo": "/hamper/p5.jpg",
+     "handle": "cc-p5"
     }
    ]
   },
@@ -253,7 +275,8 @@
      "noteAr": "سيراميك مرسوم يدوياً · طقم من 2",
      "price": 80,
      "unit": "pair",
-     "photo": "/hamper/t1.jpg"
+     "photo": "/hamper/t1.jpg",
+     "handle": "cc-t1"
     },
     {
      "code": "T2",
@@ -263,7 +286,8 @@
      "noteAr": "سيراميك مرسوم يدوياً · طقم من 2",
      "price": 60,
      "unit": "pair",
-     "photo": "/hamper/t2.jpg"
+     "photo": "/hamper/t2.jpg",
+     "handle": "cc-t2"
     },
     {
      "code": "T3",
@@ -273,7 +297,8 @@
      "noteAr": "سيراميك مرسوم يدوياً · طقم من 2",
      "price": 50,
      "unit": "pair",
-     "photo": "/hamper/t3.jpg"
+     "photo": "/hamper/t3.jpg",
+     "handle": "cc-t3"
     },
     {
      "code": "T4",
@@ -282,7 +307,8 @@
      "noteEn": "Made from real coconut shell",
      "noteAr": "مصنوع من قشرة جوز الهند الطبيعية",
      "price": 50,
-     "photo": "/hamper/t4.jpg"
+     "photo": "/hamper/t4.jpg",
+     "handle": "cc-t4"
     },
     {
      "code": "T5",
@@ -291,7 +317,8 @@
      "noteEn": "Made from real coconut shell",
      "noteAr": "مصنوع من قشرة جوز الهند الطبيعية",
      "price": 30,
-     "photo": "/hamper/t5.jpg"
+     "photo": "/hamper/t5.jpg",
+     "handle": "cc-t5"
     },
     {
      "code": "T6",
@@ -300,7 +327,8 @@
      "noteEn": "Indianartvilla · Ayurvedic copper",
      "noteAr": "Indianartvilla · نحاس أيورفيدي",
      "price": 80,
-     "photo": "/hamper/t6.jpg"
+     "photo": "/hamper/t6.jpg",
+     "handle": "cc-t6"
     }
    ]
   },
@@ -317,7 +345,8 @@
      "noteEn": "Hand-stitched fabric cover · A5, 80 leaves",
      "noteAr": "غلاف قماش مخيط يدوياً · A5، 80 ورقة",
      "price": 40,
-     "photo": "/hamper/w1.jpg"
+     "photo": "/hamper/w1.jpg",
+     "handle": "cc-w1"
     },
     {
      "code": "W2",
@@ -326,7 +355,8 @@
      "noteEn": "Hand-stitched quilted cotton",
      "noteAr": "قطن مبطّن مخيط يدوياً",
      "price": 25,
-     "photo": "/hamper/w2.jpg"
+     "photo": "/hamper/w2.jpg",
+     "handle": "cc-w2"
     },
     {
      "code": "W3",
@@ -335,7 +365,8 @@
      "noteEn": "Hand-stitched quilted cotton",
      "noteAr": "قطن مبطّن مخيط يدوياً",
      "price": 20,
-     "photo": "/hamper/w3.jpg"
+     "photo": "/hamper/w3.jpg",
+     "handle": "cc-w3"
     },
     {
      "code": "W4",
@@ -344,7 +375,8 @@
      "noteEn": "Made with bio waste",
      "noteAr": "مصنوع من مخلفات حيوية",
      "price": 15,
-     "photo": "/hamper/w4.jpg"
+     "photo": "/hamper/w4.jpg",
+     "handle": "cc-w4"
     },
     {
      "code": "W5",
@@ -353,7 +385,8 @@
      "noteEn": "Hand-stitched quilted cotton",
      "noteAr": "قطن مبطّن مخيط يدوياً",
      "price": 15,
-     "photo": "/hamper/w5.jpg"
+     "photo": "/hamper/w5.jpg",
+     "handle": "cc-w5"
     }
    ]
   },
@@ -370,7 +403,8 @@
      "noteEn": "Homemade festive mixed mithai · Chefat65",
      "noteAr": "ميثاي احتفالي منزلي مشكّل · Chefat65",
      "price": 65,
-     "photo": "/hamper/f1.jpg"
+     "photo": "/hamper/f1.jpg",
+     "handle": "cc-f1"
     },
     {
      "code": "F2",
@@ -379,7 +413,8 @@
      "noteEn": "Homemade festive mixed mithai · Chefat65",
      "noteAr": "ميثاي احتفالي منزلي مشكّل · Chefat65",
      "price": 50,
-     "photo": "/hamper/f2.jpg"
+     "photo": "/hamper/f2.jpg",
+     "handle": "cc-f2"
     },
     {
      "code": "F3",
@@ -388,7 +423,8 @@
      "noteEn": "Homemade festive mixed mithai · Chefat65",
      "noteAr": "ميثاي احتفالي منزلي مشكّل · Chefat65",
      "price": 35,
-     "photo": "/hamper/f3.jpg"
+     "photo": "/hamper/f3.jpg",
+     "handle": "cc-f3"
     },
     {
      "code": "F4",
@@ -397,7 +433,8 @@
      "noteEn": "Homemade festive mixed mithai · Chefat65",
      "noteAr": "ميثاي احتفالي منزلي مشكّل · Chefat65",
      "price": 25,
-     "photo": "/hamper/f4.jpg"
+     "photo": "/hamper/f4.jpg",
+     "handle": "cc-f4"
     },
     {
      "code": "F5",
@@ -406,7 +443,8 @@
      "noteEn": "Homemade festive snack · glass jar · Chefat65",
      "noteAr": "وجبة خفيفة احتفالية منزلية · برطمان زجاجي · Chefat65",
      "price": 25,
-     "photo": "/hamper/f5.jpg"
+     "photo": "/hamper/f5.jpg",
+     "handle": "cc-f5"
     }
    ]
   }

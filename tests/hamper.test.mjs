@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 
-const { HAMPER_ITEMS, HAMPER_SECTIONS, hamperCodeString, hamperTotal, hamperProblems, hamperMessage, hamperWhatsappLink } = await import('../src/lib/hamper.ts');
+const { HAMPER_ITEMS, HAMPER_SECTIONS, hamperCodeString, hamperTotal, hamperProblems } = await import('../src/lib/hamper.ts');
 const example = { basket: 'B1', picks: ['T1', 'L5', 'L1'], treats: ['F1'] };
 
 test('the catalogue example order is B1 + L1 + L5 + T1 + F1 = AED 300', () => {
@@ -32,12 +32,6 @@ test('the rules: one basket, 3-5 handcrafted pieces, at least one treat', () => 
   assert.ok(hamperProblems({ ...example, picks: ['L1', 'L2', 'F1'] }).includes('unknown'));
 });
 
-test('the WhatsApp message carries the code, items, total and terms', () => {
-  const message = hamperMessage(example);
-  for (const part of ['B1 + L1 + L5 + T1 + F1', 'Sirohi elegant tray', 'Total: AED 300', '50% advance (AED 150)', 'before delivery']) assert.ok(message.includes(part), part);
-  assert.ok(hamperWhatsappLink(example).startsWith('https://wa.me/971558436828?text='));
-});
-
 test('sub-categories are bilingual and have a photo; Diwali is live', async () => {
   const { CURATED_COLLECTIONS } = await import('../src/lib/hamper.ts');
   assert.ok(CURATED_COLLECTIONS.some((c) => c.slug === 'diwali' && c.live));
@@ -56,13 +50,6 @@ test('ready-made hamper ideas follow the rules and every item has a cut-out phot
   for (const item of HAMPER_ITEMS) assert.ok(existsSync(`public${hamperCutout(item.code)}`), item.code);
 });
 
-test('a card message and the recipient reminder reach the partner', () => {
-  const message = hamperMessage(example, 'Happy Diwali, Mama');
-  assert.ok(message.includes('Card message: Happy Diwali, Mama'));
-  assert.ok(message.includes('confirm the recipient'));
-  assert.ok(!hamperMessage(example).includes('Card message'));
-});
-
 test('the photo request accepts only a valid catalogue hamper and the prompt names exactly its products', async () => {
   const { parseRenderRequest, hamperRenderPrompt } = await import('../src/lib/hamper-render.ts');
   const ok = { basket: 'B3', picks: ['L1', 'P1', 'T2', 'W4'], treats: ['F2'] };
@@ -71,4 +58,17 @@ test('the photo request accepts only a valid catalogue hamper and the prompt nam
   const prompt = hamperRenderPrompt(ok);
   for (const part of ['Sirohi kesariya tray', 'Terracotta candle', 'Mithai box (9 pc)', 'exactly these 5 products', 'Exactly one of each']) assert.ok(prompt.includes(part), part);
   assert.ok(!prompt.includes('Sirohi elegant tray'));
+});
+
+test('every item is a store product (cc-<code>) and the preview shelf adds them with the partner prices', async () => {
+  const { withHamperPreview, isHamperProduct } = await import('../src/lib/hamper-products.ts');
+  assert.equal(new Set(HAMPER_ITEMS.map((item) => item.handle)).size, HAMPER_ITEMS.length);
+  for (const item of HAMPER_ITEMS) assert.equal(item.handle, `cc-${item.code.toLowerCase()}`);
+  const products = withHamperPreview([]);
+  assert.equal(products.length, HAMPER_ITEMS.length);
+  for (const item of HAMPER_ITEMS) {
+    const product = products.find((p) => p.id === item.handle);
+    assert.ok(product && product.price === item.price && product.sizes.length === 1 && isHamperProduct(product.id), item.code);
+  }
+  assert.equal(withHamperPreview(products).length, products.length);
 });
