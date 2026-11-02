@@ -24,6 +24,11 @@
 .scene-item--empty::after { display: none; }
 @keyframes scene-drop { from { opacity: 0; translate: 0 -12px; } to { opacity: 1; translate: 0 0; } }
 
+.hamper-photo { margin: 0; }
+.hamper-photo > img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border: 1px solid var(--line-strong); }
+.hamper-photo figcaption { margin-top: 8px; color: var(--muted); font-size: 12.5px; line-height: 1.4; }
+.hamper-photo--scene figcaption { margin-top: 8px; }
+
 .hamper-total { margin: 14px 0 12px; }
 .hamper-total div { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; font-size: var(--fs-body); }
 .hamper-total div:first-child { font: 400 30px/1.2 var(--font-display); }
@@ -33,7 +38,9 @@
 
 .hamper-presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
 .hamper-presets > span { flex: 1 1 100%; color: var(--muted); font-size: var(--fs-body); }
-.hamper-presets button { display: grid; gap: 2px; min-height: 56px; padding: 8px 16px; border: 1px solid var(--line-strong); background: var(--paper); color: var(--ink); text-align: start; font: 400 14px/1.2 var(--font-body); transition: background .2s, color .2s; }
+.hamper-presets button { display: flex; align-items: center; gap: 10px; min-height: 64px; padding: 8px 14px 8px 8px; border: 1px solid var(--line-strong); background: var(--paper); color: var(--ink); text-align: start; font: 400 14px/1.2 var(--font-body); transition: background .2s, color .2s; }
+.hamper-presets button img { flex: none; width: 48px; height: 48px; object-fit: cover; }
+.hamper-presets button > span { display: grid; gap: 2px; }
 .hamper-presets button strong { font: 500 15px/1.2 var(--font-body); }
 .hamper-presets button[aria-pressed='true'] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
@@ -83,6 +90,10 @@
   .hamper { padding-bottom: 88px; }
   .hamper-visual { top: calc(var(--chrome) - 1px); z-index: 15; margin-inline: calc(var(--gutter) * -1); padding: 8px var(--gutter) 6px; background: var(--paper); border-bottom: 1px solid var(--line); }
   .hamper-visual .scene { width: min(54vw, 290px); margin-inline: auto; }
+  .hamper-visual .hamper-photo > img { width: min(44vw, 210px); margin-inline: auto; }
+  .slot { scroll-margin-top: 340px; scroll-margin-bottom: 96px; }
+  .hamper-photo { text-align: center; }
+  .hamper-photo figcaption { display: none; }
   .hamper-total { margin: 6px 0 0; }
   .hamper-total div:first-child { font-size: 22px; }
   .hamper-total div:last-child, .hamper-visual__buy { display: none; }

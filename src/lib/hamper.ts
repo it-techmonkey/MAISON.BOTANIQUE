@@ -99,3 +99,6 @@ export const HAMPER_PRESETS = data.presets as HamperPreset[];
 
 /** Cut-out photo used in the picture of the hamper. */
 export const hamperCutout = (code: string) => `/hamper/cut/${code.toLowerCase()}.webp`;
+
+/** Rendered photo of a ready-made hamper, shown while the customer has not changed it. */
+export const presetPhoto = (id: string) => `/hamper/presets/${id}.webp`;

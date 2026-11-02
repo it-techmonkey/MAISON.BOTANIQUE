@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { HAMPER_ITEMS, HAMPER_PRESETS, HAMPER_SECTIONS, HAMPER_SLOTS, hamperCodeString, hamperProblems, hamperTotal, hamperWhatsappLink, selectionFromSlots, PICK_MIN, type HamperItem, type HamperSlot, type HamperSlots, type SlotId } from '@/lib/hamper';
+import { HAMPER_ITEMS, HAMPER_PRESETS, HAMPER_SECTIONS, HAMPER_SLOTS, presetPhoto, hamperCodeString, hamperProblems, hamperTotal, hamperWhatsappLink, selectionFromSlots, PICK_MIN, type HamperItem, type HamperSlot, type HamperSlots, type SlotId } from '@/lib/hamper';
 import HamperScene from './HamperScene';
 import Money from './Money';
 import { useStore } from './StoreProvider';
@@ -29,6 +29,7 @@ export default function HamperBuilder() {
   const ready = problems.length === 0;
   const items: Partial<Record<SlotId, HamperItem>> = {};
   for (const slot of HAMPER_SLOTS) { const code = slots[slot.id]; if (code) items[slot.id] = byCode.get(code); }
+  const matched = HAMPER_PRESETS.find((preset) => keyOf(preset.slots) === keyOf(slots));
   const inHamper = new Set(Object.values(slots).filter(Boolean));
 
   const choose = (slot: SlotId, code: string | null) => { setSlots((current) => ({ ...current, [slot]: code })); setOpen(null); };
@@ -51,7 +52,17 @@ export default function HamperBuilder() {
   return (
     <div className="hamper-layout" id="diwali-builder">
       <div className="hamper-visual">
-        <HamperScene items={items} onPick={openSlot} />
+        {matched ? (
+          <figure className="hamper-photo">
+            <img src={presetPhoto(matched.id)} alt={`${ar ? matched.ar : matched.en}: ${t('a ready-made Diwali hamper', 'سلة ديوالي جاهزة')}`} width="1024" height="1024" />
+            <figcaption>{t('Illustrative photo. Swap anything below and the picture updates.', 'صورة توضيحية. بدّل أي قطعة أدناه وستتحدث الصورة.')}</figcaption>
+          </figure>
+        ) : (
+          <figure className="hamper-photo hamper-photo--scene">
+            <HamperScene items={items} onPick={openSlot} />
+            <figcaption>{t('Preview of your changes. The real hamper is hand-packed by Conscious Curations.', 'معاينة لتعديلاتك. تُغلَّف السلة الحقيقية يدوياً من Conscious Curations.')}</figcaption>
+          </figure>
+        )}
         <dl className="hamper-total">
           <div><dt>{t('Total', 'المجموع')}</dt><dd><Money amount={total} ar={ar} /></dd></div>
           <div><dt>{t('50% advance to book', 'دفعة مقدمة 50٪ للحجز')}</dt><dd><Money amount={total / 2} ar={ar} /></dd></div>
@@ -67,8 +78,8 @@ export default function HamperBuilder() {
           <span>{t('Start from a ready-made hamper, then swap anything', 'ابدأ بسلة جاهزة ثم بدّل ما تشاء')}</span>
           {HAMPER_PRESETS.map((preset) => (
             <button key={preset.id} type="button" aria-pressed={keyOf(preset.slots) === keyOf(slots)} onClick={() => { setSlots(preset.slots); setOpen(null); }}>
-              <strong>{ar ? preset.ar : preset.en}</strong>
-              <Money amount={hamperTotal(selectionFromSlots(preset.slots))} ar={ar} />
+              <img src={presetPhoto(preset.id)} alt="" width="48" height="48" />
+              <span><strong>{ar ? preset.ar : preset.en}</strong><Money amount={hamperTotal(selectionFromSlots(preset.slots))} ar={ar} /></span>
             </button>
           ))}
         </div>
