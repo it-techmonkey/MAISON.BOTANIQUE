@@ -62,3 +62,13 @@ test('a card message and the recipient reminder reach the partner', () => {
   assert.ok(message.includes('confirm the recipient'));
   assert.ok(!hamperMessage(example).includes('Card message'));
 });
+
+test('the photo request accepts only a valid catalogue hamper and the prompt names exactly its products', async () => {
+  const { parseRenderRequest, hamperRenderPrompt } = await import('../src/lib/hamper-render.ts');
+  const ok = { basket: 'B3', picks: ['L1', 'P1', 'T2', 'W4'], treats: ['F2'] };
+  assert.deepEqual(parseRenderRequest(ok), ok);
+  for (const bad of [null, {}, { ...ok, basket: 'X9' }, { ...ok, picks: ['L1', 'L1', 'P1'] }, { ...ok, picks: ['L1'] }, { ...ok, treats: [] }, { ...ok, picks: ['L1', 'P1', 'T2', 'W4', 'L2', 'L3'] }, { ...ok, basket: 'L1' }]) assert.equal(parseRenderRequest(bad), null);
+  const prompt = hamperRenderPrompt(ok);
+  for (const part of ['Sirohi kesariya tray', 'Terracotta candle', 'Mithai box (9 pc)', 'exactly these 5 products', 'Exactly one of each']) assert.ok(prompt.includes(part), part);
+  assert.ok(!prompt.includes('Sirohi elegant tray'));
+});

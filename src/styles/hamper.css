@@ -29,6 +29,8 @@
 .hamper-photo figcaption { margin-top: 8px; color: var(--muted); font-size: 12.5px; line-height: 1.4; }
 .hamper-photo--scene figcaption { margin-top: 8px; }
 
+.hamper-photo__busy { margin: 8px 0 0; color: var(--muted); font-size: var(--fs-small); }
+
 .hamper-total { margin: 14px 0 12px; }
 .hamper-total div { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; font-size: var(--fs-body); }
 .hamper-total div:first-child { font: 400 30px/1.2 var(--font-display); }
@@ -119,11 +121,13 @@
 @media (prefers-reduced-motion: reduce) { .scene-item { animation: none; } .hamper-presets button { transition: none; } }
 
 /* Conscious Curations category page and co-brand lockup. */
-.cobrand { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin: 28px 0 0; padding: 18px 0 0; border-top: 1px solid var(--line); }
-.cobrand img { display: block; width: 132px; height: auto; }
-.cobrand__with { color: var(--muted); font: 500 12px/1.3 var(--font-body); letter-spacing: .18em; text-transform: uppercase; }
-[dir='rtl'] .cobrand__with { letter-spacing: 0; }
-.cc-crumb { margin: 18px 0 0; font-size: var(--fs-small); }
+.cobrand { display: flex; flex-wrap: nowrap; align-items: center; gap: clamp(10px, 3vw, 22px); margin: 28px 0 0; padding: 18px 0 0; border-top: 1px solid var(--line); }
+.cobrand .logo strong { font-size: clamp(17px, 5.4vw, 28px); }
+.cobrand .logo span { font-size: clamp(8px, 2.2vw, 10px); }
+.cobrand img { display: block; flex: none; width: clamp(88px, 26vw, 132px); height: auto; }
+.cobrand + p { margin-top: 20px; }
+.cobrand__x { color: var(--muted); font: 300 clamp(20px, 5vw, 30px)/1 var(--font-display); }
+[dir='rtl'] .cc-crumb { margin: 18px 0 0; font-size: var(--fs-small); }
 .cc-crumb a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
 .cc-pillars { margin-bottom: 0; }
 .cc-pillars ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-strong); }
@@ -141,4 +145,4 @@
   .cc-pillars ul { grid-template-columns: minmax(0, 1fr); }
   .cc-pillars li, .cc-pillars li + li { padding-inline: 0; border-inline-start: 0; border-bottom: 1px solid var(--line); }
 }
-@media (max-width: 520px) { .cobrand__with { flex-basis: 100%; } }
+@media (max-width: 520px) { 

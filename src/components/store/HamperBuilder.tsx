@@ -7,6 +7,8 @@ import Money from './Money';
 import { useStore } from './StoreProvider';
 
 const byCode = new Map(HAMPER_ITEMS.map((item) => [item.code, item]));
+// Photos already made this visit, so going back to a hamper costs nothing.
+const renderCache = new Map<string, string>();
 const START = HAMPER_PRESETS.find((preset) => preset.id === 'home') ?? HAMPER_PRESETS[0];
 const keyOf = (slots: HamperSlots) => hamperCodeString(selectionFromSlots(slots));
 
@@ -15,6 +17,9 @@ export default function HamperBuilder() {
   const [slots, setSlots] = useState<HamperSlots>(START.slots);
   const [open, setOpen] = useState<SlotId | null>(null);
   const [note, setNote] = useState('');
+  const [render, setRender] = useState<{ key: string; src: string } | null>(null);
+  const [rendering, setRendering] = useState(false);
+  const renderOff = useRef(false);
   const rowRefs = useRef<Partial<Record<SlotId, HTMLLIElement | null>>>({});
 
   // Raises the floating WhatsApp button above the phone summary bar.
@@ -30,6 +35,32 @@ export default function HamperBuilder() {
   const items: Partial<Record<SlotId, HamperItem>> = {};
   for (const slot of HAMPER_SLOTS) { const code = slots[slot.id]; if (code) items[slot.id] = byCode.get(code); }
   const matched = HAMPER_PRESETS.find((preset) => keyOf(preset.slots) === keyOf(slots));
+  const renderKey = hamperCodeString(selection);
+  const renderBody = JSON.stringify(selection);
+
+  // A swapped hamper gets its own photo: wait for the customer to settle, then ask the server (see /api/hamper-image).
+  // Without the service (503) or past its limits the tidy preview simply stays.
+  useEffect(() => {
+    if (matched || !ready || renderOff.current) { setRendering(false); return; }
+    const cached = renderCache.get(renderKey);
+    if (cached) { setRender({ key: renderKey, src: cached }); setRendering(false); return; }
+    const controller = new AbortController();
+    const timer = setTimeout(async () => {
+      setRendering(true);
+      try {
+        const response = await fetch('/api/hamper-image', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: renderBody, signal: controller.signal });
+        if (response.status === 503 || response.status === 429) renderOff.current = true;
+        if (!response.ok) return;
+        const { image } = (await response.json()) as { image: string };
+        renderCache.set(renderKey, image);
+        setRender({ key: renderKey, src: image });
+      } catch { /* aborted or offline: keep the preview */ } finally {
+        if (!controller.signal.aborted) setRendering(false);
+      }
+    }, 1500);
+    return () => { clearTimeout(timer); controller.abort(); };
+  }, [matched, ready, renderKey, renderBody]);
+
   const inHamper = new Set(Object.values(slots).filter(Boolean));
 
   const choose = (slot: SlotId, code: string | null) => { setSlots((current) => ({ ...current, [slot]: code })); setOpen(null); };
@@ -57,15 +88,20 @@ export default function HamperBuilder() {
             <img src={presetPhoto(matched.id)} alt={`${ar ? matched.ar : matched.en}: ${t('a ready-made Diwali hamper', 'سلة ديوالي جاهزة')}`} width="1024" height="1024" />
             <figcaption>{t('Illustrative photo. Swap anything below and the picture updates.', 'صورة توضيحية. بدّل أي قطعة أدناه وستتحدث الصورة.')}</figcaption>
           </figure>
+        ) : render?.key === renderKey ? (
+          <figure className="hamper-photo">
+            <img src={render.src} alt={t('Your Diwali hamper', 'سلة ديوالي الخاصة بك')} width="1024" height="1024" />
+            <figcaption>{t('Illustration of your hamper. The real one is hand-packed by Conscious Curations.', 'صورة توضيحية لسلتك. تُغلَّف السلة الحقيقية يدوياً من Conscious Curations.')}</figcaption>
+          </figure>
         ) : (
           <figure className="hamper-photo hamper-photo--scene">
             <HamperScene items={items} onPick={openSlot} />
             <figcaption>{t('Preview of your changes. The real hamper is hand-packed by Conscious Curations.', 'معاينة لتعديلاتك. تُغلَّف السلة الحقيقية يدوياً من Conscious Curations.')}</figcaption>
           </figure>
         )}
+        {rendering && <p className="hamper-photo__busy" role="status">{t('Creating a photo of your hamper…', 'نجهّز صورة لسلتك…')}</p>}
         <dl className="hamper-total">
           <div><dt>{t('Total', 'المجموع')}</dt><dd><Money amount={total} ar={ar} /></dd></div>
-          <div><dt>{t('50% advance to book', 'دفعة مقدمة 50٪ للحجز')}</dt><dd><Money amount={total / 2} ar={ar} /></dd></div>
         </dl>
         <div className="hamper-visual__buy">
           {!ready && <ul className="hamper-missing" aria-live="polite">{missing.map((line) => <li key={line}>{line}</li>)}</ul>}
@@ -132,16 +168,6 @@ export default function HamperBuilder() {
             <span>{t('Card message (optional)', 'رسالة البطاقة (اختياري)')}</span>
             <textarea value={note} maxLength={200} rows={2} onChange={(event) => setNote(event.target.value)} placeholder={t('Happy Diwali…', 'ديوالي سعيد…')} />
           </label>
-          {ready && <p className="hamper-code"><span>{t('Your code', 'رمز سلتك')}</span> <bdi dir="ltr">{hamperCodeString(selection)}</bdi></p>}
-          <details className="hamper-terms">
-            <summary>{t('How ordering works', 'كيف يتم الطلب')}</summary>
-            <ul>
-              <li>{t('Opens WhatsApp with your code, items and total ready to send to Conscious Curations, who prepare and deliver your hamper. They will confirm the recipient, address and delivery date with you.', 'يفتح واتساب برمز سلتك وقطعها والمجموع جاهزة للإرسال إلى Conscious Curations، وهم من يجهّز السلة ويوصلها. وسيؤكدون معك المستلم والعنوان وموعد التوصيل.')}</li>
-              <li>{t('50% advance books the order; the rest is settled before delivery.', 'دفعة مقدمة 50٪ لتأكيد الطلب، والباقي قبل التوصيل.')}</li>
-              <li>{t('Delivery at a small extra cost, free for orders above AED 1,000.', 'التوصيل بتكلفة إضافية بسيطة، ومجاني للطلبات فوق 1,000 درهم.')}</li>
-              <li>{t('The picture is a guide to your selection; the hamper is hand-packed by Conscious Curations.', 'الصورة دليل لاختيارك؛ وتُغلَّف السلة يدوياً من Conscious Curations.')}</li>
-            </ul>
-          </details>
         </div>
       </div>
 
