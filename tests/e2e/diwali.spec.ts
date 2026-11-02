@@ -69,3 +69,22 @@ test('after Diwali delivery ends the page points back to the everyday shop', asy
   await page.goto('/diwali');
   await expect(page.locator('.dwe-ended')).toBeVisible();
 });
+
+test('Diwali is an occasion: the menu, footer and home tile open /diwali, the tile shows a symbol not a photo', async ({ page }) => {
+  await page.clock.install({ time: atDubaiNoon('2026-11-02') });
+  await page.goto('/');
+  await expect(page.locator('.hs-occasions a[href="/diwali"]')).toHaveCount(1);
+  await expect(page.locator('.hs-occasions a[href="/diwali"] img')).toHaveCount(0);
+  await expect(page.locator('footer a[href="/diwali"]').first()).toBeVisible();
+  await page.locator('.nav-occasions > button').click();
+  await expect(page.locator('.nav-occasions__list a[href="/diwali"]')).toBeVisible();
+});
+
+test('the Diwali occasion also filters the shop, and a Diwali product page links to /diwali', async ({ page }) => {
+  await page.clock.install({ time: atDubaiNoon('2026-11-02') });
+  await page.goto('/shop#occasion/diwali');
+  await expect(page.locator('.mbc-piece').first()).toBeVisible();
+  const response = await page.goto('/shop/marigold-urli');
+  test.skip(response?.status() !== 200, 'Diwali drafts are not published on this build');
+  await expect(page.locator('.purchase a[href="/diwali"]').first()).toBeVisible();
+});

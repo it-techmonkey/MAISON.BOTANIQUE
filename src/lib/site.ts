@@ -53,7 +53,7 @@ export const SITE = {
 };
 
 /** The occasions products are tagged with in Shopify (`occasion:<id>`), in menu order. */
-export const OCCASION_IDS = ['birthday', 'love', 'thanks', 'get-well', 'new-baby', 'congratulations', 'wedding', 'sorry', 'just-because'] as const;
+export const OCCASION_IDS = ['birthday', 'love', 'thanks', 'get-well', 'new-baby', 'congratulations', 'wedding', 'sorry', 'just-because', 'diwali'] as const;
 export type OccasionId = typeof OCCASION_IDS[number];
 
 export interface Occasion {
@@ -153,12 +153,24 @@ export const OCCASIONS: Occasion[] = [
     intro: { en: 'Flowers, beauty gifts and thoughtful combinations, chosen for the women who matter to you.', ar: 'زهور وهدايا جمال وتنسيقات مدروسة، مختارة للنساء العزيزات عليك.' },
     image: '/assets/sunlit-cut.jpg',
   },
+  {
+    id: 'diwali',
+    name: { en: 'Diwali', ar: 'ديوالي' },
+    line: { en: 'Ghar wali Diwali, here in Dubai.', ar: 'ديوالي بدفء البيت، هنا في دبي.' },
+    intro: {
+      en: 'Fresh marigold torans, rangoli and gifts for the door, the doorstep and the host. Pre-order now, delivered from 5 November.',
+      ar: 'أكاليل قطيفة طازجة ورانغولي وهدايا للباب والعتبة والمضيف. اطلبوا مسبقاً، التوصيل من 5 نوفمبر.',
+    },
+    image: '/seasonal/toran-cut-600.webp',
+  },
 ];
 
 export function occasionSlug(id: string) { return id === 'just-because' ? 'gifts-for-her' : id; }
 /** Occasions are filters on the one collection, not pages of their own. */
 export function occasionHash(id: string) { return `occasion/${occasionSlug(id)}`; }
-export function occasionPath(id: string) { return ['birthday', 'love'].includes(id) ? `/occasions/${id}` : `/shop#${occasionHash(id)}`; }
+/** Occasions that have a page of their own; every other occasion is a filter on the shop. */
+export const OCCASION_PAGE: Record<string, string> = { diwali: '/diwali' };
+export function occasionPath(id: string) { return OCCASION_PAGE[id] ?? (['birthday', 'love'].includes(id) ? `/occasions/${id}` : `/shop#${occasionHash(id)}`); }
 /** Window event that asks the home collection to clear its filters and come into view. */
 export const SHOW_COLLECTION_EVENT = 'maison:show-collection';
 export type ShowCollectionDetail = { occasions?: boolean };
