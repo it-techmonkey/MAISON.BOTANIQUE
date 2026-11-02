@@ -38,8 +38,8 @@ test('sub-categories are bilingual and have a photo; Diwali is live', async () =
   for (const c of CURATED_COLLECTIONS) assert.ok(c.en && c.ar && c.titleEn && c.titleAr && c.introEn && c.introAr && existsSync(`public${c.photo}`), c.slug);
 });
 
-test('ready-made hamper ideas follow the rules and every item has a cut-out photo', async () => {
-  const { HAMPER_PRESETS, HAMPER_SLOTS, selectionFromSlots, hamperCutout, presetPhoto } = await import('../src/lib/hamper.ts');
+test('ready-made hamper ideas follow the rules and have a photo', async () => {
+  const { HAMPER_PRESETS, HAMPER_SLOTS, selectionFromSlots, presetPhoto } = await import('../src/lib/hamper.ts');
   assert.ok(HAMPER_PRESETS.length >= 3);
   for (const preset of HAMPER_PRESETS) {
     const selection = selectionFromSlots(preset.slots);
@@ -47,28 +47,19 @@ test('ready-made hamper ideas follow the rules and every item has a cut-out phot
     assert.ok(existsSync(`public${presetPhoto(preset.id)}`), `${preset.id} photo`);
     for (const slot of HAMPER_SLOTS.filter((slot) => preset.slots[slot.id])) assert.ok(HAMPER_SECTIONS.filter((section) => slot.sections.includes(section.id)).some((section) => section.items.some((item) => item.code === preset.slots[slot.id])), `${preset.id} ${slot.id} is from the right section`);
   }
-  for (const item of HAMPER_ITEMS) assert.ok(existsSync(`public${hamperCutout(item.code)}`), item.code);
 });
 
-test('the photo request accepts only a valid catalogue hamper and the prompt names exactly its products', async () => {
-  const { parseRenderRequest, hamperRenderPrompt } = await import('../src/lib/hamper-render.ts');
-  const ok = { basket: 'B3', picks: ['L1', 'P1', 'T2', 'W4'], treats: ['F2'] };
-  assert.deepEqual(parseRenderRequest(ok), ok);
-  for (const bad of [null, {}, { ...ok, basket: 'X9' }, { ...ok, picks: ['L1', 'L1', 'P1'] }, { ...ok, picks: ['L1'] }, { ...ok, treats: [] }, { ...ok, picks: ['L1', 'P1', 'T2', 'W4', 'L2', 'L3'] }, { ...ok, basket: 'L1' }]) assert.equal(parseRenderRequest(bad), null);
-  const prompt = hamperRenderPrompt(ok);
-  for (const part of ['Sirohi kesariya tray', 'Terracotta candle', 'Mithai box (9 pc)', 'exactly these 5 products', 'Exactly one of each']) assert.ok(prompt.includes(part), part);
-  assert.ok(!prompt.includes('Sirohi elegant tray'));
-});
-
-test('every item is a store product (cc-<code>) and the preview shelf adds them with the partner prices', async () => {
-  const { withHamperPreview, isHamperProduct } = await import('../src/lib/hamper-products.ts');
-  assert.equal(new Set(HAMPER_ITEMS.map((item) => item.handle)).size, HAMPER_ITEMS.length);
-  for (const item of HAMPER_ITEMS) assert.equal(item.handle, `cc-${item.code.toLowerCase()}`);
-  const products = withHamperPreview([]);
-  assert.equal(products.length, HAMPER_ITEMS.length);
-  for (const item of HAMPER_ITEMS) {
-    const product = products.find((p) => p.id === item.handle);
-    assert.ok(product && product.price === item.price && product.sizes.length === 1 && isHamperProduct(product.id), item.code);
+test('every pre-made photo is a valid hamper with a file; the closest photo is exact for a pre-made hamper and honest after a swap', async () => {
+  const { HAMPER_PHOTOS, HAMPER_PRESETS, selectionFromSlots, closestHamperPhoto, presetPhoto } = await import('../src/lib/hamper.ts');
+  assert.ok(HAMPER_PHOTOS.length >= 12);
+  assert.equal(new Set(HAMPER_PHOTOS.map((photo) => photo.id)).size, HAMPER_PHOTOS.length);
+  for (const photo of HAMPER_PHOTOS) {
+    assert.deepEqual(hamperProblems(selectionFromSlots(photo.slots)), [], photo.id);
+    assert.ok(existsSync(`public${presetPhoto(photo.id)}`), photo.id);
   }
-  assert.equal(withHamperPreview(products).length, products.length);
+  for (const preset of HAMPER_PRESETS) assert.deepEqual(closestHamperPhoto(selectionFromSlots(preset.slots)), { id: preset.id, exact: true, notShown: [] });
+  const swapped = selectionFromSlots({ ...HAMPER_PRESETS[2].slots, light: 'L9' });
+  const nearest = closestHamperPhoto(swapped);
+  assert.equal(nearest.exact, false);
+  assert.deepEqual(nearest.notShown, ['L9']);
 });

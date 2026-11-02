@@ -1,14 +1,11 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { HAMPER_ITEMS, HAMPER_PRESETS, HAMPER_SECTIONS, HAMPER_SLOTS, presetPhoto, hamperCodeString, hamperProblems, hamperTotal, hamperCodes, selectionFromSlots, PICK_MIN, type HamperItem, type HamperSlot, type HamperSlots, type SlotId } from '@/lib/hamper';
-import HamperScene from './HamperScene';
+import { HAMPER_ITEMS, HAMPER_PRESETS, HAMPER_SECTIONS, HAMPER_SLOTS, presetPhoto, hamperCodeString, hamperProblems, hamperTotal, hamperCodes, closestHamperPhoto, selectionFromSlots, PICK_MIN, type HamperItem, type HamperSlot, type HamperSlots, type SlotId } from '@/lib/hamper';
 import Money from './Money';
 import { useStore } from './StoreProvider';
 
 const byCode = new Map(HAMPER_ITEMS.map((item) => [item.code, item]));
-// Photos already made this visit, so going back to a hamper costs nothing.
-const renderCache = new Map<string, string>();
 const START = HAMPER_PRESETS.find((preset) => preset.id === 'home') ?? HAMPER_PRESETS[0];
 const keyOf = (slots: HamperSlots) => hamperCodeString(selectionFromSlots(slots));
 
@@ -17,11 +14,7 @@ export default function HamperBuilder() {
   const [slots, setSlots] = useState<HamperSlots>(START.slots);
   const [open, setOpen] = useState<SlotId | null>(null);
   const [note, setNote] = useState('');
-  const [render, setRender] = useState<{ key: string; src: string } | null>(null);
-  const [failedKey, setFailedKey] = useState('');
   const [adding, setAdding] = useState(false);
-  const renderOff = useRef(false);
-  const lastPhoto = useRef<string | null>(presetPhoto(START.id));
   const rowRefs = useRef<Partial<Record<SlotId, HTMLLIElement | null>>>({});
 
   // Raises the floating WhatsApp button above the phone summary bar.
@@ -36,33 +29,8 @@ export default function HamperBuilder() {
   const ready = problems.length === 0;
   const items: Partial<Record<SlotId, HamperItem>> = {};
   for (const slot of HAMPER_SLOTS) { const code = slots[slot.id]; if (code) items[slot.id] = byCode.get(code); }
-  const matched = HAMPER_PRESETS.find((preset) => keyOf(preset.slots) === keyOf(slots));
-  const renderKey = hamperCodeString(selection);
-  const renderBody = JSON.stringify(selection);
-
-  // A swapped hamper gets its own photo: wait for the customer to settle, then ask the server (see /api/hamper-image).
-  // Meanwhile the page keeps the last photo, dimmed. Without the service (503), past its limits or on a failure it shows the tidy preview.
-  useEffect(() => {
-    if (matched || !ready || renderOff.current) return;
-    const cached = renderCache.get(renderKey);
-    if (cached) { setRender({ key: renderKey, src: cached }); return; }
-    const controller = new AbortController();
-    const timer = setTimeout(async () => {
-      try {
-        const response = await fetch('/api/hamper-image', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: renderBody, signal: controller.signal });
-        if (response.status === 503 || response.status === 429) renderOff.current = true;
-        if (!response.ok) { setFailedKey(renderKey); return; }
-        const { image } = (await response.json()) as { image: string };
-        renderCache.set(renderKey, image);
-        setRender({ key: renderKey, src: image });
-      } catch { if (!controller.signal.aborted) setFailedKey(renderKey); }
-    }, 1500);
-    return () => { clearTimeout(timer); controller.abort(); };
-  }, [matched, ready, renderKey, renderBody]);
-
-  const photo = matched ? presetPhoto(matched.id) : render?.key === renderKey ? render.src : null;
-  if (photo) lastPhoto.current = photo;
-  const waiting = !photo && !!lastPhoto.current && (!ready || (!renderOff.current && failedKey !== renderKey));
+  const photo = closestHamperPhoto(selection);
+  const photoNames = photo.exact ? [] : photo.notShown.map((code) => byCode.get(code)!).map((item) => (ar ? item.ar : item.en));
 
   const inHamper = new Set(Object.values(slots).filter(Boolean));
 
@@ -98,27 +66,12 @@ export default function HamperBuilder() {
   return (
     <div className="hamper-layout" id="diwali-builder">
       <div className="hamper-visual">
-        {photo ? (
-          <figure className="hamper-photo">
-            <img src={photo} alt={matched ? `${ar ? matched.ar : matched.en}: ${t('a ready-made Diwali hamper', 'سلة ديوالي جاهزة')}` : t('Your Diwali hamper', 'سلة ديوالي الخاصة بك')} width="1024" height="1024" />
-            <figcaption>{matched
-              ? t('Illustrative photo. Swap anything below and the picture updates.', 'صورة توضيحية. بدّل أي قطعة أدناه وستتحدث الصورة.')
-              : t('Illustration of your hamper. The real one is hand-packed by Conscious Curations.', 'صورة توضيحية لسلتك. تُغلَّف السلة الحقيقية يدوياً من Conscious Curations.')}</figcaption>
-          </figure>
-        ) : waiting ? (
-          <figure className="hamper-photo is-stale">
-            <div className="hamper-photo__frame">
-              <img src={lastPhoto.current!} alt="" width="1024" height="1024" />
-              <span className="hamper-photo__veil" role="status">{ready ? t('Updating your hamper photo…', 'نحدّث صورة سلتك…') : missing[0]}</span>
-            </div>
-            <figcaption>{t('The photo above is from before your last change.', 'الصورة أعلاه قبل آخر تعديل لك.')}</figcaption>
-          </figure>
-        ) : (
-          <figure className="hamper-photo hamper-photo--scene">
-            <HamperScene items={items} onPick={openSlot} />
-            <figcaption>{t('Preview of your changes. The real hamper is hand-packed by Conscious Curations.', 'معاينة لتعديلاتك. تُغلَّف السلة الحقيقية يدوياً من Conscious Curations.')}</figcaption>
-          </figure>
-        )}
+        <figure className={`hamper-photo${photo.exact ? '' : ' hamper-photo--nearby'}`}>
+          <img src={presetPhoto(photo.id)} alt={t('A Diwali hamper from Conscious Curations', 'سلة ديوالي من Conscious Curations')} width="1024" height="1024" />
+          <figcaption>{photo.exact
+            ? t('Illustrative photo. Swap anything below and the picture updates.', 'صورة توضيحية. بدّل أي قطعة أدناه وستتحدث الصورة.')
+            : t(`Photo of a similar hamper, not showing ${photoNames.join(', ')}. What you receive is the list below.`, `صورة لسلة مشابهة، لا تُظهر ${photoNames.join('، ')}. ما ستستلمه هو القائمة أدناه.`)}</figcaption>
+        </figure>
         <dl className="hamper-total">
           <div><dt>{t('Total', 'المجموع')}</dt><dd><Money amount={total} ar={ar} /></dd></div>
         </dl>

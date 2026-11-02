@@ -77,8 +77,25 @@ export function selectionFromSlots(slots: HamperSlots): HamperSelection {
 export interface HamperPreset { id: string; en: string; ar: string; slots: HamperSlots }
 export const HAMPER_PRESETS = data.presets as HamperPreset[];
 
-/** Cut-out photo used in the picture of the hamper. */
-export const hamperCutout = (code: string) => `/hamper/cut/${code.toLowerCase()}.webp`;
-
 /** Rendered photo of a ready-made hamper, shown while the customer has not changed it. */
 export const presetPhoto = (id: string) => `/hamper/presets/${id}.webp`;
+
+/** Every pre-made hamper photo: the ready-made hampers plus a few more built from popular swaps. */
+export const HAMPER_PHOTOS = [...HAMPER_PRESETS.map(({ id, slots }) => ({ id, slots })), ...(data.gallery as Array<{ id: string; slots: HamperSlots }>)];
+
+/**
+ * The pre-made photo closest to what the customer chose (same basket first, then most items in common), and the chosen items
+ * it does not show. Swapped items still go in the bag; the photo is a guide, not a render of the exact hamper.
+ */
+export function closestHamperPhoto(selection: HamperSelection) {
+  const chosen = hamperCodes(selection);
+  let best = HAMPER_PHOTOS[0], bestScore = -Infinity, bestCodes: string[] = [];
+  for (const photo of HAMPER_PHOTOS) {
+    const codes = hamperCodes(selectionFromSlots(photo.slots));
+    const shared = codes.filter((code) => chosen.includes(code)).length;
+    const score = shared * 10 + (codes[0] === chosen[0] ? 5 : 0) - (codes.length - shared);
+    if (score > bestScore) { best = photo; bestScore = score; bestCodes = codes; }
+  }
+  const notShown = chosen.filter((code) => !bestCodes.includes(code));
+  return { id: best.id, exact: notShown.length === 0 && bestCodes.length === chosen.length, notShown };
+}

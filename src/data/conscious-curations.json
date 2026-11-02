@@ -515,5 +515,95 @@
     "treat": "F1"
    }
   }
+ ],
+ "gallery": [
+  {
+   "id": "home-candle",
+   "slots": {
+    "basket": "B3",
+    "light": "L1",
+    "blessing": "P1",
+    "table": "T2",
+    "everyday": "W4",
+    "treat": "F2"
+   }
+  },
+  {
+   "id": "wicker-regal",
+   "slots": {
+    "basket": "B7",
+    "light": "L4",
+    "blessing": "P4",
+    "table": "T4",
+    "everyday": "W5",
+    "treat": "F3"
+   }
+  },
+  {
+   "id": "vibrant",
+   "slots": {
+    "basket": "B2",
+    "light": "L3",
+    "blessing": "P2",
+    "table": "T3",
+    "everyday": "W2",
+    "treat": "F5"
+   }
+  },
+  {
+   "id": "jaali",
+   "slots": {
+    "basket": "B6",
+    "light": "L6",
+    "blessing": "P3",
+    "table": "T6",
+    "everyday": "W1",
+    "treat": "F1"
+   }
+  },
+  {
+   "id": "festive-bag",
+   "slots": {
+    "basket": "B9",
+    "light": "L7",
+    "blessing": "P1",
+    "table": "T1",
+    "everyday": "W3",
+    "treat": "F4"
+   }
+  },
+  {
+   "id": "trinket",
+   "slots": {
+    "basket": "B4",
+    "light": "L5",
+    "blessing": "P2",
+    "table": "T2",
+    "everyday": "W4",
+    "treat": "F2"
+   }
+  },
+  {
+   "id": "trunk-candle",
+   "slots": {
+    "basket": "B5",
+    "light": "L1",
+    "blessing": "P3",
+    "table": "T3",
+    "everyday": "W1",
+    "treat": "F3"
+   }
+  },
+  {
+   "id": "elegant-rangoli",
+   "slots": {
+    "basket": "B1",
+    "light": "L2",
+    "blessing": "P4",
+    "table": "T5",
+    "everyday": "W2",
+    "treat": "F5"
+   }
+  }
  ]
 }
