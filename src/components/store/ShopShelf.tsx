@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo } from 'react';
 import { liveCatalogGroups } from '@/lib/catalog-groups';
 import { isSeasonal } from '@/lib/seasonal';
@@ -51,6 +52,12 @@ export default function ShopShelf() {
   return (
     <nav className="shelf" aria-label={t('Shop by category', 'تسوّق حسب الفئة')} data-track-section="home_shelf" data-track-location="home_shelf">
       <ul>
+        <li>
+          <Link href="/diwali-hampers">
+            <span className="shelf__img"><img src="/hamper/hamper-hero.jpg" alt="" loading="lazy" width="96" height="96" /></span>
+            <span>{t('Diwali hampers', 'هدايا ديوالي')}</span>
+          </Link>
+        </li>
         {chips.map((chip) => (
           <li key={chip.id}>
             <CollectionLink hash={chip.hash}>
