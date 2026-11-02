@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import HamperBuilder from '@/components/store/HamperBuilder';
 import CoBrand from '@/components/store/CoBrand';
 import { PageHero } from '@/components/store/blocks';
 import { T } from '@/components/store/StoreProvider';
@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   description: 'Handwoven by women artisans, made from upcycled and locally sourced materials, with homemade treats from the Chefat65 kitchen. Curated gifts by Conscious Curations, with Maison Botanique.',
   alternates: { canonical: '/conscious-curations' },
 };
+
+const diwali = CURATED_COLLECTIONS.find((collection) => collection.slug === 'diwali')!;
 
 const PILLARS = [
   { en: 'Handwoven', ar: 'منسوج يدوياً', textEn: 'Baskets and trays woven by women artisan groups across India.', textAr: 'سلال وصواني تنسجها مجموعات حرفيات في أنحاء الهند.' },
@@ -32,6 +34,7 @@ export default function ConsciousCurationsPage() {
         }}
         image="/hamper/artisan.jpg">
         <CoBrand />
+        <p><a className="button" href="#diwali"><T en="Build a Diwali hamper" ar="صمّم هدية ديوالي" /></a></p>
       </PageHero>
 
       <section className="cc-pillars" aria-label="Conscious Curations">
@@ -45,26 +48,13 @@ export default function ConsciousCurationsPage() {
         </ul>
       </section>
 
-      <section className="cc-collections" aria-labelledby="cc-collections-title">
-        <div className="hamper-step__head">
-          <h2 id="cc-collections-title"><T en="Collections" ar="المجموعات" /></h2>
+      <section className="hamper-builder" id="diwali" aria-labelledby="diwali-title">
+        <div className="hamper-builder__head">
+          <p className="eyebrow"><T en={diwali.en} ar={diwali.ar} /></p>
+          <h2 id="diwali-title"><T en={diwali.titleEn} ar={diwali.titleAr} /></h2>
+          <p><T en="Pick a basket, fill it with handcrafted pieces and add a festive treat. Hand-packed by Conscious Curations with dried flowers and their brand ribbon." ar="اختر سلة، واملأها بقطع مصنوعة يدوياً، وأضف حلوى احتفالية. تُغلَّف يدوياً من Conscious Curations بالزهور المجففة وشريط العلامة." /></p>
         </div>
-        <ul>
-          {CURATED_COLLECTIONS.map((collection) => (
-            <li key={collection.slug}>
-              <Link href={`/conscious-curations/${collection.slug}`} className="cc-card">
-                <span className="cc-card__img"><img src={collection.photo} alt="" loading="lazy" width="332" height="240" /></span>
-                <span className="cc-card__body">
-                  <span className="eyebrow"><T en={collection.en} ar={collection.ar} /></span>
-                  <strong><T en={collection.titleEn} ar={collection.titleAr} /></strong>
-                  <span className="cc-card__intro"><T en={collection.introEn} ar={collection.introAr} /></span>
-                  <span className="cc-card__go"><T en="Start building" ar="ابدأ التصميم" /> →</span>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <p className="cc-note"><T en="Orders are confirmed with Conscious Curations on WhatsApp. A 50% advance books the order." ar="تُؤكَّد الطلبات مع Conscious Curations عبر واتساب. دفعة مقدمة 50٪ لتأكيد الطلب." /></p>
+        <HamperBuilder />
       </section>
     </div>
   );
