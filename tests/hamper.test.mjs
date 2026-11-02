@@ -45,8 +45,19 @@ test('sub-categories are bilingual and have a photo; Diwali is live', async () =
 });
 
 test('ready-made hamper ideas follow the rules and every item has a cut-out photo', async () => {
-  const { HAMPER_PRESETS, hamperCutout } = await import('../src/lib/hamper.ts');
+  const { HAMPER_PRESETS, HAMPER_SLOTS, selectionFromSlots, hamperCutout } = await import('../src/lib/hamper.ts');
   assert.ok(HAMPER_PRESETS.length >= 3);
-  for (const preset of HAMPER_PRESETS) assert.deepEqual(hamperProblems(preset), [], preset.id);
+  for (const preset of HAMPER_PRESETS) {
+    const selection = selectionFromSlots(preset.slots);
+    assert.deepEqual(hamperProblems(selection), [], preset.id);
+    for (const slot of HAMPER_SLOTS.filter((slot) => preset.slots[slot.id])) assert.ok(HAMPER_SECTIONS.filter((section) => slot.sections.includes(section.id)).some((section) => section.items.some((item) => item.code === preset.slots[slot.id])), `${preset.id} ${slot.id} is from the right section`);
+  }
   for (const item of HAMPER_ITEMS) assert.ok(existsSync(`public${hamperCutout(item.code)}`), item.code);
+});
+
+test('a card message and the recipient reminder reach the partner', () => {
+  const message = hamperMessage(example, 'Happy Diwali, Mama');
+  assert.ok(message.includes('Card message: Happy Diwali, Mama'));
+  assert.ok(message.includes('confirm the recipient'));
+  assert.ok(!hamperMessage(example).includes('Card message'));
 });

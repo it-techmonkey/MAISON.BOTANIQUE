@@ -426,48 +426,56 @@
  ],
  "presets": [
   {
-   "id": "classic",
-   "en": "Classic",
-   "ar": "الكلاسيكية",
-   "basket": "B1",
-   "picks": [
-    "L1",
-    "L5",
-    "T1"
-   ],
-   "treats": [
-    "F1"
-   ]
+   "id": "little",
+   "en": "Little gift",
+   "ar": "هدية صغيرة",
+   "slots": {
+    "basket": "B8",
+    "light": "L9",
+    "blessing": "P4",
+    "table": "T5",
+    "everyday": "W3",
+    "treat": "F4"
+   }
   },
   {
    "id": "puja",
    "en": "Puja ritual",
    "ar": "طقوس البوجا",
-   "basket": "B5",
-   "picks": [
-    "P2",
-    "P3",
-    "P4",
-    "L5"
-   ],
-   "treats": [
-    "F3"
-   ]
+   "slots": {
+    "basket": "B5",
+    "light": "L2",
+    "blessing": "P2",
+    "table": "T5",
+    "everyday": "W1",
+    "treat": "F3"
+   }
   },
   {
    "id": "home",
    "en": "Home & table",
    "ar": "البيت والمائدة",
-   "basket": "B3",
-   "picks": [
-    "L1",
-    "T1",
-    "T3",
-    "W1"
-   ],
-   "treats": [
-    "F4"
-   ]
+   "slots": {
+    "basket": "B3",
+    "light": "L8",
+    "blessing": "P1",
+    "table": "T2",
+    "everyday": "W4",
+    "treat": "F2"
+   }
+  },
+  {
+   "id": "festive",
+   "en": "Festive classic",
+   "ar": "الكلاسيكية الاحتفالية",
+   "slots": {
+    "basket": "B1",
+    "light": "L1",
+    "blessing": "P3",
+    "table": "T1",
+    "everyday": "W1",
+    "treat": "F1"
+   }
   }
  ]
 }
