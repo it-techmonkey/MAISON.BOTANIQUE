@@ -17,11 +17,14 @@ export const FLAGDAY_HANDLES: readonly string[] = data.flagDay;
 /** UAE Flag Day 2026: the home shelf shows on this Dubai date only; the /flag-day page and the products stay until National Day. */
 export const FLAG_DAY_DATE = '2026-11-03';
 export const TORAN_HANDLE = 'marigold-toran';
-/** Flag Day: the round box leads the home hero on FLAG_DAY_DATE, with its tagline under the name (owner, 3 Nov 2026). */
+/** Flag Day: the round box leads the home hero on FLAG_DAY_DATE, with the Flag Day headline in place of the brand line (owner, 3 Nov 2026). */
 export const FLAG_HERO_HANDLE = 'alam-round-uae-flag-roses';
-export const HERO_TAGLINES: Record<string, { en: string; ar: string }> = {
-  [FLAG_HERO_HANDLE]: { en: 'One Flag. One Nation. Endless Pride', ar: 'علم واحد. وطن واحد. فخر بلا حدود' },
+const FLAG_HERO_COPY = {
+  en: { lines: ['One Flag, One Nation,', 'Endless Pride.'], sub: 'Celebrate in UAE colours', body: 'A symbol of unity, strength and pride.' },
+  ar: { lines: ['علم واحد، وطن واحد،', 'فخر بلا حدود.'], sub: 'احتفلوا بألوان الإمارات', body: 'رمز للوحدة والقوة والفخر.' },
 };
+/** Every Flag Day box replaces the home headline with this copy whenever it is a hero slide (owner, 3 Nov 2026). Arabic is a proposal, not yet confirmed. */
+export const HERO_COPY: Record<string, typeof FLAG_HERO_COPY> = Object.fromEntries(FLAGDAY_HANDLES.map((handle) => [handle, FLAG_HERO_COPY]));
 
 /** The Diwali Edition page: where each piece goes in the home. A group with nothing in the catalogue simply does not show. */
 export const DIWALI_GROUPS = [

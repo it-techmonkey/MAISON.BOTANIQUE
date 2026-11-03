@@ -412,3 +412,13 @@
   .tt-section .tt-copy > .tt-product { grid-row: 3; grid-column: 1; max-width: none; }
   .tt-product::before { display: none; }
 }
+
+/* Flag Day slide: the headline is the flag line, smaller than the brand line so it fits in two lines. */
+.tt-intro--flag h1, .tt-section[dir="rtl"] .tt-intro--flag h1 { font-size: clamp(40px, 4.6vw, 80px); letter-spacing: -.02em; line-height: 1.08; }
+.tt-intro__sub { margin: 22px 0 0; color: #5f6b2a; font-weight: 700; font-size: clamp(18px, 1.6vw, 26px); }
+.tt-copy .tt-intro--flag .tt-intro__body { display: block; margin-top: 14px; max-width: 360px; }
+@media (max-width: 720px) {
+  .tt-intro--flag h1, .tt-section[dir="rtl"] .tt-intro--flag h1 { font-size: clamp(34px, 9.4vw, 52px); line-height: 1.05; }
+  .tt-copy .tt-intro--flag .tt-intro__body { font-size: 15px; margin-top: 8px; }
+  .tt-intro__sub { margin-top: 12px; font-size: 17px; }
+}
