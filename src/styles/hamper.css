@@ -44,9 +44,9 @@
 .slot__text small { color: var(--muted); font: 600 11px/1.2 var(--font-body); letter-spacing: .14em; text-transform: uppercase; }
 .slot__text strong { font: 500 20px/1.1 var(--font-display); letter-spacing: -.02em; overflow-wrap: anywhere; }
 .slot.is-empty .slot__text strong { color: var(--muted); }
-.slot__price { font-size: var(--fs-body); font-weight: 500; white-space: nowrap; }
+.slot__price { min-width: 104px; font-size: var(--fs-body); font-weight: 500; text-align: end; white-space: nowrap; }
 .slot__price small { color: var(--muted); font-weight: 400; }
-.slot__swap { min-width: 72px; padding: 10px 14px; border: 1px solid var(--ink); text-align: center; font: 600 12px/1 var(--font-body); letter-spacing: .12em; text-transform: uppercase; }
+.slot__swap { box-sizing: border-box; width: 92px; padding: 10px 0; border: 1px solid var(--ink); text-align: center; font: 600 12px/1 var(--font-body); letter-spacing: .12em; text-transform: uppercase; }
 .slot.is-open .slot__swap, .slot__main:hover .slot__swap { background: var(--ink); color: var(--paper); }
 .slot__clear { flex: none; width: 36px; height: 44px; border: 0; background: none; color: var(--muted); font-size: 22px; line-height: 1; }
 .slot__main:focus-visible, .slot__clear:focus-visible, .slot__tray button:focus-visible, .hamper-presets button:focus-visible, .hamper-bar__go:focus-visible, .hamper-terms summary:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
@@ -100,7 +100,7 @@
   .slot__thumb { width: 56px; height: 56px; }
   .slot__price { display: none; }
   .slot__text strong { font-size: 18px; }
-  .slot__swap { min-width: 0; padding: 9px 10px; }
+  .slot__swap { width: 84px; padding: 9px 0; }
   .slot__tray { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 10px; gap: 10px 8px; }
   .hamper-presets button { flex: 1 1 calc(50% - 8px); }
 }
@@ -118,7 +118,7 @@
 .hamper-from a { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
 .cobrand__x { color: var(--muted); font: 300 clamp(20px, 5vw, 30px)/1 var(--font-display); }
 .cc-pillars { margin-bottom: 0; }
-.cc-pillars ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-strong); }
+.cc-pillars ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-strong); }
 .cc-pillars li { padding: 22px 22px 0 0; }
 .cc-pillars li + li { padding-inline-start: 22px; border-inline-start: 1px solid var(--line); }
 .cc-pillars h2 { font-size: 28px; }
