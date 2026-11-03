@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getCatalog } from '@/lib/shopify/catalog';
+import { isHamperProduct } from '@/lib/hamper-products';
 import { SITE_URL } from '@/lib/site';
 import { JOURNAL, OCCASION_CONTENT } from '@/lib/growth-content';
 
@@ -14,6 +15,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...pages.map((path) => ({ url: `${SITE_URL}${path}` })),
     ...collections.filter((collection) => collection.id !== 'frontpage' && collection.productIds.length > 0)
       .map((collection) => ({ url: `${SITE_URL}/collections/${collection.id}`, lastModified: collection.updatedAt })),
-    ...products.map((product) => ({ url: `${SITE_URL}/shop/${product.id}`, lastModified: product.updatedAt })),
+    ...products.filter((product) => !isHamperProduct(product.id)).map((product) => ({ url: `${SITE_URL}/shop/${product.id}`, lastModified: product.updatedAt })),
   ];
 }

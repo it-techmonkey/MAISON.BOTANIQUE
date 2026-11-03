@@ -10,7 +10,7 @@ const START = HAMPER_PRESETS.find((preset) => preset.id === 'home') ?? HAMPER_PR
 const keyOf = (slots: HamperSlots) => hamperCodeString(selectionFromSlots(slots));
 
 export default function HamperBuilder() {
-  const { ar, t, products, cart, setCartOpen } = useStore();
+  const { ar, t, hamperProducts, cart, setCartOpen } = useStore();
   const [slots, setSlots] = useState<HamperSlots>(START.slots);
   const [open, setOpen] = useState<SlotId | null>(null);
   const [note, setNote] = useState('');
@@ -47,7 +47,7 @@ export default function HamperBuilder() {
   if (problems.includes('few')) missing.push(t(`Add at least ${PICK_MIN} handcrafted pieces`, `أضف ${PICK_MIN} قطع يدوية على الأقل`));
   if (problems.includes('treat')) missing.push(t('Add a festive treat', 'أضف حلوى احتفالية'));
   // The chosen items are ordinary store products: the hamper goes into the bag as one line each, tied together by a shared label.
-  const parts = hamperCodes(selection).map((code) => products.find((product) => product.id === byCode.get(code)!.handle));
+  const parts = hamperCodes(selection).map((code) => hamperProducts.find((product) => product.id === byCode.get(code)!.handle));
   const orderable = ready && parts.every((product) => product?.available && product.sizes.some((size) => size.available));
   const addHamper = async () => {
     if (!orderable || adding) return;
