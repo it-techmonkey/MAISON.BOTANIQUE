@@ -123,3 +123,8 @@
  .offer-bar__run > span:not(:first-child), .offer-bar__run + .offer-bar__run { display: none; }
  .offer-bar__run span { white-space: normal; text-align: center; line-height: 1.3; padding-inline: 8px; }
 }
+
+/* UAE Flag Day 2026 (shown on 3 November only): a small flag in the ribbon and an underlined first link in the menu. */
+.offer-bar__run .offer-bar__flag::before { content: ''; display: inline-block; width: 24px; height: 15px; margin-inline-end: 12px; vertical-align: -3px;
+  background: linear-gradient(90deg, #C8102E 0 30%, transparent 30%), linear-gradient(180deg, #00732F 0 33.4%, #F5F2EB 33.4% 66.7%, #151513 66.7%); }
+.site-nav__primary .nav-flag { width: fit-content; font-weight: 600; background: linear-gradient(90deg, #00732F 0 25%, #E9E4D8 25% 50%, #151513 50% 75%, #C8102E 75% 100%) 0 calc(100% - 6px) / 100% 3px no-repeat; }

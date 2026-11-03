@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <Turntable />
+      <Turntable initialDubaiDate={dubaiNow().date} />
       <ShopShelf />
       <HeroPromises />
       <HomeSections initialDubaiDate={dubaiNow().date} />
