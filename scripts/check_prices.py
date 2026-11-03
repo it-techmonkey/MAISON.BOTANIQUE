@@ -89,6 +89,8 @@ def check_prices():
             next_cursor = page['pageInfo']['endCursor']
             assert next_cursor and next_cursor != cursor, 'Invalid Shopify pagination'
             cursor = next_cursor
+        # Hamper parts (cc-*) live in Shopify before their PR merges; they have no ledger entry (owner, 3 Nov 2026).
+        live = {sku: v for sku, v in live.items() if not sku.startswith('CC-')}
         seasonal = seasonal_prices()
         for sku, size in seasonal.items():
             variant = live.pop(sku, None)
