@@ -54,7 +54,7 @@ export default function ShopShelf() {
       <ul>
         <li>
           <Link href="/conscious-curations">
-            <span className="shelf__img"><img src="/hamper/presets/festive.webp" alt="" loading="lazy" width="96" height="96" /></span>
+            <span className="shelf__img"><img src="/hamper/presets/thumb/festive.webp" alt="" loading="lazy" width="96" height="96" /></span>
             <span>{t('Conscious Curations', 'Conscious Curations')}</span>
           </Link>
         </li>

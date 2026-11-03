@@ -79,6 +79,10 @@ export const HAMPER_PRESETS = data.presets as HamperPreset[];
 
 /** Rendered photo of a ready-made hamper, shown while the customer has not changed it. */
 export const presetPhoto = (id: string) => `/hamper/presets/${id}.webp`;
+/** 160 px version for small buttons and chips (a few KB instead of 170). Ready-made hampers only. */
+export const presetThumb = (id: string) => `/hamper/presets/thumb/${id}.webp`;
+/** The lowest price of a ready-made hamper, for "from" lines. */
+export const hamperFromPrice = () => Math.min(...HAMPER_PRESETS.map((preset) => hamperTotal(selectionFromSlots(preset.slots))));
 
 /** Every pre-made hamper photo: the ready-made hampers plus a few more built from popular swaps. */
 export const HAMPER_PHOTOS = [...HAMPER_PRESETS.map(({ id, slots }) => ({ id, slots })), ...(data.gallery as Array<{ id: string; slots: HamperSlots }>)];

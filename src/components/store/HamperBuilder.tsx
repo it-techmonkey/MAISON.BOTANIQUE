@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { HAMPER_ITEMS, HAMPER_PRESETS, HAMPER_SECTIONS, HAMPER_SLOTS, presetPhoto, hamperCodeString, hamperProblems, hamperTotal, hamperCodes, closestHamperPhoto, selectionFromSlots, PICK_MIN, type HamperItem, type HamperSlot, type HamperSlots, type SlotId } from '@/lib/hamper';
+import { HAMPER_ITEMS, HAMPER_PRESETS, HAMPER_SECTIONS, HAMPER_SLOTS, presetPhoto, presetThumb, hamperCodeString, hamperProblems, hamperTotal, hamperCodes, closestHamperPhoto, selectionFromSlots, PICK_MIN, type HamperItem, type HamperSlot, type HamperSlots, type SlotId } from '@/lib/hamper';
 import Money from './Money';
 import { useStore } from './StoreProvider';
 
@@ -86,7 +86,7 @@ export default function HamperBuilder() {
           <span>{t('Start from a ready-made hamper, then swap anything', 'ابدأ بسلة جاهزة ثم بدّل ما تشاء')}</span>
           {HAMPER_PRESETS.map((preset) => (
             <button key={preset.id} type="button" aria-pressed={keyOf(preset.slots) === keyOf(slots)} onClick={() => { setSlots(preset.slots); setOpen(null); }}>
-              <img src={presetPhoto(preset.id)} alt="" width="48" height="48" />
+              <img src={presetThumb(preset.id)} alt="" width="48" height="48" />
               <span><strong>{ar ? preset.ar : preset.en}</strong><Money amount={hamperTotal(selectionFromSlots(preset.slots))} ar={ar} /></span>
             </button>
           ))}

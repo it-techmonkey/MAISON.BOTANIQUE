@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import HamperBuilder from '@/components/store/HamperBuilder';
 import CoBrand from '@/components/store/CoBrand';
+import HamperFromPrice from '@/components/store/HamperFromPrice';
 import { PageHero } from '@/components/store/blocks';
 import { T } from '@/components/store/StoreProvider';
 import { CURATED_COLLECTIONS } from '@/lib/hamper';
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
   title: 'Conscious Curations',
   description: 'Handwoven by women artisans, made from upcycled and locally sourced materials, with homemade treats from the Chefat65 kitchen. Curated gifts by Conscious Curations, with Maison Botanique.',
   alternates: { canonical: '/conscious-curations' },
+  openGraph: { title: 'Conscious Curations · Maison Botanique', description: 'Handwoven by women artisans, upcycled and locally sourced gifts, with homemade treats. Build your own Diwali hamper.', url: '/conscious-curations', images: [{ url: '/hamper/presets/festive.webp', width: 1024, height: 1024 }] },
 };
 
 const diwali = CURATED_COLLECTIONS.find((collection) => collection.slug === 'diwali')!;
@@ -35,6 +37,7 @@ export default function ConsciousCurationsPage() {
         image="/hamper/artisan.jpg">
         <CoBrand />
         <p><a className="button" href="#diwali"><T en="Build a Diwali hamper" ar="صمّم هدية ديوالي" /></a></p>
+        <HamperFromPrice />
       </PageHero>
 
       <section className="cc-pillars" aria-label="Conscious Curations">

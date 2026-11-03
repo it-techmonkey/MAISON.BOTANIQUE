@@ -39,12 +39,13 @@ test('sub-categories are bilingual and have a photo; Diwali is live', async () =
 });
 
 test('ready-made hamper ideas follow the rules and have a photo', async () => {
-  const { HAMPER_PRESETS, HAMPER_SLOTS, selectionFromSlots, presetPhoto } = await import('../src/lib/hamper.ts');
+  const { HAMPER_PRESETS, HAMPER_SLOTS, selectionFromSlots, presetPhoto, presetThumb } = await import('../src/lib/hamper.ts');
   assert.ok(HAMPER_PRESETS.length >= 3);
   for (const preset of HAMPER_PRESETS) {
     const selection = selectionFromSlots(preset.slots);
     assert.deepEqual(hamperProblems(selection), [], preset.id);
     assert.ok(existsSync(`public${presetPhoto(preset.id)}`), `${preset.id} photo`);
+    assert.ok(existsSync(`public${presetThumb(preset.id)}`), `${preset.id} thumb`);
     for (const slot of HAMPER_SLOTS.filter((slot) => preset.slots[slot.id])) assert.ok(HAMPER_SECTIONS.filter((section) => slot.sections.includes(section.id)).some((section) => section.items.some((item) => item.code === preset.slots[slot.id])), `${preset.id} ${slot.id} is from the right section`);
   }
 });
@@ -62,4 +63,9 @@ test('every pre-made photo is a valid hamper with a file; the closest photo is e
   const nearest = closestHamperPhoto(swapped);
   assert.equal(nearest.exact, false);
   assert.deepEqual(nearest.notShown, ['L9']);
+});
+
+test('the "from" price is the cheapest ready-made hamper', async () => {
+  const { hamperFromPrice } = await import('../src/lib/hamper.ts');
+  assert.equal(hamperFromPrice(), 135);
 });
