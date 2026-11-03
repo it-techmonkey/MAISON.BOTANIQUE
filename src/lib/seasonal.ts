@@ -19,9 +19,9 @@ export const FLAG_DAY_DATE = '2026-11-03';
 export const TORAN_HANDLE = 'marigold-toran';
 /** Flag Day: the round box leads the home hero on FLAG_DAY_DATE, with its tagline under the name (owner, 3 Nov 2026). */
 export const FLAG_HERO_HANDLE = 'alam-round-uae-flag-roses';
-export const HERO_TAGLINES: Record<string, { en: string; ar: string }> = {
-  [FLAG_HERO_HANDLE]: { en: 'One Flag. One Nation. Endless Pride', ar: 'علم واحد. وطن واحد. فخر بلا حدود' },
-};
+const FLAG_TAGLINE = { en: 'One Flag. One Nation. Endless Pride', ar: 'علم واحد. وطن واحد. فخر بلا حدود' };
+/** Every Flag Day box carries the tagline under its name whenever it is a hero slide (owner, 3 Nov 2026). */
+export const HERO_TAGLINES: Record<string, { en: string; ar: string }> = Object.fromEntries(FLAGDAY_HANDLES.map((handle) => [handle, FLAG_TAGLINE]));
 
 /** The Diwali Edition page: where each piece goes in the home. A group with nothing in the catalogue simply does not show. */
 export const DIWALI_GROUPS = [
