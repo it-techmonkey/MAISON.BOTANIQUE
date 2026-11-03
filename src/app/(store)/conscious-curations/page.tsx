@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import HamperBuilder from '@/components/store/HamperBuilder';
 import CoBrand from '@/components/store/CoBrand';
 import HamperFromPrice from '@/components/store/HamperFromPrice';
+import HostGiftsLink from '@/components/store/HostGiftsLink';
 import { PageHero } from '@/components/store/blocks';
 import { T } from '@/components/store/StoreProvider';
 import { CURATED_COLLECTIONS } from '@/lib/hamper';
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: 'Conscious Curations',
   description: 'Handwoven by women artisans, made from upcycled and locally sourced materials, with homemade treats from the Chefat65 kitchen. Curated gifts by Conscious Curations, with Maison Botanique.',
   alternates: { canonical: '/conscious-curations' },
-  openGraph: { title: 'Conscious Curations · Maison Botanique', description: 'Handwoven by women artisans, upcycled and locally sourced gifts, with homemade treats. Build your own Diwali hamper.', url: '/conscious-curations', images: [{ url: '/hamper/presets/festive.webp', width: 1024, height: 1024 }] },
+  openGraph: { title: 'Conscious Curations · Maison Botanique', description: 'Handwoven by women artisans, upcycled and locally sourced gifts, with homemade treats. Build your own hamper.', url: '/conscious-curations', images: [{ url: '/hamper/presets/festive.webp', width: 1024, height: 1024 }] },
 };
 
 const diwali = CURATED_COLLECTIONS.find((collection) => collection.slug === 'diwali')!;
@@ -37,9 +37,9 @@ export default function ConsciousCurationsPage() {
         }}
         image="/hamper/artisan.jpg">
         <CoBrand />
-        <p><a className="button" href="#diwali"><T en="Build a Diwali hamper" ar="صمّم هدية ديوالي" /></a></p>
+        <p><a className="button" href="#diwali"><T en="Build a hamper" ar="صمّم سلتك" /></a></p>
         <HamperFromPrice />
-        <p className="hamper-from"><Link href="/diwali#host"><T en="Also for the host: Maison marigold gifts" ar="وأيضاً للمضيف: هدايا القطيفة من ميزون" /> <span className="flip-rtl" aria-hidden="true">→</span></Link></p>
+        <HostGiftsLink />
       </PageHero>
 
       <section className="cc-pillars" aria-label="Conscious Curations">

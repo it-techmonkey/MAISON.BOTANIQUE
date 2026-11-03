@@ -67,7 +67,7 @@ export default function HamperBuilder() {
     <div className="hamper-layout" id="diwali-builder">
       <div className="hamper-visual">
         <figure className={`hamper-photo${photo.exact ? '' : ' hamper-photo--nearby'}`}>
-          <img src={presetPhoto(photo.id)} alt={t('A Diwali hamper from Conscious Curations', 'سلة ديوالي من Conscious Curations')} width="1024" height="1024" />
+          <img src={presetPhoto(photo.id)} alt={t('A hamper from Conscious Curations', 'سلة من Conscious Curations')} width="1024" height="1024" />
           <figcaption>{photo.exact
             ? t('Illustrative photo. Swap anything below and the picture updates.', 'صورة توضيحية. بدّل أي قطعة أدناه وستتحدث الصورة.')
             : t(`Photo of a similar hamper, not showing ${photoNames.join(', ')}. What you receive is the list below.`, `صورة لسلة مشابهة، لا تُظهر ${photoNames.join('، ')}. ما ستستلمه هو القائمة أدناه.`)}</figcaption>
@@ -138,7 +138,7 @@ export default function HamperBuilder() {
         <div className="hamper-order">
           <label className="hamper-note">
             <span>{t('Card message (optional)', 'رسالة البطاقة (اختياري)')}</span>
-            <textarea value={note} maxLength={200} rows={2} onChange={(event) => setNote(event.target.value)} placeholder={t('Happy Diwali…', 'ديوالي سعيد…')} />
+            <textarea value={note} maxLength={200} rows={2} onChange={(event) => setNote(event.target.value)} placeholder={t('Your message…', 'رسالتك…')} />
           </label>
         </div>
       </div>
