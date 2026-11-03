@@ -9,6 +9,7 @@ import { useMemo, type MouseEvent } from 'react';
 import { BUDGET_BANDS, budgetOf, liveCatalogGroups } from '@/lib/catalog-groups';
 import { useStore } from './StoreProvider';
 import { DiwaliBar, HalloweenShelf } from './SeasonalBands';
+import { FlagDaySection } from './FlagDay';
 import { isSeasonal } from '@/lib/seasonal';
 import { useDubaiNow } from '@/lib/use-today';
 
@@ -102,6 +103,7 @@ export default function HomeSections({ initialDubaiDate }: { initialDubaiDate: s
   const today = useDubaiNow()?.date ?? initialDubaiDate;
   return (
     <>
+      <FlagDaySection today={today} />
       <HalloweenShelf today={today} />
       <BudgetTiles />
       <DiwaliBar today={today} />

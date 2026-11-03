@@ -1,4 +1,4 @@
-// Halloween and Diwali 2026: which products belong to each home-page band,
+// Halloween, Diwali and Flag Day 2026: which products belong to each home-page band,
 // and the Diwali pre-order delivery window.
 //
 // Shopify holds the live products. Until the owner publishes them, a preview
@@ -13,6 +13,9 @@ import type { Product, ProductFormat } from '@/lib/types';
 
 export const HALLOWEEN_HANDLES: readonly string[] = data.halloween;
 export const DIWALI_HANDLES: readonly string[] = data.diwali;
+export const FLAGDAY_HANDLES: readonly string[] = data.flagDay;
+/** UAE Flag Day 2026: the home shelf shows on this Dubai date only; the /flag-day page and the products stay until National Day. */
+export const FLAG_DAY_DATE = '2026-11-03';
 export const TORAN_HANDLE = 'marigold-toran';
 
 /** The Diwali Edition page: where each piece goes in the home. A group with nothing in the catalogue simply does not show. */
@@ -36,7 +39,7 @@ export const DIWALI_USE: Record<string, readonly [string, string]> = {
 /** Halloween pieces built in real pumpkins (owner confirmed 29 Oct 2026). The other two are ceramic, so they get no compostable note. */
 export const REAL_PUMPKIN_HANDLES: readonly string[] = ['pumpkin-and-pralines', 'the-pumpkin-basket'];
 
-const SEASONAL = new Set([...HALLOWEEN_HANDLES, ...DIWALI_HANDLES]);
+const SEASONAL = new Set([...HALLOWEEN_HANDLES, ...DIWALI_HANDLES, ...FLAGDAY_HANDLES]);
 /** Seasonal pieces stay in the collection but never stand in for a category photo (owner, 25 Oct 2026). */
 export const isSeasonal = (id: string) => SEASONAL.has(id);
 

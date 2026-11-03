@@ -2,6 +2,7 @@
   "_note": "Halloween and Diwali 2026 products. Shopify holds the live copies (owner prices; published 25 Oct 2026). Preview builds show these records only when Shopify does not return the product yet; production never does. Photos are AI concept images (review/seasonal/2026-10-24/round4) until real samples are photographed.",
   "halloween": ["pumpkin-and-pralines", "the-pumpkin-basket", "jack-o-bloom", "the-midnight-pumpkin"],
   "diwali": ["marigold-toran", "the-doorstep-set", "the-marigold-welcome", "the-marigold-and-mithai-trunk", "the-hosts-trunk", "marigold-haat-bouquet", "brass-lota-posy", "marigold-urli", "thoranam-door-arch", "entrance-pair", "flower-rangoli-tray"],
+  "flagDay": ["alam-heart-uae-flag-roses", "alam-round-uae-flag-roses"],
   "deliveryRanges": {
     "pumpkin-and-pralines": { "from": "2026-10-25", "to": "2026-11-01" },
     "the-pumpkin-basket": { "from": "2026-10-25", "to": "2026-11-01" },
@@ -17,7 +18,9 @@
     "marigold-urli": { "from": "2026-11-05", "to": "2026-11-08" },
     "thoranam-door-arch": { "from": "2026-11-05", "to": "2026-11-08" },
     "entrance-pair": { "from": "2026-11-05", "to": "2026-11-08" },
-    "flower-rangoli-tray": { "from": "2026-11-05", "to": "2026-11-08" }
+    "flower-rangoli-tray": { "from": "2026-11-05", "to": "2026-11-08" },
+    "alam-heart-uae-flag-roses": { "from": "2026-11-04", "to": "2026-12-02" },
+    "alam-round-uae-flag-roses": { "from": "2026-11-04", "to": "2026-12-02" }
   },
   "products": [
     {
@@ -328,6 +331,50 @@
       "sizes": [
         { "id": "signature", "sku": "MB-SE-015-SIG", "name": "Signature", "nameAr": "سيغنتشر", "detail": "18 in tray", "detailAr": "صينية 18 إنش", "price": 279, "compareAtPrice": 310 },
         { "id": "grand", "sku": "MB-SE-015-GRD", "name": "Grand", "nameAr": "غراند", "detail": "24 in tray", "detailAr": "صينية 24 إنش", "price": 419, "compareAtPrice": 466 }
+      ]
+    },
+    {
+      "id": "alam-heart-uae-flag-roses",
+      "no": 348,
+      "sku": "MB-SE-016",
+      "name": "Alam Heart — UAE Flag Roses in a Heart Box",
+      "nameAr": "علم القلب — ورود بألوان العلم في صندوق قلب",
+      "room": "vases",
+      "format": "box",
+      "flowers": ["rose"],
+      "occasions": ["just-because"],
+      "line": "The UAE flag in roses, in a heart box",
+      "lineAr": "علم الإمارات بالورد في صندوق قلب",
+      "composition": ["Roses in the UAE flag layout: red, white, green and black (the green and black are colour-sprayed roses)", "Small 28 roses (10 red, 6 white, 6 green, 6 black). Medium 36 roses (12 red, 8 white, 8 green, 8 black)", "Ivory heart-shaped box", "Handwritten card", "Made to order, delivered from 4 November"],
+      "compositionAr": ["ورود بتنسيق علم الإمارات: أحمر وأبيض وأخضر وأسود (الأخضر والأسود ورود ملوّنة بالرش)", "صغير 28 وردة (10 حمراء و6 بيضاء و6 خضراء و6 سوداء). متوسط 36 وردة (12 حمراء و8 بيضاء و8 خضراء و8 سوداء)", "صندوق عاجي على شكل قلب", "بطاقة بخط اليد", "صُنع حسب الطلب، التوصيل من 4 نوفمبر"],
+      "stems": 36,
+      "imageAlt": "Ivory heart-shaped box of red, white, green and black roses laid out as the UAE flag",
+      "option": "Size",
+      "sizes": [
+        { "id": "small", "sku": "MB-SE-016-SML", "name": "Small", "nameAr": "صغير", "detail": "28 roses", "detailAr": "28 وردة", "price": 329, "compareAtPrice": 366 },
+        { "id": "medium", "sku": "MB-SE-016-MED", "name": "Medium", "nameAr": "متوسط", "detail": "36 roses", "detailAr": "36 وردة", "price": 429, "compareAtPrice": 477 }
+      ]
+    },
+    {
+      "id": "alam-round-uae-flag-roses",
+      "no": 349,
+      "sku": "MB-SE-017",
+      "name": "Alam Round — UAE Flag Roses in a Round Box",
+      "nameAr": "علم الدائري — ورود بألوان العلم في صندوق مستدير",
+      "room": "vases",
+      "format": "box",
+      "flowers": ["rose"],
+      "occasions": ["just-because"],
+      "line": "The UAE flag in roses, in a round box",
+      "lineAr": "علم الإمارات بالورد في صندوق مستدير",
+      "composition": ["Roses in the UAE flag layout: red, white, green and black (the green and black are colour-sprayed roses)", "Small 28 roses (10 red, 6 white, 6 green, 6 black). Medium 36 roses (12 red, 8 white, 8 green, 8 black)", "Ivory round box", "Handwritten card", "Made to order, delivered from 4 November"],
+      "compositionAr": ["ورود بتنسيق علم الإمارات: أحمر وأبيض وأخضر وأسود (الأخضر والأسود ورود ملوّنة بالرش)", "صغير 28 وردة (10 حمراء و6 بيضاء و6 خضراء و6 سوداء). متوسط 36 وردة (12 حمراء و8 بيضاء و8 خضراء و8 سوداء)", "صندوق عاجي مستدير", "بطاقة بخط اليد", "صُنع حسب الطلب، التوصيل من 4 نوفمبر"],
+      "stems": 36,
+      "imageAlt": "Ivory round hat box of red, white, green and black roses laid out as the UAE flag",
+      "option": "Size",
+      "sizes": [
+        { "id": "small", "sku": "MB-SE-017-SML", "name": "Small", "nameAr": "صغير", "detail": "28 roses", "detailAr": "28 وردة", "price": 329, "compareAtPrice": 366 },
+        { "id": "medium", "sku": "MB-SE-017-MED", "name": "Medium", "nameAr": "متوسط", "detail": "36 roses", "detailAr": "36 وردة", "price": 429, "compareAtPrice": 477 }
       ]
     }
   ]
