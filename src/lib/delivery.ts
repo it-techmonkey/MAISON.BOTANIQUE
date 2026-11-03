@@ -4,7 +4,8 @@
 // note, so on the order it appears under "Additional details", at the top as
 // the order Note, and in the order webhook.
 //
-// Owner approved 19 October 2026: daily windows, three-hour lead and 60-day horizon.
+// Owner approved 19 October 2026: daily windows and a 60-day horizon. The lead
+// was three hours; the owner shortened it to one hour on 23 October 2026.
 
 export const DELIVERY_DATE_KEY = 'Delivery date';
 export const DELIVERY_TIME_KEY = 'Delivery time';
@@ -23,8 +24,8 @@ export const DELIVERY_RULES = {
     { id: 'afternoon', start: 15 * 60, end: 18 * 60 },
     { id: 'evening', start: 18 * 60, end: 21 * 60 },
   ] as DeliveryWindow[],
-  /** A same-day window closes this long before it starts. */
-  leadMinutes: 180,
+  /** A same-day window closes this long before it ENDS (owner, 29 Oct 2026). 9pm–12am is WhatsApp-only, not a window. */
+  leadMinutes: 60,
   /** Pre-booking horizon. */
   maxDaysAhead: 60,
   /** 'YYYY-MM-DD' dates with no deliveries. */
@@ -67,49 +68,75 @@ export function isValidDate(value: unknown): value is string {
   return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
 }
 
-export const lastBookableDate = (now: DubaiNow = dubaiNow()) => addDays(now.date, DELIVERY_RULES.maxDaysAhead);
+/**
+ * Dates (YYYY-MM-DD, inclusive) an order is limited to, e.g. a Diwali pre-order
+ * that is only delivered 5–8 November. null means the normal schedule.
+ */
+export interface DeliveryRange { from: string; to: string }
+
+export const lastBookableDate = (now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) => {
+  const horizon = addDays(now.date, DELIVERY_RULES.maxDaysAhead);
+  return range && range.to < horizon ? range.to : horizon;
+};
 
 /** Is the business delivering at all on this date (ignoring the time of day)? */
-export function dateOpen(date: string, now: DubaiNow = dubaiNow()) {
-  if (!isValidDate(date) || date < now.date || date > lastBookableDate(now)) return false;
+export function dateOpen(date: string, now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) {
+  if (!isValidDate(date) || date < now.date || date > lastBookableDate(now, range)) return false;
+  if (range && date < range.from) return false;
   if (DELIVERY_RULES.blackoutDates.includes(date)) return false;
   return !DELIVERY_RULES.closedWeekdays.includes(new Date(`${date}T00:00:00Z`).getUTCDay());
 }
 
 /** Every window on a date, with whether it can still be booked. */
-export function windowsFor(date: string, now: DubaiNow = dubaiNow()) {
-  const open = dateOpen(date, now);
+export function windowsFor(date: string, now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) {
+  const open = dateOpen(date, now, range);
   return DELIVERY_RULES.windows.map((slot) => ({
     ...slot,
-    available: open && (date !== now.date || slot.start - DELIVERY_RULES.leadMinutes >= now.minutes),
+    available: open && (date !== now.date || slot.end - DELIVERY_RULES.leadMinutes >= now.minutes),
   }));
 }
 
 /** Windows that can still be booked on a date. */
-export const slotsFor = (date: string, now: DubaiNow = dubaiNow()) => windowsFor(date, now).filter((slot) => slot.available);
+export const slotsFor = (date: string, now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) => windowsFor(date, now, range).filter((slot) => slot.available);
 
 /** The next few dates that still have at least one open window. */
-export function bookableDays(count = 3, now: DubaiNow = dubaiNow()) {
+export function bookableDays(count = 3, now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) {
   const days: string[] = [];
   for (let offset = 0; offset <= DELIVERY_RULES.maxDaysAhead && days.length < count; offset += 1) {
     const date = addDays(now.date, offset);
-    if (slotsFor(date, now).length) days.push(date);
+    if (slotsFor(date, now, range).length) days.push(date);
   }
   return days;
 }
 
 /** The first date with an open window. */
-export const earliestDate = (now: DubaiNow = dubaiNow()) => bookableDays(1, now)[0] ?? addDays(now.date, 1);
+export const earliestDate = (now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null) => bookableDays(1, now, range)[0] ?? range?.from ?? addDays(now.date, 1);
 
-export type ScheduleProblem = 'missing_date' | 'missing_slot' | 'date_passed' | 'day_closed' | 'slot_passed';
+export type ScheduleProblem = 'missing_date' | 'missing_slot' | 'date_passed' | 'day_closed' | 'slot_passed' | 'range_conflict' | 'range_closed';
 
-export function checkSchedule(schedule: Partial<DeliverySchedule> | null, now: DubaiNow = dubaiNow()): ScheduleProblem | null {
+export function rangeProblem(range: DeliveryRange | null, now: DubaiNow = dubaiNow()): 'range_conflict' | 'range_closed' | null {
+  if (range && range.from > range.to) return 'range_conflict';
+  if (range && !bookableDays(1, now, range).length) return 'range_closed';
+  return null;
+}
+
+export function checkSchedule(schedule: Partial<DeliverySchedule> | null, now: DubaiNow = dubaiNow(), range: DeliveryRange | null = null): ScheduleProblem | null {
+  const rangeIssue = rangeProblem(range, now);
+  if (rangeIssue) return rangeIssue;
   if (!schedule?.date) return 'missing_date';
   if (!schedule.slotId || !findSlot(schedule.slotId)) return 'missing_slot';
   if (schedule.date < now.date) return 'date_passed';
-  if (!dateOpen(schedule.date, now)) return 'day_closed';
-  if (!slotsFor(schedule.date, now).some((slot) => slot.id === schedule.slotId)) return 'slot_passed';
+  if (!dateOpen(schedule.date, now, range)) return 'day_closed';
+  if (!slotsFor(schedule.date, now, range).some((slot) => slot.id === schedule.slotId)) return 'slot_passed';
   return null;
+}
+
+/**
+ * A schedule restored from an earlier visit (browser storage or the Shopify cart), or null once its
+ * day or window can no longer be booked, so a stale choice is never shown or sent as the shopper's.
+ */
+export function usableSchedule(schedule: DeliverySchedule | null, now: DubaiNow = dubaiNow()): DeliverySchedule | null {
+  return schedule && !checkSchedule(schedule, now) ? schedule : null;
 }
 
 function hourLabel(minutes: number, arabic: boolean) {

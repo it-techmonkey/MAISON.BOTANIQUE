@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect } from 'react';
 import { SHOPIFY_CONSENT, isShopifyAnalyticsEnabled } from '@/lib/analytics/shopify-config';
 import { publishPageViewed } from '@/lib/analytics/shopify';
+import { metaTrack, rememberMetaClickId, setMetaConsent } from '@/lib/analytics/meta-pixel';
 
 let initialized = false;
 
@@ -31,7 +32,32 @@ function Tracker() {
   return null;
 }
 
+/** Meta Pixel page views, sent only once Shopify's privacy settings allow marketing. */
+function MetaPixel() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const pageKey = `${pathname}?${searchParams.toString()}`;
+
+  useEffect(() => {
+    rememberMetaClickId();
+    const update = () => {
+      const privacy = window.Shopify?.customerPrivacy;
+      setMetaConsent(privacy?.consentStatus === 'loaded' ? Boolean(privacy.marketingAllowed() && privacy.saleOfDataAllowed()) : null);
+    };
+    document.addEventListener('visitorConsentCollected', update);
+    document.addEventListener('consentTrackingApiLoaded', update);
+    update();
+    return () => {
+      document.removeEventListener('visitorConsentCollected', update);
+      document.removeEventListener('consentTrackingApiLoaded', update);
+    };
+  }, []);
+
+  useEffect(() => { metaTrack('PageView'); }, [pageKey]);
+
+  return null;
+}
+
 export default function ShopifyAnalytics() {
-  if (!isShopifyAnalyticsEnabled) return null;
-  return <Suspense fallback={null}><Tracker /></Suspense>;
+  return <Suspense fallback={null}><MetaPixel />{isShopifyAnalyticsEnabled && <Tracker />}</Suspense>;
 }

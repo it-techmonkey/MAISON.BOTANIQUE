@@ -1,6 +1,6 @@
 import type { Product } from './types';
 
-export function productSchema(product: Product, siteUrl: string) {
+export function productSchema(product: Product, siteUrl: string, faqs?: { question: string; answer: string }[]) {
   const businessId = `${siteUrl}/#organization`;
   return {
     '@context': 'https://schema.org',
@@ -23,6 +23,10 @@ export function productSchema(product: Product, siteUrl: string) {
           ...(size.compareAtPrice ? { priceSpecification: { '@type': 'UnitPriceSpecification', price: size.compareAtPrice, priceCurrency: product.currencyCode, priceType: 'https://schema.org/StrikethroughPrice' } } : {}),
         })),
       },
+      ...(faqs && faqs.length ? [{
+        '@type': 'FAQPage',
+        mainEntity: faqs.map((faq) => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })),
+      }] : []),
     ],
   };
 }

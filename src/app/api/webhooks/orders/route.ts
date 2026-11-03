@@ -3,6 +3,7 @@ import { CART_ATTRIBUTE_DISTINCT_ID, CART_ATTRIBUTE_SESSION_ID, POSTHOG_HOSTS, P
 import { DELIVERY_DATE_KEY, DELIVERY_TIME_KEY } from '@/lib/delivery';
 import { DELIVERY_DATE_ATTRIBUTE, GIFT_NOTE_ATTRIBUTE } from '@/lib/shopify/cart';
 import { stableEventUuid, verifyShopifyWebhook } from '@/lib/shopify/webhook';
+import { NO_VALUE, SOURCE_ATTRIBUTES } from '@/lib/analytics/source';
 
 // Shopify webhook target for order and refund topics, which records the order
 // lifecycle in PostHog from the server. Purchases happen on Shopify's hosted
@@ -18,7 +19,8 @@ import { stableEventUuid, verifyShopifyWebhook } from '@/lib/shopify/webhook';
 // | refunds/create   | Order Refunded  | negative                       |
 //
 // - The visitor's PostHog IDs come from the hidden cart attributes set by the
-//   storefront, so the order joins the same visitor and session.
+//   storefront, so the order joins the same visitor and session. The visit
+//   source (WhatsApp, Meta, referrer) arrives the same way as `order_source*`.
 // - Orders with a Shopify customer go to the person `shopify_customer:<id>`.
 //   The storefront visitor and the order ID are merged into it, so a returning
 //   customer's visits, orders and refunds form one profile across devices.
@@ -146,6 +148,11 @@ function orderProperties(order: OrderPayload) {
     shipping_method: order.shipping_lines?.[0]?.title ?? null,
     financial_status: order.financial_status ?? null,
     order_locale: order.customer_locale ?? null,
+    // Where the visitor came from, stamped on the cart by the storefront.
+    ...Object.fromEntries(SOURCE_ATTRIBUTES.map((key) => {
+      const value = attributes.get(key);
+      return [`order${key}`, value && value !== NO_VALUE ? value : null];
+    })),
     landing_site: order.landing_site ?? null,
     referring_site: order.referring_site ?? null,
     order_source: order.source_name ?? null,

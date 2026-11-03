@@ -73,6 +73,8 @@ export default function LaunchOffer() {
     setSaved(state);
     if (new URLSearchParams(window.location.search).get('offer') === 'open') { setOpen(true); return; }
     if (state.code || (state.dismissedAt && Date.now() - state.dismissedAt < SNOOZE_MS)) return undefined;
+    // A product page is where an ad visitor came to buy; the modal locks scrolling and hid the page (recordings, 29 Oct). The side tab and bag still offer it.
+    if (window.location.pathname.startsWith('/shop/')) return undefined;
     const timer = window.setTimeout(() => setOpen(true), OPEN_DELAY_MS);
     return () => window.clearTimeout(timer);
   }, []);

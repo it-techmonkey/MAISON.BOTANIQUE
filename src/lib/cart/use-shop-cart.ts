@@ -2,12 +2,16 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { attachCartToCustomer, clearAttachedCart, getAccountStatus, writeCartCookie } from '@/lib/account/client';
+import { deliveryRangeFor } from '@/lib/seasonal';
 import {
-  DELIVERY_DATE_KEY, DELIVERY_TIME_KEY, checkSchedule, deliveryNote, findSlot, scheduleAttributes, scheduleFromAttributes,
+  DELIVERY_DATE_KEY, DELIVERY_TIME_KEY, checkSchedule, deliveryNote, dubaiNow, findSlot, scheduleAttributes, scheduleFromAttributes,
+  usableSchedule,
   type DeliverySchedule, type ScheduleProblem,
 } from '@/lib/delivery';
+import { JVC_AREA_KEY } from '@/lib/jvc-delivery';
 import { isValidDate } from '@/lib/format';
 import { isShopifyConfigured } from '@/lib/shopify/config';
+import { useDubaiNow } from '@/lib/use-today';
 import {
   ANONYMOUS_ATTRIBUTE, CUSTOM_ATTRIBUTE, GIFT_NOTE_ATTRIBUTE, SIGNED_ATTRIBUTE,
   addCartLines, createCart, fetchCart, getCheckoutUrl, removeCartLines, updateCartAttributes, updateCartLineAttributes,
@@ -24,6 +28,8 @@ const MAX_QUANTITY = 99;
 
 export interface CartLineView {
   key: string;
+  /** Keep the Shopify handle even when its product is no longer in the live catalogue. */
+  handle: string;
   product: Product | null;
   size: ProductSize | null;
   name: string;
@@ -72,6 +78,9 @@ export interface ShopCart {
   /** A Shopify checkout URL, or null when the preview catalog has no checkout. */
   checkoutUrl: (locale: Locale, withOffer?: boolean) => Promise<string | null>;
   applyWelcomeOffer?: (enabled?: boolean) => Promise<boolean>;
+  /** Free delivery to JVC is claimed for this order (the team verifies the address). */
+  jvcDelivery: boolean;
+  setJvcDelivery: (enabled: boolean) => Promise<void>;
   /** The confirmed Shopify cart (null in the preview), for analytics payloads. */
   shopifyCart: ShopifyCart | null;
 }
@@ -113,7 +122,11 @@ const DELIVERY_KEY = 'maison-botanique-delivery';
 function readStoredDelivery(): DeliverySchedule | null {
   try {
     const value = JSON.parse(localStorage.getItem(DELIVERY_KEY) || 'null');
-    return value && isValidDate(value.date) && findSlot(value.slotId) ? { date: value.date, slotId: value.slotId } : null;
+    const saved = value && isValidDate(value.date) && findSlot(value.slotId) ? { date: value.date, slotId: value.slotId } : null;
+    // A day or window from an earlier visit that has since passed is forgotten, not restored.
+    const usable = usableSchedule(saved, dubaiNow());
+    if (!usable) localStorage.removeItem(DELIVERY_KEY);
+    return usable;
   } catch { return null; }
 }
 function writeStoredDelivery(schedule: DeliverySchedule | null) {
@@ -238,10 +251,14 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
   }, [cart, busy, restored, analyticsStore]);
 
   // The schedule on the cart wins; before a cart exists, the one chosen in this browser.
-  const delivery = useMemo(
+  const savedDelivery = useMemo(
     () => (cart ? scheduleFromAttributes(cart.attributes) : null) ?? storedDelivery,
     [cart, storedDelivery],
   );
+  // A restored cart can still carry a day or window that has since passed. It is not offered as
+  // the shopper's choice or added to new lines; choosing again replaces it on the cart.
+  const now = useDubaiNow();
+  const delivery = useMemo(() => (now ? usableSchedule(savedDelivery, now) : null), [savedDelivery, now]);
   deliveryRef.current = delivery;
 
   const productByHandle = useMemo(() => new Map(products.map((product) => [product.id, product])), [products]);
@@ -251,6 +268,7 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     const size = product?.sizes.find((item) => item.variantId === line.variantId) ?? null;
     return {
       key: line.id,
+      handle: line.productHandle,
       product,
       size,
       name: product?.name ?? line.productTitle,
@@ -394,6 +412,23 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     return applied;
   }, [commit, enqueue]);
 
+  const jvcDelivery = Boolean(cart?.attributes[JVC_AREA_KEY]);
+  const setJvcDelivery = useCallback(async (enabled: boolean) => {
+    const done = await enqueue('jvc_delivery', async () => {
+      const current = cartRef.current;
+      if (!current) return false;
+      const response = await fetch('/api/jvc-delivery', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cartId: current.id, enabled, locale: localeRef.current }),
+      });
+      if (!response.ok) throw new Error('JVC delivery could not be applied');
+      const result = await response.json();
+      if (result.cart) commit(result.cart);
+      return true;
+    });
+    if (done === undefined) throw new Error('JVC delivery could not be applied');
+  }, [commit, enqueue]);
+
   const checkoutUrl = useCallback(async (checkoutLocale: Locale, withOffer = true) => {
     await applyWelcomeOffer(withOffer);
     const current = cartRef.current;
@@ -401,10 +436,10 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     // No checkout URL is handed out without a delivery date and time that can
     // still be booked, whichever screen asks for it.
     const schedule = deliveryRef.current;
-    const problem = checkSchedule(schedule);
+    const problem = checkSchedule(schedule, undefined, deliveryRangeFor(linesRef.current.map((line) => line.handle)));
     if (problem || !schedule) throw new DeliveryRequiredError(problem ?? 'missing_date');
-    // Stamp the delivery schedule and the current PostHog visitor and session
-    // on the cart. Analytics never blocks checkout; the schedule does.
+    // Stamp the delivery schedule, the visit source and the current PostHog
+    // visitor and session on the cart. Analytics never blocks checkout; the schedule does.
     let latest = current;
     const updates = [...scheduleAttributes(schedule), ...analyticsCartAttributes()];
     const needsUpdate = updates.some(({ key, value }) => current.attributes[key] !== value);
@@ -442,6 +477,8 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
 
   return {
     applyWelcomeOffer,
+    jvcDelivery,
+    setJvcDelivery,
     mode: 'shopify',
     lines,
     cartCount: cart?.totalQuantity ?? 0,
@@ -497,7 +534,10 @@ function safePreviewLine(raw: unknown, products: Product[]): PreviewLine | null 
 
 function usePreviewCart(products: Product[]): ShopCart {
   const [saved, setSaved] = useState<PreviewLine[]>([]);
-  const [delivery, setDeliveryState] = useState<DeliverySchedule | null>(null);
+  const [storedDelivery, setDeliveryState] = useState<DeliverySchedule | null>(null);
+  const now = useDubaiNow();
+  const delivery = useMemo(() => (now ? usableSchedule(storedDelivery, now) : null), [storedDelivery, now]);
+  const [jvcDelivery, setJvcState] = useState(false);
   // State rather than a ref, so the first save waits for the restored lines.
   const [loaded, setLoaded] = useState(false);
 
@@ -526,7 +566,7 @@ function usePreviewCart(products: Product[]): ShopCart {
     const size = product?.sizes.find((item) => item.id === line.sizeId);
     if (!product || !size) return [];
     return [{
-      key: line.key, product, size,
+      key: line.key, handle: line.productId, product, size,
       name: product.name, nameAr: product.nameAr,
       sizeName: size.name, sizeNameAr: size.nameAr,
       category: product.category, categoryAr: product.categoryAr,
@@ -593,6 +633,8 @@ function usePreviewCart(products: Product[]): ShopCart {
     delivery,
     setDelivery,
     checkoutUrl: async () => null,
+    jvcDelivery,
+    setJvcDelivery: async (enabled) => setJvcState(enabled),
     shopifyCart: null,
   };
 }

@@ -17,9 +17,10 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.maison
 export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'MAISON25').trim();
 
 /** Delivery fees in AED, shown in the bag. Shopify shipping rates must match; change both together. */
-export const DELIVERY_FEES = { dubai: 30, otherEmirates: 50 } as const;
+export const DELIVERY_FEES = { dubai: 30, otherEmirates: 65 } as const;
+const PUBLIC_PHONE = '+971545578803';
 
-/** The seven emirates served. The same-day promise applies to Dubai only. */
+/** The seven emirates served. Same-day delivery is offered in every emirate (owner decision, 29 Oct 2026). */
 export const EMIRATES: Bilingual[] = [
   { en: 'Dubai', ar: 'دبي' },
   { en: 'Abu Dhabi', ar: 'أبوظبي' },
@@ -41,18 +42,18 @@ export const SITE = {
   /** Public enquiries inbox. Confirm the mailbox exists before launch. */
   email: 'hello@maisonbotaniqueflowers.com',
   /** International format without spaces, e.g. '+9715XXXXXXXX'. Hidden until set. */
-  phone: '+971545578803' as string | null,
+  phone: PUBLIC_PHONE as string | null,
   /**
    * WhatsApp number, digits only in international format (e.g. 9715XXXXXXXX),
-   * from NEXT_PUBLIC_WHATSAPP_NUMBER. The WhatsApp button and links stay hidden until it is set.
+   * from NEXT_PUBLIC_WHATSAPP_NUMBER, falling back to the confirmed public phone.
    */
-  whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '').replace(/\D/g, '') || null,
+  whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || PUBLIC_PHONE).replace(/\D/g, '') || null,
   /** Instagram handle without '@'. Hidden until confirmed. */
   instagram: null as string | null,
 };
 
 /** The occasions products are tagged with in Shopify (`occasion:<id>`), in menu order. */
-export const OCCASION_IDS = ['birthday', 'love', 'thanks', 'get-well', 'new-baby', 'congratulations', 'wedding', 'sorry', 'just-because'] as const;
+export const OCCASION_IDS = ['birthday', 'love', 'thanks', 'get-well', 'new-baby', 'congratulations', 'wedding', 'sorry', 'just-because', 'diwali'] as const;
 export type OccasionId = typeof OCCASION_IDS[number];
 
 export interface Occasion {
@@ -152,12 +153,24 @@ export const OCCASIONS: Occasion[] = [
     intro: { en: 'Flowers, beauty gifts and thoughtful combinations, chosen for the women who matter to you.', ar: 'زهور وهدايا جمال وتنسيقات مدروسة، مختارة للنساء العزيزات عليك.' },
     image: '/assets/sunlit-cut.jpg',
   },
+  {
+    id: 'diwali',
+    name: { en: 'Diwali', ar: 'ديوالي' },
+    line: { en: 'Ghar wali Diwali, here in Dubai.', ar: 'ديوالي بدفء البيت، هنا في دبي.' },
+    intro: {
+      en: 'Fresh marigold torans, rangoli and gifts for the door, the doorstep and the host. Pre-order now, delivered from 5 November.',
+      ar: 'أكاليل قطيفة طازجة ورانغولي وهدايا للباب والعتبة والمضيف. اطلبوا مسبقاً، التوصيل من 5 نوفمبر.',
+    },
+    image: '/seasonal/toran-cut-600.webp',
+  },
 ];
 
 export function occasionSlug(id: string) { return id === 'just-because' ? 'gifts-for-her' : id; }
 /** Occasions are filters on the one collection, not pages of their own. */
 export function occasionHash(id: string) { return `occasion/${occasionSlug(id)}`; }
-export function occasionPath(id: string) { return `/shop#${occasionHash(id)}`; }
+/** Occasions that have a page of their own; every other occasion is a filter on the shop. */
+export const OCCASION_PAGE: Record<string, string> = { diwali: '/diwali' };
+export function occasionPath(id: string) { return OCCASION_PAGE[id] ?? (['birthday', 'love'].includes(id) ? `/occasions/${id}` : `/shop#${occasionHash(id)}`); }
 /** Window event that asks the home collection to clear its filters and come into view. */
 export const SHOW_COLLECTION_EVENT = 'maison:show-collection';
 export type ShowCollectionDetail = { occasions?: boolean };

@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { trackContactClicked, trackNavigationClicked, trackSectionViewed } from '@/lib/analytics/track';
+import { rememberVisitSource } from '@/lib/analytics/source';
 
 /** Share of the element, or of the viewport for tall sections, that counts as "seen". */
 const SEEN_SHARE = 0.4;
@@ -17,12 +18,15 @@ function contactChannel(href: string) {
 
 /**
  * Site-wide listeners that need no per-component wiring:
+ * - Visit source: the landing's UTM tags, Meta click or referrer, for the order's source.
  * - Contact Clicked: email, phone, WhatsApp and Instagram links, wherever they are.
  * - Navigation Clicked: links in the header, footer, offer ribbon, bag and sheets (`data-track-location`).
  * - Section Viewed: each `data-track-section` element, once per page view.
  */
 export default function AnalyticsListeners() {
   const pathname = usePathname();
+
+  useEffect(() => { rememberVisitSource(); }, []);
 
   useEffect(() => {
     const onClick = (event: MouseEvent) => {

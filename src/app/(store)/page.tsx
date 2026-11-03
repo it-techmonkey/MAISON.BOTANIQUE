@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import Turntable from '@/components/Turntable';
 import HeroPromises from '@/components/store/HeroPromises';
+import ShopShelf from '@/components/store/ShopShelf';
 import CollectionBrowser from '@/components/store/CollectionBrowser';
 import HomeSections from '@/components/store/HomeSections';
 import { ResidencesBand } from '@/components/store/Residences';
 import '@/styles/home.css';
 import shareImage from '../opengraph-image.jpg';
+import { dubaiNow } from '@/lib/delivery';
 
 // Rebuild at most every five minutes; the Shopify product webhook
 // (/api/revalidate) refreshes the catalog immediately after an edit.
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
   // Replaces the layout's openGraph (and its file-based photo), so the shared fields and the photo are repeated.
   openGraph: {
-    images: [{ url: shareImage.src, width: shareImage.width, height: shareImage.height, type: 'image/jpeg', alt: 'Wrapped flower gifts from Maison Botanique, Dubai' }],
+    images: [{ url: shareImage.src, width: shareImage.width, height: shareImage.height, type: 'image/jpeg', alt: 'Maison Botanique red rose bouquet with a satin ribbon, Dubai' }],
     type: 'website',
     url: '/',
     siteName: 'Maison Botanique',
@@ -32,9 +34,10 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <Turntable />
+      <Turntable initialDubaiDate={dubaiNow().date} />
+      <ShopShelf />
       <HeroPromises />
-      <HomeSections />
+      <HomeSections initialDubaiDate={dubaiNow().date} />
       <CollectionBrowser listId="home" showOccasions={false} />
       <ResidencesBand />
     </>

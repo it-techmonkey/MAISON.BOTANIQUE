@@ -1,10 +1,13 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { contentLocale, translatedContentPath } from '@/lib/content-locale';
 import { useShopCart, type AddItemOptions, type ShopCart } from '@/lib/cart/use-shop-cart';
 import { setShopifyLocale } from '@/lib/analytics/shopify';
 import { registerCatalogSource, trackLocale } from '@/lib/analytics/track';
 import { hydrateBrowserCatalog, type BrowserCatalog } from '@/lib/browser-catalog';
+import { isHamperProduct } from '@/lib/hamper-products';
 import type { Collection, Locale, Product } from '@/lib/types';
 
 /** Read by the inline script in the root layout, before the first paint. */
@@ -16,7 +19,10 @@ interface StoreValue {
   setLocale: (locale: Locale) => void;
   /** Picks the English or Arabic string for the current locale. */
   t: <T,>(en: T, ar: T) => T;
+  /** The shop's products. The partner's hamper items (cc-<code>) are left out: they are sold only through the hamper builder. */
   products: Product[];
+  /** The hamper items, for the hamper builder. */
+  hamperProducts: Product[];
   collections: Collection[];
   live: boolean;
   cart: ShopCart;
@@ -53,7 +59,10 @@ const useBrowserLayoutEffect = typeof window === 'undefined' ? useEffect : useLa
 
 export default function StoreProvider({ catalog: cards, children }: { catalog: BrowserCatalog; children: ReactNode }) {
   const catalog = useMemo(() => hydrateBrowserCatalog(cards), [cards]);
-  const [locale, setLocaleState] = useState<Locale>('en');
+  const pathname = usePathname();
+  const router = useRouter();
+  const [savedLocale, setLocaleState] = useState<Locale>('en');
+  const locale = contentLocale(pathname) ?? savedLocale;
   const [cartOpen, setCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [toast, setToast] = useState<StoreValue['toast']>(null);
@@ -62,8 +71,11 @@ export default function StoreProvider({ catalog: cards, children }: { catalog: B
   const cart = useShopCart(catalog.products, locale);
 
   useBrowserLayoutEffect(() => {
-    let saved: string | null = null;
-    try { saved = localStorage.getItem(LOCALE_STORAGE_KEY); } catch { /* Storage unavailable. */ }
+    // A ?lang=ar|en link (e.g. from an Arabic WhatsApp message) beats the saved choice.
+    let saved: string | null = new URLSearchParams(window.location.search).get('lang');
+    if (saved !== 'ar' && saved !== 'en') {
+      try { saved = localStorage.getItem(LOCALE_STORAGE_KEY); } catch { /* Storage unavailable. */ }
+    }
     if (saved === 'ar') setLocaleState('ar');
   }, []);
 
@@ -88,7 +100,9 @@ export default function StoreProvider({ catalog: cards, children }: { catalog: B
     trackLocale(next, true);
     setLocaleState(next);
     try { localStorage.setItem(LOCALE_STORAGE_KEY, next); } catch { /* Private browsing may block storage. */ }
-  }, []);
+    const translated = translatedContentPath(pathname, next);
+    if (translated) router.push(`${translated}${window.location.search}${window.location.hash}`);
+  }, [pathname, router]);
 
   const { addItem } = cart;
   const addToBag = useCallback((product: Product, options?: AddItemOptions) => {
@@ -107,7 +121,8 @@ export default function StoreProvider({ catalog: cards, children }: { catalog: B
     ar: locale === 'ar',
     setLocale,
     t: (en, ar) => (locale === 'ar' ? ar : en),
-    products: catalog.products,
+    products: catalog.products.filter((product) => !isHamperProduct(product.id)),
+    hamperProducts: catalog.products.filter((product) => isHamperProduct(product.id)),
     collections: catalog.collections,
     live: catalog.source === 'shopify',
     cart,
@@ -122,5 +137,5 @@ export default function StoreProvider({ catalog: cards, children }: { catalog: B
     openOffer,
   }), [locale, setLocale, catalog, cart, cartOpen, addToBag, selectedProduct, toast, dismissToast, offerSignal, openOffer]);
 
-  return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
+  return <StoreContext.Provider value={value}><div className="store-locale" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>{children}</div></StoreContext.Provider>;
 }

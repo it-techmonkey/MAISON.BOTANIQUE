@@ -1,11 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { OCCASION_PAGE } from '@/lib/site';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useMemo, useState, type MouseEvent as ReactMouseEvent, type ReactNode } from 'react';
 import { BUDGET_BANDS, liveCatalogGroups } from '@/lib/catalog-groups';
 import { SearchIcon } from './icons';
 import { useStore } from './StoreProvider';
+import { contentHref } from '@/lib/content-locale';
+import { FLAG_DAY_DATE } from '@/lib/seasonal';
+import { useDubaiNow } from '@/lib/use-today';
 
 /** The storefront wordmark: small MAISON over a large BOTANIQUE. */
 export function Logo() {
@@ -19,6 +23,9 @@ export function Logo() {
  */
 export function CollectionLink({ hash, onClick, children, className, 'aria-label': ariaLabel }: { hash: string; onClick?: () => void; children: ReactNode; className?: string; 'aria-label'?: string }) {
   const pathname = usePathname();
+  const { locale } = useStore();
+  const occasion = hash.match(/^occasion\/(birthday|love)$/)?.[1];
+  if (occasion) return <Link className={className} href={contentHref(`/occasions/${occasion}`, locale)} onClick={onClick} aria-label={ariaLabel}>{children}</Link>;
   const onShop = pathname === '/' || pathname === '/shop';
   return onShop
     ? <a className={className} href={`#${hash}`} onClick={onClick} aria-label={ariaLabel}>{children}</a>
@@ -27,18 +34,28 @@ export function CollectionLink({ hash, onClick, children, className, 'aria-label
 
 // The opening offer runs above the header; the whole ribbon opens the sign-up.
 const OFFER = {
-  en: ['Welcome offer · 25% off your first order', 'Same-day delivery in Dubai', 'Pre-book up to 60 days ahead'],
-  ar: ['عرض الترحيب · خصم ٢٥٪ على طلبك الأول', 'توصيل في اليوم نفسه داخل دبي', 'احجز مسبقاً حتى ٦٠ يوماً'],
+  en: ['Welcome offer · 25% off your first order', 'Same-day delivery in the UAE', 'Pre-book up to 60 days ahead'],
+  ar: ['عرض الترحيب · خصم ٢٥٪ على طلبك الأول', 'توصيل في اليوم نفسه داخل الإمارات', 'احجز مسبقاً حتى ٦٠ يوماً'],
 };
 
-function OfferBar() {
+/** UAE Flag Day (3 Nov 2026 only): the first message in the ribbon, opening the flag boxes instead of the sign-up. */
+const FLAG_ITEM = { en: 'UAE Flag Day · Our flag, in roses · from AED 329', ar: 'يوم العلم · علمنا، بالورد · من ٣٢٩ درهماً' };
+
+function OfferBar({ flagDay }: { flagDay: boolean }) {
   const { ar, openOffer } = useStore();
-  const items = OFFER[ar ? 'ar' : 'en'];
+  const router = useRouter();
+  const lang = ar ? 'ar' : 'en';
+  const items = [...(flagDay ? [FLAG_ITEM[lang]] : []), ...OFFER[lang]];
   const claim = ar ? 'احصل على خصم ٢٥٪ ←' : 'Claim your 25% →';
+  const isFlag = (item: string) => flagDay && item === FLAG_ITEM[lang];
   // Rendered twice so the loop is seamless; screen readers get the copy once from the label.
-  const run = <span className="offer-bar__run" aria-hidden="true">{items.map((item) => <span key={item}>{item}</span>)}<span className="offer-bar__claim">{claim}</span></span>;
+  const run = <span className="offer-bar__run" aria-hidden="true">{items.map((item) => <span key={item} className={isFlag(item) ? 'offer-bar__flag' : undefined}>{item}</span>)}<span className="offer-bar__claim">{claim}</span></span>;
+  const onClick = (event: ReactMouseEvent<HTMLButtonElement>) => {
+    if ((event.target as Element).closest('.offer-bar__flag')) router.push('/flag-day');
+    else openOffer();
+  };
   return (
-    <button type="button" className="offer-bar" data-track-location="offer_bar" onClick={openOffer} aria-label={`${items.join('. ')}. ${claim}`}>
+    <button type="button" className="offer-bar" data-track-location="offer_bar" onClick={onClick} aria-label={`${items.join('. ')}. ${claim}`}>
       <span className="offer-bar__track">{run}{run}</span>
     </button>
   );
@@ -47,6 +64,7 @@ function OfferBar() {
 export default function SiteHeader() {
   const { ar, t, setLocale, cart, setCartOpen, products } = useStore();
   const pathname = usePathname();
+  const flagDay = useDubaiNow()?.date === FLAG_DAY_DATE;
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
@@ -108,13 +126,14 @@ export default function SiteHeader() {
 
   return (
     <>
-      <OfferBar />
+      <OfferBar flagDay={flagDay} />
       <header data-track-location="header" className={`site-header${scrolled || menuOpen || pathname !== '/' ? ' site-header--solid' : ''}`}>
         <Link href="/" className="site-header__brand" onClick={closeMenus} aria-label={t('Maison Botanique home', 'ميزون بوتانيك، الرئيسية')}>
           <Logo />
         </Link>
         <nav id="site-menu" className={`site-nav primary-nav${menuOpen ? ' site-nav--open' : ''}`} aria-label={t('Main navigation', 'التنقل الرئيسي')}>
           <div className="site-nav__primary">
+            {flagDay && <Link className="nav-flag" href="/flag-day" onClick={closeMenus}>{t('Flag Day', 'يوم العلم')}</Link>}
             <div className="nav-shop">
               <button type="button" aria-expanded={shopOpen} aria-controls="nav-shop-panel" onClick={() => { setShopOpen(!shopOpen); setOccasionsOpen(false); }}>
                 {t('Shop', 'تسوّق')} <span aria-hidden="true">▾</span>
@@ -122,7 +141,9 @@ export default function SiteHeader() {
               <div id="nav-shop-panel" className={`nav-shop__panel${shopOpen ? ' is-open' : ''}`}>
                 <div className="nav-shop__col">
                   <h2>{t('By occasion', 'حسب المناسبة')}</h2>
-                  {occasions.map((occasion) => <CollectionLink key={occasion.id} hash={`occasion/${occasion.id}`} onClick={closeMenus}>{label(occasion)}</CollectionLink>)}
+                  {occasions.map((occasion) => OCCASION_PAGE[occasion.id]
+                  ? <Link key={occasion.id} href={OCCASION_PAGE[occasion.id]} onClick={closeMenus}>{label(occasion)}</Link>
+                  : <CollectionLink key={occasion.id} hash={`occasion/${occasion.id}`} onClick={closeMenus}>{label(occasion)}</CollectionLink>)}
                 </div>
                 <div className="nav-shop__col">
                   <h2>{t('By flower', 'حسب الزهرة')}</h2>
@@ -143,10 +164,13 @@ export default function SiteHeader() {
                 {t('Occasions', 'المناسبات')} <span aria-hidden="true">▾</span>
               </button>
               <div id="nav-occasions-list" className={`nav-occasions__list${occasionsOpen ? ' is-open' : ''}`}>
-                {occasions.map((occasion) => <CollectionLink key={occasion.id} hash={`occasion/${occasion.id}`} onClick={closeMenus}>{label(occasion)}</CollectionLink>)}
+                {occasions.map((occasion) => OCCASION_PAGE[occasion.id]
+                  ? <Link key={occasion.id} href={OCCASION_PAGE[occasion.id]} onClick={closeMenus}>{label(occasion)}</Link>
+                  : <CollectionLink key={occasion.id} hash={`occasion/${occasion.id}`} onClick={closeMenus}>{label(occasion)}</CollectionLink>)}
               </div>
             </div>
             {direct.filter((group) => group.id !== 'roses').map(groupLink)}
+            <Link href="/conscious-curations" onClick={closeMenus}>{t('Conscious Curations', 'Conscious Curations')}</Link>
           </div>
           <div className="site-nav__secondary">
             <Link href="/services">{t('Events & gifting', 'المناسبات والإهداء')}</Link>

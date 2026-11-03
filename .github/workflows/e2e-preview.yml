@@ -21,6 +21,10 @@ jobs:
     timeout-minutes: 20
     env:
       E2E_BASE_URL: ${{ github.event.deployment_status.environment_url }}
+      # The Vercel Preview environment builds with the JVC free-delivery switch on, so the
+      # JVC test must expect the tick-box here. Keep this in step with Vercel's Preview
+      # variable of the same name. The checks workflow runs the same test with it off.
+      NEXT_PUBLIC_JVC_FREE_DELIVERY: '1'
     steps:
       - name: Fail when the Vercel preview did not deploy
         if: github.event.deployment_status.state != 'success'

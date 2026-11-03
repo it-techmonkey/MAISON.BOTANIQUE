@@ -40,3 +40,11 @@ test('the offer stays closed after "No thanks" on the next visit', async ({ page
   await page.waitForTimeout(2500); // the popup opens 1.5 s after arrival
   await expect(offer).toBeHidden();
 });
+
+test('the offer does not cover a product page, and "Ask us" sits beside Add to bag', async ({ page }) => {
+  await page.goto('/shop/aimee-red-rose-bouquet?utm_source=meta&utm_medium=paid_social');
+  await expect(page.locator('.qa-add')).toBeVisible();
+  await page.waitForTimeout(3000); // the offer opens 1.5 s after arrival elsewhere
+  await expect(page.getByRole('dialog', { name: '25% off your first order' })).toHaveCount(0);
+  await expect(page.locator('.qa-foot .qa-ask')).toHaveAttribute('href', /^https:\/\/wa\.me\//);
+});

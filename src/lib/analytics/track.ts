@@ -19,6 +19,8 @@ import type { EnquiryKind } from '@/lib/enquiry';
 import { dubaiNow, windowLabel, type DeliverySchedule, type ScheduleProblem } from '@/lib/delivery';
 import { CART_ATTRIBUTE_DISTINCT_ID, CART_ATTRIBUTE_SESSION_ID, isPostHogEnabled } from './config';
 import { publishCartViewed, publishProductViewed, publishSearchViewed } from './shopify';
+import { metaCheckout, metaProduct } from './meta-pixel';
+import { sourceCartAttributes } from './source';
 
 type Properties = Record<string, unknown>;
 
@@ -69,6 +71,7 @@ function lineProperties(line: CartLineView): Properties {
 export function trackProductViewed(product: Product, size: ProductSize) {
   capture('Product Viewed', productProperties(product, size));
   publishProductViewed(product, size);
+  metaProduct('ViewContent', product, size, 1);
 }
 
 export interface ProductListContext {
@@ -141,6 +144,7 @@ export function trackProductAdded(product: Product, size: ProductSize, options: 
     has_delivery_date: options.hasDeliveryDate,
     source: options.source,
   });
+  metaProduct('AddToCart', product, size, options.quantity);
 }
 
 export function trackProductRemoved(line: CartLineView, quantityRemoved: number, cartId: string | null) {
@@ -165,6 +169,7 @@ export function trackCartViewed(lines: CartLineView[], subtotal: number, currenc
 /** Sent with sendBeacon, because the browser leaves for Shopify checkout right after. */
 export function trackCheckoutStarted(lines: CartLineView[], subtotal: number, currency: string, cartId: string | null, locale: Locale, schedule: DeliverySchedule | null) {
   capture('Checkout Started', { ...cartProperties(lines, subtotal, currency, cartId), ...scheduleProperties(schedule), checkout_locale: locale }, { beacon: true });
+  metaCheckout(lines, subtotal, currency);
 }
 
 /** Checkout could not start: no valid delivery date and time, or Shopify did not return a checkout URL. */
@@ -177,12 +182,13 @@ export function trackCartError(operation: string) {
   capture('Cart Error', { operation });
 }
 
-/** The hidden cart attributes that tie a Shopify order back to this PostHog visitor and session. */
+/** The hidden cart attributes that tie a Shopify order back to its source and to this PostHog visitor and session. */
 export function analyticsCartAttributes(): Array<{ key: string; value: string }> {
-  if (!isPostHogEnabled || !posthog.__loaded) return [];
+  if (!isPostHogEnabled || !posthog.__loaded) return sourceCartAttributes();
   const distinctId = posthog.get_distinct_id();
   const sessionId = posthog.get_session_id();
   return [
+    ...sourceCartAttributes(),
     ...(distinctId ? [{ key: CART_ATTRIBUTE_DISTINCT_ID, value: distinctId }] : []),
     ...(sessionId ? [{ key: CART_ATTRIBUTE_SESSION_ID, value: sessionId }] : []),
   ];

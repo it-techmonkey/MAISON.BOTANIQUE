@@ -219,7 +219,7 @@ Open http://localhost:3000. The products should come from Shopify, and the "Samp
 5. **Gift note, delivery date and time:**
    - The gift note is a property on each cart line, **Gift message**, shown under the item on the order.
    - The delivery day and time window are chosen once per order (in the bag, required before checkout) and saved on the cart as **Delivery date** (`YYYY-MM-DD`) and **Delivery time** (e.g. `12:00 PM – 3:00 PM`). The same schedule is also written in words as the cart note (for example `Delivery: Tue 21 Oct (2026-10-21) · 9am – 12pm Dubai time`), so it shows as the order **Note** at the top of the order and on the packing slip, as well as under **Additional details**. The bag's checkout button stays closed until a day and a time window that can still be booked are chosen, and no checkout link is created without them. Shopify's hosted checkout cannot be locked from the website alone (that needs a Shopify Plus checkout validation), so an order that arrives without a schedule should be queried with the customer.
-   - Windows: 9am–12pm, 12–3pm, 3–6pm and 6–9pm, Dubai time; today's windows close 3 hours before they start; bookings up to 60 days ahead; closed dates and weekdays can be set. Change them in `DELIVERY_RULES` in `src/lib/delivery.ts`.
+   - Windows: 9am–12pm, 12–3pm, 3–6pm and 6–9pm, Dubai time; today's windows close 1 hour before they start; bookings up to 60 days ahead; closed dates and weekdays can be set. Change them in `DELIVERY_RULES` in `src/lib/delivery.ts`.
    - The delivery day and time are chosen in the bag; the gift card text, signature (or "Anonymous") and any personalisation travel on each line as **Gift message**, **Card signed**, **Anonymous** and **Personalisation**.
    - Open **Settings → Notifications → Order confirmation** and the packing slip (*Shipping and delivery → Packing slips*) and make sure they print line item properties and order attributes (`{% for attribute in attributes %}`). Add them if they don't.
 6. **Checkout appearance:** *Settings → Checkout → Customize* to add the logo and brand colours so the hand-off from the site feels seamless.
@@ -353,7 +353,7 @@ Use the development store, or the production store with test payments turned on:
 - [ ] Products, prices, sold-out sizes, filters, search and the hero gallery match Shopify, in English and Arabic.
 - [ ] Add two sizes of a product with different gift notes. They stay separate lines, and quantities and removal work.
 - [ ] Reload the page: the bag is still there. Open the site in another browser: the bag is empty (carts belong to a browser).
-- [ ] Checkout totals, VAT, delivery fees (AED 30 Dubai, AED 50 elsewhere in the UAE) and the `BLOOM25` discount are correct. Arabic checkout opens in Arabic.
+- [ ] Checkout totals, VAT, delivery fees (AED 30 Dubai, AED 65 elsewhere in the UAE) and the `BLOOM25` discount are correct. Arabic checkout opens in Arabic.
 - [ ] Delivery: the product page and the bag require a day and a window; today's windows that start within 2 hours are unavailable; checkout is blocked until one is chosen.
 - [ ] Place a test order. In the admin: the order is attributed to **Headless**, *Gift message* appears on the item, and *Delivery date* and *Delivery time* appear under Additional details and the delivery is in the order Note, in the confirmation email and on the packing slip.
 - [ ] Customer accounts: Account → Sign in sends a code by email, returns to `/account` showing orders and addresses, checkout opens signed in, and Sign out returns to the home page.
@@ -431,12 +431,22 @@ Sign-ups need `SHOPIFY_FORMS_ADMIN_TOKEN` (step 13); without it the visitor stil
 
 ## 18. Delivery fees and coverage
 
-Same-day delivery is offered across the whole UAE, for **AED 30 in Dubai** and **AED 50 elsewhere in the UAE**. The website states this in the footer, the residences page, the delivery page and the FAQ; the bag and product pages leave the fee to checkout. Shopify must charge the same amounts, or customers will see a different fee at checkout:
+Same-day delivery is offered across the whole UAE, for **AED 30 in Dubai** and **AED 65 elsewhere in the UAE**. The website states this in the footer, the residences page, the delivery page and the FAQ; the bag and product pages leave the fee to checkout. Shopify must charge the same amounts, or customers will see a different fee at checkout:
 
 1. **Settings → Shipping and delivery → General shipping rates** (or the delivery profile for these products).
-2. A **Dubai** zone with a flat rate of **AED 30**, and a **rest of the UAE** zone with a flat rate of **AED 50**. Set them up as shipping zones by emirate, or as local delivery zones if the team delivers itself.
-3. No free-shipping threshold and no free-delivery rate or discount for any area or building: every order pays AED 30 or AED 50. Check that no free-shipping rate or automatic discount exists in Shopify.
-4. Test an address in Dubai and one in Abu Dhabi at checkout: the totals should add AED 30 and AED 50.
+2. A **Dubai** zone with a flat rate of **AED 30**, and a **rest of the UAE** zone with a flat rate of **AED 65**. Set them up as shipping zones by emirate, or as local delivery zones if the team delivers itself.
+3. No free-shipping threshold and no automatic free-shipping discount. The only free delivery is JVC (see "JVC free delivery" below): every other order pays AED 30 or AED 65.
+4. Test an address in Dubai and one in Abu Dhabi at checkout: the totals should add AED 30 and AED 65.
+
+### JVC free delivery (owner decision, 23 October 2026)
+
+Shopify Basic cannot recognise JVC from an address, so the customer declares it in the bag and the team verifies it:
+
+1. In Shopify **Discounts**, create a **Free shipping** discount code (for example `JVCFREE`): applies to all countries, **excludes shipping rates over AED 30** (so it never discounts the AED 65 UAE rate), no minimum spend, no expiry, no limit on uses.
+2. **Let the welcome codes combine with it.** In Shopify Discounts, open MAISON25 and BLOOM25 and under "Combinations" tick **Shipping discounts** (they were off on 23 October 2026). New personalised first-order codes already combine with shipping discounts. Set the JVC code itself to combine with product and order discounts. Without this, a customer with a welcome code and the JVC box ticked loses one of them.
+3. On the host (Vercel) set `JVC_DELIVERY_CODE` to that code (server-only) and `NEXT_PUBLIC_JVC_FREE_DELIVERY=1`. Until both are set the tick-box and the public JVC sentence stay hidden.
+4. Test checkout: tick the JVC box in the bag, enter a JVC address and then a non-JVC Dubai address; shipping must show AED 0 for both (the rule is a claim, not an address check). Confirm an Abu Dhabi address still charges AED 65. Untick: shipping returns to AED 30.
+5. Every order whose **Delivery area** attribute says JVC must have its full address checked before dispatch. If it is not in JVC, ask the customer to pay the AED 30 (payment link or WhatsApp) or cancel. After two weeks count orders that were ticked but not JVC; if more than about 1 in 10, switch to "charge AED 30, refund once the address is confirmed".
 
 ## Troubleshooting
 

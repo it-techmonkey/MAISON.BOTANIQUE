@@ -13,8 +13,16 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def seasonal_prices():
+    """Seasonal pieces (src/data/seasonal-products.json) carry the owner's own prices,
+    outside the ledger and the 40-60% struck-price rule (owner, 25 Oct 2026)."""
+    data = json.loads((ROOT / 'src/data/seasonal-products.json').read_text())
+    return {size['sku']: size for product in data['products'] for size in product['sizes']}
+
+
 def check_prices():
-    rows = list(csv.DictReader((ROOT / 'catalog/shopify-export/variant-prices.csv').open()))
+    with (ROOT / 'catalog/shopify-export/variant-prices.csv').open() as ledger:
+        rows = list(csv.DictReader(ledger))
     expected = {row['sku']: row for row in rows}
     assert len(expected) == len(rows), 'Duplicate ledger SKUs'
     products = json.loads((ROOT / 'src/data/collection.json').read_text())['products']
@@ -36,10 +44,11 @@ def check_prices():
             assert price == Decimal(row['price']), f'Selling price mismatch: {sku}'
             assert compare == Decimal(row['compare_at_price']), f'Compare-at mismatch: {sku}'
             # Owner decision 20 Oct: the selling price is 40-60% off the struck-through price
-            # (scripts/strikethrough_rule.py). Compare-at prices are whole AED, so allow a point either side.
+            # (scripts/strikethrough_rule.py). 29 Oct: five 51-rose bouquets sell at 289 against their old struck
+            # prices (29-31% off), so the floor is 25%. Compare-at prices are whole AED, so allow a point either side.
             assert compare == compare.to_integral_value(), f'Compare-at is not whole AED: {sku}'
             off = (1 - price / compare) * 100
-            assert Decimal('39') <= off <= Decimal('61'), f'Strikethrough outside 40-60% off ({off:.1f}%): {sku}'
+            assert Decimal('25') <= off <= Decimal('61'), f'Strikethrough outside 25-60% off ({off:.1f}%): {sku}'
             assert Decimal(str(product['price'])) + Decimal(str(size['add'])) == price, f'Size increment: {sku}'
     assert seen == set(expected), 'Missing or extra bundled variants'
 
@@ -80,6 +89,17 @@ def check_prices():
             next_cursor = page['pageInfo']['endCursor']
             assert next_cursor and next_cursor != cursor, 'Invalid Shopify pagination'
             cursor = next_cursor
+        # Hamper parts (cc-*) live in Shopify before their PR merges; they have no ledger entry (owner, 3 Nov 2026).
+        live = {sku: v for sku, v in live.items() if not sku.startswith('CC-')}
+        seasonal = seasonal_prices()
+        for sku, size in seasonal.items():
+            variant = live.pop(sku, None)
+            if variant is None:
+                continue  # not published yet
+            assert Decimal(variant['price']['amount']) == Decimal(str(size['price'])), f'Live seasonal price: {sku}'
+            compare = variant['compareAtPrice'] and Decimal(variant['compareAtPrice']['amount'])
+            expected_compare = size['compareAtPrice'] and Decimal(str(size['compareAtPrice']))
+            assert (compare or None) == (expected_compare or None), f'Live seasonal compare-at: {sku}'
         assert set(live) == seen, 'Live and bundled variant coverage differs'
         for sku, variant in live.items():
             assert Decimal(variant['price']['amount']) == Decimal(expected[sku]['price']), f'Live selling price: {sku}'

@@ -31,7 +31,10 @@ if (POSTHOG_KEY) {
         maskTextSelector: '[data-ph-mask]',
       },
     });
-    posthog.register({ storefront: 'maison-botanique' });
+    // Instagram and Facebook open ad links in their own browser; tag it so reports can split it out.
+    const agent = navigator.userAgent;
+    const inApp = /Instagram/i.test(agent) ? 'instagram' : /FBAN|FBAV/.test(agent) ? 'facebook' : 'none';
+    posthog.register({ storefront: 'maison-botanique', in_app_browser: inApp });
   } catch (error) {
     console.warn('[posthog] init failed', error);
   }

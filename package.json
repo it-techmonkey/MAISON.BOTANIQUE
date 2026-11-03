@@ -15,7 +15,8 @@
     "catalog:prices": "python scripts/match_prices.py",
     "prebuild": "python3 -I scripts/check_prices.py",
     "test": "node --import ./scripts/test-loader.mjs --test tests/*.test.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "growth:check": "node scripts/growth-audit.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

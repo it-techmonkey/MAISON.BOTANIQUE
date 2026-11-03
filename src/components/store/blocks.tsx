@@ -72,8 +72,10 @@ export interface InfoSection {
 }
 
 /** Delivery, questions, privacy and terms share this layout. */
-export function InfoPage({ hero, sections, draft = false, asQuestions = false }: {
+export function InfoPage({ hero, sections, draft = false, asQuestions = false, media }: {
   hero: PageHeroProps;
+  /** Optional image shown under the hero, before the sections. */
+  media?: ReactNode;
   sections: InfoSection[];
   /** Shows a notice that the text still needs owner or legal review. */
   draft?: boolean;
@@ -83,6 +85,7 @@ export function InfoPage({ hero, sections, draft = false, asQuestions = false }:
   return (
     <div className="section section--top">
       <PageHero {...hero} />
+      {media}
       {draft && (
         <p className="draft-note"><T
           en="Draft for review. This text will be confirmed by Maison Botanique before the store opens."

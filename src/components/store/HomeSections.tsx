@@ -1,11 +1,17 @@
 'use client';
 
-import { SHOW_COLLECTION_EVENT, occasionHash, type ShowCollectionDetail } from '@/lib/site';
+import Link from 'next/link';
+import { SHOW_COLLECTION_EVENT, OCCASION_PAGE, occasionHash, type ShowCollectionDetail } from '@/lib/site';
+import { SYMBOLS } from './DiwaliSymbols';
 import { CollectionLink } from './SiteHeader';
 
 import { useMemo, type MouseEvent } from 'react';
 import { BUDGET_BANDS, budgetOf, liveCatalogGroups } from '@/lib/catalog-groups';
 import { useStore } from './StoreProvider';
+import { DiwaliBar, HalloweenShelf } from './SeasonalBands';
+import { FlagDaySection } from './FlagDay';
+import { isSeasonal } from '@/lib/seasonal';
+import { useDubaiNow } from '@/lib/use-today';
 
 /**
  * "View all" goes down to the full collection just below on the home page,
@@ -32,7 +38,7 @@ function OccasionTiles() {
   const tiles = useMemo(() => {
     const used = new Set<string>();
     return occasions.map((occasion) => {
-      const items = products.filter((product) => product.occasions.includes(occasion.id));
+      const items = products.filter((product) => product.occasions.includes(occasion.id) && !isSeasonal(product.id));
       const pick = items.find((product) => !used.has(product.id)) ?? items[0];
       if (pick) used.add(pick.id);
       return { ...occasion, image: pick?.imageSmall };
@@ -45,10 +51,18 @@ function OccasionTiles() {
       <ul className="hs-occasions">
         {tiles.map((tile) => (
           <li key={tile.id}>
-            <CollectionLink hash={occasionHash(tile.id)}>
-              <span className="hs-occasions__img">{tile.image && <img src={tile.image} alt="" loading="lazy" width="120" height="120" />}</span>
-              <span>{ar ? tile.ar : tile.en}</span>
-            </CollectionLink>
+            {OCCASION_PAGE[tile.id] ? (
+              // A seasonal occasion never borrows a product photo (owner, 25 Oct 2026): a lit diya stands in.
+              <Link href={OCCASION_PAGE[tile.id]}>
+                <span className="hs-occasions__img hs-occasions__img--sym" aria-hidden="true">{SYMBOLS.doorstep}</span>
+                <span>{ar ? tile.ar : tile.en}</span>
+              </Link>
+            ) : (
+              <CollectionLink hash={occasionHash(tile.id)}>
+                <span className="hs-occasions__img">{tile.image && <img src={tile.image} alt="" loading="lazy" width="120" height="120" />}</span>
+                <span>{ar ? tile.ar : tile.en}</span>
+              </CollectionLink>
+            )}
           </li>
         ))}
       </ul>
@@ -61,7 +75,7 @@ function BudgetTiles() {
   const { ar, t, products } = useStore();
   const tiles = useMemo(() => BUDGET_BANDS.map((band) => ({
     ...band,
-    image: products.find((product) => budgetOf(product.price) === band.id && product.available)?.imageSmall,
+    image: products.find((product) => budgetOf(product.price) === band.id && product.available && !isSeasonal(product.id))?.imageSmall,
   })).filter((tile) => tile.image), [products]);
 
   return (
@@ -82,12 +96,17 @@ function BudgetTiles() {
 }
 
 // Home order (owner, 19 Oct): A gift for every gesture, then Shop by Occasion,
-// then straight into the full collection. Most loved is a tag on products
+// then straight into the full collection. Seasonal (owner, 25 Oct 2026): the
+// Halloween shelf comes before A gift for every gesture, the Diwali band after it. Most loved is a tag on products
 // (src/data/most-loved.json), not a section.
-export default function HomeSections() {
+export default function HomeSections({ initialDubaiDate }: { initialDubaiDate: string }) {
+  const today = useDubaiNow()?.date ?? initialDubaiDate;
   return (
     <>
+      <FlagDaySection today={today} />
+      <HalloweenShelf today={today} />
       <BudgetTiles />
+      <DiwaliBar today={today} />
       <OccasionTiles />
     </>
   );
