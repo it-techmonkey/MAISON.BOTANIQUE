@@ -74,5 +74,16 @@ test('the Diwali host card has its photo and the page links both ways', async ()
   const { readFileSync } = await import('node:fs');
   assert.ok(existsSync('public/hamper/presets/card/festive.webp'));
   assert.ok(readFileSync('src/components/store/DiwaliEdition.tsx', 'utf8').includes("/conscious-curations#diwali"));
-  assert.ok(readFileSync('src/app/(store)/conscious-curations/page.tsx', 'utf8').includes('/diwali#host'));
+  assert.ok(readFileSync('src/components/store/HostGiftsLink.tsx', 'utf8').includes('/diwali#host'));
+});
+
+test('the permanent builder header is not Diwali-specific (the hampers stay all year)', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { CURATED_COLLECTIONS } = await import('../src/lib/hamper.ts');
+  const header = CURATED_COLLECTIONS.map((c) => `${c.en} ${c.ar} ${c.titleEn} ${c.titleAr}`).join(' ');
+  assert.ok(!/diwali|ديوالي/i.test(header), header);
+  for (const file of ['src/components/store/HamperBuilder.tsx', 'src/app/(store)/conscious-curations/page.tsx']) {
+    const source = readFileSync(file, 'utf8');
+    assert.ok(!/Build (your own )?a? ?Diwali hamper|Happy Diwali|A Diwali hamper|ديوالي/.test(source.replace(/Diwali 2026/g, '')), file);
+  }
 });
