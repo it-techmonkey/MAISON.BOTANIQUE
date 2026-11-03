@@ -19,8 +19,8 @@
     "thoranam-door-arch": { "from": "2026-11-05", "to": "2026-11-08" },
     "entrance-pair": { "from": "2026-11-05", "to": "2026-11-08" },
     "flower-rangoli-tray": { "from": "2026-11-05", "to": "2026-11-08" },
-    "alam-heart-uae-flag-roses": { "from": "2026-11-04", "to": "2026-12-02" },
-    "alam-round-uae-flag-roses": { "from": "2026-11-04", "to": "2026-12-02" }
+    "alam-heart-uae-flag-roses": { "from": "2026-11-03", "to": "2026-12-02" },
+    "alam-round-uae-flag-roses": { "from": "2026-11-03", "to": "2026-12-02" }
   },
   "products": [
     {
@@ -345,8 +345,8 @@
       "occasions": ["just-because"],
       "line": "The UAE flag in roses, in a heart box",
       "lineAr": "علم الإمارات بالورد في صندوق قلب",
-      "composition": ["Roses in the UAE flag layout: red, white, green and black (the green and black are colour-sprayed roses)", "Small 28 roses (10 red, 6 white, 6 green, 6 black). Medium 36 roses (12 red, 8 white, 8 green, 8 black)", "Ivory heart-shaped box", "Handwritten card", "Made to order, delivered from 4 November"],
-      "compositionAr": ["ورود بتنسيق علم الإمارات: أحمر وأبيض وأخضر وأسود (الأخضر والأسود ورود ملوّنة بالرش)", "صغير 28 وردة (10 حمراء و6 بيضاء و6 خضراء و6 سوداء). متوسط 36 وردة (12 حمراء و8 بيضاء و8 خضراء و8 سوداء)", "صندوق عاجي على شكل قلب", "بطاقة بخط اليد", "صُنع حسب الطلب، التوصيل من 4 نوفمبر"],
+      "composition": ["Roses in the UAE flag layout: red, white, green and black (the green and black are colour-sprayed roses)", "Small 28 roses (10 red, 6 white, 6 green, 6 black). Medium 36 roses (12 red, 8 white, 8 green, 8 black)", "Ivory heart-shaped box", "Handwritten card", "Made to order, delivered from 3 November"],
+      "compositionAr": ["ورود بتنسيق علم الإمارات: أحمر وأبيض وأخضر وأسود (الأخضر والأسود ورود ملوّنة بالرش)", "صغير 28 وردة (10 حمراء و6 بيضاء و6 خضراء و6 سوداء). متوسط 36 وردة (12 حمراء و8 بيضاء و8 خضراء و8 سوداء)", "صندوق عاجي على شكل قلب", "بطاقة بخط اليد", "صُنع حسب الطلب، التوصيل من 3 نوفمبر"],
       "stems": 36,
       "imageAlt": "Ivory heart-shaped box of red, white, green and black roses laid out as the UAE flag",
       "option": "Size",
@@ -367,8 +367,8 @@
       "occasions": ["just-because"],
       "line": "The UAE flag in roses, in a round box",
       "lineAr": "علم الإمارات بالورد في صندوق مستدير",
-      "composition": ["Roses in the UAE flag layout: red, white, green and black (the green and black are colour-sprayed roses)", "Small 28 roses (10 red, 6 white, 6 green, 6 black). Medium 36 roses (12 red, 8 white, 8 green, 8 black)", "Ivory round box", "Handwritten card", "Made to order, delivered from 4 November"],
-      "compositionAr": ["ورود بتنسيق علم الإمارات: أحمر وأبيض وأخضر وأسود (الأخضر والأسود ورود ملوّنة بالرش)", "صغير 28 وردة (10 حمراء و6 بيضاء و6 خضراء و6 سوداء). متوسط 36 وردة (12 حمراء و8 بيضاء و8 خضراء و8 سوداء)", "صندوق عاجي مستدير", "بطاقة بخط اليد", "صُنع حسب الطلب، التوصيل من 4 نوفمبر"],
+      "composition": ["Roses in the UAE flag layout: red, white, green and black (the green and black are colour-sprayed roses)", "Small 28 roses (10 red, 6 white, 6 green, 6 black). Medium 36 roses (12 red, 8 white, 8 green, 8 black)", "Ivory round box", "Handwritten card", "Made to order, delivered from 3 November"],
+      "compositionAr": ["ورود بتنسيق علم الإمارات: أحمر وأبيض وأخضر وأسود (الأخضر والأسود ورود ملوّنة بالرش)", "صغير 28 وردة (10 حمراء و6 بيضاء و6 خضراء و6 سوداء). متوسط 36 وردة (12 حمراء و8 بيضاء و8 خضراء و8 سوداء)", "صندوق عاجي مستدير", "بطاقة بخط اليد", "صُنع حسب الطلب، التوصيل من 3 نوفمبر"],
       "stems": 36,
       "imageAlt": "Ivory round hat box of red, white, green and black roses laid out as the UAE flag",
       "option": "Size",
