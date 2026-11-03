@@ -34,6 +34,8 @@
 .purchase__price { display: flex; align-items: baseline; gap: 14px; margin-top: 18px; }
 .purchase__price strong { font: 500 34px/1.1 var(--font-display); }
 .purchase__price span { color: var(--muted); font-size: 13px; }
+.purchase__fee { margin: 10px 0 0; color: var(--dim, var(--muted)); font-size: var(--fs-small, 14px); }
+.purchase__fee .money { color: var(--ink); font-weight: 500; }
 .purchase__description { margin-top: 18px; max-width: 520px; font-size: 17px; }
 .purchase__occasions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 18px; font-size: 13px; }
 .purchase__occasions span { color: var(--muted); }

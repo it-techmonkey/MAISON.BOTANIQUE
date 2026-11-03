@@ -80,21 +80,30 @@ test('only flowers have Signature/Grand/Luxe sizes (gifts, chocolates and teddie
   assert.deepEqual(stale, [], 'fixed or removed: take these off PENDING_TIER_EXCEPTIONS');
 });
 
-test('delivery fee wording matches the owner rule everywhere it appears (AED 30 Dubai, AED 65 elsewhere)', () => {
+test('delivery fee wording matches the owner rule everywhere it appears (AED 35 Dubai, AED 65 elsewhere)', () => {
   // Fees are charged by Shopify shipping rates, not by site code. This guards the copy.
   const files = [
     'src/components/store/SiteFooter.tsx', 'src/components/store/Residences.tsx',
-    'src/app/(store)/delivery/page.tsx', 'src/app/(store)/faq/page.tsx', 'src/components/store/DiwaliEdition.tsx',
+    'src/app/(store)/delivery/page.tsx', 'src/app/(store)/faq/page.tsx'
   ];
+  // The Diwali page and product pages read the fee from DELIVERY_FEES through this component.
+  assert.match(readFileSync(new URL('src/components/store/DiwaliEdition.tsx', root), 'utf8'), /<DeliveryFeeLine/);
   for (const file of files) {
     const text = readFileSync(new URL(file, root), 'utf8');
-    assert.match(text, /AED 30 in Dubai/, `${file}: English Dubai fee`);
+    assert.match(text, /AED 35 in Dubai/, `${file}: English Dubai fee`);
     assert.match(text, /AED 65 elsewhere in the UAE/, `${file}: English UAE fee`);
-    assert.match(text, /٣٠ درهماً في دبي/, `${file}: Arabic Dubai fee`);
+    assert.match(text, /٣٥ درهماً في دبي/, `${file}: Arabic Dubai fee`);
     assert.match(text, /٦٥ درهماً في بقية الإمارات/, `${file}: Arabic UAE fee`);
   }
   // No page may promise another figure for delivery.
   const all = files.map((file) => readFileSync(new URL(file, root), 'utf8')).join('\n');
-  const other = [...all.matchAll(/AED (\d+)[^.\n]{0,40}(?:delivery|Dubai|UAE)/gi)].map((m) => m[1]).filter((n) => !['30', '65'].includes(n));
+  const other = [...all.matchAll(/AED (\d+)[^.\n]{0,40}(?:delivery|Dubai|UAE)/gi)].map((m) => m[1]).filter((n) => !['35', '65'].includes(n));
   assert.deepEqual(other, []);
+});
+
+test('Diwali product pages: toran display name and one shared Dubai delivery fee', async () => {
+  // seasonal.ts imports JSON, which the test loader cannot resolve, so check its source.
+  assert.match(readFileSync(new URL('src/lib/seasonal.ts', root), 'utf8'), /\[TORAN_HANDLE\]: \{ en: 'Fresh marigold door garland \(toran\)', ar: '[^']+' \}/);
+  const { DELIVERY_FEES } = await import('../src/lib/site.ts');
+  assert.equal(DELIVERY_FEES.dubai, 35);
 });

@@ -103,10 +103,12 @@ interface CatalogSelection {
   collection?: string;
   /** Leave this product out, e.g. the one on the current page. */
   exclude?: string;
+  /** Only these products, in this order (e.g. the other Diwali pieces). */
+  handles?: readonly string[];
   limit?: number;
 }
 
-function useSelection({ occasion, collection, exclude, limit }: CatalogSelection) {
+function useSelection({ occasion, collection, exclude, handles, limit }: CatalogSelection) {
   const { products, collections } = useStore();
   let picked = products;
   if (collection) {
@@ -115,6 +117,7 @@ function useSelection({ occasion, collection, exclude, limit }: CatalogSelection
       .map((id) => byId.get(id))
       .filter((product): product is Product => Boolean(product));
   }
+  if (handles) picked = handles.map((handle) => picked.find((product) => product.id === handle)).filter((product): product is Product => Boolean(product));
   picked = picked.filter((product) => product.id !== exclude && (!occasion || product.occasions.includes(occasion)));
   return limit ? picked.slice(0, limit) : picked;
 }
