@@ -1,10 +1,10 @@
 /* UAE Flag Day 2026: a dark band like the Diwali and Halloween ones, the flag laid out along its top edge
-   (red hoist, then green / white / black), photos on ivory cards so the roses stand out. */
+   (three equal bars: red, green, white), photos on ivory cards so the roses stand out. */
 .fd { position: relative; width: min(calc(100% - 2 * var(--gutter)), 1320px); margin: clamp(40px, 5vw, 64px) auto 0;
   padding: clamp(44px, 4.6vw, 68px) clamp(20px, 3.4vw, 48px) clamp(28px, 3.4vw, 48px);
-  display: grid; grid-template-columns: minmax(240px, 360px) minmax(0, 1fr); gap: 28px clamp(24px, 3.6vw, 56px); align-items: center; background: #151513; color: #F5F2EB; }
+  display: grid; grid-template-columns: minmax(240px, 360px) minmax(0, 1fr); gap: 28px clamp(24px, 3.6vw, 56px); align-items: center; background: #151513; color: #F5F2EB; border-top: 5px solid #151513; }
 .fd::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 12px;
-  background: linear-gradient(90deg, #C8102E 0 25%, transparent 25%), linear-gradient(180deg, #00732F 0 33.34%, #F5F2EB 33.34% 66.67%, #0A0A09 66.67%); }
+  background: linear-gradient(90deg, #C8102E 0 25%, #00732F 25% 50%, #F5F2EB 50% 75%, #151513 75% 100%); }
 .fd-pill { display: inline-flex; align-items: center; gap: 10px; margin: 0; padding: 8px 14px; border: 1px solid rgb(245 242 235 / 40%);
   font: 600 11px/1 var(--font-body); letter-spacing: .18em; text-transform: uppercase; color: #F5F2EB; }
 .fd-pill i { width: 8px; height: 8px; border-radius: 50%; background: #E8303F; }
