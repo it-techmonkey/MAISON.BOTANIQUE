@@ -62,6 +62,7 @@ export function FlagDaySection({ today, page = false }: { today: string; page?: 
       <div className="fd-copy">
         <p className="fd-pill"><i aria-hidden="true" />{isToday ? t('Today · UAE Flag Day', 'اليوم · يوم العلم') : t('UAE Flag Day', 'يوم العلم')}</p>
         <Title id="fd-title">{isToday ? t('Happy Flag Day', 'يوم العلم مبارك') : t('Our flag, in roses.', 'علمنا، بالورد.')}</Title>
+        <p className="fd-tagline">{t('One Flag, One Nation, Endless Pride.', 'علم واحد، وطن واحد، فخر بلا حدود.')}</p>
         <p className="fd-line">{t('The UAE flag in roses, in a heart box or a round box, with a handwritten card.', 'علم الإمارات بالورد، في صندوق قلب أو صندوق مستدير، مع بطاقة بخط اليد.')}</p>
         <p className="fd-deliver">{isToday ? t('Made to order. Delivered today in Dubai.', 'صُنع حسب الطلب. التوصيل اليوم في دبي.') : t('Made to order. Delivered on the day you choose.', 'صُنع حسب الطلب. التوصيل في اليوم الذي تختارونه.')}</p>
         <p className="fd-note">{t('The green and black roses are colour-sprayed.', 'الورود الخضراء والسوداء ملوّنة بالرش.')}</p>
