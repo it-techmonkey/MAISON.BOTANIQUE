@@ -56,13 +56,15 @@ export function FlagDaySection({ today, page = false }: { today: string; page?: 
   if (!items.length || ended || (!page && today !== FLAG_DAY_DATE)) return null;
   const onOpen = (product: Product, position: number) => { trackProductClicked(product, LIST, position); openProduct(product); };
   const Title = page ? 'h1' : 'h2';
+  const isToday = today === FLAG_DAY_DATE;
   return (
     <section className="fd mbc" aria-labelledby="fd-title" data-track-section={page ? 'flag_day_page' : 'home_flag_day'} data-track-location={page ? 'flag_day_page' : 'home_flag_day'}>
       <div className="fd-copy">
-        <p className="fd-kicker">{today === FLAG_DAY_DATE ? t('UAE Flag Day · Tuesday 3 November', 'يوم العلم · الثلاثاء 3 نوفمبر') : t('UAE Flag Day', 'يوم العلم')}</p>
-        <Title id="fd-title">{t('Our flag, in roses.', 'علمنا، بالورد.')}</Title>
-        <p className="fd-line">{t('Red, white, green and black roses laid out as the UAE flag, in a heart box or a round box, with a handwritten card. The green and black roses are colour-sprayed. Made to order, delivered from 4 November.',
-          'ورود حمراء وبيضاء وخضراء وسوداء بتنسيق علم الإمارات، في صندوق قلب أو صندوق مستدير، مع بطاقة بخط اليد. الورود الخضراء والسوداء ملوّنة بالرش. صُنع حسب الطلب، التوصيل من 4 نوفمبر.')}</p>
+        <p className="fd-pill"><i aria-hidden="true" />{isToday ? t('Today · UAE Flag Day', 'اليوم · يوم العلم') : t('UAE Flag Day', 'يوم العلم')}</p>
+        <Title id="fd-title">{isToday ? t('Happy Flag Day, UAE.', 'يوم العلم مبارك.') : t('Our flag, in roses.', 'علمنا، بالورد.')}</Title>
+        <p className="fd-line">{t('The UAE flag in roses, in a heart box or a round box, with a handwritten card.', 'علم الإمارات بالورد، في صندوق قلب أو صندوق مستدير، مع بطاقة بخط اليد.')}</p>
+        <p className="fd-deliver">{isToday ? t('Made to order. Delivered today in Dubai.', 'صُنع حسب الطلب. التوصيل اليوم في دبي.') : t('Made to order. Delivered on the day you choose.', 'صُنع حسب الطلب. التوصيل في اليوم الذي تختارونه.')}</p>
+        <p className="fd-note">{t('The green and black roses are colour-sprayed.', 'الورود الخضراء والسوداء ملوّنة بالرش.')}</p>
       </div>
       <div className="fd-grid">{items.map((product, index) => <Piece key={product.id} product={product} index={index} onOpen={onOpen} />)}</div>
       {page && <p className="fd-more"><Link href="/shop">{t('Shop the full collection', 'تسوقوا المجموعة الكاملة')} <span className="flip-rtl" aria-hidden="true">→</span></Link></p>}
