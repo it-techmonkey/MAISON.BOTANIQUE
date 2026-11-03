@@ -63,7 +63,6 @@ export function FlagDaySection({ today, page = false }: { today: string; page?: 
         <Title id="fd-title">{t('Our flag, in roses.', 'علمنا، بالورد.')}</Title>
         <p className="fd-line">{t('Red, white, green and black roses laid out as the UAE flag, in a heart box or a round box, with a handwritten card. The green and black roses are colour-sprayed. Made to order, delivered from 4 November.',
           'ورود حمراء وبيضاء وخضراء وسوداء بتنسيق علم الإمارات، في صندوق قلب أو صندوق مستدير، مع بطاقة بخط اليد. الورود الخضراء والسوداء ملوّنة بالرش. صُنع حسب الطلب، التوصيل من 4 نوفمبر.')}</p>
-        {!page && <Link className="fd-cta" href="/flag-day"><span>{t('See both boxes', 'شاهدوا الصندوقين')}</span><span className="flip-rtl" aria-hidden="true">→</span></Link>}
       </div>
       <div className="fd-grid">{items.map((product, index) => <Piece key={product.id} product={product} index={index} onOpen={onOpen} />)}</div>
       {page && <p className="fd-more"><Link href="/shop">{t('Shop the full collection', 'تسوقوا المجموعة الكاملة')} <span className="flip-rtl" aria-hidden="true">→</span></Link></p>}
