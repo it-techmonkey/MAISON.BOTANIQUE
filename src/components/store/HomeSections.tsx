@@ -1,6 +1,8 @@
 'use client';
 
-import { SHOW_COLLECTION_EVENT, occasionHash, type ShowCollectionDetail } from '@/lib/site';
+import Link from 'next/link';
+import { SHOW_COLLECTION_EVENT, OCCASION_PAGE, occasionHash, type ShowCollectionDetail } from '@/lib/site';
+import { SYMBOLS } from './DiwaliSymbols';
 import { CollectionLink } from './SiteHeader';
 
 import { useMemo, type MouseEvent } from 'react';
@@ -48,10 +50,18 @@ function OccasionTiles() {
       <ul className="hs-occasions">
         {tiles.map((tile) => (
           <li key={tile.id}>
-            <CollectionLink hash={occasionHash(tile.id)}>
-              <span className="hs-occasions__img">{tile.image && <img src={tile.image} alt="" loading="lazy" width="120" height="120" />}</span>
-              <span>{ar ? tile.ar : tile.en}</span>
-            </CollectionLink>
+            {OCCASION_PAGE[tile.id] ? (
+              // A seasonal occasion never borrows a product photo (owner, 25 Oct 2026): a lit diya stands in.
+              <Link href={OCCASION_PAGE[tile.id]}>
+                <span className="hs-occasions__img hs-occasions__img--sym" aria-hidden="true">{SYMBOLS.doorstep}</span>
+                <span>{ar ? tile.ar : tile.en}</span>
+              </Link>
+            ) : (
+              <CollectionLink hash={occasionHash(tile.id)}>
+                <span className="hs-occasions__img">{tile.image && <img src={tile.image} alt="" loading="lazy" width="120" height="120" />}</span>
+                <span>{ar ? tile.ar : tile.en}</span>
+              </CollectionLink>
+            )}
           </li>
         ))}
       </ul>

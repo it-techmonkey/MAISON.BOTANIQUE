@@ -5,6 +5,7 @@ import { useEffect, useRef, type MouseEvent } from 'react';
 import { trackProductClicked } from '@/lib/analytics/track';
 import { DIWALI_HANDLES, HALLOWEEN_HANDLES, REAL_PUMPKIN_HANDLES, TORAN_HANDLE, pick, seasonalExpired } from '@/lib/seasonal';
 import type { Product } from '@/lib/types';
+import { DiwaliSymbolRow } from './DiwaliSymbols';
 import Money from './Money';
 import PumpkinMark from './PumpkinMark';
 import SaleTag from './SaleTag';
@@ -75,38 +76,41 @@ export function DiwaliBar({ today }: { today: string }) {
   const toran = pick(products, DIWALI_HANDLES).find((product) => product.id === TORAN_HANDLE);
   if (!toran || seasonalExpired(TORAN_HANDLE, today)) return null;
   return (
-    <section ref={ref} className="sea sea-dw" aria-labelledby="sea-dw-title" data-track-section="home_diwali" data-track-location="home_diwali">
-      <svg className="sea-sky" viewBox="0 0 1320 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-        {Array.from({ length: 60 }, (_, i) => (
-          <circle key={i} className="sea-twinkle" cx={(i * 97) % 1320} cy={(i * 53) % 260} r={i % 5 ? 1 : 1.6} fill="#FFE9C2" style={{ animationDelay: `${(i % 7) * .4}s` }} />
-        ))}
-        {BURSTS.map(([x, y, r, color, delay]) => <Burst key={`${x}-${y}`} x={x} y={y} r={r} color={color} delay={delay} />)}
-      </svg>
-      <img className="sea-toran" src="/seasonal/toran-cut-1200.webp" srcSet="/seasonal/toran-cut-600.webp 600w, /seasonal/toran-cut-1200.webp 1200w"
-        sizes="(max-width: 860px) 100vw, 42vw" alt={t('Fresh orange and yellow marigold toran', 'إكليل قطيفة برتقالي وأصفر طازج')} width="1200" height="418" loading="lazy" decoding="async" />
-      <div className="sea-dw-copy">
-        <p className="sea-kicker">{t('Diwali · ', 'ديوالي · ')}<span className="sea-wide">{t('Sunday ', 'الأحد ')}</span>{t('8 November · Pre-orders open', '8 نوفمبر · الطلب المسبق مفتوح')}</p>
-        <h2 id="sea-dw-title">{t('Ghar wali Diwali, here in Dubai.', 'ديوالي بدفء البيت، هنا في دبي.')}</h2>
-        <p className="sea-dw-line">{t('Fresh marigold torans for your door, delivered 5–15 November.', 'أكاليل قطيفة طازجة لباب بيتكم، التوصيل من 5 إلى 15 نوفمبر.')}</p>
-        <div className="sea-dw-act">
-          <Link className="sea-cta" href={`/shop/${toran.id}`}>
-            <span>{t('Pre-order the toran', 'اطلب الإكليل مسبقاً')}</span><span className="flip-rtl" aria-hidden="true">→</span>
-          </Link>
-          <span className="sea-from">{t('From', 'من')} <Money amount={toran.price} ar={ar} whole /></span>
+    <>
+      <section ref={ref} className="sea sea-dw" aria-labelledby="sea-dw-title" data-track-section="home_diwali" data-track-location="home_diwali">
+        <svg className="sea-sky" viewBox="0 0 1320 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+          {Array.from({ length: 60 }, (_, i) => (
+            <circle key={i} className="sea-twinkle" cx={(i * 97) % 1320} cy={(i * 53) % 260} r={i % 5 ? 1 : 1.6} fill="#FFE9C2" style={{ animationDelay: `${(i % 7) * .4}s` }} />
+          ))}
+          {BURSTS.map(([x, y, r, color, delay]) => <Burst key={`${x}-${y}`} x={x} y={y} r={r} color={color} delay={delay} />)}
+        </svg>
+        <img className="sea-toran" src="/seasonal/toran-cut-1200.webp" srcSet="/seasonal/toran-cut-600.webp 600w, /seasonal/toran-cut-1200.webp 1200w"
+          sizes="(max-width: 860px) 100vw, 42vw" alt={t('Fresh orange and yellow marigold toran', 'إكليل قطيفة برتقالي وأصفر طازج')} width="1200" height="418" loading="lazy" decoding="async" />
+        <div className="sea-dw-copy">
+          <p className="sea-kicker">{t('Diwali · ', 'ديوالي · ')}<span className="sea-wide">{t('Sunday ', 'الأحد ')}</span>{t('8 November · Pre-orders open', '8 نوفمبر · الطلب المسبق مفتوح')}</p>
+          <h2 id="sea-dw-title">{t('Ghar wali Diwali, here in Dubai.', 'ديوالي بدفء البيت، هنا في دبي.')}</h2>
+          <p className="sea-dw-line">{t('Fresh marigold torans for your door. Pre-order now, delivered from 5 November, before Diwali.', 'أكاليل قطيفة طازجة لباب بيتكم. اطلبوا مسبقاً، التوصيل من 5 نوفمبر، قبل ديوالي.')}</p>
+          <div className="sea-dw-act">
+            <Link className="sea-cta" href="/diwali">
+              <span>{t('Shop the Diwali Edition', 'تسوقوا إصدار ديوالي')}</span><span className="flip-rtl" aria-hidden="true">→</span>
+            </Link>
+            <span className="sea-from">{t('From', 'من')} <Money amount={toran.price} ar={ar} whole /></span>
+          </div>
         </div>
-      </div>
-      <svg className="sea-lamps" viewBox="0 0 1320 96" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
-        <defs>
-          <radialGradient id="sea-halo"><stop offset="0" stopColor="#FFC861" stopOpacity=".7" /><stop offset=".45" stopColor="#F59A14" stopOpacity=".2" /><stop offset="1" stopColor="#F59A14" stopOpacity="0" /></radialGradient>
-          <linearGradient id="sea-flame" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stopColor="#F0761A" /><stop offset=".55" stopColor="#FFC33D" /><stop offset="1" stopColor="#FFF4C9" /></linearGradient>
-        </defs>
-        {Array.from({ length: 26 }, (_, i) => {
-          const x = 20 + i * 51 + (i % 3) * 7, y = 84 + (i % 4) * 4;
-          return <ellipse key={`p${i}`} cx={x} cy={y} rx="5" ry="3" fill={PETALS[i % 4]} opacity=".7" transform={`rotate(${i * 37} ${x} ${y})`} />;
-        })}
-        {Array.from({ length: 11 }, (_, i) => <Diya key={i} x={60 + i * 120} i={i} />)}
-      </svg>
-    </section>
+        <svg className="sea-lamps" viewBox="0 0 1320 96" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+          <defs>
+            <radialGradient id="sea-halo"><stop offset="0" stopColor="#FFC861" stopOpacity=".7" /><stop offset=".45" stopColor="#F59A14" stopOpacity=".2" /><stop offset="1" stopColor="#F59A14" stopOpacity="0" /></radialGradient>
+            <linearGradient id="sea-flame" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stopColor="#F0761A" /><stop offset=".55" stopColor="#FFC33D" /><stop offset="1" stopColor="#FFF4C9" /></linearGradient>
+          </defs>
+          {Array.from({ length: 26 }, (_, i) => {
+            const x = 20 + i * 51 + (i % 3) * 7, y = 84 + (i % 4) * 4;
+            return <ellipse key={`p${i}`} cx={x} cy={y} rx="5" ry="3" fill={PETALS[i % 4]} opacity=".7" transform={`rotate(${i * 37} ${x} ${y})`} />;
+          })}
+          {Array.from({ length: 11 }, (_, i) => <Diya key={i} x={60 + i * 120} i={i} />)}
+        </svg>
+      </section>
+      <DiwaliSymbolRow ar={ar} />
+    </>
   );
 }
 

@@ -42,6 +42,8 @@
 [dir='rtl'] .hs-occasions a { font-family: var(--font-arabic); font-size: 15px; }
 .hs-occasions__img { display: block; width: 100%; max-width: 132px; aspect-ratio: 1; overflow: hidden; border-radius: 50%; background: var(--paper-deep); transition: transform 300ms var(--ease); }
 .hs-occasions__img img { width: 100%; height: 100%; object-fit: cover; }
+.hs-occasions__img--sym { display: grid; place-items: center; color: #F6C35B; background: linear-gradient(180deg, #160A18, #3E1626); }
+.hs-occasions__img--sym svg { width: 44%; height: 44%; }
 .hs-occasions a:hover .hs-occasions__img { transform: scale(1.04); }
 
 .hs-budget { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }

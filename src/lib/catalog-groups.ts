@@ -80,6 +80,8 @@ export const GROUPS: ShopGroup[] = [
   { id: 'money', en: 'Money Bouquets', ar: 'باقات النقود', kind: 'format', test: (p) => p.room === 'money' },
   // curated
   { id: 'grand-gestures', en: 'Grand Gestures', ar: 'لفتات كبرى', kind: 'curated', test: (p) => p.room === 'grand' || (p.stems ?? 0) >= 100 },
+  // seasonal: Shopify productType 'Diwali' (the live toran and every Diwali pre-order carry it)
+  { id: 'diwali', en: 'Diwali', ar: 'ديوالي', kind: 'curated', test: (p) => p.productType === 'Diwali' },
   // header link
   { id: 'under-300', en: 'Under AED 300', ar: 'أقل من 300 درهم', kind: 'direct', test: (p) => p.price < 300 },
 ];
@@ -87,7 +89,7 @@ export const GROUPS: ShopGroup[] = [
 /** Groups with fewer than this many pieces stay hidden until the catalog fills them. */
 const MIN_GROUP_SIZE = 6;
 /** The tabs above the grid: the main ways in, in this order. */
-export const TAB_IDS = ['all', 'roses', 'bouquets', 'boxes', 'vases', 'plants', 'gifts', 'beauty', 'money', 'grand-gestures', 'under-300'];
+export const TAB_IDS = ['all', 'diwali', 'roses', 'bouquets', 'boxes', 'vases', 'plants', 'gifts', 'beauty', 'money', 'grand-gestures', 'under-300'];
 /** Old links (#grand, product-type rooms) still land somewhere sensible. */
 export const GROUP_ALIASES: Record<string, string> = { grand: 'grand-gestures', hampers: 'gifts' };
 
