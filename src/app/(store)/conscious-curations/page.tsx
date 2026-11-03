@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import HamperBuilder from '@/components/store/HamperBuilder';
 import CoBrand from '@/components/store/CoBrand';
 import HamperFromPrice from '@/components/store/HamperFromPrice';
@@ -38,6 +39,7 @@ export default function ConsciousCurationsPage() {
         <CoBrand />
         <p><a className="button" href="#diwali"><T en="Build a Diwali hamper" ar="صمّم هدية ديوالي" /></a></p>
         <HamperFromPrice />
+        <p className="hamper-from"><Link href="/diwali#host"><T en="Also for the host: Maison marigold gifts" ar="وأيضاً للمضيف: هدايا القطيفة من ميزون" /> <span className="flip-rtl" aria-hidden="true">→</span></Link></p>
       </PageHero>
 
       <section className="cc-pillars" aria-label="Conscious Curations">

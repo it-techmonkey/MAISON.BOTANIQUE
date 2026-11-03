@@ -69,3 +69,10 @@ test('the "from" price is the cheapest ready-made hamper', async () => {
   const { hamperFromPrice } = await import('../src/lib/hamper.ts');
   assert.equal(hamperFromPrice(), 135);
 });
+
+test('the Diwali host card has its photo and the page links both ways', async () => {
+  const { readFileSync } = await import('node:fs');
+  assert.ok(existsSync('public/hamper/presets/card/festive.webp'));
+  assert.ok(readFileSync('src/components/store/DiwaliEdition.tsx', 'utf8').includes("/conscious-curations#diwali"));
+  assert.ok(readFileSync('src/app/(store)/conscious-curations/page.tsx', 'utf8').includes('/diwali#host'));
+});
