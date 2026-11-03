@@ -6,7 +6,7 @@ import { useGSAP } from '@gsap/react';
 import { trackHeroClicked, trackHeroNavigated } from '@/lib/analytics/track';
 import { formatMoney } from '@/lib/format';
 import { SHOW_COLLECTION_EVENT, type ShowCollectionDetail } from '@/lib/site';
-import { FLAG_DAY_DATE, FLAG_HERO_HANDLE, HERO_TAGLINES } from '@/lib/seasonal';
+import { FLAG_DAY_DATE, FLAG_HERO_HANDLE, HERO_COPY } from '@/lib/seasonal';
 import { useDubaiNow } from '@/lib/use-today';
 import SaleTag from './store/SaleTag';
 import { useStore } from './store/StoreProvider';
@@ -239,7 +239,7 @@ export default function Turntable({ onActiveChange, initialDubaiDate }: Turntabl
   const current = looks[clamp(active, 0, count - 1)];
   const productName = arabic ? current.nameAr || current.name : current.name;
   const category = arabic ? current.categoryAr || current.category : current.category;
-  const tagline = HERO_TAGLINES[current.id]?.[arabic ? 'ar' : 'en'];
+  const flagCopy = HERO_COPY[current.id]?.[arabic ? 'ar' : 'en'];
   const price = <Money amount={current.price} currency={current.currencyCode} ar={arabic} />;
 
   return (
@@ -250,17 +250,24 @@ export default function Turntable({ onActiveChange, initialDubaiDate }: Turntabl
       <div className="tt-stage" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <div className="tt-stage__inner">
           <div className="tt-copy" ref={copyRef} data-fit="0">
-          <div className="tt-intro">
-            <p className="tt-intro__eyebrow">{arabic ? 'زهور، بإحساس' : 'Flowers, with feeling'}</p>
-            <h1>{arabic ? <>زهور جميلة.<br />تصل بعناية.</> : <>Beautiful flowers.<br />Thoughtfully delivered.</>}</h1>
-            <p className="tt-intro__body">{arabic ? 'لفتات مدروسة، تحملها الزهور إلى من نحب.' : 'Considered gestures, beautifully expressed in flowers.'}</p>
-          </div>
+          {flagCopy ? (
+            <div className="tt-intro tt-intro--flag">
+              <h1>{flagCopy.lines[0]}<br />{flagCopy.lines[1]}</h1>
+              <p className="tt-intro__sub">{flagCopy.sub}</p>
+              <p className="tt-intro__body">{flagCopy.body}</p>
+            </div>
+          ) : (
+            <div className="tt-intro">
+              <p className="tt-intro__eyebrow">{arabic ? 'زهور، بإحساس' : 'Flowers, with feeling'}</p>
+              <h1>{arabic ? <>زهور جميلة.<br />تصل بعناية.</> : <>Beautiful flowers.<br />Thoughtfully delivered.</>}</h1>
+              <p className="tt-intro__body">{arabic ? 'لفتات مدروسة، تحملها الزهور إلى من نحب.' : 'Considered gestures, beautifully expressed in flowers.'}</p>
+            </div>
+          )}
 
           <div className={`tt-product${productName.length > LONG_TITLE_CHARACTERS ? ' tt-product--long' : ''}`} aria-live="polite" aria-atomic="true">
             <div className="tt-product__details" key={current.id}>
               <p className="tt-product__category">{category}</p>
               <h2>{productName}</h2>
-              {tagline && <p className="tt-product__tagline">{tagline}</p>}
               <p className="tt-product__price">
                 {live ? (arabic ? 'من' : 'From') : (arabic ? 'السعر' : 'Price')} <span aria-hidden="true">·</span> {price}
                 {current.compareAtPrice && <s aria-label={`${arabic ? 'بدلاً من' : 'was'} ${formatMoney(current.compareAtPrice, current.currencyCode, arabic)}`}><Money amount={current.compareAtPrice} currency={current.currencyCode} ar={arabic} /></s>}
