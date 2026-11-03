@@ -6,7 +6,7 @@ export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: 'UAE flag roses in a heart or round box, Dubai',
-  description: 'Red, white, green and black roses laid out as the UAE flag, in a heart box or a round box with a handwritten card. Made to order in Dubai, delivered from 3 November.',
+  description: 'Red, white, green and black roses laid out as the UAE flag, in a heart box or a round box with a handwritten card. Made to order in Dubai, delivered on the day you choose.',
   alternates: { canonical: '/flag-day' },
 };
 
