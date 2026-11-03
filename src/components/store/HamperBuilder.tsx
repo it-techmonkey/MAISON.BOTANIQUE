@@ -108,10 +108,10 @@ export default function HamperBuilder() {
                       <small>{label}{slot.optional ? ` · ${t('optional', 'اختياري')}` : ''}</small>
                       <strong>{item ? (ar ? item.ar : item.en) : slot.optional ? t('Add', 'إضافة') : t('Choose', 'اختر')}</strong>
                     </span>
-                    {item && <span className="slot__price"><Money amount={item.price} ar={ar} />{item.unit && <small> {t('/ pair', '/ الزوج')}</small>}</span>}
+                    {item ? <span className="slot__price"><Money amount={item.price} ar={ar} />{item.unit && <small> {t('/ pair', '/ الزوج')}</small>}</span> : <span className="slot__price" />}
                     <span className="slot__swap" aria-hidden="true">{isOpen ? t('Close', 'إغلاق') : item ? t('Swap', 'استبدال') : t('Choose', 'اختر')}</span>
                   </button>
-                  {canClear && <button type="button" className="slot__clear" onClick={() => choose(slot.id, null)} aria-label={`${t('Remove', 'إزالة')} ${ar ? item.ar : item.en}`}>×</button>}
+                  {canClear ? <button type="button" className="slot__clear" onClick={() => choose(slot.id, null)} aria-label={`${t('Remove', 'إزالة')} ${ar ? item.ar : item.en}`}>×</button> : <span className="slot__clear" aria-hidden="true" />}
                 </div>
                 {isOpen && (
                   <ul className="slot__tray" id={`slot-tray-${slot.id}`}>

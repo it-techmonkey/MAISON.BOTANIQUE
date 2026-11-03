@@ -87,3 +87,11 @@ test('the permanent builder header is not Diwali-specific (the hampers stay all 
     assert.ok(!/Build (your own )?a? ?Diwali hamper|Happy Diwali|A Diwali hamper|ديوالي/.test(source.replace(/Diwali 2026/g, '')), file);
   }
 });
+
+test('the category page has three pillars and does not feature Chefat65', async () => {
+  const { readFileSync } = await import('node:fs');
+  const page = readFileSync('src/app/(store)/conscious-curations/page.tsx', 'utf8');
+  assert.ok(!/Chefat65/i.test(page));
+  const pillars = page.slice(page.indexOf('const PILLARS = ['), page.indexOf('];', page.indexOf('const PILLARS = [')));
+  assert.equal((pillars.match(/\{ en: '/g) || []).length, 3);
+});
