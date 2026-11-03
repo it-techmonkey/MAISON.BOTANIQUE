@@ -170,6 +170,7 @@ export default function SiteHeader() {
               </div>
             </div>
             {direct.filter((group) => group.id !== 'roses').map(groupLink)}
+            <Link href="/conscious-curations" onClick={closeMenus}>{t('Conscious Curations', 'Conscious Curations')}</Link>
           </div>
           <div className="site-nav__secondary">
             <Link href="/services">{t('Events & gifting', 'المناسبات والإهداء')}</Link>

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState, type MouseEvent } from 'react';
+import { hamperFromPrice } from '@/lib/hamper';
 import { trackProductClicked, trackProductListViewed } from '@/lib/analytics/track';
 import { DIWALI_GROUPS, DIWALI_HANDLES, DIWALI_USE, pick, seasonalExpired } from '@/lib/seasonal';
 import { useDubaiNow } from '@/lib/use-today';
@@ -46,6 +47,29 @@ function Piece({ product, index, onOpen }: { product: Product; index: number; on
           </span>
           <button type="button" className="mbc-add" onClick={() => onOpen(product, index + 1)} disabled={!product.available}
             aria-label={`${t('Add to bag', 'أضف إلى الحقيبة')}: ${name}`}>{product.available ? <>{t('Add', 'أضف')} <span aria-hidden="true">+</span></> : t('Sold out', 'نفدت الكمية')}</button>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/** The partner's hamper builder, as the last card of "For the host". It is not one product (it fills the bag with several), so it links out. */
+function HostHamperCard() {
+  const { ar, t } = useStore();
+  const name = t('Build a host hamper', 'صمّموا هدية للمضيف');
+  const href = '/conscious-curations#diwali';
+  return (
+    <article className="mbc-piece dwe-piece" data-track-location="diwali_host_hamper">
+      <Link className="mbc-frame" href={href} aria-label={name}>
+        <img src="/hamper/presets/card/festive.webp" alt={t('A Diwali hamper by Conscious Curations', 'سلة ديوالي من Conscious Curations')} width="480" height="480" loading="lazy" decoding="async" />
+      </Link>
+      <div className="mbc-cap">
+        <span className="dwe-use">{t('With Conscious Curations', 'مع Conscious Curations')}</span>
+        <h3><Link href={href}>{name}</Link></h3>
+        <span className="mbc-line">{t('Pick a basket, handcrafted pieces and a treat.', 'اختاروا سلة وقطعاً يدوية وحلوى.')}</span>
+        <div className="mbc-row">
+          <span className="mbc-price"><small>{t('From', 'من')} </small><Money amount={hamperFromPrice()} ar={ar} whole /></span>
+          <Link className="mbc-add" href={href} aria-label={name}>{t('Build', 'صمّم')} <span aria-hidden="true">→</span></Link>
         </div>
       </div>
     </article>
@@ -101,7 +125,10 @@ export default function DiwaliEdition({ initialDubaiDate }: { initialDubaiDate: 
                 <div className="dwe-group" key={group.id} id={group.id}>
                   <div className="dwe-gh"><span className="dwe-sym dwe-sym--ring">{SYMBOLS[group.id]}</span>
                     <div><h2>{ar ? group.ar : group.en}</h2><p>{ar ? group.lineAr : group.lineEn}</p></div></div>
-                  <div className="dwe-grid">{group.items.map((product) => <Piece key={product.id} product={product} index={all.indexOf(product)} onOpen={onOpen} />)}</div>
+                  <div className="dwe-grid">
+                    {group.items.map((product) => <Piece key={product.id} product={product} index={all.indexOf(product)} onOpen={onOpen} />)}
+                    {group.id === 'host' && <HostHamperCard />}
+                  </div>
                 </div>
               ))}
             </>

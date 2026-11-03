@@ -13,18 +13,20 @@ import { productSchema } from '@/lib/product-schema';
 import { formatDeliveryDate } from '@/lib/delivery';
 import { REAL_PUMPKIN_HANDLES, seasonalDeliveryRange, TORAN_HANDLE } from '@/lib/seasonal';
 import { getCatalog } from '@/lib/shopify/catalog';
+import { isHamperProduct } from '@/lib/hamper-products';
 import '@/styles/shop.css';
 
 export const revalidate = 300;
 
 async function findProduct(handle: string) {
   const { products } = await getCatalog();
-  return products.find((product) => product.id === handle);
+  // Hamper items are sold only through the hamper builder: no product page of their own.
+  return products.find((product) => product.id === handle && !isHamperProduct(product.id));
 }
 
 export async function generateStaticParams() {
   const { products } = await getCatalog();
-  return products.map((product) => ({ handle: product.id }));
+  return products.filter((product) => !isHamperProduct(product.id)).map((product) => ({ handle: product.id }));
 }
 
 export async function generateMetadata({ params }: PageProps<'/shop/[handle]'>): Promise<Metadata> {

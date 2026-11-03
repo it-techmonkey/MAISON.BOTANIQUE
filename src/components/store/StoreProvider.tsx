@@ -7,6 +7,7 @@ import { useShopCart, type AddItemOptions, type ShopCart } from '@/lib/cart/use-
 import { setShopifyLocale } from '@/lib/analytics/shopify';
 import { registerCatalogSource, trackLocale } from '@/lib/analytics/track';
 import { hydrateBrowserCatalog, type BrowserCatalog } from '@/lib/browser-catalog';
+import { isHamperProduct } from '@/lib/hamper-products';
 import type { Collection, Locale, Product } from '@/lib/types';
 
 /** Read by the inline script in the root layout, before the first paint. */
@@ -18,7 +19,10 @@ interface StoreValue {
   setLocale: (locale: Locale) => void;
   /** Picks the English or Arabic string for the current locale. */
   t: <T,>(en: T, ar: T) => T;
+  /** The shop's products. The partner's hamper items (cc-<code>) are left out: they are sold only through the hamper builder. */
   products: Product[];
+  /** The hamper items, for the hamper builder. */
+  hamperProducts: Product[];
   collections: Collection[];
   live: boolean;
   cart: ShopCart;
@@ -117,7 +121,8 @@ export default function StoreProvider({ catalog: cards, children }: { catalog: B
     ar: locale === 'ar',
     setLocale,
     t: (en, ar) => (locale === 'ar' ? ar : en),
-    products: catalog.products,
+    products: catalog.products.filter((product) => !isHamperProduct(product.id)),
+    hamperProducts: catalog.products.filter((product) => isHamperProduct(product.id)),
     collections: catalog.collections,
     live: catalog.source === 'shopify',
     cart,

@@ -1,0 +1,609 @@
+{
+ "partner": "Conscious Curations",
+ "sections": [
+  {
+   "id": "B",
+   "en": "Choose your basket",
+   "ar": "اختر سلتك",
+   "kind": "basket",
+   "items": [
+    {
+     "code": "B1",
+     "en": "Sirohi elegant tray",
+     "ar": "صينية سيروهي الأنيقة",
+     "noteEn": "Woven from upcycled textile & plastic waste",
+     "noteAr": "منسوجة من أقمشة وبلاستيك معاد تدويره",
+     "price": 90,
+     "photo": "/hamper/b1.jpg",
+     "handle": "cc-b1"
+    },
+    {
+     "code": "B2",
+     "en": "Sirohi vibrant basket",
+     "ar": "سلة سيروهي الملوّنة",
+     "noteEn": "Woven from upcycled textile & plastic waste",
+     "noteAr": "منسوجة من أقمشة وبلاستيك معاد تدويره",
+     "price": 80,
+     "photo": "/hamper/b2.jpg",
+     "handle": "cc-b2"
+    },
+    {
+     "code": "B3",
+     "en": "Sirohi kesariya tray",
+     "ar": "صينية سيروهي الزعفرانية",
+     "noteEn": "Woven from upcycled textile & plastic waste",
+     "noteAr": "منسوجة من أقمشة وبلاستيك معاد تدويره",
+     "price": 85,
+     "photo": "/hamper/b3.jpg",
+     "handle": "cc-b3"
+    },
+    {
+     "code": "B4",
+     "en": "Sirohi trinket box",
+     "ar": "صندوق سيروهي للمقتنيات",
+     "noteEn": "Woven from upcycled textile & plastic waste · a keepsake box",
+     "noteAr": "منسوج من أقمشة وبلاستيك معاد تدويره · صندوق للذكرى",
+     "price": 80,
+     "photo": "/hamper/b4.jpg",
+     "handle": "cc-b4"
+    },
+    {
+     "code": "B5",
+     "en": "Wicker trunk",
+     "ar": "صندوق الخوص",
+     "noteEn": "Water hyacinth, handwoven by women’s groups in Assam",
+     "noteAr": "ورد النيل، منسوج يدوياً بأيدي مجموعات نسائية في آسام",
+     "price": 65,
+     "photo": "/hamper/b5.jpg",
+     "handle": "cc-b5"
+    },
+    {
+     "code": "B6",
+     "en": "Wicker jaali basket",
+     "ar": "سلة الخوص المشبّكة",
+     "noteEn": "Water hyacinth, handwoven by women’s groups in Assam",
+     "noteAr": "ورد النيل، منسوج يدوياً بأيدي مجموعات نسائية في آسام",
+     "price": 50,
+     "photo": "/hamper/b6.jpg",
+     "handle": "cc-b6"
+    },
+    {
+     "code": "B7",
+     "en": "Wicker regal basket",
+     "ar": "سلة الخوص الملكية",
+     "noteEn": "Water hyacinth, handwoven by women’s groups in Assam",
+     "noteAr": "ورد النيل، منسوج يدوياً بأيدي مجموعات نسائية في آسام",
+     "price": 45,
+     "photo": "/hamper/b7.jpg",
+     "handle": "cc-b7"
+    },
+    {
+     "code": "B8",
+     "en": "Jute hamper bag",
+     "ar": "حقيبة هدايا من الجوت",
+     "noteEn": "Hand stitched by women in Bengal",
+     "noteAr": "مخيطة يدوياً بأيدي نساء في البنغال",
+     "price": 20,
+     "photo": "/hamper/b8.jpg",
+     "handle": "cc-b8"
+    },
+    {
+     "code": "B9",
+     "en": "Festive Hamper bag",
+     "ar": "حقيبة هدايا احتفالية",
+     "noteEn": "Reusable after gifting",
+     "noteAr": "قابلة لإعادة الاستخدام بعد الإهداء",
+     "price": 20,
+     "photo": "/hamper/b9.jpg",
+     "handle": "cc-b9"
+    }
+   ]
+  },
+  {
+   "id": "L",
+   "en": "Light & Rangoli",
+   "ar": "الأنوار والرانغولي",
+   "kind": "pick",
+   "items": [
+    {
+     "code": "L1",
+     "en": "Terracotta candle",
+     "ar": "شمعة من التراكوتا",
+     "noteEn": "Himalayan Origins · handmade terracotta",
+     "noteAr": "هيمالايان أوريجنز · تراكوتا مصنوعة يدوياً",
+     "price": 40,
+     "photo": "/hamper/l1.jpg",
+     "handle": "cc-l1"
+    },
+    {
+     "code": "L2",
+     "en": "Surya rangoli, 8\"",
+     "ar": "رانغولي سوريا، 8 إنش",
+     "noteEn": "Handmade paper pulp · reusable every year",
+     "noteAr": "عجينة ورق يدوية · تُستخدم كل عام",
+     "price": 50,
+     "photo": "/hamper/l2.jpg",
+     "handle": "cc-l2"
+    },
+    {
+     "code": "L3",
+     "en": "Yellow floral diyas",
+     "ar": "ديّات زهرية صفراء",
+     "noteEn": "Hand-painted blue pottery · set of 2",
+     "noteAr": "فخار أزرق مرسوم يدوياً · طقم من 2",
+     "price": 25,
+     "unit": "pair",
+     "photo": "/hamper/l3.jpg",
+     "handle": "cc-l3"
+    },
+    {
+     "code": "L4",
+     "en": "Haathi tealight holder",
+     "ar": "حامل شمعة الفيل",
+     "noteEn": "Wooden hand block",
+     "noteAr": "قالب خشبي منقوش يدوياً",
+     "price": 25,
+     "photo": "/hamper/l4.jpg",
+     "handle": "cc-l4"
+    },
+    {
+     "code": "L5",
+     "en": "Diya tealight holders",
+     "ar": "حاملات شموع الديّا",
+     "noteEn": "Wooden hand block · set of 2",
+     "noteAr": "قالب خشبي منقوش يدوياً · طقم من 2",
+     "price": 25,
+     "unit": "pair",
+     "photo": "/hamper/l5.jpg",
+     "handle": "cc-l5"
+    },
+    {
+     "code": "L6",
+     "en": "Blue leaf diyas",
+     "ar": "ديّات الورق الأزرق",
+     "noteEn": "Hand-painted blue pottery · set of 2",
+     "noteAr": "فخار أزرق مرسوم يدوياً · طقم من 2",
+     "price": 25,
+     "unit": "pair",
+     "photo": "/hamper/l6.jpg",
+     "handle": "cc-l6"
+    },
+    {
+     "code": "L7",
+     "en": "Pink blossom tealight holders",
+     "ar": "حاملات شموع الزهر الوردي",
+     "noteEn": "Handmade paper pulp rangoli · set of 2",
+     "noteAr": "رانغولي من عجينة الورق · طقم من 2",
+     "price": 35,
+     "unit": "pair",
+     "photo": "/hamper/l7.jpg",
+     "handle": "cc-l7"
+    },
+    {
+     "code": "L8",
+     "en": "Sunflower tealight holders",
+     "ar": "حاملات شموع عبّاد الشمس",
+     "noteEn": "Handmade paper pulp rangoli · set of 2",
+     "noteAr": "رانغولي من عجينة الورق · طقم من 2",
+     "price": 35,
+     "unit": "pair",
+     "photo": "/hamper/l8.jpg",
+     "handle": "cc-l8"
+    },
+    {
+     "code": "L9",
+     "en": "Lotus diyas",
+     "ar": "ديّات اللوتس",
+     "noteEn": "Hand-painted blue pottery · set of 2",
+     "noteAr": "فخار أزرق مرسوم يدوياً · طقم من 2",
+     "price": 25,
+     "unit": "pair",
+     "photo": "/hamper/l9.jpg",
+     "handle": "cc-l9"
+    }
+   ]
+  },
+  {
+   "id": "P",
+   "en": "Puja & Blessings",
+   "ar": "البوجا والبركات",
+   "kind": "pick",
+   "items": [
+    {
+     "code": "P1",
+     "en": "Wooden handblock Lakshmi-Ganesha",
+     "ar": "قالب خشبي لاكشمي وغانيشا",
+     "noteEn": "Hand-carved wooden block",
+     "noteAr": "قالب خشبي منحوت يدوياً",
+     "price": 35,
+     "photo": "/hamper/p1.jpg",
+     "handle": "cc-p1"
+    },
+    {
+     "code": "P2",
+     "en": "Akhanda diya",
+     "ar": "ديّا أخاندا",
+     "noteEn": "Copper / brass coated · Indianartvilla",
+     "noteAr": "مطلية بالنحاس · Indianartvilla",
+     "price": 25,
+     "photo": "/hamper/p2.jpg",
+     "handle": "cc-p2"
+    },
+    {
+     "code": "P3",
+     "en": "Kalash rangoli",
+     "ar": "رانغولي كالاش",
+     "noteEn": "Handmade paper pulp rangoli tealight holder",
+     "noteAr": "حامل شمعة رانغولي من عجينة الورق",
+     "price": 40,
+     "photo": "/hamper/p3.jpg",
+     "handle": "cc-p3"
+    },
+    {
+     "code": "P4",
+     "en": "Paper pulp charan paaduka",
+     "ar": "أقدام لاكشمي من عجينة الورق",
+     "noteEn": "Handmade paper pulp",
+     "noteAr": "عجينة ورق يدوية",
+     "price": 15,
+     "photo": "/hamper/p4.jpg",
+     "handle": "cc-p4"
+    },
+    {
+     "code": "P5",
+     "en": "Pocket Hanuman Chalisa",
+     "ar": "هانومان تشاليسا للجيب",
+     "noteEn": "Pocket-sized prayer book",
+     "noteAr": "كتاب صلوات بحجم الجيب",
+     "price": 15,
+     "photo": "/hamper/p5.jpg",
+     "handle": "cc-p5"
+    }
+   ]
+  },
+  {
+   "id": "T",
+   "en": "Art in everyday lives",
+   "ar": "فنّ في تفاصيل يومك",
+   "kind": "pick",
+   "items": [
+    {
+     "code": "T1",
+     "en": "Blooming Leaves coffee mugs",
+     "ar": "أكواب قهوة أوراق متفتحة",
+     "noteEn": "Hand-painted ceramic · set of 2",
+     "noteAr": "سيراميك مرسوم يدوياً · طقم من 2",
+     "price": 80,
+     "unit": "pair",
+     "photo": "/hamper/t1.jpg",
+     "handle": "cc-t1"
+    },
+    {
+     "code": "T2",
+     "en": "Blooming Leaves tea cups",
+     "ar": "أكواب شاي أوراق متفتحة",
+     "noteEn": "Hand-painted ceramic · set of 2",
+     "noteAr": "سيراميك مرسوم يدوياً · طقم من 2",
+     "price": 60,
+     "unit": "pair",
+     "photo": "/hamper/t2.jpg",
+     "handle": "cc-t2"
+    },
+    {
+     "code": "T3",
+     "en": "Fresh Morning espresso cups",
+     "ar": "فناجين إسبريسو صباح منعش",
+     "noteEn": "Hand-painted ceramic · set of 2",
+     "noteAr": "سيراميك مرسوم يدوياً · طقم من 2",
+     "price": 50,
+     "unit": "pair",
+     "photo": "/hamper/t3.jpg",
+     "handle": "cc-t3"
+    },
+    {
+     "code": "T4",
+     "en": "Hand-painted coconut salad bowl",
+     "ar": "وعاء سلطة من جوز الهند مرسوم يدوياً",
+     "noteEn": "Made from real coconut shell",
+     "noteAr": "مصنوع من قشرة جوز الهند الطبيعية",
+     "price": 50,
+     "photo": "/hamper/t4.jpg",
+     "handle": "cc-t4"
+    },
+    {
+     "code": "T5",
+     "en": "Hand-painted coconut dessert bowl",
+     "ar": "وعاء حلوى من جوز الهند مرسوم يدوياً",
+     "noteEn": "Made from real coconut shell",
+     "noteAr": "مصنوع من قشرة جوز الهند الطبيعية",
+     "price": 30,
+     "photo": "/hamper/t5.jpg",
+     "handle": "cc-t5"
+    },
+    {
+     "code": "T6",
+     "en": "Copper water bottle (750 ml)",
+     "ar": "زجاجة ماء نحاسية (750 مل)",
+     "noteEn": "Indianartvilla · Ayurvedic copper",
+     "noteAr": "Indianartvilla · نحاس أيورفيدي",
+     "price": 80,
+     "photo": "/hamper/t6.jpg",
+     "handle": "cc-t6"
+    }
+   ]
+  },
+  {
+   "id": "W",
+   "en": "Write & Carry",
+   "ar": "للكتابة والحمل",
+   "kind": "pick",
+   "items": [
+    {
+     "code": "W1",
+     "en": "Gratitude journal",
+     "ar": "دفتر الامتنان",
+     "noteEn": "Hand-stitched fabric cover · A5, 80 leaves",
+     "noteAr": "غلاف قماش مخيط يدوياً · A5، 80 ورقة",
+     "price": 40,
+     "photo": "/hamper/w1.jpg",
+     "handle": "cc-w1"
+    },
+    {
+     "code": "W2",
+     "en": "Quilted travel pouch, large",
+     "ar": "حقيبة سفر مبطّنة، كبيرة",
+     "noteEn": "Hand-stitched quilted cotton",
+     "noteAr": "قطن مبطّن مخيط يدوياً",
+     "price": 25,
+     "photo": "/hamper/w2.jpg",
+     "handle": "cc-w2"
+    },
+    {
+     "code": "W3",
+     "en": "Quilted travel pouch, medium",
+     "ar": "حقيبة سفر مبطّنة، وسط",
+     "noteEn": "Hand-stitched quilted cotton",
+     "noteAr": "قطن مبطّن مخيط يدوياً",
+     "price": 20,
+     "photo": "/hamper/w3.jpg",
+     "handle": "cc-w3"
+    },
+    {
+     "code": "W4",
+     "en": "Bamboo husk travel cup",
+     "ar": "كوب سفر من قشور الخيزران",
+     "noteEn": "Made with bio waste",
+     "noteAr": "مصنوع من مخلفات حيوية",
+     "price": 15,
+     "photo": "/hamper/w4.jpg",
+     "handle": "cc-w4"
+    },
+    {
+     "code": "W5",
+     "en": "Quilted travel pouch, small",
+     "ar": "حقيبة سفر مبطّنة، صغيرة",
+     "noteEn": "Hand-stitched quilted cotton",
+     "noteAr": "قطن مبطّن مخيط يدوياً",
+     "price": 15,
+     "photo": "/hamper/w5.jpg",
+     "handle": "cc-w5"
+    }
+   ]
+  },
+  {
+   "id": "F",
+   "en": "Add a festive treat",
+   "ar": "أضف حلوى العيد",
+   "kind": "treat",
+   "items": [
+    {
+     "code": "F1",
+     "en": "Mithai box (12 pc)",
+     "ar": "علبة ميثاي (12 قطعة)",
+     "noteEn": "Homemade festive mixed mithai · Chefat65",
+     "noteAr": "ميثاي احتفالي منزلي مشكّل · Chefat65",
+     "price": 65,
+     "photo": "/hamper/f1.jpg",
+     "handle": "cc-f1"
+    },
+    {
+     "code": "F2",
+     "en": "Mithai box (9 pc)",
+     "ar": "علبة ميثاي (9 قطع)",
+     "noteEn": "Homemade festive mixed mithai · Chefat65",
+     "noteAr": "ميثاي احتفالي منزلي مشكّل · Chefat65",
+     "price": 50,
+     "photo": "/hamper/f2.jpg",
+     "handle": "cc-f2"
+    },
+    {
+     "code": "F3",
+     "en": "Mithai box (6 pc)",
+     "ar": "علبة ميثاي (6 قطع)",
+     "noteEn": "Homemade festive mixed mithai · Chefat65",
+     "noteAr": "ميثاي احتفالي منزلي مشكّل · Chefat65",
+     "price": 35,
+     "photo": "/hamper/f3.jpg",
+     "handle": "cc-f3"
+    },
+    {
+     "code": "F4",
+     "en": "Mithai box (4 pc)",
+     "ar": "علبة ميثاي (4 قطع)",
+     "noteEn": "Homemade festive mixed mithai · Chefat65",
+     "noteAr": "ميثاي احتفالي منزلي مشكّل · Chefat65",
+     "price": 25,
+     "photo": "/hamper/f4.jpg",
+     "handle": "cc-f4"
+    },
+    {
+     "code": "F5",
+     "en": "Namakpara jar",
+     "ar": "برطمان نمكبارا",
+     "noteEn": "Homemade festive snack · glass jar · Chefat65",
+     "noteAr": "وجبة خفيفة احتفالية منزلية · برطمان زجاجي · Chefat65",
+     "price": 25,
+     "photo": "/hamper/f5.jpg",
+     "handle": "cc-f5"
+    }
+   ]
+  }
+ ],
+ "collections": [
+  {
+   "slug": "diwali",
+   "live": true,
+   "en": "Diwali 2026",
+   "ar": "ديوالي 2026",
+   "titleEn": "Build your own Diwali hamper",
+   "titleAr": "صمّم هدية ديوالي بنفسك",
+   "introEn": "Choose a handwoven basket, fill it with handcrafted pieces and add a festive treat.",
+   "introAr": "اختر سلة منسوجة يدوياً، واملأها بقطع مصنوعة يدوياً، وأضف حلوى احتفالية.",
+   "photo": "/hamper/hamper-hero.jpg"
+  }
+ ],
+ "presets": [
+  {
+   "id": "little",
+   "en": "Little gift",
+   "ar": "هدية صغيرة",
+   "slots": {
+    "basket": "B8",
+    "light": "L9",
+    "blessing": "P4",
+    "table": "T5",
+    "everyday": "W3",
+    "treat": "F4"
+   }
+  },
+  {
+   "id": "puja",
+   "en": "Puja ritual",
+   "ar": "طقوس البوجا",
+   "slots": {
+    "basket": "B5",
+    "light": "L2",
+    "blessing": "P2",
+    "table": "T5",
+    "everyday": "W1",
+    "treat": "F3"
+   }
+  },
+  {
+   "id": "home",
+   "en": "Home & table",
+   "ar": "البيت والمائدة",
+   "slots": {
+    "basket": "B3",
+    "light": "L8",
+    "blessing": "P1",
+    "table": "T2",
+    "everyday": "W4",
+    "treat": "F2"
+   }
+  },
+  {
+   "id": "festive",
+   "en": "Festive classic",
+   "ar": "الكلاسيكية الاحتفالية",
+   "slots": {
+    "basket": "B1",
+    "light": "L1",
+    "blessing": "P3",
+    "table": "T1",
+    "everyday": "W1",
+    "treat": "F1"
+   }
+  }
+ ],
+ "gallery": [
+  {
+   "id": "home-candle",
+   "slots": {
+    "basket": "B3",
+    "light": "L1",
+    "blessing": "P1",
+    "table": "T2",
+    "everyday": "W4",
+    "treat": "F2"
+   }
+  },
+  {
+   "id": "wicker-regal",
+   "slots": {
+    "basket": "B7",
+    "light": "L4",
+    "blessing": "P4",
+    "table": "T4",
+    "everyday": "W5",
+    "treat": "F3"
+   }
+  },
+  {
+   "id": "vibrant",
+   "slots": {
+    "basket": "B2",
+    "light": "L3",
+    "blessing": "P2",
+    "table": "T3",
+    "everyday": "W2",
+    "treat": "F5"
+   }
+  },
+  {
+   "id": "jaali",
+   "slots": {
+    "basket": "B6",
+    "light": "L6",
+    "blessing": "P3",
+    "table": "T6",
+    "everyday": "W1",
+    "treat": "F1"
+   }
+  },
+  {
+   "id": "festive-bag",
+   "slots": {
+    "basket": "B9",
+    "light": "L7",
+    "blessing": "P1",
+    "table": "T1",
+    "everyday": "W3",
+    "treat": "F4"
+   }
+  },
+  {
+   "id": "trinket",
+   "slots": {
+    "basket": "B4",
+    "light": "L5",
+    "blessing": "P2",
+    "table": "T2",
+    "everyday": "W4",
+    "treat": "F2"
+   }
+  },
+  {
+   "id": "trunk-candle",
+   "slots": {
+    "basket": "B5",
+    "light": "L1",
+    "blessing": "P3",
+    "table": "T3",
+    "everyday": "W1",
+    "treat": "F3"
+   }
+  },
+  {
+   "id": "elegant-rangoli",
+   "slots": {
+    "basket": "B1",
+    "light": "L2",
+    "blessing": "P4",
+    "table": "T5",
+    "everyday": "W2",
+    "treat": "F5"
+   }
+  }
+ ]
+}
