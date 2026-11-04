@@ -33,7 +33,7 @@ Money bouquet cash value must be collected separately from the online arrangemen
 
 ## Delivery
 
-Free delivery applies only to JVC, declared in the bag and verified by the team (see SHOPIFY_SETUP.md section 18; it stays hidden until switched on). Otherwise the website says AED 35 in Dubai and AED 65 elsewhere in the UAE. Shopify checkout shipping must charge the same. Verify that a Dubai address (for example Marina) is AED 35 and another emirate is AED 65 before release, and that no free-shipping rate or automatic discount exists.
+There is no free delivery (JVC free delivery was removed on 4 November 2026). The website says AED 35 in Dubai and AED 65 elsewhere in the UAE. Shopify checkout shipping must charge the same. Verify that a Dubai address (for example Marina) is AED 35 and another emirate is AED 65 before release, and that no free-shipping rate or automatic discount exists.
 
 Approved picker rules: 9am–noon, noon–3pm, 3–6pm, 6–9pm; one-hour lead (revised 23 October 2026); daily; up to 60 days ahead. Same-day delivery is offered across the whole UAE; only the fee differs (AED 35 Dubai, AED 65 elsewhere).
 

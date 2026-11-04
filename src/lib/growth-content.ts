@@ -1,5 +1,4 @@
 import type { Bilingual, OccasionId } from './site';
-import { JVC_FREE_DELIVERY } from './jvc-delivery';
 
 export interface Question { question: Bilingual; answer: Bilingual }
 export interface EditorialSection { heading: Bilingual; paragraphs: Bilingual[] }
@@ -15,8 +14,8 @@ export const ORDER_QUESTIONS: Question[] = [
   {
     question: { en: 'How much is delivery?', ar: 'ما رسوم التوصيل؟' },
     answer: {
-      en: `Delivery is AED 35 in Dubai and AED 65 elsewhere in the UAE. ${JVC_FREE_DELIVERY ? 'JVC delivery is free: select the JVC option in your bag; we verify the full recipient address before dispatch. ' : ''}Enter the full recipient address at checkout, including the building, apartment and area. Same-day delivery is a Dubai service; check the available date for other emirates before ordering.`,
-      ar: `رسوم التوصيل 35 درهماً في دبي و65 درهماً في بقية الإمارات. ${JVC_FREE_DELIVERY ? 'التوصيل إلى JVC مجاني: حدد خيار JVC في الحقيبة؛ نتحقق من عنوان المستلم كاملاً قبل الإرسال. ' : ''}أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى والشقة والمنطقة. خدمة التوصيل في اليوم نفسه خاصة بدبي؛ تحقق من الموعد المتاح للإمارات الأخرى قبل الطلب.`,
+      en: `Delivery is AED 35 in Dubai and AED 65 elsewhere in the UAE. Enter the full recipient address at checkout, including the building, apartment and area. Same-day delivery is a Dubai service; check the available date for other emirates before ordering.`,
+      ar: `رسوم التوصيل 35 درهماً في دبي و65 درهماً في بقية الإمارات. أدخل عنوان المستلم كاملاً عند الدفع، بما فيه المبنى والشقة والمنطقة. خدمة التوصيل في اليوم نفسه خاصة بدبي؛ تحقق من الموعد المتاح للإمارات الأخرى قبل الطلب.`,
     },
   },
   {
@@ -251,7 +250,7 @@ export const JOURNAL: JournalEntry[] = [
         heading: { en: '1. Does it say where it delivers, by address?', ar: '١. هل يذكر مناطق التوصيل ويطلب العنوان كاملاً؟' },
         paragraphs: [
           { en: 'A good site tells you which areas it delivers to and asks for the full recipient address: building or villa, apartment number and area. If it only asks for a city, expect confusion at the door.', ar: 'الموقع الجيد يخبرك بالمناطق التي يوصل إليها ويطلب عنوان المستلم كاملاً: اسم المبنى أو الفيلا ورقم الشقة والمنطقة. إن طلب اسم المدينة فقط فتوقع ارتباكاً عند الباب.' },
-          { en: 'Maison delivers across the UAE and asks for the full recipient address at checkout. Delivery to Jumeirah Village Circle (JVC) is free once we have checked the full address.', ar: 'توصل ميزون في أنحاء الإمارات وتطلب عنوان المستلم كاملاً عند الدفع. والتوصيل إلى قرية جميرا الدائرية (JVC) مجاني بعد أن نتحقق من العنوان الكامل.' },
+          { en: 'Maison delivers across the UAE and asks for the full recipient address at checkout.', ar: 'توصل ميزون في أنحاء الإمارات وتطلب عنوان المستلم كاملاً عند الدفع.' },
         ],
       },
       {
@@ -265,7 +264,7 @@ export const JOURNAL: JournalEntry[] = [
         heading: { en: '3. Is the delivery fee clear before you pay?', ar: '٣. هل رسوم التوصيل واضحة قبل الدفع؟' },
         paragraphs: [
           { en: 'You should know the delivery fee before you enter payment details, and it should not change at the last step.', ar: 'يجب أن تعرف رسوم التوصيل قبل إدخال بيانات الدفع، وألا تتغير في الخطوة الأخيرة.' },
-          { en: 'Maison charges AED 35 in Dubai and AED 65 elsewhere in the UAE, and delivery to JVC is free. Our delivery page states it, and checkout shows the final charge.', ar: 'رسوم ميزون 35 درهماً في دبي و65 درهماً في بقية الإمارات، والتوصيل إلى JVC مجاني. تذكرها صفحة التوصيل، ويعرض الدفع المبلغ النهائي.' },
+          { en: 'Maison charges AED 35 in Dubai and AED 65 elsewhere in the UAE. Our delivery page states it, and checkout shows the final charge.', ar: 'رسوم ميزون 35 درهماً في دبي و65 درهماً في بقية الإمارات. تذكرها صفحة التوصيل، ويعرض الدفع المبلغ النهائي.' },
         ],
       },
       {
