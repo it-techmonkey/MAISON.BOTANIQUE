@@ -11,7 +11,7 @@ import { ORDER_QUESTIONS } from '@/lib/growth-content';
 import { SITE_URL } from '@/lib/site';
 import { productSchema } from '@/lib/product-schema';
 import { formatDeliveryDate } from '@/lib/delivery';
-import { REAL_PUMPKIN_HANDLES, seasonalDeliveryRange, TORAN_HANDLE } from '@/lib/seasonal';
+import { DIWALI_HANDLES, DISPLAY_NAMES, REAL_PUMPKIN_HANDLES, seasonalDeliveryRange, TORAN_HANDLE } from '@/lib/seasonal';
 import { getCatalog } from '@/lib/shopify/catalog';
 import { isHamperProduct } from '@/lib/hamper-products';
 import '@/styles/shop.css';
@@ -32,9 +32,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<'/shop/[handle]'>): Promise<Metadata> {
   const product = await findProduct((await params).handle);
   if (!product) return {};
+  const title = DISPLAY_NAMES[product.id]?.en ?? product.name;
   const description = product.answerSummary || product.description || `${product.name} from Maison Botanique, Dubai.`;
   return {
-    title: product.name,
+    title,
     description,
     alternates: { canonical: `/shop/${product.id}` },
     // A page's openGraph replaces the layout's, so the shared fields are repeated here. The photo comes from
@@ -46,7 +47,7 @@ export async function generateMetadata({ params }: PageProps<'/shop/[handle]'>):
       siteName: 'Maison Botanique',
       locale: 'en_AE',
       alternateLocale: ['ar_AE'],
-      title: product.name,
+      title,
       description,
     },
   };
@@ -112,6 +113,7 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
   const product = await findProduct((await params).handle);
   if (!product) notFound();
   const range = seasonalDeliveryRange(product.id);
+  const diwali = DIWALI_HANDLES.includes(product.id);
   const faqs = FAQS_BY_PRODUCT[product.id];
   const details = [...DETAILS, ...(faqs ?? []).map((faq) => ({ title: faq.question, body: faq.answer }))].map((item, index) => {
     if (index === 0 && range) return { ...item, body: {
@@ -142,12 +144,12 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema(product, SITE_URL, faqs?.map((faq) => ({ question: faq.question.en, answer: faq.answer.en })))).replace(/</g, '\\u003c') }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema({ ...product, name: DISPLAY_NAMES[product.id]?.en ?? product.name }, SITE_URL, faqs?.map((faq) => ({ question: faq.question.en, answer: faq.answer.en })))).replace(/</g, '\\u003c') }} />
       <div className="section section--top product-page">
         <nav className="breadcrumbs" aria-label="Breadcrumb">
           <Link href="/shop"><T en="Shop" ar="المتجر" /></Link>
           <span aria-hidden="true">/</span>
-          <span aria-current="page"><T en={product.name} ar={product.nameAr} /></span>
+          <span aria-current="page"><T en={DISPLAY_NAMES[product.id]?.en ?? product.name} ar={DISPLAY_NAMES[product.id]?.ar ?? product.nameAr} /></span>
         </nav>
         <div className="product-layout">
           <div className="product-gallery" style={{ backgroundColor: product.bg }}>
@@ -171,11 +173,23 @@ export default async function ProductPage({ params }: PageProps<'/shop/[handle]'
         <OrderQuestions questions={ORDER_QUESTIONS.filter(({ question }) => ['Can I include a handwritten card?', 'Which size is in the photograph?'].includes(question.en))} />
       </div>
       <section className="section section--sand" aria-labelledby="related-title">
-        <SectionHeading id="related-title"
-          eyebrow={{ en: 'You may also love', ar: 'قد يعجبك أيضاً' }}
-          title={{ en: 'More from the edit.', ar: 'المزيد من المختارات.' }}
-          link={{ href: '/shop', label: { en: 'Shop the collection', ar: 'تسوّق المجموعة' } }} />
-        <CatalogRail exclude={product.id} limit={8} listId="related" label={{ en: 'More from the edit', ar: 'المزيد من المختارات' }} />
+        {diwali ? (
+          <>
+            <SectionHeading id="related-title"
+              eyebrow={{ en: 'You may also love', ar: 'قد يعجبك أيضاً' }}
+              title={{ en: 'More for Diwali.', ar: 'المزيد لديوالي.' }}
+              link={{ href: '/diwali', label: { en: 'See the Diwali Edition', ar: 'إصدار ديوالي' } }} />
+            <CatalogRail exclude={product.id} handles={DIWALI_HANDLES} listId="related_diwali" label={{ en: 'More for Diwali', ar: 'المزيد لديوالي' }} />
+          </>
+        ) : (
+          <>
+            <SectionHeading id="related-title"
+              eyebrow={{ en: 'You may also love', ar: 'قد يعجبك أيضاً' }}
+              title={{ en: 'More from the edit.', ar: 'المزيد من المختارات.' }}
+              link={{ href: '/shop', label: { en: 'Shop the collection', ar: 'تسوّق المجموعة' } }} />
+            <CatalogRail exclude={product.id} limit={8} listId="related" label={{ en: 'More from the edit', ar: 'المزيد من المختارات' }} />
+          </>
+        )}
       </section>
     </>
   );

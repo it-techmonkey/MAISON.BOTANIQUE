@@ -688,7 +688,7 @@ function Bag() {
                   onChange={(event) => { setError(''); void cart.setJvcDelivery(event.target.checked).catch(() => setError(ar ? 'تعذّر تطبيق التوصيل المجاني. يمكنك المتابعة بدونه.' : 'Free JVC delivery could not be applied. You can continue without it.')); }} />
                 <span>
                   <strong>{ar ? 'هل التوصيل إلى جميرا فيليج سيركل (JVC)؟ التوصيل مجاني' : 'Delivering to Jumeirah Village Circle (JVC)? Delivery is free'}</strong>
-                  <small>{ar ? 'أدخل عنوان المستلم كاملاً عند الدفع. نتحقق من كل عنوان قبل التوصيل، وإن لم يكن في JVC تُضاف رسوم ٣٠ درهماً.' : 'Enter the full recipient address at checkout. We check every address before dispatch; if it is not in JVC, delivery is AED 30.'}</small>
+                  <small>{ar ? 'أدخل عنوان المستلم كاملاً عند الدفع. نتحقق من كل عنوان قبل التوصيل، وإن لم يكن في JVC تُضاف رسوم ٣٥ درهماً.' : 'Enter the full recipient address at checkout. We check every address before dispatch; if it is not in JVC, delivery is AED 35.'}</small>
                 </span>
               </label>
             )}
