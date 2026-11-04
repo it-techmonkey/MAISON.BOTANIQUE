@@ -11,7 +11,7 @@ import '@/styles/hamper.css';
 
 export const metadata: Metadata = {
   title: 'Conscious Curations',
-  description: 'Handwoven by women artisans, made from upcycled and locally sourced materials, with homemade treats from the Chefat65 kitchen. Curated gifts by Conscious Curations, with Maison Botanique.',
+  description: 'Handwoven by women artisans, made from upcycled and locally sourced materials. Curated gifts by Conscious Curations, with Maison Botanique.',
   alternates: { canonical: '/conscious-curations' },
   openGraph: { title: 'Conscious Curations · Maison Botanique', description: 'Handwoven by women artisans, upcycled and locally sourced gifts, with homemade treats. Build your own hamper.', url: '/conscious-curations', images: [{ url: '/hamper/presets/festive.webp', width: 1024, height: 1024 }] },
 };
@@ -22,7 +22,6 @@ const PILLARS = [
   { en: 'Handwoven', ar: 'منسوج يدوياً', textEn: 'Baskets and trays woven by women artisan groups across India.', textAr: 'سلال وصواني تنسجها مجموعات حرفيات في أنحاء الهند.' },
   { en: 'Upcycled', ar: 'معاد تدويره', textEn: 'Made from upcycled textile and plastic waste.', textAr: 'مصنوعة من أقمشة وبلاستيك معاد تدويره.' },
   { en: 'Locally sourced', ar: 'من مصادر محلية', textEn: 'Sustainable, locally sourced pieces that support underprivileged communities.', textAr: 'قطع مستدامة من مصادر محلية تدعم المجتمعات المحتاجة.' },
-  { en: 'Chefat65 kitchen', ar: 'مطبخ Chefat65', textEn: 'Homemade sweets and snacks from the family kitchen behind Conscious Curations.', textAr: 'حلويات ووجبات خفيفة منزلية من مطبخ العائلة وراء Conscious Curations.' },
 ];
 
 export default function ConsciousCurationsPage() {
