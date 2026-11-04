@@ -42913,7 +42913,7 @@
     "preorder"
    ],
    "collections": [],
-   "body_html": "<p><strong>What's included</strong></p><ul><li>Fresh orange and golden marigolds, strung by hand with leaf accents</li><li>Cotton ties for hanging above the door</li><li>Delivered from 5 November, through 15 November</li></ul><p><strong>Choose your length</strong></p><ul><li>2 ft – single door</li><li>4 ft – wide door</li><li>6 ft – double door</li></ul><p>Diwali pre-order: paid at checkout, delivered on the day you choose from 5 November.</p>",
+   "body_html": "<p><strong>What's included</strong></p><ul><li>Fresh orange and golden marigolds, strung by hand with leaf accents</li><li>Cotton ties for hanging above the door</li><li>Delivered from 5 November, through 15 November</li></ul><p><strong>Choose your length</strong></p><ul><li>2 ft – narrow door</li><li>3 ft – single door</li><li>4 ft – wide door</li><li>5 ft – wide door</li><li>6 ft – double door</li><li>7 ft – large double door</li><li>8 ft – grand entrance</li></ul><p>Diwali pre-order: paid at checkout, delivered on the day you choose, from 5 November through 15 November.</p>",
    "seo": {
     "title": "Marigold Toran | Maison Botanique",
     "description": "Marigold Toran: Fresh marigolds strung for your door · Diwali pre-order. Order online in Dubai from Maison Botanique."
@@ -42923,8 +42923,12 @@
      "name": "Length",
      "values": [
       "2 ft",
+      "3 ft",
       "4 ft",
-      "6 ft"
+      "5 ft",
+      "6 ft",
+      "7 ft",
+      "8 ft"
      ]
     }
    ],
@@ -42933,6 +42937,18 @@
      "option1": "2 ft",
      "sku": "MB-SE-005-2FT",
      "price": "99.00",
+     "compare_at_price": null,
+     "requires_shipping": true,
+     "taxable": true,
+     "inventory_management": null,
+     "inventory_policy": "deny",
+     "weight": null,
+     "barcode": null
+    },
+    {
+     "option1": "3 ft",
+     "sku": "MB-SE-005-3FT",
+     "price": "135.00",
      "compare_at_price": null,
      "requires_shipping": true,
      "taxable": true,
@@ -42954,9 +42970,45 @@
      "barcode": null
     },
     {
+     "option1": "5 ft",
+     "sku": "MB-SE-005-5FT",
+     "price": "215.00",
+     "compare_at_price": null,
+     "requires_shipping": true,
+     "taxable": true,
+     "inventory_management": null,
+     "inventory_policy": "deny",
+     "weight": null,
+     "barcode": null
+    },
+    {
      "option1": "6 ft",
      "sku": "MB-SE-005-6FT",
      "price": "250.00",
+     "compare_at_price": null,
+     "requires_shipping": true,
+     "taxable": true,
+     "inventory_management": null,
+     "inventory_policy": "deny",
+     "weight": null,
+     "barcode": null
+    },
+    {
+     "option1": "7 ft",
+     "sku": "MB-SE-005-7FT",
+     "price": "290.00",
+     "compare_at_price": null,
+     "requires_shipping": true,
+     "taxable": true,
+     "inventory_management": null,
+     "inventory_policy": "deny",
+     "weight": null,
+     "barcode": null
+    },
+    {
+     "option1": "8 ft",
+     "sku": "MB-SE-005-8FT",
+     "price": "325.00",
      "compare_at_price": null,
      "requires_shipping": true,
      "taxable": true,

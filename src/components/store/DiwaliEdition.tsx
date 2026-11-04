@@ -105,7 +105,7 @@ export default function DiwaliEdition({ initialDubaiDate }: { initialDubaiDate: 
         <div className="dwe-in">
           <p className="dwe-kicker">{t('Diwali Edition 2026 · ', 'إصدار ديوالي 2026 · ')}{t('Sunday 8 November', 'الأحد 8 نوفمبر')}</p>
           <h1 id="dwe-title">{t('Ghar wali Diwali, here in Dubai.', 'ديوالي بدفء البيت، هنا في دبي.')}</h1>
-          <p className="dwe-sub">{t('Fresh marigold for your door, doorstep and table. Pre-order now, delivered from 5 November, before Diwali.', 'قطيفة طازجة لباب بيتكم وعتبته ومائدتكم. اطلبوا مسبقاً، التوصيل من 5 نوفمبر، قبل ديوالي.')}</p>
+          <p className="dwe-sub">{t('Fresh marigold for your door, doorstep and table. Pre-order now, delivered from 5 to 15 November.', 'قطيفة طازجة لباب بيتكم وعتبته ومائدتكم. اطلبوا مسبقاً، التوصيل من 5 إلى 15 نوفمبر.')}</p>
           <ol className="dwe-steps" aria-label={t('How it works', 'كيف يعمل')}>
             <li>{t('Pre-order now', 'اطلبوا الآن')}</li><li>{t('Delivered from 5 Nov', 'التوصيل من 5 نوفمبر')}</li><li>{t('Diwali · 8 Nov', 'ديوالي · 8 نوفمبر')}</li>
           </ol>

@@ -71,6 +71,8 @@ export interface ShopCart {
   addItem: (product: Product, options?: AddItemOptions) => Promise<void>;
   updateQuantity: (key: string, quantity: number) => void;
   removeItem: (key: string) => void;
+  /** Sets (or clears) the handwritten gift note on one line of the bag. */
+  updateNote: (key: string, note: string) => void;
   /** The order's delivery date and time slot (one per order). */
   delivery: DeliverySchedule | null;
   setDelivery: (schedule: DeliverySchedule) => Promise<void>;
@@ -388,6 +390,18 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
 
   const removeItem = useCallback((key: string) => updateQuantity(key, 0), [updateQuantity]);
 
+  const updateNote = useCallback((key: string, note: string) => {
+    const next = note.trim().slice(0, NOTE_LIMIT);
+    void enqueue('note', async () => {
+      const current = cartRef.current;
+      const line = current?.lines.find((item) => item.id === key);
+      if (!current || !line) return;
+      const attributes = Object.entries(line.attributes).filter(([name]) => name !== GIFT_NOTE_ATTRIBUTE).map(([name, value]) => ({ key: name, value }));
+      if (next) attributes.push({ key: GIFT_NOTE_ATTRIBUTE, value: next });
+      commit(await updateCartLineAttributes(current.id, [{ id: key, attributes }], localeRef.current));
+    });
+  }, [commit, enqueue]);
+
   const applyWelcomeOffer = useCallback(async (enabled = true) => {
     const applied = await enqueue('welcome_offer', async () => {
       const current = cartRef.current;
@@ -409,6 +423,7 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
   }, [commit, enqueue]);
 
   const checkoutUrl = useCallback(async (checkoutLocale: Locale, withOffer = true) => {
+    await queue.current; // a gift note saved a moment ago must reach the cart first
     await applyWelcomeOffer(withOffer);
     const current = cartRef.current;
     if (!current) return null;
@@ -466,6 +481,7 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     addItem,
     updateQuantity,
     removeItem,
+    updateNote,
     delivery,
     setDelivery,
     checkoutUrl,
@@ -606,6 +622,15 @@ function usePreviewCart(products: Product[]): ShopCart {
     addItem,
     updateQuantity,
     removeItem: (key) => updateQuantity(key, 0),
+    updateNote: (key, note) => setSaved((current) => {
+      const line = current.find((item) => item.key === key);
+      const edited = line && safePreviewLine({ ...line, note: note.trim() }, products);
+      if (!line || !edited) return current;
+      // A line whose note now matches another identical line merges into it, as in the live cart.
+      const twin = current.find((item) => item.key === edited.key && item.key !== key);
+      return current.flatMap((item) => item.key === key ? (twin ? [] : [edited])
+        : item === twin ? [{ ...item, quantity: Math.min(MAX_QUANTITY, item.quantity + line.quantity) }] : [item]);
+    }),
     delivery,
     setDelivery,
     checkoutUrl: async () => null,

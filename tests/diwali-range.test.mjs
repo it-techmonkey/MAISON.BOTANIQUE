@@ -6,11 +6,11 @@ const data = JSON.parse(readFileSync(new URL('../src/data/seasonal-products.json
 const byId = new Map(data.products.map((product) => [product.id, product]));
 const added = data.diwali.filter((id) => id !== 'marigold-toran');
 
-test('every Diwali handle has a record and a delivery window of 5 to 8 November (toran keeps its own)', () => {
+test('every Diwali handle has a record and a delivery window of 5 to 15 November', () => {
   assert.equal(added.length, 10);
   for (const id of added) {
     assert.ok(byId.has(id), id);
-    assert.deepEqual(data.deliveryRanges[id], { from: '2026-11-05', to: '2026-11-08' }, id);
+    assert.deepEqual(data.deliveryRanges[id], { from: '2026-11-05', to: '2026-11-15' }, id);
   }
 });
 
@@ -33,4 +33,12 @@ test('every size says how big it is, in English and Arabic (customers ask "how m
     assert.ok(size.detailAr.trim().length > 3, `${id} ${size.name} Arabic`);
   }
   assert.equal(byId.get('thoranam-door-arch').sizes.length, 1, 'Door Arch has no Grand');
+});
+
+test('the Marigold Toran climbs in whole feet from 2 to 8 and never gets cheaper as it gets longer', () => {
+  const sizes = byId.get('marigold-toran').sizes;
+  assert.deepEqual(sizes.map((size) => size.name), ['2 ft', '3 ft', '4 ft', '5 ft', '6 ft', '7 ft', '8 ft']);
+  assert.deepEqual([99, 175, 250], [sizes[0].price, sizes[2].price, sizes[4].price], 'the three original prices are unchanged');
+  sizes.slice(1).forEach((size, index) => assert.ok(size.price > sizes[index].price, size.name));
+  assert.equal(new Set(sizes.map((size) => size.sku)).size, sizes.length, 'SKUs are unique');
 });
