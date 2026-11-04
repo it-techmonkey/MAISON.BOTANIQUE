@@ -41,7 +41,7 @@ test('add to bag puts the chosen size and gift note in the bag @live', async ({ 
   await note.fill('Happy birthday, Mum');
   await Promise.all([
     page.waitForResponse((response) => response.url().includes('/graphql.json') && (response.request().postData() ?? '').includes('Happy birthday, Mum')),
-    note.blur(),
+    note.press('Tab'), // leaving the box is what saves it, as when a shopper taps elsewhere
   ]);
   await page.reload();
   const again = await openBag(page);
