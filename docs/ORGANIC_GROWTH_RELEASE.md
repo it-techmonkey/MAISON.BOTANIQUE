@@ -15,13 +15,13 @@
 
 ## Baseline, decision and copy checks
 
-This is an extension of the approved storefront, not a new visual direction. Reuse the collection browser, product cards, quick-add, header, footer and FAQ details. Preserve home composition, seasonal artwork/placement, product images/prices/contents, four promises, welcome offer, JVC switch, checkout and working WhatsApp number. No new image generation or motion layer. Older removed occasion designs are not restored.
+This is an extension of the approved storefront, not a new visual direction. Reuse the collection browser, product cards, quick-add, header, footer and FAQ details. Preserve home composition, seasonal artwork/placement, product images/prices/contents, four promises, welcome offer, checkout and working WhatsApp number. No new image generation or motion layer. Older removed occasion designs are not restored.
 
 Current source tokens: paper #F5F2EB, sand #EEEAE2, ink #26332B, muted #5D665B, wine #673C43; Cormorant Garamond display, DM Sans body, Noto Naskh Arabic. New content heading: 32–64px desktop fluid, 30–42px mobile, weight 400, tracking −.015em; Arabic tracking 0 and line-height 1.4. New paragraphs: 17px desktop / 16px phone, line-height 1.7, full ink. New body/link text minimum 16px. The preserved global store has legacy smaller utility labels; do not misreport a whole-site typography pass.
 
 Signature content idea: Maison's handwritten card becomes the useful starting point for buying birthday flowers. The existing occasion collection and card field supply the interaction. Short practical guides support a matching selling task rather than unrelated traffic.
 
-Claims: same-day Dubai only, subject to available windows and one-hour lead; 60-day ordinary horizon, seasonal dates separate; AED 35 Dubai / AED 65 other UAE, JVC copy only behind the existing switch; payment acceptance only as offered at checkout. No new savings claims, shipping promises, physical product counts, qualifications, customer reviews or outcome statistics are invented. Native Arabic review remains an owner gate.
+Claims: same-day Dubai only, subject to available windows and one-hour lead; 60-day ordinary horizon, seasonal dates separate; AED 35 Dubai / AED 65 other UAE; payment acceptance only as offered at checkout. No new savings claims, shipping promises, physical product counts, qualifications, customer reviews or outcome statistics are invented. Native Arabic review remains an owner gate.
 
 ## Architecture limits
 

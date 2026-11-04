@@ -435,18 +435,8 @@ Same-day delivery is offered across the whole UAE, for **AED 35 in Dubai** and *
 
 1. **Settings → Shipping and delivery → General shipping rates** (or the delivery profile for these products).
 2. A **Dubai** zone with a flat rate of **AED 35**, and a **rest of the UAE** zone with a flat rate of **AED 65**. Set them up as shipping zones by emirate, or as local delivery zones if the team delivers itself.
-3. No free-shipping threshold and no automatic free-shipping discount. The only free delivery is JVC (see "JVC free delivery" below): every other order pays AED 35 or AED 65.
+3. No free-shipping threshold and no automatic free-shipping discount. No area is free: every Dubai order pays AED 35 and every other UAE order AED 65 (owner, 4 Nov 2026: free JVC delivery removed). Delete any JVC free-shipping discount code and any rate cap (for example a JVC code capped at AED 30) from Shopify Discounts and the delivery profile.
 4. Test an address in Dubai and one in Abu Dhabi at checkout: the totals should add AED 35 and AED 65.
-
-### JVC free delivery (owner decision, 23 October 2026)
-
-Shopify Basic cannot recognise JVC from an address, so the customer declares it in the bag and the team verifies it:
-
-1. In Shopify **Discounts**, create a **Free shipping** discount code (for example `JVCFREE`): applies to all countries, **excludes shipping rates over AED 35** (so it never discounts the AED 65 UAE rate), no minimum spend, no expiry, no limit on uses.
-2. **Let the welcome codes combine with it.** In Shopify Discounts, open MAISON25 and BLOOM25 and under "Combinations" tick **Shipping discounts** (they were off on 23 October 2026). New personalised first-order codes already combine with shipping discounts. Set the JVC code itself to combine with product and order discounts. Without this, a customer with a welcome code and the JVC box ticked loses one of them.
-3. On the host (Vercel) set `JVC_DELIVERY_CODE` to that code (server-only) and `NEXT_PUBLIC_JVC_FREE_DELIVERY=1`. Until both are set the tick-box and the public JVC sentence stay hidden.
-4. Test checkout: tick the JVC box in the bag, enter a JVC address and then a non-JVC Dubai address; shipping must show AED 0 for both (the rule is a claim, not an address check). Confirm an Abu Dhabi address still charges AED 65. Untick: shipping returns to AED 35.
-5. Every order whose **Delivery area** attribute says JVC must have its full address checked before dispatch. If it is not in JVC, ask the customer to pay the AED 35 (payment link or WhatsApp) or cancel. After two weeks count orders that were ticked but not JVC; if more than about 1 in 10, switch to "charge AED 35, refund once the address is confirmed".
 
 ## Troubleshooting
 

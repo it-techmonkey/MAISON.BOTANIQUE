@@ -8,7 +8,6 @@ import {
   usableSchedule,
   type DeliverySchedule, type ScheduleProblem,
 } from '@/lib/delivery';
-import { JVC_AREA_KEY } from '@/lib/jvc-delivery';
 import { isValidDate } from '@/lib/format';
 import { isShopifyConfigured } from '@/lib/shopify/config';
 import { useDubaiNow } from '@/lib/use-today';
@@ -80,9 +79,6 @@ export interface ShopCart {
   /** A Shopify checkout URL, or null when the preview catalog has no checkout. */
   checkoutUrl: (locale: Locale, withOffer?: boolean) => Promise<string | null>;
   applyWelcomeOffer?: (enabled?: boolean) => Promise<boolean>;
-  /** Free delivery to JVC is claimed for this order (the team verifies the address). */
-  jvcDelivery: boolean;
-  setJvcDelivery: (enabled: boolean) => Promise<void>;
   /** The confirmed Shopify cart (null in the preview), for analytics payloads. */
   shopifyCart: ShopifyCart | null;
 }
@@ -426,23 +422,6 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     return applied;
   }, [commit, enqueue]);
 
-  const jvcDelivery = Boolean(cart?.attributes[JVC_AREA_KEY]);
-  const setJvcDelivery = useCallback(async (enabled: boolean) => {
-    const done = await enqueue('jvc_delivery', async () => {
-      const current = cartRef.current;
-      if (!current) return false;
-      const response = await fetch('/api/jvc-delivery', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cartId: current.id, enabled, locale: localeRef.current }),
-      });
-      if (!response.ok) throw new Error('JVC delivery could not be applied');
-      const result = await response.json();
-      if (result.cart) commit(result.cart);
-      return true;
-    });
-    if (done === undefined) throw new Error('JVC delivery could not be applied');
-  }, [commit, enqueue]);
-
   const checkoutUrl = useCallback(async (checkoutLocale: Locale, withOffer = true) => {
     await queue.current; // a gift note saved a moment ago must reach the cart first
     await applyWelcomeOffer(withOffer);
@@ -492,8 +471,6 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
 
   return {
     applyWelcomeOffer,
-    jvcDelivery,
-    setJvcDelivery,
     mode: 'shopify',
     lines,
     cartCount: cart?.totalQuantity ?? 0,
@@ -553,7 +530,6 @@ function usePreviewCart(products: Product[]): ShopCart {
   const [storedDelivery, setDeliveryState] = useState<DeliverySchedule | null>(null);
   const now = useDubaiNow();
   const delivery = useMemo(() => (now ? usableSchedule(storedDelivery, now) : null), [storedDelivery, now]);
-  const [jvcDelivery, setJvcState] = useState(false);
   // State rather than a ref, so the first save waits for the restored lines.
   const [loaded, setLoaded] = useState(false);
 
@@ -658,8 +634,6 @@ function usePreviewCart(products: Product[]): ShopCart {
     delivery,
     setDelivery,
     checkoutUrl: async () => null,
-    jvcDelivery,
-    setJvcDelivery: async (enabled) => setJvcState(enabled),
     shopifyCart: null,
   };
 }
