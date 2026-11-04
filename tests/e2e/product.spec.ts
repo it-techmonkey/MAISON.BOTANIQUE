@@ -33,5 +33,17 @@ test('add to bag puts the chosen size and gift note in the bag @live', async ({ 
   await expect(line).toHaveCount(1);
   await expect(line.locator('h3')).toHaveText(name);
   await expect(line).toContainText('Grand');
-  await expect(line).toContainText('Gift note: Happy birthday');
+  // The note is an editable box on each bag line (it used to be read-only text).
+  const note = line.locator('.ll-line-note textarea');
+  await expect(note).toHaveValue('Happy birthday');
+
+  // Editing it saves to the cart line and survives a reload.
+  await note.fill('Happy birthday, Mum');
+  await Promise.all([
+    page.waitForResponse((response) => response.url().includes('/graphql.json') && (response.request().postData() ?? '').includes('Happy birthday, Mum')),
+    note.blur(),
+  ]);
+  await page.reload();
+  const again = await openBag(page);
+  await expect(again.locator('.ll-cart-line .ll-line-note textarea')).toHaveValue('Happy birthday, Mum');
 });
