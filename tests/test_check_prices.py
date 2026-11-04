@@ -63,11 +63,11 @@ class SeasonalLivePrices(unittest.TestCase):
         }), patch.object(checker, 'urlopen', side_effect=fake_urlopen(products)):
             checker.check_prices()
 
-    def test_live_ledger_plus_seven_seasonal_variants_passes(self):
+    def test_live_ledger_plus_eleven_seasonal_variants_passes(self):
         products = storefront_rows()
         self.assertEqual(sum(len(product['variants']['nodes']) for product in products if product['handle'] in {
             'pumpkin-and-pralines', 'the-pumpkin-basket', 'jack-o-bloom', 'the-midnight-pumpkin', 'marigold-toran',
-        }), 7)
+        }), 11)  # 4 Halloween + the Toran in 7 lengths
         self.run_checker(products)
 
     def test_changed_seasonal_price_and_unknown_sku_fail(self):

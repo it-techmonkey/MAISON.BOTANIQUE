@@ -360,7 +360,7 @@ fieldset.qa-section > .qa-legend + * { clear: both; }
 .qa-related h3 { margin: 14px 0 12px; }
 .qa-related-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .qa-related-row button { display: grid; gap: 6px; align-content: start; border: 0; background: none; padding: 0; text-align: start; color: var(--ink); }
-.qa-related-row img { width: 100%; aspect-ratio: 1; object-fit: cover; background: #efeae1; }
+.qa-related-row img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; background: #efeae1; }
 .qa-related-row span { font: italic 400 15px/1.2 var(--font-display); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .qa-related-row small { font-size: 12px; color: var(--qa-ink-2); }
 .ll-cart-offer { margin: 10px 0 0; font: italic 400 15px/1.4 var(--font-display); color: var(--mb-wine); }
@@ -533,3 +533,33 @@ a.ll-shop-primary { text-decoration: none; box-sizing: border-box; }
   .qa-page .qa-add { padding-inline: 8px; letter-spacing: .12em; white-space: nowrap; }
   .qa-ask { padding-inline: 12px; }
 }
+
+/* Length stepper (Marigold Toran) */
+.qa-stepper { display: grid; gap: 10px; margin-top: 12px; }
+.qa-stepper-row { display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--qa-hair); border-radius: 8px; padding: 4px; }
+.qa-stepper-row button { width: 48px; height: 48px; border: 0; border-radius: 6px; background: transparent; color: var(--ink); font: 400 24px/1 var(--font-body); cursor: pointer; }
+.qa-stepper-row button:not(:disabled):hover { background: var(--qa-hair); }
+.qa-stepper-row button:disabled { opacity: .3; cursor: default; }
+.qa-stepper-row button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.qa-stepper-row output strong { font: 500 24px/1 var(--font-display); }
+.qa-stepper-bar { height: 4px; border-radius: 2px; background: var(--qa-hair); }
+.qa-stepper-bar i { display: block; height: 4px; border-radius: 2px; background: var(--ink); transition: width .2s ease; }
+@media (prefers-reduced-motion: reduce) { .qa-stepper-bar i { transition: none; } }
+.qa-stepper-hint { margin: 0; font: italic 400 15.5px/1.3 var(--font-display); color: var(--qa-ink-2); }
+.qa-stepper-price { margin: 0; justify-self: start; }
+.qa-length-custom { margin: 0; font: 400 13.5px/1.4 var(--font-body); color: var(--qa-ink-2); }
+.qa-length-custom a { display: inline-block; padding: 14px 6px; margin: -14px -6px; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+[dir='rtl'] .ll-shop-panel--quickadd :is(.qa-stepper-row output strong, .qa-stepper-hint) { font-family: var(--font-arabic); font-style: normal; }
+
+/* One-tap add on the "You may also like" row */
+.qa-related-card { display: grid; gap: 8px; align-content: start; }
+.qa-related-add { min-height: 44px; border: 1px solid var(--ink); border-radius: 4px; background: transparent; color: var(--ink); font: 500 12px/1 var(--font-body); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+.qa-related-add:not(:disabled):hover { background: var(--ink); color: #fff; }
+.qa-related-add.is-added { border-color: var(--qa-hair); color: var(--qa-ink-2); cursor: default; }
+.qa-related-add:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* One gift note per product in the bag */
+.ll-line-note-add { margin-top: 4px; min-height: 44px; padding: 0; border: 0; background: none; color: var(--ink); font: 500 12px/1.4 var(--font-body); letter-spacing: .06em; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.ll-line-note { display: grid; gap: 4px; margin-top: 8px; }
+.ll-line-note span { font: 500 11px/1 var(--font-body); letter-spacing: .18em; text-transform: uppercase; color: var(--qa-ink-2); }
+.ll-line-note textarea { width: 100%; border: 1px solid var(--qa-hair); border-radius: 4px; background: transparent; padding: 10px 12px; font: 400 16px/1.4 var(--font-body); color: var(--ink); resize: vertical; }

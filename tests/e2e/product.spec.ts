@@ -33,5 +33,17 @@ test('add to bag puts the chosen size and gift note in the bag @live', async ({ 
   await expect(line).toHaveCount(1);
   await expect(line.locator('h3')).toHaveText(name);
   await expect(line).toContainText('Grand');
-  await expect(line).toContainText('Gift note: Happy birthday');
+  // The note is an editable box on each bag line (it used to be read-only text).
+  const note = line.locator('.ll-line-note textarea');
+  await expect(note).toHaveValue('Happy birthday');
+
+  // Editing it saves to the bag and survives a reload. Where the cart is Shopify's, the save is a
+  // network call that lands a moment after the box loses focus, so reload until it has.
+  await note.fill('Happy birthday, Mum');
+  await note.press('Tab'); // leaving the box is what saves it, as when a shopper taps elsewhere
+  await expect(async () => {
+    await page.reload();
+    const again = await openBag(page);
+    await expect(again.locator('.ll-cart-line .ll-line-note textarea')).toHaveValue('Happy birthday, Mum', { timeout: 3000 });
+  }).toPass({ timeout: 25_000 });
 });

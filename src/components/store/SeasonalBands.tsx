@@ -89,7 +89,7 @@ export function DiwaliBar({ today }: { today: string }) {
         <div className="sea-dw-copy">
           <p className="sea-kicker">{t('Diwali · ', 'ديوالي · ')}<span className="sea-wide">{t('Sunday ', 'الأحد ')}</span>{t('8 November · Pre-orders open', '8 نوفمبر · الطلب المسبق مفتوح')}</p>
           <h2 id="sea-dw-title">{t('Ghar wali Diwali, here in Dubai.', 'ديوالي بدفء البيت، هنا في دبي.')}</h2>
-          <p className="sea-dw-line">{t('Fresh marigold torans for your door. Pre-order now, delivered from 5 November, before Diwali.', 'أكاليل قطيفة طازجة لباب بيتكم. اطلبوا مسبقاً، التوصيل من 5 نوفمبر، قبل ديوالي.')}</p>
+          <p className="sea-dw-line">{t('Fresh marigold torans for your door. Pre-order now, delivered from 5 to 15 November.', 'أكاليل قطيفة طازجة لباب بيتكم. اطلبوا مسبقاً، التوصيل من 5 إلى 15 نوفمبر.')}</p>
           <div className="sea-dw-act">
             <Link className="sea-cta" href="/diwali">
               <span>{t('Shop the Diwali Edition', 'تسوقوا إصدار ديوالي')}</span><span className="flip-rtl" aria-hidden="true">→</span>

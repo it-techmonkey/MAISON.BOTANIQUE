@@ -16,7 +16,7 @@ import { SITE_URL } from '@/lib/site';
 import { deliveryRangeFor, REAL_PUMPKIN_HANDLES, TORAN_HANDLE } from '@/lib/seasonal';
 import PumpkinMark from './PumpkinMark';
 import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
-import type { Product } from '@/lib/types';
+import type { Product, ProductSize } from '@/lib/types';
 import { PROMISES } from './HeroPromises';
 import SaleTag from './SaleTag';
 import { useStore } from './StoreProvider';
@@ -32,6 +32,9 @@ const copy = {
     close: 'Close', bag: 'Your bag', bagEmpty: 'Your bag is waiting for a little beauty.',
     bagEmptyDetail: 'Explore the collection and add a flower moment.',
     backToShop: 'Explore the collection',
+    length: 'Length', shorter: 'Shorter', longer: 'Longer', aboutCm: (cm: number) => `about ${cm} cm`,
+    lengthCustom: 'Longer than 8 ft, or a special shape?', lengthCta: 'Message us', customSize: 'custom length',
+    addNote: 'Add a gift note', quickAdd: 'Add', quickAdded: 'Added',
     presentation: 'Size', giftNote: 'Gift note', notePlaceholder: 'Your message, if you wish…',
     date: 'When should it arrive?',
     dateHint: 'Book today or up to 60 days ahead. One delivery date and time for the whole order.',
@@ -68,6 +71,9 @@ const copy = {
     close: 'إغلاق', bag: 'حقيبتك', bagEmpty: 'حقيبتك تنتظر لمسة من الجمال.',
     bagEmptyDetail: 'تصفّح المجموعة وأضف لحظة من الزهور.',
     backToShop: 'تصفّح المجموعة',
+    length: 'الطول', shorter: 'أقصر', longer: 'أطول', aboutCm: (cm: number) => `حوالي ${cm} سم`,
+    lengthCustom: 'أطول من 8 أقدام أو شكل خاص؟', lengthCta: 'راسلونا', customSize: 'طول مخصص',
+    addNote: 'أضيفوا رسالة إهداء', quickAdd: 'أضف', quickAdded: 'تمت الإضافة',
     presentation: 'الحجم', giftNote: 'رسالة الإهداء', notePlaceholder: 'رسالتك إن رغبت…',
     date: 'متى تريد أن تصل؟',
     dateHint: 'احجز لليوم أو حتى ٦٠ يوماً مقدماً. موعد توصيل واحد للطلب كله.',
@@ -172,12 +178,19 @@ function CardPreview({ message, signedAs, anonymous, t }: { message: string; sig
   );
 }
 
+/** Priced by length: every size is named like "4 ft" (the Marigold Toran). */
+const isLadder = (product: Product) => product.sizes.length > 2 && product.sizes.every((size) => /^\d+ ft$/.test(size.name));
+/** The size a one-tap add uses: 4 ft for length products, otherwise the first one in stock. */
+const defaultSize = (product: Product) => (isLadder(product) ? product.sizes.find((size) => size.available && size.name === '4 ft') : undefined) ?? product.sizes.find((size) => size.available);
+
 /** Size, card and personalisation for one product. Used by the quick-add sheet and the product page. */
-export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact = false }: {
+export function PurchaseOptions({ product, onAdd, related = [], onOpen, onQuickAdd, compact = false }: {
   product: Product;
   onAdd: (options: { sizeId: string; note: string; signedAs: string; anonymous: boolean; custom: string; delivery?: DeliverySchedule }) => void;
   related?: Product[];
   onOpen?: (product: Product) => void;
+  /** Adds a related product with its default size, without leaving this sheet. */
+  onQuickAdd?: (product: Product, size: ProductSize) => void;
   /** Leaves out the header and image (the product page shows its own). */
   compact?: boolean;
 }) {
@@ -187,7 +200,10 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
   const [delivery, setDelivery] = useState<Partial<DeliverySchedule>>(cart.delivery ?? {});
   useEffect(() => { if (cart.delivery) setDelivery(cart.delivery); }, [cart.delivery]);
   const firstAvailable = product.sizes.find((size) => size.available) ?? product.sizes[0];
-  const [sizeId, setSizeId] = useState(firstAvailable.id);
+  // A product priced by length ("2 ft", "4 ft"...) gets a stepper; 4 ft is what shoppers buy most.
+  const ladder = isLadder(product);
+  const [sizeId, setSizeId] = useState(defaultSize(product)?.id ?? firstAvailable.id);
+  const [added, setAdded] = useState<Record<string, boolean>>({});
   const [note, setNote] = useState('');
   const [signedAs, setSignedAs] = useState('');
   const [anonymous, setAnonymous] = useState(false);
@@ -216,6 +232,9 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
     const size = product.sizes.find((item) => item.id === id);
     if (size) trackProductSizeSelected(product, size);
   };
+  const at = product.sizes.findIndex((size) => size.id === chosen.id);
+  const stepTo = (direction: -1 | 1) => { const next = product.sizes[at + direction]; if (next?.available) chooseSize(next.id); };
+  const customLink = ladder ? whatsappLink(whatsappMessage.product(ar, { name, size: t.customSize, url: `${SITE_URL}/shop/${product.id}` })) : null;
   const reportNote = () => {
     if (noteReported.current || !note.trim()) return;
     noteReported.current = true;
@@ -243,8 +262,22 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
         </>}
 
         <fieldset className="qa-section">
-          <legend className="qa-legend"><span>{t.presentation}</span><em>{product.sizes.length > 1 ? t.pictured(ar ? product.sizes[0].nameAr : product.sizes[0].name) : t.asPictured}</em></legend>
-          <div className="qa-sizes">{product.sizes.map((size, index) => (
+          <legend className="qa-legend"><span>{ladder ? t.length : t.presentation}</span><em>{ladder ? '' : product.sizes.length > 1 ? t.pictured(ar ? product.sizes[0].nameAr : product.sizes[0].name) : t.asPictured}</em></legend>
+          {ladder ? <div className="qa-stepper">
+            <div className="qa-stepper-row" role="group" aria-label={t.length}>
+              <button type="button" onClick={() => stepTo(-1)} disabled={!product.sizes[at - 1]?.available} aria-label={t.shorter}>−</button>
+              <output aria-live="polite"><strong>{ar ? chosen.nameAr : chosen.name}</strong></output>
+              <button type="button" onClick={() => stepTo(1)} disabled={!product.sizes[at + 1]?.available} aria-label={t.longer}>+</button>
+            </div>
+            <div className="qa-stepper-bar" aria-hidden="true"><i style={{ width: `${((at + 1) / product.sizes.length) * 100}%` }} /></div>
+            <p className="qa-stepper-hint">{ar ? chosen.detailAr : chosen.detail} · {t.aboutCm(Math.round(parseInt(chosen.name, 10) * 3.048) * 10)}</p>
+            <p className="qa-stepper-price qa-size-price">
+              <Money amount={chosen.price} ar={ar} whole />
+              {chosen.compareAtPrice && <s aria-label={`${t.was} ${formatAED(chosen.compareAtPrice, ar)}`}><Money amount={chosen.compareAtPrice} ar={ar} whole /></s>}
+              <SaleTag price={chosen.price} compareAtPrice={chosen.compareAtPrice} />
+            </p>
+            {customLink && <p className="qa-length-custom">{t.lengthCustom} <a href={customLink} target="_blank" rel="noopener noreferrer">{t.lengthCta}</a></p>}
+          </div> : <div className="qa-sizes">{product.sizes.map((size, index) => (
             <label key={size.id} className={`qa-size${size.id === sizeId ? ' is-selected' : ''}${size.available ? '' : ' is-unavailable'}`}>
               <input type="radio" name={`qa-size-${product.id}`} value={size.id} checked={size.id === sizeId} disabled={!size.available} onChange={() => chooseSize(size.id)} />
               <span className="qa-size-name"><strong>{ar ? size.nameAr : size.name}</strong>{(ar ? size.detailAr : size.detail) && <em>{ar ? size.detailAr : size.detail}</em>}</span>
@@ -255,7 +288,7 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
                 {size.available && <SaleTag price={size.price} compareAtPrice={size.compareAtPrice} />}
               </span>
             </label>
-          ))}</div>
+          ))}</div>}
           {field && <div className="qa-custom">
             <label htmlFor={`qa-custom-${product.id}`}>{field.kind === 'letter' ? t.letterLabel : field.kind === 'age' ? t.ageLabel : field.label}</label>
             <input id={`qa-custom-${product.id}`} value={custom} maxLength={field.kind === 'letter' ? 1 : field.kind === 'age' ? 3 : 24}
@@ -283,13 +316,23 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
         </ul>
         {related.length > 0 && onOpen && <section className="qa-related" aria-labelledby={`qa-related-title-${product.id}`}>
           <h3 id={`qa-related-title-${product.id}`} className="qa-included">{t.alsoLike}</h3>
-          <div className="qa-related-row">{related.map((item) => (
-            <button type="button" key={item.id} onClick={() => onOpen(item)}>
-              <img src={item.imageSmall} alt="" loading="lazy" width="160" height="160" />
-              <span>{ar ? item.nameAr : item.name}</span>
-              <small><Money amount={item.price} ar={ar} whole /></small>
-            </button>
-          ))}</div>
+          <div className="qa-related-row">{related.map((item) => {
+            const size = defaultSize(item);
+            return (
+              <div className="qa-related-card" key={item.id}>
+                <button type="button" onClick={() => onOpen(item)}>
+                  <img src={item.imageSmall} alt="" loading="lazy" width="160" height="160" />
+                  <span>{ar ? item.nameAr : item.name}</span>
+                  <small>{size && <Money amount={size.price} ar={ar} whole />}</small>
+                </button>
+                {onQuickAdd && size && <button type="button" className={`qa-related-add${added[item.id] ? ' is-added' : ''}`} disabled={added[item.id]}
+                  aria-label={`${t.quickAdd}: ${ar ? item.nameAr : item.name}`}
+                  onClick={() => { setAdded((current) => ({ ...current, [item.id]: true })); onQuickAdd(item, size); }}>
+                  {added[item.id] ? `✓ ${t.quickAdded}` : `+ ${t.quickAdd}`}
+                </button>}
+              </div>
+            );
+          })}</div>
         </section>}
       </div>
       <div className="qa-foot">
@@ -311,8 +354,28 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, compact 
   );
 }
 
+/** One gift note per product in the bag: a small link that opens a box, saved when the shopper leaves it. */
+function LineNote({ line, t, onSave }: { line: CartLineView; t: Copy; onSave: (note: string) => void }) {
+  const [open, setOpen] = useState(Boolean(line.note));
+  const [value, setValue] = useState(line.note);
+  const save = () => {
+    const next = value.trim();
+    if (next === line.note) return;
+    onSave(next);
+    if (next && line.product) trackGiftOptionAdded(line.product, 'gift_note', { note_length: next.length, source: 'bag' });
+  };
+  if (!open) return <button type="button" className="ll-line-note-add" onClick={() => setOpen(true)}>+ {t.addNote}</button>;
+  return (
+    <label className="ll-line-note" data-ph-mask>
+      <span>{t.giftNote}</span>
+      <textarea value={value} maxLength={NOTE_LIMIT} rows={2} placeholder={t.notePlaceholder} onChange={(event) => setValue(event.target.value)} onBlur={save} />
+    </label>
+  );
+}
+
 function QuickAdd({ product }: { product: Product }) {
-  const { ar, products, openProduct, addToBag } = useStore();
+  const { ar, products, openProduct, addToBag, cart } = useStore();
+  const nowDubai = useDubaiNow();
   const name = ar ? product.nameAr : product.name;
 
   // Opening the sheet is the product view (as on a product page).
@@ -323,15 +386,17 @@ function QuickAdd({ product }: { product: Product }) {
 
   // Three nearby pieces: same room first, then a shared occasion.
   const related = useMemo(() => products
-    .filter((item) => item.id !== product.id && item.available)
+    .filter((item) => item.id !== product.id && item.available && defaultSize(item) && !item.custom
+      && !(nowDubai && rangeProblem(deliveryRangeFor([...cart.lines.map((line) => line.handle), item.id]), nowDubai)))
     .map((item) => ({ item, score: (item.room === product.room ? 2 : 0) + (item.occasions.some((o) => product.occasions.includes(o)) ? 1 : 0) }))
     .sort((a, b) => b.score - a.score || a.item.order - b.item.order)
     .slice(0, 3)
-    .map(({ item }) => item), [products, product]);
+    .map(({ item }) => item), [products, product, cart.lines, nowDubai]);
 
   return (
     <DialogShell key={product.id} onClose={() => openProduct(null)} label={name} kind="quickadd">
       <PurchaseOptions key={product.id} product={product} related={related} onOpen={openProduct}
+        onQuickAdd={(item, size) => { void cart.addItem(item, { sizeId: size.id, source: 'related_quick_add' }); }}
         onAdd={(options) => addToBag(product, { ...options, source: 'quick_add' })} />
     </DialogShell>
   );
@@ -597,7 +662,7 @@ function Bag() {
                 <h3>{line.product ? <a href={`/shop/${line.product.id}`}>{ar ? line.nameAr : line.name}</a> : (ar ? line.nameAr : line.name)}</h3>
                 <p>{ar ? line.sizeNameAr : line.sizeName} · <Money amount={line.unitPrice.amount} ar={ar} whole /> {t.each}</p>
                 {line.custom && <p className="ll-cart-line-detail">{t.customLine}: {line.custom}</p>}
-                {line.note && <p className="ll-cart-line-detail" data-ph-mask>{t.noteLine}: {line.note}</p>}
+                <LineNote line={line} t={t} onSave={(note) => cart.updateNote(line.key, note)} />
                 {(line.anonymous || line.signedAs) && <p className="ll-cart-line-detail" data-ph-mask>{line.anonymous ? t.anonymousLine : `${t.signedLine}: ${line.signedAs}`}</p>}
                 <div className="ll-cart-controls">
                   <div className="ll-quantity" role="group" aria-label={t.quantity}>
