@@ -4,8 +4,10 @@ import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { trackProductViewed } from '@/lib/analytics/track';
 import { occasionPath, findOccasion } from '@/lib/site';
+import { DIWALI_HANDLES, DISPLAY_NAMES } from '@/lib/seasonal';
 import { contentHref } from '@/lib/content-locale';
 import type { Product } from '@/lib/types';
+import DeliveryFeeLine from './DeliveryFeeLine';
 import SaleTag from './SaleTag';
 import FirstOrderPrice from './FirstOrderPrice';
 import { PurchaseOptions, formatAED } from './ShopSheets';
@@ -24,7 +26,8 @@ export default function ProductPurchase({ handle }: { handle: string }) {
 
 function Purchase({ product }: { product: Product }) {
   const { ar, t, addToBag } = useStore();
-  const name = ar ? product.nameAr : product.name;
+  const shown = DISPLAY_NAMES[product.id];
+  const name = shown ? (ar ? shown.ar : shown.en) : ar ? product.nameAr : product.name;
   const composition = ar ? product.compositionAr : product.composition;
   const many = product.sizes.length > 1;
 
@@ -60,6 +63,8 @@ function Purchase({ product }: { product: Product }) {
           })}
         </p>
       )}
+
+      {DIWALI_HANDLES.includes(product.id) && <DeliveryFeeLine className="purchase__fee" />}
 
       <div className="qa-page">
         <PurchaseOptions product={product} compact onAdd={(options) => addToBag(product, { ...options, source: 'product_page' })} />

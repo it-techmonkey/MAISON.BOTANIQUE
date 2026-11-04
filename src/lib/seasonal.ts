@@ -17,6 +17,10 @@ export const FLAGDAY_HANDLES: readonly string[] = data.flagDay;
 /** UAE Flag Day 2026: the home shelf shows on this Dubai date only; the /flag-day page and the products stay until National Day. */
 export const FLAG_DAY_DATE = '2026-11-03';
 export const TORAN_HANDLE = 'marigold-toran';
+/** Product-page name shown instead of the Shopify title (live title untouched, owner 3 Nov 2026). */
+export const DISPLAY_NAMES: Record<string, { en: string; ar: string }> = {
+  [TORAN_HANDLE]: { en: 'Fresh marigold door garland (toran)', ar: 'إكليل قطيفة طازج للباب (تورَن)' },
+};
 /** Flag Day: the round box leads the home hero on FLAG_DAY_DATE, with the Flag Day headline in place of the brand line (owner, 3 Nov 2026). */
 export const FLAG_HERO_HANDLE = 'alam-round-uae-flag-roses';
 const FLAG_HERO_COPY = {

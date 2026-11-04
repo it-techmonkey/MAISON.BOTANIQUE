@@ -13,9 +13,9 @@ test('the JVC tick-box is hidden until the switch is on, then changes the fee li
   const bag = await openBag(page);
   const box = bag.locator('.ll-cart-jvc input');
   if (!switchedOn) { await expect(box).toHaveCount(0); return; }
-  await expect(bag.locator('.ll-cart-fee-note')).toContainText('30 in Dubai');
+  await expect(bag.locator('.ll-cart-fee-note')).toContainText('35 in Dubai');
   await box.check();
   await expect(bag.locator('.ll-cart-fee-note')).toContainText('free to JVC');
   await box.uncheck();
-  await expect(bag.locator('.ll-cart-fee-note')).toContainText('30 in Dubai');
+  await expect(bag.locator('.ll-cart-fee-note')).toContainText('35 in Dubai');
 });
