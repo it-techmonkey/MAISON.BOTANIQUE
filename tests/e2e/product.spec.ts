@@ -37,13 +37,13 @@ test('add to bag puts the chosen size and gift note in the bag @live', async ({ 
   const note = line.locator('.ll-line-note textarea');
   await expect(note).toHaveValue('Happy birthday');
 
-  // Editing it saves to the cart line and survives a reload.
+  // Editing it saves to the bag and survives a reload. Where the cart is Shopify's, the save is a
+  // network call that lands a moment after the box loses focus, so reload until it has.
   await note.fill('Happy birthday, Mum');
-  await Promise.all([
-    page.waitForResponse((response) => response.url().includes('/graphql.json') && (response.request().postData() ?? '').includes('Happy birthday, Mum')),
-    note.press('Tab'), // leaving the box is what saves it, as when a shopper taps elsewhere
-  ]);
-  await page.reload();
-  const again = await openBag(page);
-  await expect(again.locator('.ll-cart-line .ll-line-note textarea')).toHaveValue('Happy birthday, Mum');
+  await note.press('Tab'); // leaving the box is what saves it, as when a shopper taps elsewhere
+  await expect(async () => {
+    await page.reload();
+    const again = await openBag(page);
+    await expect(again.locator('.ll-cart-line .ll-line-note textarea')).toHaveValue('Happy birthday, Mum', { timeout: 3000 });
+  }).toPass({ timeout: 25_000 });
 });
