@@ -26,7 +26,8 @@ PRICES = {
     'marigold-urli': {'Signature': 179},
     'thoranam-door-arch': {'Signature': 399},
     'entrance-pair': {'Signature': 289, 'Grand': 499},
-    'flower-rangoli-tray': {'Signature': 279, 'Grand': 419},
+    'flower-rangoli-tray': {'Signature': 279},
+    'marigold-petal-rangoli-tray': {'Signature': 279},
 }
 # One place for what customers ask first: how big is it. Feeds the size lines on the card, the product page (size_details),
 # the Shopify description and variant titles, and dimensions.json for the PDFs. (en, ar) per size, in size order.
@@ -42,12 +43,13 @@ DIMENSIONS = {
     'marigold-urli': [('urli about 10 in', 'أورلي بقطر 10 إنش تقريباً')],
     'thoranam-door-arch': [('single door, about 3 ft wide', 'لباب واحد، بعرض 3 أقدام تقريباً')],
     'entrance-pair': [('two garlands, about 4 ft each', 'إكليلان، 4 أقدام تقريباً لكل منهما'), ('two garlands, about 8 ft each', 'إكليلان، 8 أقدام تقريباً لكل منهما')],
-    'flower-rangoli-tray': [('18 in tray', 'صينية 18 إنش'), ('24 in tray', 'صينية 24 إنش')],
+    'flower-rangoli-tray': [('35 cm (about 14 in) plate', 'صحن 35 سم (حوالي 14 إنش)')],
+    'marigold-petal-rangoli-tray': [('35 cm (about 14 in) plate', 'صحن 35 سم (حوالي 14 إنش)')],
 }
 SIZE_AR = {'Signature': 'سيغنتشر', 'Grand': 'غراند', 'Luxe': 'لوكس'}
 IMG = {'the-doorstep-set': 'b1', 'the-marigold-welcome': 'b2', 'the-marigold-and-mithai-trunk': 'b3', 'the-hosts-trunk': 'b4',
        'marigold-haat-bouquet': 'f1', 'brass-lota-posy': 'f2', 'marigold-urli': 'f3', 'thoranam-door-arch': 'f4',
-       'entrance-pair': 'f5', 'flower-rangoli-tray': 'f6'}
+       'entrance-pair': 'f5', 'flower-rangoli-tray': 'f6', 'marigold-petal-rangoli-tray': 'f6'}
 
 # id, no, title, title_ar, line, line_ar, contents, contents_ar, size detail, size detail ar, alt, seo title, seo desc, occasions, flags
 P = [
@@ -117,9 +119,16 @@ P = [
  dict(id='flower-rangoli-tray', no=347, sku='MB-SE-015', room='gifts', format='gift', stems=None,
   name='Flower Rangoli Tray (Pookalam) — Fresh Petal Rangoli on a Round Tray', nameAr='صينية رانغولي الزهور (بوكالام)',
   line='A fresh petal rangoli in rings on a round tray', lineAr='رانغولي بتلات طازجة على شكل حلقات في صينية مستديرة',
-  contents=['18 in round wooden tray, petal rangoli in rings (marigold, white chrysanthemum, rose, leaf), a small brass diya at the centre', 'Arrives pre-laid in a lidded box'],
-  contentsAr=['صينية خشبية مستديرة 18 إنش برانغولي من البتلات في حلقات (قطيفة وأقحوان أبيض وورد وأوراق) وديّة نحاسية صغيرة في الوسط', 'تصل جاهزة داخل صندوق بغطاء'],
-  alt='Round wooden tray with concentric rings of marigold, white chrysanthemum and rose petals around a small brass diya', seoT='Flower Rangoli Tray | Pookalam Dubai', seoD='A fresh petal rangoli in rings on a round tray, arrives ready to place. Order for Diwali in Dubai from Maison Botanique.',
+  contents=['35 cm (about 14 in) round wooden plate, petal rangoli in rings (orange and yellow marigold petals, green leaf edge), a small brass diya at the centre', 'Arrives pre-laid in a lidded box'],
+  contentsAr=['صحن خشبي مستدير 35 سم (حوالي 14 إنش) برانغولي من البتلات في حلقات (بتلات قطيفة برتقالية وصفراء وحافة من الأوراق الخضراء) وديّة نحاسية صغيرة في الوسط', 'تصل جاهزة داخل صندوق بغطاء'],
+  alt='Round wooden tray with concentric rings of orange and yellow marigold petals and a green leaf edge around a small brass diya', seoT='Flower Rangoli Tray | Pookalam Dubai', seoD='A fresh petal rangoli in rings on a round tray, arrives ready to place. Order for Diwali in Dubai from Maison Botanique.',
+  occ=['diwali'], tags=[], flags='own_cost_estimated;sourcing_unverified;sample_required'),
+ dict(id='marigold-petal-rangoli-tray', no=348, sku='MB-SE-016', room='gifts', format='gift', stems=None,
+  name='Marigold Petal Rangoli Tray — Fresh Marigold Petal Rangoli', nameAr='صينية رانغولي بتلات القطيفة',
+  line='A fresh petal rangoli in rings on a round tray', lineAr='رانغولي بتلات طازجة على شكل حلقات في صينية مستديرة',
+  contents=['35 cm (about 14 in) round wooden plate, petal rangoli in rings (orange and yellow marigold petals, edge to edge), a small brass diya at the centre', 'Arrives pre-laid in a lidded box'],
+  contentsAr=['صحن خشبي مستدير 35 سم (حوالي 14 إنش) برانغولي من البتلات في حلقات (بتلات قطيفة برتقالية وصفراء حتى الحافة) وديّة نحاسية صغيرة في الوسط', 'تصل جاهزة داخل صندوق بغطاء'],
+  alt='Round wooden tray with concentric rings of orange and yellow marigold petals edge to edge around a small brass diya', seoT='Marigold Petal Rangoli Tray Dubai', seoD='A fresh petal rangoli in rings on a round tray, arrives ready to place. Order for Diwali in Dubai from Maison Botanique.',
   occ=['diwali'], tags=[], flags='own_cost_estimated;sourcing_unverified;sample_required'),
 ]
 FOR_DAYS = {'the-doorstep-set', 'the-marigold-welcome', 'the-marigold-and-mithai-trunk', 'the-hosts-trunk'}
