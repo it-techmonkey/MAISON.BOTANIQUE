@@ -1,7 +1,7 @@
 {
   "_note": "Halloween and Diwali 2026 products. Shopify holds the live copies (owner prices; published 25 Oct 2026). Preview builds show these records only when Shopify does not return the product yet; production never does. Photos are AI concept images (review/seasonal/2026-10-24/round4) until real samples are photographed.",
   "halloween": ["pumpkin-and-pralines", "the-pumpkin-basket", "jack-o-bloom", "the-midnight-pumpkin"],
-  "diwali": ["marigold-toran", "the-doorstep-set", "the-marigold-welcome", "the-marigold-and-mithai-trunk", "the-hosts-trunk", "marigold-haat-bouquet", "brass-lota-posy", "marigold-urli", "thoranam-door-arch", "entrance-pair", "flower-rangoli-tray"],
+  "diwali": ["marigold-toran", "the-doorstep-set", "the-marigold-welcome", "the-marigold-and-mithai-trunk", "the-hosts-trunk", "marigold-haat-bouquet", "brass-lota-posy", "marigold-urli", "thoranam-door-arch", "entrance-pair", "flower-rangoli-tray", "marigold-petal-rangoli-tray"],
   "flagDay": ["alam-heart-uae-flag-roses", "alam-round-uae-flag-roses"],
   "deliveryRanges": {
     "pumpkin-and-pralines": { "from": "2026-10-25", "to": "2026-11-01" },
@@ -19,6 +19,7 @@
     "thoranam-door-arch": { "from": "2026-11-05", "to": "2026-11-15" },
     "entrance-pair": { "from": "2026-11-05", "to": "2026-11-15" },
     "flower-rangoli-tray": { "from": "2026-11-05", "to": "2026-11-15" },
+    "marigold-petal-rangoli-tray": { "from": "2026-11-05", "to": "2026-11-15" },
     "alam-heart-uae-flag-roses": { "from": "2026-11-03", "to": "2026-12-02" },
     "alam-round-uae-flag-roses": { "from": "2026-11-03", "to": "2026-12-02" }
   },
@@ -327,14 +328,32 @@
       "occasions": ["diwali"],
       "line": "A fresh petal rangoli in rings on a round tray",
       "lineAr": "رانغولي بتلات طازجة على شكل حلقات في صينية مستديرة",
-      "composition": ["18 in round wooden tray, petal rangoli in rings (marigold, white chrysanthemum, rose, leaf), a small brass diya at the centre", "Arrives pre-laid in a lidded box", "Delivered from 5 November, through 15 November"],
-      "compositionAr": ["صينية خشبية مستديرة 18 إنش برانغولي من البتلات في حلقات (قطيفة وأقحوان أبيض وورد وأوراق) وديّة نحاسية صغيرة في الوسط", "تصل جاهزة داخل صندوق بغطاء", "التوصيل من 5 إلى 15 نوفمبر"],
+      "composition": ["35 cm (about 14 in) round wooden plate, petal rangoli in rings (orange and yellow marigold petals, green leaf edge), a small brass diya at the centre", "Arrives pre-laid in a lidded box", "Delivered from 5 November, through 15 November"],
+      "compositionAr": ["صحن خشبي مستدير 35 سم (حوالي 14 إنش) برانغولي من البتلات في حلقات (بتلات قطيفة برتقالية وصفراء وحافة من الأوراق الخضراء) وديّة نحاسية صغيرة في الوسط", "تصل جاهزة داخل صندوق بغطاء", "التوصيل من 5 إلى 15 نوفمبر"],
       "stems": null,
-      "imageAlt": "Round wooden tray with concentric rings of marigold, white chrysanthemum and rose petals around a small brass diya",
-      "option": "Size",
-      "sizes": [
-        { "id": "signature", "sku": "MB-SE-015-SIG", "name": "Signature", "nameAr": "سيغنتشر", "detail": "18 in tray", "detailAr": "صينية 18 إنش", "price": 279, "compareAtPrice": 310 },
-        { "id": "grand", "sku": "MB-SE-015-GRD", "name": "Grand", "nameAr": "غراند", "detail": "24 in tray", "detailAr": "صينية 24 إنش", "price": 419, "compareAtPrice": 466 }
+      "imageAlt": "Round wooden tray with concentric rings of orange and yellow marigold petals and a green leaf edge around a small brass diya",
+            "sizes": [
+        { "id": "signature", "sku": "MB-SE-015-SIG", "name": "Signature", "nameAr": "سيغنتشر", "detail": "35 cm (about 14 in) plate", "detailAr": "صحن 35 سم (حوالي 14 إنش)", "price": 279, "compareAtPrice": 310 }
+      ]
+    },
+    {
+      "id": "marigold-petal-rangoli-tray",
+      "no": 348,
+      "sku": "MB-SE-016",
+      "name": "Marigold Petal Rangoli Tray — Fresh Marigold Petal Rangoli",
+      "nameAr": "صينية رانغولي بتلات القطيفة",
+      "room": "gifts",
+      "format": "gift",
+      "flowers": ["marigold"],
+      "occasions": ["diwali"],
+      "line": "A fresh petal rangoli in rings on a round tray",
+      "lineAr": "رانغولي بتلات طازجة على شكل حلقات في صينية مستديرة",
+      "composition": ["35 cm (about 14 in) round wooden plate, petal rangoli in rings (orange and yellow marigold petals, edge to edge), a small brass diya at the centre", "Arrives pre-laid in a lidded box", "Delivered from 5 November, through 15 November"],
+      "compositionAr": ["صحن خشبي مستدير 35 سم (حوالي 14 إنش) برانغولي من البتلات في حلقات (بتلات قطيفة برتقالية وصفراء حتى الحافة) وديّة نحاسية صغيرة في الوسط", "تصل جاهزة داخل صندوق بغطاء", "التوصيل من 5 إلى 15 نوفمبر"],
+      "stems": null,
+      "imageAlt": "Round wooden tray with concentric rings of orange and yellow marigold petals edge to edge around a small brass diya",
+            "sizes": [
+        { "id": "signature", "sku": "MB-SE-016-SIG", "name": "Signature", "nameAr": "سيغنتشر", "detail": "35 cm (about 14 in) plate", "detailAr": "صحن 35 سم (حوالي 14 إنش)", "price": 279, "compareAtPrice": 310 }
       ]
     },
     {

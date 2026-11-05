@@ -7,7 +7,7 @@ const byId = new Map(data.products.map((product) => [product.id, product]));
 const added = data.diwali.filter((id) => id !== 'marigold-toran');
 
 test('every Diwali handle has a record and a delivery window of 5 to 15 November', () => {
-  assert.equal(added.length, 10);
+  assert.equal(added.length, 11);
   for (const id of added) {
     assert.ok(byId.has(id), id);
     assert.deepEqual(data.deliveryRanges[id], { from: '2026-11-05', to: '2026-11-15' }, id);
@@ -33,6 +33,7 @@ test('every size says how big it is, in English and Arabic (customers ask "how m
     assert.ok(size.detailAr.trim().length > 3, `${id} ${size.name} Arabic`);
   }
   assert.equal(byId.get('thoranam-door-arch').sizes.length, 1, 'Door Arch has no Grand');
+  for (const id of ['flower-rangoli-tray', 'marigold-petal-rangoli-tray']) assert.equal(byId.get(id).sizes.length, 1, `${id} is one 35 cm plate`);
 });
 
 test('the Marigold Toran climbs in whole feet from 2 to 8 and never gets cheaper as it gets longer', () => {
