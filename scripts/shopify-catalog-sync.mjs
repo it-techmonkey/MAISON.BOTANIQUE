@@ -337,13 +337,14 @@ async function syncCollection(collection, productIds, publicationId) {
   return { id, added: toAdd.length, removed: toRemove.length, created: !found.collectionByIdentifier };
 }
 
+// Conscious Curations hamper items (handles cc-<code>) are created in Shopify directly, not from these files: never archive them.
 async function archiveOthers(keep) {
   const archived = [];
   let after = null;
   do {
     const data = await admin(`#graphql
       query Products($after: String) {
-        products(first: 250, after: $after, query: "-status:archived") { nodes { id handle } pageInfo { hasNextPage endCursor } }
+        products(first: 250, after: $after, query: "-status:archived -vendor:'Conscious Curations'") { nodes { id handle } pageInfo { hasNextPage endCursor } }
       }`, { after });
     for (const product of data.products.nodes) {
       if (keep.has(product.handle)) continue;

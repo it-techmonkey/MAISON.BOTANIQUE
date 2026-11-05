@@ -70,7 +70,7 @@ export function isValidDate(value: unknown): value is string {
 
 /**
  * Dates (YYYY-MM-DD, inclusive) an order is limited to, e.g. a Diwali pre-order
- * that is only delivered 5–8 November. null means the normal schedule.
+ * that is only delivered 5–15 November. null means the normal schedule.
  */
 export interface DeliveryRange { from: string; to: string }
 

@@ -8,7 +8,6 @@ import {
   usableSchedule,
   type DeliverySchedule, type ScheduleProblem,
 } from '@/lib/delivery';
-import { JVC_AREA_KEY } from '@/lib/jvc-delivery';
 import { isValidDate } from '@/lib/format';
 import { isShopifyConfigured } from '@/lib/shopify/config';
 import { useDubaiNow } from '@/lib/use-today';
@@ -72,15 +71,14 @@ export interface ShopCart {
   addItem: (product: Product, options?: AddItemOptions) => Promise<void>;
   updateQuantity: (key: string, quantity: number) => void;
   removeItem: (key: string) => void;
+  /** Sets (or clears) the handwritten gift note on one line of the bag. */
+  updateNote: (key: string, note: string) => void;
   /** The order's delivery date and time slot (one per order). */
   delivery: DeliverySchedule | null;
   setDelivery: (schedule: DeliverySchedule) => Promise<void>;
   /** A Shopify checkout URL, or null when the preview catalog has no checkout. */
   checkoutUrl: (locale: Locale, withOffer?: boolean) => Promise<string | null>;
   applyWelcomeOffer?: (enabled?: boolean) => Promise<boolean>;
-  /** Free delivery to JVC is claimed for this order (the team verifies the address). */
-  jvcDelivery: boolean;
-  setJvcDelivery: (enabled: boolean) => Promise<void>;
   /** The confirmed Shopify cart (null in the preview), for analytics payloads. */
   shopifyCart: ShopifyCart | null;
 }
@@ -392,6 +390,18 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
 
   const removeItem = useCallback((key: string) => updateQuantity(key, 0), [updateQuantity]);
 
+  const updateNote = useCallback((key: string, note: string) => {
+    const next = note.trim().slice(0, NOTE_LIMIT);
+    void enqueue('note', async () => {
+      const current = cartRef.current;
+      const line = current?.lines.find((item) => item.id === key);
+      if (!current || !line) return;
+      const attributes = Object.entries(line.attributes).filter(([name]) => name !== GIFT_NOTE_ATTRIBUTE).map(([name, value]) => ({ key: name, value }));
+      if (next) attributes.push({ key: GIFT_NOTE_ATTRIBUTE, value: next });
+      commit(await updateCartLineAttributes(current.id, [{ id: key, attributes }], localeRef.current));
+    });
+  }, [commit, enqueue]);
+
   const applyWelcomeOffer = useCallback(async (enabled = true) => {
     const applied = await enqueue('welcome_offer', async () => {
       const current = cartRef.current;
@@ -412,24 +422,8 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     return applied;
   }, [commit, enqueue]);
 
-  const jvcDelivery = Boolean(cart?.attributes[JVC_AREA_KEY]);
-  const setJvcDelivery = useCallback(async (enabled: boolean) => {
-    const done = await enqueue('jvc_delivery', async () => {
-      const current = cartRef.current;
-      if (!current) return false;
-      const response = await fetch('/api/jvc-delivery', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cartId: current.id, enabled, locale: localeRef.current }),
-      });
-      if (!response.ok) throw new Error('JVC delivery could not be applied');
-      const result = await response.json();
-      if (result.cart) commit(result.cart);
-      return true;
-    });
-    if (done === undefined) throw new Error('JVC delivery could not be applied');
-  }, [commit, enqueue]);
-
   const checkoutUrl = useCallback(async (checkoutLocale: Locale, withOffer = true) => {
+    await queue.current; // a gift note saved a moment ago must reach the cart first
     await applyWelcomeOffer(withOffer);
     const current = cartRef.current;
     if (!current) return null;
@@ -477,8 +471,6 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
 
   return {
     applyWelcomeOffer,
-    jvcDelivery,
-    setJvcDelivery,
     mode: 'shopify',
     lines,
     cartCount: cart?.totalQuantity ?? 0,
@@ -489,6 +481,7 @@ function useShopifyCart(products: Product[], locale: Locale): ShopCart {
     addItem,
     updateQuantity,
     removeItem,
+    updateNote,
     delivery,
     setDelivery,
     checkoutUrl,
@@ -537,7 +530,6 @@ function usePreviewCart(products: Product[]): ShopCart {
   const [storedDelivery, setDeliveryState] = useState<DeliverySchedule | null>(null);
   const now = useDubaiNow();
   const delivery = useMemo(() => (now ? usableSchedule(storedDelivery, now) : null), [storedDelivery, now]);
-  const [jvcDelivery, setJvcState] = useState(false);
   // State rather than a ref, so the first save waits for the restored lines.
   const [loaded, setLoaded] = useState(false);
 
@@ -630,11 +622,18 @@ function usePreviewCart(products: Product[]): ShopCart {
     addItem,
     updateQuantity,
     removeItem: (key) => updateQuantity(key, 0),
+    updateNote: (key, note) => setSaved((current) => {
+      const line = current.find((item) => item.key === key);
+      const edited = line && safePreviewLine({ ...line, note: note.trim() }, products);
+      if (!line || !edited) return current;
+      // A line whose note now matches another identical line merges into it, as in the live cart.
+      const twin = current.find((item) => item.key === edited.key && item.key !== key);
+      return current.flatMap((item) => item.key === key ? (twin ? [] : [edited])
+        : item === twin ? [{ ...item, quantity: Math.min(MAX_QUANTITY, item.quantity + line.quantity) }] : [item]);
+    }),
     delivery,
     setDelivery,
     checkoutUrl: async () => null,
-    jvcDelivery,
-    setJvcDelivery: async (enabled) => setJvcState(enabled),
     shopifyCart: null,
   };
 }

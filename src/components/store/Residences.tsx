@@ -58,7 +58,7 @@ export async function ResidencesPage() {
             <ul>
               {EMIRATES.map((emirate) => <li key={emirate.en}><Bi text={emirate} /></li>)}
             </ul>
-            <p><Bi text={{ en: 'Same-day delivery across the UAE. AED 30 in Dubai, AED 65 elsewhere in the UAE.', ar: 'توصيل في اليوم نفسه داخل الإمارات. ٣٠ درهماً في دبي، و٦٥ درهماً في بقية الإمارات.' }} /></p>
+            <p><Bi text={{ en: 'Same-day delivery across the UAE. AED 35 in Dubai, AED 65 elsewhere in the UAE.', ar: 'توصيل في اليوم نفسه داخل الإمارات. ٣٥ درهماً في دبي، و٦٥ درهماً في بقية الإمارات.' }} /></p>
             {/* Home only: the collection is just above, so stay on the page. */}
             <a className="button" href="#shop"><span><Bi text={{ en: 'Shop now', ar: 'تسوّق الآن' }} /></span><span aria-hidden="true">↗</span></a>
           </aside>

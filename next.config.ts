@@ -27,6 +27,8 @@ const nextConfig: NextConfig = {
   // PostHog's API paths end in a slash. src/proxy.ts still strips trailing
   // slashes from every other URL, so site URLs behave as before.
   skipTrailingSlashRedirect: true,
+  // Without Shopify settings the catalogue photos are local files; the product link-preview image reads them from disk.
+  outputFileTracingIncludes: { '/shop/*/opengraph-image*': ['./public/collection/**'] },
   async headers() {
     return [{
       source: '/:path*',
@@ -42,6 +44,8 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: '/diwali-hampers', destination: '/conscious-curations#diwali', permanent: true },
+      { source: '/conscious-curations/diwali', destination: '/conscious-curations#diwali', permanent: true },
       { source: '/jvc', destination: '/?offer=open', permanent: true },
       ...allRenames.map(({ oldHandle, handle }) => ({ source: `/products/${oldHandle}`, destination: productDestination(handle), permanent: true })),
       ...[...retiredProducts].map((handle) => ({ source: `/products/${handle}`, destination: RETIRED_DESTINATION, permanent: true })),

@@ -1,4 +1,4 @@
-// Halloween and Diwali 2026: which products belong to each home-page band,
+// Halloween, Diwali and Flag Day 2026: which products belong to each home-page band,
 // and the Diwali pre-order delivery window.
 //
 // Shopify holds the live products. Until the owner publishes them, a preview
@@ -13,7 +13,22 @@ import type { Product, ProductFormat } from '@/lib/types';
 
 export const HALLOWEEN_HANDLES: readonly string[] = data.halloween;
 export const DIWALI_HANDLES: readonly string[] = data.diwali;
+export const FLAGDAY_HANDLES: readonly string[] = data.flagDay;
+/** UAE Flag Day 2026: the home shelf shows on this Dubai date only; the /flag-day page and the products stay until National Day. */
+export const FLAG_DAY_DATE = '2026-11-03';
 export const TORAN_HANDLE = 'marigold-toran';
+/** Product-page name shown instead of the Shopify title (live title untouched, owner 3 Nov 2026). */
+export const DISPLAY_NAMES: Record<string, { en: string; ar: string }> = {
+  [TORAN_HANDLE]: { en: 'Fresh marigold door garland (toran)', ar: 'إكليل قطيفة طازج للباب (تورَن)' },
+};
+/** Flag Day: the round box leads the home hero on FLAG_DAY_DATE, with the Flag Day headline in place of the brand line (owner, 3 Nov 2026). */
+export const FLAG_HERO_HANDLE = 'alam-round-uae-flag-roses';
+const FLAG_HERO_COPY = {
+  en: { lines: ['One Flag, One Nation,', 'Endless Pride.'], sub: 'Celebrate in UAE colours', body: 'A symbol of unity, strength and pride.' },
+  ar: { lines: ['علم واحد، وطن واحد،', 'فخر بلا حدود.'], sub: 'احتفلوا بألوان الإمارات', body: 'رمز للوحدة والقوة والفخر.' },
+};
+/** Every Flag Day box replaces the home headline with this copy whenever it is a hero slide (owner, 3 Nov 2026). Arabic is a proposal, not yet confirmed. */
+export const HERO_COPY: Record<string, typeof FLAG_HERO_COPY> = Object.fromEntries(FLAGDAY_HANDLES.map((handle) => [handle, FLAG_HERO_COPY]));
 
 /** The Diwali Edition page: where each piece goes in the home. A group with nothing in the catalogue simply does not show. */
 export const DIWALI_GROUPS = [
@@ -36,7 +51,7 @@ export const DIWALI_USE: Record<string, readonly [string, string]> = {
 /** Halloween pieces built in real pumpkins (owner confirmed 29 Oct 2026). The other two are ceramic, so they get no compostable note. */
 export const REAL_PUMPKIN_HANDLES: readonly string[] = ['pumpkin-and-pralines', 'the-pumpkin-basket'];
 
-const SEASONAL = new Set([...HALLOWEEN_HANDLES, ...DIWALI_HANDLES]);
+const SEASONAL = new Set([...HALLOWEEN_HANDLES, ...DIWALI_HANDLES, ...FLAGDAY_HANDLES]);
 /** Seasonal pieces stay in the collection but never stand in for a category photo (owner, 25 Oct 2026). */
 export const isSeasonal = (id: string) => SEASONAL.has(id);
 

@@ -6,6 +6,8 @@ import { useGSAP } from '@gsap/react';
 import { trackHeroClicked, trackHeroNavigated } from '@/lib/analytics/track';
 import { formatMoney } from '@/lib/format';
 import { SHOW_COLLECTION_EVENT, type ShowCollectionDetail } from '@/lib/site';
+import { FLAG_DAY_DATE, FLAG_HERO_HANDLE, HERO_COPY } from '@/lib/seasonal';
+import { useDubaiNow } from '@/lib/use-today';
 import SaleTag from './store/SaleTag';
 import { useStore } from './store/StoreProvider';
 import '../styles/turntable.css';
@@ -34,6 +36,7 @@ const LONG_TITLE_CHARACTERS = 22;
 
 interface TurntableProps {
   onActiveChange?: (index: number) => void;
+  initialDubaiDate: string;
 }
 
 /**
@@ -42,12 +45,18 @@ interface TurntableProps {
  * swipes move between them, each one travelling through the scene (the
  * outgoing piece drifts up and away, the next arrives and settles).
  */
-export default function Turntable({ onActiveChange }: TurntableProps) {
+export default function Turntable({ onActiveChange, initialDubaiDate }: TurntableProps) {
   const { products, locale, live, openProduct } = useStore();
-  const looks = useMemo(() => products
-    .filter((product) => product.featured)
-    .sort((a, b) => (a.heroOrder ?? 99) - (b.heroOrder ?? 99))
-    .slice(0, 3), [products]);
+  const today = useDubaiNow()?.date ?? initialDubaiDate;
+  const looks = useMemo(() => {
+    const featured = products
+      .filter((product) => product.featured)
+      .sort((a, b) => (a.heroOrder ?? 99) - (b.heroOrder ?? 99))
+      .slice(0, 3);
+    // Flag Day only: the round box is one more slide, first, so it is what visitors see on arrival.
+    const flag = today === FLAG_DAY_DATE ? products.find((product) => product.id === FLAG_HERO_HANDLE && product.available) : undefined;
+    return flag ? [flag, ...featured.filter((product) => product.id !== flag.id)] : featured;
+  }, [products, today]);
   const count = looks.length;
   const sectionRef = useRef<HTMLElement>(null);
   const copyRef = useRef<HTMLDivElement>(null);
@@ -230,6 +239,7 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
   const current = looks[clamp(active, 0, count - 1)];
   const productName = arabic ? current.nameAr || current.name : current.name;
   const category = arabic ? current.categoryAr || current.category : current.category;
+  const flagCopy = HERO_COPY[current.id]?.[arabic ? 'ar' : 'en'];
   const price = <Money amount={current.price} currency={current.currencyCode} ar={arabic} />;
 
   return (
@@ -240,11 +250,19 @@ export default function Turntable({ onActiveChange }: TurntableProps) {
       <div className="tt-stage" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <div className="tt-stage__inner">
           <div className="tt-copy" ref={copyRef} data-fit="0">
-          <div className="tt-intro">
-            <p className="tt-intro__eyebrow">{arabic ? 'زهور، بإحساس' : 'Flowers, with feeling'}</p>
-            <h1>{arabic ? <>زهور جميلة.<br />تصل بعناية.</> : <>Beautiful flowers.<br />Thoughtfully delivered.</>}</h1>
-            <p className="tt-intro__body">{arabic ? 'لفتات مدروسة، تحملها الزهور إلى من نحب.' : 'Considered gestures, beautifully expressed in flowers.'}</p>
-          </div>
+          {flagCopy ? (
+            <div className="tt-intro tt-intro--flag">
+              <h1>{flagCopy.lines[0]}<br />{flagCopy.lines[1]}</h1>
+              <p className="tt-intro__sub">{flagCopy.sub}</p>
+              <p className="tt-intro__body">{flagCopy.body}</p>
+            </div>
+          ) : (
+            <div className="tt-intro">
+              <p className="tt-intro__eyebrow">{arabic ? 'زهور، بإحساس' : 'Flowers, with feeling'}</p>
+              <h1>{arabic ? <>زهور جميلة.<br />تصل بعناية.</> : <>Beautiful flowers.<br />Thoughtfully delivered.</>}</h1>
+              <p className="tt-intro__body">{arabic ? 'لفتات مدروسة، تحملها الزهور إلى من نحب.' : 'Considered gestures, beautifully expressed in flowers.'}</p>
+            </div>
+          )}
 
           <div className={`tt-product${productName.length > LONG_TITLE_CHARACTERS ? ' tt-product--long' : ''}`} aria-live="polite" aria-atomic="true">
             <div className="tt-product__details" key={current.id}>

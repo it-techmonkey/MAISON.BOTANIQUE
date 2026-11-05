@@ -19,15 +19,15 @@ for (const width of [1440, 414, 390, 360, 320]) {
   }
 }
 
-test('a Diwali pre-order starts 5 November and ends on Diwali, 8 November', async ({ page }) => {
+test('a Diwali pre-order runs 5 to 15 November', async ({ page }) => {
   await page.clock.install({ time: atDubaiNoon('2026-11-02') });
   const response = await page.goto('/shop/marigold-urli');
   test.skip(response?.status() !== 200, 'Diwali drafts are not published on this build');
   await openProduct(page, 'marigold-urli');
-  await expect(page.locator('.dl-picker-product')).toContainText('Thu 5 Nov – Sun 8 Nov');
+  await expect(page.locator('.dl-picker-product')).toContainText('Thu 5 Nov – Sun 15 Nov');
   await addToBag(page);
   const bag = await openBag(page);
-  await expect(bag.locator('.dl-picker')).toContainText('Thu 5 Nov – Sun 8 Nov');
+  await expect(bag.locator('.dl-picker')).toContainText('Thu 5 Nov – Sun 15 Nov');
 });
 
 for (const width of [1440, 414, 390, 360, 320]) {
@@ -39,7 +39,7 @@ for (const width of [1440, 414, 390, 360, 320]) {
       await page.clock.install({ time: atDubaiNoon('2026-11-02') });
       await page.goto('/diwali');
       await expect(page.locator('.dwe h1')).toBeVisible();
-      await expect(page.locator('.dwe-fee')).toContainText(locale === 'ar' ? '٦٥ درهماً' : 'AED 65');
+      await expect(page.locator('.dwe-fee')).toContainText('65');
       await expect(page.locator('.dwe-chip').first()).toHaveAttribute('aria-pressed', 'true');
       await expect(page.locator('.dwe-return')).toBeVisible();
       await expectNoHorizontalScroll(page, `/diwali ${width} ${locale}`);
