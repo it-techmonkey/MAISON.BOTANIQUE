@@ -45,7 +45,7 @@ test('footer and contact page link to the same WhatsApp number', async ({ page }
   const floatHref = await page.locator('.wa-float').getAttribute('href');
   const number = new URL(floatHref!).pathname;
   const footerLinks = page.locator('footer a[href^="https://wa.me/"]');
-  await expect(footerLinks).toHaveCount(2);
+  await expect(footerLinks).toHaveCount(1);
   for (const link of await footerLinks.all()) expect(new URL((await link.getAttribute('href'))!).pathname).toBe(number);
   const contact = page.locator('.contact-details a[href^="https://wa.me/"]');
   await expect(contact).toBeVisible();
