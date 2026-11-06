@@ -206,8 +206,17 @@ export default function CollectionBrowser({ listId = 'home', initialOccasion, sh
   const refineState = useCallback((fn: (s: State) => State) => { setState(fn); setShown(PAGE); refineChanged.current = true; }, []);
 
   const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Lands with the products just under the header and the (sticky) tab bar. The tab bar itself
+  // can't be the scroll target: once it is pinned it counts as already in view, so nothing moves.
   const scrollToGrid = useCallback(() => {
-    requestAnimationFrame(() => roomsRef.current?.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' }));
+    requestAnimationFrame(() => {
+      const body = bodyRef.current;
+      const bar = roomsRef.current;
+      if (!body) return;
+      const pinnedAt = bar ? parseFloat(getComputedStyle(bar).top) || 0 : 0;
+      const top = body.getBoundingClientRect().top + window.scrollY - pinnedAt - (bar?.offsetHeight ?? 0);
+      window.scrollTo({ top: Math.max(0, top), behavior: reduced() ? 'auto' : 'smooth' });
+    });
   }, []);
 
   // Header links, footer links and shared URLs all arrive as hash changes.
