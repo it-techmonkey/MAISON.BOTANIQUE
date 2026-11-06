@@ -31,11 +31,9 @@ const FOOTER = {
 };
 
 const HELP = [
-  { href: '/delivery', en: 'Delivery information', ar: 'معلومات التوصيل' },
-  { href: '/delivery#where-we-deliver', en: 'Delivery areas', ar: 'مناطق التوصيل' },
+  { href: '/delivery', en: 'Delivery & care', ar: 'التوصيل والعناية' },
   { href: '/residences', en: 'Flowers for your building', ar: 'زهور لمبناك' },
   { href: '/guides/flower-care-air-conditioning', en: 'Flower care guide', ar: 'دليل العناية بالزهور' },
-  { href: '/refund-policy', en: 'Refund policy', ar: 'سياسة الاسترداد' },
   { href: '/contact', en: 'Contact us', ar: 'تواصل معنا' },
   { href: '/account', en: 'Your account', ar: 'حسابي' },
   { href: '/faq', en: 'Ordering questions', ar: 'أسئلة حول الطلب' },
@@ -46,7 +44,7 @@ const BASE = [
   { href: '/services', en: 'Events & gifting', ar: 'المناسبات والإهداء' },
   { href: '/privacy', en: 'Privacy', ar: 'الخصوصية' },
   { href: '/terms', en: 'Terms', ar: 'الشروط' },
-  { href: '/refund-policy', en: 'Refunds', ar: 'الاسترداد' },
+  { href: '/refund-policy', en: 'Refund policy', ar: 'سياسة الاسترداد' },
 ];
 
 export default function SiteFooter() {
@@ -83,7 +81,6 @@ export default function SiteFooter() {
           <h2>{t.help}</h2>
           <Link href={ar ? '/ar/journal' : '/journal'}>{ar ? 'عن الإهداء' : 'Notes on giving'}</Link>
           {HELP.map((page) => <Link key={page.href} href={page.href}>{label(page)}</Link>)}
-          {whatsapp && <a href={whatsapp} target="_blank" rel="noopener noreferrer">{t.whatsapp}</a>}
         </nav>
         <div>
           <h2>{t.bloom}</h2>

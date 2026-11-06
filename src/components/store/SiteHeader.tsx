@@ -27,8 +27,14 @@ export function CollectionLink({ hash, onClick, children, className, 'aria-label
   const occasion = hash.match(/^occasion\/(birthday|love)$/)?.[1];
   if (occasion) return <Link className={className} href={contentHref(`/occasions/${occasion}`, locale)} onClick={onClick} aria-label={ariaLabel}>{children}</Link>;
   const onShop = pathname === '/' || pathname === '/shop';
+  const handleClick = () => {
+    onClick?.();
+    // The collection rewrites the URL hash as you browse it, and a click on the hash
+    // already in the URL fires no hashchange, so the link would do nothing. Fire it ourselves.
+    if (window.location.hash === `#${hash}`) window.setTimeout(() => window.dispatchEvent(new HashChangeEvent('hashchange')), 0);
+  };
   return onShop
-    ? <a className={className} href={`#${hash}`} onClick={onClick} aria-label={ariaLabel}>{children}</a>
+    ? <a className={className} href={`#${hash}`} onClick={handleClick} aria-label={ariaLabel}>{children}</a>
     : <Link className={className} href={`/shop#${hash}`} onClick={onClick} aria-label={ariaLabel}>{children}</Link>;
 }
 
