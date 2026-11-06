@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'"><title>Maison workspace — design archive</title><style>:root{color-scheme:light dark;--font-voice:Georgia,serif}body{margin:16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}.archive-note{margin:0 0 12px;font-size:13px;color:light-dark(#5f574a,#d4cabb)}.archive-note a{color:inherit}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}</style></head><body>
+<p class="archive-note">Design archive · fictional examples · local interactions only · <a href="../../index.html">Back to versions</a></p>
+<h2 class="sr-only">Interactive preview of the founder's briefing: company opening screen, department drill-down and task detail with evidence and verification. All data is sample data.</h2>
+<style>
+.app{--pa:#F5EFE3;--pa2:#FBF8F1;--ink:#25201A;--mu:#7B7265;--ln:#DDD3C0;--wine:#7A2B3A;--wt:#F3E4E4;background:var(--pa);color:var(--ink);border:1px solid var(--ln);border-radius:12px;overflow:hidden;font-size:14px;line-height:1.45}
+@media (prefers-color-scheme:dark){.app{--pa:#1E1A16;--pa2:#27221C;--ink:#EDE6D8;--mu:#A39A8B;--ln:#3A332A;--wine:#E3A3AE;--wt:#3A2428}}
+.app *{box-sizing:border-box}
+.smp{background:var(--ink);color:var(--pa);font-size:12px;padding:5px 14px}
+.ctx{padding:10px 16px;border-bottom:1px solid var(--ln);background:var(--pa2);display:flex;gap:6px 18px;align-items:center;flex-wrap:wrap}
+.ctx .ob{flex:1;min-width:220px}
+.lb{font-size:12px;color:var(--mu)}
+.hh{font-family:var(--font-voice);font-size:22px;font-weight:500;margin:0;color:var(--ink)}
+.bd{display:flex;min-height:540px}
+.rail{width:160px;border-right:1px solid var(--ln);padding:12px 8px;flex:none}
+.ri{display:block;width:100%;text-align:left;border:none;background:transparent;padding:7px 8px;border-radius:6px;font-size:13px;color:var(--ink);cursor:pointer;margin-bottom:2px}
+.ri.on{background:var(--pa2);box-shadow:inset 0 0 0 1px var(--ln);font-weight:500}
+.ri small{display:block;color:var(--mu);font-size:12px;font-weight:400}
+.rh{font-size:12px;color:var(--mu);padding:10px 8px 4px}
+main{flex:1;padding:16px;min-width:0}
+.mu{color:var(--mu)}
+.cd{background:var(--pa2);border:1px solid var(--ln);border-radius:10px;padding:12px 14px;margin-bottom:12px}
+.cd.bl{border-color:var(--wine)}
+.cd.nx{background:var(--ink);color:var(--pa);border-color:var(--ink)}
+.cd.nx .lb,.cd.nx .mt{color:var(--pa);opacity:.8}
+.tt{font-size:16px;font-weight:500;margin:2px 0 4px}
+.cd p{margin:0 0 8px}
+.bt{border:1px solid var(--ink);background:transparent;color:inherit;padding:6px 12px;border-radius:6px;font-size:13px;cursor:pointer}
+.cd.nx .bt{border-color:var(--pa)}
+.bt[disabled]{opacity:.45;cursor:default}
+.pl{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--ln);white-space:nowrap;color:var(--ink)}
+.pl.v{background:var(--ink);color:var(--pa);border-color:var(--ink)}
+.pl.r{border-style:dashed;border-color:var(--ink)}
+.pl.w{background:var(--wt);color:var(--wine);border-color:var(--wine)}
+.pl.s{color:var(--wine);border-color:var(--wine)}
+.ai{font-size:12px;padding:1px 6px;border-radius:4px;border:1px solid var(--ln);color:var(--mu)}
+.av{width:20px;height:20px;border-radius:50%;background:var(--ink);color:var(--pa);display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+.mt{font-size:12px;color:var(--mu);display:flex;gap:6px 8px;align-items:center;flex-wrap:wrap;margin-top:2px}
+.rw{display:flex;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--ln);cursor:pointer}
+.rw:first-of-type{border-top:none}
+.sec{font-size:13px;font-weight:500;margin:16px 0 4px;display:flex;justify-content:space-between}
+.cf{font-size:12px;color:var(--wine);margin:0 0 8px}
+.bc{font-size:13px;margin-bottom:8px}
+.bc a{cursor:pointer;text-decoration:underline}
+.tabs{display:flex;gap:6px;margin:10px 0}
+.tabs button{border:1px solid var(--ln);background:transparent;color:var(--ink);border-radius:999px;padding:3px 12px;font-size:13px;cursor:pointer}
+.tabs button.on{background:var(--ink);color:var(--pa);border-color:var(--ink)}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px 14px;margin:10px 0}
+.fg div div:last-child{font-size:13px}
+.ev{display:flex;gap:8px;align-items:flex-start;padding:5px 0;font-size:13px}
+.ev input{margin-top:3px}
+.sl{display:flex;gap:8px;font-size:13px;padding:6px 0;border-top:1px solid var(--ln)}
+.dc{border-top:1px solid var(--ln);padding:10px 0}
+.dc .bt{margin:6px 6px 0 0}
+.msg{font-size:12px;color:var(--wine);margin-top:6px}
+.ft{padding:8px 16px;border-top:1px solid var(--ln);font-size:12px;color:var(--mu);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.ft button{border:none;background:transparent;color:var(--mu);text-decoration:underline;cursor:pointer;font-size:12px;padding:0}
+@media (max-width:560px){.rail{display:none}}
+</style>
+<div class="app" id="app">
+<div class="smp">Sample data. Local preview only: nothing is saved, sent or connected.</div>
+<div class="ctx" id="ctx"></div>
+<div class="bd"><nav class="rail" id="rail"></nav><main id="main"></main></div>
+<div class="ft"><span>Verified means a person has seen the evidence. An AI report alone never verifies.</span><button id="rs">Reset sample</button></div>
+</div>
+<script>
+var P=['a','b','c','d','e','f'];
+var DN={ops:'Operations',tech:'Tech',sales:'Sales',content:'Content',marketing:'Marketing',product:'Product',part:'Partnerships'};
+var DO={ops:'Alex',tech:'Alex, with Claude',sales:'Sam',content:'Alex',marketing:'Sam',product:'Alex',part:'Sam'};
+var I,DEC,REP,SET,S;
+function mk(){
+I={
+a:{id:'a',s:'policy fix',t:'Fix privacy policy contact details',cond:'Policies show only the approved contact details',dept:'ops',who:'Alex',ai:'Claude drafted the replacement text',due:'Today',status:'open',needs:[],unb:['c'],ev:['Screenshot of the live policy showing only the approved email and phone'],evDone:[false],why:'Checkout currently shows a street address, a second phone number and a gmail address you decided not to publish. It has to be clean before any real order.',src:'Launch readiness report, 21 Oct (B3)',conf:'24 Oct'},
+b:{id:'b',s:'delivery fix',t:'Merge delivery-day bug fix (PR #24)',cond:'The delivery-day bug is fixed in production',dept:'tech',who:'Alex',ai:'Claude wrote and tested the fix',due:'Today',status:'reported',rep:'Reported by a Claude session, 23 Oct',needs:[],unb:['c'],ev:['PR #24 is merged to main','A product page loads without "That delivery day has passed"'],evDone:[true,false],why:'Product pages showed a delivery error on first load, which stops a customer choosing a day.',src:'GitHub pull request #24',conf:'23 Oct'},
+c:{id:'c',s:'test order',t:'Place one real test order, then refund it',cond:'One real order is paid, shows its slot and note, and is refunded',dept:'ops',who:'Alex',ai:'Claude prepared the checklist',due:'Mon',status:'open',needs:['a','b'],unb:['d'],ev:['Shopify order number, paid then refunded','Order confirmation email received','Delivery date and time shown on the order','Gift note shown on the order'],evDone:[false,false,false,false],why:'A sample order flow still needs verification. Payment, emails, the order webhook and the gift card text are all unproven, and every later step depends on them.',src:'Launch readiness report, 21 Oct (B1)',conf:'21 Oct',stale:true,blk:{h:'A sample order flow still needs verification.',p:'Payment, order emails, the delivery slot and refunds are unproven, so the public push stays on hold.',ev:'Evidence: An illustrative checkout check needs reconciliation. Not re-checked since.',age:'3 days old',cf:'Alex reported payments tested on 22 Oct. The two do not agree until a real order settles it.'}},
+d:{id:'d',s:'ten orders',t:'Ten real orders at cost from friends and family',cond:'Ten real orders are delivered',dept:'sales',who:'Sam',due:'Thu',status:'open',needs:['c'],unb:['e'],ev:['Ten paid orders in Shopify','Each delivery photographed at handover','Notes on what went wrong'],evDone:[false,false,false],why:'Shows the operation holds before any public push, and produces the first real photos.',src:'Launch status, 23 Oct',conf:'23 Oct',blk:{h:'The operation has not run with real customers.',p:'Ten orders show whether delivery, packaging and messages hold up.',ev:'Evidence: none yet.',age:'',cf:''}},
+e:{id:'e',s:'photos and reviews',t:'Real delivery photos and first Google reviews',cond:'Real photos and first Google reviews exist',dept:'content',who:'Alex',due:'Next week',status:'open',needs:['d'],unb:['f'],ev:['Delivery photos with the customer’s permission','Five Google reviews live'],evDone:[false,false],why:'The public push leans on real photos and reviews, not on staged ones.',src:'Launch status, 23 Oct',conf:'23 Oct',blk:{h:'No real photos or reviews yet.',p:'These only appear after real deliveries.',ev:'Evidence: none yet.',age:'',cf:''}},
+f:{id:'f',s:'public push',t:'Public push: flyers, Instagram, pamphlets',cond:'The public push is permitted and ready',dept:'marketing',who:'Sam',due:'Week 3',status:'open',needs:['e','g'],decs:['d1'],unb:[],ev:['Promotion permit confirmed','Candle decision settled','Flyer test result recorded'],evDone:[false,false,false],why:'This is where orders scale, and it should not start before the checkout is proven and the promotion rules are clear.',src:'Launch status, 23 Oct',conf:'23 Oct',blk:{h:'The public push is on hold.',p:'It waits on proven orders, a promotion permit answer and the candle decision.',ev:'Evidence: none yet.',age:'',cf:''}},
+g:{id:'g',s:'permit answer',t:'Ask licensing agent about the Dubai promotion permit',cond:'',dept:'ops',who:'Alex',due:'Mon',status:'open',needs:[],unb:['f'],ev:['Written reply from the licensing agent'],evDone:[false],why:'Advertised discounts may need a promotion permit in Dubai. This is unconfirmed.',src:'Launch status, 23 Oct',conf:'23 Oct'},
+h:{id:'h',s:'delivery SOP',t:'Write the delivery SOP: driver, recipient call, photo at handover',cond:'',dept:'ops',who:'Alex',ai:'Claude can draft it',due:'Wed',status:'open',needs:[],unb:[],ev:['One-page SOP agreed with the driver'],evDone:[false],why:'Gives every delivery the same steps and protects you if a customer disputes one.',src:'Launch status, 23 Oct',conf:'23 Oct'}
+};
+DEC={
+d1:{dept:'sales',t:'The printed pamphlets promise a candle with the example group orders. The site makes no candle claim.',cf:'Conflicts with a settled decision: 20% first-order offer, no candle or first-100 claim.',opts:['Honor the candle for pamphlet orders','Drop the candle and correct the pamphlet'],blocks:'public push'},
+d2:{dept:'ops',t:'The setup guide says AED 40 outside Dubai. The settled fee is AED 50.',cf:'A file conflicts with a settled decision. Claude proposes the file change.',opts:['Update the guide to AED 50','Keep AED 40 and change Shopify'],ai:true},
+d3:{dept:'product',t:'Final prices for the sample products still on interim prices.',cf:'A matching price list is not approval.',opts:['Approve the current prices','Send them for review']}
+};
+REP=[{id:'r1',t:'Merged the delivery-day fix (PR #24)',item:'b',who:'Claude session',when:'23 Oct'},{id:'r2',t:'Regenerated the Merchant feed, sample products',who:'Claude session',when:'23 Oct',orphan:true}];
+SET={ops:[['Delivery windows: 9am to noon, noon to 3pm, 3 to 6pm, 6 to 9pm, daily. One-hour lead since 23 Oct. 60 days ahead.','CLAUDE.md'],['Delivery fee: AED 30 Dubai, AED 50 elsewhere in the UAE. Revised 20 Oct.','CLAUDE.md']],tech:[['Keep the scroll-held three-product hero, arrows and approved headline.','CLAUDE.md']],sales:[['First-order offer: 20% for eligible new customers, DEMO fallback. No first-100 or candle claim.','CLAUDE.md']],marketing:[['No Google Ads for now. Revisit after reviews. 21 Oct.','CLAUDE.md']],content:[['Card font Cormorant Garamond italic. Ivory and paper backgrounds, no green fills.','CLAUDE.md']],product:[['Signature, Grand, Luxe. Only flowers scale 1x, 2x, 3x.','CLAUDE.md']],part:[['The Example partner proposal stays separate until reconciled.','CLAUDE.md']]};
+DONE={ops:[{t:'Shipping rates set: Dubai AED 30, other emirates AED 50',st:'v',by:'Claude, read from Shopify',on:'21 Oct'},{t:'Payments through Ziina tested',st:'r',by:'Alex',on:'22 Oct',flag:'An illustrative checkout check needs reconciliation. Unreconciled until the first real order.'}],tech:[{t:'Site opened to Google',st:'v',by:'Claude, checked robots.txt',on:'22 Oct'},{t:'Product cards link to product pages (PR #29)',st:'v',by:'GitHub merge record',on:'23 Oct'}],marketing:[{t:'Google Business Profile created',st:'r',by:'Alex',on:'23 Oct'},{t:'Search Console and Bing set up',st:'r',by:'Alex',on:'24 Oct',flag:'The launch status file still lists this as "tonight".'}],sales:[{t:'20% first-order offer tested end to end',st:'r',by:'Alex',on:'21 Oct'}],content:[{t:'Two outreach flyers finished',st:'v',by:'Files in the campaign folder',on:'23 Oct'}],product:[{t:'Aimée 51-rose bouquet added',st:'v',by:'GitHub pull request #22',on:'22 Oct'}],part:[{t:'JVC pamphlets printed',st:'r',by:'Alex',on:'Done'}]};
+S={v:'today',dept:null,item:null,tab:'open',msg:''};
+}
+function blockers(it){var o=it.needs.filter(function(n){return I[n].status!=='verified'}).map(function(n){return I[n].s});(it.decs||[]).forEach(function(d){if(!DEC[d].chosen)o.push('a decision')});return o}
+function pill(it){if(it.status==='verified')return '<span class="pl v">Verified</span>';if(it.status==='reported')return '<span class="pl r">Reported, not verified</span>';var b=blockers(it);if(b.length)return '<span class="pl w">Waiting on '+b[0]+'</span>';return '<span class="pl">Open</span>'}
+function row(it,cond){return '<div class="rw" data-k="'+it.id+'"><div style="flex:1;min-width:0"><div style="font-weight:500">'+(cond&&it.cond?it.cond:it.t)+'</div><div class="mt"><span class="av">'+it.who[0]+'</span><span>'+it.who+' · '+it.due+'</span>'+(it.ai?'<span class="ai">AI-assisted</span>':'')+(it.stale&&it.status!=='verified'?'<span class="pl s">Stale</span>':'')+'</div></div>'+pill(it)+'<i class="ti ti-chevron-right" aria-hidden="true"></i></div>'}
+function nextFor(w){return P.map(function(i){return I[i]}).find(function(x){return x.who===w&&x.status!=='verified'&&blockers(x).length===0})}
+function blockerItem(){return ['c','d','e','f'].map(function(i){return I[i]}).find(function(x){return x.status!=='verified'})}
+function openOf(d){return Object.keys(I).map(function(k){return I[k]}).filter(function(x){return x.dept===d&&x.status!=='verified'})}
+function pending(d){return Object.keys(DEC).filter(function(k){return !DEC[k].chosen&&(!d||DEC[k].dept===d)})}
+function ctx(){var v=P.filter(function(i){return I[i].status==='verified'}).length,b=blockerItem();
+document.getElementById('ctx').innerHTML='<div class="ob"><div class="lb">Current objective</div><div style="font-family:var(--font-voice);font-size:18px">First real orders</div><div class="mt">Proposed definition, to confirm: a refunded test order, then ten delivered orders.</div></div><div><div class="lb">Conditions verified</div><div style="font-size:16px;font-weight:500">'+v+' of 6</div></div><div><div class="lb">Data confirmed</div><div style="font-size:13px">24 Oct, 09:10 (sample)</div></div>'}
+function rail(){var h='<button class="ri'+(S.v==='today'?' on':'')+'" data-go="today">Today<small>Your briefing</small></button><button class="ri'+(S.v==='review'?' on':'')+'" data-go="review">Weekly review<small>Fridays</small></button><div class="rh">Departments</div>';
+Object.keys(DN).forEach(function(d){var o=openOf(d).length,p=pending(d).length;h+='<button class="ri'+((S.v==='dept'||S.v==='item')&&S.dept===d?' on':'')+'" data-dept="'+d+'">'+DN[d]+'<small>'+o+' open'+(p?' · '+p+' decision':'')+'</small></button>'});
+document.getElementById('rail').innerHTML=h}
+function today(){var h='<h2 class="hh">Today</h2><p class="mu" style="margin:0 0 14px">Saturday 24 Oct · briefing for Alex</p>';var bi=blockerItem();
+if(bi){var k=bi.blk;h+='<div class="cd bl"><div class="lb">Most consequential blocker</div><div class="tt">'+k.h+'</div><p>'+k.p+'</p><div class="mt" style="margin-bottom:6px">'+(k.age?'<span class="pl s">Stale: '+k.age+'</span>':'')+'<span>'+k.ev+'</span></div>'+(k.cf?'<div class="cf">'+k.cf+'</div>':'')+'<button class="bt" data-k="'+bi.id+'">Open: '+bi.s+'</button></div>'}else h+='<div class="cd"><div class="tt">Nothing blocks the path to real orders.</div></div>';
+var nx=nextFor('Alex');
+if(nx){h+='<div class="cd nx"><div class="lb">Your next action</div><div class="tt">'+(nx.status==='reported'?'Verify: ':'')+nx.t+'</div><p>'+nx.why+'</p><div class="mt" style="margin-bottom:8px"><span class="av" style="background:var(--pa);color:var(--ink)">N</span><span>Accountable: Alex · due '+nx.due+'</span>'+(nx.ai?'<span class="ai" style="color:var(--pa)">AI-assisted: '+nx.ai+'</span>':'')+'</div>'+(nx.unb.length?'<div class="mt" style="margin-bottom:8px">Unblocks: '+nx.unb.map(function(i){return I[i].s}).join(', ')+'</div>':'')+'<button class="bt" data-k="'+nx.id+'">Open detail</button></div>'}
+var vn=P.map(function(i){return I[i]}).find(function(x){return x.who==='Sam'&&x.status!=='verified'});
+if(vn){var vb=blockers(vn);h+='<p class="mu" style="margin:-4px 0 12px;font-size:13px">Sam: '+(vb.length?'waiting on '+vb[0]+' before '+vn.s+'.':'ready to start '+vn.s+'.')+'</p>'}
+var pd=pending();h+='<div class="sec"><span>Waiting on you</span><span class="mu">'+pd.length+'</span></div>';
+if(!pd.length)h+='<p class="mu" style="margin:0">No open decisions. Settled ones are kept on each department page.</p>';
+pd.forEach(function(k){var d=DEC[k];h+='<div class="dc"><div style="font-weight:500">'+d.t+'</div><div class="cf" style="margin:2px 0">'+d.cf+'</div><div class="mt">'+DN[d.dept]+(d.blocks?' · holds up the '+d.blocks:'')+(d.ai?' <span class="ai">AI-proposed</span>':'')+'</div>'+d.opts.map(function(o,i){return '<button class="bt" data-d="'+k+'" data-o="'+i+'">'+o+'</button>'}).join('')+'</div>'});
+h+='<div class="sec"><span>Reports from AI sessions</span><span class="mu">'+REP.length+'</span></div>';
+if(!REP.length)h+='<p class="mu" style="margin:0">Nothing waiting.</p>';
+REP.forEach(function(r){h+='<div class="rw" style="cursor:default"><div style="flex:1"><div style="font-weight:500">'+r.t+'</div><div class="mt"><span class="ai">'+r.who+'</span>'+r.when+(r.orphan?' · not attached to any task':' · reported, not verified')+'</div></div>'+(r.item?'<button class="bt" data-k="'+r.item+'">Review evidence</button>':'<button class="bt" data-act="dismiss" data-r="'+r.id+'">Dismiss</button>')+'</div>'});
+h+='<div class="sec"><span>What stands between us and real orders</span></div>';
+P.forEach(function(i){h+=row(I[i],true)});return h}
+function dept(){var d=S.dept,n=P.filter(function(i){return I[i].dept===d}).length;
+var h='<div class="bc"><a data-go="today">Today</a> / '+DN[d]+'</div><h2 class="hh">'+DN[d]+'</h2><div class="mt" style="margin-top:4px"><span class="av">'+DO[d][0]+'</span>Accountable: '+DO[d]+'</div><p style="margin:8px 0 0">'+(n?'Owns '+n+' of the 6 conditions for real orders.':'Not on the path to first real orders.')+'</p>';
+h+='<div class="tabs"><button data-tab="open" class="'+(S.tab==='open'?'on':'')+'">Open</button><button data-tab="done" class="'+(S.tab==='done'?'on':'')+'">Done</button></div>';
+if(S.tab==='open'){var o=Object.keys(I).map(function(k){return I[k]}).filter(function(x){return x.dept===d&&x.status!=='verified'});if(!o.length)h+='<p class="mu">Nothing open here. Settled decisions are below.</p>';o.forEach(function(x){h+=row(x)});
+pending(d).forEach(function(k){h+='<div class="dc"><div style="font-weight:500">Decision: '+DEC[k].t+'</div><div class="mt">Answer it on Today.</div></div>'})}
+else{var dn=(DONE[d]||[]).slice();Object.keys(I).map(function(k){return I[k]}).filter(function(x){return x.dept===d&&x.status==='verified'}).forEach(function(x){dn.unshift({t:x.t,st:'v',by:'Alex, with evidence',on:'today (sample)'})});
+if(!dn.length)h+='<p class="mu">Nothing done yet.</p>';dn.forEach(function(x){h+='<div class="rw" style="cursor:default"><div style="flex:1"><div style="font-weight:500">'+x.t+'</div><div class="mt">'+x.by+' · '+x.on+'</div>'+(x.flag?'<div class="cf" style="margin:4px 0 0">'+x.flag+'</div>':'')+'</div>'+(x.st==='v'?'<span class="pl v">Verified</span>':'<span class="pl r">Reported, not verified</span>')+'</div>'})}
+h+='<div class="sec"><span>Settled decisions</span><span class="mu"><i class="ti ti-lock" aria-hidden="true"></i></span></div>';
+(SET[d]||[]).forEach(function(s){h+='<div class="sl"><i class="ti ti-lock" aria-hidden="true"></i><div style="flex:1">'+s[0]+'<div class="mt">Source: '+s[1]+'</div></div></div>'});
+h+='<p class="mu" style="font-size:12px;margin:8px 0 0">Reopening a settled decision needs Alex and creates a new pending decision.</p>';return h}
+function item(){var x=I[S.item],h='<div class="bc"><a data-go="today">Today</a> / <a data-dept="'+x.dept+'">'+DN[x.dept]+'</a> / '+x.s+'</div><h2 class="hh" style="font-size:20px">'+x.t+'</h2><div style="margin:6px 0">'+pill(x)+'</div>';
+h+='<div class="fg"><div><div class="lb">Accountable human</div><div><span class="av">'+x.who[0]+'</span> '+x.who+'</div></div><div><div class="lb">Prepared by</div><div>'+(x.ai?'<span class="ai">AI-assisted</span> '+x.ai:'No AI involvement')+'</div></div><div><div class="lb">Due</div><div>'+x.due+'</div></div><div><div class="lb">Last confirmed</div><div>'+x.conf+(x.stale&&x.status!=='verified'?' <span class="pl s">Stale</span>':'')+'</div></div></div>';
+h+='<div class="sec"><span>Why it matters</span></div><p style="margin:0 0 4px">'+x.why+'</p><div class="mt">Source: '+x.src+'</div>';
+var dep=x.needs.map(function(i){return I[i]});
+h+='<div class="sec"><span>Depends on</span></div>';if(!dep.length&&!(x.decs||[]).length)h+='<p class="mu" style="margin:0">Nothing. It can start now.</p>';
+dep.forEach(function(y){h+='<div class="rw" data-k="'+y.id+'"><div style="flex:1">'+y.t+'<div class="mt">'+DN[y.dept]+' · '+y.who+'</div></div>'+pill(y)+'</div>'});
+(x.decs||[]).forEach(function(k){h+='<div class="rw" style="cursor:default"><div style="flex:1">Decision: '+DEC[k].t+'</div>'+(DEC[k].chosen?'<span class="pl v">Settled</span>':'<span class="pl w">Pending</span>')+'</div>'});
+if(x.unb.length){h+='<div class="sec"><span>Unblocks</span></div>';x.unb.forEach(function(i){var y=I[i];h+='<div class="rw" data-k="'+y.id+'"><div style="flex:1">'+y.t+'<div class="mt">'+DN[y.dept]+' · '+y.who+'</div></div>'+pill(y)+'</div>'})}
+h+='<div class="sec"><span>Evidence required</span><span class="mu">'+x.evDone.filter(Boolean).length+' of '+x.ev.length+' seen</span></div>';
+x.ev.forEach(function(e,i){h+='<label class="ev"><input type="checkbox" data-ev="'+i+'" '+(x.evDone[i]?'checked':'')+(x.status==='verified'?' disabled':'')+'><span>'+e+'</span></label>'});
+h+='<div class="sec"><span>Verification</span></div><div class="cd" style="margin:0">';
+if(x.status==='verified')h+='<p style="margin:0"><span class="pl v">Verified</span> by Alex today (sample), after seeing all evidence.</p>';
+else if(x.status==='reported')h+='<p>'+(x.rep||'Reported done.')+' Nobody has verified it yet. Tick the evidence you have seen yourself, then verify.</p><button class="bt" data-act="verify">Mark verified</button>';
+else{var b=blockers(x);h+=b.length?'<p>This cannot be reported yet. It waits on: '+b.join(', ')+'.</p><button class="bt" disabled>Report done</button>':'<p>Do the work, attach the evidence, then report it done. Verification is a separate step.</p><button class="bt" data-act="report">Report done</button>'}
+h+='<div class="msg" id="msg">'+S.msg+'</div></div>';
+var sd=SET[x.dept]||[];if(sd.length)h+='<div class="sec"><span>Settled decisions that apply</span></div><div class="sl"><i class="ti ti-lock" aria-hidden="true"></i><div>'+sd[0][0]+'</div></div>';return h}
+function review(){return '<div class="bc"><a data-go="today">Today</a> / Weekly review</div><h2 class="hh">Weekly review</h2><p>Not part of this preview. On Fridays it shows what was verified this week, what was reported but never verified, what went stale, and which decisions are still open. You and Sam then agree who does what next.</p>'}
+function render(){ctx();rail();var m=document.getElementById('main');m.innerHTML=S.v==='today'?today():S.v==='dept'?dept():S.v==='item'?item():review()}
+document.getElementById('app').addEventListener('click',function(e){var t=e.target.closest('[data-k],[data-dept],[data-go],[data-act],[data-d],[data-tab],[data-ev]');if(!t)return;var D=t.dataset;S.msg='';
+if(D.act==='report'){I[S.item].status='reported';I[S.item].rep='Reported by Alex, today (sample).';render();return}
+if(D.act==='verify'){var x=I[S.item];if(x.evDone.every(Boolean)){x.status='verified';render()}else{S.msg='Tick every evidence item you have seen before verifying.';render()}return}
+if(D.act==='dismiss'){REP=REP.filter(function(r){return r.id!==D.r});render();return}
+if(D.d){var d=DEC[D.d];d.chosen=d.opts[+D.o];SET[d.dept].push([d.chosen+'. Settled today (sample).','Decision made in this preview']);render();return}
+if(D.ev!==undefined){var y=I[S.item];y.evDone[+D.ev]=t.checked;S.msg='';render();return}
+if(D.tab){S.tab=D.tab;render();return}
+if(D.go){S.v=D.go;render();return}
+if(D.dept){S.v='dept';S.dept=D.dept;S.tab='open';render();return}
+if(D.k){S.v='item';S.item=D.k;S.dept=I[D.k].dept;render();return}});
+document.getElementById('rs').onclick=function(){mk();render()};
+mk();render();
+</script>
+</body></html>

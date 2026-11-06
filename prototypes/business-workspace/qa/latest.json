@@ -1,0 +1,72 @@
+{
+  "checkpoint": "2026-10-25",
+  "scope": "Fictional public review copies",
+  "archivePagesLoaded": 6,
+  "layout": [
+    {
+      "width": 1440,
+      "overflow": false,
+      "height": 721,
+      "minFont": 12
+    },
+    {
+      "width": 1280,
+      "overflow": false,
+      "height": 721,
+      "minFont": 12
+    },
+    {
+      "width": 1024,
+      "overflow": false,
+      "height": 721,
+      "minFont": 12
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "height": 796,
+      "minFont": 12
+    },
+    {
+      "width": 414,
+      "overflow": false,
+      "height": 1151,
+      "minFont": 12
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "height": 1200,
+      "minFont": 12
+    },
+    {
+      "width": 360,
+      "overflow": false,
+      "height": 1221,
+      "minFont": 12
+    },
+    {
+      "width": 320,
+      "overflow": false,
+      "height": 1239,
+      "minFont": 12
+    }
+  ],
+  "runtimeErrors": [],
+  "passed": [
+    "blocker-to-action route",
+    "review requires completed checklist",
+    "review does not verify completion",
+    "return keeps originating department",
+    "personal work filter",
+    "collapsed reference",
+    "dark/reduced-motion render"
+  ],
+  "notVerified": [
+    "unassisted usability",
+    "Arabic",
+    "shared editing",
+    "live source access",
+    "production behavior"
+  ]
+}

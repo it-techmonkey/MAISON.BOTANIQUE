@@ -1,0 +1,22 @@
+{
+  "checkpoint": "2026-10-25",
+  "baseCommit": "b1d113aa3d249094edd7ee7c7b5cd40d84aa081f",
+  "node": "24.14.0",
+  "checks": {
+    "archiveTests": "4 passed",
+    "storefrontTests": "44 passed",
+    "pythonToolingTests": "5 passed",
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "lockedDependencyInstall": "passed with lifecycle scripts disabled; audit reported zero vulnerabilities",
+    "browserArchiveAndLatestWorkflow": "passed; see latest.json",
+    "gitDiffWhitespace": "passed"
+  },
+  "scope": "Documentation and standalone prototypes outside storefront routes",
+  "notVerified": [
+    "Owner acceptance or unassisted usability",
+    "Arabic prototype UI",
+    "Shared editing, persistence or integrations",
+    "Real checkout or production behavior"
+  ]
+}
