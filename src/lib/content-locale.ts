@@ -3,7 +3,7 @@ import type { Locale } from './types';
 /** Only the new editorial routes have translated URLs; the existing shop keeps its saved preference. */
 export function contentLocale(pathname: string): Locale | null {
   const path = pathname.replace(/^\/ar(?=\/)/, '');
-  if (!/^\/(?:occasions\/(?:birthday|love)|journal(?:\/[a-z0-9-]+)?)$/.test(path)) return null;
+  if (!/^\/(?:occasions\/(?:birthday|love|new-baby)|journal(?:\/[a-z0-9-]+)?)$/.test(path)) return null;
   return pathname.startsWith('/ar/') ? 'ar' : 'en';
 }
 
