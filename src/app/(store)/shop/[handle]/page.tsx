@@ -83,6 +83,15 @@ const FAQS_BY_PRODUCT: Record<string, { question: { en: string; ar: string }; an
       },
     },
   ],
+  'nacre-pearl-white-rose-bouquet': [
+    {
+      question: { en: 'How many roses are in the Nacre bouquet?', ar: 'كم عدد الورود في باقة ناكر؟' },
+      answer: {
+        en: 'Signature has 51 hand-selected pearly white roses, Grand has 101 and Luxe has 201. Only the rose count changes between sizes.',
+        ar: 'يضم حجم سيغنتشر 51 وردة بيضاء لؤلؤية منتقاة يدوياً، وغراند 101 وردة، ولوكس 201 وردة. يتغير عدد الورود فقط بين الأحجام.',
+      },
+    },
+  ],
 };
 
 const DETAILS = [

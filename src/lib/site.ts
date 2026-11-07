@@ -170,7 +170,7 @@ export function occasionSlug(id: string) { return id === 'just-because' ? 'gifts
 export function occasionHash(id: string) { return `occasion/${occasionSlug(id)}`; }
 /** Occasions that have a page of their own; every other occasion is a filter on the shop. */
 export const OCCASION_PAGE: Record<string, string> = { diwali: '/diwali' };
-export function occasionPath(id: string) { return OCCASION_PAGE[id] ?? (['birthday', 'love'].includes(id) ? `/occasions/${id}` : `/shop#${occasionHash(id)}`); }
+export function occasionPath(id: string) { return OCCASION_PAGE[id] ?? (['birthday', 'love', 'new-baby'].includes(id) ? `/occasions/${id}` : `/shop#${occasionHash(id)}`); }
 /** Window event that asks the home collection to clear its filters and come into view. */
 export const SHOW_COLLECTION_EVENT = 'maison:show-collection';
 export type ShowCollectionDetail = { occasions?: boolean };

@@ -6,7 +6,7 @@ import { pathToFileURL } from 'node:url';
 
 const LIVE = 'https://www.maisonbotaniqueflowers.com';
 export const BASE_PATHS = ['/', '/shop', '/faq', '/delivery'];
-export const GROWTH_PATHS = ['/occasions/birthday', '/occasions/love', '/journal', '/journal/birthday-card-messages', '/journal/send-flowers-to-dubai-from-abroad'];
+export const GROWTH_PATHS = ['/occasions/birthday', '/occasions/love', '/occasions/new-baby', '/journal', '/journal/birthday-card-messages', '/journal/send-flowers-to-dubai-from-abroad'];
 
 export function safeBase(value) {
   const url = new URL(value);

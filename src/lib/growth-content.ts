@@ -76,6 +76,21 @@ export const OCCASION_CONTENT: OccasionContent[] = [
     },
     journalSlug: 'send-flowers-to-dubai-from-abroad',
   },
+  {
+    slug: 'new-baby', occasion: 'new-baby',
+    title: { en: 'New Baby Flowers & Gifts in Dubai', ar: 'ورود وهدايا المولود الجديد في دبي' },
+    heading: { en: 'New baby flowers in Dubai', ar: 'ورود المولود الجديد في دبي' },
+    description: { en: 'Choose new baby flowers and gifts in Dubai: soft pastel bouquets and baby gift hampers with a handwritten card and an available delivery window.', ar: 'اختر ورود وهدايا المولود الجديد في دبي: باقات بألوان هادئة وسلال هدايا للمولود مع بطاقة بخط اليد وموعد توصيل متاح.' },
+    intro: { en: 'A new arrival deserves a warm welcome. Choose soft flowers for the parents or a gift hamper for the baby, add your words by hand and book an available Dubai delivery window.', ar: 'القادم الجديد يستحق استقبالاً دافئاً. اختر زهوراً ناعمة للوالدين أو سلة هدايا للمولود، وأضف كلماتك بخط اليد واحجز فترة توصيل متاحة في دبي.' },
+    advice: {
+      heading: { en: 'Flowers for the parents, a gift for the baby', ar: 'زهور للوالدين وهدية للمولود' },
+      paragraphs: [
+        { en: 'Pastel bouquets, such as Reverie or Seraphine, suit a home that is welcoming visitors. For the baby, a gift hamper such as Little Bloom or Little Star holds the gifts listed on its product page. Read the contents there before ordering.', ar: 'تناسب الباقات بألوان الباستيل، مثل ريفيري وسيرافين، بيتاً يستقبل الزوار. وللمولود، تضم سلة هدايا مثل ليتل بلوم أو ليتل ستار الهدايا المذكورة في صفحة المنتج. اقرأ المحتويات هناك قبل الطلب.' },
+        { en: 'Parents with a newborn are often tired and busy, so choose a delivery day and window that suits them and ask the family which day is easier. If you are unsure whether a name or a gender is public yet, keep the card message to a warm welcome and ask the flower desk if you need help.', ar: 'غالباً ما يكون والدا المولود متعبين ومشغولين، فاختر يوم توصيل وفترة تناسبهما، واسأل العائلة أي يوم أنسب. وإن لم تكن متأكداً أن الاسم أو الجنس معلن بعد، فاجعل رسالة البطاقة ترحيباً دافئاً، واسأل مكتب الزهور إن احتجت إلى مساعدة.' },
+      ],
+    },
+    journalSlug: 'how-to-choose-a-flower-delivery-in-dubai',
+  },
 ];
 
 export const findOccasionContent = (slug: string) => OCCASION_CONTENT.find((item) => item.slug === slug);
