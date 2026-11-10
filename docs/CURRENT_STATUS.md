@@ -33,7 +33,7 @@ This cleanup preserves that newer application baseline.
   one-hour lead (shortened from three hours on 23 October 2026), 60-day horizon.
 - Keep real gift brands and seasonal products. Do not publish competitor florist material.
 - Money bouquet cash principal is separate; only the arrangement fee is paid/discounted online.
-- Preserve working WhatsApp configuration; no public street address in LocalBusiness markup.
+- Preserve working WhatsApp configuration; the street address is public (owner decision, 10 Nov 2026) on the contact page and in the Organization markup only; not in the footer.
 
 ## Pending or not independently verified
 

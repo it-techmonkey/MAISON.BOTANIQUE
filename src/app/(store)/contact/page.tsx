@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Bi, PageHero } from '@/components/store/blocks';
 import { EnquiryForm } from '@/components/store/Forms';
 import { T } from '@/components/store/StoreProvider';
-import { SITE } from '@/lib/site';
+import { BUSINESS, SITE } from '@/lib/site';
 import '@/styles/pages.css';
 
 export const metadata: Metadata = {
@@ -49,8 +49,9 @@ export default function ContactPage() {
             </div>
           )}
           <div>
-            <h2 className="eyebrow"><T en="Based in" ar="مقرنا" /></h2>
-            <p><Bi text={SITE.city} /></p>
+            <h2 className="eyebrow"><T en="Registered office" ar="المكتب المسجّل" /></h2>
+            <p><Bi text={BUSINESS.legalName} /><br /><Bi text={BUSINESS.address} /><br />
+              <T en="Trade licence" ar="الرخصة التجارية" /> <span dir="ltr">{BUSINESS.licenceNumber}</span></p>
           </div>
           <div>
             <h2 className="eyebrow"><T en="Before you write" ar="قبل أن تراسلنا" /></h2>

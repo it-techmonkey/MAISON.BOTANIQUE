@@ -52,6 +52,18 @@ export const SITE = {
   instagram: null as string | null,
 };
 
+/** The licensed company behind the shop (Dubai DET trade licence, issued 4 Nov 2026). Shown on the contact page and in the terms only. */
+export const BUSINESS = {
+  legalName: { en: 'Maison Botanique Trading L.L.C.', ar: 'ميزون بوتانيك للتجارة ش.ذ.م.م' },
+  licenceNumber: '1667073',
+  address: {
+    en: 'Office 1-29, Bin Dasmal Building 1, Al Quoz Industrial 1, Dubai, United Arab Emirates',
+    ar: 'مكتب 1-29، بناية بن دسمال 1، القوز الصناعية 1، دبي، الإمارات العربية المتحدة',
+  },
+  /** Parts of the address for structured data. */
+  streetAddress: 'Office 1-29, Bin Dasmal Building 1, Al Quoz Industrial 1',
+};
+
 /** The occasions products are tagged with in Shopify (`occasion:<id>`), in menu order. */
 export const OCCASION_IDS = ['birthday', 'love', 'thanks', 'get-well', 'new-baby', 'congratulations', 'wedding', 'sorry', 'just-because', 'diwali'] as const;
 export type OccasionId = typeof OCCASION_IDS[number];
