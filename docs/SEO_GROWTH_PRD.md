@@ -6,7 +6,7 @@
 
 First make the existing store discoverable and trustworthy. Then publish a small number of useful shopping pages for real occasions, products, and delivery questions. Build authority through genuine reviews and relevant editorial mentions. Use Google Search Console and Bing Webmaster Tools to decide what to improve. Do not buy a mass-directory package, produce weekly filler blogs, or keep resubmitting unchanged URLs.
 
-The search destination is `https://www.maisonbotaniqueflowers.com`. The bare domain currently redirects there. Shopify is the live product and price authority. The owner must separately approve any change to `main`, production, Shopify, DNS, or paid tools. Do not use the destructive catalog seed script for SEO edits. Preserve the approved hero, shopping flow, Arabic interface, offer, size rules and gift curation. No public street address or invented delivery promise.
+The search destination is `https://www.maisonbotaniqueflowers.com`. The bare domain currently redirects there. Shopify is the live product and price authority. The owner must separately approve any change to `main`, production, Shopify, DNS, or paid tools. Do not use the destructive catalog seed script for SEO edits. Preserve the approved hero, shopping flow, Arabic interface, offer, size rules and gift curation. The street address (owner-approved 10 Nov 2026) appears only on the contact page and in the Organization markup. No invented delivery promise.
 
 ## Baseline and evidence
 

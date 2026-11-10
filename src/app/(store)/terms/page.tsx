@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { InfoPage } from '@/components/store/blocks';
-import { SITE } from '@/lib/site';
+import { BUSINESS, SITE } from '@/lib/site';
 import '@/styles/pages.css';
 
 export const metadata: Metadata = {
@@ -22,6 +22,7 @@ export default function TermsPage() {
         {
           title: { en: 'Orders', ar: 'الطلبات' },
           paragraphs: [
+            { en: `Orders are sold by ${BUSINESS.legalName.en}, Dubai, trade licence ${BUSINESS.licenceNumber}.`, ar: `تُباع الطلبات من قبل ${BUSINESS.legalName.ar}، دبي، رخصة تجارية رقم ${BUSINESS.licenceNumber}.` },
             { en: 'An order is confirmed when you receive our confirmation email. Prices are shown in UAE dirhams and the total, including any delivery fee, is shown at checkout before you pay.', ar: 'يُعد الطلب مؤكداً عند استلامك رسالة التأكيد عبر البريد الإلكتروني. تُعرض الأسعار بالدرهم الإماراتي، ويظهر المجموع شاملاً أي رسوم توصيل عند الدفع وقبل إتمامه.' },
           ],
         },

@@ -1,4 +1,4 @@
-import { SITE_URL } from './site';
+import { BUSINESS, SITE_URL } from './site';
 
 /** Shared identity for pages and product sellers. Add public contact/profile links only after verification. */
 export function siteSchema() {
@@ -9,7 +9,9 @@ export function siteSchema() {
         '@type': 'Organization',
         '@id': `${SITE_URL}/#organization`,
         name: 'Maison Botanique',
+        legalName: BUSINESS.legalName.en,
         url: `${SITE_URL}/`,
+        address: { '@type': 'PostalAddress', streetAddress: BUSINESS.streetAddress, addressLocality: 'Dubai', addressCountry: 'AE' },
         areaServed: { '@type': 'Country', name: 'United Arab Emirates' },
       },
       {
