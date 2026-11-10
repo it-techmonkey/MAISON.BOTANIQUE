@@ -84,8 +84,10 @@ export function DiwaliBar({ today }: { today: string }) {
           ))}
           {BURSTS.map(([x, y, r, color, delay]) => <Burst key={`${x}-${y}`} x={x} y={y} r={r} color={color} delay={delay} />)}
         </svg>
-        <img className="sea-toran" src="/seasonal/toran-cut-1200.webp" srcSet="/seasonal/toran-cut-600.webp 600w, /seasonal/toran-cut-1200.webp 1200w"
-          sizes="(max-width: 860px) 100vw, 42vw" alt={t('Fresh orange and yellow marigold toran', 'إكليل قطيفة برتقالي وأصفر طازج')} width="1200" height="418" loading="lazy" decoding="async" />
+        <Link href={`/shop/${toran.id}`} className="sea-toran-link" tabIndex={-1} aria-hidden="true">
+          <img className="sea-toran" src="/seasonal/toran-cut-1200.webp" srcSet="/seasonal/toran-cut-600.webp 600w, /seasonal/toran-cut-1200.webp 1200w"
+            sizes="(max-width: 860px) 100vw, 42vw" alt="" width="1200" height="418" loading="lazy" decoding="async" />
+        </Link>
         <div className="sea-dw-copy">
           <p className="sea-kicker">{t('Diwali · ', 'ديوالي · ')}<span className="sea-wide">{t('Sunday ', 'الأحد ')}</span>{t('8 November · Pre-orders open', '8 نوفمبر · الطلب المسبق مفتوح')}</p>
           <h2 id="sea-dw-title">{t('Ghar wali Diwali, here in Dubai.', 'ديوالي بدفء البيت، هنا في دبي.')}</h2>
