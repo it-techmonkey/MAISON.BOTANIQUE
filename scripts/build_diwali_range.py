@@ -23,7 +23,7 @@ PRICES = {
     'the-hosts-trunk': {'Signature': 549},
     'marigold-haat-bouquet': {'Signature': 199, 'Grand': 359, 'Luxe': 519},
     'brass-lota-posy': {'Signature': 249},
-    'marigold-urli': {'Signature': 179},
+    'marigold-urli': {'Signature': 259},
     'thoranam-door-arch': {'Signature': 399},
     'entrance-pair': {'Signature': 289, 'Grand': 499},
     'flower-rangoli-tray': {'Signature': 279},
@@ -142,7 +142,7 @@ def sizes_of(p):
     for i, (name, price) in enumerate(PRICES[p['id']].items()):
         out.append({'id': name.lower(), 'sku': f"{p['sku']}-{name[:3].upper().replace('SIG', 'SIG').replace('GRA', 'GRD').replace('LUX', 'LUX')}",
                     'name': name, 'nameAr': SIZE_AR[name], 'detail': DIMENSIONS[p['id']][i][0], 'detailAr': DIMENSIONS[p['id']][i][1],
-                    'price': price, 'compareAtPrice': struck(price)})
+                    'price': price, 'compareAtPrice': COMPARE_AT.get(p['id'], {}).get(name, struck(price))})
     return out
 
 

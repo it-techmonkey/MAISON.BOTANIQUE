@@ -14,8 +14,11 @@ test('every Diwali handle has a record and a delivery window of 5 to 15 November
   }
 });
 
+// Struck prices the owner set directly in Shopify (10 Nov 2026), so the tag reads 13% off. Keep in step with COMPARE_AT in scripts/build_diwali_range.py.
+const OWNER_COMPARE_AT = { 'marigold-urli': { Signature: 299 } };
+
 test('struck prices are price / 0.9 rounded, so the calculated tag reads 10% off', () => {
-  for (const id of added) for (const size of byId.get(id).sizes) assert.equal(size.compareAtPrice, Math.round(size.price / 0.9), `${id} ${size.name}`);
+  for (const id of added) for (const size of byId.get(id).sizes) assert.equal(size.compareAtPrice, OWNER_COMPARE_AT[id]?.[size.name] ?? Math.round(size.price / 0.9), `${id} ${size.name}`);
 });
 
 test('English and Arabic lines match in count, and no Hindi script or product counts appear', () => {
