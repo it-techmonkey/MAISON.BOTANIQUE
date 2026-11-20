@@ -46,12 +46,14 @@ export function OccasionLanding({ slug, locale = 'en' }: { slug: string; locale?
       <p><T {...page.intro} /></p>
       <a className="arrow-link" href="#occasion-collection"><T en="Choose your flowers" ar="اختر زهورك" /><span aria-hidden="true">↓</span></a>
     </header>
+    <GuideHero path={`/occasions/${slug}`} />
     <div id="occasion-collection"><CollectionBrowser key={slug} initialOccasion={page.occasion} showOccasions={false} listId={`occasion:${slug}`} /></div>
     <div className="section growth-reading">
       <section className="growth-advice"><h2><T {...page.advice.heading} /></h2>
         {page.advice.paragraphs.map((text) => <p key={text.en}><T {...text} /></p>)}
         <Link className="arrow-link" href={contentHref(`/journal/${guide.slug}`, locale)}><T {...guide.title} /><span aria-hidden="true">↗</span></Link>
       </section>
+      <GuideProducts path={`/occasions/${slug}`} />
       <OrderQuestions />
       <nav aria-label={locale === 'ar' ? 'مناسبات أخرى' : 'Other occasions'} className="growth-related">
         {OCCASION_CONTENT.filter((item) => item.slug !== slug).map((item) => <Link key={item.slug} href={contentHref(`/occasions/${item.slug}`, locale)}><T {...item.heading} /></Link>)}
