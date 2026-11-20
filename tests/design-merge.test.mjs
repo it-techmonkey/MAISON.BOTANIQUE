@@ -65,7 +65,7 @@ test('personal codes are customer-bound, single-use, idempotent and first-order 
       creates++;
       assert.deepEqual(variables.input.context.customers.add, ['gid://shopify/Customer/1']);
       assert.equal(variables.input.usageLimit, 1);
-      assert.equal(variables.input.customerGets.value.percentage, .25);
+      assert.equal(variables.input.customerGets.value.percentage, .15);
       assert.equal(variables.input.endsAt, null);
       assert.equal('minimumRequirement' in variables.input, false);
       codes.add(variables.input.code);
@@ -75,14 +75,14 @@ test('personal codes are customer-bound, single-use, idempotent and first-order 
   };
   try {
     const first = await getWelcomeCode('gid://shopify/Customer/1');
-    assert.match(first, /^MB25-[A-F0-9]{20}$/);
+    assert.match(first, /^MB15-[A-F0-9]{20}$/);
     assert.equal(await getWelcomeCode('gid://shopify/Customer/1'), first);
     assert.equal(creates, 1);
     orders = '1';
     await assert.rejects(getWelcomeCode('gid://shopify/Customer/1'), WelcomeNotEligible);
     orders = '0';
     delete process.env.SHOPIFY_DISCOUNTS_ADMIN_TOKEN;
-    assert.equal(await getWelcomeCode('gid://shopify/Customer/1'), 'MAISON25');
+    assert.equal(await getWelcomeCode('gid://shopify/Customer/1'), 'MAISON15');
   } finally { global.fetch = originalFetch; process.env.SHOPIFY_DISCOUNTS_ADMIN_TOKEN = 'test-discounts'; }
 });
 
@@ -114,7 +114,7 @@ test('discount creation timeout reuses an already-created code', async () => {
     throw new Error('Timeout after Shopify committed the discount');
   };
   try {
-    assert.match(await getWelcomeCode('gid://shopify/Customer/2'), /^MB25-/);
+    assert.match(await getWelcomeCode('gid://shopify/Customer/2'), /^MB15-/);
     assert.equal(creates, 1);
   } finally { global.fetch = originalFetch; }
 });
@@ -140,7 +140,7 @@ test('sale tag reads the saving from the two prices shown', async () => {
   assert.equal(discountPercent(235, 235), 0);
   assert.equal(discountPercent(300, 250), 0);
   assert.equal(percentLabel(10, false), '10%');
-  assert.equal(percentLabel(25, true), '٢٥٪');
+  assert.equal(percentLabel(15, true), '١٥٪');
 });
 
 test('makeup and beauty pieces sit in Makeup & Beauty only, not also in Gifts & Add-ons', () => {

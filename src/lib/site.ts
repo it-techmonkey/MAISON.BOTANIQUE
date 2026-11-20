@@ -14,7 +14,7 @@ export interface Bilingual {
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.maisonbotaniqueflowers.com').replace(/\/+$/, '');
 
 /** The welcome offer's discount code (create it in Shopify Discounts), shown in the banner and after the sign-up. */
-export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'MAISON25').trim();
+export const OFFER_CODE = (process.env.NEXT_PUBLIC_LAUNCH_OFFER_CODE || 'MAISON15').trim();
 
 /** Delivery fees in AED, shown in the bag. Shopify shipping rates must match; change both together. */
 export const DELIVERY_FEES = { dubai: 35, otherEmirates: 65 } as const;

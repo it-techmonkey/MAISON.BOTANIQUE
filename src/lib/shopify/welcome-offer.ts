@@ -6,7 +6,7 @@ import { SHOPIFY_API_VERSION, shopifyConfig } from './config';
 export class WelcomeNotEligible extends Error {}
 
 export function welcomeCode(customerId: string, secret: string) {
-  return `MB25-${createHmac('sha256', secret).update(customerId).digest('hex').slice(0, 20).toUpperCase()}`;
+  return `MB15-${createHmac('sha256', secret).update(customerId).digest('hex').slice(0, 20).toUpperCase()}`;
 }
 
 /** No PII in codes; repeat signups return the same customer-bound, single-use code. */
@@ -45,7 +45,7 @@ export async function getWelcomeCode(customerId: string) {
         input: {
           title: 'Maison welcome offer', code, startsAt: new Date().toISOString(), endsAt: null,
           context: { customers: { add: [customerId] } },
-          customerGets: { value: { percentage: .25 }, items: { all: true } },
+          customerGets: { value: { percentage: .15 }, items: { all: true } },
           appliesOncePerCustomer: true, usageLimit: 1,
           combinesWith: { orderDiscounts: false, productDiscounts: false, shippingDiscounts: true },
         },
