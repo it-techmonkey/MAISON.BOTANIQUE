@@ -35,12 +35,12 @@ export function ProductCard({ product, sizes = '(max-width: 640px) 92vw, (max-wi
         {!product.available ? <span className="product-card__badge">{t('Sold out', 'نفدت الكمية')}</span>
           : isMostLoved(product.id) && <span className="product-card__badge">{t('Most loved', 'الأكثر حباً')}</span>}
       </Link>
-      <div className="product-card__meta">
+      <Link href={href} className="product-card__meta" onClick={onOpen} tabIndex={-1} aria-hidden="true">
         <span>{ar ? product.categoryAr : product.category}</span>
         <span>{fromPrice && <>{t('From', 'من')} </>}<Money amount={product.price} currency={product.currencyCode} ar={ar} /></span>
-      </div>
+      </Link>
       <h3 className="product-card__title"><Link href={href} onClick={onOpen}>{name}</Link></h3>
-      <p className="product-card__description">{ar ? product.lineAr : product.line}</p>
+      <Link href={href} className="product-card__description" onClick={onOpen} tabIndex={-1} aria-hidden="true">{ar ? product.lineAr : product.line}</Link>
       <div className="product-card__actions">
         <Link className="product-card__details" href={href} onClick={onOpen} aria-label={`${t('Explore details', 'التفاصيل')}: ${name}`}>
           {t('Explore details', 'التفاصيل')} <span aria-hidden="true">↗</span>

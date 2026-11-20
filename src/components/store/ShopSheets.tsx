@@ -160,10 +160,10 @@ function DialogShell({ children, onClose, label, kind }: { children: ReactNode; 
   );
 }
 
-function CardPreview({ message, signedAs, anonymous, t }: { message: string; signedAs: string; anonymous: boolean; t: Copy }) {
+function CardPreview({ message, signedAs, anonymous, t, onClick }: { message: string; signedAs: string; anonymous: boolean; t: Copy; onClick?: () => void }) {
   const arabic = /[؀-ۿ]/.test(message);
   return (
-    <div className="qa-stage" aria-hidden="true" data-ph-mask>
+    <div className="qa-stage" aria-hidden="true" data-ph-mask onClick={onClick} style={onClick ? { cursor: 'text' } : undefined}>
       <div className="qa-envelope">
         <div className="qa-card">
           <span className="qa-card-mark">MAISON · BOTANIQUE</span>
@@ -301,7 +301,7 @@ export function PurchaseOptions({ product, onAdd, related = [], onOpen, onQuickA
 
         <section className="qa-section" aria-labelledby={`qa-card-title-${product.id}`}>
           <div className="qa-legend"><span id={`qa-card-title-${product.id}`}>{t.yourCard}</span><em>{t.handwritten}</em></div>
-          <CardPreview message={note.trim()} signedAs={signedAs.trim()} anonymous={anonymous} t={t} />
+          <CardPreview message={note.trim()} signedAs={signedAs.trim()} anonymous={anonymous} t={t} onClick={() => document.getElementById(`gift-note-${product.id}`)?.focus()} />
           <label className="qa-label" htmlFor={`gift-note-${product.id}`}>{t.giftNote}</label>
           <textarea id={`gift-note-${product.id}`} value={note} maxLength={NOTE_LIMIT} rows={2} onChange={(event) => setNote(event.target.value)} onBlur={reportNote} placeholder={t.notePlaceholder} />
           <div className="qa-sign">
