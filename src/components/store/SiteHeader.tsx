@@ -40,8 +40,8 @@ export function CollectionLink({ hash, onClick, children, className, 'aria-label
 
 // The opening offer runs above the header; the whole ribbon opens the sign-up.
 const OFFER = {
-  en: ['Welcome offer · 25% off your first order', 'Same-day delivery in the UAE', 'Pre-book up to 60 days ahead'],
-  ar: ['عرض الترحيب · خصم ٢٥٪ على طلبك الأول', 'توصيل في اليوم نفسه داخل الإمارات', 'احجز مسبقاً حتى ٦٠ يوماً'],
+  en: ['Welcome offer · 15% off your first order', 'Same-day delivery in the UAE', 'Pre-book up to 60 days ahead'],
+  ar: ['عرض الترحيب · خصم ١٥٪ على طلبك الأول', 'توصيل في اليوم نفسه داخل الإمارات', 'احجز مسبقاً حتى ٦٠ يوماً'],
 };
 
 /** UAE Flag Day (3 Nov 2026 only): the first message in the ribbon, opening the flag boxes instead of the sign-up. */
@@ -52,7 +52,7 @@ function OfferBar({ flagDay }: { flagDay: boolean }) {
   const router = useRouter();
   const lang = ar ? 'ar' : 'en';
   const items = [...(flagDay ? [FLAG_ITEM[lang]] : []), ...OFFER[lang]];
-  const claim = ar ? 'احصل على خصم ٢٥٪ ←' : 'Claim your 25% →';
+  const claim = ar ? 'احصل على خصم ١٥٪ ←' : 'Claim your 15% →';
   const isFlag = (item: string) => flagDay && item === FLAG_ITEM[lang];
   // Rendered twice so the loop is seamless; screen readers get the copy once from the label.
   const run = <span className="offer-bar__run" aria-hidden="true">{items.map((item) => <span key={item} className={isFlag(item) ? 'offer-bar__flag' : undefined}>{item}</span>)}<span className="offer-bar__claim">{claim}</span></span>;

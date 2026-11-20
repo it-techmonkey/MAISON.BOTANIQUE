@@ -48,7 +48,7 @@ const copy = {
     deliveryLine: 'Arrives', askAbout: 'Ask about this gift on WhatsApp', askUs: 'Ask us',
     helpOrder: 'Questions? Chat with us on WhatsApp', orderWhatsapp: 'Order on WhatsApp instead',
     addBag: 'Add to bag', subtotal: 'Subtotal',
-    offerLine: 'Welcome offer: 25% off your first order with your code at checkout.',
+    offerLine: 'Welcome offer: 15% off your first order with your code at checkout.',
     included: "What's included", alsoLike: 'You may also like',
     previewCheckout: 'Preview checkout', secureCheckout: 'Continue to secure checkout',
     reviewTitle: 'Checkout preview', reviewIntro: 'Your selections are saved in this browser for up to 30 days. Checkout is not connected yet; no order or payment will be taken.',
@@ -87,7 +87,7 @@ const copy = {
     deliveryLine: 'موعد الوصول', askAbout: 'استفسر عن هذه الهدية عبر واتساب', askUs: 'اسألنا',
     helpOrder: 'لديك سؤال؟ تحدّث معنا عبر واتساب', orderWhatsapp: 'اطلب عبر واتساب بدلاً من ذلك',
     addBag: 'أضف إلى الحقيبة', subtotal: 'المجموع الفرعي',
-    offerLine: 'عرض الترحيب: خصم ٢٥٪ على طلبك الأول برمزك عند الدفع.',
+    offerLine: 'عرض الترحيب: خصم ١٥٪ على طلبك الأول برمزك عند الدفع.',
     included: 'ما يتضمنه', alsoLike: 'قد يعجبك أيضاً',
     previewCheckout: 'معاينة الدفع', secureCheckout: 'متابعة الدفع الآمن',
     reviewTitle: 'معاينة الدفع', reviewIntro: 'اختياراتك محفوظة في هذا المتصفح لمدة تصل إلى ٣٠ يومًا. الدفع غير متصل بعد؛ لن يُنشأ طلب أو تُحصّل دفعة.',
@@ -618,9 +618,9 @@ function Bag() {
     <section className="bag-welcome">
       {welcomeCode ? <>
         <p>{welcomeApplied ? (ar ? 'تم تطبيق خصم الترحيب' : 'Welcome discount applied') : (ar ? 'رمز الترحيب جاهز للدفع' : 'Welcome code ready for checkout')}</p>
-        {/^MB25-/i.test(welcomeCode) && <p className="bag-welcome-hint">{ar ? 'استخدم البريد الإلكتروني نفسه عند الدفع.' : 'Use the same email at checkout.'}</p>}
+        {/^MB15-/i.test(welcomeCode) && <p className="bag-welcome-hint">{ar ? 'استخدم البريد الإلكتروني نفسه عند الدفع.' : 'Use the same email at checkout.'}</p>}
         <label><input type="checkbox" checked={useWelcome} onChange={(event) => { setUseWelcome(event.target.checked); void cart.applyWelcomeOffer?.(event.target.checked).catch(() => setError(t.error)); }} />{ar ? 'استخدم عرض الترحيب' : 'Use my welcome offer'}</label>
-      </> : <button type="button" className="button button--ghost" onClick={openOffer}>{ar ? 'احصل على خصم ٢٥٪ على طلبك الأول' : 'Get 25% off your first order'}</button>}
+      </> : <button type="button" className="button button--ghost" onClick={openOffer}>{ar ? 'احصل على خصم ١٥٪ على طلبك الأول' : 'Get 15% off your first order'}</button>}
     </section>
   );
 

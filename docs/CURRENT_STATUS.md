@@ -20,8 +20,8 @@ This cleanup preserves that newer application baseline.
 - Signature / Grand / Luxe; only flowers multiply; one Signature photo per product.
 - No product counts in customer UI. Paper/ivory backgrounds; Cormorant Garamond italic for card previews.
 - Preserve the current three-product scroll hero, arrows, approved headline and four promises.
-- 25% off eligible first orders, MAISON25 fallback; no first-100 or advertised candle claim. Revised 20 October 2026:
-  struck prices carry a calculated "NN% off" tag (40-60%, fixed per product) and the desktop side tab reads "25% + up to 60% off".
+- 15% off eligible first orders, MAISON15 fallback; no first-100 or advertised candle claim. Revised 20 October 2026:
+  struck prices carry a calculated "NN% off" tag (40-60%, fixed per product) and the desktop side tab reads "15% + up to 60% off".
 - Prices show the new UAE Dirham sign instead of the letters AED (PR #6).
 - Product names and URLs changed on 20 October 2026: every product has a brand-style name ("Eloise — Pink & White Rose Bouquet"), an
   Arabic name and a matching handle (`catalog/shopify-export/product-renames.json`). Old `/shop/<handle>` URLs redirect (next.config.ts).

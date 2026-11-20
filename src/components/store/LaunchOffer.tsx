@@ -6,35 +6,35 @@ import { uaeMobile } from '@/lib/enquiry';
 import { OFFER_CODE } from '@/lib/site';
 import { useStore } from './StoreProvider';
 
-// Welcome offer: 25% off a first order.
+// Welcome offer: 15% off a first order.
 // The sign-up is saved in Shopify as a newsletter customer (email or SMS
 // marketing consent, src/lib/shopify/forms.ts), and the visitor sees the
 // shared code. Create the code in Shopify (Discounts) with no total-use limit and
-// one use per customer; set NEXT_PUBLIC_LAUNCH_OFFER_CODE if it isn't MAISON25.
+// one use per customer; set NEXT_PUBLIC_LAUNCH_OFFER_CODE if it isn't MAISON15.
 const STORAGE_KEY = 'mb-launch-offer-v1';
 const SNOOZE_MS = 3 * 24 * 60 * 60 * 1000;
 const OPEN_DELAY_MS = 1500;
 
 const COPY = {
   en: {
-    eyebrow: 'Welcome offer', title: '25% off your first order', sub: 'Sign up and get 25% off your first order.',
+    eyebrow: 'Welcome offer', title: '15% off your first order', sub: 'Sign up and get 15% off your first order.',
     whatsapp: 'WhatsApp', email: 'Email', phoneLabel: 'WhatsApp number', phonePh: '50 123 4567', emailLabel: 'Email address', emailPh: 'you@example.com',
     consent: 'Send me occasional Maison offers by email or SMS (optional). I can unsubscribe at any time.', privacy: 'Privacy policy',
     cta: 'Get my code', sending: 'Sending…', no: 'No thanks', invalidPhone: 'Enter a UAE mobile number, for example 50 123 4567.', invalidEmail: 'Enter a valid email address.', needConsent: 'Tick the box so we can send your code.',
     failed: 'Something went wrong. Please try again in a moment.',
     doneTitle: 'Your code is ready', doneSub: 'Your code is ready for checkout. Your details have been saved.',
-    copy: 'Copy code', copied: 'Copied', shop: 'Start shopping', terms: 'One use per customer · 25% off products.',
-    tab: '25% + up to 60% off', close: 'Close',
+    copy: 'Copy code', copied: 'Copied', shop: 'Start shopping', terms: 'One use per customer · 15% off products.',
+    tab: '15% + up to 60% off', close: 'Close',
   },
   ar: {
-    eyebrow: 'عرض الترحيب', title: 'خصم ٢٥٪ على طلبك الأول', sub: 'سجّل واحصل على خصم ٢٥٪ على طلبك الأول.',
+    eyebrow: 'عرض الترحيب', title: 'خصم ١٥٪ على طلبك الأول', sub: 'سجّل واحصل على خصم ١٥٪ على طلبك الأول.',
     whatsapp: 'واتساب', email: 'البريد', phoneLabel: 'رقم واتساب', phonePh: '50 123 4567', emailLabel: 'البريد الإلكتروني', emailPh: 'you@example.com',
     consent: 'أرسلوا لي عروض ميزون بالبريد أو الرسائل النصية (اختياري). يمكنني إلغاء الاشتراك في أي وقت.', privacy: 'سياسة الخصوصية',
     cta: 'احصل على الرمز', sending: 'جارٍ الإرسال…', no: 'لا، شكراً', invalidPhone: 'أدخل رقم هاتف إماراتياً، مثل 50 123 4567.', invalidEmail: 'أدخل بريداً إلكترونياً صحيحاً.', needConsent: 'ضع علامة في المربع لنرسل لك الرمز.',
     failed: 'حدث خطأ ما. يرجى المحاولة بعد قليل.',
     doneTitle: 'رمزك جاهز', doneSub: 'رمزك جاهز للدفع. تم حفظ بياناتك.',
-    copy: 'انسخ الرمز', copied: 'تم النسخ', shop: 'ابدأ التسوق', terms: 'استخدام واحد لكل عميل · خصم ٢٥٪ على المنتجات.',
-    tab: 'خصم ٢٥٪ + حتى ٦٠٪', close: 'إغلاق',
+    copy: 'انسخ الرمز', copied: 'تم النسخ', shop: 'ابدأ التسوق', terms: 'استخدام واحد لكل عميل · خصم ١٥٪ على المنتجات.',
+    tab: 'خصم ١٥٪ + حتى ٦٠٪', close: 'إغلاق',
   },
 };
 
@@ -43,7 +43,7 @@ interface Saved { savedDetails?: boolean; code?: string; channel?: 'whatsapp' | 
 function readState(): Saved {
   try {
     const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || {};
-    if (state.code && state.code !== OFFER_CODE && !/^MB25-[A-F0-9]{20}$/.test(state.code)) { localStorage.removeItem(STORAGE_KEY); return {}; }
+    if (state.code && state.code !== OFFER_CODE && !/^MB15-[A-F0-9]{20}$/.test(state.code)) { localStorage.removeItem(STORAGE_KEY); return {}; }
     return state;
   } catch { return {}; }
 }

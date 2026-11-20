@@ -8,9 +8,9 @@ test('welcome offer opens on arrival with the approved wording and validates wit
   const sent: string[] = [];
   await page.route('**/api/enquiry', (route) => { sent.push(route.request().method()); return route.abort(); });
   await page.goto('/');
-  const offer = page.getByRole('dialog', { name: '25% off your first order' });
+  const offer = page.getByRole('dialog', { name: '15% off your first order' });
   await expect(offer).toBeVisible({ timeout: 10_000 });
-  await expect(offer).toContainText('Sign up and get 25% off your first order.');
+  await expect(offer).toContainText('Sign up and get 15% off your first order.');
   await expect(offer).toContainText('One use per customer');
   // Marketing consent is optional and starts unticked.
   await expect(offer.locator('#lo-consent')).not.toBeChecked();
@@ -33,7 +33,7 @@ test('welcome offer opens on arrival with the approved wording and validates wit
 
 test('the offer stays closed after "No thanks" on the next visit', async ({ page }) => {
   await page.goto('/');
-  const offer = page.getByRole('dialog', { name: '25% off your first order' });
+  const offer = page.getByRole('dialog', { name: '15% off your first order' });
   await expect(offer).toBeVisible({ timeout: 10_000 });
   await offer.locator('.lo-no').click();
   await page.reload();
@@ -45,6 +45,6 @@ test('the offer does not cover a product page, and "Ask us" sits beside Add to b
   await page.goto('/shop/aimee-red-rose-bouquet?utm_source=meta&utm_medium=paid_social');
   await expect(page.locator('.qa-add')).toBeVisible();
   await page.waitForTimeout(3000); // the offer opens 1.5 s after arrival elsewhere
-  await expect(page.getByRole('dialog', { name: '25% off your first order' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: '15% off your first order' })).toHaveCount(0);
   await expect(page.locator('.qa-foot .qa-ask')).toHaveAttribute('href', /^https:\/\/wa\.me\//);
 });
